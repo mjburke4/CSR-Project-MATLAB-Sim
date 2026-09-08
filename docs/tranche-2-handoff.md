@@ -1,12 +1,13 @@
 # Tranche 2 MAC/HOP integration handoff
 
-**Status: R2025a unit-fixture repair ready for owner rerun.**
+**Status: portable Tranche 2 accepted on owner execution evidence.**
 This tranche adds reliable packet exchange and fixed-path relays over the
-existing CSR PHY. Static/source review is complete; MATLAB runtime acceptance
-is pending. The first owner run passed 121/145 tests, including all 15 integrated
-MAC/HOP scenario/custody methods. Its 24 failures were confined to MAC/HOP
-unit fixtures; their mutable callback readers are now corrected. The repaired
-revision has not run in MATLAB. See [result and repair](tranche-2-r2025a-fixture-repair.md).
+existing CSR PHY. The corrected run passed **145/145 tests and nine scenarios**,
+with zero failed/incomplete tests and drained completed-scenario custody.
+Test/scenario CSVs were inspected. R2025a 25.1.0.2943329 and candidate `e79c5a8`
+are associated from the preceding session/package; the CSVs themselves contain
+neither release nor source hashes. See [acceptance](tranche-2-portable-acceptance.md)
+and the retained [fixture repair history](tranche-2-r2025a-fixture-repair.md).
 
 ## Objective and capabilities
 
@@ -59,8 +60,8 @@ CSR packet transport remains unintegrated and native execution unvalidated.
 | Actual original ns-3 execution | **17/17 focused workflows passed** in Debug/assertions/logging, source pin above; engine `6b5cd24ea80713ce16d88575869aedd6f432bdae` |
 | Static MATLAB lint | **54 files passed**, MISS_HIT 0.9.44, MATLAB 2022a syntax profile |
 | Independent review | No remaining structural blocker found by static/source review; [review record](tranche-2-review.md) |
-| Prepared portable MATLAB suite | **145 test methods**, including all 72 previous portable tests, plus nine exported MAC/HOP scenarios |
-| Tranche 2 MATLAB R2025a | Owner-run initial candidate: **121 passed / 24 failed / 18 incomplete**, 28.7179 s; console and test CSV inspected; fixture-fix rerun pending |
+| Portable MATLAB suite | **145/145 methods passed**, including all 72 previous portable tests; **nine scenario summaries passed** |
+| Tranche 2 MATLAB R2025a association | Corrected owner run: **145 passed / 0 failed / 0 incomplete**, summed duration 23.9557 s; test/scenario CSVs inspected; release associated from preceding console |
 | Tranche 2 MATLAB R2026a | **Not executed**; test separately after portable R2025a |
 | Native adapter tests | Five separate methods; not executed; `validate_native` |
 | Historical T1 acceptance | Owner-reported R2025a 25.1.0.2943329: 72/72 tests and nine PHY scenarios passed for the accepted revision |
@@ -77,7 +78,7 @@ No equivalent full-network MATLAB↔ns-3 numerical comparison has run yet.
 No new OPNET execution or aggregate comparison was performed. Existing source
 evidence is used; unavailable OPNET event exports are not an acceptance blocker.
 
-## Run the acceptance gate
+## Reproduce the accepted portable gate
 
 Extract the package to a fresh folder, open MATLAB there, and run:
 
@@ -92,9 +93,9 @@ The suite checks retry and feedback ownership, unique application delivery,
 drained completed-scenario custody, deliberate loss recovery, queue pressure,
 finite-horizon pending work, trace bounds and deterministic repeatability.
 
-Return the complete console output, `tests/test_results.csv` and
-`scenario_summary.csv`. The initial failed run stopped before the scenario
-summary was created; the corrected rerun must reach that export stage. Per-scenario
+Preserve the complete console output, `tests/test_results.csv` and
+`scenario_summary.csv`. The accepted rerun reached the scenario export stage;
+the initial failed run remains recorded separately. Per-scenario
 `protocol_trace.csv`, `phy_trace.csv`, `mac_nodes.csv`, `hop_nodes.csv`,
 configuration and metadata are available if a gate fails. Preserve the MATLAB
 version/release and the candidate revision with those outputs. A structural
@@ -143,5 +144,5 @@ the working MAC/HOP/PHY composition. Resolve adaptive link-control placement
 with that integration before variable-link comparisons. Battery, supervisory
 features and BBN routing remain excluded from the baseline.
 
-Tranche 2 is recorded locally for validation. Remote push and PR creation need
+Tranche 2 is recorded locally with owner-run portable acceptance. Remote push and PR creation need
 separate owner authorization; no Tranche 2 publication is claimed here.

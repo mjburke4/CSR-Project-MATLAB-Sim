@@ -1,12 +1,12 @@
 # MATLAB release compatibility
 
-Current T2 status: MAC/HOP, fixed-path forwarding and the PHY state bridge are
-prepared for portable R2025a/R2026a execution. No new native API or toolbox
-dependency was added to the portable path. The first owner R2025a run passed
-121/145 tests; 24 failed in the MAC/HOP unit fixtures. All 15 integrated MAC/HOP
-scenario/custody tests and all nine PHY-state bridge tests passed. Mutable
-fixture readers have been corrected; acceptance requires a rerun of
-`run_tranche2_validation`. See [runtime result and repair](tranche-2-r2025a-fixture-repair.md).
+Current T2 status: the corrected portable MAC/HOP implementation passed all
+145 owner-run tests and nine exported scenarios. No new native API or toolbox
+dependency was added. The run is associated with R2025a 25.1.0.2943329 from
+the preceding console; the new test/scenario CSVs contain no release field.
+Portable acceptance is recorded with that provenance limit in
+[Tranche 2 acceptance](tranche-2-portable-acceptance.md). The original
+unit-fixture defect and its repair remain in the historical evidence.
 
 Historical T1 status: the portable PHY implementation passed 72/72 tests and all
 nine scenarios on the owner's MATLAB R2025a 25.1.0.2943329 installation, without

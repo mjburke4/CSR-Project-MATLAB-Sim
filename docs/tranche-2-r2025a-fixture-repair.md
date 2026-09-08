@@ -1,5 +1,9 @@
 # Tranche 2 R2025a result and fixture repair
 
+**Historical failure and repair record.** The subsequent owner rerun passed
+145/145 tests and all nine scenario summaries. Portable acceptance is recorded
+in [Tranche 2 acceptance](tranche-2-portable-acceptance.md).
+
 The owner ran `run_tranche2_validation` on MATLAB R2025a
 `25.1.0.2943329`, using the portable backend without wireless simulator symbols.
 The supplied console transcript and `test_results.csv` agree:
@@ -19,7 +23,7 @@ The supplied console transcript and `test_results.csv` agree:
 
 The 18 incomplete methods are a subset of the 24 failed methods. This is useful
 integrated runtime evidence, but the whole Tranche 2 acceptance gate remains
-open. No native R2026a or full-network ns-3 numerical parity is implied.
+open at this initial checkpoint. No native R2026a or full-network ns-3 numerical parity is implied.
 
 ## Diagnosis and correction
 
@@ -51,8 +55,9 @@ test-results CSV is preserved byte-for-byte at
 `evidence/tranche-2-r2025a-initial-test-results.csv`; a structured summary and
 hashes of both supplied inputs are in `evidence/tranche-2-r2025a-initial-run.json`.
 
-The repaired files have passed static review and lint. The repair has **not**
-executed in MATLAB here or on the owner's machine yet. The previous 17/17
+The repaired files passed static review and lint before handoff. MATLAB had
+not rerun the repair at that checkpoint; the later owner run is now accepted.
+No MATLAB execution occurred in this workspace. The previous 17/17
 ns-3 workflow results remain reference-side evidence; they were not rerun for
 this test-fixture-only correction.
 

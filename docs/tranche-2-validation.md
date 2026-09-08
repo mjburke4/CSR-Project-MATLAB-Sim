@@ -7,12 +7,19 @@ execution evidence. R2025a and R2026a runtime results must be recorded separatel
 Current source-side result: **17/17 original ns-3 workflows passed** against CSR
 `486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b` in ns-3 engine
 `6b5cd24ea80713ce16d88575869aedd6f432bdae`. This is actual native C++ execution.
+The corrected owner run passed **145/145 portable methods** and all **nine
+exported scenarios**. There are no failed/incomplete tests or pending custody
+in the summaries. Summed test duration is 23.9557 seconds. The inspected CSVs
+support portable acceptance; the R2025a release association comes from the
+preceding console, not fields in the new CSVs. See
+[portable acceptance](tranche-2-portable-acceptance.md).
+
 The first owner R2025a run of the **145 portable methods** passed **121** and
 failed **24**, with **18 incomplete**, in 28.7179 seconds. All 15 integrated
 scenario/custody methods passed. Failures were in MAC/HOP fixture readers;
-their repair is prepared, with MATLAB rerun pending. Both the console transcript
+their repair was applied before the accepted rerun. Both the initial console transcript
 and exported test-results CSV were inspected. The nine-scenario export stage
-was not reached because `assertSuccess` stopped the runner. See
+was not reached in that first run because `assertSuccess` stopped the runner. See
 [runtime evidence and repair](tranche-2-r2025a-fixture-repair.md).
 
 The suite includes all original 72 methods. It has **not** run in this workspace.

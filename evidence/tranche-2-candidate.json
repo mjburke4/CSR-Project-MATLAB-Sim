@@ -1,7 +1,7 @@
 {
   "schema": "csr-matlab-tranche-2-candidate-v1",
   "prepared_utc": "2026-09-08T16:34:06.321838+00:00",
-  "status": "R2025a fixture repair ready for owner rerun; initial run 121/145 passed, full acceptance pending",
+  "status": "Portable Tranche 2 accepted from owner rerun: 145/145 tests and nine scenarios; release/source association contextual",
   "branch": "tranche/2-mac-hop-reliability",
   "published_base_commit": "8b185ff586a0cfb0562194c2948c5271826a0e9d",
   "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
@@ -17,6 +17,18 @@
       "incomplete": 18,
       "revision_scope": "Initial issued candidate, not the fixture repair",
       "runtime_source_hash_independently_verified": false
+    },
+    {
+      "evidence": "tranche-2-portable-acceptance.json",
+      "runtime_association": "MATLAB R2025a 25.1.0.2943329 from preceding console",
+      "total": 145,
+      "passed": 145,
+      "failed": 0,
+      "incomplete": 0,
+      "scenarios": 9,
+      "revision_scope": "Issued Fix1 package at e79c5a84955b3e98a37fc469629b6c3d0ba700a0",
+      "runtime_source_hash_independently_verified": false,
+      "version_embedded_in_current_inputs": false
     }
   ],
   "historical_owner_runtime_evidence": "tranche-1-r2025a-acceptance.json",
@@ -58,7 +70,7 @@
     "files_analyzed": 54,
     "exit_code": 0,
     "output": "MISS_HIT Lint Summary: 54 file(s) analysed, everything seems fine",
-    "scope": "Repaired candidate static syntax/lint only; no MATLAB rerun or toolbox validation"
+    "scope": "Static syntax/lint only; owner MATLAB runtime evidence is recorded separately"
   },
   "source_reference_execution": {
     "passed": 17,
@@ -70,7 +82,7 @@
   },
   "independent_review": "../docs/tranche-2-review.md",
   "acceptance_command": "run_tranche2_validation",
-  "next_runtime_target": "MATLAB R2025a 25.1.0.2943329 portable; R2026a separately",
+  "next_runtime_target": "R2026a portable/native separately; next implementation gate is Tranche 3",
   "known_scope": [
     "Fixed scenario paths; autonomous NWK routing deferred to Tranche 3",
     "Configured radio rate/power; adaptive HOP link control deferred",
@@ -147,7 +159,10 @@
       "tests/TestMacLayer.m"
     ],
     "protocol_changed": false,
-    "matlab_rerun_executed": false,
-    "description": "Replace anonymous snapshot readers with shared nested getters for observation logs and NSDP/route/SYNC controls; preserve existing assertions"
-  }
+    "matlab_rerun_executed": true,
+    "description": "Replace anonymous snapshot readers with shared nested getters for observation logs and NSDP/route/SYNC controls; preserve existing assertions",
+    "matlab_rerun_location": "Owner environment; evidence above"
+  },
+  "acceptance_evidence": "tranche-2-portable-acceptance.json",
+  "accepted_code_commit": "e79c5a84955b3e98a37fc469629b6c3d0ba700a0"
 }

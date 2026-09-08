@@ -3,21 +3,25 @@
 Behavioral port of `mjburke4/CSR-Project-NS3-part2`, currently pinned to main
 `486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b` (2026-09-07, PR #50).
 
-## Current milestone: Tranche 2 MAC/HOP candidate
+## Current milestone: portable Tranche 2 MAC/HOP accepted
 
-The integrated candidate connects application traffic and explicit relay paths
+The integrated implementation connects application traffic and explicit relay paths
 to HOP reliability, MAC access and the existing CSR signal engine. It adds
 bounded priority queues, slots and reservations, wake/sleep behavior, ACK
 repetition, concatenation, HOP retransmission, cumulative ACK/DACK windows,
 flow capacity and deferred custody release. Per-node MAC/HOP counters and
 protocol traces accompany the application and PHY statistics.
 
-**The first Tranche 2 R2025a run passed 121/145 tests and failed 24**, with
-18 incomplete. All 15 integrated MAC/HOP scenario/custody tests passed. Failures
-were confined to MAC/HOP unit fixtures whose anonymous readers captured initial
-logs and controls. Those fixtures are corrected; the rerun remains pending.
-The failure stopped the runner before its nine-scenario export stage. See the
-[R2025a result and repair](docs/tranche-2-r2025a-fixture-repair.md).
+**The corrected owner run passed 145/145 tests and all nine MAC/HOP scenarios.**
+No test failed or remained incomplete. Application pending, HOP pending,
+resend queues and DACK holds are zero in every scenario summary. The queue
+pressure fixture deliberately drops 18 of 20 packets; all other fixtures
+delivered every generated application packet. Summed test duration is 23.9557 s.
+The inspected CSVs establish portable acceptance. R2025a 25.1.0.2943329 is
+associated from the preceding console; release and source hashes are not
+embedded in the new CSVs. See [acceptance evidence](docs/tranche-2-portable-acceptance.md).
+The initial fixture failure remains recorded in the
+[result and repair history](docs/tranche-2-r2025a-fixture-repair.md).
 Original ns-3 reference workflows passed 17/17. Fixed paths
 support multi-hop forwarding; autonomous routing belongs to Tranche 3.
 Adaptive HOP rate/power selection is deferred; configured radio settings apply.
@@ -127,7 +131,7 @@ the protocol core never subclasses `wnet.Node`.
 |---|---|---|---|
 | 0 | Accepted controlled three-node transfer on R2025a | Low | Complete for portable R2025a |
 | 1 | Accepted portable CSR PHY/channel/traffic on R2025a | High | Portable gate passed; native gate separate |
-| 2 | MAC/HOP with fixed-path relays; MATLAB acceptance pending | High | Portable Tranche 1 accepted |
+| 2 | Accepted portable MAC/HOP with fixed-path relays | High | Portable gate passed; native gate separate |
 | 3 | Autonomous ARL routing and multihop delivery | High | 2; route/serialization work parallel to 1–2 |
 | 4 | Configurable research scenarios and differential runs | Medium | 1–3 |
 | 5 | Material parity closure and research tooling | High, bounded by priorities | 4 |
@@ -168,7 +172,7 @@ MAC/HOP/envelope workflows passed for T2; these are reference-side results,
 not MATLAB or full-network numerical parity. No MATLAB execution occurred in
 this workspace.
 
-The portable PHY/channel/traffic foundation is accepted on R2025a. Remote
+The portable PHY/channel/traffic and MAC/HOP foundations are accepted from owner runs. Remote
 publication, PR creation, merging, and branch deletion require owner
 authorization. Ordinary local edits, tests and internal commits proceed
 within an authorized tranche.

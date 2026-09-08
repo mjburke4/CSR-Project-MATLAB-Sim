@@ -2,6 +2,14 @@
 
 ## Owner runtime follow-up
 
+The corrected owner run now passes all **145 portable methods and nine
+scenario summaries**, including the previously failing unit methods. Application
+and HOP custody counts drain in every scenario, loss fixtures recover delivery,
+and queue-pressure losses remain explicit. The CSV evidence supports portable
+Tranche 2 acceptance. Release/source identity are contextual associations,
+and native integration and network differential parity remain separate gates.
+See [accepted results](tranche-2-portable-acceptance.md).
+
 The initial static review below missed creation-time value capture in the MAC
 and HOP test fixtures. The owner R2025a run passed all 15 integrated MAC/HOP
 scenario/custody methods, but failed 24 unit methods because observers returned
@@ -10,7 +18,7 @@ getters now share callback state. The repair also fixes NSDP, route-availability
 and SYNC controls; assertions and protocol implementations are preserved.
 The lead reviewed both specialist edits and audited the remaining anonymous
 callbacks. Production callbacks read mutable handle objects or intentionally
-capture per-event inputs. Runtime acceptance remains pending the corrected run.
+capture per-event inputs. The corrected owner rerun closes this portable gate.
 See [recorded result and repair](tranche-2-r2025a-fixture-repair.md).
 
 ## Initial candidate static/source review
