@@ -1,0 +1,416 @@
+{
+  "schema": "csr-matlab-ns3-source-validation-v1",
+  "inspection_date": "2026-09-08",
+  "source": {
+    "repository": "https://github.com/mjburke4/CSR-Project-NS3-part2",
+    "commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+    "publication_evidence_path": "docs/opnet-residual-review.json",
+    "publication_evidence_sha256": "f5083a44a20ccefd41f1828c11eb6ce64c94d17d235601800089e90089a6fdfa"
+  },
+  "fresh_execution": {
+    "python_version": "3.12.13",
+    "utility_tests": {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "utils/tests",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "CSR-Project-NS3-part2 checkout root",
+      "tests_run": 289,
+      "passed": 289,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "reported_elapsed_seconds": 8.219,
+      "scope": "Python source utilities, synthetic fixtures and fake runner workflows; not live ns-3 C++ simulation",
+      "test_sources": [
+        {
+          "path": "utils/tests/test_aggregate_ns3_trace.py",
+          "sha256": "7387847aa7894338caad13b2b5314104fcf2f3ecc2163a6cdc02b0529b795c0c",
+          "tests": 23
+        },
+        {
+          "path": "utils/tests/test_analyze_ns3_admission_ledger.py",
+          "sha256": "560ed9181c8ed10bda7325a096ac282df0744ffbc57e75468f23a08343daf946",
+          "tests": 21
+        },
+        {
+          "path": "utils/tests/test_analyze_ns3_packet_paths.py",
+          "sha256": "811a34b80a7b2f6e5d7abae6da0c2db4b3f268b2b765fbf8e93ec46c11d59b55",
+          "tests": 20
+        },
+        {
+          "path": "utils/tests/test_opnet_aggregate_comparator.py",
+          "sha256": "434d404340edb97cbbf7b44a169c0c78e118cc3242c64cf9131ba12730996d35",
+          "tests": 18
+        },
+        {
+          "path": "utils/tests/test_opnet_aggregate_workflow.py",
+          "sha256": "ce474c45cbdc8c23074aeb4b80f843c531fb26aef8999010f5fbe73dc7f73786",
+          "tests": 41
+        },
+        {
+          "path": "utils/tests/test_opnet_differential_workflow.py",
+          "sha256": "ca76f797259fe49aebbdda19a9a4cde1467c3aa32494d0fbf09fa7c5e3708c05",
+          "tests": 5
+        },
+        {
+          "path": "utils/tests/test_opnet_ov_extractor.py",
+          "sha256": "1a4acaf00e6d2c93bfb287c88c3eec57053691c6ee186c292a185a504113f4bd",
+          "tests": 61
+        },
+        {
+          "path": "utils/tests/test_opnet_reservation_collision_instrumenter.py",
+          "sha256": "58327a52bfc3c8340474613b037d6ac110a207549f3b0a338083017d5d4dfe50",
+          "tests": 9
+        },
+        {
+          "path": "utils/tests/test_opnet_reservation_collision_validator.py",
+          "sha256": "0a0236a208ce068fa26b6aab035c370286fa1aacd4ac9964fe803fac68fbe758",
+          "tests": 61
+        },
+        {
+          "path": "utils/tests/test_opnet_scenario_tools.py",
+          "sha256": "31ae5ab026856d9c71b7c9f5f3c1e5dfd0bb92401388e11732014aff3bf59d38",
+          "tests": 30
+        }
+      ]
+    },
+    "release_classifier_tests": {
+      "command": [
+        "python3",
+        "utils/release/test_certify_release_classifier.py"
+      ],
+      "cwd": "CSR-Project-NS3-part2 checkout root",
+      "tests_run": 51,
+      "passed": 51,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "reported_elapsed_seconds": 0.742,
+      "source_sha256": "b2837cfcfa2c0bd0e3295607c0cc46b39f21169f34fbee309c133879bfb94362",
+      "scope": "Classifier probes; not execution of the official release-certification harness"
+    },
+    "matlab_r2025a": {
+      "executed": false
+    },
+    "matlab_r2026a": {
+      "executed": false
+    },
+    "ns3_cpp": {
+      "executed": false
+    },
+    "runtime_commands_on_path": {
+      "matlab": null,
+      "octave": null,
+      "ns3": null
+    }
+  },
+  "publication_source_hash_checks": [
+    {
+      "path": "model/csr-net-device.h",
+      "expected_sha256": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+      "actual_sha256": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+      "matches": true
+    },
+    {
+      "path": "model/csr-hop-layer.h",
+      "expected_sha256": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+      "actual_sha256": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+      "matches": true
+    },
+    {
+      "path": "csr-mac-receive-contention-smoke.cc",
+      "expected_sha256": "95dea56f29d8cd2c7fddf0b6b5ab0aeb8da94a93347b3502edfaad4a43eebc43",
+      "actual_sha256": "95dea56f29d8cd2c7fddf0b6b5ab0aeb8da94a93347b3502edfaad4a43eebc43",
+      "matches": true
+    },
+    {
+      "path": "csr-ack-window-smoke.cc",
+      "expected_sha256": "eeea7c7e71994b96a473aea6b77b98c1bf03b27d1c550c9c37c726646716b649",
+      "actual_sha256": "eeea7c7e71994b96a473aea6b77b98c1bf03b27d1c550c9c37c726646716b649",
+      "matches": true
+    },
+    {
+      "path": "model/csr-phy-model.h",
+      "expected_sha256": "d690b4c572491a9ea8c48735b1726770938b118dcbcd931e92920e602cae18fc",
+      "actual_sha256": "d690b4c572491a9ea8c48735b1726770938b118dcbcd931e92920e602cae18fc",
+      "matches": true
+    },
+    {
+      "path": "csr-phy-front-end-smoke.cc",
+      "expected_sha256": "0d2e8ddb085113cba51fc3d93f7447da73416816ae42ea4ccdcff969f7893728",
+      "actual_sha256": "0d2e8ddb085113cba51fc3d93f7447da73416816ae42ea4ccdcff969f7893728",
+      "matches": true
+    },
+    {
+      "path": "csr-phy-ber-ecc-smoke.cc",
+      "expected_sha256": "1aed010cfe6c0747499523f099110190199182fd453216607035c7ab639a524e",
+      "actual_sha256": "1aed010cfe6c0747499523f099110190199182fd453216607035c7ab639a524e",
+      "matches": true
+    },
+    {
+      "path": "docs/opnet-phy-front-end.md",
+      "expected_sha256": "7ec72d87603c3791b4bd3df33dc0c5c3c31e7e76f8235c74fe575de2bfbf8562",
+      "actual_sha256": "7ec72d87603c3791b4bd3df33dc0c5c3c31e7e76f8235c74fe575de2bfbf8562",
+      "matches": true
+    },
+    {
+      "path": "docs/opnet-phy-ber-ecc.md",
+      "expected_sha256": "660ed374627b184e31b90b39dc05343749fd8614cd02635c7ac568ad08f8f0e1",
+      "actual_sha256": "660ed374627b184e31b90b39dc05343749fd8614cd02635c7ac568ad08f8f0e1",
+      "matches": true
+    }
+  ],
+  "inherited_execution_evidence": {
+    "freshly_executed_in_this_workspace": false,
+    "date": "2026-09-07",
+    "official_release_certification": false,
+    "ns3_engine_commit": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+    "build_products": 39,
+    "executable_workflows": 38,
+    "passed_workflows": 38,
+    "included_fixes": [
+      "rejected SYNC preamble callback admission",
+      "ACK growth before retransmission counter reset"
+    ],
+    "excluded_change": "BER interval caching and Track pipeline reentry change from 622dce6",
+    "canonical_multihop": {
+      "scenario": {
+        "ack_envelope_profile": "unspecified",
+        "application_profile": "legacy-send-only-no-dscp",
+        "duration_s": 6000.0,
+        "hop_security_behavior": {
+          "ack_dack": "bare",
+          "ordinary_data": "bare"
+        },
+        "hop_security_profile": "hist-adb97c54-bare",
+        "hop_security_profile_origin": "explicit",
+        "mac_profile": "hist-2014-next-tslot-modulo-probe",
+        "scenario": "blue_radio_campus-multihop",
+        "seed": 128,
+        "source_executable_sha256": "adb97c54f7566439f1404e972d3d777a3bca613e2a965bf12f03353fb009d9af",
+        "source_sha256": "999f3750c17a53199d6ed5de76ec0b4dc0680e07011a9c14e7ec3cf81920baff",
+        "topology": {
+          "flow_count": 6,
+          "flows": [
+            {
+              "destination": 1,
+              "destination_mode": "fixed",
+              "dscp": 0,
+              "packet_bytes": 200,
+              "source": 2
+            },
+            {
+              "destination": 1,
+              "destination_mode": "fixed",
+              "dscp": 0,
+              "packet_bytes": 200,
+              "source": 3
+            },
+            {
+              "destination": 1,
+              "destination_mode": "fixed",
+              "dscp": 0,
+              "packet_bytes": 200,
+              "source": 4
+            },
+            {
+              "destination": 1,
+              "destination_mode": "fixed",
+              "dscp": 0,
+              "packet_bytes": 200,
+              "source": 5
+            },
+            {
+              "destination": 1,
+              "destination_mode": "fixed",
+              "dscp": 0,
+              "packet_bytes": 200,
+              "source": 7
+            },
+            {
+              "destination": 1,
+              "destination_mode": "fixed",
+              "dscp": 0,
+              "packet_bytes": 200,
+              "source": 8
+            }
+          ],
+          "gateway_ids": [
+            1
+          ],
+          "node_count": 7,
+          "node_ids": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            7,
+            8
+          ],
+          "nodes": [
+            {
+              "name": "CSR_node_1",
+              "node_id": 1,
+              "node_type": "gateway"
+            },
+            {
+              "name": "CSR_node_2",
+              "node_id": 2,
+              "node_type": "routable"
+            },
+            {
+              "name": "CSR_node_3",
+              "node_id": 3,
+              "node_type": "routable"
+            },
+            {
+              "name": "CSR_node_4",
+              "node_id": 4,
+              "node_type": "routable"
+            },
+            {
+              "name": "CSR_node_5",
+              "node_id": 5,
+              "node_type": "routable"
+            },
+            {
+              "name": "CSR_node_7",
+              "node_id": 7,
+              "node_type": "routable"
+            },
+            {
+              "name": "CSR_node_8",
+              "node_id": 8,
+              "node_type": "routable"
+            }
+          ]
+        }
+      },
+      "stage_exit_codes": {
+        "aggregate_ns3": 0,
+        "compare": 1,
+        "extract_opnet": 0,
+        "run_ns3": 0
+      },
+      "comparison_counts": {
+        "base_series": 8,
+        "comparable_series": 8,
+        "extra_in_ns3": 0,
+        "indeterminate_series": 0,
+        "matched_points": 800,
+        "missing_in_ns3": 0,
+        "missing_ns3_values": 0,
+        "noncomparable_series": 0,
+        "numeric_mismatches": 641,
+        "numeric_points_compared": 780,
+        "skipped_missing_values": 20,
+        "skipped_noncomparable_points": 0,
+        "unmatched_ns3_series": 0,
+        "unmatched_opnet_series": 0
+      },
+      "internal_ns3_delivery_lineage": {
+        "matched_by_method": {
+          "exact_sequence": 11769
+        },
+        "matched_count": 11769,
+        "matched_size_compared_count": 11769,
+        "matched_size_mismatch_count": 0,
+        "source_exact_dack_retry_duplicate_delivery_count": 0,
+        "source_exact_dack_retry_duplicate_proof_count": 0,
+        "unmatched_delivery_count": 0
+      },
+      "reported_aggregate_means": {
+        "ns3_sent_packets_per_second": 2.0695,
+        "ns3_received_packets_per_second": 1.9615,
+        "ns3_mean_of_bucket_delay_means_seconds": 103.18101,
+        "opnet_sent_packets_per_second": 2.012,
+        "opnet_received_packets_per_second": 1.90167,
+        "opnet_mean_of_bucket_delay_means_seconds": 112.74801,
+        "sent_percent_difference": 2.86,
+        "received_percent_difference": 3.15,
+        "delay_percent_difference": -8.49
+      },
+      "external_input_hashes": {
+        "opnet_ov": {
+          "sha256": "b643bee5c1d0260581a0135c0add5c87441bd98f70f66388fac0bf95096c39ee",
+          "size_bytes": 14766
+        },
+        "probe_definition": {
+          "sha256": "2871b54d0c531198f8ff77b1aa2a3cc81da6f05814c9ca00e64ed6a544a6470f",
+          "size_bytes": 11572
+        },
+        "scenario": {
+          "sha256": "90b143d93c13c6c2761bc5f2875ccc3fff98f85af6f2550370e435df2aaabcfc",
+          "size_bytes": 2408
+        }
+      }
+    },
+    "full_hidden_node_run_for_final_candidate": false,
+    "scope_caveat": "Historical publication execution record inspected; binaries and external evidence artifacts were not rerun or independently rehashed here."
+  },
+  "available_repository_fixtures": [
+    {
+      "path": "utils/testdata/csr-scenario-fixture.csv",
+      "sha256": "ecdc3c2c86494b0826434c686ef7b65464c13da86c641c1b8ac1ac61be294863",
+      "meaning": "Synthetic two-node initialization only; 0.1 s and no traffic flows"
+    },
+    {
+      "path": "utils/testdata/opnet-trace-fixture.csv",
+      "sha256": "8d5df4acc9ebe7e57361dd407f44b67552e332c931e27f3669b0b60c2867c6fc",
+      "meaning": "Synthetic alias-schema comparator fixture, not exported OPNET events"
+    },
+    {
+      "path": "utils/testdata/csr-reservation-collision-scenario.csv",
+      "sha256": "15ec5e404b525e02c74e14009bb20b9bb750acdb4f853dbb72460328a39f5b7b",
+      "meaning": "Controlled three-node MAC reference; start59.9 s, sources2/3 use slot5 and send at60 s, stop65 s"
+    },
+    {
+      "path": "csr-phy-ber-ecc-smoke.cc",
+      "sha256": "1aed010cfe6c0747499523f099110190199182fd453216607035c7ab639a524e",
+      "meaning": "Source-backed numeric fixtures for exact rates, BER and ECC; C++ source only in this run"
+    }
+  ],
+  "opnet_media_in_source_checkout": {
+    "ov_files": 0,
+    "network_model_files": 0,
+    "packet_event_exports_available": false
+  },
+  "residuals": [
+    {
+      "behavior": "OPNET aggregate traffic and latency",
+      "status": "unresolved numerical difference",
+      "decision": "Match current ns-3 initially; do not require exact OPNET parity for baseline"
+    },
+    {
+      "behavior": "PHY/ECC error attribution and Track-time interval handling",
+      "status": "known ns-3/OPNET uncertainty",
+      "decision": "Port retained current PHY/ECC first; excluded experimental change is not authoritative current behavior"
+    },
+    {
+      "behavior": "Historical hidden-node metrics",
+      "status": "not measured on final two-fix candidate",
+      "decision": "Do not attribute historical three-fix values to current published candidate"
+    },
+    {
+      "behavior": "Same-time OPNET packet ordering",
+      "status": "unavailable event-level evidence",
+      "decision": "Validate controlled MATLAB/ns-3 tests; do not block on unavailable OPNET export"
+    },
+    {
+      "behavior": "Imported historical application/MAC/security profiles",
+      "status": "must be preserved in comparisons",
+      "decision": "Do not silently compare historical scenarios using production DSCP/security defaults"
+    }
+  ]
+}
