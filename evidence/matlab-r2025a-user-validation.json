@@ -1,0 +1,43 @@
+{
+  "schema": "csr-matlab-user-reported-validation-v1",
+  "evidence_origin": "Owner-pasted run_validation MATLAB console output in this conversation; raw result files not yet supplied",
+  "tested_candidate_commit": "29afe50dd6e6a1821de9b2d3cf91fcc8e6474078",
+  "candidate_identity_basis": "Package supplied in preceding turn; not independently confirmed by a runtime source hash",
+  "matlab_version": "25.1.0.2943329 (R2025a)",
+  "matlab_release": "2025a",
+  "tests": {
+    "total": 24,
+    "passed": 20,
+    "failed": 4,
+    "incomplete": 0,
+    "elapsed_seconds": 8.9041,
+    "TestEventScheduler": {"passed": 2, "failed": 4},
+    "TestFoundation": {"passed": 8, "failed": 0},
+    "TestPhyFoundation": {"passed": 5, "failed": 0},
+    "TestRandomStreams": {"passed": 5, "failed": 0}
+  },
+  "reported_failures": [
+    {"test": "TestEventScheduler/sameTimeInsertionAndCancellation", "property": "PendingCount", "actual_values": [2, 0], "expected_values": [2, 0]},
+    {"test": "TestEventScheduler/horizonAndMonotonicClock", "property": "PendingCount", "actual_values": [1], "expected_values": [1]},
+    {"test": "TestEventScheduler/eventLimitPreservesPendingWork", "property": "PendingCount", "actual_values": [1], "expected_values": [1]},
+    {"test": "TestEventScheduler/callbackFailureLeavesClockAndQueueUsable", "property": "PendingCount", "actual_values": [1], "expected_values": [1]}
+  ],
+  "failure_reason": "Actual count class uint64; expected class double. All reported numerical counts match.",
+  "fix": "Normalize EventScheduler.PendingCount with double(obj.Active.Count); keep uint64 event IDs and unchanged verification assertions",
+  "review": "Independent scoped review confirmed the getter is used only by tests and exported PendingEvents metadata, not event-processing logic",
+  "capability_discovery": {
+    "HasWirelessNetworkSimulator": false,
+    "HasWnetNode": false,
+    "HasWirelessPacket": false,
+    "DefaultBackend": "portable",
+    "interpretation": "Symbols not found on this installation's MATLAB path; not a license or installation diagnosis"
+  },
+  "acceptance": {
+    "integrated_controlled_scenario_tests_passed_in_user_run": true,
+    "run_validation_completed_successfully": false,
+    "post_assert_scenario_export_reached": false,
+    "corrected_candidate_matlab_executed": false,
+    "r2026a_executed": false,
+    "tranche_0_status": "Await corrected R2025a run_validation result"
+  }
+}

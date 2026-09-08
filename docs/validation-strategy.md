@@ -1,5 +1,9 @@
 # CSR MATLAB validation strategy
 
+For the subsequent owner's R2025a run (20/24 passed) and count-type fix,
+see [r2025a-validation-followup.md](r2025a-validation-followup.md).
+The initial inspection evidence below retains its original scope.
+
 Source baseline: `mjburke4/CSR-Project-NS3-part2` main commit
 `486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b`, inspected 2026-09-08.
 This is a development strategy; proposed MATLAB checks below are not execution results.

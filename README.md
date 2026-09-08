@@ -10,9 +10,13 @@ discrete-event skeleton with three nodes, configurable traffic, exact CSR
 rate/airtime constants, bare DATA envelope sizing, controlled link delivery,
 deterministic local random streams, bounded tracing, statistics, and exports.
 
-**MATLAB execution is pending.** Generated code and independent static review
-are not runtime acceptance. The MATLAB tests must run successfully before this
-candidate is called an executable, accepted Tranche 0.
+**R2025a execution has begun; full acceptance is pending a rerun.** The owner's
+reported run on MATLAB 25.1.0.2943329 passed 20/24 tests, including all eight
+integrated foundation tests. Four scheduler tests failed solely because
+`PendingCount` returned `uint64` while their expected counts were `double`.
+This candidate normalizes that public counter to `double`; the existing tests
+remain unchanged. The corrected candidate has not yet executed in MATLAB.
+See `evidence/matlab-r2025a-user-validation.json` for the precise boundary.
 
 This is controlled direct transport: same-node transmissions serialize FIFO,
 and each receive link succeeds or drops according to an explicit test
@@ -37,8 +41,9 @@ matlab -batch "run_validation"
 ```
 
 The acceptance scenario expects 6 generated/transmitted/received packets,
-0 drops, 0 pending, and 384 received application bytes. These are **expected
-test outcomes**, not previously measured MATLAB results. Logs, release
+0 drops, 0 pending, and 384 received application bytes. The owner's first
+R2025a run passed the integrated tests asserting those outcomes; the final
+standalone scenario/export awaits a fully passing suite. Logs, release
 metadata, test outcomes, MAT results, and CSV/JSON exports are written to
 `results/validation/`. Share that directory to close the runtime gate.
 
@@ -99,7 +104,8 @@ backend. Public docs do not guarantee that zero-node use on R2025a succeeds.
 MATLAB unit, subsystem and scenario tests live in `tests/`. Current source's
 Python utility and release-classifier checks were actually run here and pass;
 their details are in the evidence file. Historical ns-3 C++ success is labeled
-separately. No MATLAB or ns-3 C++ execution occurred in this workspace.
+separately. The owner's R2025a run is recorded separately from local static
+checks. No MATLAB or ns-3 C++ execution occurred in this workspace.
 
 The code is staged as one cohesive foundation. Remote publication, PR creation,
 merging, and branch deletion require owner authorization. Ordinary local edits,

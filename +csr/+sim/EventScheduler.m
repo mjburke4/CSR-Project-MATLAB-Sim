@@ -42,7 +42,9 @@ classdef EventScheduler < handle
         end
 
         function count = get.PendingCount(obj)
-            count = obj.Active.Count;
+            % Expose a double count consistently with the other counters.
+            % containers.Map.Count returns uint64 on R2025a; IDs stay uint64.
+            count = double(obj.Active.Count);
         end
 
         function id = scheduleAt(obj, time, callback)

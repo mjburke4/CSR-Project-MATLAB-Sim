@@ -1,5 +1,8 @@
 # Tranche 0 handoff — candidate awaiting MATLAB execution
 
+This is the initial handoff record. The subsequent owner-run R2025a results
+and bounded count-type fix are recorded in [r2025a-validation-followup.md](r2025a-validation-followup.md).
+
 ## Objective and capabilities
 
 Create the integrated foundation for an empty MATLAB repository. The candidate
