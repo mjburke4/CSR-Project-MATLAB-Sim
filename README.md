@@ -3,14 +3,21 @@
 Behavioral port of `mjburke4/CSR-Project-NS3-part2`, currently pinned to main
 `486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b` (2026-09-07, PR #50).
 
-## Current milestone: Tranche 1 candidate; Tranche 0 accepted on R2025a
+## Current milestone: Tranche 1 portable foundation accepted on R2025a
 
-The integrated candidate adds CSR path loss, closure and passband matching,
+The integrated implementation adds CSR path loss, closure and passband matching,
 receive power/noise, all-peer signal delivery, Search/Track acquisition,
 half-duplex reception, capture/interference, complete BER tables, interval error
 allocation and inclusive ECC. It retains the controlled foundation fixture,
 scenario configuration, deterministic event/RNG ownership, bounded traces,
-statistics and MAT/CSV/JSON exports. MATLAB has not yet executed this T1 code.
+statistics and MAT/CSV/JSON exports. The owner ran this T1 implementation on
+MATLAB R2025a: **72/72 tests passed and all nine PHY scenarios completed**.
+Test-suite time was 4.6861 seconds. The portable Tranche 1 gate is accepted
+on owner-pasted console evidence; exported files and runtime source hashes
+have not been independently inspected. See
+[Tranche 1 acceptance](docs/tranche-1-r2025a-acceptance.md) and its structured
+[evidence](evidence/tranche-1-r2025a-acceptance.json). R2026a and native
+integration remain unvalidated.
 
 **The owner's corrected R2025a run passed 24/24 tests and completed the
 acceptance scenario.** MATLAB 25.1.0.2943329 reported six packets delivered,
@@ -49,10 +56,10 @@ Or from PowerShell with MATLAB on PATH, after changing to the repository:
 matlab -batch "run_tranche1_validation"
 ```
 
-This runs **72 prepared portable tests**, including the original 24, followed
+This runs **72 portable tests**, including the original 24, followed
 by nine PHY scenarios. Results go to `results/tranche1_validation/`, including
-`scenario_summary.csv` and per-scenario application/PHY traces. T1 success is
-pending this actual MATLAB run. The clean PHY test expects six application
+`scenario_summary.csv` and per-scenario application/PHY traces. This gate passed
+on the reported R2025a installation. The clean PHY test checks six application
 deliveries plus six successfully decoded overheard observations; all 12
 receiver observations must not be counted as application deliveries.
 
@@ -87,8 +94,8 @@ the protocol core never subclasses `wnet.Node`.
 | Tranche | Working endpoint | Complexity | Depends on |
 |---|---|---|---|
 | 0 | Accepted controlled three-node transfer on R2025a | Low | Complete for portable R2025a |
-| 1 | CSR PHY/channel/traffic candidate; optional native clock and packet probe | High | MATLAB runtime gates pending |
-| 2 | Reliable MAC/HOP multi-node exchange | High | 1; specs can start during 1 |
+| 1 | Accepted portable CSR PHY/channel/traffic on R2025a | High | Portable gate passed; native gate separate |
+| 2 | Reliable MAC/HOP multi-node exchange; recommended next | High | Portable Tranche 1 accepted |
 | 3 | Autonomous ARL routing and multihop delivery | High | 2; route/serialization work parallel to 1–2 |
 | 4 | Configurable research scenarios and differential runs | Medium | 1–3 |
 | 5 | Material parity closure and research tooling | High, bounded by priorities | 4 |
@@ -126,6 +133,7 @@ checks. Three original PHY/high-rate ns-3 workflows were built and executed
 for T1 and passed; see `evidence/tranche-1-ns3-workflows.json`. No MATLAB
 execution occurred in this workspace.
 
-The code is staged as one cohesive foundation. Remote publication, PR creation,
-merging, and branch deletion require owner authorization. Ordinary local edits,
-tests and internal commits proceed within an authorized tranche.
+The portable PHY/channel/traffic foundation is accepted on R2025a. Remote
+publication, PR creation, merging, and branch deletion require owner
+authorization. Ordinary local edits, tests and internal commits proceed
+within an authorized tranche.

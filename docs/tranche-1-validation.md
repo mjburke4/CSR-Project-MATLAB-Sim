@@ -1,10 +1,10 @@
 # Tranche 1 validation handoff
 
 The source reference is CSR ns-3 main
-`486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b`. Tranche 1 is a prepared MATLAB
-implementation until its new tests and scenarios actually run in MATLAB.
-The prior user-reported R2025a result (24/24 Tranche 0 tests) remains valid
-for that earlier accepted commit; it does not certify these changes.
+`486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b`. The owner has now run
+Tranche 1 on R2025a: **72 tests passed, zero failed/incomplete**, followed by
+all nine PHY scenarios meeting the portable gate. See
+[acceptance and evidence limits](tranche-1-r2025a-acceptance.md).
 
 ## Evidence available now
 
@@ -14,7 +14,7 @@ for that earlier accepted commit; it does not certify these changes.
 | Native ns-3 PHY front-end smoke | Executed, exit 0, one PASS line, zero FAIL lines | Existing source PHY propagation, power, SYNC, acquisition and interference regressions pass |
 | Native ns-3 BER/ECC smoke | Executed, exit 0, one PASS line, zero FAIL lines | Existing source table, interval allocation, ECC/closure and selected-collision regressions pass |
 | Native ns-3 live high-rate smoke | Executed, exit 0, one PASS line, zero FAIL lines | Existing source 500 kbps DPSK / 1 Mbps DQPSK integration regressions pass |
-| MATLAB R2025a Tranche 1 | Not executed here | User runtime gate required |
+| MATLAB R2025a Tranche 1 | Owner executed 25.1.0.2943329: 72/72 tests passed; nine scenarios completed | Portable runtime gate accepted; console evidence, exports not inspected |
 | MATLAB R2026a Tranche 1 | Not executed here | Separate runtime gate required |
 | Native MATLAB wireless integration | Not executed here | Separate optional adapter gate required |
 | OPNET runtime or packet differential | Not executed; event exports unavailable | Source/aggregate evidence boundary remains unchanged |
@@ -58,7 +58,8 @@ because another release succeeds.
 | collision | 2 generated; received + dropped = 2 | Collision observations exist; BER/ECC owns selected-packet disposition |
 | mixed_rate | 2 generated; received + dropped = 2 | Different-rate overlap reaches interference path; no lost packet custody |
 
-These are acceptance expectations, not measured MATLAB results. Collision
+The owner-reported R2025a results satisfy these expectations; observed values
+are in the acceptance record. Collision
 alone is not synonymous with a forced drop. `Collisions` counts completed
 receiver/signal observations with overlap, rather than unique collision
 pairs. `PhysicalAttempts` counts one transmitted packet at each non-self

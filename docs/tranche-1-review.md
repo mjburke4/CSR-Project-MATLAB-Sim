@@ -1,5 +1,18 @@
 # Tranche 1 independent engineering review
 
+## Runtime gate follow-up
+
+The independent reviewer checked the owner-reported R2025a 25.1.0.2943329
+output against the current tests and acceptance criteria: all 72 portable
+tests passed and all nine scenarios satisfy the gate. **Accept portable
+Tranche 1 on owner execution evidence.** Exports and runtime source hashes
+were not independently inspected; this is not a blocker. The 400 checked
+original C++ vectors support sampled calculation parity; full network
+comparisons and R2026a/native gates remain outstanding. See
+[acceptance record](tranche-1-r2025a-acceptance.md).
+
+## Original implementation review (before owner runtime validation)
+
 Reviewed 2026-09-08 against current CSR ns-3 source
 `486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b`.
 

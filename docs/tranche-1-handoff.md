@@ -1,7 +1,11 @@
-# Tranche 1 — integrated PHY/channel/traffic candidate
+# Tranche 1 — integrated PHY/channel/traffic
 
-**Implementation and independent static/source review complete. MATLAB runtime
-acceptance is pending.** Source main was rechecked as
+**Portable R2025a runtime gate accepted on owner-reported execution evidence:**
+72/72 tests passed and all nine PHY scenarios completed. R2026a and native
+execution remain unvalidated. See [acceptance](tranche-1-r2025a-acceptance.md).
+Implementation commit: `3f63b811d51dc8e93548586cc7e6994981adac13`; tested runtime
+source hash and exported files were not independently inspected. Source main
+was rechecked at implementation time as
 `486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b`; the accepted T0 checkpoint is
 `6de5c0f`. Development uses `tranche/1-phy-channel-traffic`.
 
@@ -14,7 +18,7 @@ govern each receiver. Decoded overhearing and intended application delivery
 have separate counters. All-peer outcomes, pending work, reasons and bounded
 PHY traces support integrated experiments.
 
-| Capability | Candidate implementation |
+| Capability | Implementation |
 |---|---|
 | Radio/channel | Source profile defaults; minimum-gain three-path and optional log-distance propagation; antenna gains/heights; closure/delegate; channel overlap; noise bandwidth scaling |
 | Timing and rates | Source long/short preambles and exact rates 8/16/32/64/128/500/1000; source propagation speed in PHY fixtures; DPSK/DQPSK mapping |
@@ -35,12 +39,13 @@ original-C++ reference generation are reproducible Python scripts with hashes.
 |---|---|
 | Original ns-3 PHY front end, BER/ECC, live high-rate workflows | **3/3 passed**, built and executed unchanged with pinned engine `6b5cd24ea80713ce16d88575869aedd6f432bdae` |
 | BER conversion/lookup check | **300,632 binary64-exact comparisons passed** against compiled original C++; data conversion/lookup evidence, not MATLAB execution |
-| Additional original C++ references | **400 vectors generated** and consumed by prepared MATLAB tests |
+| Additional original C++ references | **400 vectors checked in passing R2025a TestCppBerReference tests** |
 | Static lint | **41 MATLAB files passed**, MISS_HIT 0.9.44, R2022a syntax profile; not release/runtime validation |
-| Portable MATLAB tests | **72 prepared**, including all 24 accepted T0 tests; T1 run pending |
+| Portable MATLAB tests | **72/72 passed** on owner R2025a, including all 24 T0 tests; 4.6861 seconds suite time |
 | Native R2026a tests | **5 prepared**; separate gate, not discovered by portable runner |
-| MATLAB versions executed for T1 | **None**; owner's R2025a T0 success remains historical evidence |
-| MATLAB↔ns-3 and OPNET scenario comparison | Not yet executed; no claim of full numerical or event parity |
+| MATLAB versions executed for T1 | **R2025a 25.1.0.2943329**, owner console evidence; R2026a unvalidated |
+| Integrated portable PHY scenarios | **Nine completed**, all meet gates; clean/high rates 6/6 delivery, six overheard observations; all pending zero |
+| MATLAB↔ns-3 and OPNET network scenario comparison | Not yet executed; no claim of full numerical or event parity |
 
 The independent review corrected mixed numeric node-ID handling, integer
 start-time arithmetic, delegate JSON export and propagation timing, and added
@@ -50,8 +55,8 @@ the `evidence/tranche-1-*` and BER provenance files.
 
 ## Run on the R2025a machine
 
-Extract this candidate to its own folder, make that repository the MATLAB
-current folder, and run:
+To reproduce the accepted portable gate, extract the package to its own folder,
+make that repository the MATLAB current folder, and run:
 
 ```matlab
 run_tranche1_validation
@@ -67,7 +72,8 @@ The clean PHY scenario expects six application deliveries, six overheard
 decodes, twelve completed physical receive observations and no drops. Failure
 fixtures expect zero intended delivery. Collision fixtures require honest
 overlap accounting and packet conservation, not an unconditional loss count.
-All of these are prepared acceptance expectations, not measured MATLAB results.
+The owner-reported results meet these criteria; measured console values and
+evidence scope are recorded in `tranche-1-r2025a-acceptance.md`.
 
 On an R2026a machine with the required toolbox, separately run:
 
@@ -105,7 +111,7 @@ after native simulation stops.
 - ACK/DACK, queues/reservations/retries, autonomous routing, full control-wire
   serialization and security processing remain later tranche endpoints.
 
-After the portable gate passes, proceed to the cohesive T2 MAC/HOP reliability
-tranche. Native acceptance is tracked separately if that installation is not
-available. Battery, supervisory layer and BBN routing remain out of scope.
+The portable gate has passed. The recommended next tranche is cohesive T2
+MAC/HOP reliability. Native acceptance is tracked separately if that installation
+is not available. Battery, supervisory layer and BBN routing remain out of scope.
 No remote push, PR, merge or branch deletion was performed.
