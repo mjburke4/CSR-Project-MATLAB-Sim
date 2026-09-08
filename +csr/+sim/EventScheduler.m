@@ -47,6 +47,18 @@ classdef EventScheduler < handle
             count = double(obj.Active.Count);
         end
 
+        function time = nextTime(obj)
+            %NEXTTIME Earliest active event, or Inf when the queue is empty.
+            % This supports a native clock driver without copying the heap.
+            while obj.HeapCount > 0 && ~isKey(obj.Active, obj.Ids(1))
+                obj.popEarliest();
+            end
+            time = Inf;
+            if obj.HeapCount > 0
+                time = obj.Times(1);
+            end
+        end
+
         function id = scheduleAt(obj, time, callback)
             validateattributes(time, {'numeric'}, ...
                 {'scalar', 'real', 'finite', 'nonnegative'}, ...

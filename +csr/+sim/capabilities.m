@@ -12,7 +12,9 @@ result.HasWirelessNetworkSimulator = hasSymbol('wirelessNetworkSimulator');
 result.HasWnetNode = hasSymbol('wnet.Node');
 result.HasWirelessPacket = hasSymbol('wirelessPacket');
 result.DefaultBackend = 'portable';
-result.WirelessAdapterImplemented = false;
+result.WirelessAdapterImplemented = true;
+result.WirelessAdapterScope = 'Optional R2026a wireless-clock candidate; runtime validation pending';
+result.NativePacketTransportIntegrated = false;
 result.ProbeScope = 'Symbol discovery only; licenses and execution are not validated.';
 end
 

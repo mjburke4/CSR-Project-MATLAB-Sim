@@ -1,0 +1,84 @@
+{
+  "schema": "csr-matlab-t1-native-ns3-workflows-v1",
+  "generated_utc": "2026-09-08T13:18:04.620285+00:00",
+  "source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "ns3_engine_commit": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+  "scope": "Actual native ns-3 C++ PHY and high-rate executable workflows, unchanged current CSR source; not a MATLAB differential run or full release certification.",
+  "ns3_network_simulation_executed": true,
+  "matlab_executed": false,
+  "compiler": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+  "cmake_version": "cmake version 3.31.10",
+  "build_configuration": {
+    "build_type": "Debug",
+    "assertions": true,
+    "logging": true,
+    "warnings_as_errors": false,
+    "jobs": 4,
+    "enabled_modules": [
+      "csr",
+      "core",
+      "network",
+      "spectrum",
+      "stats",
+      "mobility",
+      "propagation",
+      "antenna",
+      "buildings"
+    ]
+  },
+  "cmake_cache_sha256": "0ede26d69ca4ec561f3f17383e093d4cec014c90fd293c82f8a1a2d6a2fb6588",
+  "build_log_sha256": "e9570c2a5b89d6786dcc532c7ed2ac98ca982a46cbf8dd50062d6b902898aa5e",
+  "results": [
+    {
+      "name": "csr-phy-front-end-smoke",
+      "binary": "build/scratch/ns3-dev-csr-phy-front-end-smoke-debug",
+      "binary_sha256": "39e36c48fcfa32ec2a10b1af0b7bcbfdcc83516ee1d0c08ea62ec556cda04fdf",
+      "source_sha256": "0d2e8ddb085113cba51fc3d93f7447da73416816ae42ea4ccdcff969f7893728",
+      "exit_code": 0,
+      "pass_lines": [
+        "PASS: OPNET PHY front-end parity test"
+      ],
+      "fail_lines": [],
+      "passed": true,
+      "elapsed_seconds": 0.07826534399646334,
+      "log": "evidence/tranche-1-ns3-workflows/csr-phy-front-end-smoke.log",
+      "log_sha256": "92425259d3ba3e5f58e5eba8032823ad1adfc747475dcaf95bcbdc967254dc78"
+    },
+    {
+      "name": "csr-phy-ber-ecc-smoke",
+      "binary": "build/scratch/ns3-dev-csr-phy-ber-ecc-smoke-debug",
+      "binary_sha256": "20b8a76f9c8c5e316cfdc0f2f27da07a2f10bcaf17f148373d7d8ef9a860c8bc",
+      "source_sha256": "1aed010cfe6c0747499523f099110190199182fd453216607035c7ab639a524e",
+      "exit_code": 0,
+      "pass_lines": [
+        "PASS: OPNET modulation BER, ECC, and closure parity test"
+      ],
+      "fail_lines": [],
+      "passed": true,
+      "elapsed_seconds": 0.07373687000654172,
+      "log": "evidence/tranche-1-ns3-workflows/csr-phy-ber-ecc-smoke.log",
+      "log_sha256": "7b743a336f0bb05a12bf693f17467694700d2a85b464dbc14382ce29b4783e69"
+    },
+    {
+      "name": "csr-live-high-rate-dqpsk-smoke",
+      "binary": "build/scratch/ns3-dev-csr-live-high-rate-dqpsk-smoke-debug",
+      "binary_sha256": "1849e279a16ec1c4680c60e67078f3a51f0b45fc310cf0f1cf199a1ec8b6a12a",
+      "source_sha256": "3f3bafcd368f069ee0645e0e0c1bbfae6f33f376b51b9c628db899500ad96704",
+      "exit_code": 0,
+      "pass_lines": [
+        "PASS: live high-rate DPSK/DQPSK integration test"
+      ],
+      "fail_lines": [],
+      "passed": true,
+      "elapsed_seconds": 0.08625044299697038,
+      "log": "evidence/tranche-1-ns3-workflows/csr-live-high-rate-dqpsk-smoke.log",
+      "log_sha256": "1ca5728e3b4aa5d1dbd72ea13ab861d7d26806555c3e0addc5e8b62b6e030b43"
+    }
+  ],
+  "passed_workflows": 3,
+  "total_workflows": 3,
+  "limitations": [
+    "Only three focused native workflows ran; all 38 CSR workflows and the 6000-second scenario were not rerun.",
+    "MATLAB engine execution, MATLAB/ns3 aggregate comparison and OPNET runtime comparison remain pending."
+  ]
+}

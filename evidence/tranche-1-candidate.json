@@ -1,0 +1,43 @@
+{
+  "schema": "csr-matlab-tranche-candidate-v1",
+  "tranche": 1,
+  "branch": "tranche/1-phy-channel-traffic",
+  "accepted_foundation_commit": "6de5c0f",
+  "ns3_reference_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "ns3_engine_commit": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+  "candidate_status": "Integrated implementation and static/source review complete; actual MATLAB execution pending",
+  "matlab_execution": {"R2025a": false, "R2026a": false},
+  "prepared_test_methods": {"portable": 72, "native": 5, "original_T0_portable_included": 24},
+  "static_lint": {
+    "tool": "MISS_HIT 0.9.44",
+    "command": "mh_lint --matlab 2022a --input-encoding utf-8 --brief .",
+    "files": 41,
+    "exit_code": 0,
+    "scope": "Static syntax/lint, not MATLAB runtime or release compatibility"
+  },
+  "reference_execution": {
+    "original_ns3_workflows_passed": 3,
+    "workflow_evidence": "tranche-1-ns3-workflows.json",
+    "original_cpp_reference_vectors": 400,
+    "reference_vector_evidence": "tranche-1-ns3-reference.json",
+    "conversion_exact_cpp_comparisons": 300632,
+    "conversion_command": "python scripts/import_ber_tables.py --source-dir ../ns3-source --check --verify-cpp",
+    "conversion_rerun_check": "data regeneration check passed",
+    "conversion_scope": "Original C++ lookup and converted-data/Python evaluation; not executed MATLAB lookup",
+    "table_provenance": "ber-tables-provenance.json"
+  },
+  "portable_validation_command": "run_tranche1_validation",
+  "portable_results_directory": "results/tranche1_validation",
+  "native_validation_command": "validate_native",
+  "native_integration_scope": "Actual framework node drives CSR clock; separate native abstract-packet probe; full native CSR packet transport not integrated",
+  "review": "../docs/tranche-1-review.md",
+  "known_boundaries": [
+    "Always-awake receiver baseline and FIFO sender serialization; operational MAC/HOP comes in T2",
+    "Closure completion callback timing differs from source immediate-drop observation",
+    "Current retained ns3 BER/ECC behavior preserved, including per-interval truncation",
+    "Separate SYNC and PHY RNG ownership; no expectation of cross-simulator equal-seed packet identity",
+    "3D position configuration must be matched deliberately to source 2D scenario geometry",
+    "No actual MATLAB/ns3 scenario differential or MATLAB/OPNET comparison yet"
+  ],
+  "remote_publication_performed": false
+}

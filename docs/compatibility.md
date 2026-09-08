@@ -1,5 +1,12 @@
 # MATLAB release compatibility
 
+Current T1 candidate: the portable PHY implementation is prepared for R2025a
+and R2026a, with an optional R2026a `wireless-clock` backend and a separate
+native packet lifecycle probe. None has completed T1 MATLAB runtime validation.
+The existing T0 portable foundation did pass on the owner's R2025a machine.
+See [native-adapter.md](native-adapter.md) for implemented versus deferred scope;
+the original architecture assessment below records the basis for the decision.
+
 Documentation checked: 2026-09-08. No MATLAB runtime was available during this assessment.
 
 **Decision:** Tranche 0 uses a deterministic portable MATLAB scheduler and release-independent CSR classes. Build a native R2026a `wnet.Node` adapter in parallel with the Tranche 1 PHY/traffic work. R2025a keeps the portable backend until its installed library's supported integration contract is inspected and exercised. This preserves useful work-machine operation without making newer classes core dependencies.
