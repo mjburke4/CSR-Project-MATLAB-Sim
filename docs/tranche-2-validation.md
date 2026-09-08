@@ -7,8 +7,16 @@ execution evidence. R2025a and R2026a runtime results must be recorded separatel
 Current source-side result: **17/17 original ns-3 workflows passed** against CSR
 `486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b` in ns-3 engine
 `6b5cd24ea80713ce16d88575869aedd6f432bdae`. This is actual native C++ execution.
-The Tranche 2 MATLAB suite contains **145 portable test methods**, including
-the original 72, and has **not** run in this workspace. The five native adapter
+The first owner R2025a run of the **145 portable methods** passed **121** and
+failed **24**, with **18 incomplete**, in 28.7179 seconds. All 15 integrated
+scenario/custody methods passed. Failures were in MAC/HOP fixture readers;
+their repair is prepared, with MATLAB rerun pending. Both the console transcript
+and exported test-results CSV were inspected. The nine-scenario export stage
+was not reached because `assertSuccess` stopped the runner. See
+[runtime evidence and repair](tranche-2-r2025a-fixture-repair.md).
+
+The suite includes all original 72 methods. It has **not** run in this workspace.
+The five native adapter
 methods remain separately gated. MISS_HIT 0.9.44 static lint passed for all 54
 MATLAB files using its MATLAB 2022a syntax profile; that is not runtime or
 toolbox compatibility validation.

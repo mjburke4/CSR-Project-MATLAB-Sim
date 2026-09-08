@@ -13,8 +13,9 @@ classdef TestHopLayer < matlab.unittest.TestCase
         end
         function retryKeepsSequenceAndDscpAndWaitsForSent(test)
             h=hopHarness(); [~,f]=h.Hop.send(appPacket(1,1,2),2,struct('Dscp',5));
+            test.assertNumElements(h.Frames(),1);
             h.Hop.notifySent(f); h.Clock.run(2.01);
-            frames=h.Frames(); retry=frames{end};
+            frames=h.Frames(); test.assertNumElements(frames,2); retry=frames{end};
             test.verifyEqual(retry.Sequence,f.Sequence);
             test.verifyEqual(retry.Dscp,5); test.verifyEqual(retry.RetryCount,1);
             h.Clock.run(100);
@@ -179,12 +180,14 @@ frames={}; delivered={}; terminals={}; cancelled={}; releases={}; order={};
 nsdp=0; available=true; deliverAccepted=true; macAccepted=true; wakes=0;
 scheduler=csr.sim.EventScheduler();
 callbacks=struct('EnqueueMac',@enqueue,'Deliver',@deliver, ...
-    'Terminal',@terminal,'CancelMac',@cancel,'NsdpCount',@(~)nsdp, ...
-    'RouteAvailable',@(~)available,'NsdpRelease',@release,'Wake',@wake);
+    'Terminal',@terminal,'CancelMac',@cancel,'NsdpCount',@getNsdp, ...
+    'RouteAvailable',@getRoute,'NsdpRelease',@release,'Wake',@wake);
 hop=csr.hop.Layer(node,scheduler,csr.sim.RandomStreams(128),config,callbacks);
-h=struct('Hop',hop,'Clock',scheduler,'Frames',@()frames,'Deliveries',@()delivered, ...
-    'Terminals',@()terminals,'Cancelled',@()cancelled,'Releases',@()releases, ...
-    'Order',@()order,'Wakes',@()wakes,'SetNsdp',@setNsdp,'SetRoute',@setRoute, ...
+% Named nested readers share the callbacks' mutable workspace. Anonymous
+% readers would retain only the values present when the harness was created.
+h=struct('Hop',hop,'Clock',scheduler,'Frames',@getFrames,'Deliveries',@getDeliveries, ...
+    'Terminals',@getTerminals,'Cancelled',@getCancelled,'Releases',@getReleases, ...
+    'Order',@getOrder,'Wakes',@getWakes,'SetNsdp',@setNsdp,'SetRoute',@setRoute, ...
     'SetDelivery',@setDelivery,'SetMac',@setMac);
     function accepted=enqueue(frame)
         accepted=macAccepted;
@@ -204,6 +207,15 @@ h=struct('Hop',hop,'Clock',scheduler,'Frames',@()frames,'Deliveries',@()delivere
         releases{end+1}=struct('App',app,'Reason',reason);
     end
     function wake(), wakes=wakes+1; end
+    function value=getFrames(), value=frames; end
+    function value=getDeliveries(), value=delivered; end
+    function value=getTerminals(), value=terminals; end
+    function value=getCancelled(), value=cancelled; end
+    function value=getReleases(), value=releases; end
+    function value=getOrder(), value=order; end
+    function value=getWakes(), value=wakes; end
+    function value=getNsdp(~), value=nsdp; end
+    function value=getRoute(~), value=available; end
     function setNsdp(value), nsdp=value; end
     function setRoute(value), available=value; end
     function setDelivery(value), deliverAccepted=value; end

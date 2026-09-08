@@ -1,5 +1,20 @@
 # Tranche 2 independent integration review
 
+## Owner runtime follow-up
+
+The initial static review below missed creation-time value capture in the MAC
+and HOP test fixtures. The owner R2025a run passed all 15 integrated MAC/HOP
+scenario/custody methods, but failed 24 unit methods because observers returned
+empty logs and mutable input readers retained initial settings. Named nested
+getters now share callback state. The repair also fixes NSDP, route-availability
+and SYNC controls; assertions and protocol implementations are preserved.
+The lead reviewed both specialist edits and audited the remaining anonymous
+callbacks. Production callbacks read mutable handle objects or intentionally
+capture per-event inputs. Runtime acceptance remains pending the corrected run.
+See [recorded result and repair](tranche-2-r2025a-fixture-repair.md).
+
+## Initial candidate static/source review
+
 Reviewed against current ns-3 main
 `486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b`: MAC/HOP source and regressions,
 logical packet layouts, the PHY state bridge, MATLAB MAC/HOP layers, the

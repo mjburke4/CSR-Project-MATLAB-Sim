@@ -12,9 +12,13 @@ repetition, concatenation, HOP retransmission, cumulative ACK/DACK windows,
 flow capacity and deferred custody release. Per-node MAC/HOP counters and
 protocol traces accompany the application and PHY statistics.
 
-**Tranche 2 has not executed in MATLAB yet.** Original ns-3 reference workflows
-passed 17/17, and the candidate passed static review. The prepared portable
-suite and nine integrated scenarios form the next runtime gate. Fixed paths
+**The first Tranche 2 R2025a run passed 121/145 tests and failed 24**, with
+18 incomplete. All 15 integrated MAC/HOP scenario/custody tests passed. Failures
+were confined to MAC/HOP unit fixtures whose anonymous readers captured initial
+logs and controls. Those fixtures are corrected; the rerun remains pending.
+The failure stopped the runner before its nine-scenario export stage. See the
+[R2025a result and repair](docs/tranche-2-r2025a-fixture-repair.md).
+Original ns-3 reference workflows passed 17/17. Fixed paths
 support multi-hop forwarding; autonomous routing belongs to Tranche 3.
 Adaptive HOP rate/power selection is deferred; configured radio settings apply.
 See the [Tranche 2 handoff](docs/tranche-2-handoff.md),

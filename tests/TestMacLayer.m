@@ -90,7 +90,7 @@ classdef TestMacLayer < matlab.unittest.TestCase
             options.DutyCycleEnabled = false;
             options.ReservationSlotOverride = 1;
             mac = csr.mac.Layer(1, scheduler, csr.sim.RandomStreams(128), options, ...
-                struct('Transmit', @transmit, 'HasSync', @() sync));
+                struct('Transmit', @transmit, 'HasSync', @hasSync));
             mac.enqueue(frame(1, 'DATA', 2, 0));
             scheduler.run(0.5);
             testCase.verifyEqual(mac.ReservationCounter, 1);
@@ -104,6 +104,10 @@ classdef TestMacLayer < matlab.unittest.TestCase
             scheduler.run(0.84);
             testCase.verifyEqual(count, 1);
             function transmit(~, ~), count = count + 1; end
+            function present = hasSync()
+                % Read the current flag instead of capturing its initial value.
+                present = sync;
+            end
         end
 
         function acknowledgementIsPackedBeforePriorityData(testCase)
@@ -297,8 +301,12 @@ names = fieldnames(overrides);
 for index = 1:numel(names), options.(names{index}) = overrides.(names{index}); end
 mac = csr.mac.Layer(1, scheduler, csr.sim.RandomStreams(128), options, ...
     struct('Transmit', @transmit));
-observed = @() transmissions;
+observed = @getTransmissions;
     function transmit(value, ~), transmissions{end + 1} = value; end
+    function values = getTransmissions()
+        % Share the mutable log with transmit after fixture returns.
+        values = transmissions;
+    end
 end
 
 function output = frame(sequence, kind, peer, dscp)

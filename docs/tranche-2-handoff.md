@@ -1,9 +1,12 @@
 # Tranche 2 MAC/HOP integration handoff
 
-**Status: implementation candidate ready for owner-run MATLAB validation.**
+**Status: R2025a unit-fixture repair ready for owner rerun.**
 This tranche adds reliable packet exchange and fixed-path relays over the
 existing CSR PHY. Static/source review is complete; MATLAB runtime acceptance
-is pending. Nothing in this handoff claims executed Tranche 2 MATLAB results.
+is pending. The first owner run passed 121/145 tests, including all 15 integrated
+MAC/HOP scenario/custody methods. Its 24 failures were confined to MAC/HOP
+unit fixtures; their mutable callback readers are now corrected. The repaired
+revision has not run in MATLAB. See [result and repair](tranche-2-r2025a-fixture-repair.md).
 
 ## Objective and capabilities
 
@@ -57,7 +60,7 @@ CSR packet transport remains unintegrated and native execution unvalidated.
 | Static MATLAB lint | **54 files passed**, MISS_HIT 0.9.44, MATLAB 2022a syntax profile |
 | Independent review | No remaining structural blocker found by static/source review; [review record](tranche-2-review.md) |
 | Prepared portable MATLAB suite | **145 test methods**, including all 72 previous portable tests, plus nine exported MAC/HOP scenarios |
-| Tranche 2 MATLAB R2025a | **Not executed**; intended first owner runtime gate |
+| Tranche 2 MATLAB R2025a | Owner-run initial candidate: **121 passed / 24 failed / 18 incomplete**, 28.7179 s; console and test CSV inspected; fixture-fix rerun pending |
 | Tranche 2 MATLAB R2026a | **Not executed**; test separately after portable R2025a |
 | Native adapter tests | Five separate methods; not executed; `validate_native` |
 | Historical T1 acceptance | Owner-reported R2025a 25.1.0.2943329: 72/72 tests and nine PHY scenarios passed for the accepted revision |
@@ -89,7 +92,9 @@ The suite checks retry and feedback ownership, unique application delivery,
 drained completed-scenario custody, deliberate loss recovery, queue pressure,
 finite-horizon pending work, trace bounds and deterministic repeatability.
 
-Return the complete console output and `scenario_summary.csv`. Per-scenario
+Return the complete console output, `tests/test_results.csv` and
+`scenario_summary.csv`. The initial failed run stopped before the scenario
+summary was created; the corrected rerun must reach that export stage. Per-scenario
 `protocol_trace.csv`, `phy_trace.csv`, `mac_nodes.csv`, `hop_nodes.csv`,
 configuration and metadata are available if a gate fails. Preserve the MATLAB
 version/release and the candidate revision with those outputs. A structural

@@ -1,13 +1,24 @@
 {
   "schema": "csr-matlab-tranche-2-candidate-v1",
-  "prepared_utc": "2026-09-08T15:06:43.230855+00:00",
-  "status": "Ready for owner-run portable MATLAB validation; not runtime accepted",
+  "prepared_utc": "2026-09-08T16:34:06.321838+00:00",
+  "status": "R2025a fixture repair ready for owner rerun; initial run 121/145 passed, full acceptance pending",
   "branch": "tranche/2-mac-hop-reliability",
   "published_base_commit": "8b185ff586a0cfb0562194c2948c5271826a0e9d",
   "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
   "ns3_engine_commit": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
   "matlab_executed_in_workspace": false,
-  "tranche_2_matlab_runtime_results": [],
+  "tranche_2_matlab_runtime_results": [
+    {
+      "evidence": "tranche-2-r2025a-initial-run.json",
+      "runtime": "MATLAB R2025a 25.1.0.2943329",
+      "total": 145,
+      "passed": 121,
+      "failed": 24,
+      "incomplete": 18,
+      "revision_scope": "Initial issued candidate, not the fixture repair",
+      "runtime_source_hash_independently_verified": false
+    }
+  ],
   "historical_owner_runtime_evidence": "tranche-1-r2025a-acceptance.json",
   "prepared_portable_test_methods": 145,
   "portable_test_classes": {
@@ -42,12 +53,12 @@
   ],
   "static_validation": {
     "tool": "MISS_HIT 0.9.44",
-    "command": "mh_lint --matlab 2022a --input-encoding utf-8 --brief .",
+    "command": "PYTHONPATH=<scratch tools-runtime>/miss-hit-0.9.44 python3 -m miss_hit.mh_lint --matlab 2022a --input-encoding utf-8 --brief .",
     "syntax_profile": "MATLAB 2022a",
     "files_analyzed": 54,
     "exit_code": 0,
     "output": "MISS_HIT Lint Summary: 54 file(s) analysed, everything seems fine",
-    "scope": "Static syntax/lint only; no MATLAB execution or toolbox validation"
+    "scope": "Repaired candidate static syntax/lint only; no MATLAB rerun or toolbox validation"
   },
   "source_reference_execution": {
     "passed": 17,
@@ -115,10 +126,10 @@
     "tests/TestEventScheduler.m": "74fa14282b8ee28f50806f84da7952f50b45aa54a2675d82ace0736219e13dd4",
     "tests/TestFoundation.m": "0637849ffd7db49700607a86f37d5eb6e63567be4af2faeac12ab978a3828e0e",
     "tests/TestHopFrames.m": "8521a3c23dd682d25418121c8dc7a2bdaf66e23a2e17c35afd0f0197bb76e5b0",
-    "tests/TestHopLayer.m": "804f3c8b65fa129921cc93c33ee2c71078b1965967e939be8e90c668789a50a0",
+    "tests/TestHopLayer.m": "8efe1425b022258eb454573787f12f7e37f77194d59b93d06b98f31a5db87511",
     "tests/TestMacHopCustody.m": "7ea5d6040e387b73b13afda59d9047e2623890e646bc16df39619bf1bd6c5a47",
     "tests/TestMacHopScenarios.m": "56aeac203586acfdb9058f26cf88b5cd009c8769ad868e86a2c516c275ead013",
-    "tests/TestMacLayer.m": "3359f70fc91bb84e00a77b3a5cfa6984922f22a776ce1c3609df6b9f0f306924",
+    "tests/TestMacLayer.m": "002a1009aac7b22fda1938a7e5adc8d7879d7e5958f180aa40c4177023b71810",
     "tests/TestPhyFoundation.m": "40aad49f7c0e9a170992643bbbfa948819ca96b8b44a3dce985ffeeb7d4caf4e",
     "tests/TestPhyMacBridge.m": "6285dd1729d8795579607488eee8c5ee6c92ef1d03f3015f48914943e8c29620",
     "tests/TestPhyModel.m": "0662a6e29a3e52a88b6232b5eb42cbf8e0ada46d733ee9623366d1d72bc47d15",
@@ -128,5 +139,15 @@
     "tests/TestTranche1Integration.m": "f0a32365909bd9da261feda04bbfb389390a244d5a1c3e3c3b580769be7301d6",
     "tests/native/TestNativeIntegration.m": "d5786610a820176f91f05bea7b30f9dc6ce71349be750f3e9ff6abf88c3b7029",
     "validate_native.m": "53d4d912ec2674700e4725e01f0338d2fe6601dde25a39ee38b9e0ded340a2c8"
+  },
+  "repair_of_candidate_commit": "ad5704094e14c8182d1c3f6c2f15c6313705cf2f",
+  "fixture_repair": {
+    "changed_matlab_files": [
+      "tests/TestHopLayer.m",
+      "tests/TestMacLayer.m"
+    ],
+    "protocol_changed": false,
+    "matlab_rerun_executed": false,
+    "description": "Replace anonymous snapshot readers with shared nested getters for observation logs and NSDP/route/SYNC controls; preserve existing assertions"
   }
 }
