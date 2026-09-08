@@ -1,0 +1,77 @@
+[HOP 1] link_control dest=2 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] Pending DATA increment dest=2 pending=1
+[HOP 1] TX Pairwise16 DATA neighbor=2 hopSeq=1 securityCount=1
+[MAC] Enqueue TX pkt dscp=5 insert_pos=0 queue_size_before=0
+[HOP 1] link_control dest=3 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] Pending DATA increment dest=3 pending=2
+[HOP 1] TX Pairwise16 DATA neighbor=3 hopSeq=1 securityCount=1
+[MAC] Enqueue TX pkt dscp=5 insert_pos=1 queue_size_before=1
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 17 using OPNET free-slot ordinal range [1,18]
+[MAC 1] starts Pre-Tx with new slot=17 holdoff_over=0
+[MAC 1] OPNET 300-ms transmit holdoff complete
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 18 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=17 reserveNextSlot=18
+... type=0 speedKey=8[t=0.533] TX from node 1 to dest 2 seq 1 size 138 bytes segments 2 at slot 18 rate 8 kbps txPower 30 dBm (7843.14 bps) preamble LONG duration 1.15668 s
+[HOP 1] MAC sent confirmation dest=2 seq=1 transmission=1 sentAt=0.533
+[HOP 1] MAC sent confirmation dest=3 seq=1 transmission=1 sentAt=0.533
+[MAC 1] OPNET aggregate transmitted segments=2 ackSegments=0 dataSegments=2 bytes=138 rate=8
+[MAC 1] post-TX WAIT_FOR_ACK until 18.6897 (POST_TX_WAIT=17 s)
+[MAC 1] local advertised reservation expired
+[HOP 1] New neighbor 2 heard at t=2s
+[HOP 1] RX DACK from 2 seq=1
+[HOP 1] DACK received neighbor=2 seq=1 resendCount=0 holdSec=20 NSDP=release-now hopFlow=hold
+[HOP 1] New neighbor 3 heard at t=2.25s
+[HOP 1] RX DACK from 3 seq=1
+[HOP 1] DACK received neighbor=3 seq=1 resendCount=0 holdSec=20 NSDP=release-now hopFlow=hold
+[HOP 1] DACK hold expired neighbor=2 seq=1 outstanding=0
+[HOP 1] Pending DATA decrement reason=DACK-expiry neighbor=2 pending=1
+[HOP 1] DACK release scheduling NWK queue wake neighbor=2 seq=1
+[HOP 1] DACK hold expired neighbor=3 seq=1 outstanding=0
+[HOP 1] Pending DATA decrement reason=DACK-expiry neighbor=3 pending=0
+[HOP 1] DACK release scheduling NWK queue wake neighbor=3 seq=1
+[HOP 1] link_control dest=2 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] Pending DATA increment dest=2 pending=1
+[HOP 1] TX Pairwise16 DATA neighbor=2 hopSeq=1 securityCount=1
+[MAC] Enqueue TX pkt dscp=5 insert_pos=0 queue_size_before=0
+[HOP 1] MAC sent confirmation dest=2 seq=1 transmission=1 sentAt=-2
+[MAC] Enqueue TX pkt dscp=5 insert_pos=1 queue_size_before=1
+[HOP 1] MAC sent confirmation dest=2 seq=1 transmission=2 sentAt=-2
+[MAC] Enqueue TX pkt dscp=5 insert_pos=2 queue_size_before=2
+[HOP 1] New neighbor 2 heard at t=2e-09s
+[HOP 1] RX DACK from 2 seq=1
+[HOP 1] DACK received neighbor=2 seq=1 resendCount=2 holdSec=40 NSDP=release-now hopFlow=hold
+[MAC 1] Cancel queued acknowledged frame neighbor=2 seq=1 baseSeq=1 windowIndex=0
+[MAC 1] Cancel queued acknowledged frame neighbor=2 seq=1 baseSeq=1 windowIndex=0
+[MAC 1] Cancel queued acknowledged frame neighbor=2 seq=1 baseSeq=1 windowIndex=0
+[MAC 1] OPNET 300-ms transmit holdoff complete
+[HOP 1] DACK hold expired neighbor=2 seq=1 outstanding=0
+[HOP 1] Pending DATA decrement reason=DACK-expiry neighbor=2 pending=0
+[HOP 1] DACK release scheduling NWK queue wake neighbor=2 seq=1
+[HOP 1] link_control dest=2 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] Pending DATA increment dest=2 pending=1
+[HOP 1] TX Pairwise16 DATA neighbor=2 hopSeq=1 securityCount=1
+[MAC] Enqueue TX pkt dscp=5 insert_pos=0 queue_size_before=0
+[HOP 1] link_control dest=3 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] Pending DATA increment dest=3 pending=2
+[HOP 1] TX Pairwise16 DATA neighbor=3 hopSeq=1 securityCount=1
+[MAC] Enqueue TX pkt dscp=5 insert_pos=1 queue_size_before=1
+[HOP 1] New neighbor 2 heard at t=2e-09s
+[HOP 1] RX DACK from 2 seq=1
+[HOP 1] DACK received neighbor=2 seq=1 resendCount=0 holdSec=20 NSDP=release-now hopFlow=hold
+[MAC 1] Cancel queued acknowledged frame neighbor=2 seq=1 baseSeq=1 windowIndex=0
+[HOP 1] New neighbor 3 heard at t=1.2e-08s
+[HOP 1] RX DACK from 3 seq=1
+[HOP 1] DACK received neighbor=3 seq=1 resendCount=0 holdSec=20 NSDP=release-now hopFlow=hold
+[MAC 1] Cancel queued acknowledged frame neighbor=3 seq=1 baseSeq=1 windowIndex=0
+[MAC 1] OPNET 300-ms transmit holdoff complete
+[HOP 1] DACK hold expired neighbor=2 seq=1 outstanding=0
+[HOP 1] Pending DATA decrement reason=DACK-expiry neighbor=2 pending=1
+[HOP 1] DACK release scheduling NWK queue wake neighbor=2 seq=1
+[HOP 1] DACK hold expired neighbor=3 seq=1 outstanding=0
+[HOP 1] Pending DATA decrement reason=DACK-expiry neighbor=3 pending=0
+[HOP 1] DACK release scheduling NWK queue wake neighbor=3 seq=1
+PASS: exact 20/40-second DACK timer parity test

@@ -1,0 +1,284 @@
+{
+  "schema": "csr-matlab-t2-native-ns3-workflows-v1",
+  "generated_utc": "2026-09-08T14:41:00.161634+00:00",
+  "source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "ns3_engine_commit": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+  "scope": "Actual original native ns-3 MAC/HOP workflows; source-side reference only.",
+  "ns3_network_simulation_executed": true,
+  "matlab_executed": false,
+  "compiler": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+  "cmake_version": "cmake version 3.31.10",
+  "build_configuration": {
+    "build_type": "Debug",
+    "assertions": true,
+    "logging": true,
+    "jobs": 4
+  },
+  "configure_log_sha256": "7ee08f2231824180a572f62aab2d2e54e8579de611c6275b9dd3f38a4d21a878",
+  "build_log_sha256": "25e426c33f84357de83d840b45e3f5f1ed08b444f4593dd642d8c85c7b2de68b",
+  "cmake_cache_sha256": "47d63f4144be5bf1ef57808bda06794c8d5b04353a1918bb0d86341f8d8fa06a",
+  "results": [
+    {
+      "name": "csr-mac-hop-queue-limit-smoke",
+      "binary": "build/scratch/ns3-dev-csr-mac-hop-queue-limit-smoke-debug",
+      "binary_sha256": "96765c1f32385211308e51abf5d8fd3ba6743eb343c251df1dc50075197bc0e9",
+      "source_sha256": "e4dccbe07176ab43c35956543b148f2925e2c98144451f6e162a045fd17ad0b9",
+      "exit_code": 0,
+      "pass_lines": [
+        "PASS: OPNET MAC/HOP queue-limit parity test"
+      ],
+      "fail_lines": [],
+      "passed": true,
+      "elapsed_seconds": 0.11432209999475162,
+      "log": "evidence/tranche-2-ns3-workflows/csr-mac-hop-queue-limit-smoke.log",
+      "log_sha256": "c78ac80576d2280b602a4ed42d584152f31b3924464613a7cc9ef134c31565bd"
+    },
+    {
+      "name": "csr-mac-ack-queue-smoke",
+      "binary": "build/scratch/ns3-dev-csr-mac-ack-queue-smoke-debug",
+      "binary_sha256": "bb76e46295145bd7fd3dae801323b5fe2b1735fda9415fbd29080d69b2879846",
+      "source_sha256": "f91509621d1ddcfc6500f3043315efa6c445f4c81b3164ce063a30588f21eb5c",
+      "exit_code": 0,
+      "pass_lines": [
+        "PASS: OPNET MAC ACK queue parity test"
+      ],
+      "fail_lines": [],
+      "passed": true,
+      "elapsed_seconds": 0.0642398449999746,
+      "log": "evidence/tranche-2-ns3-workflows/csr-mac-ack-queue-smoke.log",
+      "log_sha256": "b136e92ca682ef818a4045ea2bd24982b33975a3960ad347db8f785304a5b737"
+    },
+    {
+      "name": "csr-ack-window-smoke",
+      "binary": "build/scratch/ns3-dev-csr-ack-window-smoke-debug",
+      "binary_sha256": "1d84dc0b510c329a73d15554cc706d6a485a3ab837a2a31b80fe57f7c386044a",
+      "source_sha256": "eeea7c7e71994b96a473aea6b77b98c1bf03b27d1c550c9c37c726646716b649",
+      "exit_code": 0,
+      "pass_lines": [
+        "PASS: cumulative ACK window and generic wake smoke test"
+      ],
+      "fail_lines": [],
+      "passed": true,
+      "elapsed_seconds": 0.1144517919892678,
+      "log": "evidence/tranche-2-ns3-workflows/csr-ack-window-smoke.log",
+      "log_sha256": "3ee9221aabe59c688fb90ee6f337650d4fa9720d6a2f8904f9bea388ee7a5414"
+    },
+    {
+      "name": "csr-hop-retry-dscp-smoke",
+      "binary": "build/scratch/ns3-dev-csr-hop-retry-dscp-smoke-debug",
+      "binary_sha256": "3d5c9a9961723ac9cf0012c6b4fe35ee632fc2dd2488bf33c2fc77f25a74d4ee",
+      "source_sha256": "5ebd4334e5f7cbe9a0f0093d11e9922fa2d8db58b2db6b303e5ddc1769445b95",
+      "exit_code": 0,
+      "pass_lines": [
+        "PASS: OPNET HOP retransmission DSCP parity test"
+      ],
+      "fail_lines": [],
+      "passed": true,
+      "elapsed_seconds": 0.06434234000334982,
+      "log": "evidence/tranche-2-ns3-workflows/csr-hop-retry-dscp-smoke.log",
+      "log_sha256": "f32dd76ae9be040e8f19a57f6da20f9a310a5e4a09c7b2c95750fa8c40cec7a4"
+    },
+    {
+      "name": "csr-hop-dack-hold-smoke",
+      "binary": "build/scratch/ns3-dev-csr-hop-dack-hold-smoke-debug",
+      "binary_sha256": "0b58b617796a34d91dcdcd1b5a336e113dcbec97de8b47caaf6f0ca00a20fc08",
+      "source_sha256": "743cac1b97d101eb0d3f2ebfa489c46bd4621ead3ff34ffccbe8d5bbb5634318",
+      "exit_code": 0,
+      "pass_lines": [
+        "PASS: exact 20/40-second DACK timer parity test"
+      ],
+      "fail_lines": [],
+      "passed": true,
+      "elapsed_seconds": 0.06429302800097503,
+      "log": "evidence/tranche-2-ns3-workflows/csr-hop-dack-hold-smoke.log",
+      "log_sha256": "8cd19400cdc3ae48f9efdefc7de031cd92ea2702e3e4931b5c5511589564a6ef"
+    },
+    {
+      "name": "csr-hop-mac-sent-time-smoke",
+      "binary": "build/scratch/ns3-dev-csr-hop-mac-sent-time-smoke-debug",
+      "binary_sha256": "c15d9f45cb2b1a24a2b6349ffcf457587c6862431af3688dd3191072c2d8e7b0",
+      "source_sha256": "afe308819ffd96076f37c7b4d14b3b879d89c8bfaf903a945a70c19c80caa99c",
+      "exit_code": 0,
+      "pass_lines": [
+        "PASS: exact MAC/HOP resend timer and scan-order parity test"
+      ],
+      "fail_lines": [],
+      "passed": true,
+      "elapsed_seconds": 0.06419699100661092,
+      "log": "evidence/tranche-2-ns3-workflows/csr-hop-mac-sent-time-smoke.log",
+      "log_sha256": "7069ed5c64e8479374f5f04594177b80561ede0c8080fe575618ea325ba6be38"
+    },
+    {
+      "name": "csr-mac-concat-smoke",
+      "binary": "build/scratch/ns3-dev-csr-mac-concat-smoke-debug",
+      "binary_sha256": "24c8494db82361874fb315e34f3b6936d204e71f66ec0c72ba9b61c7595c8243",
+      "source_sha256": "ee9a7f7993b7c1f28befa896c21cf8d599c07d5114638c3a6f3107d8ed9c827b",
+      "exit_code": 0,
+      "pass_lines": [
+        "PASS: OPNET MAC packet concatenation parity test"
+      ],
+      "fail_lines": [],
+      "passed": true,
+      "elapsed_seconds": 0.06422861300234217,
+      "log": "evidence/tranche-2-ns3-workflows/csr-mac-concat-smoke.log",
+      "log_sha256": "9272e3a47cfc69da91c5eabe0fe32da8cb264ec18daa37caf8b5d169297f5591"
+    },
+    {
+      "name": "csr-mac-preamble-selection-smoke",
+      "binary": "build/scratch/ns3-dev-csr-mac-preamble-selection-smoke-debug",
+      "binary_sha256": "4b8d77763ec1af7cfd26f907872646f7ff2e5675f4beb9fb6ab73a2ec9ce8fc9",
+      "source_sha256": "0106d13eaf20bf52245ce287ff9098caa53262602e87be4c62afdcf399f3cb2e",
+      "exit_code": 0,
+      "pass_lines": [
+        "PASS: OPNET preamble freshness and aggregate selection parity test"
+      ],
+      "fail_lines": [],
+      "passed": true,
+      "elapsed_seconds": 0.06407130099250935,
+      "log": "evidence/tranche-2-ns3-workflows/csr-mac-preamble-selection-smoke.log",
+      "log_sha256": "37b95a96b7ffab01ac5b95cbe5b7cab74faeb60a9116b955ac5031c0a261f6a4"
+    },
+    {
+      "name": "csr-mac-reservation-lifecycle-smoke",
+      "binary": "build/scratch/ns3-dev-csr-mac-reservation-lifecycle-smoke-debug",
+      "binary_sha256": "0970ec8225a8c25bcc4446feaedc74fff43f05c832c48ef8645953b29212305e",
+      "source_sha256": "ee0d24be3d536022f90d8df4b1a4562ca7134250e1209bdc61172ac63d752cb2",
+      "exit_code": 0,
+      "pass_lines": [
+        "PASS: OPNET MAC reservation lifecycle test"
+      ],
+      "fail_lines": [],
+      "passed": true,
+      "elapsed_seconds": 0.1142790470039472,
+      "log": "evidence/tranche-2-ns3-workflows/csr-mac-reservation-lifecycle-smoke.log",
+      "log_sha256": "051e0a6ec583a3331dd884b762136cf378c98b7d0fe67e48e080e3fcb5b4828d"
+    },
+    {
+      "name": "csr-mac-slot-parity-smoke",
+      "binary": "build/scratch/ns3-dev-csr-mac-slot-parity-smoke-debug",
+      "binary_sha256": "07e0514395e7a2695bfae7795071dcd3c1a40d6c842b9d01164a9422bf0c50a8",
+      "source_sha256": "08b76a20b03e9a74b545006fef8a4916448a85d5de03d60ec143842949667ba9",
+      "exit_code": 0,
+      "pass_lines": [
+        "PASS: OPNET MAC slot scheduling parity test"
+      ],
+      "fail_lines": [],
+      "passed": true,
+      "elapsed_seconds": 0.0641717399994377,
+      "log": "evidence/tranche-2-ns3-workflows/csr-mac-slot-parity-smoke.log",
+      "log_sha256": "a7e483f074cda5df19eb80a6ea737a2f7d266ee90fe151a02c027b2be82cdd3a"
+    },
+    {
+      "name": "csr-mac-receive-contention-smoke",
+      "binary": "build/scratch/ns3-dev-csr-mac-receive-contention-smoke-debug",
+      "binary_sha256": "ab0fd62a5b4009ebcc47ff094849702cc52b97306993c1f29f9c718634d591d9",
+      "source_sha256": "95dea56f29d8cd2c7fddf0b6b5ab0aeb8da94a93347b3502edfaad4a43eebc43",
+      "exit_code": 0,
+      "pass_lines": [
+        "PASS: OPNET MAC receive/contention state parity test"
+      ],
+      "fail_lines": [],
+      "passed": true,
+      "elapsed_seconds": 0.21459848100494128,
+      "log": "evidence/tranche-2-ns3-workflows/csr-mac-receive-contention-smoke.log",
+      "log_sha256": "5a2b84071117b411179a83c6685d3a822377db8faa19ba75afd13df1fc7546c7"
+    },
+    {
+      "name": "csr-wireless-overhearing-smoke",
+      "binary": "build/scratch/ns3-dev-csr-wireless-overhearing-smoke-debug",
+      "binary_sha256": "bb4c3845566835515fa560535f95544e2ae66b2094ea6a6247b91be7ba8da499",
+      "source_sha256": "3181dfe16420a58efec70b9be3372c612406c3a3f0ea704a0c491bcc38ecf71b",
+      "exit_code": 0,
+      "pass_lines": [
+        "PASS: OPNET wireless overhearing parity test"
+      ],
+      "fail_lines": [],
+      "passed": true,
+      "elapsed_seconds": 0.06421698600752279,
+      "log": "evidence/tranche-2-ns3-workflows/csr-wireless-overhearing-smoke.log",
+      "log_sha256": "458fc1b8ed7b95bc8f72543e07120b788597dc24ee314a4962233ceedb83ff81"
+    },
+    {
+      "name": "csr-hop-mac-link-control-smoke",
+      "binary": "build/scratch/ns3-dev-csr-hop-mac-link-control-smoke-debug",
+      "binary_sha256": "c8e5e748102966dae17b4d9f8c7070e5233210156c01cb730e317f42f416832b",
+      "source_sha256": "3c625bbf9cf85043a0295c4e4082c26d2418bf2276a90eb7fbd3bb29a2bf3c68",
+      "exit_code": 0,
+      "pass_lines": [
+        "PASS: OPNET HOP/MAC live link-control parity test"
+      ],
+      "fail_lines": [],
+      "passed": true,
+      "elapsed_seconds": 0.06422904299688525,
+      "log": "evidence/tranche-2-ns3-workflows/csr-hop-mac-link-control-smoke.log",
+      "log_sha256": "bbc3ddc0ea3e7be69f880a9bfe0364881d101c752845d15282b64f86505e0d76"
+    },
+    {
+      "name": "csr-hop-no-route-relay-smoke",
+      "binary": "build/scratch/ns3-dev-csr-hop-no-route-relay-smoke-debug",
+      "binary_sha256": "0ee9bac5463e432d07d025242e988bfd42c96ae284acfbdb6c8023e356d3bbd4",
+      "source_sha256": "b34efa05243022c4f0237a27f21b59ffbce41abe4376ebea2e71ccac92b4768a",
+      "exit_code": 0,
+      "pass_lines": [
+        "PASS: no-route relay custody/ACK parity test"
+      ],
+      "fail_lines": [],
+      "passed": true,
+      "elapsed_seconds": 0.06412926099437755,
+      "log": "evidence/tranche-2-ns3-workflows/csr-hop-no-route-relay-smoke.log",
+      "log_sha256": "10e93fce3bcaaa35d62a9b54f2566cf89c3cd55955f52ccc58d27dba915b9246"
+    },
+    {
+      "name": "csr-nwk-relay-holdoff-smoke",
+      "binary": "build/scratch/ns3-dev-csr-nwk-relay-holdoff-smoke-debug",
+      "binary_sha256": "0f0c54343feca8874becda466fb889464d7a2e3fbd1821136bd51170f7658e7b",
+      "source_sha256": "2fb0921e94dcc5ac9547abd315c23ea7cd83757094cd47d2316173a2125cad24",
+      "exit_code": 0,
+      "pass_lines": [
+        "PASS: relay-holdoff signaling and control-order parity test"
+      ],
+      "fail_lines": [],
+      "passed": true,
+      "elapsed_seconds": 0.06417339600739069,
+      "log": "evidence/tranche-2-ns3-workflows/csr-nwk-relay-holdoff-smoke.log",
+      "log_sha256": "5e427b5ecbf7678fe614df62f116fec8038642ee90f569be4212ebd1d95cf1fc"
+    },
+    {
+      "name": "csr-queue-observation-smoke",
+      "binary": "build/scratch/ns3-dev-csr-queue-observation-smoke-debug",
+      "binary_sha256": "4075b4c62ab2b90d5304c505e58d234f3dbb2cd165e1bee79dce922a3949aee2",
+      "source_sha256": "d780a03217dd95c5af117d3fdd75426f77708c29c79c8ca098f12287103f10c8",
+      "exit_code": 0,
+      "pass_lines": [
+        "PASS: source-ordered queue observation trace test"
+      ],
+      "fail_lines": [],
+      "passed": true,
+      "elapsed_seconds": 0.16452245000982657,
+      "log": "evidence/tranche-2-ns3-workflows/csr-queue-observation-smoke.log",
+      "log_sha256": "9c8b8cbe5055cd777df172df87ed2e6ac594a9f2447ff9a2001707077ba763d9"
+    },
+    {
+      "name": "csr-opnet-packet-envelope-smoke",
+      "binary": "build/scratch/ns3-dev-csr-opnet-packet-envelope-smoke-debug",
+      "binary_sha256": "eed52498c47d91180cb8c0c51ac9b1ff02c33576e85506d79a5063c89d97e386",
+      "source_sha256": "b8eb3f2eb2103fa96eca34d7f971a5eb2926412a4ed0c5a12338c9282f531532",
+      "exit_code": 0,
+      "pass_lines": [
+        "PASS: exact OPNET packet/control-envelope parity"
+      ],
+      "fail_lines": [],
+      "passed": true,
+      "elapsed_seconds": 0.031974905999959446,
+      "log": "evidence/tranche-2-ns3-workflows/csr-opnet-packet-envelope-smoke.log",
+      "log_sha256": "5bf204a8b80b089200ce3bd4d9202cc7bcac779033d584b41eefa2c08d1f2bce"
+    }
+  ],
+  "passed_workflows": 17,
+  "total_workflows": 17,
+  "limitations": [
+    "Focused reference workflows do not validate the MATLAB port.",
+    "MATLAB R2025a/R2026a execution and cross-simulator scenario comparison are separate gates.",
+    "The complete ns-3 release and 6000-second OPNET aggregate scenario were not rerun."
+  ]
+}

@@ -1,0 +1,360 @@
+[MAC] Enqueue TX pkt dscp=7 insert_pos=0 queue_size_before=0
+[MAC 1] Enqueue ACK dest=2 seq=9 window=1 ack_queue_size=1
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=10 txCount=0
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 12 using OPNET free-slot ordinal range [1,18]
+[MAC 1] starts Pre-Tx with new slot=12 holdoff_over=0
+[MAC 1] OPNET 300-ms transmit holdoff complete
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 12 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=12 reserveNextSlot=12
+... type=1 speedKey=8[t=0.468] TX from node 1 to dest 2 seq 10 size 86 bytes segments 2 at slot 12 rate 8 kbps txPower 0 dBm (7843.14 bps) preamble LONG duration 1.10364 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=10 txCount=1/5
+[MAC 1] OPNET aggregate transmitted segments=2 ackSegments=1 dataSegments=1 bytes=86 rate=8
+[t=0.468] RX SYNC at node 2 from node 1 seq 10 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=0.47463] MAC 2 enters Track on node 1 seq 10 power -2.12777 dBm
+[MAC 1] resumes Pre-Tx with live slot=12 counter=12
+[t=1.57164] RX at node 2 from node 1 seq 10 rate 8 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 12, len 86B, ackable=1)
+[MAC 2] Ignore first-contact reservation from unknown neighbor 1 slot=12
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 13 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=12 reserveNextSlot=13
+... type=1 speedKey=8[t=1.729] TX from node 1 to dest 2 seq 10 size 41 bytes segments 1 at slot 13 rate 8 kbps txPower 0 dBm (7843.14 bps) preamble LONG duration 1.05774 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=10 txCount=2/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=8
+[t=1.729] RX SYNC at node 2 from node 1 seq 10 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=1.73563] MAC 2 enters Track on node 1 seq 10 power -2.12777 dBm
+[MAC 1] resumes Pre-Tx with live slot=13 counter=13
+[t=2.78674] RX at node 2 from node 1 seq 10 rate 8 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 13, len 41B, ackable=0)
+[MAC 2] Learned neighbor 1 uses slot 13 (rtCounter=13)
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=11 txCount=0
+[MAC 2] rtslot_counter expired for neighbor 1 reserveSlot=13
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 2 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=13 reserveNextSlot=2
+... type=1 speedKey=8[t=2.964] TX from node 1 to dest 2 seq 11 size 41 bytes segments 1 at slot 2 rate 8 kbps txPower 0 dBm (7843.14 bps) preamble LONG duration 1.05774 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=11 txCount=1/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=8
+[t=2.964] RX SYNC at node 2 from node 1 seq 11 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=2.97063] MAC 2 enters Track on node 1 seq 11 power -2.12777 dBm
+[MAC 1] resumes Pre-Tx with live slot=2 counter=2
+[t=4.02174] RX at node 2 from node 1 seq 11 rate 8 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 2, len 41B, ackable=0)
+[MAC 2] Learned neighbor 1 uses slot 2 (rtCounter=2)
+[MAC 2] rtslot_counter expired for neighbor 1 reserveSlot=2
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 4 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=2 reserveNextSlot=4
+... type=1 speedKey=8[t=4.056] TX from node 1 to dest 2 seq 11 size 41 bytes segments 1 at slot 4 rate 8 kbps txPower 0 dBm (7843.14 bps) preamble LONG duration 1.05774 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=11 txCount=2/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=8
+[t=4.056] RX SYNC at node 2 from node 1 seq 11 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=4.06263] MAC 2 enters Track on node 1 seq 11 power -2.12777 dBm
+[MAC 1] resumes Pre-Tx with live slot=4 counter=4
+[t=5.11374] RX at node 2 from node 1 seq 11 rate 8 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 4, len 41B, ackable=0)
+[MAC 2] Learned neighbor 1 uses slot 4 (rtCounter=4)
+[MAC 2] rtslot_counter expired for neighbor 1 reserveSlot=4
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 11 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=4 reserveNextSlot=11
+... type=1 speedKey=8[t=5.174] TX from node 1 to dest 2 seq 11 size 41 bytes segments 1 at slot 11 rate 8 kbps txPower 0 dBm (7843.14 bps) preamble LONG duration 1.05774 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=11 txCount=3/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=8
+[t=5.174] RX SYNC at node 2 from node 1 seq 11 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=5.18063] MAC 2 enters Track on node 1 seq 11 power -2.12777 dBm
+[MAC 1] resumes Pre-Tx with live slot=11 counter=11
+[t=6.23174] RX at node 2 from node 1 seq 11 rate 8 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 11, len 41B, ackable=0)
+[MAC 2] Learned neighbor 1 uses slot 11 (rtCounter=11)
+[MAC 2] rtslot_counter expired for neighbor 1 reserveSlot=11
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 6 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=11 reserveNextSlot=6
+... type=1 speedKey=8[t=6.383] TX from node 1 to dest 2 seq 11 size 41 bytes segments 1 at slot 6 rate 8 kbps txPower 0 dBm (7843.14 bps) preamble LONG duration 1.05774 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=11 txCount=4/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=8
+[t=6.383] RX SYNC at node 2 from node 1 seq 11 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=6.38963] MAC 2 enters Track on node 1 seq 11 power -2.12777 dBm
+[MAC 1] resumes Pre-Tx with live slot=6 counter=6
+[t=7.44074] RX at node 2 from node 1 seq 11 rate 8 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 6, len 41B, ackable=0)
+[MAC 2] Learned neighbor 1 uses slot 6 (rtCounter=6)
+[MAC 2] rtslot_counter expired for neighbor 1 reserveSlot=6
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 15 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=6 reserveNextSlot=15
+... type=1 speedKey=8[t=7.527] TX from node 1 to dest 2 seq 11 size 41 bytes segments 1 at slot 15 rate 8 kbps txPower 0 dBm (7843.14 bps) preamble LONG duration 1.05774 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=11 txCount=5/5
+[MAC 1] Remove ACK after OPNET resend limit dest=2 seq=11
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=8
+[t=7.527] RX SYNC at node 2 from node 1 seq 11 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=7.53363] MAC 2 enters Track on node 1 seq 11 power -2.12777 dBm
+[MAC 1] post-TX WAIT_FOR_ACK until 25.5847 (POST_TX_WAIT=17 s)
+[t=8.58474] RX at node 2 from node 1 seq 11 rate 8 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 15, len 41B, ackable=0)
+[MAC 2] Learned neighbor 1 uses slot 15 (rtCounter=15)
+[MAC 2] rtslot_counter expired for neighbor 1 reserveSlot=15
+[MAC 1] local advertised reservation expired
+[MAC 3] Enqueue ACK dest=4 seq=1 window=0 ack_queue_size=1
+[MAC 3] Ignore duplicate exact ACK dest=4 seq=1
+[MAC 3] Enqueue ACK dest=4 seq=2 window=0 ack_queue_size=2
+[MAC 3] Enqueue ACK dest=4 seq=3 window=0 ack_queue_size=3
+[MAC 3] Enqueue ACK dest=4 seq=4 window=0 ack_queue_size=4
+[MAC 3] Enqueue ACK dest=4 seq=5 window=0 ack_queue_size=5
+[MAC 3] Enqueue ACK dest=4 seq=6 window=0 ack_queue_size=6
+[MAC 3] Enqueue ACK dest=4 seq=7 window=0 ack_queue_size=7
+[MAC 3] Enqueue ACK dest=4 seq=8 window=0 ack_queue_size=8
+[MAC 3] Enqueue ACK dest=4 seq=9 window=0 ack_queue_size=9
+[MAC 3] Enqueue ACK dest=4 seq=10 window=0 ack_queue_size=10
+[MAC 3] Enqueue ACK dest=4 seq=11 window=0 ack_queue_size=11
+[MAC 3] Enqueue ACK dest=4 seq=12 window=0 ack_queue_size=12
+[MAC 3] Enqueue ACK dest=4 seq=13 window=0 ack_queue_size=13
+[MAC 3] Enqueue ACK dest=4 seq=14 window=0 ack_queue_size=14
+[MAC 3] Enqueue ACK dest=4 seq=15 window=0 ack_queue_size=15
+[MAC 3] Enqueue ACK dest=4 seq=16 window=0 ack_queue_size=16
+[MAC 3] Enqueue ACK dest=4 seq=17 window=0 ack_queue_size=17
+[MAC 3] Enqueue ACK dest=4 seq=18 window=0 ack_queue_size=18
+[MAC 3] Enqueue ACK dest=4 seq=19 window=0 ack_queue_size=19
+[MAC 3] Enqueue ACK dest=4 seq=20 window=0 ack_queue_size=20
+[MAC 3] Enqueue ACK dest=4 seq=21 window=0 ack_queue_size=21
+[MAC 3] Enqueue ACK dest=4 seq=22 window=0 ack_queue_size=22
+[MAC 3] Enqueue ACK dest=4 seq=23 window=0 ack_queue_size=23
+[MAC 3] Enqueue ACK dest=4 seq=24 window=0 ack_queue_size=24
+[MAC 3] Enqueue ACK dest=4 seq=25 window=0 ack_queue_size=25
+[MAC 3] Enqueue ACK dest=4 seq=26 window=0 ack_queue_size=26
+[MAC 3] Enqueue ACK dest=4 seq=27 window=0 ack_queue_size=27
+[MAC 3] Enqueue ACK dest=4 seq=28 window=0 ack_queue_size=28
+[MAC 3] Enqueue ACK dest=4 seq=29 window=0 ack_queue_size=29
+[MAC 3] Enqueue ACK dest=4 seq=30 window=0 ack_queue_size=30
+[MAC 3] Enqueue ACK dest=4 seq=31 window=0 ack_queue_size=31
+[MAC 3] Enqueue ACK dest=4 seq=32 window=0 ack_queue_size=32
+[MAC 3] Enqueue ACK dest=4 seq=33 window=0 ack_queue_size=33
+[MAC 3] Enqueue ACK dest=4 seq=34 window=0 ack_queue_size=34
+[MAC 3] Enqueue ACK dest=4 seq=35 window=0 ack_queue_size=35
+[MAC 3] Enqueue ACK dest=4 seq=36 window=0 ack_queue_size=36
+[MAC 3] Enqueue ACK dest=4 seq=37 window=0 ack_queue_size=37
+[MAC 3] Enqueue ACK dest=4 seq=38 window=0 ack_queue_size=38
+[MAC 3] Enqueue ACK dest=4 seq=39 window=0 ack_queue_size=39
+[MAC 3] Enqueue ACK dest=4 seq=40 window=0 ack_queue_size=40
+[MAC 3] Enqueue ACK dest=4 seq=41 window=0 ack_queue_size=41
+[MAC 3] Enqueue ACK dest=4 seq=42 window=0 ack_queue_size=42
+[MAC 3] Enqueue ACK dest=4 seq=43 window=0 ack_queue_size=43
+[MAC 3] Enqueue ACK dest=4 seq=44 window=0 ack_queue_size=44
+[MAC 3] Enqueue ACK dest=4 seq=45 window=0 ack_queue_size=45
+[MAC 3] Enqueue ACK dest=4 seq=46 window=0 ack_queue_size=46
+[MAC 3] Enqueue ACK dest=4 seq=47 window=0 ack_queue_size=47
+[MAC 3] Enqueue ACK dest=4 seq=48 window=0 ack_queue_size=48
+[MAC 3] Enqueue ACK dest=4 seq=49 window=0 ack_queue_size=49
+[MAC 3] Enqueue ACK dest=4 seq=50 window=0 ack_queue_size=50
+[MAC 3] Enqueue ACK dest=4 seq=51 window=0 ack_queue_size=51
+[MAC 3] Enqueue ACK dest=4 seq=52 window=0 ack_queue_size=52
+[MAC 3] Enqueue ACK dest=4 seq=53 window=0 ack_queue_size=53
+[MAC 3] Enqueue ACK dest=4 seq=54 window=0 ack_queue_size=54
+[MAC 3] Enqueue ACK dest=4 seq=55 window=0 ack_queue_size=55
+[MAC 3] Enqueue ACK dest=4 seq=56 window=0 ack_queue_size=56
+[MAC 3] Enqueue ACK dest=4 seq=57 window=0 ack_queue_size=57
+[MAC 3] Enqueue ACK dest=4 seq=58 window=0 ack_queue_size=58
+[MAC 3] Enqueue ACK dest=4 seq=59 window=0 ack_queue_size=59
+[MAC 3] Enqueue ACK dest=4 seq=60 window=0 ack_queue_size=60
+[MAC 3] Enqueue ACK dest=4 seq=61 window=0 ack_queue_size=61
+[MAC 3] Enqueue ACK dest=4 seq=62 window=0 ack_queue_size=62
+[MAC 3] Enqueue ACK dest=4 seq=63 window=0 ack_queue_size=63
+[MAC 3] Enqueue ACK dest=4 seq=64 window=0 ack_queue_size=64
+[MAC 3] Enqueue ACK dest=4 seq=65 window=0 ack_queue_size=65
+[MAC 3] Enqueue ACK dest=4 seq=66 window=0 ack_queue_size=66
+[MAC 3] Enqueue ACK dest=4 seq=67 window=0 ack_queue_size=67
+[MAC 3] Enqueue ACK dest=4 seq=68 window=0 ack_queue_size=68
+[MAC 3] Enqueue ACK dest=4 seq=69 window=0 ack_queue_size=69
+[MAC 3] Enqueue ACK dest=4 seq=70 window=0 ack_queue_size=70
+[MAC 3] Enqueue ACK dest=4 seq=71 window=0 ack_queue_size=71
+[MAC 3] Enqueue ACK dest=4 seq=72 window=0 ack_queue_size=72
+[MAC 3] Enqueue ACK dest=4 seq=73 window=0 ack_queue_size=73
+[MAC 3] Enqueue ACK dest=4 seq=74 window=0 ack_queue_size=74
+[MAC 3] Enqueue ACK dest=4 seq=75 window=0 ack_queue_size=75
+[MAC 3] Enqueue ACK dest=4 seq=76 window=0 ack_queue_size=76
+[MAC 3] Enqueue ACK dest=4 seq=77 window=0 ack_queue_size=77
+[MAC 3] Enqueue ACK dest=4 seq=78 window=0 ack_queue_size=78
+[MAC 3] Enqueue ACK dest=4 seq=79 window=0 ack_queue_size=79
+[MAC 3] Enqueue ACK dest=4 seq=80 window=0 ack_queue_size=80
+[MAC 3] Enqueue ACK dest=4 seq=81 window=0 ack_queue_size=81
+[MAC 3] Enqueue ACK dest=4 seq=82 window=0 ack_queue_size=82
+[MAC 3] Enqueue ACK dest=4 seq=83 window=0 ack_queue_size=83
+[MAC 3] Enqueue ACK dest=4 seq=84 window=0 ack_queue_size=84
+[MAC 3] Enqueue ACK dest=4 seq=85 window=0 ack_queue_size=85
+[MAC 3] Enqueue ACK dest=4 seq=86 window=0 ack_queue_size=86
+[MAC 3] Enqueue ACK dest=4 seq=87 window=0 ack_queue_size=87
+[MAC 3] Enqueue ACK dest=4 seq=88 window=0 ack_queue_size=88
+[MAC 3] Enqueue ACK dest=4 seq=89 window=0 ack_queue_size=89
+[MAC 3] Enqueue ACK dest=4 seq=90 window=0 ack_queue_size=90
+[MAC 3] Enqueue ACK dest=4 seq=91 window=0 ack_queue_size=91
+[MAC 3] Enqueue ACK dest=4 seq=92 window=0 ack_queue_size=92
+[MAC 3] Enqueue ACK dest=4 seq=93 window=0 ack_queue_size=93
+[MAC 3] Enqueue ACK dest=4 seq=94 window=0 ack_queue_size=94
+[MAC 3] Enqueue ACK dest=4 seq=95 window=0 ack_queue_size=95
+[MAC 3] Enqueue ACK dest=4 seq=96 window=0 ack_queue_size=96
+[MAC 3] Enqueue ACK dest=4 seq=97 window=0 ack_queue_size=97
+[MAC 3] Enqueue ACK dest=4 seq=98 window=0 ack_queue_size=98
+[MAC 3] Enqueue ACK dest=4 seq=99 window=0 ack_queue_size=99
+[MAC 3] Enqueue ACK dest=4 seq=100 window=0 ack_queue_size=100
+[MAC 3] Enqueue ACK dest=4 seq=101 window=0 ack_queue_size=101
+[MAC 3] Enqueue ACK dest=4 seq=102 window=0 ack_queue_size=102
+[MAC 3] Enqueue ACK dest=4 seq=103 window=0 ack_queue_size=103
+[MAC 3] Enqueue ACK dest=4 seq=104 window=0 ack_queue_size=104
+[MAC 3] Enqueue ACK dest=4 seq=105 window=0 ack_queue_size=105
+[MAC 3] Enqueue ACK dest=4 seq=106 window=0 ack_queue_size=106
+[MAC 3] Enqueue ACK dest=4 seq=107 window=0 ack_queue_size=107
+[MAC 3] Enqueue ACK dest=4 seq=108 window=0 ack_queue_size=108
+[MAC 3] Enqueue ACK dest=4 seq=109 window=0 ack_queue_size=109
+[MAC 3] Enqueue ACK dest=4 seq=110 window=0 ack_queue_size=110
+[MAC 3] Enqueue ACK dest=4 seq=111 window=0 ack_queue_size=111
+[MAC 3] Enqueue ACK dest=4 seq=112 window=0 ack_queue_size=112
+[MAC 3] Enqueue ACK dest=4 seq=113 window=0 ack_queue_size=113
+[MAC 3] Enqueue ACK dest=4 seq=114 window=0 ack_queue_size=114
+[MAC 3] Enqueue ACK dest=4 seq=115 window=0 ack_queue_size=115
+[MAC 3] Enqueue ACK dest=4 seq=116 window=0 ack_queue_size=116
+[MAC 3] Enqueue ACK dest=4 seq=117 window=0 ack_queue_size=117
+[MAC 3] Enqueue ACK dest=4 seq=118 window=0 ack_queue_size=118
+[MAC 3] Enqueue ACK dest=4 seq=119 window=0 ack_queue_size=119
+[MAC 3] Enqueue ACK dest=4 seq=120 window=0 ack_queue_size=120
+[MAC 3] Enqueue ACK dest=4 seq=121 window=0 ack_queue_size=121
+[MAC 3] Enqueue ACK dest=4 seq=122 window=0 ack_queue_size=122
+[MAC 3] Enqueue ACK dest=4 seq=123 window=0 ack_queue_size=123
+[MAC 3] Enqueue ACK dest=4 seq=124 window=0 ack_queue_size=124
+[MAC 3] Enqueue ACK dest=4 seq=125 window=0 ack_queue_size=125
+[MAC 3] Enqueue ACK dest=4 seq=126 window=0 ack_queue_size=126
+[MAC 3] Enqueue ACK dest=4 seq=127 window=0 ack_queue_size=127
+[MAC 3] Enqueue ACK dest=4 seq=128 window=0 ack_queue_size=128
+[MAC 3] Enqueue ACK dest=4 seq=129 window=0 ack_queue_size=129
+[MAC 3] Enqueue ACK dest=4 seq=130 window=0 ack_queue_size=130
+[MAC 3] Enqueue ACK dest=4 seq=131 window=0 ack_queue_size=131
+[MAC 3] Enqueue ACK dest=4 seq=132 window=0 ack_queue_size=132
+[MAC 3] Enqueue ACK dest=4 seq=133 window=0 ack_queue_size=133
+[MAC 3] Enqueue ACK dest=4 seq=134 window=0 ack_queue_size=134
+[MAC 3] Enqueue ACK dest=4 seq=135 window=0 ack_queue_size=135
+[MAC 3] Enqueue ACK dest=4 seq=136 window=0 ack_queue_size=136
+[MAC 3] Enqueue ACK dest=4 seq=137 window=0 ack_queue_size=137
+[MAC 3] Enqueue ACK dest=4 seq=138 window=0 ack_queue_size=138
+[MAC 3] Enqueue ACK dest=4 seq=139 window=0 ack_queue_size=139
+[MAC 3] Enqueue ACK dest=4 seq=140 window=0 ack_queue_size=140
+[MAC 3] Enqueue ACK dest=4 seq=141 window=0 ack_queue_size=141
+[MAC 3] Enqueue ACK dest=4 seq=142 window=0 ack_queue_size=142
+[MAC 3] Enqueue ACK dest=4 seq=143 window=0 ack_queue_size=143
+[MAC 3] Enqueue ACK dest=4 seq=144 window=0 ack_queue_size=144
+[MAC 3] Enqueue ACK dest=4 seq=145 window=0 ack_queue_size=145
+[MAC 3] Enqueue ACK dest=4 seq=146 window=0 ack_queue_size=146
+[MAC 3] Enqueue ACK dest=4 seq=147 window=0 ack_queue_size=147
+[MAC 3] Enqueue ACK dest=4 seq=148 window=0 ack_queue_size=148
+[MAC 3] Enqueue ACK dest=4 seq=149 window=0 ack_queue_size=149
+[MAC 3] Enqueue ACK dest=4 seq=150 window=0 ack_queue_size=150
+[MAC 3] Enqueue ACK dest=4 seq=151 window=0 ack_queue_size=151
+[MAC 3] Enqueue ACK dest=4 seq=152 window=0 ack_queue_size=152
+[MAC 3] Enqueue ACK dest=4 seq=153 window=0 ack_queue_size=153
+[MAC 3] Enqueue ACK dest=4 seq=154 window=0 ack_queue_size=154
+[MAC 3] Enqueue ACK dest=4 seq=155 window=0 ack_queue_size=155
+[MAC 3] Enqueue ACK dest=4 seq=156 window=0 ack_queue_size=156
+[MAC 3] Enqueue ACK dest=4 seq=157 window=0 ack_queue_size=157
+[MAC 3] Enqueue ACK dest=4 seq=158 window=0 ack_queue_size=158
+[MAC 3] Enqueue ACK dest=4 seq=159 window=0 ack_queue_size=159
+[MAC 3] Enqueue ACK dest=4 seq=160 window=0 ack_queue_size=160
+[MAC 3] Enqueue ACK dest=4 seq=161 window=0 ack_queue_size=161
+[MAC 3] Enqueue ACK dest=4 seq=162 window=0 ack_queue_size=162
+[MAC 3] Enqueue ACK dest=4 seq=163 window=0 ack_queue_size=163
+[MAC 3] Enqueue ACK dest=4 seq=164 window=0 ack_queue_size=164
+[MAC 3] Enqueue ACK dest=4 seq=165 window=0 ack_queue_size=165
+[MAC 3] Enqueue ACK dest=4 seq=166 window=0 ack_queue_size=166
+[MAC 3] Enqueue ACK dest=4 seq=167 window=0 ack_queue_size=167
+[MAC 3] Enqueue ACK dest=4 seq=168 window=0 ack_queue_size=168
+[MAC 3] Enqueue ACK dest=4 seq=169 window=0 ack_queue_size=169
+[MAC 3] Enqueue ACK dest=4 seq=170 window=0 ack_queue_size=170
+[MAC 3] Enqueue ACK dest=4 seq=171 window=0 ack_queue_size=171
+[MAC 3] Enqueue ACK dest=4 seq=172 window=0 ack_queue_size=172
+[MAC 3] Enqueue ACK dest=4 seq=173 window=0 ack_queue_size=173
+[MAC 3] Enqueue ACK dest=4 seq=174 window=0 ack_queue_size=174
+[MAC 3] Enqueue ACK dest=4 seq=175 window=0 ack_queue_size=175
+[MAC 3] Enqueue ACK dest=4 seq=176 window=0 ack_queue_size=176
+[MAC 3] Enqueue ACK dest=4 seq=177 window=0 ack_queue_size=177
+[MAC 3] Enqueue ACK dest=4 seq=178 window=0 ack_queue_size=178
+[MAC 3] Enqueue ACK dest=4 seq=179 window=0 ack_queue_size=179
+[MAC 3] Enqueue ACK dest=4 seq=180 window=0 ack_queue_size=180
+[MAC 3] Enqueue ACK dest=4 seq=181 window=0 ack_queue_size=181
+[MAC 3] Enqueue ACK dest=4 seq=182 window=0 ack_queue_size=182
+[MAC 3] Enqueue ACK dest=4 seq=183 window=0 ack_queue_size=183
+[MAC 3] Enqueue ACK dest=4 seq=184 window=0 ack_queue_size=184
+[MAC 3] Enqueue ACK dest=4 seq=185 window=0 ack_queue_size=185
+[MAC 3] Enqueue ACK dest=4 seq=186 window=0 ack_queue_size=186
+[MAC 3] Enqueue ACK dest=4 seq=187 window=0 ack_queue_size=187
+[MAC 3] Enqueue ACK dest=4 seq=188 window=0 ack_queue_size=188
+[MAC 3] Enqueue ACK dest=4 seq=189 window=0 ack_queue_size=189
+[MAC 3] Enqueue ACK dest=4 seq=190 window=0 ack_queue_size=190
+[MAC 3] Enqueue ACK dest=4 seq=191 window=0 ack_queue_size=191
+[MAC 3] Enqueue ACK dest=4 seq=192 window=0 ack_queue_size=192
+[MAC 3] Enqueue ACK dest=4 seq=193 window=0 ack_queue_size=193
+[MAC 3] Enqueue ACK dest=4 seq=194 window=0 ack_queue_size=194
+[MAC 3] Enqueue ACK dest=4 seq=195 window=0 ack_queue_size=195
+[MAC 3] Enqueue ACK dest=4 seq=196 window=0 ack_queue_size=196
+[MAC 3] Enqueue ACK dest=4 seq=197 window=0 ack_queue_size=197
+[MAC 3] Enqueue ACK dest=4 seq=198 window=0 ack_queue_size=198
+[MAC 3] Enqueue ACK dest=4 seq=199 window=0 ack_queue_size=199
+[MAC 3] Enqueue ACK dest=4 seq=200 window=0 ack_queue_size=200
+[MAC 3] Enqueue ACK dest=4 seq=201 window=0 ack_queue_size=201
+[MAC 3] Enqueue ACK dest=4 seq=202 window=0 ack_queue_size=202
+[MAC 3] Enqueue ACK dest=4 seq=203 window=0 ack_queue_size=203
+[MAC 3] Enqueue ACK dest=4 seq=204 window=0 ack_queue_size=204
+[MAC 3] Enqueue ACK dest=4 seq=205 window=0 ack_queue_size=205
+[MAC 3] Enqueue ACK dest=4 seq=206 window=0 ack_queue_size=206
+[MAC 3] Enqueue ACK dest=4 seq=207 window=0 ack_queue_size=207
+[MAC 3] Enqueue ACK dest=4 seq=208 window=0 ack_queue_size=208
+[MAC 3] Enqueue ACK dest=4 seq=209 window=0 ack_queue_size=209
+[MAC 3] Enqueue ACK dest=4 seq=210 window=0 ack_queue_size=210
+[MAC 3] Enqueue ACK dest=4 seq=211 window=0 ack_queue_size=211
+[MAC 3] Enqueue ACK dest=4 seq=212 window=0 ack_queue_size=212
+[MAC 3] Enqueue ACK dest=4 seq=213 window=0 ack_queue_size=213
+[MAC 3] Enqueue ACK dest=4 seq=214 window=0 ack_queue_size=214
+[MAC 3] Enqueue ACK dest=4 seq=215 window=0 ack_queue_size=215
+[MAC 3] Enqueue ACK dest=4 seq=216 window=0 ack_queue_size=216
+[MAC 3] Enqueue ACK dest=4 seq=217 window=0 ack_queue_size=217
+[MAC 3] Enqueue ACK dest=4 seq=218 window=0 ack_queue_size=218
+[MAC 3] Enqueue ACK dest=4 seq=219 window=0 ack_queue_size=219
+[MAC 3] Enqueue ACK dest=4 seq=220 window=0 ack_queue_size=220
+[MAC 3] Enqueue ACK dest=4 seq=221 window=0 ack_queue_size=221
+[MAC 3] Enqueue ACK dest=4 seq=222 window=0 ack_queue_size=222
+[MAC 3] Enqueue ACK dest=4 seq=223 window=0 ack_queue_size=223
+[MAC 3] Enqueue ACK dest=4 seq=224 window=0 ack_queue_size=224
+[MAC 3] Enqueue ACK dest=4 seq=225 window=0 ack_queue_size=225
+[MAC 3] Enqueue ACK dest=4 seq=226 window=0 ack_queue_size=226
+[MAC 3] Enqueue ACK dest=4 seq=227 window=0 ack_queue_size=227
+[MAC 3] Enqueue ACK dest=4 seq=228 window=0 ack_queue_size=228
+[MAC 3] Enqueue ACK dest=4 seq=229 window=0 ack_queue_size=229
+[MAC 3] Enqueue ACK dest=4 seq=230 window=0 ack_queue_size=230
+[MAC 3] Enqueue ACK dest=4 seq=231 window=0 ack_queue_size=231
+[MAC 3] Enqueue ACK dest=4 seq=232 window=0 ack_queue_size=232
+[MAC 3] Enqueue ACK dest=4 seq=233 window=0 ack_queue_size=233
+[MAC 3] Enqueue ACK dest=4 seq=234 window=0 ack_queue_size=234
+[MAC 3] Enqueue ACK dest=4 seq=235 window=0 ack_queue_size=235
+[MAC 3] Enqueue ACK dest=4 seq=236 window=0 ack_queue_size=236
+[MAC 3] Enqueue ACK dest=4 seq=237 window=0 ack_queue_size=237
+[MAC 3] Enqueue ACK dest=4 seq=238 window=0 ack_queue_size=238
+[MAC 3] Enqueue ACK dest=4 seq=239 window=0 ack_queue_size=239
+[MAC 3] Enqueue ACK dest=4 seq=240 window=0 ack_queue_size=240
+[MAC 3] Enqueue ACK dest=4 seq=241 window=0 ack_queue_size=241
+[MAC 3] Enqueue ACK dest=4 seq=242 window=0 ack_queue_size=242
+[MAC 3] Enqueue ACK dest=4 seq=243 window=0 ack_queue_size=243
+[MAC 3] Enqueue ACK dest=4 seq=244 window=0 ack_queue_size=244
+[MAC 3] Enqueue ACK dest=4 seq=245 window=0 ack_queue_size=245
+[MAC 3] Enqueue ACK dest=4 seq=246 window=0 ack_queue_size=246
+[MAC 3] Enqueue ACK dest=4 seq=247 window=0 ack_queue_size=247
+[MAC 3] Enqueue ACK dest=4 seq=248 window=0 ack_queue_size=248
+[MAC 3] Enqueue ACK dest=4 seq=249 window=0 ack_queue_size=249
+[MAC 3] Enqueue ACK dest=4 seq=250 window=0 ack_queue_size=250
+[MAC 3] Enqueue ACK dest=4 seq=251 window=0 ack_queue_size=251
+[MAC 3] Enqueue ACK dest=4 seq=252 window=0 ack_queue_size=252
+[MAC 3] Enqueue ACK dest=4 seq=253 window=0 ack_queue_size=253
+[MAC 3] Enqueue ACK dest=4 seq=254 window=0 ack_queue_size=254
+[MAC 3] Enqueue ACK dest=4 seq=255 window=0 ack_queue_size=255
+[MAC 3] Enqueue ACK dest=4 seq=256 window=0 ack_queue_size=256
+[MAC 3] Drop ACK: OPNET ACK queue limit reached dest=4 seq=257 limit=256
+PASS: OPNET MAC ACK queue parity test

@@ -3,7 +3,25 @@
 Behavioral port of `mjburke4/CSR-Project-NS3-part2`, currently pinned to main
 `486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b` (2026-09-07, PR #50).
 
-## Current milestone: Tranche 1 portable foundation accepted on R2025a
+## Current milestone: Tranche 2 MAC/HOP candidate
+
+The integrated candidate connects application traffic and explicit relay paths
+to HOP reliability, MAC access and the existing CSR signal engine. It adds
+bounded priority queues, slots and reservations, wake/sleep behavior, ACK
+repetition, concatenation, HOP retransmission, cumulative ACK/DACK windows,
+flow capacity and deferred custody release. Per-node MAC/HOP counters and
+protocol traces accompany the application and PHY statistics.
+
+**Tranche 2 has not executed in MATLAB yet.** Original ns-3 reference workflows
+passed 17/17, and the candidate passed static review. The prepared portable
+suite and nine integrated scenarios form the next runtime gate. Fixed paths
+support multi-hop forwarding; autonomous routing belongs to Tranche 3.
+Adaptive HOP rate/power selection is deferred; configured radio settings apply.
+See the [Tranche 2 handoff](docs/tranche-2-handoff.md),
+[independent review](docs/tranche-2-review.md), and
+[source execution evidence](evidence/tranche-2-ns3-workflows.json).
+
+## Accepted Tranche 0 and 1 evidence
 
 The integrated implementation adds CSR path loss, closure and passband matching,
 receive power/noise, all-peer signal delivery, Search/Track acquisition,
@@ -29,11 +47,13 @@ in `evidence/matlab-r2025a-acceptance.json`; runtime source hashes and exported
 files have not been independently inspected. The prior count-type failure
 remains documented in `evidence/matlab-r2025a-user-validation.json`.
 
-Choose `csr.scenario.phyNetwork(...)` for the new PHY pipeline or
+These are historical results for the accepted revisions, not execution of the
+new Tranche 2 candidate. Choose `csr.scenario.phyNetwork(...)` for PHY-only runs or
 `csr.scenario.smallNetwork()` for the controlled T0 regression. T1 receivers
 remain awake; transmissions still serialize FIFO at each source. Slot access,
-reservations, ACK/DACK, retries, routing and security processing are the next
-tranches. A collision observation does not automatically mean packet loss:
+reservations, ACK/DACK and retries are supplied by the new
+`csr.scenario.macHopNetwork(...)` path. Routing and security processing remain
+later work. A collision observation does not automatically mean packet loss:
 the source acquisition/error/ECC pipeline decides the result. A decoded
 non-destination packet increments overhearing, never application delivery.
 
@@ -47,34 +67,42 @@ Both native paths require their own MATLAB execution gate.
 From the repository root in MATLAB:
 
 ```matlab
-run_tranche1_validation
+run_tranche2_validation
 ```
 
 Or from PowerShell with MATLAB on PATH, after changing to the repository:
 
 ```powershell
-matlab -batch "run_tranche1_validation"
+matlab -batch "run_tranche2_validation"
 ```
 
-This runs **72 portable tests**, including the original 24, followed
-by nine PHY scenarios. Results go to `results/tranche1_validation/`, including
-`scenario_summary.csv` and per-scenario application/PHY traces. This gate passed
-on the reported R2025a installation. The clean PHY test checks six application
-deliveries plus six successfully decoded overheard observations; all 12
-receiver observations must not be counted as application deliveries.
+This runs all current portable tests, the controlled T0 fixture and nine
+MAC/HOP scenarios: reliable link, ACK loss, DATA loss, DACK, contention, relay,
+queue pressure, 500 kbps and 1 Mbps. Results go to
+`results/tranche2_validation/`, including `scenario_summary.csv`, per-node
+MAC/HOP counters, protocol/PHY traces, configuration and runtime metadata.
+The default backend needs no wireless toolbox.
+
+Ordinary MAC/HOP fixtures retain source duty-cycle and access/retry defaults.
+Loss fixtures deliberately erase selected successful receptions; the DACK
+fixture lowers the NSDP threshold to exercise custody with a small traffic load.
+These are diagnostic settings, not source scenario parity.
 
 `run_validation` remains the portable test-suite entry point and ends with
 the original controlled fixture. Its previously reported R2025a T0 results
 were six delivered packets, zero drops/pending, and 384 application bytes.
-That prior result does not validate the newly added PHY implementation.
+`run_tranche1_validation` runs the current test suite and nine PHY-only scenarios.
+Previous test totals apply to their recorded revisions; all runners discover
+new portable tests as the repository grows.
 
 Experiment settings are data, not protocol edits:
 
 ```matlab
-cfg = csr.scenario.phyNetwork('clean');
+cfg = csr.scenario.macHopNetwork('relay');
 cfg.Seed = 2026;
-cfg.Radio.RateKeyKbps = 500;
-cfg.Nodes(2).RadioProfile.TxPowerDbm = -10;
+cfg.Traffic.Path = [2 3 1];
+cfg.Traffic.PacketCount = 10;
+cfg.DurationSeconds = 150;
 result = csr.runScenario(cfg);
 csr.analysis.exportResults(result, 'results/my_experiment');
 ```
@@ -95,7 +123,7 @@ the protocol core never subclasses `wnet.Node`.
 |---|---|---|---|
 | 0 | Accepted controlled three-node transfer on R2025a | Low | Complete for portable R2025a |
 | 1 | Accepted portable CSR PHY/channel/traffic on R2025a | High | Portable gate passed; native gate separate |
-| 2 | Reliable MAC/HOP multi-node exchange; recommended next | High | Portable Tranche 1 accepted |
+| 2 | MAC/HOP with fixed-path relays; MATLAB acceptance pending | High | Portable Tranche 1 accepted |
 | 3 | Autonomous ARL routing and multihop delivery | High | 2; route/serialization work parallel to 1–2 |
 | 4 | Configurable research scenarios and differential runs | Medium | 1–3 |
 | 5 | Material parity closure and research tooling | High, bounded by priorities | 4 |
@@ -109,7 +137,8 @@ See [source map](evidence/source-map.md), [compatibility](docs/compatibility.md)
 [parity ledger](docs/parity-ledger.csv), and
 [ns-3 execution evidence](evidence/ns3-validation.json), and
 [R2025a T0 acceptance](evidence/matlab-r2025a-acceptance.json), and
-[Tranche 1 handoff](docs/tranche-1-handoff.md).
+[Tranche 1 handoff](docs/tranche-1-handoff.md), and
+[Tranche 2 validation](docs/tranche-2-validation.md).
 
 An optional installation probe is available in a fresh MATLAB session:
 
@@ -130,8 +159,10 @@ Python utility and release-classifier checks were actually run here and pass;
 their details are in the evidence file. Historical ns-3 C++ success is labeled
 separately. The owner's R2025a run is recorded separately from local static
 checks. Three original PHY/high-rate ns-3 workflows were built and executed
-for T1 and passed; see `evidence/tranche-1-ns3-workflows.json`. No MATLAB
-execution occurred in this workspace.
+for T1 and passed; see `evidence/tranche-1-ns3-workflows.json`. Seventeen original
+MAC/HOP/envelope workflows passed for T2; these are reference-side results,
+not MATLAB or full-network numerical parity. No MATLAB execution occurred in
+this workspace.
 
 The portable PHY/channel/traffic foundation is accepted on R2025a. Remote
 publication, PR creation, merging, and branch deletion require owner

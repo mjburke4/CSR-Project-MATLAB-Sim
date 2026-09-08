@@ -1,6 +1,11 @@
 # MATLAB release compatibility
 
-Current T1 status: the portable PHY implementation passed 72/72 tests and all
+Current T2 status: MAC/HOP, fixed-path forwarding and the PHY state bridge are
+prepared for portable R2025a/R2026a execution. No new native API or toolbox
+dependency was added to the portable path. Tranche 2 MATLAB execution remains
+pending; use `run_tranche2_validation` for its acceptance gate.
+
+Historical T1 status: the portable PHY implementation passed 72/72 tests and all
 nine scenarios on the owner's MATLAB R2025a 25.1.0.2943329 installation, without
 wireless simulator symbols on the path. See
 [portable acceptance](tranche-1-r2025a-acceptance.md). R2026a portable execution,
@@ -11,7 +16,7 @@ the original architecture assessment below records the basis for the decision.
 
 Documentation checked: 2026-09-08. No MATLAB runtime was available during this assessment.
 
-**Decision:** Tranche 0 uses a deterministic portable MATLAB scheduler and release-independent CSR classes. Build a native R2026a `wnet.Node` adapter in parallel with the Tranche 1 PHY/traffic work. R2025a keeps the portable backend until its installed library's supported integration contract is inspected and exercised. This preserves useful work-machine operation without making newer classes core dependencies.
+**Decision:** retain the deterministic portable MATLAB scheduler and release-independent CSR classes through Tranche 2. The optional R2026a `wnet.Node` clock adapter was added in Tranche 1 and remains separately gated. R2025a keeps the portable backend until its installed library's supported integration contract is inspected and exercised. This preserves useful work-machine operation without making newer classes core dependencies.
 
 | Capability | R2025a | R2026a | Port decision |
 |---|---|---|---|
@@ -39,7 +44,7 @@ run(sim, durationSeconds);
 
 Positive periodicity schedules repeated actions; zero periodicity means clock-advance callbacks. CSR timers should use explicit one-shot events. Sources: [scheduleAction](https://www.mathworks.com/help/wireless-network/ref/wirelessnetworksimulator.scheduleaction.html), [cancelAction](https://www.mathworks.com/help/wireless-network/ref/wirelessnetworksimulator.cancelaction.html).
 
-The planned R2026a native adapter will implement `run(node,currentTime)`, `pullTransmittedPacket(node)`, `pushReceivedPacket(node,packet)`, and `isPacketRelevant(node,packet)`. The first returns the next absolute invocation time. Keep actual CSR addresses separate from `wnet.Node.ID`, which is automatically assigned and privately set. Sources: [wnet.Node](https://www.mathworks.com/help/wireless-network/ref/wnet.node-class.html), [node run](https://www.mathworks.com/help/wireless-network/ref/wnet.node.run.html).
+The R2026a native adapter candidate implements `run(node,currentTime)`, `pullTransmittedPacket(node)`, `pushReceivedPacket(node,packet)`, and `isPacketRelevant(node,packet)`. The first returns the next absolute invocation time. Keep actual CSR addresses separate from `wnet.Node.ID`, which is automatically assigned and privately set. Sources: [wnet.Node](https://www.mathworks.com/help/wireless-network/ref/wnet.node-class.html), [node run](https://www.mathworks.com/help/wireless-network/ref/wnet.node.run.html).
 
 Use `wirelessPacket` with `Abstraction=true` and CSR frame information in its `Data` structure; waveform samples are unnecessary. Set transmission time, duration, power, carrier, bandwidth, antenna count, position, and simulator transmitter ID in the wrapper. Select `wnet.TechnologyType.Custom1` for CSR. Source: [wirelessPacket](https://www.mathworks.com/help/wireless-network/ref/wirelesspacket.html).
 

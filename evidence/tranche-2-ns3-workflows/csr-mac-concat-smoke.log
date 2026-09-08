@@ -1,0 +1,245 @@
+[MAC] Enqueue TX pkt dscp=5 insert_pos=0 queue_size_before=0
+[MAC] Enqueue TX pkt dscp=5 insert_pos=1 queue_size_before=1
+[MAC] Enqueue TX pkt dscp=5 insert_pos=2 queue_size_before=2
+[MAC 1] Enqueue ACK dest=2 seq=100 window=0 ack_queue_size=1
+[MAC 1] Enqueue ACK dest=2 seq=101 window=0 ack_queue_size=2
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 12 using OPNET free-slot ordinal range [1,18]
+[MAC 1] starts Pre-Tx with new slot=12 holdoff_over=0
+[MAC 1] OPNET 300-ms transmit holdoff complete
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 12 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=12 reserveNextSlot=12
+... type=1 speedKey=8[t=0.468] TX from node 1 to dest 2 seq 100 size 185 bytes segments 5 at slot 12 rate 8 kbps txPower 0 dBm (7843.14 bps) preamble LONG duration 1.20462 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=100 txCount=1/5
+[MAC 1] ACK transmitted in aggregate dest=2 seq=101 txCount=1/5
+[MAC 1] OPNET aggregate transmitted segments=5 ackSegments=2 dataSegments=3 bytes=185 rate=8
+[t=0.468] RX SYNC at node 2 from node 1 seq 100 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=0.47463] MAC 2 enters Track on node 1 seq 100 power -2.12777 dBm
+[MAC 1] resumes Pre-Tx with live slot=12 counter=12
+[t=1.67262] RX at node 2 from node 1 seq 100 rate 8 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 12, len 185B, ackable=0)
+[MAC 2] Ignore first-contact reservation from unknown neighbor 1 slot=12
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 13 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=12 reserveNextSlot=13
+... type=1 speedKey=8[t=1.833] TX from node 1 to dest 2 seq 100 size 50 bytes segments 2 at slot 13 rate 8 kbps txPower 0 dBm (7843.14 bps) preamble LONG duration 1.06692 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=100 txCount=2/5
+[MAC 1] ACK transmitted in aggregate dest=2 seq=101 txCount=2/5
+[MAC 1] OPNET aggregate transmitted segments=2 ackSegments=2 dataSegments=0 bytes=50 rate=8
+[t=1.833] RX SYNC at node 2 from node 1 seq 100 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=1.83963] MAC 2 enters Track on node 1 seq 100 power -2.12777 dBm
+[MAC 1] resumes Pre-Tx with live slot=13 counter=13
+[t=2.89992] RX at node 2 from node 1 seq 100 rate 8 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 13, len 50B, ackable=0)
+[MAC 2] Learned neighbor 1 uses slot 13 (rtCounter=13)
+[MAC 2] rtslot_counter expired for neighbor 1 reserveSlot=13
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 2 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=13 reserveNextSlot=2
+... type=1 speedKey=8[t=3.081] TX from node 1 to dest 2 seq 100 size 50 bytes segments 2 at slot 2 rate 8 kbps txPower 0 dBm (7843.14 bps) preamble LONG duration 1.06692 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=100 txCount=3/5
+[MAC 1] ACK transmitted in aggregate dest=2 seq=101 txCount=3/5
+[MAC 1] OPNET aggregate transmitted segments=2 ackSegments=2 dataSegments=0 bytes=50 rate=8
+[t=3.081] RX SYNC at node 2 from node 1 seq 100 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=3.08763] MAC 2 enters Track on node 1 seq 100 power -2.12777 dBm
+[MAC 1] resumes Pre-Tx with live slot=2 counter=2
+[t=4.14792] RX at node 2 from node 1 seq 100 rate 8 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 2, len 50B, ackable=0)
+[MAC 2] Learned neighbor 1 uses slot 2 (rtCounter=2)
+[MAC 2] rtslot_counter expired for neighbor 1 reserveSlot=2
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 4 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=2 reserveNextSlot=4
+... type=1 speedKey=8[t=4.186] TX from node 1 to dest 2 seq 100 size 50 bytes segments 2 at slot 4 rate 8 kbps txPower 0 dBm (7843.14 bps) preamble LONG duration 1.06692 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=100 txCount=4/5
+[MAC 1] ACK transmitted in aggregate dest=2 seq=101 txCount=4/5
+[MAC 1] OPNET aggregate transmitted segments=2 ackSegments=2 dataSegments=0 bytes=50 rate=8
+[t=4.186] RX SYNC at node 2 from node 1 seq 100 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=4.19263] MAC 2 enters Track on node 1 seq 100 power -2.12777 dBm
+[MAC 1] resumes Pre-Tx with live slot=4 counter=4
+[t=5.25292] RX at node 2 from node 1 seq 100 rate 8 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 4, len 50B, ackable=0)
+[MAC 2] Learned neighbor 1 uses slot 4 (rtCounter=4)
+[MAC 2] rtslot_counter expired for neighbor 1 reserveSlot=4
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 11 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=4 reserveNextSlot=11
+... type=1 speedKey=8[t=5.317] TX from node 1 to dest 2 seq 100 size 50 bytes segments 2 at slot 11 rate 8 kbps txPower 0 dBm (7843.14 bps) preamble LONG duration 1.06692 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=100 txCount=5/5
+[MAC 1] ACK transmitted in aggregate dest=2 seq=101 txCount=5/5
+[MAC 1] Remove ACK after OPNET resend limit dest=2 seq=100
+[MAC 1] Remove ACK after OPNET resend limit dest=2 seq=101
+[MAC 1] OPNET aggregate transmitted segments=2 ackSegments=2 dataSegments=0 bytes=50 rate=8
+[t=5.317] RX SYNC at node 2 from node 1 seq 100 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=5.32363] MAC 2 enters Track on node 1 seq 100 power -2.12777 dBm
+[MAC 1] post-TX WAIT_FOR_ACK until 23.3839 (POST_TX_WAIT=17 s)
+[t=6.38392] RX at node 2 from node 1 seq 100 rate 8 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 11, len 50B, ackable=0)
+[MAC 2] Learned neighbor 1 uses slot 11 (rtCounter=11)
+[MAC 2] rtslot_counter expired for neighbor 1 reserveSlot=11
+[MAC 1] local advertised reservation expired
+[MAC] Enqueue TX pkt dscp=5 insert_pos=0 queue_size_before=0
+[MAC] Enqueue TX pkt dscp=5 insert_pos=1 queue_size_before=1
+[MAC] Enqueue TX pkt dscp=5 insert_pos=2 queue_size_before=2
+[MAC] Enqueue TX pkt dscp=5 insert_pos=3 queue_size_before=3
+[MAC] Enqueue TX pkt dscp=5 insert_pos=4 queue_size_before=4
+[MAC] Enqueue TX pkt dscp=5 insert_pos=5 queue_size_before=5
+[MAC] Enqueue TX pkt dscp=5 insert_pos=6 queue_size_before=6
+[MAC] Enqueue TX pkt dscp=5 insert_pos=7 queue_size_before=7
+[MAC] Enqueue TX pkt dscp=5 insert_pos=8 queue_size_before=8
+[MAC] Enqueue TX pkt dscp=5 insert_pos=9 queue_size_before=9
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 1 using OPNET free-slot ordinal range [1,18]
+[MAC 1] starts Pre-Tx with new slot=1 holdoff_over=0
+[MAC 1] OPNET 300-ms transmit holdoff complete
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 8 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=1 reserveNextSlot=8
+... type=0 speedKey=8[t=0.325] TX from node 1 to dest 2 seq 1 size 225 bytes segments 5 at slot 8 rate 8 kbps txPower 0 dBm (7843.14 bps) preamble LONG duration 1.24542 s
+[MAC 1] OPNET aggregate transmitted segments=5 ackSegments=0 dataSegments=5 bytes=225 rate=8
+[t=0.325] RX SYNC at node 2 from node 1 seq 1 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=0.33163] MAC 2 enters Track on node 1 seq 1 power -2.12777 dBm
+[MAC 1] resumes Pre-Tx with live slot=8 counter=8
+[t=1.57042] RX at node 2 from node 1 seq 1 rate 8 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 8, len 225B, ackable=0)
+[MAC 2] Ignore first-contact reservation from unknown neighbor 1 slot=8
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 18 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=8 reserveNextSlot=18
+... type=0 speedKey=8[t=1.677] TX from node 1 to dest 2 seq 6 size 205 bytes segments 5 at slot 18 rate 8 kbps txPower 0 dBm (7843.14 bps) preamble LONG duration 1.22502 s
+[MAC 1] OPNET aggregate transmitted segments=5 ackSegments=0 dataSegments=5 bytes=205 rate=8
+[t=1.677] RX SYNC at node 2 from node 1 seq 6 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=1.68363] MAC 2 enters Track on node 1 seq 6 power -2.12777 dBm
+[MAC 1] post-TX WAIT_FOR_ACK until 19.902 (POST_TX_WAIT=17 s)
+[t=2.90202] RX at node 2 from node 1 seq 6 rate 8 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 18, len 205B, ackable=0)
+[MAC 2] Learned neighbor 1 uses slot 18 (rtCounter=18)
+[MAC 2] rtslot_counter expired for neighbor 1 reserveSlot=18
+[MAC 1] local advertised reservation expired
+[MAC] Enqueue TX pkt dscp=5 insert_pos=0 queue_size_before=0
+[MAC] Enqueue TX pkt dscp=5 insert_pos=1 queue_size_before=1
+[MAC] Enqueue TX pkt dscp=5 insert_pos=2 queue_size_before=2
+[MAC] Enqueue TX pkt dscp=5 insert_pos=3 queue_size_before=3
+[MAC] Enqueue TX pkt dscp=5 insert_pos=4 queue_size_before=4
+[MAC 1] Enqueue ACK dest=2 seq=100 window=1 ack_queue_size=1
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 6 using OPNET free-slot ordinal range [1,18]
+[MAC 1] starts Pre-Tx with new slot=6 holdoff_over=0
+[MAC 1] OPNET 300-ms transmit holdoff complete
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 4 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=6 reserveNextSlot=4
+... type=1 speedKey=8[t=0.39] TX from node 1 to dest 2 seq 100 size 214 bytes segments 5 at slot 4 rate 8 kbps txPower 0 dBm (7843.14 bps) preamble LONG duration 1.2342 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=100 txCount=1/5
+[MAC 1] OPNET aggregate transmitted segments=5 ackSegments=1 dataSegments=4 bytes=214 rate=8
+[t=0.39] RX SYNC at node 2 from node 1 seq 100 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=0.39663] MAC 2 enters Track on node 1 seq 100 power -2.12777 dBm
+[MAC 1] resumes Pre-Tx with live slot=4 counter=4
+[t=1.6242] RX at node 2 from node 1 seq 100 rate 8 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 4, len 214B, ackable=0)
+[MAC 2] Ignore first-contact reservation from unknown neighbor 1 slot=4
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 12 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=4 reserveNextSlot=12
+... type=1 speedKey=8[t=1.677] TX from node 1 to dest 2 seq 100 size 88 bytes segments 2 at slot 12 rate 8 kbps txPower 0 dBm (7843.14 bps) preamble LONG duration 1.10568 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=100 txCount=2/5
+[MAC 1] OPNET aggregate transmitted segments=2 ackSegments=1 dataSegments=1 bytes=88 rate=8
+[t=1.677] RX SYNC at node 2 from node 1 seq 100 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=1.68363] MAC 2 enters Track on node 1 seq 100 power -2.12777 dBm
+[MAC 1] resumes Pre-Tx with live slot=12 counter=12
+[t=2.78268] RX at node 2 from node 1 seq 100 rate 8 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 12, len 88B, ackable=0)
+[MAC 2] Learned neighbor 1 uses slot 12 (rtCounter=12)
+[MAC 2] rtslot_counter expired for neighbor 1 reserveSlot=12
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 12 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=12 reserveNextSlot=12
+... type=1 speedKey=8[t=2.951] TX from node 1 to dest 2 seq 100 size 46 bytes segments 1 at slot 12 rate 8 kbps txPower 0 dBm (7843.14 bps) preamble LONG duration 1.06284 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=100 txCount=3/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=46 rate=8
+[t=2.951] RX SYNC at node 2 from node 1 seq 100 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=2.95763] MAC 2 enters Track on node 1 seq 100 power -2.12777 dBm
+[MAC 1] resumes Pre-Tx with live slot=12 counter=12
+[t=4.01384] RX at node 2 from node 1 seq 100 rate 8 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 12, len 46B, ackable=0)
+[MAC 2] Learned neighbor 1 uses slot 12 (rtCounter=12)
+[MAC 2] rtslot_counter expired for neighbor 1 reserveSlot=12
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 10 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=12 reserveNextSlot=10
+... type=1 speedKey=8[t=4.173] TX from node 1 to dest 2 seq 100 size 46 bytes segments 1 at slot 10 rate 8 kbps txPower 0 dBm (7843.14 bps) preamble LONG duration 1.06284 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=100 txCount=4/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=46 rate=8
+[t=4.173] RX SYNC at node 2 from node 1 seq 100 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=4.17963] MAC 2 enters Track on node 1 seq 100 power -2.12777 dBm
+[MAC 1] resumes Pre-Tx with live slot=10 counter=10
+[t=5.23584] RX at node 2 from node 1 seq 100 rate 8 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 10, len 46B, ackable=0)
+[MAC 2] Learned neighbor 1 uses slot 10 (rtCounter=10)
+[MAC 2] rtslot_counter expired for neighbor 1 reserveSlot=10
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 13 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=10 reserveNextSlot=13
+... type=1 speedKey=8[t=5.369] TX from node 1 to dest 2 seq 100 size 46 bytes segments 1 at slot 13 rate 8 kbps txPower 0 dBm (7843.14 bps) preamble LONG duration 1.06284 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=100 txCount=5/5
+[MAC 1] Remove ACK after OPNET resend limit dest=2 seq=100
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=46 rate=8
+[t=5.369] RX SYNC at node 2 from node 1 seq 100 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=5.37563] MAC 2 enters Track on node 1 seq 100 power -2.12777 dBm
+[MAC 1] post-TX WAIT_FOR_ACK until 23.4318 (POST_TX_WAIT=17 s)
+[t=6.43184] RX at node 2 from node 1 seq 100 rate 8 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 13, len 46B, ackable=0)
+[MAC 2] Learned neighbor 1 uses slot 13 (rtCounter=13)
+[MAC 2] rtslot_counter expired for neighbor 1 reserveSlot=13
+[MAC 1] local advertised reservation expired
+[MAC] Enqueue TX pkt dscp=5 insert_pos=0 queue_size_before=0
+[MAC] Enqueue TX pkt dscp=5 insert_pos=1 queue_size_before=1
+[MAC] Enqueue TX pkt dscp=5 insert_pos=2 queue_size_before=2
+[MAC] Enqueue TX pkt dscp=5 insert_pos=3 queue_size_before=3
+[MAC] Enqueue TX pkt dscp=5 insert_pos=4 queue_size_before=4
+[MAC] Enqueue TX pkt dscp=5 insert_pos=5 queue_size_before=5
+[MAC] Enqueue TX pkt dscp=5 insert_pos=6 queue_size_before=6
+[MAC] Enqueue TX pkt dscp=5 insert_pos=7 queue_size_before=7
+[MAC] Enqueue TX pkt dscp=5 insert_pos=8 queue_size_before=8
+[MAC] Enqueue TX pkt dscp=5 insert_pos=9 queue_size_before=9
+[MAC] Enqueue TX pkt dscp=5 insert_pos=10 queue_size_before=10
+[MAC] Enqueue TX pkt dscp=5 insert_pos=11 queue_size_before=11
+[MAC] Enqueue TX pkt dscp=5 insert_pos=12 queue_size_before=12
+[MAC] Enqueue TX pkt dscp=5 insert_pos=13 queue_size_before=13
+[MAC] Enqueue TX pkt dscp=5 insert_pos=14 queue_size_before=14
+[MAC] Enqueue TX pkt dscp=5 insert_pos=15 queue_size_before=15
+[MAC] Enqueue TX pkt dscp=5 insert_pos=16 queue_size_before=16
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 9 using OPNET free-slot ordinal range [1,18]
+[MAC 1] starts Pre-Tx with new slot=9 holdoff_over=0
+[MAC 1] OPNET 300-ms transmit holdoff complete
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 6 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=9 reserveNextSlot=6
+... type=0 speedKey=128[t=0.429] TX from node 1 to dest 2 seq 1 size 400 bytes segments 16 at slot 6 rate 128 kbps txPower 0 dBm (133333 bps) preamble LONG duration 1.03608 s
+[MAC 1] OPNET aggregate transmitted segments=16 ackSegments=0 dataSegments=16 bytes=400 rate=128
+[t=0.429] RX SYNC at node 2 from node 1 seq 1 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=0.43563] MAC 2 enters Track on node 1 seq 1 power -2.12777 dBm
+[MAC 1] resumes Pre-Tx with live slot=6 counter=6
+[t=1.46508] RX at node 2 from node 1 seq 1 rate 128 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 6, len 400B, ackable=0)
+[MAC 2] Ignore first-contact reservation from unknown neighbor 1 slot=6
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 12 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=6 reserveNextSlot=12
+... type=0 speedKey=128[t=1.547] TX from node 1 to dest 2 seq 17 size 25 bytes segments 1 at slot 12 rate 128 kbps txPower 0 dBm (133333 bps) preamble LONG duration 1.01358 s
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=0 dataSegments=1 bytes=25 rate=128
+[t=1.547] RX SYNC at node 2 from node 1 seq 17 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=1.55363] MAC 2 enters Track on node 1 seq 17 power -2.12777 dBm
+[MAC 1] post-TX WAIT_FOR_ACK until 19.5606 (POST_TX_WAIT=17 s)
+[t=2.56058] RX at node 2 from node 1 seq 17 rate 128 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 12, len 25B, ackable=0)
+[MAC 2] Learned neighbor 1 uses slot 12 (rtCounter=12)
+[MAC 1] local advertised reservation expired
+[MAC 2] rtslot_counter expired for neighbor 1 reserveSlot=12
+PASS: OPNET MAC packet concatenation parity test

@@ -1,0 +1,588 @@
+[HOP 1] New neighbor 2 heard at t=0s
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=2
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Enqueue ACK dest=2 seq=77 window=1 ack_queue_size=1
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=3
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=77 txCount=0
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 12 using OPNET free-slot ordinal range [1,18]
+[MAC 1] starts Pre-Tx with new slot=12 holdoff_over=0
+[MAC 1] OPNET 300-ms transmit holdoff complete
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 12 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=12 reserveNextSlot=12
+... type=1 speedKey=128[t=0.468] TX from node 1 to dest 2 seq 77 size 46 bytes segments 1 at slot 12 rate 128 kbps txPower 0 dBm (133333 bps) preamble LONG duration 1.01484 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=77 txCount=1/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=46 rate=128
+[t=0.468] RX SYNC at node 2 from node 1 seq 77 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=0.47463] MAC 2 enters Track on node 1 seq 77 power -2.12777 dBm
+[MAC 1] resumes Pre-Tx with live slot=12 counter=12
+[t=1.48284] RX at node 2 from node 1 seq 77 rate 128 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 12, len 46B, ackable=0)
+[MAC 2] Ignore first-contact reservation from unknown neighbor 1 slot=12
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 13 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=12 reserveNextSlot=13
+... type=1 speedKey=128[t=1.651] TX from node 1 to dest 2 seq 77 size 46 bytes segments 1 at slot 13 rate 128 kbps txPower 0 dBm (133333 bps) preamble LONG duration 1.01484 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=77 txCount=2/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=46 rate=128
+[t=1.651] RX SYNC at node 2 from node 1 seq 77 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=1.65763] MAC 2 enters Track on node 1 seq 77 power -2.12777 dBm
+[MAC 1] resumes Pre-Tx with live slot=13 counter=13
+[t=2.66584] RX at node 2 from node 1 seq 77 rate 128 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 13, len 46B, ackable=0)
+[MAC 2] Learned neighbor 1 uses slot 13 (rtCounter=13)
+[MAC 2] rtslot_counter expired for neighbor 1 reserveSlot=13
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 2 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=13 reserveNextSlot=2
+... type=1 speedKey=128[t=2.847] TX from node 1 to dest 2 seq 77 size 46 bytes segments 1 at slot 2 rate 128 kbps txPower 0 dBm (133333 bps) preamble LONG duration 1.01484 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=77 txCount=3/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=46 rate=128
+[t=2.847] RX SYNC at node 2 from node 1 seq 77 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=2.85363] MAC 2 enters Track on node 1 seq 77 power -2.12777 dBm
+[MAC 1] resumes Pre-Tx with live slot=2 counter=2
+[t=3.86184] RX at node 2 from node 1 seq 77 rate 128 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 2, len 46B, ackable=0)
+[MAC 2] Learned neighbor 1 uses slot 2 (rtCounter=2)
+[MAC 2] rtslot_counter expired for neighbor 1 reserveSlot=2
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 4 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=2 reserveNextSlot=4
+... type=1 speedKey=128[t=3.9] TX from node 1 to dest 2 seq 77 size 46 bytes segments 1 at slot 4 rate 128 kbps txPower 0 dBm (133333 bps) preamble LONG duration 1.01484 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=77 txCount=4/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=46 rate=128
+[t=3.9] RX SYNC at node 2 from node 1 seq 77 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=3.90663] MAC 2 enters Track on node 1 seq 77 power -2.12777 dBm
+[HOP 1] New neighbor 2 heard at t=0s
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=2
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Enqueue ACK dest=2 seq=77 window=1 ack_queue_size=1
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=77 txCount=0
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 16 using OPNET free-slot ordinal range [1,18]
+[MAC 1] starts Pre-Tx with new slot=16 holdoff_over=0
+[MAC 1] OPNET 300-ms transmit holdoff complete
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 1 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=16 reserveNextSlot=1
+... type=1 speedKey=128[t=0.52] TX from node 1 to dest 2 seq 77 size 46 bytes segments 1 at slot 1 rate 128 kbps txPower 0 dBm (133333 bps) preamble LONG duration 1.01484 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=77 txCount=1/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=46 rate=128
+[t=0.52] RX SYNC at node 2 from node 1 seq 77 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=0.52663] MAC 2 enters Track on node 1 seq 77 power -2.12777 dBm
+[MAC 1] resumes Pre-Tx with live slot=1 counter=1
+[t=1.53484] RX at node 2 from node 1 seq 77 rate 128 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 1, len 46B, ackable=0)
+[MAC 2] Ignore first-contact reservation from unknown neighbor 1 slot=1
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 8 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=1 reserveNextSlot=8
+... type=1 speedKey=128[t=1.56] TX from node 1 to dest 2 seq 77 size 46 bytes segments 1 at slot 8 rate 128 kbps txPower 0 dBm (133333 bps) preamble LONG duration 1.01484 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=77 txCount=2/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=46 rate=128
+[t=1.56] RX SYNC at node 2 from node 1 seq 77 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=1.56663] MAC 2 enters Track on node 1 seq 77 power -2.12777 dBm
+[MAC 1] resumes Pre-Tx with live slot=8 counter=8
+[t=2.57484] RX at node 2 from node 1 seq 77 rate 128 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 8, len 46B, ackable=0)
+[MAC 2] Learned neighbor 1 uses slot 8 (rtCounter=8)
+[MAC 2] rtslot_counter expired for neighbor 1 reserveSlot=8
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 18 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=8 reserveNextSlot=18
+... type=1 speedKey=128[t=2.691] TX from node 1 to dest 2 seq 77 size 46 bytes segments 1 at slot 18 rate 128 kbps txPower 0 dBm (133333 bps) preamble LONG duration 1.01484 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=77 txCount=3/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=46 rate=128
+[t=2.691] RX SYNC at node 2 from node 1 seq 77 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=2.69763] MAC 2 enters Track on node 1 seq 77 power -2.12777 dBm
+[MAC 1] resumes Pre-Tx with live slot=18 counter=18
+[t=3.70584] RX at node 2 from node 1 seq 77 rate 128 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 18, len 46B, ackable=0)
+[MAC 2] Learned neighbor 1 uses slot 18 (rtCounter=18)
+[MAC 2] rtslot_counter expired for neighbor 1 reserveSlot=18
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 8 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=18 reserveNextSlot=8
+... type=1 speedKey=128[t=3.952] TX from node 1 to dest 2 seq 77 size 46 bytes segments 1 at slot 8 rate 128 kbps txPower 0 dBm (133333 bps) preamble LONG duration 1.01484 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=77 txCount=4/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=46 rate=128
+[t=3.952] RX SYNC at node 2 from node 1 seq 77 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=3.95863] MAC 2 enters Track on node 1 seq 77 power -2.12777 dBm
+[HOP 1] New neighbor 2 heard at t=0s
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=2
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Enqueue ACK dest=2 seq=65534 window=1 ack_queue_size=1
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=3
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=65535 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=4
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=0 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=5
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=1 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=6
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=2 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=7
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=3 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=8
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=4 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=9
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=5 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=10
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=6 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=11
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=7 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=12
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=8 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=13
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=9 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=14
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=10 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=15
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=11 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=16
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=12 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=17
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=13 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=18
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=14 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=19
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=15 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=20
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=16 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=21
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=17 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=22
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=18 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=23
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=19 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=24
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=20 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=25
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=21 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=26
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=22 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=27
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=23 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=28
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=24 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=29
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=25 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=30
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=26 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=31
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=27 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=32
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=28 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=33
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=29 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=34
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=30 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=35
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=31 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=36
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=32 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=37
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=33 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=38
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=34 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=39
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=35 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=40
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=36 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=41
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=37 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=42
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=38 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=43
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=39 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=44
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=40 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=45
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=41 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=46
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=42 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=47
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=43 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=48
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=44 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=49
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=45 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=50
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=46 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=51
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=47 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=52
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=48 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=53
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=49 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=54
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=50 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=55
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=51 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=56
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=52 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=57
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=53 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=58
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=54 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=59
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=55 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=60
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=56 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=61
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=57 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=62
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=58 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=63
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=59 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=64
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=60 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=65
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=61 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=66
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=62 txCount=0
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=67
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Update cumulative ACK queue entry dest=2 baseSeq=63 txCount=0
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 4 using OPNET free-slot ordinal range [1,18]
+[MAC 1] starts Pre-Tx with new slot=4 holdoff_over=0
+[MAC 1] OPNET 300-ms transmit holdoff complete
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 12 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=4 reserveNextSlot=12
+... type=1 speedKey=128[t=0.364] TX from node 1 to dest 2 seq 63 size 46 bytes segments 1 at slot 12 rate 128 kbps txPower 0 dBm (133333 bps) preamble LONG duration 1.01484 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=63 txCount=1/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=46 rate=128
+[t=0.364] RX SYNC at node 2 from node 1 seq 63 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=0.37063] MAC 2 enters Track on node 1 seq 63 power -2.12777 dBm
+[MAC 1] resumes Pre-Tx with live slot=12 counter=12
+[t=1.37884] RX at node 2 from node 1 seq 63 rate 128 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 12, len 46B, ackable=0)
+[MAC 2] Ignore first-contact reservation from unknown neighbor 1 slot=12
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 12 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=12 reserveNextSlot=12
+... type=1 speedKey=128[t=1.547] TX from node 1 to dest 2 seq 63 size 46 bytes segments 1 at slot 12 rate 128 kbps txPower 0 dBm (133333 bps) preamble LONG duration 1.01484 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=63 txCount=2/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=46 rate=128
+[t=1.547] RX SYNC at node 2 from node 1 seq 63 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=1.55363] MAC 2 enters Track on node 1 seq 63 power -2.12777 dBm
+[MAC 1] resumes Pre-Tx with live slot=12 counter=12
+[t=2.56184] RX at node 2 from node 1 seq 63 rate 128 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 12, len 46B, ackable=0)
+[MAC 2] Learned neighbor 1 uses slot 12 (rtCounter=12)
+[MAC 2] rtslot_counter expired for neighbor 1 reserveSlot=12
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 10 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=12 reserveNextSlot=10
+... type=1 speedKey=128[t=2.73] TX from node 1 to dest 2 seq 63 size 46 bytes segments 1 at slot 10 rate 128 kbps txPower 0 dBm (133333 bps) preamble LONG duration 1.01484 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=63 txCount=3/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=46 rate=128
+[t=2.73] RX SYNC at node 2 from node 1 seq 63 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=2.73663] MAC 2 enters Track on node 1 seq 63 power -2.12777 dBm
+[MAC 1] resumes Pre-Tx with live slot=10 counter=10
+[t=3.74484] RX at node 2 from node 1 seq 63 rate 128 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 10, len 46B, ackable=0)
+[MAC 2] Learned neighbor 1 uses slot 10 (rtCounter=10)
+[MAC 2] rtslot_counter expired for neighbor 1 reserveSlot=10
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 13 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=10 reserveNextSlot=13
+... type=1 speedKey=128[t=3.887] TX from node 1 to dest 2 seq 63 size 46 bytes segments 1 at slot 13 rate 128 kbps txPower 0 dBm (133333 bps) preamble LONG duration 1.01484 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=63 txCount=4/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=46 rate=128
+[t=3.887] RX SYNC at node 2 from node 1 seq 63 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=3.89363] MAC 2 enters Track on node 1 seq 63 power -2.12777 dBm
+[HOP 1] New neighbor 2 heard at t=0s
+[HOP 1] RX authenticated Pairwise16 DATA from=2 keyId=1 keySeq=2
+[HOP 1] link_control dest=2 neighborKnown=1 s0=-105 pathloss=90 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[MAC 1] Enqueue ACK dest=2 seq=91 window=1 ack_queue_size=1
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 9 using OPNET free-slot ordinal range [1,18]
+[MAC 1] starts Pre-Tx with new slot=9 holdoff_over=0
+[MAC 1] OPNET 300-ms transmit holdoff complete
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 6 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=9 reserveNextSlot=6
+... type=1 speedKey=128[t=0.429] TX from node 1 to dest 2 seq 91 size 46 bytes segments 1 at slot 6 rate 128 kbps txPower 0 dBm (133333 bps) preamble LONG duration 1.01484 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=91 txCount=1/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=46 rate=128
+[t=0.429] RX SYNC at node 2 from node 1 seq 91 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=0.43563] MAC 2 enters Track on node 1 seq 91 power -2.12777 dBm
+[MAC 1] resumes Pre-Tx with live slot=6 counter=6
+[t=1.44384] RX at node 2 from node 1 seq 91 rate 128 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 6, len 46B, ackable=0)
+[MAC 2] Ignore first-contact reservation from unknown neighbor 1 slot=6
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 12 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=6 reserveNextSlot=12
+... type=1 speedKey=128[t=1.534] TX from node 1 to dest 2 seq 91 size 46 bytes segments 1 at slot 12 rate 128 kbps txPower 0 dBm (133333 bps) preamble LONG duration 1.01484 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=91 txCount=2/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=46 rate=128
+[t=1.534] RX SYNC at node 2 from node 1 seq 91 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=1.54063] MAC 2 enters Track on node 1 seq 91 power -2.12777 dBm
+[MAC 1] resumes Pre-Tx with live slot=12 counter=12
+[t=2.54884] RX at node 2 from node 1 seq 91 rate 128 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 12, len 46B, ackable=0)
+[MAC 2] Learned neighbor 1 uses slot 12 (rtCounter=12)
+[MAC 2] rtslot_counter expired for neighbor 1 reserveSlot=12
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 12 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=12 reserveNextSlot=12
+... type=1 speedKey=128[t=2.717] TX from node 1 to dest 2 seq 91 size 46 bytes segments 1 at slot 12 rate 128 kbps txPower 0 dBm (133333 bps) preamble LONG duration 1.01484 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=91 txCount=3/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=46 rate=128
+[t=2.717] RX SYNC at node 2 from node 1 seq 91 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=2.72363] MAC 2 enters Track on node 1 seq 91 power -2.12777 dBm
+[MAC 1] resumes Pre-Tx with live slot=12 counter=12
+[t=3.73184] RX at node 2 from node 1 seq 91 rate 128 kbps txPower 0 dBm preamble LONG pathloss 2.12777 dB snr 104.847 dB (slot 12, len 46B, ackable=0)
+[MAC 2] Learned neighbor 1 uses slot 12 (rtCounter=12)
+[MAC 2] rtslot_counter expired for neighbor 1 reserveSlot=12
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 18 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=12 reserveNextSlot=18
+... type=1 speedKey=128[t=3.9] TX from node 1 to dest 2 seq 91 size 46 bytes segments 1 at slot 18 rate 128 kbps txPower 0 dBm (133333 bps) preamble LONG duration 1.01484 s
+[MAC 1] ACK transmitted in aggregate dest=2 seq=91 txCount=4/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=46 rate=128
+[t=3.9] RX SYNC at node 2 from node 1 seq 91 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=3.90663] MAC 2 enters Track on node 1 seq 91 power -2.12777 dBm
+[HOP 1] link_control dest=2 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] Pending DATA increment dest=2 pending=1
+[HOP 1] TX Pairwise16 DATA neighbor=2 hopSeq=1 securityCount=1
+[MAC] Enqueue TX pkt dscp=5 insert_pos=0 queue_size_before=0
+[HOP 1] New neighbor 2 heard at t=0s
+[HOP 1] RX ACK from 2 seq=1
+[HOP 1] Pending DATA decrement reason=ACK neighbor=2 pending=0
+[MAC 1] Cancel queued acknowledged frame neighbor=2 seq=1 baseSeq=1 windowIndex=0
+[HOP 1] link_control dest=2 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] Pending DATA increment dest=2 pending=1
+[HOP 1] TX Pairwise16 DATA neighbor=2 hopSeq=1 securityCount=1
+[MAC] Enqueue TX pkt dscp=5 insert_pos=0 queue_size_before=0
+[HOP 1] New neighbor 2 heard at t=0s
+[HOP 1] RX ACK from 2 seq=1
+[HOP 1] Pending DATA decrement reason=ACK neighbor=2 pending=0
+[MAC 1] Cancel queued acknowledged frame neighbor=2 seq=1 baseSeq=1 windowIndex=0
+[HOP 1] link_control dest=2 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] Pending DATA increment dest=2 pending=1
+[HOP 1] TX Pairwise16 DATA neighbor=2 hopSeq=1 securityCount=1
+[MAC] Enqueue TX pkt dscp=5 insert_pos=0 queue_size_before=0
+[HOP 1] link_control dest=2 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] Pending DATA increment dest=2 pending=2
+[HOP 1] TX Pairwise16 DATA neighbor=2 hopSeq=2 securityCount=1
+[MAC] Enqueue TX pkt dscp=5 insert_pos=1 queue_size_before=1
+[HOP 1] New neighbor 2 heard at t=0s
+[HOP 1] RX ACK from 2 seq=2
+[HOP 1] Pending DATA decrement reason=ACK neighbor=2 pending=1
+[HOP 1] Pending DATA decrement reason=ACK neighbor=2 pending=0
+[MAC 1] Cancel queued acknowledged frame neighbor=2 seq=1 baseSeq=2 windowIndex=1
+[MAC 1] Cancel queued acknowledged frame neighbor=2 seq=2 baseSeq=2 windowIndex=0
+[HOP 1] link_control dest=2 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] Pending DATA increment dest=2 pending=1
+[HOP 1] TX Pairwise16 DATA neighbor=2 hopSeq=1 securityCount=1
+[MAC] Enqueue TX pkt dscp=5 insert_pos=0 queue_size_before=0
+[HOP 1] New neighbor 2 heard at t=0s
+[HOP 1] RX ACK from 2 seq=1
+[HOP 1] Pending DATA decrement reason=ACK neighbor=2 pending=0
+[MAC 1] Cancel queued acknowledged frame neighbor=2 seq=1 baseSeq=1 windowIndex=0
+[HOP 1] link_control dest=2 neighborKnown=1 s0=0 pathloss=90 failures=0 speed=8 txPower=30 rxPower=-105 cost=6274
+[HOP 1] Pending DATA increment dest=2 pending=1
+[HOP 1] TX Pairwise16 DATA neighbor=2 hopSeq=2 securityCount=1
+[MAC] Enqueue TX pkt dscp=5 insert_pos=0 queue_size_before=0
+[HOP 1] RX ACK from 2 seq=2
+[HOP 1] Pending DATA decrement reason=ACK neighbor=2 pending=0
+[MAC 1] Cancel queued acknowledged frame neighbor=2 seq=2 baseSeq=2 windowIndex=0
+[HOP 1] link_control dest=2 neighborKnown=1 s0=0 pathloss=90 failures=0 speed=8 txPower=30 rxPower=-105 cost=6274
+[HOP 1] Pending DATA increment dest=2 pending=1
+[HOP 1] TX Pairwise16 DATA neighbor=2 hopSeq=3 securityCount=1
+[MAC] Enqueue TX pkt dscp=5 insert_pos=0 queue_size_before=0
+[MAC 1] Cancel queued acknowledged frame neighbor=2 seq=3 baseSeq=3 windowIndex=0
+[HOP 1] MAC sent confirmation dest=2 seq=3 transmission=1 sentAt=0
+[MAC 1] OPNET 300-ms transmit holdoff complete
+[MAC] Enqueue TX pkt dscp=5 insert_pos=0 queue_size_before=0
+[HOP 1] RX ACK from 2 seq=3
+[HOP 1] Pending DATA decrement reason=ACK neighbor=2 pending=0
+[HOP 1] Adaptive flow threshold increased neighbor=2 old=0 new=1 effectiveWindow=2
+[MAC 1] Cancel queued acknowledged frame neighbor=2 seq=3 baseSeq=3 windowIndex=0
+[HOP 1] link_control dest=2 neighborKnown=1 s0=0 pathloss=90 failures=0 speed=8 txPower=30 rxPower=-105 cost=6274
+[HOP 1] Pending DATA increment dest=2 pending=1
+[HOP 1] TX Pairwise16 DATA neighbor=2 hopSeq=4 securityCount=1
+[MAC] Enqueue TX pkt dscp=5 insert_pos=0 queue_size_before=0
+[HOP 1] RX ACK from 2 seq=4
+[HOP 1] Pending DATA decrement reason=ACK neighbor=2 pending=0
+[MAC 1] Cancel queued acknowledged frame neighbor=2 seq=4 baseSeq=4 windowIndex=0
+[HOP 1] link_control dest=2 neighborKnown=1 s0=0 pathloss=90 failures=0 speed=8 txPower=30 rxPower=-105 cost=6274
+[HOP 1] Pending DATA increment dest=2 pending=1
+[HOP 1] TX Pairwise16 DATA neighbor=2 hopSeq=5 securityCount=1
+[MAC] Enqueue TX pkt dscp=5 insert_pos=0 queue_size_before=0
+[HOP 1] RX ACK from 2 seq=5
+[HOP 1] Pending DATA decrement reason=ACK neighbor=2 pending=0
+[MAC 1] Cancel queued acknowledged frame neighbor=2 seq=5 baseSeq=5 windowIndex=0
+[HOP 1] link_control dest=2 neighborKnown=1 s0=0 pathloss=90 failures=0 speed=8 txPower=30 rxPower=-105 cost=6274
+[HOP 1] Pending DATA increment dest=2 pending=1
+[HOP 1] TX Pairwise16 DATA neighbor=2 hopSeq=6 securityCount=1
+[MAC] Enqueue TX pkt dscp=5 insert_pos=0 queue_size_before=0
+[HOP 1] RX ACK from 2 seq=6
+[HOP 1] Pending DATA decrement reason=ACK neighbor=2 pending=0
+[HOP 1] Adaptive flow threshold increased neighbor=2 old=1 new=2 effectiveWindow=3
+[MAC 1] Cancel queued acknowledged frame neighbor=2 seq=6 baseSeq=6 windowIndex=0
+[HOP 1] link_control dest=2 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] Pending DATA increment dest=2 pending=1
+[HOP 1] TX Pairwise16 DATA neighbor=2 hopSeq=1 securityCount=1
+[MAC] Enqueue TX pkt dscp=5 insert_pos=0 queue_size_before=0
+[HOP 1] New neighbor 2 heard at t=0s
+[HOP 1] RX ACK from 2 seq=1
+[HOP 1] Pending DATA decrement reason=ACK neighbor=2 pending=0
+[MAC 1] Cancel queued acknowledged frame neighbor=2 seq=1 baseSeq=1 windowIndex=0
+[HOP 1] link_control dest=2 neighborKnown=1 s0=0 pathloss=90 failures=0 speed=8 txPower=30 rxPower=-105 cost=6274
+[HOP 1] Pending DATA increment dest=2 pending=1
+[HOP 1] TX Pairwise16 DATA neighbor=2 hopSeq=2 securityCount=1
+[MAC] Enqueue TX pkt dscp=5 insert_pos=0 queue_size_before=0
+[HOP 1] RX ACK from 2 seq=2
+[HOP 1] Pending DATA decrement reason=ACK neighbor=2 pending=0
+[MAC 1] Cancel queued acknowledged frame neighbor=2 seq=2 baseSeq=2 windowIndex=0
+[HOP 1] link_control dest=2 neighborKnown=1 s0=0 pathloss=90 failures=0 speed=8 txPower=30 rxPower=-105 cost=6274
+[HOP 1] Pending DATA increment dest=2 pending=1
+[HOP 1] TX Pairwise16 DATA neighbor=2 hopSeq=3 securityCount=1
+[MAC] Enqueue TX pkt dscp=5 insert_pos=0 queue_size_before=0
+[MAC 1] Cancel queued acknowledged frame neighbor=2 seq=3 baseSeq=3 windowIndex=0
+[HOP 1] MAC sent confirmation dest=2 seq=3 transmission=1 sentAt=0
+[MAC 1] OPNET 300-ms transmit holdoff complete
+[MAC] Enqueue TX pkt dscp=5 insert_pos=0 queue_size_before=0
+[HOP 1] RX ACK from 2 seq=3
+[HOP 1] Pending DATA decrement reason=ACK neighbor=2 pending=0
+[HOP 1] Adaptive flow threshold increased neighbor=2 old=0 new=1 effectiveWindow=2
+[MAC 1] Cancel queued acknowledged frame neighbor=2 seq=3 baseSeq=3 windowIndex=0
+[HOP 1] link_control dest=2 neighborKnown=1 s0=0 pathloss=90 failures=0 speed=8 txPower=30 rxPower=-105 cost=6274
+[HOP 1] Pending DATA increment dest=2 pending=1
+[HOP 1] TX Pairwise16 DATA neighbor=2 hopSeq=4 securityCount=1
+[MAC] Enqueue TX pkt dscp=5 insert_pos=0 queue_size_before=0
+[HOP 1] RX ACK from 2 seq=4
+[HOP 1] Pending DATA decrement reason=ACK neighbor=2 pending=0
+[MAC 1] Cancel queued acknowledged frame neighbor=2 seq=4 baseSeq=4 windowIndex=0
+[HOP 1] link_control dest=2 neighborKnown=1 s0=0 pathloss=90 failures=0 speed=8 txPower=30 rxPower=-105 cost=6274
+[HOP 1] Pending DATA increment dest=2 pending=1
+[HOP 1] TX Pairwise16 DATA neighbor=2 hopSeq=5 securityCount=1
+[MAC] Enqueue TX pkt dscp=5 insert_pos=0 queue_size_before=0
+[HOP 1] RX ACK from 2 seq=5
+[HOP 1] Pending DATA decrement reason=ACK neighbor=2 pending=0
+[MAC 1] Cancel queued acknowledged frame neighbor=2 seq=5 baseSeq=5 windowIndex=0
+[HOP 1] link_control dest=2 neighborKnown=1 s0=0 pathloss=90 failures=0 speed=8 txPower=30 rxPower=-105 cost=6274
+[HOP 1] Pending DATA increment dest=2 pending=1
+[HOP 1] TX Pairwise16 DATA neighbor=2 hopSeq=6 securityCount=1
+[MAC] Enqueue TX pkt dscp=5 insert_pos=0 queue_size_before=0
+[HOP 1] RX ACK from 2 seq=6
+[HOP 1] Pending DATA decrement reason=ACK neighbor=2 pending=0
+[HOP 1] Adaptive flow threshold increased neighbor=2 old=1 new=2 effectiveWindow=3
+[MAC 1] Cancel queued acknowledged frame neighbor=2 seq=6 baseSeq=6 windowIndex=0
+[HOP 1] link_control dest=2 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] Pending DATA increment dest=2 pending=1
+[HOP 1] TX Pairwise16 DATA neighbor=2 hopSeq=1 securityCount=1
+[MAC] Enqueue TX pkt dscp=5 insert_pos=0 queue_size_before=0
+[HOP 1] link_control dest=2 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] Pending DATA increment dest=2 pending=2
+[HOP 1] TX Pairwise16 DATA neighbor=2 hopSeq=2 securityCount=1
+[MAC] Enqueue TX pkt dscp=5 insert_pos=1 queue_size_before=1
+[HOP 1] link_control dest=2 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] Pending DATA increment dest=2 pending=3
+[HOP 1] TX Pairwise16 DATA neighbor=2 hopSeq=3 securityCount=1
+[MAC] Enqueue TX pkt dscp=5 insert_pos=2 queue_size_before=2
+[HOP 1] CanSendToHop dest=2 outstanding=3 threshold=0 effectiveWindow=1 pendingData=3 globalLimit=16 neighborOK=0 nodeOK=1 -> NO
+[HOP 1] New neighbor 2 heard at t=0s
+[HOP 1] RX ACK from 2 seq=3
+[HOP 1] Pending DATA decrement reason=ACK neighbor=2 pending=2
+[HOP 1] Pending DATA decrement reason=ACK neighbor=2 pending=1
+[MAC 1] Cancel queued acknowledged frame neighbor=2 seq=1 baseSeq=3 windowIndex=2
+[MAC 1] Cancel queued acknowledged frame neighbor=2 seq=3 baseSeq=3 windowIndex=0
+[HOP 1] CanSendToHop dest=2 outstanding=1 threshold=0 effectiveWindow=1 pendingData=1 globalLimit=16 neighborOK=0 nodeOK=1 -> NO
+[HOP 1] RX ACK from 2 seq=3
+[HOP 1] Pending DATA decrement reason=ACK neighbor=2 pending=0
+[HOP 1] Adaptive flow threshold increased neighbor=2 old=0 new=1 effectiveWindow=2
+[MAC 1] Cancel queued acknowledged frame neighbor=2 seq=2 baseSeq=3 windowIndex=1
+[HOP 1] CanSendToHop dest=2 outstanding=0 threshold=1 effectiveWindow=2 pendingData=0 globalLimit=16 neighborOK=1 nodeOK=1 -> YES
+[HOP 1] link_control dest=2 neighborKnown=1 s0=0 pathloss=90 failures=0 speed=8 txPower=30 rxPower=-105 cost=6274
+[HOP 1] Pending DATA increment dest=2 pending=1
+[HOP 1] TX Pairwise16 DATA neighbor=2 hopSeq=4 securityCount=1
+[MAC] Enqueue TX pkt dscp=5 insert_pos=0 queue_size_before=0
+[HOP 1] RX ACK from 2 seq=400
+[HOP 1] RX DACK from 2 seq=4
+[HOP 1] RX DACK from 2 seq=401
+[HOP 1] RX ACK from 2 seq=402
+[HOP 1] Overheard frame from 2 for 9 type=1 ignored after neighbor update
+[HOP 1] RX ACK from 2 seq=3
+PASS: cumulative ACK window and generic wake smoke test
