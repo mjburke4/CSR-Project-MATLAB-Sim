@@ -1,0 +1,32 @@
+[t=0] RX SYNC at node 9 from node 200 seq 0 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=0] RX SYNC at node 9 from node 100 seq 0 power -2.12777 dBm noise -2.12777 dBm snr -1.42253e-10 dB state=1
+[t=0] RX SYNC at node 9 from node 300 seq 0 power -2.12777 dBm noise -2.12777 dBm snr -1.42253e-10 dB state=1
+[t=0] RX SYNC at node 9 from node 10 seq 0 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1 below-threshold
+[t=0] RX SYNC at node 9 from node 11 seq 0 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=0] MAC 9 enters Track on node 12 seq 0 power -80 dBm
+[t=0] MAC 9 enters Track on node 300 seq 0 power -80 dBm collided
+[t=0.00663] MAC 9 enters Track on node 300 seq 0 power -80 dBm collided
+... type=0 speedKey=128[t=0] TX from node 1 to dest 3 seq 100 size 29 bytes segments 1 at slot 3 rate 128 kbps txPower 0 dBm (133333 bps) preamble LONG duration 1.01382 s
+... type=0 speedKey=64[t=0] TX from node 2 to dest 3 seq 101 size 29 bytes segments 1 at slot 3 rate 64 kbps txPower -20 dBm (64516.1 bps) preamble LONG duration 1.01593 s
+[t=3.33e-07] RX SYNC at node 3 from node 1 seq 100 power -80 dBm noise -106.975 dBm snr 26.975 dB state=1
+[t=3.33e-07] RX SYNC at node 3 from node 2 seq 101 power -100 dBm noise -79.9913 dBm snr -20.0087 dB state=1 below-threshold
+[t=0.00663033] MAC 3 enters Track on node 1 seq 100 power -80 dBm
+[MAC 1] post-TX WAIT_FOR_ACK until 18.0138 (POST_TX_WAIT=17 s)
+[t=1.01382] RX at node 3 from node 1 seq 100 rate 128 kbps txPower 0 dBm preamble LONG pathloss 80 dB snr 19.2057 dB (slot 3, len 29B, ackable=0)
+[MAC 3] Ignore first-contact reservation from unknown neighbor 1 slot=3
+[MAC 2] post-TX WAIT_FOR_ACK until 18.0159 (POST_TX_WAIT=17 s)
+... type=0 speedKey=128[t=0] TX from node 1 to dest 3 seq 110 size 29 bytes segments 1 at slot 3 rate 128 kbps txPower 0 dBm (133333 bps) preamble LONG duration 1.01382 s
+[t=3.33e-07] RX SYNC at node 3 from node 1 seq 110 power -80 dBm noise -106.975 dBm snr 26.975 dB state=1
+[t=0.00663033] MAC 3 enters Track on node 1 seq 110 power -80 dBm
+... type=0 speedKey=128[t=0.02] TX from node 2 to dest 3 seq 111 size 29 bytes segments 1 at slot 3 rate 128 kbps txPower -6 dBm (133333 bps) preamble LONG duration 1.01382 s
+[t=0.0200003] RX SYNC at node 3 from node 2 seq 111 power -86 dBm noise -106.975 dBm snr 20.975 dB state=2
+[MAC 1] post-TX WAIT_FOR_ACK until 18.0138 (POST_TX_WAIT=17 s)
+[t=1.01382] RX DROP at node 3 from node 1 seq 110 (collision)
+[t=1.02045] MAC 3 enters Track on node 2 seq 111 power -86 dBm
+[MAC 2] post-TX WAIT_FOR_ACK until 18.0338 (POST_TX_WAIT=17 s)
+[t=1.03382] RX at node 3 from node 2 seq 111 rate 128 kbps txPower -6 dBm preamble LONG pathloss 80 dB snr 20.975 dB (slot 3, len 29B, ackable=0)
+[MAC 3] Ignore first-contact reservation from unknown neighbor 2 slot=3
+... type=0 speedKey=128[t=0] TX from node 1 to dest 2 seq 120 size 29 bytes segments 1 at slot 3 rate 128 kbps txPower 0 dBm (133333 bps) preamble LONG duration 1.01382 s
+[t=3e-09] RX SYNC at node 2 from node 1 seq 120 power -inf dBm noise -106.975 dBm snr -inf dB state=1 channel-mismatch
+[MAC 1] post-TX WAIT_FOR_ACK until 18.0138 (POST_TX_WAIT=17 s)
+PASS: OPNET PHY front-end parity test

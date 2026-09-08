@@ -1,0 +1,21 @@
+... type=0 speedKey=128[t=0] TX from node 1 to dest 2 seq 90 size 525 bytes segments 1 at slot 3 rate 128 kbps txPower 0 dBm (133333 bps) preamble SHORT duration 0.05112 s
+[t=0] RX OCCLUDED at node 2 from node 1 seq 90
+[MAC 1] post-TX WAIT_FOR_ACK until 17.0511 (POST_TX_WAIT=17 s)
+... type=0 speedKey=128[t=0] TX from node 1 to dest 3 seq 100 size 525 bytes segments 1 at slot 3 rate 128 kbps txPower 0 dBm (133333 bps) preamble SHORT duration 0.05112 s
+[t=3.33e-07] RX SYNC at node 3 from node 1 seq 100 power -80 dBm noise -106.975 dBm snr 26.975 dB state=1
+[t=0.00663033] MAC 3 enters Track on node 1 seq 100 power -80 dBm
+... type=0 speedKey=128[t=0.00765] TX from node 2 to dest 3 seq 101 size 525 bytes segments 1 at slot 3 rate 128 kbps txPower -20 dBm (133333 bps) preamble SHORT duration 0.05112 s
+[t=0.00765033] RX SYNC at node 3 from node 2 seq 101 power -100 dBm noise -106.975 dBm snr 6.975 dB state=2
+[MAC 1] post-TX WAIT_FOR_ACK until 17.0511 (POST_TX_WAIT=17 s)
+[t=0.0511203] RX at node 3 from node 1 seq 100 rate 128 kbps txPower 0 dBm preamble SHORT pathloss 80 dB snr 26.975 dB (slot 3, len 525B, ackable=0)
+[MAC 3] Ignore first-contact reservation from unknown neighbor 1 slot=3
+[MAC 2] post-TX WAIT_FOR_ACK until 17.0588 (POST_TX_WAIT=17 s)
+... type=0 speedKey=128[t=0] TX from node 1 to dest 3 seq 100 size 525 bytes segments 1 at slot 3 rate 128 kbps txPower 0 dBm (133333 bps) preamble SHORT duration 0.05112 s
+[t=3.33e-07] RX SYNC at node 3 from node 1 seq 100 power -80 dBm noise -106.975 dBm snr 26.975 dB state=1
+[t=0.00663033] MAC 3 enters Track on node 1 seq 100 power -80 dBm
+... type=0 speedKey=128[t=0.00765] TX from node 2 to dest 3 seq 101 size 525 bytes segments 1 at slot 3 rate 128 kbps txPower 0 dBm (133333 bps) preamble SHORT duration 0.05112 s
+[t=0.00765033] RX SYNC at node 3 from node 2 seq 101 power -80 dBm noise -106.975 dBm snr 26.975 dB state=2
+[MAC 1] post-TX WAIT_FOR_ACK until 17.0511 (POST_TX_WAIT=17 s)
+[t=0.0511203] RX DROP at node 3 from node 1 seq 100 (collision)
+[MAC 2] post-TX WAIT_FOR_ACK until 17.0588 (POST_TX_WAIT=17 s)
+PASS: OPNET modulation BER, ECC, and closure parity test

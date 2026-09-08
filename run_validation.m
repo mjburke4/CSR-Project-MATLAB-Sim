@@ -7,7 +7,9 @@ if ~exist(outputDirectory, 'dir'), mkdir(outputDirectory); end
 diary(fullfile(outputDirectory, 'validation.log'));
 cleanup = onCleanup(@() diary('off'));
 disp(csr.sim.capabilities());
-testResults = runtests(fullfile(root, 'tests'));
+% Native-only tests are an explicit validate_native gate and never part of
+% the portable suite on installations without R2026a's public classes.
+testResults = runtests(fullfile(root, 'tests'), 'IncludeSubfolders', false);
 disp(testResults);
 save(fullfile(outputDirectory, 'test_results.mat'), 'testResults');
 testSummary = table({testResults.Name}', [testResults.Passed]', ...

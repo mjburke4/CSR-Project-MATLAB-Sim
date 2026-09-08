@@ -1,0 +1,2594 @@
+{
+  "schema": "csr-matlab-original-cpp-ber-reference-v1",
+  "generated_utc": "2026-09-08T13:13:27.803189+00:00",
+  "source_repository": "https://github.com/mjburke4/CSR-Project-NS3-part2",
+  "source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "source_sha256": {
+    "model/csr-opnet-ber-tables.cc": "0af0b66c23ea95bbf74f32099ab0562a8a781e1b1048f5eb0b45faea83b73cf6",
+    "model/csr-opnet-ber-tables.h": "8034348552990ce6a0aa0fd673a319299762fbd75c402de59a64ac160eb7cfb5",
+    "model/csr-opnet-ber-tables-data.inc": "d10a9ba3ded2301598b79d6bf28a6ea318da34b5ce79709ba2a06a0b8fce95b8"
+  },
+  "execution": {
+    "scope": "Original unchanged CSR C++ BER table source, compiled standalone",
+    "original_cpp_executed": true,
+    "ns3_network_simulation_executed": false,
+    "matlab_executed": false,
+    "compiler": "/usr/bin/g++",
+    "compiler_version": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+    "compiler_sha256": "52f1ddb33fe78b9441e0f42e9cd22c571f1101938e046c8a26582494e041cc73",
+    "probe_source_sha256": "5ec90b500123263531751aad81c17a91f878558a6b9a388bf8e8c897dcc35e49",
+    "probe_binary_sha256": "ed8f214f50a408c0a5789de02cfffdaebc9a5344290fc0ea8f144538d4282d55",
+    "generator_sha256": "082df0e2a8f4c46ac50494c88a1d8d056e90e2929ba790872ea009faa7510234",
+    "compile_exit_code": 0,
+    "compile_stderr": "",
+    "run_exit_code": 0,
+    "run_stderr": "",
+    "vector_count": 400
+  },
+  "vectors": {
+    "standard": [
+      {
+        "snr_db": -100,
+        "ber": 0.496806122489
+      },
+      {
+        "snr_db": -20,
+        "ber": 0.496806122489
+      },
+      {
+        "snr_db": -19.95,
+        "ber": 0.496768695449
+      },
+      {
+        "snr_db": -10,
+        "ber": 0.466562489451
+      },
+      {
+        "snr_db": 0,
+        "ber": 0.174688707266
+      },
+      {
+        "snr_db": 5,
+        "ber": 0.00512695784
+      },
+      {
+        "snr_db": 10,
+        "ber": 8.2e-09
+      },
+      {
+        "snr_db": 11.7,
+        "ber": 1e-12
+      },
+      {
+        "snr_db": 11.8,
+        "ber": 0
+      },
+      {
+        "snr_db": 16.25,
+        "ber": 0
+      },
+      {
+        "snr_db": 20,
+        "ber": 0
+      },
+      {
+        "snr_db": 100,
+        "ber": 0
+      }
+    ],
+    "dpsk": [
+      {
+        "snr_db": -100,
+        "ber": 0.49999999995
+      },
+      {
+        "snr_db": -20,
+        "ber": 0.49502491687458405
+      },
+      {
+        "snr_db": -19.95,
+        "ber": 0.4949675990093715
+      },
+      {
+        "snr_db": -10,
+        "ber": 0.45241870901797976
+      },
+      {
+        "snr_db": 0,
+        "ber": 0.18393972058572117
+      },
+      {
+        "snr_db": 5,
+        "ber": 0.021164609811602494
+      },
+      {
+        "snr_db": 10,
+        "ber": 2.2699964881242427e-05
+      },
+      {
+        "snr_db": 11.7,
+        "ber": 1.8848808111021062e-07
+      },
+      {
+        "snr_db": 11.8,
+        "ber": 1.335540376071892e-07
+      },
+      {
+        "snr_db": 16.25,
+        "ber": 2.42618300723133e-19
+      },
+      {
+        "snr_db": 20,
+        "ber": 1.860037988010418e-44
+      },
+      {
+        "snr_db": 100,
+        "ber": 0
+      }
+    ],
+    "dqpsk": [
+      {
+        "snr_db": -100,
+        "ber": 0.658547624308
+      },
+      {
+        "snr_db": -20,
+        "ber": 0.658547624308
+      },
+      {
+        "snr_db": -19.95,
+        "ber": 0.6584157394958
+      },
+      {
+        "snr_db": -10,
+        "ber": 0.554134144522
+      },
+      {
+        "snr_db": 0,
+        "ber": 0.204905205908
+      },
+      {
+        "snr_db": 5,
+        "ber": 0.039282506101
+      },
+      {
+        "snr_db": 10,
+        "ber": 0.000445472657
+      },
+      {
+        "snr_db": 11.7,
+        "ber": 2.305199740000004e-05
+      },
+      {
+        "snr_db": 11.8,
+        "ber": 1.8597500399999975e-05
+      },
+      {
+        "snr_db": 16.25,
+        "ber": 1e-12
+      },
+      {
+        "snr_db": 20,
+        "ber": 0
+      },
+      {
+        "snr_db": 100,
+        "ber": 0
+      }
+    ],
+    "collision": [
+      {
+        "rate_kbps": 8,
+        "jsr_db": -12,
+        "offset_seconds": 0,
+        "snr_db": -100,
+        "ber": 0.414305160985
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -12,
+        "offset_seconds": 0,
+        "snr_db": 3.9794,
+        "ber": 0.019057765152
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -12,
+        "offset_seconds": 0,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -12,
+        "offset_seconds": 6.375e-05,
+        "snr_db": -100,
+        "ber": 0.416447679924
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -12,
+        "offset_seconds": 6.375e-05,
+        "snr_db": 3.9794,
+        "ber": 0.017376893939
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -12,
+        "offset_seconds": 6.375e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -12,
+        "offset_seconds": 0.000255,
+        "snr_db": -100,
+        "ber": 0.41728811553
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -12,
+        "offset_seconds": 0.000255,
+        "snr_db": 3.9794,
+        "ber": 0.017341382576
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -12,
+        "offset_seconds": 0.000255,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -12,
+        "offset_seconds": 0.00050949,
+        "snr_db": -100,
+        "ber": 0.417666903409
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -12,
+        "offset_seconds": 0.00050949,
+        "snr_db": 3.9794,
+        "ber": 0.019702888258
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -12,
+        "offset_seconds": 0.00050949,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -9,
+        "offset_seconds": 0,
+        "snr_db": -100,
+        "ber": 0.413731060606
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -9,
+        "offset_seconds": 0,
+        "snr_db": 3.9794,
+        "ber": 0.023579545455
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -9,
+        "offset_seconds": 0,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -9,
+        "offset_seconds": 6.375e-05,
+        "snr_db": -100,
+        "ber": 0.416347064394
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -9,
+        "offset_seconds": 6.375e-05,
+        "snr_db": 3.9794,
+        "ber": 0.018477746212
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -9,
+        "offset_seconds": 6.375e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -9,
+        "offset_seconds": 0.000255,
+        "snr_db": -100,
+        "ber": 0.416092566288
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -9,
+        "offset_seconds": 0.000255,
+        "snr_db": 3.9794,
+        "ber": 0.016773200758
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -9,
+        "offset_seconds": 0.000255,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -9,
+        "offset_seconds": 0.00050949,
+        "snr_db": -100,
+        "ber": 0.418767755682
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -9,
+        "offset_seconds": 0.00050949,
+        "snr_db": 3.9794,
+        "ber": 0.020845170455
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -9,
+        "offset_seconds": 0.00050949,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -6,
+        "offset_seconds": 0,
+        "snr_db": -100,
+        "ber": 0.413589015152
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -6,
+        "offset_seconds": 0,
+        "snr_db": 3.9794,
+        "ber": 0.039754971591
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -6,
+        "offset_seconds": 0,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -6,
+        "offset_seconds": 6.375e-05,
+        "snr_db": -100,
+        "ber": 0.417175662879
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -6,
+        "offset_seconds": 6.375e-05,
+        "snr_db": 3.9794,
+        "ber": 0.018886126894
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -6,
+        "offset_seconds": 6.375e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -6,
+        "offset_seconds": 0.000255,
+        "snr_db": -100,
+        "ber": 0.415506628788
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -6,
+        "offset_seconds": 0.000255,
+        "snr_db": 3.9794,
+        "ber": 0.017465672348
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -6,
+        "offset_seconds": 0.000255,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -6,
+        "offset_seconds": 0.00050949,
+        "snr_db": -100,
+        "ber": 0.419270833333
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -6,
+        "offset_seconds": 0.00050949,
+        "snr_db": 3.9794,
+        "ber": 0.026106770833
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -6,
+        "offset_seconds": 0.00050949,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -3,
+        "offset_seconds": 0,
+        "snr_db": -100,
+        "ber": 0.412121212121
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -3,
+        "offset_seconds": 0,
+        "snr_db": 3.9794,
+        "ber": 0.094406960227
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -3,
+        "offset_seconds": 0,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -3,
+        "offset_seconds": 6.375e-05,
+        "snr_db": -100,
+        "ber": 0.417098721591
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -3,
+        "offset_seconds": 6.375e-05,
+        "snr_db": 3.9794,
+        "ber": 0.019791666667
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -3,
+        "offset_seconds": 6.375e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -3,
+        "offset_seconds": 0.000255,
+        "snr_db": -100,
+        "ber": 0.417921401515
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -3,
+        "offset_seconds": 0.000255,
+        "snr_db": 3.9794,
+        "ber": 0.018110795455
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -3,
+        "offset_seconds": 0.000255,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -3,
+        "offset_seconds": 0.00050949,
+        "snr_db": -100,
+        "ber": 0.421064157197
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -3,
+        "offset_seconds": 0.00050949,
+        "snr_db": 3.9794,
+        "ber": 0.034966856061
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": -3,
+        "offset_seconds": 0.00050949,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": 0,
+        "offset_seconds": 0,
+        "snr_db": -100,
+        "ber": 0.415619081439
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": 0,
+        "offset_seconds": 0,
+        "snr_db": 3.9794,
+        "ber": 0.251526988636
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": 0,
+        "offset_seconds": 0,
+        "snr_db": 100,
+        "ber": 0.251793323864
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": 0,
+        "offset_seconds": 6.375e-05,
+        "snr_db": -100,
+        "ber": 0.418033854167
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": 0,
+        "offset_seconds": 6.375e-05,
+        "snr_db": 3.9794,
+        "ber": 0.022082149621
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": 0,
+        "offset_seconds": 6.375e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": 0,
+        "offset_seconds": 0.000255,
+        "snr_db": -100,
+        "ber": 0.4166015625
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": 0,
+        "offset_seconds": 0.000255,
+        "snr_db": 3.9794,
+        "ber": 0.019057765152
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": 0,
+        "offset_seconds": 0.000255,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": 0,
+        "offset_seconds": 0.00050949,
+        "snr_db": -100,
+        "ber": 0.424100378788
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": 0,
+        "offset_seconds": 0.00050949,
+        "snr_db": 3.9794,
+        "ber": 0.059593986742
+      },
+      {
+        "rate_kbps": 8,
+        "jsr_db": 0,
+        "offset_seconds": 0.00050949,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -12,
+        "offset_seconds": 0,
+        "snr_db": -100,
+        "ber": 0.409786339962
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -12,
+        "offset_seconds": 0,
+        "snr_db": 3.9794,
+        "ber": 0.018661221591
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -12,
+        "offset_seconds": 0,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -12,
+        "offset_seconds": 3.175e-05,
+        "snr_db": -100,
+        "ber": 0.411798650568
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -12,
+        "offset_seconds": 3.175e-05,
+        "snr_db": 3.9794,
+        "ber": 0.017350260417
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -12,
+        "offset_seconds": 3.175e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -12,
+        "offset_seconds": 0.000127,
+        "snr_db": -100,
+        "ber": 0.412565104167
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -12,
+        "offset_seconds": 0.000127,
+        "snr_db": 3.9794,
+        "ber": 0.016968513258
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -12,
+        "offset_seconds": 0.000127,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -12,
+        "offset_seconds": 0.000253746,
+        "snr_db": -100,
+        "ber": 0.409786339962
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -12,
+        "offset_seconds": 0.000253746,
+        "snr_db": 3.9794,
+        "ber": 0.018661221591
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -12,
+        "offset_seconds": 0.000253746,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -9,
+        "offset_seconds": 0,
+        "snr_db": -100,
+        "ber": 0.408913352273
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -9,
+        "offset_seconds": 0,
+        "snr_db": 3.9794,
+        "ber": 0.023416785038
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -9,
+        "offset_seconds": 0,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -9,
+        "offset_seconds": 3.175e-05,
+        "snr_db": -100,
+        "ber": 0.412488162879
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -9,
+        "offset_seconds": 3.175e-05,
+        "snr_db": 3.9794,
+        "ber": 0.017498224432
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -9,
+        "offset_seconds": 3.175e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -9,
+        "offset_seconds": 0.000127,
+        "snr_db": -100,
+        "ber": 0.412514796402
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -9,
+        "offset_seconds": 0.000127,
+        "snr_db": 3.9794,
+        "ber": 0.017468631629
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -9,
+        "offset_seconds": 0.000127,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -9,
+        "offset_seconds": 0.000253746,
+        "snr_db": -100,
+        "ber": 0.408913352273
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -9,
+        "offset_seconds": 0.000253746,
+        "snr_db": 3.9794,
+        "ber": 0.023416785038
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -9,
+        "offset_seconds": 0.000253746,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -6,
+        "offset_seconds": 0,
+        "snr_db": -100,
+        "ber": 0.408753551136
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -6,
+        "offset_seconds": 0,
+        "snr_db": 3.9794,
+        "ber": 0.03974609375
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -6,
+        "offset_seconds": 0,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -6,
+        "offset_seconds": 3.175e-05,
+        "snr_db": -100,
+        "ber": 0.413384824811
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -6,
+        "offset_seconds": 3.175e-05,
+        "snr_db": 3.9794,
+        "ber": 0.018081202652
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -6,
+        "offset_seconds": 3.175e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -6,
+        "offset_seconds": 0.000127,
+        "snr_db": -100,
+        "ber": 0.411774976326
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -6,
+        "offset_seconds": 0.000127,
+        "snr_db": 3.9794,
+        "ber": 0.017726089015
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -6,
+        "offset_seconds": 0.000127,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -6,
+        "offset_seconds": 0.000253746,
+        "snr_db": -100,
+        "ber": 0.408753551136
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -6,
+        "offset_seconds": 0.000253746,
+        "snr_db": 3.9794,
+        "ber": 0.03974609375
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -6,
+        "offset_seconds": 0.000253746,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -3,
+        "offset_seconds": 0,
+        "snr_db": -100,
+        "ber": 0.408809777462
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -3,
+        "offset_seconds": 0,
+        "snr_db": 3.9794,
+        "ber": 0.094288589015
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -3,
+        "offset_seconds": 0,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -3,
+        "offset_seconds": 3.175e-05,
+        "snr_db": -100,
+        "ber": 0.412491122159
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -3,
+        "offset_seconds": 3.175e-05,
+        "snr_db": 3.9794,
+        "ber": 0.020155658144
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -3,
+        "offset_seconds": 3.175e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -3,
+        "offset_seconds": 0.000127,
+        "snr_db": -100,
+        "ber": 0.412097537879
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -3,
+        "offset_seconds": 0.000127,
+        "snr_db": 3.9794,
+        "ber": 0.018338660038
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -3,
+        "offset_seconds": 0.000127,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -3,
+        "offset_seconds": 0.000253746,
+        "snr_db": -100,
+        "ber": 0.408809777462
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -3,
+        "offset_seconds": 0.000253746,
+        "snr_db": 3.9794,
+        "ber": 0.094288589015
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": -3,
+        "offset_seconds": 0.000253746,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": 0,
+        "offset_seconds": 0,
+        "snr_db": -100,
+        "ber": 0.411307410038
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": 0,
+        "offset_seconds": 0,
+        "snr_db": 3.9794,
+        "ber": 0.250887784091
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": 0,
+        "offset_seconds": 0,
+        "snr_db": 100,
+        "ber": 0.248499644886
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": 0,
+        "offset_seconds": 3.175e-05,
+        "snr_db": -100,
+        "ber": 0.412627249053
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": 0,
+        "offset_seconds": 3.175e-05,
+        "snr_db": 3.9794,
+        "ber": 0.024366714015
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": 0,
+        "offset_seconds": 3.175e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": 0,
+        "offset_seconds": 0.000127,
+        "snr_db": -100,
+        "ber": 0.41318655303
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": 0,
+        "offset_seconds": 0.000127,
+        "snr_db": 3.9794,
+        "ber": 0.020498934659
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": 0,
+        "offset_seconds": 0.000127,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": 0,
+        "offset_seconds": 0.000253746,
+        "snr_db": -100,
+        "ber": 0.411307410038
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": 0,
+        "offset_seconds": 0.000253746,
+        "snr_db": 3.9794,
+        "ber": 0.250887784091
+      },
+      {
+        "rate_kbps": 16,
+        "jsr_db": 0,
+        "offset_seconds": 0.000253746,
+        "snr_db": 100,
+        "ber": 0.248499644886
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -12,
+        "offset_seconds": 0,
+        "snr_db": -100,
+        "ber": 0.410561671402
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -12,
+        "offset_seconds": 0,
+        "snr_db": 3.9794,
+        "ber": 0.018670099432
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -12,
+        "offset_seconds": 0,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -12,
+        "offset_seconds": 1.575e-05,
+        "snr_db": -100,
+        "ber": 0.413296046402
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -12,
+        "offset_seconds": 1.575e-05,
+        "snr_db": 3.9794,
+        "ber": 0.017601799242
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -12,
+        "offset_seconds": 1.575e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -12,
+        "offset_seconds": 6.3e-05,
+        "snr_db": -100,
+        "ber": 0.412933534564
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -12,
+        "offset_seconds": 6.3e-05,
+        "snr_db": 3.9794,
+        "ber": 0.017138671875
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -12,
+        "offset_seconds": 6.3e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -12,
+        "offset_seconds": 0.000125874,
+        "snr_db": -100,
+        "ber": 0.410561671402
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -12,
+        "offset_seconds": 0.000125874,
+        "snr_db": 3.9794,
+        "ber": 0.018670099432
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -12,
+        "offset_seconds": 0.000125874,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -9,
+        "offset_seconds": 0,
+        "snr_db": -100,
+        "ber": 0.410299775095
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -9,
+        "offset_seconds": 0,
+        "snr_db": 3.9794,
+        "ber": 0.023544034091
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -9,
+        "offset_seconds": 0,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -9,
+        "offset_seconds": 1.575e-05,
+        "snr_db": -100,
+        "ber": 0.412312085701
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -9,
+        "offset_seconds": 1.575e-05,
+        "snr_db": 3.9794,
+        "ber": 0.018823982008
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -9,
+        "offset_seconds": 1.575e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -9,
+        "offset_seconds": 6.3e-05,
+        "snr_db": -100,
+        "ber": 0.412969045928
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -9,
+        "offset_seconds": 6.3e-05,
+        "snr_db": 3.9794,
+        "ber": 0.017595880682
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -9,
+        "offset_seconds": 6.3e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -9,
+        "offset_seconds": 0.000125874,
+        "snr_db": -100,
+        "ber": 0.410299775095
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -9,
+        "offset_seconds": 0.000125874,
+        "snr_db": 3.9794,
+        "ber": 0.023544034091
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -9,
+        "offset_seconds": 0.000125874,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -6,
+        "offset_seconds": 0,
+        "snr_db": -100,
+        "ber": 0.409366122159
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -6,
+        "offset_seconds": 0,
+        "snr_db": 3.9794,
+        "ber": 0.03896484375
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -6,
+        "offset_seconds": 0,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -6,
+        "offset_seconds": 1.575e-05,
+        "snr_db": -100,
+        "ber": 0.413482481061
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -6,
+        "offset_seconds": 1.575e-05,
+        "snr_db": 3.9794,
+        "ber": 0.020916193182
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -6,
+        "offset_seconds": 1.575e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -6,
+        "offset_seconds": 6.3e-05,
+        "snr_db": -100,
+        "ber": 0.41376805161
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -6,
+        "offset_seconds": 6.3e-05,
+        "snr_db": 3.9794,
+        "ber": 0.018544330019
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -6,
+        "offset_seconds": 6.3e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -6,
+        "offset_seconds": 0.000125874,
+        "snr_db": -100,
+        "ber": 0.409366122159
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -6,
+        "offset_seconds": 0.000125874,
+        "snr_db": 3.9794,
+        "ber": 0.03896484375
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -6,
+        "offset_seconds": 0.000125874,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -3,
+        "offset_seconds": 0,
+        "snr_db": -100,
+        "ber": 0.409833688447
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -3,
+        "offset_seconds": 0,
+        "snr_db": 3.9794,
+        "ber": 0.094349254261
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -3,
+        "offset_seconds": 0,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -3,
+        "offset_seconds": 1.575e-05,
+        "snr_db": -100,
+        "ber": 0.413692589962
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -3,
+        "offset_seconds": 1.575e-05,
+        "snr_db": 3.9794,
+        "ber": 0.025853752367
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -3,
+        "offset_seconds": 1.575e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -3,
+        "offset_seconds": 6.3e-05,
+        "snr_db": -100,
+        "ber": 0.412866950758
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -3,
+        "offset_seconds": 6.3e-05,
+        "snr_db": 3.9794,
+        "ber": 0.020387961648
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -3,
+        "offset_seconds": 6.3e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -3,
+        "offset_seconds": 0.000125874,
+        "snr_db": -100,
+        "ber": 0.409833688447
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -3,
+        "offset_seconds": 0.000125874,
+        "snr_db": 3.9794,
+        "ber": 0.094349254261
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": -3,
+        "offset_seconds": 0.000125874,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": 0,
+        "offset_seconds": 0,
+        "snr_db": -100,
+        "ber": 0.412741181345
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": 0,
+        "offset_seconds": 0,
+        "snr_db": 3.9794,
+        "ber": 0.250948449337
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": 0,
+        "offset_seconds": 0,
+        "snr_db": 100,
+        "ber": 0.25077681108
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": 0,
+        "offset_seconds": 1.575e-05,
+        "snr_db": -100,
+        "ber": 0.41386866714
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": 0,
+        "offset_seconds": 1.575e-05,
+        "snr_db": 3.9794,
+        "ber": 0.036979166667
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": 0,
+        "offset_seconds": 1.575e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": 0,
+        "offset_seconds": 6.3e-05,
+        "snr_db": -100,
+        "ber": 0.413520951705
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": 0,
+        "offset_seconds": 6.3e-05,
+        "snr_db": 3.9794,
+        "ber": 0.025412819602
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": 0,
+        "offset_seconds": 6.3e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": 0,
+        "offset_seconds": 0.000125874,
+        "snr_db": -100,
+        "ber": 0.412741181345
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": 0,
+        "offset_seconds": 0.000125874,
+        "snr_db": 3.9794,
+        "ber": 0.250948449337
+      },
+      {
+        "rate_kbps": 32,
+        "jsr_db": 0,
+        "offset_seconds": 0.000125874,
+        "snr_db": 100,
+        "ber": 0.25077681108
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -12,
+        "offset_seconds": 0,
+        "snr_db": -100,
+        "ber": 0.411334783381
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -12,
+        "offset_seconds": 0,
+        "snr_db": 3.9794,
+        "ber": 0.01923458215
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -12,
+        "offset_seconds": 0,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -12,
+        "offset_seconds": 7.75e-06,
+        "snr_db": -100,
+        "ber": 0.413594933712
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -12,
+        "offset_seconds": 7.75e-06,
+        "snr_db": 3.9794,
+        "ber": 0.019153201941
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -12,
+        "offset_seconds": 7.75e-06,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -12,
+        "offset_seconds": 3.1e-05,
+        "snr_db": -100,
+        "ber": 0.412254379735
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -12,
+        "offset_seconds": 3.1e-05,
+        "snr_db": 3.9794,
+        "ber": 0.017994643703
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -12,
+        "offset_seconds": 3.1e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -12,
+        "offset_seconds": 6.1938e-05,
+        "snr_db": -100,
+        "ber": 0.411334783381
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -12,
+        "offset_seconds": 6.1938e-05,
+        "snr_db": 3.9794,
+        "ber": 0.01923458215
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -12,
+        "offset_seconds": 6.1938e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -9,
+        "offset_seconds": 0,
+        "snr_db": -100,
+        "ber": 0.410833185369
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -9,
+        "offset_seconds": 0,
+        "snr_db": 3.9794,
+        "ber": 0.02431640625
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -9,
+        "offset_seconds": 0,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -9,
+        "offset_seconds": 7.75e-06,
+        "snr_db": -100,
+        "ber": 0.41337668679
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -9,
+        "offset_seconds": 7.75e-06,
+        "snr_db": 3.9794,
+        "ber": 0.021371922348
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -9,
+        "offset_seconds": 7.75e-06,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -9,
+        "offset_seconds": 3.1e-05,
+        "snr_db": -100,
+        "ber": 0.413097774621
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -9,
+        "offset_seconds": 3.1e-05,
+        "snr_db": 3.9794,
+        "ber": 0.018963068182
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -9,
+        "offset_seconds": 3.1e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -9,
+        "offset_seconds": 6.1938e-05,
+        "snr_db": -100,
+        "ber": 0.410833185369
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -9,
+        "offset_seconds": 6.1938e-05,
+        "snr_db": 3.9794,
+        "ber": 0.02431640625
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -9,
+        "offset_seconds": 6.1938e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -6,
+        "offset_seconds": 0,
+        "snr_db": -100,
+        "ber": 0.411169063684
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -6,
+        "offset_seconds": 0,
+        "snr_db": 3.9794,
+        "ber": 0.039413174716
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -6,
+        "offset_seconds": 0,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -6,
+        "offset_seconds": 7.75e-06,
+        "snr_db": -100,
+        "ber": 0.413569040009
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -6,
+        "offset_seconds": 7.75e-06,
+        "snr_db": 3.9794,
+        "ber": 0.026129705256
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -6,
+        "offset_seconds": 7.75e-06,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -6,
+        "offset_seconds": 3.1e-05,
+        "snr_db": -100,
+        "ber": 0.413132546165
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -6,
+        "offset_seconds": 3.1e-05,
+        "snr_db": 3.9794,
+        "ber": 0.021150716146
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -6,
+        "offset_seconds": 3.1e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -6,
+        "offset_seconds": 6.1938e-05,
+        "snr_db": -100,
+        "ber": 0.411169063684
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -6,
+        "offset_seconds": 6.1938e-05,
+        "snr_db": 3.9794,
+        "ber": 0.039413174716
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -6,
+        "offset_seconds": 6.1938e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -3,
+        "offset_seconds": 0,
+        "snr_db": -100,
+        "ber": 0.411906664299
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -3,
+        "offset_seconds": 0,
+        "snr_db": 3.9794,
+        "ber": 0.094204249527
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -3,
+        "offset_seconds": 0,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -3,
+        "offset_seconds": 7.75e-06,
+        "snr_db": -100,
+        "ber": 0.414989494555
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -3,
+        "offset_seconds": 7.75e-06,
+        "snr_db": 3.9794,
+        "ber": 0.037079782197
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -3,
+        "offset_seconds": 7.75e-06,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -3,
+        "offset_seconds": 3.1e-05,
+        "snr_db": -100,
+        "ber": 0.413099254261
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -3,
+        "offset_seconds": 3.1e-05,
+        "snr_db": 3.9794,
+        "ber": 0.025987659801
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -3,
+        "offset_seconds": 3.1e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -3,
+        "offset_seconds": 6.1938e-05,
+        "snr_db": -100,
+        "ber": 0.411906664299
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -3,
+        "offset_seconds": 6.1938e-05,
+        "snr_db": 3.9794,
+        "ber": 0.094204249527
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": -3,
+        "offset_seconds": 6.1938e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": 0,
+        "offset_seconds": 0,
+        "snr_db": -100,
+        "ber": 0.415494051847
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": 0,
+        "offset_seconds": 0,
+        "snr_db": 3.9794,
+        "ber": 0.251068300189
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": 0,
+        "offset_seconds": 0,
+        "snr_db": 100,
+        "ber": 0.250034771544
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": 0,
+        "offset_seconds": 7.75e-06,
+        "snr_db": -100,
+        "ber": 0.416429924242
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": 0,
+        "offset_seconds": 7.75e-06,
+        "snr_db": 3.9794,
+        "ber": 0.061851917614
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": 0,
+        "offset_seconds": 7.75e-06,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": 0,
+        "offset_seconds": 3.1e-05,
+        "snr_db": -100,
+        "ber": 0.413975941051
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": 0,
+        "offset_seconds": 3.1e-05,
+        "snr_db": 3.9794,
+        "ber": 0.037136008523
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": 0,
+        "offset_seconds": 3.1e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": 0,
+        "offset_seconds": 6.1938e-05,
+        "snr_db": -100,
+        "ber": 0.415494051847
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": 0,
+        "offset_seconds": 6.1938e-05,
+        "snr_db": 3.9794,
+        "ber": 0.251068300189
+      },
+      {
+        "rate_kbps": 64,
+        "jsr_db": 0,
+        "offset_seconds": 6.1938e-05,
+        "snr_db": 100,
+        "ber": 0.250034771544
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -12,
+        "offset_seconds": 0,
+        "snr_db": -100,
+        "ber": 0.413649310488
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -12,
+        "offset_seconds": 0,
+        "snr_db": 3.9794,
+        "ber": 0.021597567472
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -12,
+        "offset_seconds": 0,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -12,
+        "offset_seconds": 3.75e-06,
+        "snr_db": -100,
+        "ber": 0.413260165128
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -12,
+        "offset_seconds": 3.75e-06,
+        "snr_db": 3.9794,
+        "ber": 0.021827651515
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -12,
+        "offset_seconds": 3.75e-06,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -12,
+        "offset_seconds": 1.5e-05,
+        "snr_db": -100,
+        "ber": 0.413345984257
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -12,
+        "offset_seconds": 1.5e-05,
+        "snr_db": 3.9794,
+        "ber": 0.01952718099
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -12,
+        "offset_seconds": 1.5e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -12,
+        "offset_seconds": 2.997e-05,
+        "snr_db": -100,
+        "ber": 0.413649310488
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -12,
+        "offset_seconds": 2.997e-05,
+        "snr_db": 3.9794,
+        "ber": 0.021597567472
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -12,
+        "offset_seconds": 2.997e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -9,
+        "offset_seconds": 0,
+        "snr_db": -100,
+        "ber": 0.413945608428
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -9,
+        "offset_seconds": 0,
+        "snr_db": 3.9794,
+        "ber": 0.02636940696
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -9,
+        "offset_seconds": 0,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -9,
+        "offset_seconds": 3.75e-06,
+        "snr_db": -100,
+        "ber": 0.413745117188
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -9,
+        "offset_seconds": 3.75e-06,
+        "snr_db": 3.9794,
+        "ber": 0.026694927794
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -9,
+        "offset_seconds": 3.75e-06,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -9,
+        "offset_seconds": 1.5e-05,
+        "snr_db": -100,
+        "ber": 0.413695549242
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -9,
+        "offset_seconds": 1.5e-05,
+        "snr_db": 3.9794,
+        "ber": 0.021919759115
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -9,
+        "offset_seconds": 1.5e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -9,
+        "offset_seconds": 2.997e-05,
+        "snr_db": -100,
+        "ber": 0.413945608428
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -9,
+        "offset_seconds": 2.997e-05,
+        "snr_db": 3.9794,
+        "ber": 0.02636940696
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -9,
+        "offset_seconds": 2.997e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -6,
+        "offset_seconds": 0,
+        "snr_db": -100,
+        "ber": 0.415244362571
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -6,
+        "offset_seconds": 0,
+        "snr_db": 3.9794,
+        "ber": 0.041878625118
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -6,
+        "offset_seconds": 0,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -6,
+        "offset_seconds": 3.75e-06,
+        "snr_db": -100,
+        "ber": 0.414266690341
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -6,
+        "offset_seconds": 3.75e-06,
+        "snr_db": 3.9794,
+        "ber": 0.037658321496
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -6,
+        "offset_seconds": 3.75e-06,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -6,
+        "offset_seconds": 1.5e-05,
+        "snr_db": -100,
+        "ber": 0.413929332386
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -6,
+        "offset_seconds": 1.5e-05,
+        "snr_db": 3.9794,
+        "ber": 0.027219460227
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -6,
+        "offset_seconds": 1.5e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -6,
+        "offset_seconds": 2.997e-05,
+        "snr_db": -100,
+        "ber": 0.415244362571
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -6,
+        "offset_seconds": 2.997e-05,
+        "snr_db": 3.9794,
+        "ber": 0.041878625118
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -6,
+        "offset_seconds": 2.997e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -3,
+        "offset_seconds": 0,
+        "snr_db": -100,
+        "ber": 0.416820919152
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -3,
+        "offset_seconds": 0,
+        "snr_db": 3.9794,
+        "ber": 0.095837402344
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -3,
+        "offset_seconds": 0,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -3,
+        "offset_seconds": 3.75e-06,
+        "snr_db": -100,
+        "ber": 0.41611735026
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -3,
+        "offset_seconds": 3.75e-06,
+        "snr_db": 3.9794,
+        "ber": 0.063630814986
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -3,
+        "offset_seconds": 3.75e-06,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -3,
+        "offset_seconds": 1.5e-05,
+        "snr_db": -100,
+        "ber": 0.414889988755
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -3,
+        "offset_seconds": 1.5e-05,
+        "snr_db": 3.9794,
+        "ber": 0.038927482836
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -3,
+        "offset_seconds": 1.5e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -3,
+        "offset_seconds": 2.997e-05,
+        "snr_db": -100,
+        "ber": 0.416820919152
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -3,
+        "offset_seconds": 2.997e-05,
+        "snr_db": 3.9794,
+        "ber": 0.095837402344
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": -3,
+        "offset_seconds": 2.997e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": 0,
+        "offset_seconds": 0,
+        "snr_db": -100,
+        "ber": 0.42167746804
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": 0,
+        "offset_seconds": 0,
+        "snr_db": 3.9794,
+        "ber": 0.25195645419
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": 0,
+        "offset_seconds": 0,
+        "snr_db": 100,
+        "ber": 0.250015536222
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": 0,
+        "offset_seconds": 3.75e-06,
+        "snr_db": -100,
+        "ber": 0.419227553859
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": 0,
+        "offset_seconds": 3.75e-06,
+        "snr_db": 3.9794,
+        "ber": 0.126244747277
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": 0,
+        "offset_seconds": 3.75e-06,
+        "snr_db": 100,
+        "ber": 0.020811878551
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": 0,
+        "offset_seconds": 1.5e-05,
+        "snr_db": -100,
+        "ber": 0.416170987216
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": 0,
+        "offset_seconds": 1.5e-05,
+        "snr_db": 3.9794,
+        "ber": 0.065865441525
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": 0,
+        "offset_seconds": 1.5e-05,
+        "snr_db": 100,
+        "ber": 0
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": 0,
+        "offset_seconds": 2.997e-05,
+        "snr_db": -100,
+        "ber": 0.42167746804
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": 0,
+        "offset_seconds": 2.997e-05,
+        "snr_db": 3.9794,
+        "ber": 0.25195645419
+      },
+      {
+        "rate_kbps": 128,
+        "jsr_db": 0,
+        "offset_seconds": 2.997e-05,
+        "snr_db": 100,
+        "ber": 0.250015536222
+      }
+    ],
+    "jsr_quantization": [
+      {
+        "jsr_db": -100,
+        "bucket_db": -12
+      },
+      {
+        "jsr_db": -10.500001,
+        "bucket_db": -12
+      },
+      {
+        "jsr_db": -10.5,
+        "bucket_db": -12
+      },
+      {
+        "jsr_db": -10.499999,
+        "bucket_db": -9
+      },
+      {
+        "jsr_db": -7.5,
+        "bucket_db": -9
+      },
+      {
+        "jsr_db": -7.499999,
+        "bucket_db": -6
+      },
+      {
+        "jsr_db": -4.5,
+        "bucket_db": -6
+      },
+      {
+        "jsr_db": -4.499999,
+        "bucket_db": -3
+      },
+      {
+        "jsr_db": -1.5,
+        "bucket_db": -3
+      },
+      {
+        "jsr_db": -1.499999,
+        "bucket_db": 0
+      },
+      {
+        "jsr_db": 0,
+        "bucket_db": 0
+      },
+      {
+        "jsr_db": 100,
+        "bucket_db": 0
+      }
+    ],
+    "offset_quantization": [
+      {
+        "rate_kbps": 8,
+        "offset_seconds": -5.001e-07,
+        "chip_offset": 254.5
+      },
+      {
+        "rate_kbps": 8,
+        "offset_seconds": -5e-07,
+        "chip_offset": 0
+      },
+      {
+        "rate_kbps": 8,
+        "offset_seconds": 0,
+        "chip_offset": 0
+      },
+      {
+        "rate_kbps": 8,
+        "offset_seconds": 5e-07,
+        "chip_offset": 0.5
+      },
+      {
+        "rate_kbps": 8,
+        "offset_seconds": 5.001e-07,
+        "chip_offset": 0.5
+      },
+      {
+        "rate_kbps": 8,
+        "offset_seconds": 1e-06,
+        "chip_offset": 0.5
+      },
+      {
+        "rate_kbps": 8,
+        "offset_seconds": 1.5e-05,
+        "chip_offset": 7.5
+      },
+      {
+        "rate_kbps": 8,
+        "offset_seconds": 3e-05,
+        "chip_offset": 15
+      },
+      {
+        "rate_kbps": 8,
+        "offset_seconds": 0.0005095001,
+        "chip_offset": 0
+      },
+      {
+        "rate_kbps": 16,
+        "offset_seconds": -5.001e-07,
+        "chip_offset": 126.5
+      },
+      {
+        "rate_kbps": 16,
+        "offset_seconds": -5e-07,
+        "chip_offset": 0
+      },
+      {
+        "rate_kbps": 16,
+        "offset_seconds": 0,
+        "chip_offset": 0
+      },
+      {
+        "rate_kbps": 16,
+        "offset_seconds": 5e-07,
+        "chip_offset": 0.5
+      },
+      {
+        "rate_kbps": 16,
+        "offset_seconds": 5.001e-07,
+        "chip_offset": 0.5
+      },
+      {
+        "rate_kbps": 16,
+        "offset_seconds": 1e-06,
+        "chip_offset": 0.5
+      },
+      {
+        "rate_kbps": 16,
+        "offset_seconds": 1.5e-05,
+        "chip_offset": 7.5
+      },
+      {
+        "rate_kbps": 16,
+        "offset_seconds": 3e-05,
+        "chip_offset": 15
+      },
+      {
+        "rate_kbps": 16,
+        "offset_seconds": 0.0005095001,
+        "chip_offset": 1
+      },
+      {
+        "rate_kbps": 32,
+        "offset_seconds": -5.001e-07,
+        "chip_offset": 62.5
+      },
+      {
+        "rate_kbps": 32,
+        "offset_seconds": -5e-07,
+        "chip_offset": 0
+      },
+      {
+        "rate_kbps": 32,
+        "offset_seconds": 0,
+        "chip_offset": 0
+      },
+      {
+        "rate_kbps": 32,
+        "offset_seconds": 5e-07,
+        "chip_offset": 0.5
+      },
+      {
+        "rate_kbps": 32,
+        "offset_seconds": 5.001e-07,
+        "chip_offset": 0.5
+      },
+      {
+        "rate_kbps": 32,
+        "offset_seconds": 1e-06,
+        "chip_offset": 0.5
+      },
+      {
+        "rate_kbps": 32,
+        "offset_seconds": 1.5e-05,
+        "chip_offset": 7.5
+      },
+      {
+        "rate_kbps": 32,
+        "offset_seconds": 3e-05,
+        "chip_offset": 15
+      },
+      {
+        "rate_kbps": 32,
+        "offset_seconds": 0.0005095001,
+        "chip_offset": 3
+      },
+      {
+        "rate_kbps": 64,
+        "offset_seconds": -5.001e-07,
+        "chip_offset": 30.5
+      },
+      {
+        "rate_kbps": 64,
+        "offset_seconds": -5e-07,
+        "chip_offset": 0
+      },
+      {
+        "rate_kbps": 64,
+        "offset_seconds": 0,
+        "chip_offset": 0
+      },
+      {
+        "rate_kbps": 64,
+        "offset_seconds": 5e-07,
+        "chip_offset": 0.5
+      },
+      {
+        "rate_kbps": 64,
+        "offset_seconds": 5.001e-07,
+        "chip_offset": 0.5
+      },
+      {
+        "rate_kbps": 64,
+        "offset_seconds": 1e-06,
+        "chip_offset": 0.5
+      },
+      {
+        "rate_kbps": 64,
+        "offset_seconds": 1.5e-05,
+        "chip_offset": 7.5
+      },
+      {
+        "rate_kbps": 64,
+        "offset_seconds": 3e-05,
+        "chip_offset": 15
+      },
+      {
+        "rate_kbps": 64,
+        "offset_seconds": 0.0005095001,
+        "chip_offset": 7
+      },
+      {
+        "rate_kbps": 128,
+        "offset_seconds": -5.001e-07,
+        "chip_offset": 14.5
+      },
+      {
+        "rate_kbps": 128,
+        "offset_seconds": -5e-07,
+        "chip_offset": 0
+      },
+      {
+        "rate_kbps": 128,
+        "offset_seconds": 0,
+        "chip_offset": 0
+      },
+      {
+        "rate_kbps": 128,
+        "offset_seconds": 5e-07,
+        "chip_offset": 0.5
+      },
+      {
+        "rate_kbps": 128,
+        "offset_seconds": 5.001e-07,
+        "chip_offset": 0.5
+      },
+      {
+        "rate_kbps": 128,
+        "offset_seconds": 1e-06,
+        "chip_offset": 0.5
+      },
+      {
+        "rate_kbps": 128,
+        "offset_seconds": 1.5e-05,
+        "chip_offset": 7.5
+      },
+      {
+        "rate_kbps": 128,
+        "offset_seconds": 3e-05,
+        "chip_offset": 0
+      },
+      {
+        "rate_kbps": 128,
+        "offset_seconds": 0.0005095001,
+        "chip_offset": 0
+      }
+    ],
+    "symbol_duration": [
+      {
+        "rate_kbps": 8,
+        "seconds": 0.00051
+      },
+      {
+        "rate_kbps": 16,
+        "seconds": 0.000254
+      },
+      {
+        "rate_kbps": 32,
+        "seconds": 0.000126
+      },
+      {
+        "rate_kbps": 64,
+        "seconds": 6.2e-05
+      },
+      {
+        "rate_kbps": 128,
+        "seconds": 3e-05
+      },
+      {
+        "rate_kbps": 500,
+        "seconds": 8e-06
+      },
+      {
+        "rate_kbps": 1000,
+        "seconds": 4e-06
+      }
+    ]
+  },
+  "limitations": [
+    "No ns-3 engine, CsrPhyModel, CsrNetDevice, or complete smoke workflow executes in this probe.",
+    "This evidence validates table and quantization outputs only; MATLAB comparison remains pending execution.",
+    "Shared table provenance does not independently validate historical OPNET numerical accuracy."
+  ]
+}

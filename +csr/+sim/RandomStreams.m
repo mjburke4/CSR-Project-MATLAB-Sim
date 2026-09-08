@@ -4,10 +4,14 @@ classdef RandomStreams < handle
     %   every call. rand(stream, ...) leaves MATLAB's global RNG untouched.
     %   Stream creation order does not affect the stream assigned to a key.
     %
-    %   Source-independent engineering seed mapping (version 1):
+    %   Source-independent engineering seed mapping (version 2):
     %     keyCode = 4 * nodeId + subsystemIndex
     %     streamSeed = mod(seed + 2654435761 * keyCode, 2^32)
-    %   subsystemIndex is traffic=0, phy=1, mac=2, nwk=3. CSR node IDs are
+    %   subsystemIndex is traffic=0, phy=1, mac=2, nwk=3; these codes are
+    %   unchanged from version 1. The new sync stream uses keyCode=2^26+1+
+    %   nodeId, retaining all old seeds and keeping the zero-remap code free.
+    %   SYNC-threshold normals are separate from PHY error draws, as in ns-3.
+    %   Node IDs are
     %   unsigned 24-bit values. Exact uint64 arithmetic avoids floating-point
     %   rounding; the odd multiplier makes the mapping injective over the
     %   supported key domain for each master seed. A zero result is replaced
@@ -23,7 +27,7 @@ classdef RandomStreams < handle
 
     properties (SetAccess = private)
         Seed
-        MappingVersion = 1
+        MappingVersion = 2
     end
 
     properties (Access = private)
@@ -52,15 +56,15 @@ classdef RandomStreams < handle
             if isstring(subsystem) && isscalar(subsystem)
                 subsystem = char(subsystem);
             end
-            names = {'traffic', 'phy', 'mac', 'nwk'};
+            names = {'traffic', 'phy', 'mac', 'nwk', 'sync'};
             if ~ischar(subsystem) || ~isrow(subsystem)
                 error('csr:sim:UnknownSubsystem', ...
-                    'subsystem must be traffic, phy, mac, or nwk.');
+                    'subsystem must be traffic, phy, mac, nwk, or sync.');
             end
             index = find(strcmp(subsystem, names), 1);
             if isempty(index)
                 error('csr:sim:UnknownSubsystem', ...
-                    'Unknown subsystem "%s"; use traffic, phy, mac, or nwk.', ...
+                    'Unknown subsystem "%s"; use traffic, phy, mac, nwk, or sync.', ...
                     subsystem);
             end
             key = sprintf('%u:%s', uint32(nodeId), subsystem);
@@ -70,6 +74,9 @@ classdef RandomStreams < handle
             end
 
             keyCode = uint64(nodeId) * uint64(4) + uint64(index - 1);
+            if strcmp(subsystem,'sync')
+                keyCode = uint64(67108865) + uint64(nodeId);
+            end
             mixed = uint64(obj.Seed) + uint64(2654435761) * keyCode;
             streamSeed = uint32(mod(mixed, uint64(4294967296)));
             if streamSeed == 0

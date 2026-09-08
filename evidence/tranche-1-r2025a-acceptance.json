@@ -1,0 +1,214 @@
+{
+  "schema": "csr-matlab-user-reported-acceptance-v1",
+  "tranche": 1,
+  "recorded_utc_date": "2026-09-08",
+  "evidence_origin": "Owner-pasted run_tranche1_validation console output in this conversation; exported files not independently inspected",
+  "associated_local_code_commit": "3f63b811d51dc8e93548586cc7e6994981adac13",
+  "source_identity_scope": "Associated delivered candidate; no runtime source hash supplied",
+  "ns3_reference_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "matlab_version": "25.1.0.2943329 (R2025a)",
+  "matlab_release": "2025a",
+  "backend": "portable",
+  "command": "run_tranche1_validation",
+  "tests": {
+    "total": 72,
+    "passed": 72,
+    "failed": 0,
+    "incomplete": 0,
+    "test_suite_elapsed_seconds": 4.6861,
+    "classes": {
+      "TestBerTables": {
+        "passed": 7,
+        "failed": 0
+      },
+      "TestCppBerReference": {
+        "passed": 5,
+        "failed": 0
+      },
+      "TestEventScheduler": {
+        "passed": 6,
+        "failed": 0
+      },
+      "TestFoundation": {
+        "passed": 8,
+        "failed": 0
+      },
+      "TestPhyFoundation": {
+        "passed": 5,
+        "failed": 0
+      },
+      "TestPhyModel": {
+        "passed": 13,
+        "failed": 0
+      },
+      "TestPhyScenarios": {
+        "passed": 7,
+        "failed": 0
+      },
+      "TestRandomStreams": {
+        "passed": 5,
+        "failed": 0
+      },
+      "TestSignalEngine": {
+        "passed": 13,
+        "failed": 0
+      },
+      "TestTranche1Integration": {
+        "passed": 3,
+        "failed": 0
+      }
+    }
+  },
+  "reported_controlled_regression_statistics": {
+    "Generated": 6,
+    "Transmitted": 6,
+    "Received": 6,
+    "Dropped": 0,
+    "Pending": 0,
+    "ApplicationBytesReceived": 384,
+    "DeliveryRatio": 1,
+    "MeanLatencySeconds_displayed_rounded": 1.1138,
+    "GoodputBitsPerSecond": 307.2,
+    "OmittedTraceRecords": 0,
+    "PhysicalAttempts": 6,
+    "PhysicalReceived": 6,
+    "PhysicalDropped": 0,
+    "PhysicalPending": 0,
+    "Overheard": 0,
+    "Collisions": 0,
+    "OmittedPhyTraceRecords": 0
+  },
+  "reported_phy_scenarios": [
+    {
+      "Scenario": "clean",
+      "Generated": 6,
+      "Received": 6,
+      "Dropped": 0,
+      "Pending": 0,
+      "PhysicalReceived": 12,
+      "Overheard": 6,
+      "Collisions": 0,
+      "RuntimeSeconds_displayed": 0.031542
+    },
+    {
+      "Scenario": "overhearing",
+      "Generated": 6,
+      "Received": 6,
+      "Dropped": 0,
+      "Pending": 0,
+      "PhysicalReceived": 12,
+      "Overheard": 6,
+      "Collisions": 0,
+      "RuntimeSeconds_displayed": 0.040698
+    },
+    {
+      "Scenario": "collision",
+      "Generated": 2,
+      "Received": 0,
+      "Dropped": 2,
+      "Pending": 0,
+      "PhysicalReceived": 0,
+      "Overheard": 0,
+      "Collisions": 2,
+      "RuntimeSeconds_displayed": 0.020355
+    },
+    {
+      "Scenario": "mixed_rate",
+      "Generated": 2,
+      "Received": 1,
+      "Dropped": 1,
+      "Pending": 0,
+      "PhysicalReceived": 1,
+      "Overheard": 0,
+      "Collisions": 2,
+      "RuntimeSeconds_displayed": 0.012476
+    },
+    {
+      "Scenario": "weak",
+      "Generated": 1,
+      "Received": 0,
+      "Dropped": 1,
+      "Pending": 0,
+      "PhysicalReceived": 0,
+      "Overheard": 0,
+      "Collisions": 0,
+      "RuntimeSeconds_displayed": 0.0026509
+    },
+    {
+      "Scenario": "band_mismatch",
+      "Generated": 1,
+      "Received": 0,
+      "Dropped": 1,
+      "Pending": 0,
+      "PhysicalReceived": 0,
+      "Overheard": 0,
+      "Collisions": 0,
+      "RuntimeSeconds_displayed": 0.003455
+    },
+    {
+      "Scenario": "closure",
+      "Generated": 1,
+      "Received": 0,
+      "Dropped": 1,
+      "Pending": 0,
+      "PhysicalReceived": 0,
+      "Overheard": 0,
+      "Collisions": 0,
+      "RuntimeSeconds_displayed": 0.0024139
+    },
+    {
+      "Scenario": "high_rate_500",
+      "Generated": 6,
+      "Received": 6,
+      "Dropped": 0,
+      "Pending": 0,
+      "PhysicalReceived": 12,
+      "Overheard": 6,
+      "Collisions": 0,
+      "RuntimeSeconds_displayed": 0.029417
+    },
+    {
+      "Scenario": "high_rate_1000",
+      "Generated": 6,
+      "Received": 6,
+      "Dropped": 0,
+      "Pending": 0,
+      "PhysicalReceived": 12,
+      "Overheard": 6,
+      "Collisions": 0,
+      "RuntimeSeconds_displayed": 0.029765
+    }
+  ],
+  "display_scope": "Scenario runtimes and controlled latency retain console display precision; single-run timings are not performance benchmarks; DropReasons struct contents were not displayed",
+  "capability_discovery": {
+    "HasWirelessNetworkSimulator": false,
+    "HasWnetNode": false,
+    "HasWirelessPacket": false,
+    "WirelessAdapterImplemented": true,
+    "WirelessAdapterScope": "Optional R2026a wireless-clock candidate; runtime validation pending",
+    "NativePacketTransportIntegrated": false,
+    "scope": "Symbol discovery on owner MATLAB path; no license or installation diagnosis"
+  },
+  "reference_comparison": {
+    "matlab_original_cpp_reference_vectors": 400,
+    "passed_test_class": "TestCppBerReference",
+    "scope": "Checked BER curves and collision samples, JSR/offset boundaries and rate intervals; tolerances are defined in tests; not full network scenario parity",
+    "prior_non_matlab_exact_conversion_comparisons": 300632
+  },
+  "acceptance": {
+    "tranche_1_portable_r2025a": "accepted on owner-reported execution evidence",
+    "all_nine_scenarios_meet_portable_gate": true,
+    "run_tranche1_validation_completed_successfully": true,
+    "scenario_exports_completed_per_entrypoint_and_success_message": true,
+    "exported_files_independently_inspected": false,
+    "runtime_source_hash_verified": false,
+    "matlab_executed_in_assistant_workspace": false,
+    "matlab_r2026a_executed": false,
+    "native_wireless_adapter_validated": false,
+    "full_matlab_ns3_network_differential_executed": false,
+    "matlab_opnet_comparison_executed": false,
+    "full_csr_research_baseline_accepted": false
+  },
+  "independent_review": "Reviewer checked current tests and documented acceptance criteria against owner output; recommends acceptance without further R2025a rerun",
+  "next_tranche": "Tranche 2 cohesive MAC/HOP access, queues, reservations, ACK/DACK and reliability; refresh current ns3 main before new behavior implementation"
+}
