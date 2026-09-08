@@ -3,20 +3,22 @@
 Behavioral port of `mjburke4/CSR-Project-NS3-part2`, currently pinned to main
 `486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b` (2026-09-07, PR #50).
 
-## Current milestone: Tranche 0 candidate
+## Current milestone: Tranche 0 accepted on R2025a
 
-The repository started empty. This candidate provides a portable MATLAB
+The repository started empty. The foundation provides a portable MATLAB
 discrete-event skeleton with three nodes, configurable traffic, exact CSR
 rate/airtime constants, bare DATA envelope sizing, controlled link delivery,
 deterministic local random streams, bounded tracing, statistics, and exports.
 
-**R2025a execution has begun; full acceptance is pending a rerun.** The owner's
-reported run on MATLAB 25.1.0.2943329 passed 20/24 tests, including all eight
-integrated foundation tests. Four scheduler tests failed solely because
-`PendingCount` returned `uint64` while their expected counts were `double`.
-This candidate normalizes that public counter to `double`; the existing tests
-remain unchanged. The corrected candidate has not yet executed in MATLAB.
-See `evidence/matlab-r2025a-user-validation.json` for the precise boundary.
+**The owner's corrected R2025a run passed 24/24 tests and completed the
+acceptance scenario.** MATLAB 25.1.0.2943329 reported six packets delivered,
+384 application bytes received, no drops or pending packets, and 307.2 bit/s
+goodput. Test-suite time was 1.3764 seconds; this is not simulation runtime.
+This accepts Tranche 0's portable foundation. R2026a and native wireless
+integration remain untested. Evidence is the owner's console output, recorded
+in `evidence/matlab-r2025a-acceptance.json`; runtime source hashes and exported
+files have not been independently inspected. The prior count-type failure
+remains documented in `evidence/matlab-r2025a-user-validation.json`.
 
 This is controlled direct transport: same-node transmissions serialize FIFO,
 and each receive link succeeds or drops according to an explicit test
@@ -40,12 +42,12 @@ Or from PowerShell with MATLAB on PATH, after changing to the repository:
 matlab -batch "run_validation"
 ```
 
-The acceptance scenario expects 6 generated/transmitted/received packets,
-0 drops, 0 pending, and 384 received application bytes. The owner's first
-R2025a run passed the integrated tests asserting those outcomes; the final
-standalone scenario/export awaits a fully passing suite. Logs, release
+The acceptance scenario produces 6 generated/transmitted/received packets,
+0 drops, 0 pending, and 384 received application bytes in the reported R2025a
+run. The final standalone scenario/export stage completed according to the
+entry point and its success message. Logs, release
 metadata, test outcomes, MAT results, and CSV/JSON exports are written to
-`results/validation/`. Share that directory to close the runtime gate.
+`results/validation/`. Retain that directory with the experiment results.
 
 Experiment settings are data, not protocol edits:
 
@@ -72,7 +74,7 @@ R2026a native adapter; the protocol core never subclasses `wnet.Node`.
 
 | Tranche | Working endpoint | Complexity | Depends on |
 |---|---|---|---|
-| 0 | Validated controlled three-node transfer | Low | Current source and MATLAB execution |
+| 0 | Accepted controlled three-node transfer on R2025a | Low | Complete for portable R2025a |
 | 1 | CSR PHY/channel/traffic and native R2026a adapter | High | 0 |
 | 2 | Reliable MAC/HOP multi-node exchange | High | 1; specs can start during 1 |
 | 3 | Autonomous ARL routing and multihop delivery | High | 2; route/serialization work parallel to 1–2 |
@@ -86,7 +88,8 @@ or materially observable behavior is wrong.
 See [source map](evidence/source-map.md), [compatibility](docs/compatibility.md),
 [validation strategy](docs/validation-strategy.md),
 [parity ledger](docs/parity-ledger.csv), and
-[execution evidence](evidence/ns3-validation.json).
+[ns-3 execution evidence](evidence/ns3-validation.json), and
+[R2025a acceptance](evidence/matlab-r2025a-acceptance.json).
 
 An optional installation probe is available in a fresh MATLAB session:
 

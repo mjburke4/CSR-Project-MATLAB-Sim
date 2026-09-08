@@ -1,7 +1,8 @@
-# Tranche 0 handoff — candidate awaiting MATLAB execution
+# Tranche 0 handoff — accepted on R2025a
 
-This is the initial handoff record. The subsequent owner-run R2025a results
-and bounded count-type fix are recorded in [r2025a-validation-followup.md](r2025a-validation-followup.md).
+The owner reports all 24 tests passing and the final scenario completing on
+R2025a. The bounded count-type fix and runtime results are recorded in
+[r2025a-validation-followup.md](r2025a-validation-followup.md).
 
 ## Objective and capabilities
 
@@ -33,13 +34,15 @@ Fresh ns-3 Python checks passed: 289 utility tests and 51 release-classifier
 probes. MISS_HIT 0.9.44 static lint passed all 20 MATLAB files using its R2022a
 language profile; this is syntax/static checking only.
 
-**MATLAB R2025a: not executed. MATLAB R2026a: not executed.**
+**MATLAB R2025a: owner-reported 24/24 tests passed and final scenario completed.
+MATLAB R2026a: not executed.** The assistant did not run MATLAB locally.
 No ns-3 C++ run occurred here. The source publication historically records
 38/38 executable workflows for the retained source tree.
 
 Independent review found two MATLAB test/table edge cases; both were fixed
 and singleton/empty results have a prepared regression. No remaining blocker
-was identified in the scoped static review. MATLAB acceptance remains open.
+was identified in the scoped static review. The subsequent R2025a count-type
+failure was corrected, and portable R2025a acceptance is now closed.
 
 ## Comparisons and known discrepancies
 
@@ -55,15 +58,14 @@ infrastructure differences are visible in `parity-ledger.csv`.
 
 ## Acceptance and next tranche
 
-From the repository root run `run_validation` in MATLAB. Expected controlled
+The owner ran `run_validation` successfully on R2025a. Observed controlled
 fixture counts are 6 generated/transmitted/received, 0 dropped/pending and 384
-received application bytes. Collect `results/validation/` and retain actual
-release information. Run on both releases when available; no need to block
-R2026a development on an unavailable work-machine installation.
+received application bytes. Retain `results/validation/` with the release
+information. R2026a validation remains a separate gate when available.
 
 Next: Tranche 1, integrated PHY/channel/traffic plus a separate native R2026a
 adapter. In parallel map MAC/HOP and build deterministic differential fixtures.
-This candidate is suitable for a clearly labeled draft PR after owner
-authorization; it is not a runtime-validated merge recommendation.
+The R2025a foundation is ready for publication review after owner authorization.
+The repository's current evidence does not claim R2026a or native integration.
 
 Remote push, PR creation, merge and branch deletion have not been performed.

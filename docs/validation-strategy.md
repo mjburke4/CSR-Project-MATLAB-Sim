@@ -1,6 +1,7 @@
 # CSR MATLAB validation strategy
 
-For the subsequent owner's R2025a run (20/24 passed) and count-type fix,
+For the subsequent owner's R2025a runs (initial 20/24, corrected 24/24 passed)
+and the accepted controlled scenario,
 see [r2025a-validation-followup.md](r2025a-validation-followup.md).
 The initial inspection evidence below retains its original scope.
 
