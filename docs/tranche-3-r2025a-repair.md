@@ -1,5 +1,11 @@
 # Tranche 3 R2025a results and repairs
 
+**Final result: accepted portable Tranche 3.** The owner run of `ff7859a`
+passed 289/289 tests with zero failures/incompletes and completed all eight
+T3 plus nine T2 scenario exports. The 74 source hashes and test CSV hash match
+the validated package. See [acceptance](tranche-3-portable-acceptance.md).
+The sections below retain the prior failure and repair checkpoints as history.
+
 ## First rerun: 287/289 passing
 
 The owner reran candidate `16d469f` on MATLAB R2025a `25.1.0.2943329`.

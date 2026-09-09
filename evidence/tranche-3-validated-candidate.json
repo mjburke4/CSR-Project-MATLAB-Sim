@@ -1,7 +1,7 @@
 {
   "schema": "csr-matlab-tranche-3-candidate-v1",
   "prepared_utc": "2026-09-09T13:30:40.519832+00:00",
-  "status": "Accepted portable Tranche 3 on owner MATLAB R2025a; native and numerical parity remain separate",
+  "status": "R2025a test-fixture mask correction candidate; complete MATLAB runner acceptance pending",
   "branch": "agent/tranche-3-routing-admission",
   "published_base_commit": "88e56a83c2e9baa295be89f63b873bbe1fa1aa5f",
   "published_base_pr": "https://github.com/mjburke4/CSR-Project-MATLAB-Sim/pull/2",
@@ -31,17 +31,6 @@
       "failed": 2,
       "incomplete": 2,
       "scope": "Owner CSV and console agree; all ten network-scenario methods pass, separate runner export loops not reached; source hashes not supplied"
-    },
-    {
-      "evidence": "tranche-3-portable-acceptance.json",
-      "evidence_sha256": "1641b7eed05e21a6a2a5828d23b200d9e009c696d0dd50b110f371fb79cfa188",
-      "associated_candidate_commit": "ff7859af3900f1ab8c25263dbd2b5bc580e8488d",
-      "runtime": "MATLAB R2025a 25.1.0.2943329",
-      "total": 289,
-      "passed": 289,
-      "failed": 0,
-      "incomplete": 0,
-      "scope": "Owner completed runner; 74 source hashes, exact method names, candidate manifest and test CSV verified; eight T3 plus nine T2 summaries meet functional gates"
     }
   ],
   "historical_owner_acceptance": "tranche-2-portable-acceptance.json",
@@ -104,7 +93,7 @@
   },
   "independent_review": "../docs/tranche-3-review.md",
   "acceptance_command": "run_tranche3_validation",
-  "first_runtime_target": "R2025a portable accepted; R2026a portable and six native tests remain separate gates",
+  "first_runtime_target": "Corrected candidate rerun on MATLAB R2025a portable; R2026a portable/native remain separate gates",
   "remote_publication_performed_for_tranche_3": false,
   "known_scope": [
     "Behavioral admission only; no authentication, encryption, key material or replay security",
@@ -219,7 +208,7 @@
     "corrected_matlab_execution_completed": true,
     "record": "../docs/tranche-3-r2025a-repair.md",
     "rerun_evidence": "tranche-3-r2025a-rerun-1.json",
-    "tranche_acceptance_passed": true
+    "tranche_acceptance_passed": false
   },
   "fixture_repair": {
     "parent_commit": "16d469f125f828861d15e76af4be6ebb8e135c89",
@@ -231,15 +220,7 @@
     ],
     "added_portable_test_methods": 0,
     "production_matlab_changed": false,
-    "corrected_matlab_execution_completed": true,
-    "record": "../docs/tranche-3-r2025a-repair.md",
-    "acceptance_evidence": "tranche-3-portable-acceptance.json"
-  },
-  "acceptance_recorded_utc": "2026-09-09T13:52:59.435311+00:00",
-  "accepted_code_commit": "ff7859af3900f1ab8c25263dbd2b5bc580e8488d",
-  "acceptance_evidence": "tranche-3-portable-acceptance.json",
-  "acceptance_evidence_sha256": "1641b7eed05e21a6a2a5828d23b200d9e009c696d0dd50b110f371fb79cfa188",
-  "validated_manifest_snapshot": "tranche-3-validated-candidate.json",
-  "validated_manifest_snapshot_sha256": "1d083bbdba45cea90e919189ba73580695b0b05ce2c19306859c94eb0263b51b",
-  "manifest_identity_note": "Runtime validated the exact archived manifest at the accepted code commit. This current status manifest now records acceptance; MATLAB file hashes are unchanged."
+    "corrected_matlab_execution_completed": false,
+    "record": "../docs/tranche-3-r2025a-repair.md"
+  }
 }

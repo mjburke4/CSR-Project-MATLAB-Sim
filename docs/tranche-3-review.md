@@ -4,15 +4,16 @@ Review updated: 2026-09-09. Pinned ns-3 reference:
 `486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b`.
 MATLAB base: merged PR #2, `88e56a83c2e9baa295be89f63b873bbe1fa1aa5f`.
 
-This is a corrected implementation candidate, not runtime acceptance.
+The portable R2025a functional gate is now accepted at `ff7859a`.
 The earlier review of recovered candidate `602ddd3` missed several observable
 protocol differences; those conclusions are superseded by this correction pass.
 Astra performed the routing and integration closeout at the owner's request.
 No MATLAB or Octave test execution occurred in this workspace.
-The latest owner R2025a run reported 287 passed, two failed and two incomplete;
-all ten integrated network-scenario methods passed. The
-[runtime repair record](tranche-3-r2025a-repair.md) documents the two remaining
-test-fixture errors, their correction and the complete runner's pending rerun.
+The final owner run passed all 289 methods and all eight T3/nine T2 scenario
+exports. Source hashes, candidate manifest and test CSV linkage were verified.
+Astra independently reviewed the final scenario/accounting gate. See the
+[acceptance record](tranche-3-portable-acceptance.md) and
+[historical repairs](tranche-3-r2025a-repair.md).
 
 ## Architecture retained
 
@@ -49,8 +50,10 @@ large-table scenario certification.
 
 ## Evidence
 
-The candidate manifest records current source hashes, prepared test counts and
-the final static-lint outcome. Those counts are definitions, not passed tests.
+The candidate manifest records source hashes and the static-lint outcome and
+now points to the acceptance record. The owner run establishes 289/289 passing
+tests, independently of syntax checks. Its original manifest is preserved as
+`evidence/tranche-3-validated-candidate.json` for runtime hash verification.
 MISS_HIT 0.9.44 uses its supported MATLAB 2022a parser profile; this checks syntax
 without establishing R2025a/R2026a numerical or scheduling behavior.
 
@@ -59,17 +62,17 @@ source/build/binary/log manifest is retained. The current environment has no
 CMake, so neither a fresh build nor five proposed extra security/wire workflows
 was completed. Do not reinterpret these checks as MATLAB differential evidence.
 
-## Remaining acceptance gates
+## Remaining validation work
 
-- Run `run_tranche3_validation` on R2025a with every portable test passing,
-  zero failed/incomplete, all nine T2 scenarios and all eight T3 scenarios.
-- Preserve actual release/version, raw file hashes, test CSV, scenario summary,
-  per-layer exports and protocol traces. Standard JVM is required for hashing.
-- Require zero control-queue/backlog rejection in acceptance scenarios.
+- R2025a is accepted: all portable methods and scenario exports passed, with
+  zero control/backlog rejection and fully drained ownership in the final rows.
+- The supplied release/version, raw file hashes, test CSV and scenario summaries
+  are preserved. Raw per-layer traces/config/MAT exports were not supplied;
+  preserve those on the owner machine for later differential analysis.
 - Repeat portable validation on R2026a; six native clock/packet tests remain
   separate, including full routed portable-versus-native-clock equality.
 - Equivalent MATLAB/ns-3 network scenarios and OPNET aggregate comparison remain
-  unexecuted. Historical accepted T0–T2 results do not certify modified T3 files.
+  unexecuted. Portable functional acceptance does not establish numerical parity.
 
 Explicit differences remain: bounded custody/reassembly/control storage,
 transactional overload handling, actual-transmission retry timing, bounded NWK

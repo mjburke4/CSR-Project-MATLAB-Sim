@@ -153,8 +153,8 @@ Routed configurations require the atomic Pairwise16 size profile documented in
 and provenance only, not historical generator equivalence.
 Compatibility headers and SNMP node lists are retained as logical metadata,
 not charged as extra wire bytes. The helper matches the source's modeled
-counts; actual airtime, packet-error and end-to-end comparisons remain subject
-to the pending MATLAB runtime gate.
+counts. The R2025a portable runtime gate passed; equivalent cross-simulator
+airtime, packet-error and end-to-end numerical comparisons remain separate.
 
 ## Interfaces and evidence
 

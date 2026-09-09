@@ -124,7 +124,7 @@ bypass, duplicate suppression, control/DATA isolation, broadcast handling and sa
 expiration ordering. Tests use named nested fixture readers so their
 observations share the callbacks' mutable workspace.
 
-The engineering workspace has no MATLAB runtime. Static syntax/lint results
-are reported with the integrated Tranche 3 candidate; these tests and the
-accepted Tranche 2 regression suite require actual R2025a/R2026a execution
-before the control transport can receive runtime acceptance.
+The owner R2025a run passed all 27 methods within the accepted 289-test suite;
+see [portable acceptance](tranche-3-portable-acceptance.md). The engineering
+workspace did not execute MATLAB. R2026a and cross-simulator comparison remain
+separate gates.

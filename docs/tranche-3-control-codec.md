@@ -120,5 +120,6 @@ routing-link failure.
 `tests/TestRoutingCodec.m` checks literal source-fixture bytes, signed INFO
 fields, the 258-hop and 700+10-byte section cases, out-of-order and conflicting
 sections, atomic malformed-stream rejection, peer isolation, sequence limits,
-and bounded-buffer eviction. Adding tests does not establish MATLAB execution;
-the tranche acceptance record must preserve the actual runtime and results.
+and bounded-buffer eviction. All 11 methods passed in the owner R2025a run;
+the [acceptance record](tranche-3-portable-acceptance.md) preserves runtime,
+source hashes and results. Cross-simulator network comparison remains separate.

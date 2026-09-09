@@ -1,15 +1,15 @@
-# Tranche 3: autonomous network and routing candidate
+# Tranche 3: accepted portable autonomous network and routing
 
 Objective: connect application custody, autonomous ARL routing and admission to
-the accepted CSR HOP/MAC/PHY foundation. The candidate is prepared for MATLAB
-execution; portable Tranche 3 acceptance remains pending.
+the accepted CSR HOP/MAC/PHY foundation. Portable Tranche 3 is accepted on
+MATLAB R2025a at code commit `ff7859af3900f1ab8c25263dbd2b5bc580e8488d`.
 
-The latest owner R2025a run of `16d469f` reported 287/289 passing, two failed
-and two incomplete. All ten network-scenario methods passed. The remaining
-test-fixture mask errors are corrected, including one additional matching
-filter; production code is unchanged. Extract the new package into a fresh
-folder and rerun the command below. See the
-[runtime results and repair record](tranche-3-r2025a-repair.md).
+The final owner run passed 289/289 tests, all eight T3 scenarios and nine retained
+T2 scenarios. All 74 source hashes and the test CSV hash match the validated
+package; every T3 queue drained and control/backlog rejections are zero.
+See [portable acceptance](tranche-3-portable-acceptance.md) and the
+[historical repair record](tranche-3-r2025a-repair.md). This acceptance update
+changes documentation and evidence only.
 
 Tranche 2 is merged through [PR #2](https://github.com/mjburke4/CSR-Project-MATLAB-Sim/pull/2)
 at `88e56a83c2e9baa295be89f63b873bbe1fa1aa5f`. This local tranche is on
@@ -34,8 +34,8 @@ No Tranche 3 push, PR or merge is part of this handoff.
   per-layer counters, route/neighbor tables and MAT/CSV/JSON result export.
 
 The protocol core uses base MATLAB classes, containers, structs and the existing
-clock/RNG abstraction. No new R2026a-only dependency was added. R2025a portable is
-the first execution target; R2026a portable and native remain separate gates.
+clock/RNG abstraction. No new R2026a-only dependency was added. R2025a portable
+passed; R2026a portable and native remain separate gates.
 
 ## Architecture and source
 
@@ -107,10 +107,10 @@ Recovery uses post-PHY RF erasure at 120–170 s and an explicit administrative
 discovery request at 180 s. A scan at 110 s also exercises the blackout boundary. It does not imply that enqueuing DATA starts
 discovery. Freshness monitoring is explicitly enabled only in that fixture.
 
-## Evidence and remaining gate
+## Evidence and remaining gates
 
 Twelve unchanged native ns-3 workflows were previously built and executed and
-their preserved binaries were re-executed in this turn: **12/12 passed**.
+their preserved binaries were re-executed during preparation: **12/12 passed**.
 The [reference manifest](../evidence/tranche-3-ns3-workflows.json) records source,
 binary, command, build and log provenance. Expected protocol failure events
 are distinguished from failed test assertions. These are source-side results,
@@ -122,8 +122,9 @@ preserved rather than relabeled as a fresh compilation.
 
 No MATLAB or Octave execution occurred in this workspace. Static syntax/lint,
 source-derived C++ calculations and independent review are recorded separately
-in the candidate manifest. The accepted historical T2 owner result remains
-145/145 methods and nine scenarios; it does not certify modified T3 code.
+in the candidate manifest. The final owner R2025a evidence now certifies the
+portable T3 functional gate at `ff7859a`: 289/289 methods and all eight network
+scenarios, including the retained T2 regression suite and exports.
 
 No new OPNET run or packet trace is available. Preserve current ns-3 semantics
 where practical, record explicit simplifications in the parity ledger, and
@@ -149,7 +150,7 @@ remain deferred. Do not certify historical profile equivalence from these labels
 The coordinator specification lists remaining control/watchdog/scan details.
 No full-network numerical parity claim is made.
 
-Recommended next step: execute this candidate on R2025a, repair any structural
-failures as part of Tranche 3, then proceed to Tranche 4 reusable research
-scenarios and MATLAB/ns-3 aggregate comparisons. Battery, supervision and BBN
-remain outside the baseline.
+Recommended next step: publish the accepted portable tranche through a PR when
+authorized, then proceed to Tranche 4 reusable research scenarios and MATLAB/ns-3
+comparisons. R2026a compatibility remains a separate gate. Battery, supervision
+and BBN remain outside the baseline.

@@ -73,5 +73,6 @@ focused regression in `tests/TestNeighbors.m`.
 DSCP rejection, the NWK/radio compatibility gate and exported metadata.
 `tests/TestControlWireProfile.m` covers exact control sizes, group-size invariance,
 DATA/ACK pairwise overhead, no double-counting at HOP and fail-closed inputs.
-These are prepared MATLAB tests; they are not execution evidence until the
-Tranche 3 runner records an R2025a or R2026a run.
+All 11 configuration and six control-profile methods passed in the owner
+R2025a run; see [portable acceptance](tranche-3-portable-acceptance.md).
+Historical generator/security-tuple equivalence remains outside that gate.
