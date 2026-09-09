@@ -1,0 +1,6 @@
+record,schema,scenario,source_sha256,duration_s,seed,tmm,coordinate_scale_m_per_unit,reservation_control_start_s,application_profile,mac_profile,hop_security_profile,ack_envelope_profile,source_executable_sha256,node_id,forced_reservation_slot,name,node_type,x_m,y_m,height_m,min_speed_kbps,max_speed_kbps,min_power_dbm,max_power_dbm,link_margin_db,ecc_threshold,rx_frequency_hz,tx_frequency_hz,interarrival_s,packet_bytes,start_s,flow_src,flow_dst,flow_destination_mode,flow_start_s,flow_interval_s,flow_packet_bytes,flow_dscp
+run,csr-opnet-scenario-v1,line_3_8,synthetic-shared-scenario-v1,200,128,0,1,,current-send-only,current-fine-free-slot,production-pairwise16,production-pairwise16,,,,,,,,,,,,,,,,,,,,,,,,,,
+node,csr-opnet-scenario-v1,,,,,,,,,,,,,1,,node_1,gateway,0,0,1,8,8,30,30,10,0.1,400000000,400000000,,,,,,,,,,
+node,csr-opnet-scenario-v1,,,,,,,,,,,,,2,,node_2,routable,4000,0,1,8,8,30,30,10,0.1,400000000,400000000,,,,,,,,,,
+node,csr-opnet-scenario-v1,,,,,,,,,,,,,3,,node_3,routable,8000,0,1,8,8,30,30,10,0.1,400000000,400000000,,,,,,,,,,
+flow,csr-opnet-scenario-v1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,3,1,fixed,120,15,79,0

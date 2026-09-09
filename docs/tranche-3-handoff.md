@@ -15,8 +15,11 @@ Tranche 2 is merged through [PR #2](https://github.com/mjburke4/CSR-Project-MATL
 at `88e56a83c2e9baa295be89f63b873bbe1fa1aa5f`. This tranche is on
 `agent/tranche-3-routing-admission`. The recovered candidate was transplanted
 onto that merge: its former base `5a4a96f` and the merge have identical trees.
-Publication and merge status are tracked in the
-[repository pull requests](https://github.com/mjburke4/CSR-Project-MATLAB-Sim/pulls).
+Tranche 3 subsequently merged through
+[PR #3](https://github.com/mjburke4/CSR-Project-MATLAB-Sim/pull/3) on 2026-09-09
+at `c37a39e2d03d0f675271fb37ac2c4c0bcafd9f4b`. The
+[publication record](../evidence/tranche-3-publication.json) maps local to
+published commits and verifies identical file trees, including the merge.
 
 ## Implemented capabilities
 
@@ -151,7 +154,6 @@ remain deferred. Do not certify historical profile equivalence from these labels
 The coordinator specification lists remaining control/watchdog/scan details.
 No full-network numerical parity claim is made.
 
-Recommended next step: publish the accepted portable tranche through a PR when
-authorized, then proceed to Tranche 4 reusable research scenarios and MATLAB/ns-3
-comparisons. R2026a compatibility remains a separate gate. Battery, supervision
+Recommended next step: validate the Tranche 4 reusable research scenarios and
+MATLAB/ns-3 comparison candidate. R2026a compatibility remains a separate gate. Battery, supervision
 and BBN remain outside the baseline.

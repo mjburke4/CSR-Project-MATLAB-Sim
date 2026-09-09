@@ -1,0 +1,71 @@
+{
+  "schema": "csr-matlab-ns3-reference-case-v1",
+  "case": "high_rate_1000",
+  "status": "completed",
+  "started_utc": "2026-09-09T16:15:46.752054+00:00",
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "execution_completed": true,
+  "source_files_stable": true,
+  "matlab_executed": false,
+  "run_options": {
+    "opnetAppGating": false,
+    "stochasticSyncThreshold": false,
+    "dutyCycling": true,
+    "opnetAlignedDutyCycle": true,
+    "gatewayDiscovery": true
+  },
+  "flow_limit": 3,
+  "extension": true,
+  "build_manifest_sha256": "fccc67952e42fc14fc89a5df1b19d3ccf190b1f7716dea1f4f654b34e3ba960a",
+  "runner_sha256": "7e325ee25d5c526cd68eb54bb9f2df6ee1ab4ca959e9fee4263fb39c539b2c54",
+  "application_profile": "current-send-only",
+  "mac_profile": "current-fine-free-slot",
+  "hop_security_profile": "production-pairwise16",
+  "scenario_sha256": "7bcf97c71fe0d91725c27e14b307e7ce72327b284377ff3d48d84cc951d89463",
+  "command": [
+    "/workspace/scratch/4bc527402fde/tranche4-reference-build/final-lf/csr-opnet-scenario-runner",
+    "--scenario=/workspace/scratch/4bc527402fde/CSR-Project-MATLAB-Sim/evidence/tranche-4-ns3-reference/high_rate_1000/scenario.csv",
+    "--trace=/workspace/scratch/4bc527402fde/CSR-Project-MATLAB-Sim/evidence/tranche-4-ns3-reference/high_rate_1000/trace.csv",
+    "--appDiagnostics=/workspace/scratch/4bc527402fde/CSR-Project-MATLAB-Sim/evidence/tranche-4-ns3-reference/high_rate_1000/app_diagnostics.csv",
+    "--opnetAppGating=0",
+    "--stochasticSyncThreshold=0",
+    "--dutyCycling=1",
+    "--opnetAlignedDutyCycle=1",
+    "--gatewayDiscovery=1",
+    "--flowLimit=3",
+    "--quietModelLogs=1",
+    "--aggregateTraceOnly=0",
+    "--admissionTrace=1"
+  ],
+  "elapsed_seconds": 0.13821294799708994,
+  "exit_code": 0,
+  "observations": {
+    "app_send": 3,
+    "nwk_delivery": 3,
+    "tx_start": 120,
+    "rx_accept": 120,
+    "rx_drop": 0
+  },
+  "completed_utc": "2026-09-09T16:15:46.978614+00:00",
+  "files": [
+    {
+      "path": "scenario.csv",
+      "sha256": "7bcf97c71fe0d91725c27e14b307e7ce72327b284377ff3d48d84cc951d89463",
+      "row_count": 4
+    },
+    {
+      "path": "trace.csv",
+      "sha256": "c740ce96a192c71dd0149acfb4f9c88d00f508bfca80e580cf05e82953369a6f",
+      "row_count": 3376
+    },
+    {
+      "path": "app_diagnostics.csv",
+      "sha256": "45a5d0cdad144b3a61a6515fafe4ff3a3fed4760c8cd9b0e3d29f2914342c9b2",
+      "row_count": 1
+    },
+    {
+      "path": "run.log",
+      "sha256": "585fd5ecd46408e1c64a5da1a6332679ba6d63bd5e8b9c7ffebf314c47d7182c"
+    }
+  ]
+}

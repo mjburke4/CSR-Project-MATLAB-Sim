@@ -3,7 +3,28 @@
 Behavioral port of `mjburke4/CSR-Project-NS3-part2`, currently pinned to main
 `486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b` (2026-09-07, PR #50).
 
-## Current milestone: accepted portable Tranche 3 autonomous routing
+## Tranche 4 candidate: research scenarios and shared-input comparisons
+
+The research/comparison candidate builds on merged Tranche 3 at `c37a39e`.
+It adds nine synthetic network experiments, five shared canonical ns-3 inputs,
+a fail-closed application comparator and a validation runner with source/data
+hashes, complete trace inventories and a compact evidence ZIP.
+
+**Tranche 4 MATLAB execution is pending.** The five source-side ns-3 reference
+cases have run successfully; they do not establish MATLAB numerical parity.
+Extract the candidate ZIP, select its repository root in MATLAB, then run:
+
+```matlab
+report = run_tranche4_validation;
+```
+
+Upload the `tranche4_evidence.zip` printed by the runner. The default run includes
+the portable regression suite, five shared inputs and six research layouts.
+See [Tranche 4 validation](docs/tranche-4-validation.md) for seed sweeps and the
+explicit 6000-second/native options, and the [handoff](docs/tranche-4-handoff.md)
+for actual checks, scope and remaining work.
+
+## Accepted portable Tranche 3 autonomous routing
 
 Tranche 3 connects per-node ARL discovery, admission, routing and control
 serialization to the existing HOP/MAC/PHY stack. It adds grouped reliable
@@ -23,10 +44,10 @@ and cross-simulator network comparison remain pending. See the
 [Tranche 3 handoff](docs/tranche-3-handoff.md) for capabilities, validation and
 known differences. No R2026a-only API was added to the portable core.
 
-Tranche 2 is merged through [PR #2](https://github.com/mjburke4/CSR-Project-MATLAB-Sim/pull/2)
-at `88e56a8`. The accepted Tranche 3 implementation branch is
-`agent/tranche-3-routing-admission`, based on that merge. Publication and merge
-status are tracked in the [repository pull requests](https://github.com/mjburke4/CSR-Project-MATLAB-Sim/pulls).
+Tranche 3 merged through [PR #3](https://github.com/mjburke4/CSR-Project-MATLAB-Sim/pull/3)
+at `c37a39e` on 2026-09-09. Its published code commit `3e9b4a9` has the same
+file tree as owner-validated local commit `ff7859a`. The
+[publication record](evidence/tranche-3-publication.json) preserves the mapping.
 
 ## Accepted portable Tranche 2 MAC/HOP
 

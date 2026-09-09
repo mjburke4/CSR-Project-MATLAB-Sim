@@ -1,0 +1,64 @@
+{
+  "schema": "csr-matlab-tranche-4-local-checks-v1",
+  "checked_utc": "2026-09-09T16:29:32.803629+00:00",
+  "matlab_executed": false,
+  "octave_executed": false,
+  "matlab_static_lint": {
+    "tool": "MISS_HIT 0.9.44",
+    "syntax_profile": "MATLAB 2022a",
+    "files": 83,
+    "exit_code": 0
+  },
+  "python_tests": {
+    "command": "python -m unittest discover -s scripts/tests -v",
+    "passed": 42,
+    "failed": 0,
+    "exit_code": 0,
+    "comparator_tests": 34,
+    "reference_contract_tests": 8
+  },
+  "log_sha256": {
+    "evidence/tranche-4-local-checks/matlab-static-lint.log": "68c87fbe103899eab8ec29f4170b80015f06bcc52715974820e87ac124c6e3a2",
+    "evidence/tranche-4-local-checks/python-tests.log": "ceda1a850501cf2e65747bc5d22bc1cd0000c34e0347270e5446e3c66cefad75"
+  },
+  "actual_reference_evidence_rechecked": [
+    {
+      "name": "two_node_8",
+      "generated": 3,
+      "delivered": 3,
+      "all_inventory_hashes_verified": true,
+      "trace_identity_and_generation_verified": true
+    },
+    {
+      "name": "two_node_128",
+      "generated": 3,
+      "delivered": 3,
+      "all_inventory_hashes_verified": true,
+      "trace_identity_and_generation_verified": true
+    },
+    {
+      "name": "line_3_8",
+      "generated": 3,
+      "delivered": 3,
+      "all_inventory_hashes_verified": true,
+      "trace_identity_and_generation_verified": true
+    },
+    {
+      "name": "high_rate_500",
+      "generated": 3,
+      "delivered": 3,
+      "all_inventory_hashes_verified": true,
+      "trace_identity_and_generation_verified": true
+    },
+    {
+      "name": "high_rate_1000",
+      "generated": 3,
+      "delivered": 3,
+      "all_inventory_hashes_verified": true,
+      "trace_identity_and_generation_verified": true
+    }
+  ],
+  "accepted_tranche_3_matlab_source_hashes_unchanged": 74,
+  "tranche_3_published_commit_trees_verified": 6,
+  "scope": "Static checks and actual ns-3 evidence only; no new MATLAB runtime acceptance or full-network parity claim."
+}
