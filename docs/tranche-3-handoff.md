@@ -12,10 +12,11 @@ See [portable acceptance](tranche-3-portable-acceptance.md) and the
 changes documentation and evidence only.
 
 Tranche 2 is merged through [PR #2](https://github.com/mjburke4/CSR-Project-MATLAB-Sim/pull/2)
-at `88e56a83c2e9baa295be89f63b873bbe1fa1aa5f`. This local tranche is on
+at `88e56a83c2e9baa295be89f63b873bbe1fa1aa5f`. This tranche is on
 `agent/tranche-3-routing-admission`. The recovered candidate was transplanted
 onto that merge: its former base `5a4a96f` and the merge have identical trees.
-No Tranche 3 push, PR or merge is part of this handoff.
+Publication and merge status are tracked in the
+[repository pull requests](https://github.com/mjburke4/CSR-Project-MATLAB-Sim/pulls).
 
 ## Implemented capabilities
 

@@ -24,8 +24,9 @@ and cross-simulator network comparison remain pending. See the
 known differences. No R2026a-only API was added to the portable core.
 
 Tranche 2 is merged through [PR #2](https://github.com/mjburke4/CSR-Project-MATLAB-Sim/pull/2)
-at `88e56a8`. The accepted Tranche 3 implementation is on local branch
-`agent/tranche-3-routing-admission`; it has not been pushed or opened as a PR.
+at `88e56a8`. The accepted Tranche 3 implementation branch is
+`agent/tranche-3-routing-admission`, based on that merge. Publication and merge
+status are tracked in the [repository pull requests](https://github.com/mjburke4/CSR-Project-MATLAB-Sim/pulls).
 
 ## Accepted portable Tranche 2 MAC/HOP
 
