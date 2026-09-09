@@ -1,4 +1,49 @@
-# Tranche 3 R2025a initial result and repair
+# Tranche 3 R2025a results and repairs
+
+## First rerun: 287/289 passing
+
+The owner reran candidate `16d469f` on MATLAB R2025a `25.1.0.2943329`.
+The supplied console and CSV agree: **289 methods, 287 passed, two failed and
+two incomplete**. Both incomplete methods are the two failures. CSV test time
+sums to 112.2300692 seconds, matching the console's rounded 112.2301 seconds.
+
+All ten `TestNwkScenarios` methods passed, exercising autonomous convergence,
+custody, routing-control loss, route recovery, gateway selection, transit
+policy, high rates, reproducibility and exports inside the regression suite.
+Neighbors passed 20/20, network configuration 11/11 and routing codec 11/11,
+confirming the previous reported causes no longer block this run.
+
+The two remaining errors occurred in `TestNwkLayer`:
+
+- `simultaneousActivationsUseIndependentForwardSnapshots`
+- `discoveryCompletionRefreshesLinksAndRequestsSnapshots`
+
+The callback log is an N-by-1 struct array. `{added.Kind}` produces a row,
+while `arrayfun(...,added)` preserves the column shape. Combining those masks
+with `&` implicitly expands them into an N-by-N matrix, causing logical
+indices outside the log's bounds. The filters now use one scalar predicate per
+entry. The route-request helper already checks the control kind. The same
+pattern in `routingPartialAckRetryWaitsForLaterEventAndKeepsBytes` was also
+corrected; its `find(...,1)` had concealed the shape mismatch in this run.
+
+This correction changes only `tests/TestNwkLayer.m` among MATLAB files. All
+protocol assertions remain, and there are still 289 portable methods. The
+specific mixed-mask pattern was checked across repository MATLAB files.
+Static lint passes; repaired MATLAB execution is pending.
+
+The [rerun evidence](../evidence/tranche-3-r2025a-rerun-1.json) records the exact
+class counts, error origins and CSV hash. The
+[CSV](../evidence/tranche-3-r2025a-rerun-1-test-results.csv) is retained byte-for-byte.
+Release and revision association come from the owner's console; runtime source
+hashes and validation metadata were not supplied. The initial failed run below
+is preserved as history.
+
+Despite the passing scenario methods, `assertSuccess` stopped the runner before
+its later separate nine Tranche 2 and eight Tranche 3 scenario export loops.
+Run the complete validation command again from a fresh extraction and MATLAB
+session. Acceptance requires every method and the later export loops to finish.
+
+## Initial run: 215/286 passing
 
 The owner ran `run_tranche3_validation` on MATLAB R2025a
 `25.1.0.2943329`, using the portable backend. The supplied complete console

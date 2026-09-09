@@ -11,11 +11,12 @@ controls, dynamic multi-hop custody, gateway selection, route loss/recovery,
 link-cost driven radio settings and route/neighbor exports. Eight reusable
 network scenarios require no configured paths.
 
-**The first R2025a Tranche 3 run reported 215 passed, 71 failed and 70 incomplete.**
-The 70 incomplete tests share a logical-option validation error; one additional
-codec assertion found an empty-path shape mismatch. Both causes are repaired;
-the revised 289-test candidate requires a MATLAB rerun. See the
-[initial result and repair](docs/tranche-3-r2025a-repair.md).
+**The latest R2025a Tranche 3 run reported 287 passed, 2 failed and 2 incomplete.**
+All ten integrated network-scenario tests passed. The two remaining errors
+were row/column mask expansion in NWK test-fixture filters; those filters and
+one additional matching site are corrected. Production code is unchanged by
+this correction. The 289-test candidate still requires a complete runner rerun.
+See the [runtime results and repairs](docs/tranche-3-r2025a-repair.md).
 Twelve unchanged native ns-3 reference workflows passed separately.
 Run `run_tranche3_validation` on R2025a again. See the
 [Tranche 3 handoff](docs/tranche-3-handoff.md) for capabilities, validation and

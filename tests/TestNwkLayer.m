@@ -139,8 +139,8 @@ classdef TestNwkLayer < matlab.unittest.TestCase
         end
         function routingPartialAckRetryWaitsForLaterEventAndKeepsBytes(test)
             h=nwkHarness(); h.Layer.observe(2,struct()); h.Layer.observe(3,struct()); h.Clock.run(0);
-            controls=h.Controls(); pick=find(strcmp({controls.Kind},'ROUTING') & ...
-                arrayfun(@(row)numel(row.Peers)==2,controls),1);
+            controls=h.Controls(); pick=find(arrayfun(@(row) ...
+                strcmp(row.Kind,'ROUTING') && numel(row.Peers)==2,controls),1);
             test.assertNotEmpty(pick); original=controls(pick); before=numel(controls);
             h.Layer.controlResult(original.Control,original.Peers(1),true,false,original.Peers(2));
             test.verifyNumElements(h.Controls(),before);
@@ -185,10 +185,12 @@ classdef TestNwkLayer < matlab.unittest.TestCase
 
             h.Layer.observe(3,struct()); h.Layer.observe(4,struct()); h.Clock.run(0);
             added=h.Controls(); added=added(before+1:end);
-            to3=added(strcmp({added.Kind},'ROUTING') & ...
-                arrayfun(@(row)isequal(row.Peers,3),added));
-            to4=added(strcmp({added.Kind},'ROUTING') & ...
-                arrayfun(@(row)isequal(row.Peers,4),added));
+            % The callback log is a column. One scalar predicate per entry
+            % avoids expanding a row Kind mask against a column peer mask.
+            to3=added(arrayfun(@(row)strcmp(row.Kind,'ROUTING') && ...
+                isequal(row.Peers,3),added));
+            to4=added(arrayfun(@(row)strcmp(row.Kind,'ROUTING') && ...
+                isequal(row.Peers,4),added));
             [sections3,records3]=decodeRoutingRows(to3);
             [sections4,records4]=decodeRoutingRows(to4);
 
@@ -310,8 +312,7 @@ classdef TestNwkLayer < matlab.unittest.TestCase
             test.verifyEqual(direct2.Cost,29);
             test.verifyEqual(direct3.Cost,1393);
             added=h.Controls(); added=added(before+1:end);
-            requests=added(strcmp({added.Kind},'ROUTING') & ...
-                arrayfun(@isRouteRequest,added));
+            requests=added(arrayfun(@isRouteRequest,added));
             test.verifyEqual([requests.Peers],[2 3]);
         end
         function remoteActiveDiscoveryCheckAloneStartsRouteRequest(test)

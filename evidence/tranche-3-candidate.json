@@ -1,7 +1,7 @@
 {
   "schema": "csr-matlab-tranche-3-candidate-v1",
-  "prepared_utc": "2026-09-09T13:17:40.519248+00:00",
-  "status": "R2025a runtime repair candidate; initial run failed, corrected MATLAB rerun pending",
+  "prepared_utc": "2026-09-09T13:30:40.519832+00:00",
+  "status": "R2025a test-fixture mask correction candidate; complete MATLAB runner acceptance pending",
   "branch": "agent/tranche-3-routing-admission",
   "published_base_commit": "88e56a83c2e9baa295be89f63b873bbe1fa1aa5f",
   "published_base_pr": "https://github.com/mjburke4/CSR-Project-MATLAB-Sim/pull/2",
@@ -20,6 +20,17 @@
       "failed": 71,
       "incomplete": 70,
       "scope": "Owner console transcript; source hashes not supplied; applies to initial candidate only"
+    },
+    {
+      "evidence": "tranche-3-r2025a-rerun-1.json",
+      "evidence_sha256": "65f2e13be736b9c541f49109d2a2f0a9c8fe873d626f29daac9358fb77758950",
+      "associated_candidate_commit": "16d469f125f828861d15e76af4be6ebb8e135c89",
+      "runtime": "MATLAB R2025a 25.1.0.2943329",
+      "total": 289,
+      "passed": 287,
+      "failed": 2,
+      "incomplete": 2,
+      "scope": "Owner CSV and console agree; all ten network-scenario methods pass, separate runner export loops not reached; source hashes not supplied"
     }
   ],
   "historical_owner_acceptance": "tranche-2-portable-acceptance.json",
@@ -169,7 +180,7 @@
     "tests/TestMacLayer.m": "885c701b22b3151e3bf102947b4f58683e965dd90b0a52751a98deb0373f3dfc",
     "tests/TestNeighbors.m": "e4d04b1a9860952c88601f805f4442a24ae3c1688bdacff11a6a581c6c6b3ad9",
     "tests/TestNetworkConfig.m": "dc10f3dfe1cb3137b00a1c4e188fc37c044bb4108611dbeb72f44d5803eceae2",
-    "tests/TestNwkLayer.m": "2a934f28e6a846447447f67b1be8a1078ec2d0cea99106ff91db81dafb052f55",
+    "tests/TestNwkLayer.m": "5d522c5d804513100533a291cd7a5394fdbcce2240c7d386489df65035960d3b",
     "tests/TestNwkScenarios.m": "50cf3d77d56ec1e070d0b6850b90c91eafed433afaf63d1b968a4770c20ddd38",
     "tests/TestPhyFoundation.m": "40aad49f7c0e9a170992643bbbfa948819ca96b8b44a3dce985ffeeb7d4caf4e",
     "tests/TestPhyMacBridge.m": "6285dd1729d8795579607488eee8c5ee6c92ef1d03f3015f48914943e8c29620",
@@ -194,6 +205,21 @@
       "Canonical empty zero-hop decoded routing path"
     ],
     "added_portable_test_methods": 3,
+    "corrected_matlab_execution_completed": true,
+    "record": "../docs/tranche-3-r2025a-repair.md",
+    "rerun_evidence": "tranche-3-r2025a-rerun-1.json",
+    "tranche_acceptance_passed": false
+  },
+  "fixture_repair": {
+    "parent_commit": "16d469f125f828861d15e76af4be6ebb8e135c89",
+    "matlab_files": [
+      "tests/TestNwkLayer.m"
+    ],
+    "changes": [
+      "Single scalar arrayfun predicates prevent row/column logical mask expansion at three filter sites"
+    ],
+    "added_portable_test_methods": 0,
+    "production_matlab_changed": false,
     "corrected_matlab_execution_completed": false,
     "record": "../docs/tranche-3-r2025a-repair.md"
   }
