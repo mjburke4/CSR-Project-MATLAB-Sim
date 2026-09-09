@@ -3,7 +3,24 @@
 Behavioral port of `mjburke4/CSR-Project-NS3-part2`, currently pinned to main
 `486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b` (2026-09-07, PR #50).
 
-## Current milestone: portable Tranche 2 MAC/HOP accepted
+## Current milestone: Tranche 3 autonomous routing candidate
+
+Tranche 3 connects per-node ARL discovery, admission, routing and control
+serialization to the existing HOP/MAC/PHY stack. It adds grouped reliable
+controls, dynamic multi-hop custody, gateway selection, route loss/recovery,
+link-cost driven radio settings and route/neighbor exports. Eight reusable
+network scenarios require no configured paths.
+
+**MATLAB execution of Tranche 3 is pending.** Twelve unchanged native ns-3
+reference workflows passed; these are source-side evidence. Run
+`run_tranche3_validation` on R2025a first. See the
+[Tranche 3 handoff](docs/tranche-3-handoff.md) for capabilities, validation and
+known differences. No R2026a-only API was added to the portable core.
+
+Tranche 2 is published in [PR #2](https://github.com/mjburke4/CSR-Project-MATLAB-Sim/pull/2).
+The Tranche 3 candidate is local and is not included in that PR.
+
+## Accepted portable Tranche 2 MAC/HOP
 
 The integrated implementation connects application traffic and explicit relay paths
 to HOP reliability, MAC access and the existing CSR signal engine. It adds
@@ -56,12 +73,12 @@ files have not been independently inspected. The prior count-type failure
 remains documented in `evidence/matlab-r2025a-user-validation.json`.
 
 These are historical results for the accepted revisions, not execution of the
-new Tranche 2 candidate. Choose `csr.scenario.phyNetwork(...)` for PHY-only runs or
+new Tranche 3 candidate. Choose `csr.scenario.phyNetwork(...)` for PHY-only runs or
 `csr.scenario.smallNetwork()` for the controlled T0 regression. T1 receivers
 remain awake; transmissions still serialize FIFO at each source. Slot access,
 reservations, ACK/DACK and retries are supplied by the new
-`csr.scenario.macHopNetwork(...)` path. Routing and security processing remain
-later work. A collision observation does not automatically mean packet loss:
+`csr.scenario.macHopNetwork(...)` path. Autonomous routing and behavioral admission are supplied by
+`csr.scenario.routedNetwork(...)`; cryptographic protection remains deferred. A collision observation does not automatically mean packet loss:
 the source acquisition/error/ECC pipeline decides the result. A decoded
 non-destination packet increments overhearing, never application delivery.
 
@@ -75,21 +92,20 @@ Both native paths require their own MATLAB execution gate.
 From the repository root in MATLAB:
 
 ```matlab
-run_tranche2_validation
+run_tranche3_validation
 ```
 
 Or from PowerShell with MATLAB on PATH, after changing to the repository:
 
 ```powershell
-matlab -batch "run_tranche2_validation"
+matlab -batch "run_tranche3_validation"
 ```
 
-This runs all current portable tests, the controlled T0 fixture and nine
-MAC/HOP scenarios: reliable link, ACK loss, DATA loss, DACK, contention, relay,
-queue pressure, 500 kbps and 1 Mbps. Results go to
-`results/tranche2_validation/`, including `scenario_summary.csv`, per-node
-MAC/HOP counters, protocol/PHY traces, configuration and runtime metadata.
-The default backend needs no wireless toolbox.
+This runs all portable tests, the controlled T0 regression and eight autonomous
+network scenarios. Results go to `results/tranche3_validation/`, including
+scenario summaries, routes, neighbors, per-layer counters, traces and runtime
+provenance. The default backend needs no wireless toolbox. Previous tranche
+runners remain available and discover the expanded regression suite.
 
 Ordinary MAC/HOP fixtures retain source duty-cycle and access/retry defaults.
 Loss fixtures deliberately erase selected successful receptions; the DACK
@@ -106,11 +122,10 @@ new portable tests as the repository grows.
 Experiment settings are data, not protocol edits:
 
 ```matlab
-cfg = csr.scenario.macHopNetwork('relay');
+cfg = csr.scenario.routedNetwork('autonomous');
 cfg.Seed = 2026;
-cfg.Traffic.Path = [2 3 1];
 cfg.Traffic.PacketCount = 10;
-cfg.DurationSeconds = 150;
+cfg.DurationSeconds = 350;
 result = csr.runScenario(cfg);
 csr.analysis.exportResults(result, 'results/my_experiment');
 ```
@@ -119,7 +134,7 @@ csr.analysis.exportResults(result, 'results/my_experiment');
 wire payload adds 32 bytes (17 MAC + 8 HOP + 7 NWK); OTA preamble, 48 header
 bits, and 32 FCS bits are added by airtime. Imported legacy `flow_packet_bytes`
 has different semantics and is not an accepted input format yet. IDs preserve
-the CSR 24-bit domain; 0xFFFFFF is reserved for broadcast, which is deferred.
+the CSR 24-bit domain; 0xFFFFFF is reserved for control broadcast.
 
 ## Architecture and next tranches
 
@@ -132,7 +147,7 @@ the protocol core never subclasses `wnet.Node`.
 | 0 | Accepted controlled three-node transfer on R2025a | Low | Complete for portable R2025a |
 | 1 | Accepted portable CSR PHY/channel/traffic on R2025a | High | Portable gate passed; native gate separate |
 | 2 | Accepted portable MAC/HOP with fixed-path relays | High | Portable gate passed; native gate separate |
-| 3 | Autonomous ARL routing and multihop delivery | High | 2; route/serialization work parallel to 1–2 |
+| 3 | Autonomous ARL candidate; MATLAB gate pending | High | Accepted 2; native gate separate |
 | 4 | Configurable research scenarios and differential runs | Medium | 1–3 |
 | 5 | Material parity closure and research tooling | High, bounded by priorities | 4 |
 

@@ -45,6 +45,45 @@ classdef Frames
                 csr.hop.Frames.securityBytes(frame.EnvelopeProfile);
         end
 
+        function frame = control(control, sourceId, destinationIds, sequences, radio)
+            % WirePayloadBytes is the complete logical MAC envelope size
+            % supplied by the control codec, including modeled security.
+            if nargin < 5, radio = struct(); end
+            required = {'Id','Type','Payload','WirePayloadBytes'};
+            if ~isstruct(control) || ~isscalar(control) || ~all(isfield(control,required)) || ...
+                    ~isa(control.Id,'uint64') || ~isscalar(control.Id) || ...
+                    ~isstruct(control.Payload) || ~isscalar(control.Payload) || ...
+                    ~(ischar(control.Type) && isrow(control.Type)) || ...
+                    ~any(strcmp(control.Type,{'DISCOVER','KEY_REQUEST','KEY_UPDATE', ...
+                    'NEIGHBOR_CHECK','ROUTING','SNMP_START','SNMP_DONE'}))
+                error('csr:hop:InvalidControl','Control requires an ID, supported uppercase type, payload and wire size.');
+            end
+            csr.hop.Frames.number(control.WirePayloadBytes,0,65535,'control envelope bytes');
+            if ~isnumeric(destinationIds) || ~isvector(destinationIds) || ...
+                    isempty(destinationIds) || numel(destinationIds)>10 || ...
+                    numel(unique(destinationIds))~=numel(destinationIds)
+                error('csr:hop:InvalidTargets','Controls require 1 to 10 distinct destinations.');
+            end
+            if ~isnumeric(sequences) || ~isvector(sequences) || numel(sequences)~=numel(destinationIds)
+                error('csr:hop:InvalidTargets','Every control destination needs a HOP sequence.');
+            end
+            for k=1:numel(destinationIds)
+                csr.hop.Frames.number(destinationIds(k),0,16777215,'control destination');
+                csr.hop.Frames.number(sequences(k),0,65535,'control sequence');
+            end
+            frame = csr.hop.Frames.base(sourceId,destinationIds(1),sequences(1),radio);
+            frame.AckRequired = csr.hop.Frames.boolean(csr.hop.Frames.option(radio, ...
+                'AckRequired',true),'AckRequired');
+            if any(destinationIds==16777215) && (frame.AckRequired || numel(destinationIds)~=1)
+                error('csr:hop:InvalidTargets','Broadcast control must be a single best-effort destination.');
+            end
+            frame.Kind = 'CONTROL'; frame.Id = control.Id; frame.Control = control;
+            frame.DestinationIds = reshape(double(destinationIds),1,[]);
+            frame.HopSequences = reshape(uint16(sequences),1,[]);
+            frame.WirePayloadBytes = double(control.WirePayloadBytes);
+            frame.Dscp = 7;
+        end
+
         function frame = aggregate(members, preamble)
             % Source concatenation retains every member's complete MAC envelope.
             if ~iscell(members), members = num2cell(members); end
@@ -67,7 +106,9 @@ classdef Frames
                 frame.WirePayloadBytes = frame.WirePayloadBytes + member.WirePayloadBytes;
                 frame.ApplicationPayloadBytes = frame.ApplicationPayloadBytes + member.ApplicationPayloadBytes;
                 frame.AckRequired = frame.AckRequired || member.AckRequired;
-                if strcmp(member.Kind, 'DATA'), frame.Dscp = max(frame.Dscp,member.Dscp); end
+                if any(strcmp(member.Kind, {'DATA','CONTROL'}))
+                    frame.Dscp = max(frame.Dscp,member.Dscp);
+                end
                 if member.RateKeyKbps < chosenRate
                     chosenRate = member.RateKeyKbps;
                     chosenPower = member.TxPowerDbm;

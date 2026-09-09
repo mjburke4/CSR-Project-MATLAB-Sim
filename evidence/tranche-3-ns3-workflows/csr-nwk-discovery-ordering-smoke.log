@@ -1,0 +1,357 @@
+[NWK 0] Cleared selected-route preference dst=0 reason=no-valid-route
+[NWK 0] Selected route changed dst=0 reason=local capability changed pendingDestinations=1
+[NWK 0] nodeType=Gateway
+[NWK 0] Scheduling Gateway startup discovery delay=10s duration=30s
+[NWK 0] routesProcess grouped selected-route changes count=1 infoChanged=0 time=0
+[NWK 0] Source-owned self route dst=0 nextHop=0 cost=0 hops=0 capability=2 advertised=1
+[NWK 0] Consumed grouped route changes without recipients destinations=1 infoChanged=0
+[NWK 0] Gateway startup discovery firing duration=30s
+[NWK 0] DiscoveryStart Broadcast sequence=1 resetVerifiedNeighbors=0
+[NWK 0] Discovery Broadcast repeat sequence=1
+[NWK 0] Discovery Broadcast repeat sequence=1
+[NWK 0] DiscoveryStop sequence=1
+[NWK 0] Post-discovery routing refresh activeNeighbors=0
+[NWK 0] Legacy discovery lifecycle complete initiator=0 knownNodes=0 completionReports=0
+[NWK 0] Cleared selected-route preference dst=0 reason=no-valid-route
+[NWK 0] Selected route changed dst=0 reason=local capability changed pendingDestinations=1
+[NWK 0] nodeType=Gateway
+[NWK 1] Cleared selected-route preference dst=1 reason=no-valid-route
+[NWK 1] Selected route changed dst=1 reason=local capability changed pendingDestinations=1
+[NWK 1] nodeType=Routable
+[NWK 2] Cleared selected-route preference dst=2 reason=no-valid-route
+[NWK 2] Selected route changed dst=2 reason=local capability changed pendingDestinations=1
+[NWK 2] nodeType=Routable
+[NWK 0] ARL neighbor admission=disabled
+[NWK 1] ARL neighbor admission=disabled
+[NWK 2] ARL neighbor admission=disabled
+[NWK 0] Added route candidate dst=1 nextHop=1 hops=1 cost=1 linkCost=1 advCost=0 learnedFrom=16777215 selectionDeferred=0 selected=1
+[NWK 0] Updated selected-route preference dst=1 preferredNextHop=1
+[NWK 0] Selected route changed dst=1 reason=candidate update pendingDestinations=2
+[NWK 0] Added route candidate dst=2 nextHop=2 hops=1 cost=1 linkCost=1 advCost=0 learnedFrom=16777215 selectionDeferred=0 selected=1
+[NWK 0] Updated selected-route preference dst=2 preferredNextHop=2
+[NWK 0] Selected route changed dst=2 reason=candidate update pendingDestinations=3
+[NWK 0] routesProcess grouped selected-route changes count=3 infoChanged=0 time=0
+[NWK 0] Best route dst=2 nextHop=2 cost=1 hops=1 learnedFrom=16777215 candidates=1 validCandidates=1
+[NWK 0] Best route dst=1 nextHop=1 cost=1 hops=1 learnedFrom=16777215 candidates=1 validCandidates=1
+[NWK 0] Source-owned self route dst=0 nextHop=0 cost=0 hops=0 capability=2 advertised=1
+[NWK 0] Consumed grouped route changes without recipients destinations=3 infoChanged=0
+[NWK 1] routesProcess grouped selected-route changes count=1 infoChanged=0 time=0
+[NWK 1] Source-owned self route dst=1 nextHop=1 cost=0 hops=0 capability=1 advertised=1
+[NWK 1] Consumed grouped route changes without recipients destinations=1 infoChanged=0
+[NWK 2] routesProcess grouped selected-route changes count=1 infoChanged=0 time=0
+[NWK 2] Source-owned self route dst=2 nextHop=2 cost=0 hops=0 capability=1 advertised=1
+[NWK 2] Consumed grouped route changes without recipients destinations=1 infoChanged=0
+[NWK 0] DiscoveryStart Broadcast sequence=1 resetVerifiedNeighbors=0
+[NWK 0] ARL Discover sent without Routes_PAYLOAD
+[NWK 0] HELLO advertising 0 routes
+[NWK 0] HELLO ARL route msg type=1
+[HOP 0] link_control dest=16777215 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 0] TX GroupEstablish Discover securityCount=1 securityBytes=7
+[MAC] Enqueue TX pkt dscp=7 insert_pos=0 queue_size_before=0
+[MAC 0] PickTxSlot(dest=16777215) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 0] PickTxSlot(dest=16777215) avoid:
+[MAC 0] PickTxSlot chose 13 using OPNET free-slot ordinal range [1,18]
+[MAC 0] starts Pre-Tx with new slot=13 holdoff_over=0
+[NWK 0] DiscoveryStop sequence=1
+[NWK 0] Post-discovery routing refresh activeNeighbors=0
+[NWK 0] Discovery table append node=2 needed=1 position=0
+[NWK 0] Discovery table append node=1 needed=1 position=1
+[NWK 0] Legacy discovery lifecycle complete initiator=16777215 knownNodes=2 completionReports=0
+[NWK 0] TX legacy SNMP command=1 finalDestination=2 hopDestination=2 nodes=0
+[HOP 0] TX legacy SNMP hopDestination=2 ackable=0 dscp=0
+[MAC] Enqueue TX pkt dscp=0 insert_pos=1 queue_size_before=1
+[NWK 0] SNMP discovery handoff target=2 watchdog=60s
+[MAC 0] OPNET 300-ms transmit holdoff complete
+[MAC 0] PickTxSlot(dest=16777215) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 0] PickTxSlot(dest=16777215) avoid:
+[MAC 0] PickTxSlot chose 2 using OPNET free-slot ordinal range [1,18]
+[MAC 0] TX opportunity reached currentSlot=13 reserveNextSlot=2
+... type=4 speedKey=8[t=0.481] TX from node 0 to dest 16777215 seq 1 size 50 bytes segments 2 at slot 2 rate 8 kbps txPower 30 dBm (7843.14 bps) preamble LONG duration 1.06692 s
+[MAC 0] OPNET aggregate transmitted segments=2 ackSegments=0 dataSegments=2 bytes=50 rate=8
+[t=0.481] RX SYNC at node 1 from node 0 seq 1 power 27.8722 dBm noise -106.975 dBm snr 134.847 dB state=1
+[t=0.481] RX SYNC at node 2 from node 0 seq 1 power 27.8722 dBm noise -106.975 dBm snr 134.847 dB state=1
+[t=0.48763] MAC 1 enters Track on node 0 seq 1 power 27.8722 dBm
+[t=0.48763] MAC 2 enters Track on node 0 seq 1 power 27.8722 dBm
+[MAC 0] post-TX WAIT_FOR_ACK until 18.5479 (POST_TX_WAIT=17 s)
+[t=1.54792] RX at node 1 from node 0 seq 1 rate 8 kbps txPower 30 dBm preamble LONG pathloss 2.12777 dB snr 134.847 dB (slot 2, len 50B, ackable=0)
+[MAC 1] Ignore first-contact reservation from unknown neighbor 0 slot=2
+[HOP 1] New neighbor 0 heard at t=1.54792s
+[HOP 1] Queue authenticated GroupEstablish pending KeyUpdate from=0 keyId=1 groupSeq=2
+[MAC 1] active_nodes set to 2 for local slotting and post-TX wait
+[NWK 1] active_nodes=2 pushed to MAC
+[NWK 1] Authenticated Discover awaits group key neighbor=0 newNeighbor=1
+[NWK 1] Sending source-faithful KeyRequest neighbor=0 noAck=1 retryDelayMs=5000
+[HOP 1] link_control dest=0 neighborKnown=1 s0=-105 pathloss=2.12777 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[HOP 1] TX non-ACKed KeyRequest neighbor=0 hopSeq=1 keyId=1 keySeq=2 securityCount=1
+[MAC] Enqueue TX pkt dscp=7 insert_pos=0 queue_size_before=0
+[HOP 1] Overheard legacy SNMP from 0 for hop 2 ignored without neighbor update
+[MAC 1] PickTxSlot(dest=0) active_nodes_for_slotting=2 opnet_slot_range=21
+[MAC 1] PickTxSlot(dest=0) avoid:
+[MAC 1] PickTxSlot chose 4 using OPNET free-slot ordinal range [1,21]
+[MAC 1] starts Pre-Tx with new slot=4 holdoff_over=0
+[t=1.54792] RX at node 2 from node 0 seq 1 rate 8 kbps txPower 30 dBm preamble LONG pathloss 2.12777 dB snr 134.847 dB (slot 2, len 50B, ackable=0)
+[MAC 2] Ignore first-contact reservation from unknown neighbor 0 slot=2
+[HOP 2] New neighbor 0 heard at t=1.54792s
+[HOP 2] Queue authenticated GroupEstablish pending KeyUpdate from=0 keyId=1 groupSeq=2
+[MAC 2] active_nodes set to 2 for local slotting and post-TX wait
+[NWK 2] active_nodes=2 pushed to MAC
+[NWK 2] Authenticated Discover awaits group key neighbor=0 newNeighbor=1
+[NWK 2] Sending source-faithful KeyRequest neighbor=0 noAck=1 retryDelayMs=5000
+[HOP 2] link_control dest=0 neighborKnown=1 s0=-105 pathloss=2.12777 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[HOP 2] TX non-ACKed KeyRequest neighbor=0 hopSeq=1 keyId=1 keySeq=2 securityCount=1
+[MAC] Enqueue TX pkt dscp=7 insert_pos=0 queue_size_before=0
+[HOP 2] RX legacy SNMP from 0 command=1
+[NWK 2] RX SNMP_START_DISCOVERY source=0 hopSource=0 delay=0 state=0
+[NWK 2] Discovery table append node=0 needed=0 position=0
+[MAC 2] PickTxSlot(dest=0) active_nodes_for_slotting=2 opnet_slot_range=21
+[MAC 2] PickTxSlot(dest=0) avoid:
+[MAC 2] PickTxSlot chose 13 using OPNET free-slot ordinal range [1,21]
+[MAC 2] starts Pre-Tx with new slot=13 holdoff_over=0
+[NWK 2] DiscoveryStart Broadcast sequence=1 resetVerifiedNeighbors=1
+[NWK 2] ARL Discover sent without Routes_PAYLOAD
+[NWK 2] HELLO advertising 0 routes
+[NWK 2] HELLO ARL route msg type=1
+[HOP 2] link_control dest=16777215 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 2] TX GroupEstablish Discover securityCount=1 securityBytes=7
+[MAC] Enqueue TX pkt dscp=7 insert_pos=1 queue_size_before=1
+[MAC 0] local advertised reservation expired
+[MAC 1] OPNET 300-ms transmit holdoff complete
+[MAC 2] OPNET 300-ms transmit holdoff complete
+[MAC 1] PickTxSlot(dest=0) active_nodes_for_slotting=2 opnet_slot_range=21
+[MAC 1] PickTxSlot(dest=0) avoid:
+[MAC 1] PickTxSlot chose 7 using OPNET free-slot ordinal range [1,21]
+[MAC 1] TX opportunity reached currentSlot=4 reserveNextSlot=7
+... type=8 speedKey=128[t=1.91192] TX from node 1 to dest 0 seq 1 size 18 bytes segments 1 at slot 7 rate 128 kbps txPower 0 dBm (133333 bps) preamble SHORT duration 0.0207 s
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=0 dataSegments=1 bytes=18 rate=128
+[t=1.91192] RX SYNC at node 0 from node 1 seq 1 power -2.12777 dBm noise -106.975 dBm snr 104.847 dB state=1
+[t=1.91855] MAC 0 enters Track on node 1 seq 1 power -2.12777 dBm
+[MAC 1] post-TX WAIT_FOR_ACK until 20.4326 (POST_TX_WAIT=18.5 s)
+[t=1.93262] RX at node 0 from node 1 seq 1 rate 128 kbps txPower 0 dBm preamble SHORT pathloss 2.12777 dB snr 104.847 dB (slot 7, len 18B, ackable=0)
+[MAC 0] Ignore first-contact reservation from unknown neighbor 1 slot=7
+[HOP 0] New neighbor 1 heard at t=1.93262s
+[HOP 0] RX authenticated KeyRequest from=1 keyId=1 keySeq=2 securityCount=1
+[NWK 0] KeyRequest accepted neighbor=1
+[HOP 0] link_control dest=1 neighborKnown=1 s0=-105 pathloss=2.12777 failures=0 speed=128 txPower=0 rxPower=-105 cost=29
+[HOP 0] TX reliable KeyUpdate neighbor=1 hopSeq=1 keyId=1 keySeq=2 groupKeyId=1 securityBytes=51
+[MAC] Enqueue TX pkt dscp=7 insert_pos=0 queue_size_before=0
+[NWK 0] KeyUpdate send active neighbor=1 reliable=1 securityBytes=51
+[MAC 0] PickTxSlot(dest=1) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 0] PickTxSlot(dest=1) avoid:
+[MAC 0] PickTxSlot chose 15 using OPNET free-slot ordinal range [1,18]
+[MAC 0] starts Pre-Tx with new slot=15 holdoff_over=1
+[NWK 0] Cleared selected-route preference dst=0 reason=no-valid-route
+[NWK 0] Selected route changed dst=0 reason=local capability changed pendingDestinations=1
+[NWK 0] nodeType=Gateway
+[NWK 1] Cleared selected-route preference dst=1 reason=no-valid-route
+[NWK 1] Selected route changed dst=1 reason=local capability changed pendingDestinations=1
+[NWK 1] nodeType=Routable
+[NWK 0] ARL neighbor admission=disabled
+[NWK 1] ARL neighbor admission=disabled
+[MAC 0] active_nodes set to 2 for local slotting and post-TX wait
+[NWK 0] active_nodes=2 pushed to MAC
+[MAC 0] max_reported_active_nodes updated to 1
+[NWK 0] New HELLO neighbor=1 hopSrc=1 speedKey=8 activeNodes=1 pathloss=70 snr=20
+[NWK 0] link_calc neighbor=1 s0=-105 pathloss=70 numFailures=0 speed=128 txPower=0 estDistance=75 speedMargin=53 totalMargin=65 costMode=local-only cost=29
+[NWK 0] Added route candidate dst=1 nextHop=1 hops=1 cost=29 linkCost=29 advCost=0 learnedFrom=1 selectionDeferred=0 selected=1
+[NWK 0] Updated selected-route preference dst=1 preferredNextHop=1
+[NWK 0] Selected route changed dst=1 reason=candidate update pendingDestinations=2
+[NWK 0] ARL route message from 1 type=None advCount=0
+[NWK 0] Routes: dst=1->nh=1(hops=1,cost=29,linkCost=29,advCost=0,from=1,imm=1,pl=70,valid=1,path=[1])
+[NWK 0] Added reverse path netSrc=3 reverseHop=1
+[NWK 0] routesProcess grouped selected-route changes count=2 infoChanged=0 time=0
+[NWK 0] Best route dst=1 nextHop=1 cost=29 hops=1 learnedFrom=1 candidates=1 validCandidates=1
+[NWK 0] Source-owned self route dst=0 nextHop=0 cost=0 hops=0 capability=2 advertised=1
+[NWK 0] Sending source-exact grouped route changes routingSequence=0 infoChanged=0 destinations=2 neighbors=1 groups=1 sections=1
+[NWK 0] Retained grouped routing-control owner routingSequence=0 operation=Update section=0/1 destinations=1 owners=1
+[HOP 0] link_control dest=1 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 0] TX reliable RoutingControl targets=1:1
+[MAC] Enqueue TX pkt dscp=7 insert_pos=0 queue_size_before=0
+[NWK 1] routesProcess grouped selected-route changes count=1 infoChanged=0 time=0
+[NWK 1] Source-owned self route dst=1 nextHop=1 cost=0 hops=0 capability=1 advertised=1
+[NWK 1] Consumed grouped route changes without recipients destinations=1 infoChanged=0
+[NWK 0] DiscoveryStart Broadcast sequence=1 resetVerifiedNeighbors=1
+[NWK 0] ARL Discover sent without Routes_PAYLOAD
+[NWK 0] HELLO advertising 0 routes
+[NWK 0] HELLO ARL route msg type=1
+[HOP 0] link_control dest=16777215 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 0] TX GroupEstablish Discover securityCount=1 securityBytes=7
+[MAC] Enqueue TX pkt dscp=7 insert_pos=1 queue_size_before=1
+[MAC 0] PickTxSlot(dest=1) active_nodes_for_slotting=2 opnet_slot_range=21
+[MAC 0] PickTxSlot(dest=1) avoid:
+[MAC 0] PickTxSlot chose 21 using OPNET free-slot ordinal range [1,21]
+[MAC 0] starts Pre-Tx with new slot=21 holdoff_over=0
+[NWK 0] DiscoveryStop sequence=1
+[NWK 0] Post-discovery routing refresh activeNeighbors=1
+[NWK 0] recompute hop-cost neighbor=1 failures=0 costMode=local-only newLinkCost=29
+[NWK 0] Recomputed route after link change dst=1 nextHop=1 oldCost=29 newCost=29 linkCost=29 advertisedCost=0 numFailures=0
+[NWK 0] Post-discovery requesting fresh routes neighbor=1
+[NWK 0] Sending reliable RoutingRequest neighbor=1 routingSequence=1 attempt=1 retry=0
+[HOP 0] link_control dest=1 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 0] TX reliable RoutingControl targets=1:2
+[MAC] Enqueue TX pkt dscp=7 insert_pos=2 queue_size_before=2
+[NWK 0] Discovery table append node=3 needed=1 position=0
+[NWK 0] Discovery table append node=1 needed=1 position=1
+[NWK 0] Legacy discovery lifecycle complete initiator=16777215 knownNodes=2 completionReports=0
+[NWK 0] TX legacy SNMP command=1 finalDestination=3 hopDestination=1 nodes=0
+[HOP 0] TX legacy SNMP hopDestination=1 ackable=0 dscp=0
+[MAC] Enqueue TX pkt dscp=0 insert_pos=3 queue_size_before=3
+[NWK 0] SNMP discovery handoff target=3 watchdog=60s
+[MAC 0] OPNET 300-ms transmit holdoff complete
+[MAC 0] PickTxSlot(dest=1) active_nodes_for_slotting=2 opnet_slot_range=21
+[MAC 0] PickTxSlot(dest=1) avoid:
+[MAC 0] PickTxSlot chose 9 using OPNET free-slot ordinal range [1,21]
+[MAC 0] TX opportunity reached currentSlot=21 reserveNextSlot=9
+... type=6 speedKey=8[t=0.585] TX from node 0 to dest 1 seq 1 size 103 bytes segments 4 at slot 9 rate 8 kbps txPower 30 dBm (7843.14 bps) preamble LONG duration 1.12098 s
+[HOP 0] MAC sent confirmation dest=1 seq=1 transmission=1 sentAt=0.585
+[HOP 0] MAC sent confirmation dest=1 seq=2 transmission=1 sentAt=0.585
+[MAC 0] OPNET aggregate transmitted segments=4 ackSegments=0 dataSegments=4 bytes=103 rate=8
+[t=0.585] RX SYNC at node 1 from node 0 seq 1 power 27.8722 dBm noise -106.975 dBm snr 134.847 dB state=1
+[t=0.59163] MAC 1 enters Track on node 0 seq 1 power 27.8722 dBm
+[MAC 0] post-TX WAIT_FOR_ACK until 20.206 (POST_TX_WAIT=18.5 s)
+[t=1.70598] RX at node 1 from node 0 seq 1 rate 8 kbps txPower 30 dBm preamble LONG pathloss 2.12777 dB snr 134.847 dB (slot 9, len 103B, ackable=1)
+[MAC 1] Ignore first-contact reservation from unknown neighbor 0 slot=9
+[MAC 0] local advertised reservation expired
+[NWK 10] ARL neighbor admission=disabled
+[NWK 10] discovery_response_enabled=false
+[NWK 10] New HELLO neighbor=2 hopSrc=2 speedKey=8 activeNodes=1 pathloss=70 snr=20
+[NWK 10] link_calc neighbor=2 s0=-105 pathloss=70 numFailures=0 speed=128 txPower=0 estDistance=75 speedMargin=53 totalMargin=65 costMode=local-only cost=29
+[NWK 10] Added route candidate dst=2 nextHop=2 hops=1 cost=29 linkCost=29 advCost=0 learnedFrom=2 selectionDeferred=0 selected=1
+[NWK 10] Updated selected-route preference dst=2 preferredNextHop=2
+[NWK 10] Selected route changed dst=2 reason=candidate update pendingDestinations=1
+[NWK 10] ARL route message from 2 type=Discover advCount=0
+[NWK 10] ProcessDiscover from 2 subtype=Broadcast sequence=1
+[NWK 10] New discovery sequence from 2 old=0 new=1
+[NWK 10] Suppressing Discovery response to 2 for sequence=1 testMode=true
+[NWK 10] Routes: dst=2->nh=2(hops=1,cost=29,linkCost=29,advCost=0,from=2,imm=1,pl=70,valid=1,path=[2])
+[NWK 10] Updated HELLO neighbor=2 hopSrc=2 speedKey=8 activeNodes=1 pathloss=70 snr=20
+[NWK 10] link_calc neighbor=2 s0=-105 pathloss=70 numFailures=0 speed=128 txPower=0 estDistance=75 speedMargin=53 totalMargin=65 costMode=local-only cost=29
+[NWK 10] Updated route candidate dst=2 nextHop=2 hops=1 oldCost=29 newCost=29 valid=1->1 selectionDeferred=0 selected=1
+[NWK 10] ARL route message from 2 type=Discover advCount=0
+[NWK 10] ProcessDiscover from 2 subtype=Broadcast sequence=2147483649
+[NWK 10] Duplicate/old discovery sequence from 2 received=2147483649 current=1
+[NWK 10] Routes: dst=2->nh=2(hops=1,cost=29,linkCost=29,advCost=0,from=2,imm=1,pl=70,valid=1,path=[2])
+[NWK 10] New HELLO neighbor=7 hopSrc=7 speedKey=8 activeNodes=1 pathloss=70 snr=20
+[NWK 10] link_calc neighbor=7 s0=-105 pathloss=70 numFailures=0 speed=128 txPower=0 estDistance=75 speedMargin=53 totalMargin=65 costMode=local-only cost=29
+[NWK 10] Added route candidate dst=7 nextHop=7 hops=1 cost=29 linkCost=29 advCost=0 learnedFrom=7 selectionDeferred=0 selected=1
+[NWK 10] Updated selected-route preference dst=7 preferredNextHop=7
+[NWK 10] Selected route changed dst=7 reason=candidate update pendingDestinations=2
+[NWK 10] ARL route message from 7 type=None advCount=0
+[NWK 10] Routes: dst=2->nh=2(hops=1,cost=29,linkCost=29,advCost=0,from=2,imm=1,pl=70,valid=1,path=[2]) dst=7->nh=7(hops=1,cost=29,linkCost=29,advCost=0,from=7,imm=1,pl=70,valid=1,path=[7])
+[NWK 10] New HELLO neighbor=4 hopSrc=4 speedKey=8 activeNodes=1 pathloss=70 snr=20
+[NWK 10] link_calc neighbor=4 s0=-105 pathloss=70 numFailures=0 speed=128 txPower=0 estDistance=75 speedMargin=53 totalMargin=65 costMode=local-only cost=29
+[NWK 10] Added route candidate dst=4 nextHop=4 hops=1 cost=29 linkCost=29 advCost=0 learnedFrom=4 selectionDeferred=0 selected=1
+[NWK 10] Updated selected-route preference dst=4 preferredNextHop=4
+[NWK 10] Selected route changed dst=4 reason=candidate update pendingDestinations=3
+[NWK 10] ARL route message from 4 type=None advCount=0
+[NWK 10] Routes: dst=2->nh=2(hops=1,cost=29,linkCost=29,advCost=0,from=2,imm=1,pl=70,valid=1,path=[2]) dst=7->nh=7(hops=1,cost=29,linkCost=29,advCost=0,from=7,imm=1,pl=70,valid=1,path=[7]) dst=4->nh=4(hops=1,cost=29,linkCost=29,advCost=0,from=4,imm=1,pl=70,valid=1,path=[4])
+[NWK 10] ARL neighbor admission=disabled
+[NWK 10] automatic_route_propagation=disabled
+[NWK 10] New HELLO neighbor=20 hopSrc=20 speedKey=8 activeNodes=1 pathloss=70 snr=20
+[NWK 10] link_calc neighbor=20 s0=-105 pathloss=70 numFailures=0 speed=128 txPower=0 estDistance=75 speedMargin=53 totalMargin=65 costMode=local-only cost=29
+[NWK 10] Added route candidate dst=20 nextHop=20 hops=1 cost=29 linkCost=29 advCost=0 learnedFrom=20 selectionDeferred=0 selected=1
+[NWK 10] Updated selected-route preference dst=20 preferredNextHop=20
+[NWK 10] Selected route changed dst=20 reason=candidate update pendingDestinations=1
+[NWK 10] ARL route message from 20 type=None advCount=0
+[NWK 10] Routes: dst=20->nh=20(hops=1,cost=29,linkCost=29,advCost=0,from=20,imm=1,pl=70,valid=1,path=[20])
+[NWK 10] Updated HELLO neighbor=20 hopSrc=20 speedKey=8 activeNodes=1 pathloss=70 snr=20
+[NWK 10] link_calc neighbor=20 s0=-105 pathloss=70 numFailures=0 speed=128 txPower=0 estDistance=75 speedMargin=53 totalMargin=65 costMode=local-only cost=29
+[NWK 10] Updated route candidate dst=20 nextHop=20 hops=1 oldCost=29 newCost=29 valid=1->1 selectionDeferred=0 selected=1
+[NWK 10] ARL route message from 20 type=RoutingUpdate advCount=0
+[NWK 10] Buffered ARL routing section from=20 routingSequence=10 section=0/1 buffered=1
+[NWK 10] Reassembled complete ARL routing message from=20 routingSequence=10 sections=1 recordBytes=14 records=1
+[NWK 10] Added route candidate dst=23 nextHop=20 hops=2 cost=38 linkCost=29 advCost=9 learnedFrom=20 selectionDeferred=0 selected=1
+[NWK 10] Updated selected-route preference dst=23 preferredNextHop=20
+[NWK 10] Selected route changed dst=23 reason=candidate update pendingDestinations=2
+[NWK 10] Applied ARL UPDATE from=20 dst=23 advertisedHops=1 advertisedCost=9 routingSequence=10
+[NWK 10] Routes: dst=20->nh=20(hops=1,cost=29,linkCost=29,advCost=0,from=20,imm=1,pl=70,valid=1,path=[20]) dst=23->nh=20(hops=2,cost=38,linkCost=29,advCost=9,from=20,imm=0,pl=70,valid=1,path=[20->22])
+[NWK 10] New HELLO neighbor=21 hopSrc=21 speedKey=8 activeNodes=1 pathloss=70 snr=20
+[NWK 10] link_calc neighbor=21 s0=-105 pathloss=70 numFailures=0 speed=128 txPower=0 estDistance=75 speedMargin=53 totalMargin=65 costMode=local-only cost=29
+[NWK 10] Added route candidate dst=21 nextHop=21 hops=1 cost=29 linkCost=29 advCost=0 learnedFrom=21 selectionDeferred=0 selected=1
+[NWK 10] Updated selected-route preference dst=21 preferredNextHop=21
+[NWK 10] Selected route changed dst=21 reason=candidate update pendingDestinations=3
+[NWK 10] ARL route message from 21 type=None advCount=0
+[NWK 10] Routes: dst=20->nh=20(hops=1,cost=29,linkCost=29,advCost=0,from=20,imm=1,pl=70,valid=1,path=[20]) dst=23->nh=20(hops=2,cost=38,linkCost=29,advCost=9,from=20,imm=0,pl=70,valid=1,path=[20->22]) dst=21->nh=21(hops=1,cost=29,linkCost=29,advCost=0,from=21,imm=1,pl=70,valid=1,path=[21])
+[NWK 10] New HELLO neighbor=22 hopSrc=22 speedKey=8 activeNodes=1 pathloss=70 snr=20
+[NWK 10] link_calc neighbor=22 s0=-105 pathloss=70 numFailures=0 speed=128 txPower=0 estDistance=75 speedMargin=53 totalMargin=65 costMode=local-only cost=29
+[NWK 10] Added route candidate dst=22 nextHop=22 hops=1 cost=29 linkCost=29 advCost=0 learnedFrom=22 selectionDeferred=0 selected=1
+[NWK 10] Updated selected-route preference dst=22 preferredNextHop=22
+[NWK 10] Selected route changed dst=22 reason=candidate update pendingDestinations=4
+[NWK 10] ARL route message from 22 type=None advCount=0
+[NWK 10] Routes: dst=20->nh=20(hops=1,cost=29,linkCost=29,advCost=0,from=20,imm=1,pl=70,valid=1,path=[20]) dst=23->nh=20(hops=2,cost=38,linkCost=29,advCost=9,from=20,imm=0,pl=70,valid=1,path=[20->22]) dst=21->nh=21(hops=1,cost=29,linkCost=29,advCost=0,from=21,imm=1,pl=70,valid=1,path=[21]) dst=22->nh=22(hops=1,cost=29,linkCost=29,advCost=0,from=22,imm=1,pl=70,valid=1,path=[22])
+[NWK 10] ARL neighbor admission=disabled
+[NWK 10] automatic_route_propagation=disabled
+[NWK 10] New HELLO neighbor=20 hopSrc=20 speedKey=8 activeNodes=1 pathloss=70 snr=20
+[NWK 10] link_calc neighbor=20 s0=-105 pathloss=70 numFailures=0 speed=128 txPower=0 estDistance=75 speedMargin=53 totalMargin=65 costMode=local-only cost=29
+[NWK 10] Added route candidate dst=20 nextHop=20 hops=1 cost=29 linkCost=29 advCost=0 learnedFrom=20 selectionDeferred=0 selected=1
+[NWK 10] Updated selected-route preference dst=20 preferredNextHop=20
+[NWK 10] Selected route changed dst=20 reason=candidate update pendingDestinations=1
+[NWK 10] ARL route message from 20 type=None advCount=0
+[NWK 10] Routes: dst=20->nh=20(hops=1,cost=29,linkCost=29,advCost=0,from=20,imm=1,pl=70,valid=1,path=[20])
+[NWK 10] Updated HELLO neighbor=20 hopSrc=20 speedKey=8 activeNodes=1 pathloss=70 snr=20
+[NWK 10] link_calc neighbor=20 s0=-105 pathloss=70 numFailures=0 speed=128 txPower=0 estDistance=75 speedMargin=53 totalMargin=65 costMode=local-only cost=29
+[NWK 10] Updated route candidate dst=20 nextHop=20 hops=1 oldCost=29 newCost=29 valid=1->1 selectionDeferred=0 selected=1
+[NWK 10] ARL route message from 20 type=RoutingUpdate advCount=1
+[NWK 10] Accepted RoutingUpdate from=20 routingSequence=10 previousSequence=0 advCount=1 section=0/1
+[NWK 10] Processing Routes_PAYLOAD from 20 advCount=1
+[NWK 10] Added route candidate dst=23 nextHop=20 hops=2 cost=38 linkCost=29 advCost=9 learnedFrom=20 selectionDeferred=0 selected=1
+[NWK 10] Updated selected-route preference dst=23 preferredNextHop=20
+[NWK 10] Selected route changed dst=23 reason=candidate update pendingDestinations=2
+[NWK 10] Accepted advertised route dst=23 via nextHop=20 hops=2 advCost=9 totalCost=38
+[NWK 10] Applied standalone RoutingUpdate from=20 acceptedDestinations=1
+[NWK 10] Routes: dst=20->nh=20(hops=1,cost=29,linkCost=29,advCost=0,from=20,imm=1,pl=70,valid=1,path=[20]) dst=23->nh=20(hops=2,cost=38,linkCost=29,advCost=9,from=20,imm=0,pl=70,valid=1,path=[20->22])
+[NWK 10] New HELLO neighbor=21 hopSrc=21 speedKey=8 activeNodes=1 pathloss=70 snr=20
+[NWK 10] link_calc neighbor=21 s0=-105 pathloss=70 numFailures=0 speed=128 txPower=0 estDistance=75 speedMargin=53 totalMargin=65 costMode=local-only cost=29
+[NWK 10] Added route candidate dst=21 nextHop=21 hops=1 cost=29 linkCost=29 advCost=0 learnedFrom=21 selectionDeferred=0 selected=1
+[NWK 10] Updated selected-route preference dst=21 preferredNextHop=21
+[NWK 10] Selected route changed dst=21 reason=candidate update pendingDestinations=3
+[NWK 10] ARL route message from 21 type=None advCount=0
+[NWK 10] Routes: dst=20->nh=20(hops=1,cost=29,linkCost=29,advCost=0,from=20,imm=1,pl=70,valid=1,path=[20]) dst=23->nh=20(hops=2,cost=38,linkCost=29,advCost=9,from=20,imm=0,pl=70,valid=1,path=[20->22]) dst=21->nh=21(hops=1,cost=29,linkCost=29,advCost=0,from=21,imm=1,pl=70,valid=1,path=[21])
+[NWK 10] New HELLO neighbor=22 hopSrc=22 speedKey=8 activeNodes=1 pathloss=70 snr=20
+[NWK 10] link_calc neighbor=22 s0=-105 pathloss=70 numFailures=0 speed=128 txPower=0 estDistance=75 speedMargin=53 totalMargin=65 costMode=local-only cost=29
+[NWK 10] Added route candidate dst=22 nextHop=22 hops=1 cost=29 linkCost=29 advCost=0 learnedFrom=22 selectionDeferred=0 selected=1
+[NWK 10] Updated selected-route preference dst=22 preferredNextHop=22
+[NWK 10] Selected route changed dst=22 reason=candidate update pendingDestinations=4
+[NWK 10] ARL route message from 22 type=None advCount=0
+[NWK 10] Routes: dst=20->nh=20(hops=1,cost=29,linkCost=29,advCost=0,from=20,imm=1,pl=70,valid=1,path=[20]) dst=23->nh=20(hops=2,cost=38,linkCost=29,advCost=9,from=20,imm=0,pl=70,valid=1,path=[20->22]) dst=21->nh=21(hops=1,cost=29,linkCost=29,advCost=0,from=21,imm=1,pl=70,valid=1,path=[21]) dst=22->nh=22(hops=1,cost=29,linkCost=29,advCost=0,from=22,imm=1,pl=70,valid=1,path=[22])
+[NWK 10] ARL neighbor admission=disabled
+[NWK 10] automatic_route_propagation=disabled
+[MAC 10] active_nodes set to 2 for local slotting and post-TX wait
+[NWK 10] active_nodes=2 pushed to MAC
+[MAC 10] max_reported_active_nodes updated to 1
+[NWK 10] New HELLO neighbor=2 hopSrc=2 speedKey=8 activeNodes=1 pathloss=70 snr=20
+[NWK 10] link_calc neighbor=2 s0=-105 pathloss=70 numFailures=0 speed=128 txPower=0 estDistance=75 speedMargin=53 totalMargin=65 costMode=local-only cost=29
+[NWK 10] Added route candidate dst=2 nextHop=2 hops=1 cost=29 linkCost=29 advCost=0 learnedFrom=2 selectionDeferred=0 selected=1
+[NWK 10] Updated selected-route preference dst=2 preferredNextHop=2
+[NWK 10] Selected route changed dst=2 reason=candidate update pendingDestinations=1
+[NWK 10] ARL route message from 2 type=None advCount=0
+[NWK 10] Routes: dst=2->nh=2(hops=1,cost=29,linkCost=29,advCost=0,from=2,imm=1,pl=70,valid=1,path=[2])
+[MAC 10] active_nodes set to 3 for local slotting and post-TX wait
+[NWK 10] active_nodes=3 pushed to MAC
+[NWK 10] New HELLO neighbor=3 hopSrc=3 speedKey=8 activeNodes=1 pathloss=70 snr=20
+[NWK 10] link_calc neighbor=3 s0=-105 pathloss=70 numFailures=0 speed=128 txPower=0 estDistance=75 speedMargin=53 totalMargin=65 costMode=local-only cost=29
+[NWK 10] Added route candidate dst=3 nextHop=3 hops=1 cost=29 linkCost=29 advCost=0 learnedFrom=3 selectionDeferred=0 selected=1
+[NWK 10] Updated selected-route preference dst=3 preferredNextHop=3
+[NWK 10] Selected route changed dst=3 reason=candidate update pendingDestinations=2
+[NWK 10] ARL route message from 3 type=None advCount=0
+[NWK 10] Routes: dst=2->nh=2(hops=1,cost=29,linkCost=29,advCost=0,from=2,imm=1,pl=70,valid=1,path=[2]) dst=3->nh=3(hops=1,cost=29,linkCost=29,advCost=0,from=3,imm=1,pl=70,valid=1,path=[3])
+[NWK 10] routesProcess grouped selected-route changes count=2 infoChanged=0 time=0
+[NWK 10] Best route dst=3 nextHop=3 cost=29 hops=1 learnedFrom=3 candidates=1 validCandidates=1
+[NWK 10] Best route dst=2 nextHop=2 cost=29 hops=1 learnedFrom=2 candidates=1 validCandidates=1
+[NWK 10] Automatic route propagation disabled; reporting only
+[NWK 10] ARL neighbor INACTIVE neighbor=2 reason=security count changed wasActive=1
+[NWK 10] Reset source-owned ARL security state after security-count change neighbor=2
+[NWK 10] ARL neighbor INACTIVE neighbor=3 reason=security count changed wasActive=1
+[NWK 10] Reset source-owned ARL security state after security-count change neighbor=3
+[NWK 10] ARL neighbor INACTIVE neighbor=2 reason=security count changed wasActive=0
+[NWK 10] Reset source-owned ARL security state after security-count change neighbor=2
+[NWK 10] routesProcess grouped selected-route changes count=0 infoChanged=0 time=0
+[NWK 10] Automatic route propagation disabled; reporting only
+[NWK 10] Sending ARL Discover Chirp
+[NWK 10] Chirp activeNeighborCount=0
+[NWK 10] ARL Discover sent without Routes_PAYLOAD
+[NWK 10] HELLO advertising 0 routes
+[NWK 10] HELLO ARL route msg type=1
+[HOP 10] link_control dest=16777215 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 10] TX GroupEstablish Discover securityCount=1 securityBytes=7
+[MAC] Enqueue TX pkt dscp=7 insert_pos=0 queue_size_before=0
+PASS: OPNET discovery cadence/completion and destination order

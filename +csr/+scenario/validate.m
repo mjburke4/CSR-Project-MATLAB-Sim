@@ -12,8 +12,8 @@ if ~any(strcmp(config.Backend, {'portable','wireless-clock'}))
     error('csr:scenario:Backend', 'Backend must be portable or wireless-clock.');
 end
 if ~isfield(config,'Stack'), config.Stack = 'phy-only'; end
-if ~any(strcmp(config.Stack,{'phy-only','mac-hop'}))
-    error('csr:scenario:Stack','Stack must be phy-only or mac-hop.');
+if ~any(strcmp(config.Stack,{'phy-only','mac-hop','network'}))
+    error('csr:scenario:Stack','Stack must be phy-only, mac-hop or network.');
 end
 if ~isfield(config.Channel, 'Model'), config.Channel.Model = 'controlled'; end
 if ~any(strcmp(config.Channel.Model, {'controlled','csr-phy'}))
@@ -123,11 +123,14 @@ end
 for field = fieldnames(config.Phy)'
     config.Phy.(field{1}) = double(config.Phy.(field{1}));
 end
-if strcmp(config.Stack,'mac-hop')
+if any(strcmp(config.Stack,{'mac-hop','network'}))
     config = csr.hop.validateConfig(config);
     if ~strcmp(config.Channel.Model,'csr-phy')
         error('csr:scenario:MacHopChannel','The MAC/HOP stack requires the CSR PHY channel.');
     end
+    if strcmp(config.Stack,'network')
+        config = csr.nwk.validateConfig(config);
+    else
     if ~isfield(config,'NetworkQueueLimit'), config.NetworkQueueLimit = 512; end
     validateattributes(config.NetworkQueueLimit,{'numeric'}, {'scalar','integer','positive','finite','real'});
     config.NetworkQueueLimit = double(config.NetworkQueueLimit);
@@ -149,8 +152,17 @@ if strcmp(config.Stack,'mac-hop')
         validateattributes(config.Traffic(k).AckRequired,{'logical'},{'scalar'});
         config.Traffic(k).Dscp = double(config.Traffic(k).Dscp);
     end
+    end
     fault = struct('Kind','*','SourceId',-1,'DestinationId',-1, ...
         'First',1,'Count',1,'StartSeconds',0,'EndSeconds',Inf);
+    kinds = {'DATA','ACK','DACK','*'};
+    if strcmp(config.Stack,'network')
+        fault.ControlType = '*'; kinds{end+1} = 'CONTROL';
+        if isfield(config,'Faults') && ~isempty(config.Faults) && ...
+                isstruct(config.Faults) && ~isfield(config.Faults,'ControlType')
+            [config.Faults.ControlType] = deal('*');
+        end
+    end
     if ~isfield(config,'Faults') || isempty(config.Faults)
         config.Faults = repmat(fault,0,1);
     else
@@ -160,8 +172,13 @@ if strcmp(config.Stack,'mac-hop')
         end
         for k = 1:numel(config.Faults)
             rule = config.Faults(k);
-            if ~any(strcmp(rule.Kind,{'DATA','ACK','DACK','*'}))
-                error('csr:scenario:Faults','Fault Kind must be DATA, ACK, DACK or *.');
+            if ~any(strcmp(rule.Kind,kinds))
+                error('csr:scenario:Faults','Unsupported fault Kind for this stack.');
+            end
+            if strcmp(config.Stack,'network') && ...
+                    ~any(strcmp(rule.ControlType,{'*','DISCOVER','KEY_REQUEST','KEY_UPDATE', ...
+                    'NEIGHBOR_CHECK','ROUTING','SNMP_START','SNMP_DONE'}))
+                error('csr:scenario:Faults','Unsupported fault ControlType.');
             end
             for field = {'SourceId','DestinationId'}
                 value = rule.(field{1});
