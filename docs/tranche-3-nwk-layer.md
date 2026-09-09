@@ -43,7 +43,8 @@ calls `CustodyAccepted` only after enqueue succeeds. Repeated application IDs
 at that node return accepted without appending hops or duplicating custody.
 Final delivery similarly occurs once per source/application ID.
 
-`release` removes the pending row. `terminal` reports failures even after a prior
+`release` removes the pending row and schedules ordinary work. `releaseFromHop`
+only removes custody: HOP owns the post-feedback +TIC wake. `terminal` reports failures even after a prior
 no-ACK transmit completion released the row: actual PHY loss may arrive later.
 The simulation's global application ledger decides whether a late failure
 still belongs to the current custody owner or merely reflects missing feedback
@@ -58,17 +59,19 @@ Gateway startup defaults to 10 seconds. Discovery, key request/update lifecycle,
 and NeighborCheck admission are owned by `Neighbors`. Receipt of a key record
 and ACK of the opposite key transfer remain separate conditions.
 
-At local scan completion, the coordinator sends one-hop `SNMP_DONE` records to
-requesters and serially requests scans from active direct peers using
-`SNMP_START`. A local request history prevents a completed scan from circulating
-indefinitely. These records are direct controls and are never forwarded as
-multihop application DATA. A 60-second report watchdog advances to the next peer
-if a DONE report is absent. Explicit `startDiscovery` after a completed scan
-starts a new local epoch and resets that coordinator history, enabling recovery
-experiments after an outage. An in-progress scan is not restarted.
+At local scan completion, the coordinator refreshes active links and requests
+fresh routes before sending one-hop `SNMP_DONE` records to requesters. DONE
+carries up to ten known reachable nodes and expands the scan table. Scans are
+requested serially using `SNMP_START`; retained local request history avoids
+cycles. Final and one-hop destinations are distinct: an intermediate receiver
+drops a control addressed onward instead of relaying it. A 60-second watchdog
+advances if a DONE report is absent. A START while idle opens a new local epoch;
+an in-progress scan is not restarted. SNMP is best effort, uses HOP sequence 0
+and DSCP 0, and does not refresh NWK neighbor state.
 
-Neighbor activation creates the direct candidate, requests a remote snapshot,
-and schedules an outbound snapshot. Explicit neighbor failure invalidates its
+Neighbor activation creates the direct candidate and schedules an outbound
+snapshot. A received discovery check reporting remote `Active=true` also
+schedules a REQUEST after the route-process event. Explicit neighbor failure invalidates its
 direct capability and cached transit routes even if the peer was still awaiting
 admission. It clears partial reassembly and requests belonging to that peer.
 Ordinary observations preserve inactive candidate caches pending admission.
@@ -76,20 +79,27 @@ Ordinary observations preserve inactive candidate caches pending admission.
 ## Routing records and reliability
 
 One coalesced same-time route process consumes `drainChanges` once. Snapshots
-exclude destinations changed in that process; grouped incremental records
-follow. A snapshot contains INFO, advertised UPDATEs, and a final FLUSH.
+exclude pending changes and the frozen destinations changed in that process;
+a later same-time event clears the frozen set. Independent per-peer snapshots
+use distinct sequences and forward section order; grouped incremental records
+follow in reverse group/section order. A snapshot contains INFO, advertised
+UPDATEs, and a final FLUSH.
 The exact codec preserves section boundaries, signed INFO values, 24-bit IDs,
 16-bit hop counts, and 32-bit costs. Reassembly applies no partial record stream.
 Inactive reporters can populate caches while their traffic starts an admission
 check; cached candidates do not become usable simply because bytes arrived.
 
-REQUEST attempts start at activation and repeat every eight seconds, with two
-retries by default. Each retry discards incomplete peer reassembly, matching the
-source request transaction reset. A received complete snapshot ends the request
-cycle. `SnapshotTimeouts` is an inbound missing-snapshot diagnostic; it does not
-declare a healthy neighbor failed. The source's separate outbound snapshot ACK
-watchdog is represented here by bounded reliable-control ownership, so the two
-watchdogs are not claimed to be timing-equivalent.
+REQUEST attempts start from the remote-active admission proof or discovery
+completion and repeat every eight seconds, with two retries by default.
+Retries preserve unrelated sequence-keyed reassembly. A received complete snapshot ends the request
+cycle. Separately, each peer's outbound snapshot tracks its sequence, total
+sections, deduplicated ACKs and watchdog generation. A repeated REQUEST is
+suppressed until every section is acknowledged or that watchdog expires.
+Expiry retires only the snapshot tracker: existing HOP/section owners remain,
+and a later REQUEST can start a new stream. Late old-sequence ACKs cannot
+complete the new stream. Neighbor invalidation clears peer-owned tracking.
+`SnapshotTimeouts` counts both inbound missing-snapshot and outbound watchdog
+expirations; neither diagnostic alone declares a healthy neighbor failed.
 
 Routing transactions retain their sections in a bounded backlog while the
 shared control queue is full. Each control owner holds at most ten recipients.
@@ -99,8 +109,10 @@ a new control ID for active residual peers in a later scheduler event, after
 HOP has released its owner. If any destination cannot obtain HOP control space,
 the entire group waits. Defaults bound attempts to three cycles and bound both
 the materialized-control queue and routing-transaction backlog to 64 entries.
-Backlog overflow is counted and traced explicitly. These portable bounds are
-not a claim of indefinitely retaining the source's failed route advertisements.
+Backlog pressure is counted and traced explicitly; rejected snapshots stay
+pending and rejected route changes restore their dirty flags for delayed retry.
+Materialization does not schedule a redundant same-time pump. These portable
+bounds are not a claim of indefinitely retaining failed route advertisements.
 
 KeyUpdate and NeighborCheck completion is delivered to `Neighbors` only after
 HOP terminal ACK/failure. KeyRequest and discovery are unacknowledged controls;
@@ -113,29 +125,36 @@ Received PHY path-loss observations feed the recovered `linkCost` calculation.
 Adaptive radio mode selects rate and transmit power from that calculation; fixed
 mode retains the application radio settings. Grouped transmissions choose the
 slowest target rate, with the highest power among targets at that rate.
+SNMP instead uses minimum local rate and maximum local power.
 
 The coordinator uses the local configured operating limits for link cost and
 separately retains peer INFO, matching the audited ns-3 policy. It does not
 invent an intersection of advertised operating ranges or replace PHY acceptance.
 
-Compact control accounting charges the existing 17-byte MAC model, an eight-byte
-modeled HOP envelope, five bytes per additional grouped target, and the body
-below. HOP sequence observations stay 16 bits; the modeled eight-byte header is
-kept separate from a claim of exact ns-3 compatibility-header serialization.
+Control accounting follows the frozen source's complete modeled packet trees,
+not its compatibility-header serialization. Discovery and admission/routing
+controls use standalone Hello/Routes models. Only SNMP carries the modeled
+17-byte MAC and eight-byte HOP wrapper. HOP sequence observations stay 16 bits;
+compatibility destination/sequence lists add no modeled bytes for grouped sends.
 
-| Control | Modeled body bytes, including security size |
+| Control | Complete modeled on-air bytes, including security size |
 | --- | ---: |
 | DISCOVER | 12-byte Hello + 7 |
-| KEY_REQUEST | 7 |
-| KEY_UPDATE | 51 |
+| KEY_REQUEST | 11-byte Routes + 7 |
+| KEY_UPDATE | 11-byte Routes + 51 |
 | NEIGHBOR_CHECK | 11-byte Routes + 5; NoPath adds a compact three-byte target |
-| ROUTING | Exact six-byte-prefixed ARL section + 5 |
-| SNMP_START / SNMP_DONE | 6 + 3 per advertised node |
+| ROUTING | 11-byte Routes + exact six-byte-prefixed ARL section + 5 |
+| SNMP_START / SNMP_DONE | 17-byte MAC + 8-byte HOP + fixed 6-byte SNMP |
 
 The byte counts model overhead only. Key lifecycle admission is behavioral;
 there is no authentication, encryption, or over-the-air key material here.
-The source control compatibility envelopes have different metadata and sizes,
-so compact control airtime is a documented parity boundary.
+Routed configurations require the atomic Pairwise16 size profile documented in
+[the profile contract](tranche-3-profiles.md); application labels enforce DSCP
+and provenance only, not historical generator equivalence.
+Compatibility headers and SNMP node lists are retained as logical metadata,
+not charged as extra wire bytes. The helper matches the source's modeled
+counts; actual airtime, packet-error and end-to-end comparisons remain subject
+to the pending MATLAB runtime gate.
 
 ## Interfaces and evidence
 

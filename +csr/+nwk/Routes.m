@@ -151,6 +151,7 @@ classdef Routes < handle
             effects = struct('RequestSnapshot',false,'AppliedRecords',0, ...
                 'IgnoredRecords',0,'InfoChanged',false);
             if ~iscell(records), records = num2cell(records); end
+            sawInfo = false; sawFlush = false; sawReporterSelfRecord = false;
             if ~isKey(obj.Peers,peer)
                 obj.setNeighbor(peer,false,linkCost,now);
             end
@@ -163,6 +164,7 @@ classdef Routes < handle
                     case 'REQUEST'
                         effects.RequestSnapshot = true; accepted = true;
                     case 'INFO'
+                        sawInfo = true;
                         info = csr.nwk.Routes.validateInfo(record.Info);
                         entry = obj.Peers(peer);
                         if obj.newer(entry.InfoValid,entry.InfoSequence,sequence)
@@ -171,22 +173,32 @@ classdef Routes < handle
                         end
                     case 'UPDATE'
                         accepted = obj.update(peer,sequence,record,linkCost,now);
+                        if all(isfield(record,{'NodeId','HopCount','Cost','Path'})) && ...
+                                record.NodeId == peer && record.HopCount == 0 && ...
+                                record.Cost == 0 && isempty(record.Path)
+                            sawReporterSelfRecord = true;
+                        end
                     case 'DELETE'
                         csr.nwk.Routes.number(record.NodeId,0,16777215);
                         if record.NodeId < 16777215 && record.NodeId ~= obj.NodeId
                             if record.NodeId == peer
                                 accepted = obj.selfUpdate(peer,sequence,0,linkCost,now);
+                                sawReporterSelfRecord = true;
                             else
                                 accepted = obj.delete(peer,sequence,double(record.NodeId),now);
                             end
                         end
                     case 'FLUSH'
+                        sawFlush = true;
                         accepted = obj.flush(peer,sequence,now);
                     otherwise
                         error('csr:nwk:InvalidRecord','Unknown route operation.');
                 end
                 effects.AppliedRecords = effects.AppliedRecords + double(accepted);
                 effects.IgnoredRecords = effects.IgnoredRecords + double(~accepted);
+            end
+            if sawInfo && sawFlush && ~sawReporterSelfRecord
+                obj.selfUpdate(peer,sequence,0,linkCost,now);
             end
         end
 
@@ -202,6 +214,22 @@ classdef Routes < handle
                 route.UsedReverse = false; return
             end
             if isKey(obj.Reverse,double(destination))
+                reverse = obj.Reverse(double(destination));
+                if obj.usable(reverse.NextHop)
+                    route = reverse; route.UsedReverse = true; return
+                end
+            end
+            if ~isempty(route), route.UsedReverse = false; end
+        end
+
+        function route = discoveryRelay(obj,destination)
+            % Legacy SNMP prefers a capable forward route, otherwise a
+            % usable reverse route, then a direct/non-capable forward route.
+            route = obj.select(destination);
+            if ~isempty(route) && route.Capability ~= 0
+                route.UsedReverse = false; return
+            end
+            if obj.Capability ~= 0 && isKey(obj.Reverse,double(destination))
                 reverse = obj.Reverse(double(destination));
                 if obj.usable(reverse.NextHop)
                     route = reverse; route.UsedReverse = true; return
@@ -239,10 +267,11 @@ classdef Routes < handle
             remove(obj.Reverse,destination); removed = true;
         end
 
-        function [records,destinations] = drainChanges(obj)
+        function [records,destinations,infoChanged] = drainChanges(obj)
             destinations = obj.DestinationOrder(ismember(obj.DestinationOrder,obj.Changed));
             if ismember(obj.NodeId,obj.Changed), destinations(end+1) = obj.NodeId; end
             records = {};
+            infoChanged = obj.InfoChanged;
             if obj.InfoChanged
                 records{end+1} = struct('Operation','INFO','Info',obj.Config.LocalInfo);
             end
@@ -250,6 +279,23 @@ classdef Routes < handle
                 records{end+1} = obj.changeRecord(destination); %#ok<AGROW>
             end
             obj.Changed = []; obj.InfoChanged = false;
+        end
+
+        function restoreChanges(obj,destinations,infoChanged)
+            % A bounded outbound backlog may reject semantic admission after
+            % drainChanges. Restore dirty flags so convergence is delayed,
+            % never silently lost. No callback can interleave this operation.
+            for destination=reshape(double(destinations),1,[])
+                if ~ismember(destination,obj.Changed)
+                    obj.Changed(end+1)=destination;
+                end
+            end
+            obj.InfoChanged=obj.InfoChanged || logical(infoChanged);
+        end
+
+        function destinations = pendingChanges(obj)
+            % Read-only flags used by independently scheduled snapshot replies.
+            destinations = obj.Changed;
         end
 
         function records = snapshot(obj,excludeDestinations)
@@ -299,7 +345,9 @@ classdef Routes < handle
         function destinations = reachableDestinations(obj)
             destinations = [];
             for destination = obj.DestinationOrder
-                if ~isempty(obj.best(destination)), destinations(end+1) = destination; end %#ok<AGROW>
+                if ~isempty(obj.discoveryRelay(destination))
+                    destinations(end+1) = destination; %#ok<AGROW>
+                end
             end
         end
     end

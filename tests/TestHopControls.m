@@ -1,5 +1,5 @@
 classdef TestHopControls < matlab.unittest.TestCase
-    % Reliable controls share sequence/ACK state and the bounded resend queue.
+    % Reliable controls share TX allocation and queueing, not DATA RX windows.
     methods (Test)
         function groupsUseIndependentSequencesSharedWithData(test)
             h=controlHarness(); [~,data]=h.Hop.send(appPacket(1,1,2),2);
@@ -110,18 +110,25 @@ classdef TestHopControls < matlab.unittest.TestCase
             results=h.Results(); test.assertNumElements(results,2);
             test.verifyTrue(results{2}.Success); test.verifyTrue(results{2}.Complete);
             test.verifyEmpty(results{2}.RemainingPeers);
+            test.verifyEqual(results{2}.DuringCallback.ControlPending,1);
+            test.verifyEqual(results{2}.DuringCallback.ControlPendingTargets,0);
+            test.verifyEqual(results{2}.CanceledBeforeCallback,0);
             test.verifyEqual(h.Hop.stats().ResendQueueDepth,0);
             test.verifyEmpty(h.Releases()); test.verifyEmpty(h.Terminals());
             test.verifyEqual(h.Hop.state(2).AckCount,0);
         end
-        function cumulativeWindowCompletesDataAndControlTogether(test)
+        function cumulativeWindowCompletesDataOnlyAndExactAckCompletesControl(test)
             h=controlHarness(); h.Hop.send(appPacket(1,1,2),2);
             [~,frame]=h.Hop.sendControl(controlPacket(2),2);
-            ack=ackFrame(2,1,frame.Sequence); ack.AckBitmap=uint64(3);
+            ack=csr.hop.Frames.acknowledgment(2,1,uint16(1), ...
+                uint64(1),uint64(0),struct());
             h.Hop.receive(ack);
             test.verifyEqual(h.Hop.PendingDataCount,0);
-            test.verifyEqual(h.Hop.stats().ResendQueueDepth,0);
+            test.verifyEqual(h.Hop.stats().ResendQueueDepth,1);
             test.verifyEqual(h.Hop.stats().Acknowledged,1);
+            test.verifyEqual(h.Hop.stats().ControlAcknowledged,0);
+            h.Hop.receive(ackFrame(2,1,frame.Sequence));
+            test.verifyEqual(h.Hop.stats().ResendQueueDepth,0);
             test.verifyEqual(h.Hop.stats().ControlAcknowledged,1);
             test.verifyNumElements(h.Terminals(),1); test.verifyNumElements(h.Results(),1);
             test.verifyEqual(h.Hop.state(2).AckCount,1);
@@ -134,8 +141,41 @@ classdef TestHopControls < matlab.unittest.TestCase
             test.verifyEqual(deliveries{1}.Peer,1); test.verifyEqual(deliveries{1}.Control,frame.Control);
             frames=h.Frames(); test.assertNumElements(frames,2);
             test.verifyEqual(frames{1}.Sequence,uint16(27));
-            test.verifyEqual(frames{2}.AckBitmap,uint64(1));
+            test.verifyFalse(frames{1}.HasAckWindow);
+            test.verifyEqual(frames{2}.AckBitmap,uint64(0));
             test.verifyEqual(h.Hop.stats().ControlDuplicates,1);
+        end
+        function routingAndNeighborDeliveryPrecedeExactAck(test)
+            for kind={'ROUTING','NEIGHBOR_CHECK'}
+                h=controlHarness(struct(),2); control=controlPacket(1); control.Type=kind{1};
+                frame=csr.hop.Frames.control(control,1,2,uint16(17),struct());
+                h.Hop.receive(frame); h.Hop.receive(frame);
+                test.verifyEqual(h.CallbackOrder(),{'validate','deliver','mac','validate','mac'});
+                test.verifyNumElements(h.Controls(),1);
+                frames=h.Frames(); test.verifyNumElements(frames,2);
+                test.verifyFalse(frames{1}.HasAckWindow);
+                test.verifyEqual(frames{1}.Sequence,uint16(17));
+            end
+        end
+        function keyUpdateExactAckPrecedesDelivery(test)
+            h=controlHarness(struct(),2); control=controlPacket(1); control.Type='KEY_UPDATE';
+            frame=csr.hop.Frames.control(control,1,2,uint16(17),struct());
+            h.Hop.receive(frame); h.Hop.receive(frame);
+            test.verifyEqual(h.CallbackOrder(),{'validate','mac','deliver','validate','mac'});
+            test.verifyNumElements(h.Controls(),1);
+        end
+        function snmpBypassesTransmitAllocationAndReceiveReplay(test)
+            sender=controlHarness(); control=controlPacket(1); control.Type='SNMP_START';
+            [~,frame]=sender.Hop.sendControl(control,2,struct('AckRequired',false));
+            test.verifyEqual(frame.Sequence,uint16(0)); test.verifyEqual(frame.Dscp,0);
+            test.verifyEqual(sender.Hop.stats().ResendQueueDepth,0);
+            [~,data]=sender.Hop.send(appPacket(2,1,2),2);
+            test.verifyEqual(data.Sequence,uint16(1));
+            receiver=controlHarness(struct(),2); receiver.Hop.receive(frame); receiver.Hop.receive(frame);
+            test.verifyNumElements(receiver.Controls(),2); test.verifyEmpty(receiver.Frames());
+            state=receiver.Hop.state(1);
+            test.verifyEqual(state.ControlReceiveWindow.Highest,-1);
+            test.verifyEqual(state.DataReceiveWindow.Highest,-1);
         end
         function overheardAndFailedControlsDoNotTouchReceiverState(test)
             h=controlHarness(struct(),4);
@@ -146,16 +186,37 @@ classdef TestHopControls < matlab.unittest.TestCase
             test.verifyEmpty(h.Controls()); test.verifyEmpty(h.Frames());
             test.verifyEqual(h.Hop.state(1).ReceiveWindow.Highest,-1);
         end
-        function dataAndControlShareWrapAwareReceiveWindow(test)
+        function dataAndControlUseIndependentReceiveWindows(test)
             h=controlHarness(struct(),2);
-            first=csr.hop.Frames.control(controlPacket(1),1,2,uint16(65535),struct());
-            h.Hop.receive(first);
-            h.Hop.receive(csr.hop.Frames.data(appPacket(2,1,2),1,2,uint16(0),struct()));
-            h.Hop.receive(csr.hop.Frames.control(controlPacket(3),1,2,uint16(65534),struct()));
-            h.Hop.receive(first);
-            test.verifyNumElements(h.Controls(),2); test.verifyNumElements(h.Deliveries(),1);
-            state=h.Hop.state(1); test.verifyEqual(state.ReceiveWindow.Highest,0);
-            test.verifyEqual(state.ReceiveWindow.AckBitmap,uint64(7));
+            control=csr.hop.Frames.control(controlPacket(1),1,2,uint16(7),struct());
+            data=csr.hop.Frames.data(appPacket(2,1,2),1,2,uint16(7),struct());
+            h.Hop.receive(control); h.Hop.receive(data);
+            h.Hop.receive(control); h.Hop.receive(data);
+            test.verifyNumElements(h.Controls(),1); test.verifyNumElements(h.Deliveries(),1);
+            state=h.Hop.state(1);
+            test.verifyEqual(state.DataReceiveWindow.Highest,7);
+            test.verifyEqual(state.ControlReceiveWindow.Highest,7);
+            test.verifyEqual(state.DataReceiveWindow.AckBitmap,uint64(1));
+            test.verifyEqual(state.ControlReceiveWindow.AckBitmap,uint64(1));
+            test.verifyEqual(state.ReceiveWindow,state.DataReceiveWindow);
+            frames=h.Frames(); test.verifyFalse(frames{1}.HasAckWindow);
+            test.verifyTrue(frames{2}.HasAckWindow);
+        end
+        function dataAckBitmapLeavesControlSequenceHole(test)
+            h=controlHarness(struct(),2);
+            h.Hop.receive(csr.hop.Frames.data( ...
+                appPacket(1,1,2),1,2,uint16(1),struct()));
+            h.Hop.receive(csr.hop.Frames.control( ...
+                controlPacket(2),1,2,uint16(2),struct()));
+            h.Hop.receive(csr.hop.Frames.data( ...
+                appPacket(3,1,2),1,2,uint16(3),struct()));
+            frames=h.Frames(); test.assertNumElements(frames,3);
+            test.verifyTrue(frames{3}.HasAckWindow);
+            test.verifyEqual(frames{3}.Sequence,uint16(3));
+            test.verifyEqual(frames{3}.AckBitmap,uint64(5));
+            state=h.Hop.state(1);
+            test.verifyEqual(state.DataReceiveWindow.AckBitmap,uint64(5));
+            test.verifyEqual(state.ControlReceiveWindow.Highest,2);
         end
         function controlsNeverConsultDataRouteOrNsdpGates(test)
             h=controlHarness(struct(),2);
@@ -163,14 +224,19 @@ classdef TestHopControls < matlab.unittest.TestCase
             h.Hop.receive(frame);
             test.verifyNumElements(h.Controls(),1);
             frames=h.Frames(); test.verifyEqual(frames{1}.Kind,'ACK');
+            test.verifyFalse(frames{1}.HasAckWindow);
+            test.verifyEqual(frames{1}.Sequence,uint16(1));
+            test.verifyEqual(frames{1}.AckBitmap,uint64(0));
             test.verifyEqual(h.GateCalls(),[0 0]);
             test.verifyEqual(h.Hop.stats().DackHoldCount,0);
         end
-        function dackCannotMoveControlIntoDataCustody(test)
+        function cumulativeDackCannotMoveControlIntoDataCustody(test)
             h=controlHarness(); [~,frame]=h.Hop.sendControl(controlPacket(1),[2 3]);
-            ack=ackFrame(2,1,frame.Sequence); ack.AckBitmap=uint64(0);
-            ack.DackBitmap=uint64(1); ack.Kind='DACK'; h.Hop.receive(ack);
-            test.verifyEqual(h.Hop.stats().ControlUnexpectedDack,1);
+            ack=csr.hop.Frames.acknowledgment(2,1,frame.Sequence, ...
+                uint64(0),uint64(1),struct('Kind','DACK'));
+            h.Hop.receive(ack);
+            test.verifyEqual(h.Hop.stats().ControlUnexpectedDack,0);
+            test.verifyEqual(h.Hop.stats().UnknownFeedback,1);
             test.verifyEqual(h.Hop.stats().ControlPendingTargets,2);
             test.verifyEqual(h.Hop.stats().DackHoldCount,0);
             test.verifyEqual(h.Hop.PendingDataCount,0);
@@ -186,7 +252,11 @@ classdef TestHopControls < matlab.unittest.TestCase
             test.verifyEqual([results{2}.Peer results{3}.Peer],[3 4]);
             test.verifyFalse(results{2}.Success); test.verifyFalse(results{2}.Complete);
             test.verifyFalse(results{3}.Success); test.verifyTrue(results{3}.Complete);
-            test.verifyEqual(results{3}.RemainingPeers,[3 4]);
+            test.verifyEqual(results{3}.RemainingPeers,[2 3 4]);
+            test.verifyEqual(results{2}.DuringCallback.ControlPending,1);
+            test.verifyEqual(results{3}.DuringCallback.ControlPending,1);
+            test.verifyEqual(results{3}.DuringCallback.ControlPendingTargets,2);
+            test.verifyEqual(results{3}.CanceledBeforeCallback,0);
             test.verifyEqual(h.Hop.stats().ControlRetransmissions,2);
             test.verifyEqual(h.Hop.stats().ControlFailed,1);
             test.verifyEqual(h.Hop.stats().ControlTargetFailures,2);
@@ -201,6 +271,8 @@ classdef TestHopControls < matlab.unittest.TestCase
             test.verifyEqual(h.Hop.stats().ControlFailed,1);
             results=h.Results(); test.assertNumElements(results,2);
             test.verifyTrue(results{2}.Complete); test.verifyEqual(results{2}.RemainingPeers,[2 3]);
+            test.verifyEqual(results{2}.DuringCallback.ControlPending,1);
+            test.verifyEqual(results{2}.CanceledBeforeCallback,0);
             test.verifyNumElements(h.Cancelled(),1);
         end
         function bestEffortBroadcastBypassesQueueAndDoesNotPolluteAckWindow(test)
@@ -233,6 +305,19 @@ classdef TestHopControls < matlab.unittest.TestCase
             [~,frame]=h.Hop.sendControl(controlPacket(2),2);
             test.verifyEqual(frame.Sequence,uint16(1));
         end
+        function rejectedControlDoesNotAckOrConsumeReceiveSequence(test)
+            h=controlHarness(struct(),2); h.SetControlValidation(false);
+            frame=csr.hop.Frames.control(controlPacket(1),1,2,uint16(17),struct());
+            h.Hop.receive(frame);
+            test.verifyEmpty(h.Controls()); test.verifyEmpty(h.Frames());
+            test.verifyEqual(h.CallbackOrder(),{'validate'});
+            test.verifyEqual(h.Hop.state(1).ControlReceiveWindow.Highest,-1);
+            h.SetControlValidation(true); h.Hop.receive(frame);
+            test.verifyNumElements(h.Controls(),1); frames=h.Frames();
+            test.verifyNumElements(frames,1); test.verifyFalse(frames{1}.HasAckWindow);
+            test.verifyEqual(frames{1}.Sequence,uint16(17));
+            test.verifyEqual(h.Hop.state(1).ControlReceiveWindow.Highest,17);
+        end
     end
 end
 
@@ -240,9 +325,10 @@ function h=controlHarness(config,node)
 if nargin<1, config=struct(); end
 if nargin<2, node=1; end
 frames={}; controls={}; deliveries={}; results={}; cancelled={}; releases={}; terminals={};
-events={}; macAccepted=true; nsdpCalls=0; routeCalls=0;
+events={}; callbackOrder={}; macAccepted=true; controlValid=true; nsdpCalls=0; routeCalls=0;
 scheduler=csr.sim.EventScheduler();
 callbacks=struct('EnqueueMac',@enqueue,'DeliverControl',@deliverControl, ...
+    'ValidateControl',@validateControl, ...
     'ControlResult',@controlResult,'CancelMac',@cancel,'NsdpRelease',@release, ...
     'Terminal',@terminal,'Deliver',@deliver,'NsdpCount',@nsdp,'RouteAvailable',@route,'Event',@event);
 hop=csr.hop.Layer(node,scheduler,csr.sim.RandomStreams(73),config,callbacks);
@@ -250,16 +336,20 @@ hop=csr.hop.Layer(node,scheduler,csr.sim.RandomStreams(73),config,callbacks);
 h=struct('Hop',hop,'Clock',scheduler,'Frames',@getFrames,'Controls',@getControls, ...
     'Deliveries',@getDeliveries,'Results',@getResults,'Cancelled',@getCancelled, ...
     'Releases',@getReleases,'Terminals',@getTerminals,'Events',@getEvents, ...
-    'GateCalls',@getGateCalls,'SetMac',@setMac);
+    'GateCalls',@getGateCalls,'SetMac',@setMac,'CallbackOrder',@getCallbackOrder);
+    h.SetControlValidation=@setControlValidation;
     function accepted=enqueue(frame)
+        callbackOrder{end+1}='mac';
         accepted=macAccepted; if accepted, frames{end+1}=frame; end
     end
     function deliverControl(control,peer)
+        callbackOrder{end+1}='deliver';
         controls{end+1}=struct('Control',control,'Peer',peer);
     end
     function controlResult(control,peer,success,complete,remainingPeers)
         results{end+1}=struct('Control',control,'Peer',peer,'Success',success, ...
-            'Complete',complete,'RemainingPeers',remainingPeers);
+            'Complete',complete,'RemainingPeers',remainingPeers, ...
+            'DuringCallback',hop.stats(),'CanceledBeforeCallback',numel(cancelled));
     end
     function cancel(peer,sequence), cancelled{end+1}=[double(peer) double(sequence)]; end
     function release(app,reason), releases{end+1}=struct('App',app,'Reason',reason); end
@@ -271,6 +361,9 @@ h=struct('Hop',hop,'Clock',scheduler,'Frames',@getFrames,'Controls',@getControls
     end
     function value=nsdp(~), nsdpCalls=nsdpCalls+1; value=99; end
     function value=route(~), routeCalls=routeCalls+1; value=false; end
+    function value=validateControl(~,~)
+        callbackOrder{end+1}='validate'; value=controlValid;
+    end
     function event(name,~,~), events{end+1}=name; end
     function value=getFrames(), value=frames; end
     function value=getControls(), value=controls; end
@@ -280,8 +373,10 @@ h=struct('Hop',hop,'Clock',scheduler,'Frames',@getFrames,'Controls',@getControls
     function value=getReleases(), value=releases; end
     function value=getTerminals(), value=terminals; end
     function value=getEvents(), value=events; end
+    function value=getCallbackOrder(), value=callbackOrder; end
     function value=getGateCalls(), value=[nsdpCalls routeCalls]; end
     function setMac(value), macAccepted=value; end
+    function setControlValidation(value), controlValid=logical(value); end
 end
 function control=controlPacket(id)
 control=struct('Id',uint64(id),'Type','ROUTING','Payload',struct('Bytes',uint8([1 2 3])), ...
@@ -292,5 +387,6 @@ flow=struct('SourceId',source,'DestinationId',destination,'ApplicationPayloadByt
 app=csr.packet(id,flow,0,struct('RateKeyKbps',8,'Preamble','long','EnvelopeProfile','bare'));
 end
 function frame=ackFrame(source,destination,sequence)
-frame=csr.hop.Frames.acknowledgment(source,destination,sequence,uint64(1),uint64(0),struct());
+frame=csr.hop.Frames.acknowledgment(source,destination,sequence, ...
+    uint64(0),uint64(0),struct('HasAckWindow',false));
 end

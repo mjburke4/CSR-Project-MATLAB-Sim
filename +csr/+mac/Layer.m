@@ -178,6 +178,25 @@ classdef Layer < handle
             if obj.PendingCount == 0, obj.PreparationActive = false; end
         end
 
+        function removed = cancelControl(obj,peerId,controlType)
+            % KeyRequest immediateTag replacement applies only to unsent MAC
+            % entries; reliable control owners remain HOP-managed.
+            removed=0; keep=true(1,obj.DataQueueCount);
+            for index=1:obj.DataQueueCount
+                frame=obj.DataQueue{index}.Frame;
+                if ~strcmp(frame.Kind,'CONTROL') || ~strcmp(frame.Control.Type,controlType)
+                    continue
+                end
+                targets=frame.DestinationId;
+                if isfield(frame,'DestinationIds'), targets=frame.DestinationIds; end
+                if numel(targets)==1 && double(targets)==double(peerId)
+                    keep(index)=false; removed=removed+1;
+                end
+            end
+            obj.DataQueue=obj.DataQueue(keep); obj.Counters.Canceled=obj.Counters.Canceled+removed;
+            if obj.PendingCount==0, obj.PreparationActive=false; end
+        end
+
         function receive(obj, frame, decision)
             if ~decision.Success, return; end
             peer = double(frame.SourceId);

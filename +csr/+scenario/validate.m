@@ -8,6 +8,19 @@ end
 if ~strcmp(config.Schema, 'csr-matlab-scenario-v1')
     error('csr:scenario:Schema', 'Unsupported scenario schema.');
 end
+if ~isfield(config,'ApplicationProfile') || isempty(config.ApplicationProfile)
+    config.ApplicationProfile = 'current-send-only';
+end
+if isstring(config.ApplicationProfile) && isscalar(config.ApplicationProfile)
+    config.ApplicationProfile = char(config.ApplicationProfile);
+end
+applicationProfiles = {'current-send-only','legacy-send-only-no-dscp', ...
+    'legacy-send-to-from-no-dscp'};
+if ~ischar(config.ApplicationProfile) || ~isrow(config.ApplicationProfile) || ...
+        ~any(strcmp(config.ApplicationProfile,applicationProfiles))
+    error('csr:scenario:ApplicationProfile', ...
+        'ApplicationProfile must be current-send-only or a named legacy no-DSCP profile.');
+end
 if ~any(strcmp(config.Backend, {'portable','wireless-clock'}))
     error('csr:scenario:Backend', 'Backend must be portable or wireless-clock.');
 end
@@ -195,5 +208,10 @@ if any(strcmp(config.Stack,{'mac-hop','network'}))
             end
         end
     end
+end
+if any(strcmp(config.ApplicationProfile,applicationProfiles(2:3))) && ...
+        isfield(config.Traffic,'Dscp') && any([config.Traffic.Dscp] ~= 0)
+    error('csr:scenario:ApplicationProfile', ...
+        'Legacy no-DSCP application profiles require every traffic DSCP to be zero.');
 end
 end

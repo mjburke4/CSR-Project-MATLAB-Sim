@@ -13,7 +13,8 @@ classdef Layer < handle
         Callbacks
         Flows
         LastSequences
-        ReceiveWindows
+        DataReceiveWindows
+        ControlReceiveWindows
         Resends
         ResendOrder = {}
         ControlOwners
@@ -30,7 +31,8 @@ classdef Layer < handle
             obj.Callbacks=callbacks; obj.Config=hopConfig(config);
             obj.Flows=containers.Map('KeyType','double','ValueType','any');
             obj.LastSequences=containers.Map('KeyType','double','ValueType','double');
-            obj.ReceiveWindows=containers.Map('KeyType','double','ValueType','any');
+            obj.DataReceiveWindows=containers.Map('KeyType','double','ValueType','any');
+            obj.ControlReceiveWindows=containers.Map('KeyType','double','ValueType','any');
             obj.Resends=containers.Map('KeyType','char','ValueType','any');
             obj.ControlOwners=containers.Map('KeyType','char','ValueType','char');
             obj.DackHolds=containers.Map('KeyType','char','ValueType','any');
@@ -54,6 +56,12 @@ classdef Layer < handle
             validateControlPeers(peerIds,false);
             % A group occupies one shared resend entry and no DATA window.
             allowed=obj.Resends.Count<obj.Config.ResendQueueLimit;
+        end
+        function removed = cancelQueuedControl(obj,peer,controlType)
+            removed=0;
+            if isfield(obj.Callbacks,'CancelMacControl')
+                removed=double(obj.Callbacks.CancelMacControl(double(peer),char(controlType)));
+            end
         end
         function s = admission(obj,peer)
             fc=obj.flow(double(peer));
@@ -108,6 +116,11 @@ classdef Layer < handle
                 error('csr:hop:InvalidField','AckRequired must be scalar logical or 0/1.');
             end
             peerIds=validateControlPeers(peerIds,~logical(ackRequired));
+            isSnmp=any(strcmp(control.Type,{'SNMP_START','SNMP_DONE'}));
+            if isSnmp && (logical(ackRequired) || numel(peerIds)~=1 || peerIds==16777215)
+                error('csr:hop:InvalidControl', ...
+                    'SNMP is a single-destination, best-effort legacy control.');
+            end
             frame=[];
             if ackRequired && ~obj.canSendControl(peerIds)
                 obj.increment('ControlAdmissionBlocked'); obj.increment('ResendQueueOverflow');
@@ -115,14 +128,18 @@ classdef Layer < handle
             end
             previous=zeros(size(peerIds)); sequences=zeros(size(peerIds),'uint16');
             existed=false(size(peerIds));
-            for n=1:numel(peerIds)
-                peer=peerIds(n); existed(n)=isKey(obj.LastSequences,peer);
-                if existed(n), previous(n)=obj.LastSequences(peer); end
-                sequences(n)=uint16(mod(previous(n)+1,65536));
+            if ~isSnmp
+                for n=1:numel(peerIds)
+                    peer=peerIds(n); existed(n)=isKey(obj.LastSequences,peer);
+                    if existed(n), previous(n)=obj.LastSequences(peer); end
+                    sequences(n)=uint16(mod(previous(n)+1,65536));
+                end
             end
             if ~isfield(options,'GeneratedSeconds'), options.GeneratedSeconds=obj.Scheduler.Now; end
             frame=csr.hop.Frames.control(control,obj.NodeId,peerIds,sequences,options);
-            for n=1:numel(peerIds), obj.LastSequences(peerIds(n))=double(sequences(n)); end
+            if ~isSnmp
+                for n=1:numel(peerIds), obj.LastSequences(peerIds(n))=double(sequences(n)); end
+            end
             if ackRequired
                 key=entryKey(peerIds(1),sequences(1));
                 e=struct('Frame',frame,'Peer',peerIds(1),'Sequence',sequences(1), ...
@@ -139,6 +156,7 @@ classdef Layer < handle
                 if ackRequired, obj.removeResend(key); end
                 % Failed admission transfers no control ownership or sequence.
                 for n=1:numel(peerIds)
+                    if isSnmp, continue; end
                     if existed(n), obj.LastSequences(peerIds(n))=previous(n);
                     else, remove(obj.LastSequences,peerIds(n)); end
                 end
@@ -211,10 +229,10 @@ classdef Layer < handle
         function s = state(obj,peer)
             s=obj.admission(peer); fc=obj.flow(double(peer));
             s.AckCount=fc.AckCount;
-            s.ReceiveWindow=emptyWindow();
-            if isKey(obj.ReceiveWindows,double(peer))
-                s.ReceiveWindow=obj.ReceiveWindows(double(peer));
-            end
+            s.DataReceiveWindow=obj.receiveWindow(double(peer),true);
+            s.ControlReceiveWindow=obj.receiveWindow(double(peer),false);
+            % Retain the Tranche 2 accessor as a DATA-window alias.
+            s.ReceiveWindow=s.DataReceiveWindow;
             s.ResendQueueDepth=double(obj.Resends.Count);
             s.DackHoldCount=double(obj.DackHolds.Count);
         end
@@ -244,26 +262,52 @@ classdef Layer < handle
                 uint16(window.Highest),window.AckBitmap,window.DackBitmap,options);
             if isDack, frame.Kind='DACK'; end
         end
+        function frame = makeControlAck(obj,received)
+            % Reliable source controls use an exact ACK. They never expose
+            % the DATA or control replay bitmap on the wire.
+            options=struct('RateKeyKbps',received.RateKeyKbps, ...
+                'TxPowerDbm',[],'Preamble','short','HasAckWindow',false);
+            if isfield(received,'EnvelopeProfile')
+                options.EnvelopeProfile=received.EnvelopeProfile;
+            end
+            frame=csr.hop.Frames.acknowledgment(obj.NodeId,received.SourceId, ...
+                received.Sequence,uint64(0),uint64(0),options);
+        end
         function receiveControl(obj,frame)
             obj.increment('ControlReceived'); src=double(frame.SourceId);
             % Discovery broadcasts use an independent sender sequence stream;
             % they cannot advance the per-peer reliable ACK receive window.
             broadcast=double(frame.DestinationId)==16777215;
             first=true;
-            if ~broadcast
-                [first,window]=obj.checkSequence(src,frame.Sequence);
-                if frame.AckRequired, obj.enqueueFeedback(obj.makeAck(frame,window,false)); end
+            isSnmp=any(strcmp(frame.Control.Type,{'SNMP_START','SNMP_DONE'}));
+            if ~obj.validateControl(frame.Control,src)
+                obj.emit('hop_control_rejected',frame, ...
+                    struct('FirstReception',false,'Reason','invalid_control'));
+                return
+            end
+            if ~broadcast && ~isSnmp
+                [first,~]=obj.checkSequence(src,frame.Sequence,false);
+            end
+            feedbackRequired=~broadcast && ~isSnmp && frame.AckRequired;
+            % Source KeyUpdate ACKs precede admission/key callbacks, whereas
+            % RoutingControl and NeighborCheck deliver to NWK before ACKing.
+            ackAfterDelivery=any(strcmp(frame.Control.Type,{'ROUTING','NEIGHBOR_CHECK'}));
+            if feedbackRequired && ~ackAfterDelivery
+                obj.enqueueFeedback(obj.makeControlAck(frame));
             end
             if first
                 if isfield(obj.Callbacks,'DeliverControl'), obj.Callbacks.DeliverControl(frame.Control,src); end
                 obj.increment('ControlDelivered');
             else, obj.increment('ControlDuplicates'); end
+            if feedbackRequired && ackAfterDelivery
+                obj.enqueueFeedback(obj.makeControlAck(frame));
+            end
             obj.emit('hop_control_receive',frame,struct('FirstReception',first));
         end
         function receiveData(obj,frame)
             obj.increment('DataReceived');
             src=double(frame.SourceId);
-            [first,window]=obj.checkSequence(src,frame.Sequence);
+            [first,window]=obj.checkSequence(src,frame.Sequence,true);
             if ~first, obj.increment('Duplicates'); end
             local=double(frame.App.DestinationId)==obj.NodeId;
             before=obj.nsdpCount(frame.App);
@@ -317,12 +361,16 @@ classdef Layer < handle
                 for bit=1:64
                     if bitget(ack,bit) || bitget(dack,bit)
                         sequence=uint16(mod(double(frame.Sequence)-(bit-1),65536));
-                        pair=obj.complete(double(frame.SourceId),sequence,logical(bitget(dack,bit)));
+                        % Cumulative feedback is DATA-only. Reliable controls
+                        % use exact ACKs even though transmit sequences share
+                        % the same per-peer allocator.
+                        pair=obj.complete(double(frame.SourceId),sequence, ...
+                            logical(bitget(dack,bit)),false);
                         if ~isempty(pair), cancellations{end+1}=pair; end %#ok<AGROW>
                     end
                 end
             elseif strcmp(frame.Kind,'ACK')
-                pair=obj.complete(double(frame.SourceId),frame.Sequence,false);
+                pair=obj.complete(double(frame.SourceId),frame.Sequence,false,true);
                 if ~isempty(pair), cancellations{end+1}=pair; end
             end
             % Finish every custody change before cancellation. A partial
@@ -334,10 +382,10 @@ classdef Layer < handle
             % feedback requests one coalesced NWK wake at the next TIC.
             obj.scheduleWake();
         end
-        function cancellation = complete(obj,peer,sequence,isDack)
-            cancellation=[double(peer) double(sequence)];
+        function cancellation = complete(obj,peer,sequence,isDack,allowControl)
+            cancellation=[];
             key=entryKey(peer,sequence);
-            if isKey(obj.ControlOwners,key)
+            if allowControl && isKey(obj.ControlOwners,key)
                 groupKey=obj.ControlOwners(key); e=obj.Resends(groupKey);
                 cancellation=[];
                 if isDack
@@ -348,18 +396,31 @@ classdef Layer < handle
                 if e.Acked(index), return; end
                 e.Acked(index)=true; finished=all(e.Acked);
                 remaining=e.TargetPeers(~e.Acked);
-                if finished
-                    obj.removeResend(groupKey); obj.increment('ControlCompleted');
-                    cancellation=[e.Peer double(e.Sequence)];
-                else, obj.Resends(groupKey)=e; end
+                % Source reports completion while the HOP owner is still
+                % present. Store ACK progress first, then erase after callback.
+                obj.Resends(groupKey)=e;
+                if finished, obj.increment('ControlCompleted'); end
                 obj.increment('ControlAcknowledged');
                 obj.controlResult(e.Frame.Control,peer,true,finished,remaining);
+                if finished
+                    obj.removeResend(groupKey);
+                    cancellation=[e.Peer double(e.Sequence)];
+                end
                 obj.emit('hop_control_ack',e.Frame,struct('Peer',peer,'Complete',finished, ...
                     'RemainingPeers',remaining));
                 return
             end
-            if ~isKey(obj.Resends,key), obj.increment('UnknownFeedback'); return; end
-            e=obj.Resends(key); fc=obj.flow(peer);
+            if ~isKey(obj.Resends,key)
+                obj.increment('UnknownFeedback'); return
+            end
+            e=obj.Resends(key);
+            if strcmp(e.Frame.Kind,'CONTROL')
+                % A cumulative DATA bitmap cannot complete or DACK a control
+                % owner that happens to occupy this transmit sequence.
+                obj.increment('UnknownFeedback'); return
+            end
+            cancellation=[double(peer) double(sequence)];
+            fc=obj.flow(peer);
             if isDack
                 fc.AckCount=0; obj.Flows(peer)=fc;
                 hold=obj.Config.DackHoldSeconds;
@@ -434,12 +495,15 @@ classdef Layer < handle
         function failEntry(obj,key,e,reason)
             if strcmp(e.Frame.Kind,'CONTROL')
                 remaining=e.TargetPeers(~e.Acked);
-                obj.removeResend(key); obj.cancelMac(e.Peer,e.Sequence);
                 obj.increment('ControlFailed');
                 for n=1:numel(remaining)
                     obj.increment('ControlTargetFailures');
-                    obj.controlResult(e.Frame.Control,remaining(n),false,n==numel(remaining),remaining);
+                    % Failure metadata names the originally attempted group;
+                    % NWK independently owns and prunes its residual set.
+                    obj.controlResult(e.Frame.Control,remaining(n),false, ...
+                        n==numel(remaining),e.TargetPeers);
                 end
+                obj.removeResend(key); obj.cancelMac(e.Peer,e.Sequence);
                 obj.emit('hop_control_failed',e.Frame,struct('Reason',reason, ...
                     'ResendCount',e.ResendCount,'RemainingPeers',remaining));
                 obj.scheduleWake(); return
@@ -451,8 +515,8 @@ classdef Layer < handle
             obj.emit('hop_failed',e.Frame,struct('Reason',reason,'ResendCount',e.ResendCount));
             obj.scheduleWake();
         end
-        function [first,w] = checkSequence(obj,peer,sequence)
-            w=emptyWindow(); if isKey(obj.ReceiveWindows,peer), w=obj.ReceiveWindows(peer); end
+        function [first,w] = checkSequence(obj,peer,sequence,dataTraffic)
+            w=obj.receiveWindow(peer,dataTraffic);
             if w.Highest<0
                 w.Highest=double(sequence); w.AckBitmap=uint64(1); first=true;
             else
@@ -472,7 +536,8 @@ classdef Layer < handle
                     if first, w.AckBitmap=bitset(w.AckBitmap,bit,1); end
                 end
             end
-            obj.ReceiveWindows(peer)=w;
+            if dataTraffic, obj.DataReceiveWindows(peer)=w;
+            else, obj.ControlReceiveWindows(peer)=w; end
         end
         function w = markDack(obj,peer,sequence,w)
             delta=sequenceDifference(w.Highest,sequence);
@@ -480,15 +545,23 @@ classdef Layer < handle
                 w.AckBitmap=bitset(w.AckBitmap,1-delta,0);
                 w.DackBitmap=bitset(w.DackBitmap,1-delta,1);
             end
-            obj.ReceiveWindows(peer)=w;
+            obj.DataReceiveWindows(peer)=w;
         end
         function unmarkSequence(obj,peer,sequence)
-            w=obj.ReceiveWindows(peer); delta=sequenceDifference(w.Highest,sequence);
+            w=obj.DataReceiveWindows(peer); delta=sequenceDifference(w.Highest,sequence);
             if delta<=0 && delta>-64
                 w.AckBitmap=bitset(w.AckBitmap,1-delta,0);
                 w.DackBitmap=bitset(w.DackBitmap,1-delta,0);
             end
-            obj.ReceiveWindows(peer)=w;
+            obj.DataReceiveWindows(peer)=w;
+        end
+        function w = receiveWindow(obj,peer,dataTraffic)
+            w=emptyWindow();
+            if dataTraffic
+                if isKey(obj.DataReceiveWindows,peer), w=obj.DataReceiveWindows(peer); end
+            elseif isKey(obj.ControlReceiveWindows,peer)
+                w=obj.ControlReceiveWindows(peer);
+            end
         end
         function fc = flow(obj,peer)
             if isKey(obj.Flows,peer), fc=obj.Flows(peer);
@@ -535,6 +608,17 @@ classdef Layer < handle
             if isfield(obj.Callbacks,'RouteAvailable')
                 available=logical(obj.Callbacks.RouteAvailable(app));
             end
+        end
+        function accepted = validateControl(obj,control,peer)
+            accepted=true;
+            if ~isfield(obj.Callbacks,'ValidateControl'), return; end
+            accepted=obj.Callbacks.ValidateControl(control,double(peer));
+            if ~(isnumeric(accepted) || islogical(accepted)) || ~isscalar(accepted) || ...
+                    ~isreal(accepted) || ~ismember(accepted,[0 1])
+                error('csr:hop:ControlValidationContract', ...
+                    'ValidateControl must return scalar logical or 0/1.');
+            end
+            accepted=logical(accepted);
         end
         function count = nsdpCount(obj,app)
             count=0;

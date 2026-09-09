@@ -117,6 +117,12 @@ updates and INFO. It does not erase direct reachability. New UPDATEs that
 replace the selected candidate queue propagation even if the final route is
 identical, matching source remove/reinsert notification behavior.
 
+A complete INFO+FLUSH snapshot that omits its reporter's self record denotes
+ordinary capability zero. It clears a previously advertised gateway/routable
+capability on the measured direct route without removing physical reachability.
+If bounded outbound admission fails after draining changes, the coordinator
+restores the dirty destination/INFO flags before returning to the scheduler.
+
 Transit UPDATEs received from an inactive peer are cached but deferred from
 selection. Admission recomputes only the direct-neighbor destination; a later
 source-owned recomputation for a transit destination releases its eligible

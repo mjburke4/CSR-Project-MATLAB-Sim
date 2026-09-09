@@ -14,6 +14,10 @@ config.Trace.MaxPhyRecords = 100000;
 config.Mac = csr.mac.Layer.defaults();
 config.Hop = csr.hop.Layer.defaults();
 config.Nwk = csr.nwk.defaults();
+% Tranche 3 is one atomic production-behavioral profile: DATA/ACK and the
+% modeled control records all include their source-backed security byte count.
+% Cryptographic processing remains deliberately outside this portable tranche.
+config.Radio.EnvelopeProfile = 'pairwise16-size-only';
 for index = 1:numel(config.Nodes)
     config.Nodes(index).PositionMeters = [(index-1)*100 0 1];
     config.Nodes(index).Capability = 1;

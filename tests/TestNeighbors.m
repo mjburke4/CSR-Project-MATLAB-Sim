@@ -137,6 +137,42 @@ classdef TestNeighbors < matlab.unittest.TestCase
             h.Neighbors.controlCompleted('NEIGHBOR_CHECK',2,checks(end).Payload,true);
             test.verifyFalse(h.Neighbors.isActive(2));
         end
+        function securityResetPreservesSourceTransientOwnership(test)
+            h=neighborHarness();
+            % Establish an Overheard backoff, then advance Generation through
+            % the ordinary failure path before creating a new in-flight send.
+            h.Neighbors.receiveControl('KEY_UPDATE',2,struct());
+            updates=h.Sent('KEY_UPDATE');
+            h.Neighbors.controlCompleted('KEY_UPDATE',2,updates(end).Payload,true);
+            checks=h.Sent('NEIGHBOR_CHECK');
+            h.Neighbors.controlCompleted('NEIGHBOR_CHECK',2,checks(end).Payload,true);
+            test.verifyTrue(h.Neighbors.isActive(2));
+            h.Neighbors.failNeighbor(2); h.Neighbors.securityReset(2);
+            h.Neighbors.receiveControl('KEY_REQUEST',2,struct());
+            h.Neighbors.receiveControl('DISCOVER',2,discover(9));
+            before=h.Neighbors.snapshot().Peers;
+            test.verifyTrue(before.KeySendActive);
+            test.verifyTrue(before.KeySendValid);
+            test.verifyTrue(before.KeyRequestValid);
+            test.verifyTrue(before.OverheardValid);
+            test.verifyTrue(before.DiscoverySequenceValid);
+            test.verifyGreaterThan(before.Generation,0);
+            test.verifyNotEqual(before.RetryEvent,uint64(0));
+
+            h.Neighbors.securityReset(2); after=h.Neighbors.snapshot().Peers;
+            preserved={'KeySendActive','RetryEvent','Generation', ...
+                'KeyRequestWhen','KeyRequestDelay','KeySendWhen','KeySendDelay', ...
+                'OverheardValid','OverheardWhen','OverheardDelay'};
+            for k=1:numel(preserved)
+                test.verifyEqual(after.(preserved{k}),before.(preserved{k}));
+            end
+            test.verifyFalse(after.Active); test.verifyFalse(after.CheckActive);
+            test.verifyFalse(after.DiscoveryCheckActive);
+            test.verifyFalse(after.ReceivedKey); test.verifyFalse(after.SentKey);
+            test.verifyFalse(after.KeySendValid); test.verifyFalse(after.KeyRequestValid);
+            test.verifyFalse(after.DiscoverySequenceValid);
+            test.verifyEqual(after.Failures,0);
+        end
         function inactiveFailureStillInvalidatesCachedReporter(test)
             h=neighborHarness(); h.Neighbors.observe(2); h.Neighbors.failNeighbor(2);
             changes=h.Changes(); test.assertNumElements(changes,1); test.verifyFalse(changes.Active);

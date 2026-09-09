@@ -193,6 +193,7 @@ classdef Neighbors < handle
             % Always notify: even an inactive reporter may own cached transit routes.
             obj.changed(peer,false);
             if wasActive, obj.scheduleChirp(); end
+            obj.event('neighbor_inactive',peer,struct('Reason','neighbor_failure'));
         end
         function noteInactiveTraffic(obj,peer)
             obj.ensure(peer);
@@ -202,10 +203,19 @@ classdef Neighbors < handle
         end
         function securityReset(obj,peer)
             % Caller must authenticate a changed security count first.
-            obj.ensure(peer); obj.failNeighbor(peer); entry=obj.Peers(double(peer));
+            % Source MakeNeighborInactive clears route/admission state but the
+            % security-count path deliberately preserves an in-flight key-send
+            % owner, retry event and all three exponential-backoff histories.
+            obj.ensure(peer); peer=double(peer); entry=obj.Peers(peer);
+            wasActive=entry.Active;
+            entry.Active=false; entry.CheckActive=false;
+            entry.DiscoveryCheckActive=false;
             entry.ReceivedKey=false; entry.SentKey=false; entry.KeySendValid=false;
             entry.KeyRequestValid=false; entry.DiscoverySequenceValid=false;
-            entry.Failures=0; obj.Peers(double(peer))=entry;
+            entry.Failures=0; obj.Peers(peer)=entry;
+            obj.changed(peer,false);
+            if wasActive, obj.scheduleChirp(); end
+            obj.event('neighbor_inactive',peer,struct('Reason','security_count_changed'));
         end
     end
     methods (Static)

@@ -82,6 +82,7 @@ classdef Frames
             frame.HopSequences = reshape(uint16(sequences),1,[]);
             frame.WirePayloadBytes = double(control.WirePayloadBytes);
             frame.Dscp = 7;
+            if any(strcmp(control.Type,{'SNMP_START','SNMP_DONE'})), frame.Dscp = 0; end
         end
 
         function frame = aggregate(members, preamble)

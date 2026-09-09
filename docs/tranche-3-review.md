@@ -1,109 +1,81 @@
 # Tranche 3 integration review
 
-Review date: 2026-09-08. Reference source:
-`486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b` in
-`mjburke4/CSR-Project-NS3-part2`.
+Review updated: 2026-09-09. Pinned ns-3 reference:
+`486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b`.
+MATLAB base: merged PR #2, `88e56a83c2e9baa295be89f63b873bbe1fa1aa5f`.
 
-The bounded code review found no additional known structural blocker after
-the fixes below. This is a source inspection and static validation result.
-Tranche 3 has not received MATLAB runtime acceptance; the previously accepted
-Tranche 2 results do not certify this modified tree.
+This is a corrected implementation candidate, not runtime acceptance.
+The earlier review of recovered candidate `602ddd3` missed several observable
+protocol differences; those conclusions are superseded by this correction pass.
+Astra performed the routing and integration closeout at the owner's request.
+No MATLAB or Octave test execution occurred in this workspace.
 
-## Scope and actual checks
+## Architecture retained
 
-Reviewed the HOP-to-NWK callbacks, grouped control ownership, simulator
-transmit/receive dispatch, application custody accounting, routing snapshots,
-scenario normalization, discovery/link events, and result exports. The review
-also revisited changes to existing HOP DATA completion and frame aggregation
-for possible Tranche 2 regressions.
+The candidate cleanly transplants because its old base and merged main have
+identical trees. Keep the existing pure MATLAB scheduler, independent per-node
+NWK objects and separate `NetworkSimulation`. The scheduler still orders
+`(double time, uint64 insertion ID)`. No native framework dependency, global
+priority redesign, or simulator-plumbing refactor is needed for this tranche.
 
-MISS_HIT 0.9.44, using its latest supported MATLAB language setting `2022a`,
-reported all 16 selected implementation/test files clean: HOP `Layer` and
-`Frames`; NWK `Layer`, `Routes`, `Neighbors`, `defaults` and `validateConfig`;
-scenario `validate` and `routedNetwork`; `NetworkSimulation`, `runScenario`,
-`exportResults`; and `TestNetworkConfig`, `TestHopLayer`, `TestHopFrames`,
-`TestHopControls`. The final configuration-test edits were linted again with
-no findings. `git diff --check` reported no whitespace errors.
+## Source-critical corrections
 
-No MATLAB or Octave runtime was available to this reviewer. No test methods
-were executed, and no simulator output was inferred from the lint result.
-The integration lead records the complete repository lint and hash audit
-separately.
-
-## Findings addressed
-
-| Finding | Resolution inspected |
+| Contract | Correction and regression boundary |
 |---|---|
-| Empty scalar `App` structs erased control identities in traces; aggregate TX records could inherit a member's application ID and control kind. | Aggregate traces retain the unique OTA `frame.Id` and `AGGREGATE` kind. DATA selects its application ID only when present. Control events select `Control.Id`. PHY trace identity remains the OTA identity. |
-| Partial control ACK traces reported the original primary destination even when a secondary peer ACKed. | Protocol tracing reads `details.PeerId` with a fallback to the HOP callback's `details.Peer`. |
-| Local INFO configuration accepted unsupported rate endpoints and inverted rate/power ranges, allowing failure only after measured traffic reached adaptive link calculation. | NWK scenario normalization now rejects unsupported rate endpoints, `MinSpeedKbps > MaxSpeedKbps`, and `MinPowerDbmX10 > MaxPowerDbmX10` before scheduling work. |
-| Treating source capability zero as a general prohibition on transit changed ordinary source routing behavior. | Transit policy is an explicit `Nodes.TransitForwardingEnabled` Boolean, default true. Capability zero remains valid independently. The configured leaf fixture disables transit explicitly. |
-| Returning an inactive-peer policy rejection to HOP after final ACK admission would raise `LocalCustodyRefused`. | The simulator translates inactive/disabled-transit policy rejection into protocol receipt plus an explicit application drop. Actual custody-queue refusal remains a false delivery result. The proposed pre-ACK neighbor gate was removed to preserve source ordering. |
+| DATA versus control replay | Shared outbound per-peer sequences; independent receive windows. Control feedback is exact/non-windowed; DATA retains its cumulative bitmap. |
+| Malformed ROUTING | NWK validation callback runs before HOP replay/ACK bookkeeping. Section-envelope failures do not consume the sequence; complete record validation remains atomic at reassembly. |
+| Reliable group ownership | Completion/failure callbacks run while the original HOP owner exists. Failure metadata retains original targets; NWK owns its residual list. |
+| DATA feedback wake | NWK custody removal is non-scheduling; HOP owns the +TIC pump. Direct/no-ACK terminal paths still release normally. The same correction applies to fixed-path integration. |
+| Ordinary snapshot capability | INFO+FLUSH without a reporter self record clears an earlier gateway/routable capability while retaining the direct physical route. |
+| Snapshot transport | Each peer gets an independent sequence and forward section order. Reverse groups/sections apply only to grouped incremental changes. |
+| Snapshot lifecycle | Per-peer section ACK tracking suppresses repeated REQUESTs until completion or generation-safe watchdog expiry. Late old ACKs cannot complete replacement streams; pending and same-time processed changes remain excluded. |
+| Backlog pressure | Failed semantic admission restores route dirty flags and pending snapshot work. Bounded capacity delays convergence rather than silently dropping changes. |
+| Request retry | Sequence-keyed reassembly is preserved. Neighbor invalidation still discards peer-owned incomplete streams. |
+| Admission/discovery | Conditional remote-active REQUEST is ordered after route processing. Scan completion refreshes active links and requests route repair. |
+| SNMP | Best effort, sequence 0, DSCP 0, minimum local rate/maximum local power; separate final and one-hop destinations; no forwarding or NWK neighbor refresh. DONE expands known-node scan state; idle START opens a new epoch. |
+| Profile sizes | Routed scenarios require production-behavioral Pairwise16 sizing. Control byte counts are explicit and not added again by HOP. |
+| Security-count reset | Key/discovery proof clears without erasing retained key-send ownership, retry event, generation or backoff histories. |
 
-The INFO and node-policy configuration contracts are covered by the eight
-methods in `TestNetworkConfig`. The file also exercises partial nested
-defaults, absent explicit paths, invalid capabilities, unknown nested options,
-link/discovery event IDs and times, Boolean fields, control-type fault filters,
-legacy wildcard normalization, supported high-rate settings, and minimal
-network-stack dispatch. These are prepared runtime tests, not passing evidence.
+Two initially suspected MAC defects are frozen source behaviors, not fixes:
+a large control at an 8-kbps multi-entry concatenation head can remain packing
+blocked, and a standalone grouped control checks only its primary destination
+for preamble freshness. Focused tests retain both behaviors, with a separate
+128-kbps multi-section progress test. These are limits to consider before
+large-table scenario certification.
 
-## Integration conclusions
+## Evidence
 
-Grouped controls occupy one HOP resend record, preserve original target and
-sequence lists through partial ACKs, and cancel their original MAC copy only
-on whole-group completion or expiration. Per-peer control sequences share the
-DATA receive/ACK window without changing DATA pending/window/NSDP counters.
-NWK retains fresh residual-control retry ownership and waits for a scheduler
-event before resubmission. The original 22 control tests remain present.
+The candidate manifest records current source hashes, prepared test counts and
+the final static-lint outcome. Those counts are definitions, not passed tests.
+MISS_HIT 0.9.44 uses its supported MATLAB 2022a parser profile; this checks syntax
+without establishing R2025a/R2026a numerical or scheduling behavior.
 
-Successful PHY aggregates reach all intended control recipients through
-explicit member addressing. Overheard decoded traffic updates measured peer
-state but cannot complete another node's HOP transaction. OTA transmission
-identifiers are allocated centrally and are separate from application and
-per-node control identities.
+Twelve preserved ns-3 workflow binaries re-executed successfully. Their original
+source/build/binary/log manifest is retained. The current environment has no
+CMake, so neither a fresh build nor five proposed extra security/wire workflows
+was completed. Do not reinterpret these checks as MATLAB differential evidence.
 
-Application accounting follows current custody ownership. An older sender's
-ACK exhaustion cannot turn an already forwarded or delivered application into
-a drop. Source no-route suppression followed by a duplicate ACK is exposed as
-unretained application loss; a later actual custody acceptance or delivery can
-reverse that provisional accounting. These accounting paths need particular
-attention in the MATLAB scenario gate because static review cannot establish
-their timing outcomes.
+## Remaining acceptance gates
 
-## Source limits and remaining gate
+- Run `run_tranche3_validation` on R2025a with every portable test passing,
+  zero failed/incomplete, all nine T2 scenarios and all eight T3 scenarios.
+- Preserve actual release/version, raw file hashes, test CSV, scenario summary,
+  per-layer exports and protocol traces. Standard JVM is required for hashing.
+- Require zero control-queue/backlog rejection in acceptance scenarios.
+- Repeat portable validation on R2026a; six native clock/packet tests remain
+  separate, including full routed portable-versus-native-clock equality.
+- Equivalent MATLAB/ns-3 network scenarios and OPNET aggregate comparison remain
+  unexecuted. Historical accepted T0–T2 results do not certify modified T3 files.
 
-- The source inactive-peer gate resides in NWK `ReceiveFromHop` after HOP
-  sequence handling and local ACK admission. The retained simulator wrapper
-  preserves this ordering and distinguishes protocol receipt from application
-  retention.
-- Transactional queue admission, waiting for actual retry transmission, and
-  suppression of duplicate partial-ACK result callbacks remain explicitly
-  documented portable policies. They are not source-exact overload/timer
-  certification.
-- Behavioral key/admission state and modeled security byte counts do not
-  implement cryptographic authentication, encryption or replay protection.
-- Routed fixtures use a declared 150 m closure delegate to constrain line
-  topology. The CSR signal engine still carries the admitted-link traffic.
-  Link blackout and control-loss fixtures are deliberate receive erasures,
-  not measured RF outage models or physical topology changes.
-- Routing, discovery and recovery acceptance requires running the complete
-  MATLAB suite and scenario runner on the delivered tree, retaining MATLAB
-  release/version, pass/fail records and exported scenario evidence. The gate
-  must include the existing Tranche 2 regressions plus autonomous forwarding,
-  control loss, no-route custody, recovery, gateway policy, explicit transit
-  refusal and both high-rate cases.
+Explicit differences remain: bounded custody/reassembly/control storage,
+transactional overload handling, actual-transmission retry timing, bounded NWK
+retry cycles, duplicate partial-ACK callback suppression, diagnostic accounting,
+modeled rather than serialized security envelopes and behavioral rather than cryptographic admission.
+Application profiles currently enforce names, legacy DSCP-zero and provenance;
+they do not reproduce historical gateway generators, cached-gateway selection
+or pre-allocation attempt gates. The gateway fixture is route-selection
+coverage only. Recovery uses explicit administrative discovery after a
+diagnostic receive-erasure blackout.
 
-An unavailable OPNET packet/event trace is not a blocker for this functional
-tranche. Full cross-simulator numerical parity and cryptographic security are
-not claimed by this review.
-
-## Lead final checks
-
-The complete repository passed MISS_HIT on all 72 MATLAB files. The final tree
-contains 254 prepared portable test methods and five separately gated native
-methods. The lead added a ninth configuration test for integer storage of
-fractional time/power units, extended the leaf fixture to verify targeted
-NoPath transmission, and checked the source NoPath rule with the routing
-specialist. These follow-up checks are static/source evidence only. All twelve
-reference workflows and their source, binary, log, runner and CMake hashes
-were audited successfully.
+Battery, supervisory behavior, BBN routing, waveform/GUI/Simulink work and
+integrated native CSR packet transport remain outside Tranche 3.

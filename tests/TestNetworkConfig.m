@@ -43,6 +43,66 @@ classdef TestNetworkConfig < matlab.unittest.TestCase
             test.verifyEqual(result.Statistics.Generated,0);
             test.verifyEqual(result.Statistics.PhysicalTransmissions,0);
             test.verifyEqual(result.Metadata.ModelStage,'tranche-3-autonomous-network-routing');
+            test.verifyEqual(result.Metadata.ApplicationProfile,'current-send-only');
+            test.verifyEqual(result.Metadata.SecurityProfile, ...
+                'behavioral-production-pairwise16-size-only');
+            test.verifyTrue(contains(result.Metadata.SecurityAssumption,'no authentication'));
+            test.verifyEqual(result.Config.Radio.EnvelopeProfile,'pairwise16-size-only');
+        end
+        function applicationProfilesAreExactAndLegacyDscpIsZero(test)
+            allowed={'current-send-only','legacy-send-only-no-dscp', ...
+                'legacy-send-to-from-no-dscp'};
+            for k=1:numel(allowed)
+                config=csr.scenario.routedNetwork('autonomous');
+                config.ApplicationProfile=allowed{k}; config.Traffic.Dscp=0;
+                normalized=csr.scenario.validate(config);
+                test.verifyEqual(normalized.ApplicationProfile,allowed{k});
+            end
+            config=csr.scenario.routedNetwork('autonomous');
+            config=rmfield(config,'ApplicationProfile');
+            test.verifyEqual(csr.scenario.validate(config).ApplicationProfile, ...
+                'current-send-only');
+            config=csr.scenario.routedNetwork('autonomous');
+            config.ApplicationProfile="legacy-send-only-no-dscp";
+            normalized=csr.scenario.validate(config);
+            test.verifyEqual(normalized.ApplicationProfile,'legacy-send-only-no-dscp');
+            for profile=allowed(2:3)
+                config=csr.scenario.routedNetwork('autonomous');
+                config.ApplicationProfile=profile{1}; config.Traffic.Dscp=1;
+                test.verifyError(@()csr.scenario.validate(config), ...
+                    'csr:scenario:ApplicationProfile');
+            end
+            config=csr.scenario.routedNetwork('autonomous');
+            config.ApplicationProfile='current-send-only'; config.Traffic.Dscp=255;
+            test.verifyEqual(csr.scenario.validate(config).Traffic.Dscp,255);
+            invalid={'current','CURRENT-SEND-ONLY','legacy-no-dscp',42, ...
+                ["current-send-only" "legacy-send-only-no-dscp"]};
+            for k=1:numel(invalid)
+                config=csr.scenario.routedNetwork('autonomous');
+                config.ApplicationProfile=invalid{k};
+                test.verifyError(@()csr.scenario.validate(config), ...
+                    'csr:scenario:ApplicationProfile');
+            end
+        end
+        function networkSecurityProfileRequiresPairwiseEnvelope(test)
+            profile='behavioral-production-pairwise16-size-only';
+            config=csr.scenario.routedNetwork('autonomous');
+            normalized=csr.scenario.validate(config);
+            test.verifyEqual(normalized.Nwk.SecurityProfile,profile);
+            test.verifyEqual(normalized.Radio.EnvelopeProfile,'pairwise16-size-only');
+            config.Nwk.SecurityProfile='behavioral-admission';
+            test.verifyError(@()csr.scenario.validate(config),'csr:nwk:InvalidConfig');
+            config=csr.scenario.routedNetwork('autonomous');
+            config.Nwk.SecurityProfile="behavioral-production-pairwise16-size-only";
+            test.verifyError(@()csr.scenario.validate(config),'csr:nwk:InvalidConfig');
+            config=csr.scenario.routedNetwork('autonomous');
+            config.Radio.EnvelopeProfile='bare';
+            test.verifyError(@()csr.scenario.validate(config), ...
+                'csr:nwk:SecurityProfileMismatch');
+            % The atomic pairwise requirement belongs to the network stack;
+            % accepted Tranche 2 MAC/HOP fixtures may remain explicitly bare.
+            macHop=csr.scenario.validate(csr.scenario.macHopNetwork('reliable'));
+            test.verifyEqual(macHop.Radio.EnvelopeProfile,'bare');
         end
         function explicitPathsAndInvalidCapabilitiesAreRejected(test)
             config=csr.scenario.routedNetwork('autonomous');

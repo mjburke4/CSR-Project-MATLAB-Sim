@@ -90,7 +90,7 @@ classdef MacHopSimulation < handle
                     'CancelMac',@(peer,sequence)obj.Macs{k}.cancel(peer,sequence), ...
                     'Deliver',@(app,peer)obj.acceptDelivery(nodeId,app,peer), ...
                     'Terminal',@(app,success,reason)obj.terminal(nodeId,app,success,reason), ...
-                    'NsdpRelease',@(app,reason)obj.release(nodeId,app,reason), ...
+                    'NsdpRelease',@(app,reason)obj.releaseFromHop(nodeId,app,reason), ...
                     'Wake',@()obj.requestPump(nodeId), ...
                     'NsdpCount',@(app)obj.nsdpCount(nodeId,app), ...
                     'RouteAvailable',@(app)obj.routeAvailable(nodeId,app), ...
@@ -148,6 +148,7 @@ classdef MacHopSimulation < handle
             end
             metadata = csr.sim.capabilities();
             metadata.SourceCommit = '486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b';
+            metadata.ApplicationProfile = obj.Config.ApplicationProfile;
             metadata.Backend = obj.Config.Backend;
             metadata.ChannelModel = 'csr-phy';
             metadata.ModelStage = 'tranche-2-mac-hop-fixed-path-forwarding';
@@ -325,8 +326,18 @@ classdef MacHopSimulation < handle
             obj.requestPump(nodeId);
         end
 
+        function releaseFromHop(obj,nodeId,app,reason)
+            index = obj.NodeIndex(nodeId); position = obj.pendingPosition(index,app);
+            if position > 0
+                obj.Pending{index}(position) = [];
+                obj.record('network_custody_release',app,nodeId,app.DestinationId,reason,struct());
+            end
+            % HOP schedules the only post-feedback pump at +TIC.
+        end
+
         function terminal(obj,nodeId,app,success,reason)
-            obj.release(nodeId,app,reason);
+            index=obj.NodeIndex(nodeId);
+            if obj.pendingPosition(index,app)>0, obj.release(nodeId,app,reason); end
             if success, return; end
             obj.Counters.HopFailures = obj.Counters.HopFailures+1;
             record = obj.Records(obj.key(app));

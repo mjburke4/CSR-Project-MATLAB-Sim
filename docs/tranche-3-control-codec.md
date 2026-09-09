@@ -87,14 +87,18 @@ The ns-3 compatibility HOP envelope additionally carries an optional two-byte
 security restart count. That count is distinct from security-record overhead.
 No key bytes, authentication tags, or crypto operations are implemented here.
 
-For portable on-air accounting, retain the existing 17-byte MAC packet model,
-use an explicitly documented control body and HOP envelope size, then add only
-the selected security-record overhead. Do not charge simulation metadata as
-wire bytes. The authoritative source explicitly overrides NeighborCheck size
-with the 11-byte Routes packet model plus 5-byte security plus raw payload;
-other control paths retain compatibility headers. Compact portable control
-sizing therefore requires an explicit parity-ledger boundary rather than a
-claim of exact ns-3 control airtime.
+Portable on-air accounting follows the source's complete modeled envelope,
+not the serialized compatibility headers. Discover uses standalone Hello
+(12 + 7 bytes); key controls use standalone Routes (11 + 7 or 51 bytes).
+NeighborCheck uses Routes + Pairwise16 + raw payload (16 bytes, or 19 for
+NoPath). Reliable routing uses Routes + Group16 + the raw ARL section
+(16 + section length). Only SNMP uses MAC -> HOP -> fixed SNMP (31 bytes).
+The source excludes compatibility destination/sequence lists, Hello metadata
+and SNMP scan node lists from those modeled byte counts. Thus a grouped routing
+frame has the same modeled size as a one-target frame with identical payload.
+`csr.nwk.controlWireBytes` centralizes these source-exact counts; see
+[the profile contract](tranche-3-profiles.md). This is byte-accounting parity,
+not runtime evidence of equal control airtime or cryptographic behavior.
 
 Reliable routing sends group 1–10 peers into one HOP frame, each with its own
 unsigned 16-bit HOP sequence. The routing sequence in the payload is separate.

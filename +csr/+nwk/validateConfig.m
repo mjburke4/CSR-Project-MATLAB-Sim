@@ -2,6 +2,15 @@ function config = validateConfig(config)
 %VALIDATECONFIG Normalize autonomous routing scenarios before scheduling work.
 if ~isfield(config,'Nwk'), config.Nwk = struct(); end
 options = merge(config.Nwk,csr.nwk.defaults(),'Nwk');
+if ~ischar(options.SecurityProfile) || ...
+        ~strcmp(options.SecurityProfile,'behavioral-production-pairwise16-size-only')
+    error('csr:nwk:InvalidConfig', ...
+        'Tranche 3 supports only behavioral-production-pairwise16-size-only security.');
+end
+if ~strcmp(config.Radio.EnvelopeProfile,'pairwise16-size-only')
+    error('csr:nwk:SecurityProfileMismatch', ...
+        'The Tranche 3 production-behavioral profile requires pairwise16-size-only DATA/ACK envelopes.');
+end
 if ~any(strcmp(options.StartupMode,{'gateway','all','manual'}))
     error('csr:nwk:InvalidConfig','Nwk.StartupMode must be gateway, all or manual.');
 end

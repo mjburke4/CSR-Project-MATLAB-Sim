@@ -253,10 +253,34 @@ classdef TestNwkScenarios < matlab.unittest.TestCase
             test.verifyGreaterThanOrEqual(hop.ResendQueueDepth,hop.ControlPending);
             test.verifyLessThanOrEqual(result.NodeNwkStatistics.PendingControlMessages, ...
                 repmat(result.Config.Nwk.ControlQueueLimit,height(result.NodeNwkStatistics),1));
+            test.verifyEqual(sum(result.NodeNwkStatistics.ControlQueueRejections),0, ...
+                'Acceptance fixtures must not depend on control/backlog overflow recovery.');
+            TestNwkScenarios.verifyAdmittedDataSubmissions(test,result.ProtocolTrace);
             tx = result.ProtocolTrace(strcmp(result.ProtocolTrace.Event,'tx_start'),:);
             test.verifyEqual(height(tx),stats.PhysicalTransmissions);
             test.verifyEqual(numel(unique(tx.PacketId)),height(tx));
             test.verifyTrue(all(tx.PacketId > 0));
+        end
+
+        function verifyAdmittedDataSubmissions(test,trace)
+            % Trace row order preserves same-time transitions. A peer that was
+            % admitted earlier but has since failed must not accept new DATA.
+            active = containers.Map('KeyType','char','ValueType','logical');
+            for k = 1:height(trace)
+                event = trace.Event{k};
+                if ~any(strcmp(event,{'neighbor_active','neighbor_inactive','hop_admit'}))
+                    continue
+                end
+                key = sprintf('%.0f:%.0f',trace.NodeId(k),trace.PeerId(k));
+                if strcmp(event,'neighbor_active')
+                    active(key) = true;
+                elseif strcmp(event,'neighbor_inactive')
+                    active(key) = false;
+                elseif strcmp(trace.FrameKind{k},'DATA')
+                    test.verifyTrue(isKey(active,key) && active(key), ...
+                        sprintf('DATA submitted to an inactive peer at trace row %d.',k));
+                end
+            end
         end
 
         function verifyRelayPath(test,result)

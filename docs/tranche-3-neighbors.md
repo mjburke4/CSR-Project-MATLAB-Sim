@@ -14,7 +14,10 @@ control packet completes none of these steps. The transport must report real
 control receptions and reliable completions; a scenario must not activate
 peers merely because they share a configured physical link.
 
-This is the `behavioral-admission` security profile. KeyRequest, KeyUpdate and
+At the component boundary this is labeled `behavioral-admission`. The complete
+network scenario requires the atomic
+`behavioral-production-pairwise16-size-only` profile described in
+[the profile contract](tranche-3-profiles.md). KeyRequest, KeyUpdate and
 NeighborCheck represent source-backed state transitions. No cryptographic
 authentication, key bytes, replay window, production protection, or security
 parity is claimed. The source authenticates received controls before these
@@ -67,6 +70,13 @@ Neighbors does not interpret its target. Received Discovery, Message and
 Verify checks may admit the receiver after two-sided keys. Received Overheard
 initiates Message. Acknowledged checks admit the sender after two-sided keys.
 Unknown control kinds are ignored so NWK may dispatch routing/SNMP separately.
+
+Security-count reset intentionally does not use the ordinary failure teardown.
+It clears admission and key/discovery validity while preserving the source's
+in-flight key-send ownership, retry event, generation, key request/send timing
+histories, and overheard-check validity/timing history. This distinction is
+covered by a focused regression because clearing those transients would look
+reasonable but would diverge from the audited source path.
 
 ## Timing and autonomous startup
 

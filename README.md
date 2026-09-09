@@ -17,8 +17,9 @@ reference workflows passed; these are source-side evidence. Run
 [Tranche 3 handoff](docs/tranche-3-handoff.md) for capabilities, validation and
 known differences. No R2026a-only API was added to the portable core.
 
-Tranche 2 is published in [PR #2](https://github.com/mjburke4/CSR-Project-MATLAB-Sim/pull/2).
-The Tranche 3 candidate is local and is not included in that PR.
+Tranche 2 is merged through [PR #2](https://github.com/mjburke4/CSR-Project-MATLAB-Sim/pull/2)
+at `88e56a8`. The Tranche 3 candidate is on local branch
+`agent/tranche-3-routing-admission`; it has not been pushed or opened as a PR.
 
 ## Accepted portable Tranche 2 MAC/HOP
 
@@ -101,11 +102,18 @@ Or from PowerShell with MATLAB on PATH, after changing to the repository:
 matlab -batch "run_tranche3_validation"
 ```
 
-This runs all portable tests, the controlled T0 regression and eight autonomous
-network scenarios. Results go to `results/tranche3_validation/`, including
+This runs all portable tests, the controlled T0 regression, all nine Tranche 2
+scenarios and eight autonomous network scenarios. Results go to `results/tranche3_validation/`, including
 scenario summaries, routes, neighbors, per-layer counters, traces and runtime
-provenance. The default backend needs no wireless toolbox. Previous tranche
-runners remain available and discover the expanded regression suite.
+provenance. The default backend needs no wireless toolbox. The validation runner
+requires the normal MATLAB JVM; do not use `-nojvm`. Previous tranche runners
+remain available and discover the expanded regression suite.
+
+Routed scenarios use the explicit production-behavioral Pairwise16 size profile;
+cryptography is not implemented. Named legacy application profiles enforce zero
+DSCP but do not yet reproduce historical application generators or MAC/security
+profile tuples. The `gateway` fixture covers route-based gateway selection only.
+See [profile boundaries](docs/tranche-3-profiles.md) before comparing historical scenarios.
 
 Ordinary MAC/HOP fixtures retain source duty-cycle and access/retry defaults.
 Loss fixtures deliberately erase selected successful receptions; the DACK

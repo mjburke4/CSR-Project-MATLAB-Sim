@@ -26,6 +26,11 @@ classdef Layer < handle
         ControlRetryPending = false
         RouteProcessPending = false
         PendingSnapshots = []
+        ProcessedRouteChanges = []
+        ProcessedRouteChangeTime = -1
+        OutboundSnapshots
+        NextOutboundGeneration = 0
+        AdmissionRequestPeers = []
         Requests
         NextRequestGeneration = 0
         Started = false
@@ -33,6 +38,7 @@ classdef Layer < handle
         ScanComplete = false
         ScanRequesters = []
         ScanRequested = []
+        ScanKnown = []
         ScanWaiting = []
         ScanGeneration = 0
         Counters
@@ -53,6 +59,7 @@ classdef Layer < handle
             obj.Metrics=containers.Map('KeyType','double','ValueType','any');
             obj.Seen=containers.Map('KeyType','char','ValueType','logical');
             obj.Requests=containers.Map('KeyType','double','ValueType','any');
+            obj.OutboundSnapshots=containers.Map('KeyType','double','ValueType','any');
             obj.Counters=struct('QueueAdmissionRejections',0,'QueueDrops',0, ...
                 'MaxNetworkQueueDepth',0,'RoutingMessagesSent',0,'RoutingMessagesReceived',0, ...
                 'RouteChanges',0,'NeighborActivations',0,'NeighborDeactivations',0, ...
@@ -84,9 +91,7 @@ classdef Layer < handle
             if nargin<3, duration=obj.Config.DiscoveryDurationSeconds; end
             accepted=false;
             if obj.ScanStarted && ~obj.ScanComplete, return; end
-            newEpoch=obj.ScanStarted && obj.ScanComplete;
             obj.ScanStarted=true; obj.ScanComplete=false;
-            if newEpoch, obj.ScanRequested=[]; end
             obj.ScanWaiting=[]; obj.ScanGeneration=obj.ScanGeneration+1;
             accepted=obj.Neighbors.startDiscovery(delay,duration);
         end
@@ -151,6 +156,38 @@ classdef Layer < handle
             end
         end
 
+        function valid = validateControl(obj,control,peer) %#ok<INUSD>
+            % HOP calls this pure guard before reliable replay bookkeeping or
+            % ACK admission. A malformed routing section must remain eligible
+            % for a corrected retry with the same HOP sequence.
+            valid=isstruct(control) && isscalar(control) && ...
+                all(isfield(control,{'Type','Payload'})) && ...
+                ischar(control.Type) && isrow(control.Type) && ...
+                isstruct(control.Payload) && isscalar(control.Payload);
+            if ~valid, return; end
+            kind=upper(control.Type);
+            if ~any(strcmp(kind,{'DISCOVER','KEY_REQUEST','KEY_UPDATE', ...
+                    'NEIGHBOR_CHECK','ROUTING','SNMP_START','SNMP_DONE'}))
+                valid=false; return
+            end
+            if ~strcmp(kind,'ROUTING'), return; end
+            if ~isfield(control.Payload,'Bytes'), valid=false; return; end
+            try
+                section=csr.nwk.RoutingCodec.decodeSection(control.Payload.Bytes);
+                % A one-section stream can and should be checked completely.
+                % Multi-section record boundaries may cross frames, so only
+                % their bounded section envelope is safe to validate here.
+                if section.TotalSections==1
+                    csr.nwk.RoutingCodec.decodeRecords(section.Body);
+                end
+            catch exception
+                if ~strcmp(exception.identifier,'csr:nwk:MalformedRouting')
+                    rethrow(exception);
+                end
+                valid=false;
+            end
+        end
+
         function receiveControl(obj,control,peer)
             if ~isstruct(control) || ~isscalar(control) || ...
                     ~all(isfield(control,{'Type','Payload'}))
@@ -168,6 +205,13 @@ classdef Layer < handle
                         obj.Routes.noteNoPath(peer,target,obj.Scheduler.Now);
                         obj.Counters.NoPathReceived=obj.Counters.NoPathReceived+1; obj.wake();
                     end
+                    if strcmp(kind,'NEIGHBOR_CHECK') && ...
+                            strcmpi(option(payload,'Subtype',''),'discovery') && ...
+                            scalarBoolean(option(payload,'Active',false)) && ...
+                            ~obj.Neighbors.isActive(peer) && ...
+                            ~ismember(peer,obj.AdmissionRequestPeers)
+                        obj.AdmissionRequestPeers(end+1)=peer;
+                    end
                     obj.Neighbors.receiveControl(kind,peer,payload);
                 case 'ROUTING'
                     if ~obj.Neighbors.isActive(peer), obj.Neighbors.noteInactiveTraffic(peer); end
@@ -179,7 +223,9 @@ classdef Layer < handle
                     obj.Counters.RoutingMessagesReceived=obj.Counters.RoutingMessagesReceived+1;
                     effects=obj.Routes.apply(peer,sequence,records,obj.peerCost(peer),obj.Scheduler.Now);
                     if effects.InfoChanged, obj.refreshLink(peer); end
-                    if effects.RequestSnapshot, obj.requestSnapshot(peer); end
+                    if effects.RequestSnapshot
+                        obj.Scheduler.scheduleAt(obj.Scheduler.Now,@()obj.respondSnapshot(peer));
+                    end
                     hasFlush=any(cellfun(@(record)strcmp(record.Operation,'FLUSH'),records));
                     if hasFlush && isKey(obj.Requests,double(peer))
                         request=obj.Requests(double(peer)); request.Complete=true;
@@ -187,15 +233,32 @@ classdef Layer < handle
                     end
                     obj.scheduleRoutes(); obj.wake();
                 case 'SNMP_START'
-                    if ~ismember(peer,obj.ScanRequesters), obj.ScanRequesters(end+1)=peer; end
-                    if ~ismember(peer,obj.ScanRequested), obj.ScanRequested(end+1)=peer; end
-                    if obj.ScanComplete
-                        obj.sendScanDone(peer);
-                    elseif ~obj.ScanStarted
+                    [source,forLocal,valid]=snmpAddress(payload,peer,obj.NodeId);
+                    if ~valid
+                        obj.Counters.MalformedControl=obj.Counters.MalformedControl+1; return
+                    end
+                    % Legacy HOP drops, rather than relays, a one-hop SNMP
+                    % whose embedded final destination is another node.
+                    if ~forLocal, return; end
+                    if ~ismember(source,obj.ScanRequesters)
+                        obj.ScanRequesters(end+1)=source;
+                    end
+                    if ~obj.ScanStarted || obj.ScanComplete
                         obj.startDiscovery(max(0,option(payload,'DelaySeconds',0)));
                     end
+                    if ~ismember(source,obj.ScanRequested), obj.ScanRequested(end+1)=source; end
                 case 'SNMP_DONE'
-                    if ~isempty(obj.ScanWaiting) && obj.ScanWaiting==peer
+                    [source,forLocal,valid]=snmpAddress(payload,peer,obj.NodeId);
+                    nodes=option(payload,'Nodes',[]);
+                    validNodes=isnumeric(nodes) && (isempty(nodes) || isvector(nodes)) && ...
+                        numel(nodes)<=10 && all(isfinite(nodes(:))) && ...
+                        all(nodes(:)>=0 & nodes(:)<16777215 & fix(nodes(:))==nodes(:));
+                    if ~valid || ~validNodes
+                        obj.Counters.MalformedControl=obj.Counters.MalformedControl+1; return
+                    end
+                    if ~forLocal, return; end
+                    obj.mergeScanKnown(double(reshape(nodes,1,[])));
+                    if ~isempty(obj.ScanWaiting) && obj.ScanWaiting==source
                         obj.ScanWaiting=[]; obj.ScanGeneration=obj.ScanGeneration+1;
                     end
                     obj.advanceScan();
@@ -213,6 +276,7 @@ classdef Layer < handle
             if ~complete, return; end
             if success
                 obj.Controls(position)=[];
+                if strcmp(control.Type,'ROUTING'), obj.snapshotSectionAcked(control,peer); end
                 if any(strcmp(control.Type,{'KEY_UPDATE','NEIGHBOR_CHECK'}))
                     obj.Neighbors.controlCompleted(control.Type,peer,control.Payload,true);
                 end
@@ -222,8 +286,9 @@ classdef Layer < handle
                     obj.Controls(position)=[];
                 else
                     owner.Control.Id=obj.nextControlId(); owner.Peers=owner.Remaining;
-                    owner.Control.WirePayloadBytes=obj.controlBytes(owner.Control.Type, ...
-                        owner.Control.Payload,numel(owner.Peers));
+                    owner.Control.WirePayloadBytes=csr.nwk.controlWireBytes( ...
+                        owner.Control.Type,owner.Control.Payload,numel(owner.Peers), ...
+                        obj.Config.SecurityProfile);
                     owner.Submitted=false; owner.Cycles=owner.Cycles+1;
                     obj.Controls{position}=owner;
                     obj.Counters.ControlResidualRetries=obj.Counters.ControlResidualRetries+1;
@@ -278,8 +343,21 @@ classdef Layer < handle
             obj.wake();
         end
 
+        function releaseFromHop(obj,app,reason)
+            % HOP owns the post-feedback +TIC wake. Removing NWK custody here
+            % must not create an earlier same-time queue pump.
+            position=obj.pendingPosition(app);
+            if position>0
+                obj.Pending(position)=[];
+                obj.emit('network_custody_release',app,struct('Reason',reason));
+            end
+        end
+
         function terminal(obj,app,success,reason)
-            obj.release(app,reason);
+            % ACK/DACK/failure paths already removed custody through
+            % releaseFromHop and must wait for HOP's +TIC wake. No-ACK paths
+            % arrive here directly and still need ordinary immediate release.
+            if obj.pendingPosition(app)>0, obj.release(app,reason); end
             if ~success, obj.drop(app,reason); end
         end
 
@@ -371,13 +449,17 @@ classdef Layer < handle
             end
         end
 
-        function accepted = queueControl(obj,kind,peers,payload,reliable)
+        function accepted = queueControl(obj,kind,peers,payload,reliable,scheduleWake)
+            if nargin<6, scheduleWake=true; end
             peers=reshape(double(peers),1,[]);
             if isempty(peers), accepted=false; return; end
             if strcmp(kind,'KEY_REQUEST')
                 for index=numel(obj.Controls):-1:1
                     old=obj.Controls{index};
-                    if ~old.Submitted && strcmp(old.Control.Type,kind) && isequal(old.Peers,peers)
+                    if strcmp(old.Control.Type,kind) && isequal(old.Peers,peers)
+                        if old.Submitted && isfield(obj.Callbacks,'CancelControl')
+                            obj.Callbacks.CancelControl(peers(1),kind);
+                        end
                         obj.Controls(index)=[];
                     end
                 end
@@ -387,10 +469,12 @@ classdef Layer < handle
                 obj.Counters.ControlQueueRejections=obj.Counters.ControlQueueRejections+1; return
             end
             control=struct('Id',obj.nextControlId(),'Type',char(kind),'Payload',payload, ...
-                'WirePayloadBytes',obj.controlBytes(kind,payload,numel(peers)));
+                'WirePayloadBytes',csr.nwk.controlWireBytes(kind,payload,numel(peers), ...
+                obj.Config.SecurityProfile));
             owner=struct('Control',control,'Peers',peers,'Remaining',peers, ...
                 'Reliable',logical(reliable),'Submitted',false,'Cycles',1);
-            obj.Controls{end+1}=owner; obj.wake();
+            obj.Controls{end+1}=owner;
+            if scheduleWake, obj.wake(); end
         end
 
         function pumpControls(obj)
@@ -406,13 +490,22 @@ classdef Layer < handle
                     owner.Peers=owner.Peers(ismember(owner.Peers,obj.Neighbors.activePeers()));
                     owner.Remaining=owner.Peers;
                     if isempty(owner.Peers), obj.Controls(position)=[]; continue; end
-                    owner.Control.WirePayloadBytes=obj.controlBytes('ROUTING',owner.Control.Payload,numel(owner.Peers));
+                    owner.Control.WirePayloadBytes=csr.nwk.controlWireBytes( ...
+                        'ROUTING',owner.Control.Payload,numel(owner.Peers),obj.Config.SecurityProfile);
                 end
                 if owner.Reliable && isfield(obj.Callbacks,'CanSendControl') && ...
                         ~obj.Callbacks.CanSendControl(owner.Peers)
                     obj.Controls{position}=owner; deferred=true; continue
                 end
                 options=obj.radioOptions(owner.Peers,struct()); options.AckRequired=owner.Reliable;
+                if any(strcmp(owner.Control.Type,{'SNMP_START','SNMP_DONE'}))
+                    % Legacy management controls always use minimum local
+                    % speed and maximum local power, independently of ARL's
+                    % adaptive per-link DATA/routing selection.
+                    local=obj.Config.Routing.LocalInfo;
+                    options.RateKeyKbps=local.MinSpeedKbps;
+                    options.TxPowerDbm=local.MaxPowerDbmX10/10;
+                end
                 owner.Submitted=true; obj.Controls{position}=owner;
                 accepted=false;
                 if isfield(obj.Callbacks,'SendControl')
@@ -440,14 +533,27 @@ classdef Layer < handle
             if active
                 obj.Routes.setNeighbor(peer,true,obj.peerCost(peer),obj.Scheduler.Now);
                 obj.Counters.NeighborActivations=obj.Counters.NeighborActivations+1;
-                obj.requestSnapshot(peer); obj.startRequest(peer);
+                obj.requestSnapshot(peer);
+                needsRequest=ismember(peer,obj.AdmissionRequestPeers);
+                obj.AdmissionRequestPeers(obj.AdmissionRequestPeers==peer)=[];
+                if needsRequest
+                    % Source inserts this request after the same-time
+                    % routesProcess event that starts the outbound snapshot.
+                    obj.Scheduler.scheduleAt(obj.Scheduler.Now,@()obj.startRequest(peer));
+                end
                 if obj.ScanComplete, obj.advanceScan(); end
             else
                 obj.Routes.invalidateNeighbor(peer,obj.Scheduler.Now);
                 obj.Counters.NeighborDeactivations=obj.Counters.NeighborDeactivations+1;
                 obj.Reassembly.discardPeer(peer);
                 obj.PendingSnapshots(obj.PendingSnapshots==peer)=[];
+                obj.AdmissionRequestPeers(obj.AdmissionRequestPeers==peer)=[];
                 if isKey(obj.Requests,double(peer)), remove(obj.Requests,double(peer)); end
+                if isKey(obj.OutboundSnapshots,double(peer))
+                    snapshot=obj.OutboundSnapshots(double(peer));
+                    obj.Scheduler.cancel(snapshot.Watchdog);
+                    remove(obj.OutboundSnapshots,double(peer));
+                end
             end
             obj.scheduleRoutes(); obj.wake();
         end
@@ -465,51 +571,157 @@ classdef Layer < handle
 
         function processRoutes(obj)
             obj.RouteProcessPending=false;
-            [changes,changedIds]=obj.Routes.drainChanges();
+            [changes,changedIds,infoChanged]=obj.Routes.drainChanges();
+            obj.ProcessedRouteChanges=changedIds;
+            obj.ProcessedRouteChangeTime=obj.Scheduler.Now;
+            % Source clears frozen flags in a later Now event, after already
+            % queued REQUEST responses have observed this processing pass.
+            obj.Scheduler.scheduleAt(obj.Scheduler.Now,@()obj.clearProcessedRouteChanges());
             obj.Counters.RouteChanges=obj.Counters.RouteChanges+numel(changedIds);
-            peers=obj.PendingSnapshots; obj.PendingSnapshots=[];
-            peers=peers(ismember(peers,obj.Neighbors.activePeers()));
-            if ~isempty(peers), obj.sendRecords(obj.Routes.snapshot(changedIds),peers); end
-            if ~isempty(changes), obj.sendRecords(changes,obj.Neighbors.activePeers()); end
+            pending=obj.PendingSnapshots; obj.PendingSnapshots=[];
+            active=obj.Neighbors.activePeers();
+            peers=active(ismember(active,pending));
+            deferred=false;
+            for peer=peers
+                % A source snapshot is a separate reliable unicast stream for
+                % each admitted neighbor, with its own routing sequence and
+                % forward section order.
+                if ~obj.startSnapshot(peer)
+                    obj.PendingSnapshots(end+1)=peer; deferred=true;
+                end
+            end
+            if ~isempty(changes)
+                if ~obj.sendRecords(changes,active,'changes')
+                    obj.Routes.restoreChanges(changedIds,infoChanged); deferred=true;
+                end
+            end
+            if deferred, obj.deferRoutes(); end
         end
 
-        function sendRecords(obj,records,peers)
+        function clearProcessedRouteChanges(obj)
+            if obj.ProcessedRouteChangeTime==obj.Scheduler.Now
+                obj.ProcessedRouteChanges=[]; obj.ProcessedRouteChangeTime=-1;
+            end
+        end
+
+        function respondSnapshot(obj,peer)
+            if ~obj.startSnapshot(peer)
+                obj.requestSnapshot(peer); obj.deferRoutes();
+            end
+        end
+
+        function accepted = startSnapshot(obj,peer)
+            accepted=true;
+            if ~obj.Neighbors.isActive(peer), return; end
+            if isKey(obj.OutboundSnapshots,double(peer))
+                previous=obj.OutboundSnapshots(double(peer));
+                if previous.Active, return; end
+            end
+            excluded=obj.Routes.pendingChanges();
+            if obj.ProcessedRouteChangeTime==obj.Scheduler.Now
+                excluded=union(excluded,obj.ProcessedRouteChanges,'stable');
+            end
+            sequence=obj.RoutingSequence;
+            accepted=obj.sendRecords(obj.Routes.snapshot(excluded),peer,'snapshot');
+            if ~accepted, return; end
+            message=obj.RoutingBacklog{end};
+            obj.NextOutboundGeneration=obj.NextOutboundGeneration+1;
+            generation=obj.NextOutboundGeneration;
+            watchdog=obj.Scheduler.scheduleAt(obj.Scheduler.Now+obj.Config.SnapshotWatchdogSeconds, ...
+                @()obj.outboundSnapshotWatchdog(peer,generation));
+            obj.OutboundSnapshots(double(peer))=struct('Active',true,'Sequence',sequence, ...
+                'TotalSections',numel(message.Sections),'AckedSections',[], ...
+                'Generation',generation,'Watchdog',watchdog);
+        end
+
+        function snapshotSectionAcked(obj,control,peer)
+            if ~isKey(obj.OutboundSnapshots,double(peer)), return; end
+            snapshot=obj.OutboundSnapshots(double(peer));
+            section=csr.nwk.RoutingCodec.decodeSection(control.Payload.Bytes);
+            if ~snapshot.Active || section.Sequence~=snapshot.Sequence || ...
+                    section.TotalSections~=snapshot.TotalSections || ...
+                    section.Section>=snapshot.TotalSections, return; end
+            snapshot.AckedSections=union(snapshot.AckedSections,section.Section);
+            if numel(snapshot.AckedSections)==snapshot.TotalSections
+                snapshot.Active=false; obj.Scheduler.cancel(snapshot.Watchdog);
+            end
+            obj.OutboundSnapshots(double(peer))=snapshot;
+        end
+
+        function outboundSnapshotWatchdog(obj,peer,generation)
+            if ~isKey(obj.OutboundSnapshots,double(peer)), return; end
+            snapshot=obj.OutboundSnapshots(double(peer));
+            if ~snapshot.Active || snapshot.Generation~=generation, return; end
+            snapshot.Active=false; obj.OutboundSnapshots(double(peer))=snapshot;
+            obj.Counters.SnapshotTimeouts=obj.Counters.SnapshotTimeouts+1;
+            obj.emit('routing_outbound_snapshot_timeout',struct('DestinationId',peer), ...
+                struct('Sequence',snapshot.Sequence,'AckedSections',numel(snapshot.AckedSections), ...
+                'TotalSections',snapshot.TotalSections));
+        end
+
+        function accepted = sendRecords(obj,records,peers,mode)
+            if nargin<4, mode='changes'; end
+            accepted=true;
             if isempty(peers) || isempty(records), return; end
             if numel(obj.RoutingBacklog)>=obj.Config.ControlQueueLimit
                 obj.Counters.ControlQueueRejections=obj.Counters.ControlQueueRejections+1;
-                obj.emit('routing_backlog_full',struct(),struct('Sequence',obj.RoutingSequence)); return
+                obj.emit('routing_backlog_full',struct(),struct('Sequence',obj.RoutingSequence));
+                accepted=false; return
             end
-            sections=csr.nwk.RoutingCodec.sections(csr.nwk.RoutingCodec.encodeRecords(records),obj.RoutingSequence);
+            if strcmp(mode,'snapshot') && numel(peers)~=1
+                error('csr:nwk:SnapshotTargets','A routing snapshot must have exactly one recipient.');
+            elseif ~any(strcmp(mode,{'snapshot','changes'}))
+                error('csr:nwk:RoutingMode','Unknown routing backlog mode.');
+            end
+            sections=csr.nwk.RoutingCodec.sections( ...
+                csr.nwk.RoutingCodec.encodeRecords(records),obj.RoutingSequence);
             groups=ceil(numel(peers)/10);
+            if strcmp(mode,'snapshot')
+                nextSection=1; nextPeer=1;
+            else
+                nextSection=numel(sections); nextPeer=10*(groups-1)+1;
+            end
             obj.RoutingBacklog{end+1}=struct('Sections',{sections},'Peers',peers, ...
-                'NextSection',numel(sections),'NextPeer',10*(groups-1)+1);
+                'NextSection',nextSection,'NextPeer',nextPeer,'Mode',mode);
             obj.RoutingSequence=mod(obj.RoutingSequence+groups,4294967296);
             obj.wake();
         end
 
         function materializeRouting(obj)
             % Keep section ownership while the shared HOP/control buffers are
-            % full. Source visits reversed recipient groups, and then each
-            % group's sections in reverse. All groups share the stream seq.
+            % full. Snapshots are independent unicasts with forward sections.
+            % Incremental changes reverse groups and sections to reproduce the
+            % source retained-owner handoff order; groups share one stream seq.
             while ~isempty(obj.RoutingBacklog) && numel(obj.Controls)<obj.Config.ControlQueueLimit
                 message=obj.RoutingBacklog{1};
                 group=message.Peers(message.NextPeer:min(message.NextPeer+9,numel(message.Peers)));
                 group=group(ismember(group,obj.Neighbors.activePeers()));
                 if ~isempty(group)
                     obj.queueControl('ROUTING',group, ...
-                        struct('Bytes',message.Sections{message.NextSection}),true);
+                        struct('Bytes',message.Sections{message.NextSection}),true,false);
                 end
-                message.NextSection=message.NextSection-1;
-                if message.NextSection<1
-                    message.NextPeer=message.NextPeer-10;
-                    message.NextSection=numel(message.Sections);
+                if strcmp(message.Mode,'snapshot')
+                    message.NextSection=message.NextSection+1;
+                    complete=message.NextSection>numel(message.Sections);
+                else
+                    message.NextSection=message.NextSection-1;
+                    if message.NextSection<1
+                        message.NextPeer=message.NextPeer-10;
+                        message.NextSection=numel(message.Sections);
+                    end
+                    complete=message.NextPeer<1;
                 end
-                if message.NextPeer<1, obj.RoutingBacklog(1)=[];
+                if complete, obj.RoutingBacklog(1)=[];
                 else, obj.RoutingBacklog{1}=message; end
             end
         end
 
         function startRequest(obj,peer)
+            if ~obj.Neighbors.isActive(peer), return; end
+            if isKey(obj.Requests,double(peer))
+                previous=obj.Requests(double(peer));
+                if ~previous.Complete, return; end
+            end
             obj.NextRequestGeneration=obj.NextRequestGeneration+1;
             generation=obj.NextRequestGeneration;
             request=struct('Generation',generation,'Attempts',0,'Complete',false);
@@ -523,10 +735,9 @@ classdef Layer < handle
             request=obj.Requests(double(peer));
             if request.Generation~=generation || request.Complete || ...
                     request.Attempts>obj.Config.MaxRouteRequests, return; end
-            if request.Attempts>0, obj.Reassembly.discardPeer(peer); end
             request.Attempts=request.Attempts+1; obj.Requests(double(peer))=request;
             obj.Counters.RouteRequests=obj.Counters.RouteRequests+1;
-            obj.sendRecords({struct('Operation','REQUEST')},peer);
+            obj.sendRecords({struct('Operation','REQUEST')},peer,'changes');
             if request.Attempts<=obj.Config.MaxRouteRequests
                 obj.Scheduler.scheduleAt(obj.Scheduler.Now+obj.Config.RouteRequestSeconds, ...
                     @()obj.requestTick(peer,generation));
@@ -545,13 +756,21 @@ classdef Layer < handle
 
         function discoveryFinished(obj,peers) %#ok<INUSD>
             obj.ScanComplete=true;
-            for requester=obj.ScanRequesters, obj.sendScanDone(requester); end
+            active=sort(obj.Neighbors.activePeers());
+            for peer=active, obj.refreshLink(peer); end
+            for peer=active, obj.startRequest(peer); end
+            known=obj.Routes.reachableDestinations();
+            known=known(1:min(10,numel(known))); obj.mergeScanKnown(known);
+            for requester=obj.ScanRequesters, obj.sendScanDone(requester,known); end
             obj.ScanRequesters=[]; obj.advanceScan();
         end
 
-        function sendScanDone(obj,peer)
-            obj.queueControl('SNMP_DONE',peer,struct('Nodes',obj.Neighbors.activePeers()),false);
-            obj.Counters.ScanDoneSent=obj.Counters.ScanDoneSent+1;
+        function sendScanDone(obj,peer,nodes)
+            if nargin<3, nodes=obj.Routes.reachableDestinations(); end
+            nodes=nodes(1:min(10,numel(nodes)));
+            if obj.sendSnmp('SNMP_DONE',peer,struct('Nodes',nodes))
+                obj.Counters.ScanDoneSent=obj.Counters.ScanDoneSent+1;
+            end
         end
 
         function sendNoPath(obj,peer,destination)
@@ -569,12 +788,14 @@ classdef Layer < handle
 
         function advanceScan(obj)
             if ~obj.ScanComplete || obj.Capability==0 || ~isempty(obj.ScanWaiting), return; end
-            peers=obj.Neighbors.activePeers(); peers=peers(~ismember(peers,obj.ScanRequested));
-            if isempty(peers), return; end
-            peer=peers(1); obj.ScanRequested(end+1)=peer; obj.ScanWaiting=peer;
+            obj.mergeScanKnown(obj.Routes.reachableDestinations());
+            pending=obj.ScanKnown(~ismember(obj.ScanKnown,obj.ScanRequested));
+            if isempty(pending), return; end
+            target=pending(1); obj.ScanRequested(end+1)=target; obj.ScanWaiting=target;
             obj.ScanGeneration=obj.ScanGeneration+1; generation=obj.ScanGeneration;
-            obj.queueControl('SNMP_START',peer,struct('DelaySeconds',0),false);
-            obj.Counters.ScanStartsSent=obj.Counters.ScanStartsSent+1;
+            if obj.sendSnmp('SNMP_START',target,struct('DelaySeconds',0))
+                obj.Counters.ScanStartsSent=obj.Counters.ScanStartsSent+1;
+            end
             obj.Scheduler.scheduleAt(obj.Scheduler.Now+obj.Config.GatewayWatchdogSeconds, ...
                 @()obj.scanWatchdog(generation));
         end
@@ -583,6 +804,22 @@ classdef Layer < handle
             if generation~=obj.ScanGeneration || isempty(obj.ScanWaiting), return; end
             obj.Counters.ScanWatchdogs=obj.Counters.ScanWatchdogs+1;
             obj.ScanWaiting=[]; obj.advanceScan();
+        end
+
+        function accepted = sendSnmp(obj,kind,destination,payload)
+            accepted=false; route=obj.Routes.discoveryRelay(destination);
+            if isempty(route) || ~obj.Neighbors.isActive(route.NextHop), return; end
+            payload.SourceId=option(payload,'SourceId',obj.NodeId);
+            payload.DestinationId=double(destination);
+            accepted=obj.queueControl(kind,route.NextHop,payload,false);
+        end
+
+        function mergeScanKnown(obj,nodes)
+            for node=reshape(nodes,1,[])
+                if node~=obj.NodeId && node<16777215 && ~ismember(node,obj.ScanKnown)
+                    obj.ScanKnown(end+1)=node;
+                end
+            end
         end
 
         function refreshLink(obj,peer)
@@ -617,7 +854,9 @@ classdef Layer < handle
             options=struct('RateKeyKbps',option(app,'RateKeyKbps',option(obj.Radio,'RateKeyKbps',8)), ...
                 'TxPowerDbm',option(app,'TxPowerDbm',option(obj.Radio,'TxPowerDbm',30)));
             options.Preamble=option(app,'Preamble',option(obj.Radio,'Preamble','long'));
-            options.EnvelopeProfile=option(app,'EnvelopeProfile',option(obj.Radio,'EnvelopeProfile','bare'));
+            % The scenario security profile is atomic across DATA/control TX.
+            % An application packet cannot downgrade the configured envelope.
+            options.EnvelopeProfile=option(obj.Radio,'EnvelopeProfile','bare');
             if isempty(options.TxPowerDbm), options.TxPowerDbm=option(obj.Radio,'TxPowerDbm',30); end
             if ~obj.Config.AdaptiveLinkControl, return; end
             chosen=Inf; power=[];
@@ -629,21 +868,6 @@ classdef Layer < handle
                 elseif detail.RateKeyKbps==chosen, power=max(power,detail.TxPowerDbm); end
             end
             options.RateKeyKbps=chosen; options.TxPowerDbm=power;
-        end
-
-        function bytes = controlBytes(~,kind,payload,count)
-            switch kind
-                case 'DISCOVER', body=12+7;
-                case 'KEY_REQUEST', body=7;
-                case 'KEY_UPDATE', body=51;
-                case 'NEIGHBOR_CHECK'
-                    body=11+5;
-                    if strcmpi(option(payload,'Subtype',''),'no_path'), body=body+3; end
-                case 'ROUTING', body=numel(payload.Bytes)+5;
-                case {'SNMP_START','SNMP_DONE'}, body=6+3*numel(option(payload,'Nodes',[]));
-                otherwise, error('csr:nwk:InvalidControl','Unknown control kind.');
-            end
-            bytes=17+8+5*(count-1)+body;
         end
 
         function id = nextControlId(obj)
@@ -661,6 +885,12 @@ classdef Layer < handle
                 if obj.Controls{index}.Control.Id==id, position=index; return; end
             end
         end
+        function deferRoutes(obj)
+            if obj.RouteProcessPending, return; end
+            obj.RouteProcessPending=true;
+            obj.Scheduler.scheduleAt(obj.Scheduler.Now+obj.Config.ControlRetrySeconds, ...
+                @()obj.processRoutes());
+        end
         function drop(obj,app,reason)
             if isfield(obj.Callbacks,'Dropped'), obj.Callbacks.Dropped(app,reason); end
         end
@@ -676,4 +906,22 @@ if isstruct(record) && isfield(record,name), value=record.(name); end
 end
 function key = appKey(app)
 key=sprintf('%.0f:%u',double(app.SourceId),uint64(app.Id));
+end
+function value = scalarBoolean(value)
+value=(islogical(value) || isnumeric(value)) && isscalar(value) && ...
+    isreal(value) && isfinite(value) && any(value==[0 1]) && logical(value);
+end
+function [source,forLocal,valid] = snmpAddress(payload,hopSource,nodeId)
+source=option(payload,'SourceId',hopSource);
+destination=option(payload,'DestinationId',nodeId);
+valid=isnumeric(source) && isscalar(source) && isreal(source) && isfinite(source) && ...
+    source>=0 && source<16777215 && fix(source)==source && ...
+    isnumeric(destination) && isscalar(destination) && isreal(destination) && ...
+    isfinite(destination) && destination>=0 && destination<16777215 && ...
+    fix(destination)==destination;
+if valid
+    source=double(source); forLocal=double(destination)==double(nodeId);
+else
+    source=NaN; forLocal=false;
+end
 end

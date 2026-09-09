@@ -100,6 +100,27 @@ classdef TestRoutes < matlab.unittest.TestCase
             test.verifyNotEmpty(routes.select(2));
         end
 
+        function snapshotOmissionClearsReporterCapability(test)
+            routes = TestRoutes.table(); defaults = csr.nwk.Routes.defaults();
+            routes.apply(2,10,{TestRoutes.update(2,2,0,0,[])},10,0);
+            test.verifyEqual(routes.applicationGateway(),2);
+            routes.drainChanges();
+
+            effects = routes.apply(2,11,{struct('Operation','INFO', ...
+                'Info',defaults.LocalInfo),struct('Operation','FLUSH')},10,1);
+
+            direct = routes.select(2);
+            test.verifyEqual(direct.Capability,0);
+            test.verifyEqual(direct.Cost,10);
+            test.verifyEqual(direct.Path,2);
+            test.verifyEmpty(routes.applicationGateway());
+            [records,ids] = routes.drainChanges();
+            test.verifyEqual(ids,2);
+            test.verifyEqual(records,{struct('Operation','DELETE','NodeId',2)});
+            test.verifyEqual(effects.AppliedRecords,2);
+            test.verifyEqual(effects.IgnoredRecords,0);
+        end
+
         function loopedUpdateInvalidatesReporterAndSelectsAlternative(test)
             routes = TestRoutes.table();
             routes.apply(2,1,{TestRoutes.update(9,1,1,20,9)},10,0);

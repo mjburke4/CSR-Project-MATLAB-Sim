@@ -1,0 +1,340 @@
+{
+  "schema": "csr-matlab-t3-reference-recheck-v1",
+  "checked_utc": "2026-09-09T12:46:25.984739+00:00",
+  "reference_manifest": "tranche-3-ns3-workflows.json",
+  "reference_manifest_sha256": "33ba31fb230f27430190bdd9c3dca02fb75d0ef537dac506f2e3f0e89ef6977c",
+  "source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "source_tracked_changes": [],
+  "source_and_build_hash_checks": [
+    {
+      "scope": "source",
+      "path": "CMakeLists.txt",
+      "matches": true
+    },
+    {
+      "scope": "source",
+      "path": "model/csr-arl-routing-message.cc",
+      "matches": true
+    },
+    {
+      "scope": "source",
+      "path": "model/csr-arl-routing-message.h",
+      "matches": true
+    },
+    {
+      "scope": "source",
+      "path": "model/csr-common.h",
+      "matches": true
+    },
+    {
+      "scope": "source",
+      "path": "model/csr-differential-trace.h",
+      "matches": true
+    },
+    {
+      "scope": "source",
+      "path": "model/csr-hello-header.cc",
+      "matches": true
+    },
+    {
+      "scope": "source",
+      "path": "model/csr-hello-header.h",
+      "matches": true
+    },
+    {
+      "scope": "source",
+      "path": "model/csr-hop-layer.h",
+      "matches": true
+    },
+    {
+      "scope": "source",
+      "path": "model/csr-hop-security.cc",
+      "matches": true
+    },
+    {
+      "scope": "source",
+      "path": "model/csr-hop-security.h",
+      "matches": true
+    },
+    {
+      "scope": "source",
+      "path": "model/csr-legacy-crypto.cc",
+      "matches": true
+    },
+    {
+      "scope": "source",
+      "path": "model/csr-legacy-crypto.h",
+      "matches": true
+    },
+    {
+      "scope": "source",
+      "path": "model/csr-mac-core.h",
+      "matches": true
+    },
+    {
+      "scope": "source",
+      "path": "model/csr-module.cc",
+      "matches": true
+    },
+    {
+      "scope": "source",
+      "path": "model/csr-net-device.h",
+      "matches": true
+    },
+    {
+      "scope": "source",
+      "path": "model/csr-nwk-layer.h",
+      "matches": true
+    },
+    {
+      "scope": "source",
+      "path": "model/csr-opnet-ber-tables-data.inc",
+      "matches": true
+    },
+    {
+      "scope": "source",
+      "path": "model/csr-opnet-ber-tables.cc",
+      "matches": true
+    },
+    {
+      "scope": "source",
+      "path": "model/csr-opnet-ber-tables.h",
+      "matches": true
+    },
+    {
+      "scope": "source",
+      "path": "model/csr-opnet-envelope.h",
+      "matches": true
+    },
+    {
+      "scope": "source",
+      "path": "model/csr-opnet-packet-model.cc",
+      "matches": true
+    },
+    {
+      "scope": "source",
+      "path": "model/csr-opnet-packet-model.h",
+      "matches": true
+    },
+    {
+      "scope": "source",
+      "path": "model/csr-phy-model.h",
+      "matches": true
+    },
+    {
+      "scope": "source",
+      "path": "model/csr-wire-format.h",
+      "matches": true
+    },
+    {
+      "scope": "build",
+      "path": "runner",
+      "matches": true
+    },
+    {
+      "scope": "build",
+      "path": "configure.log",
+      "matches": true
+    },
+    {
+      "scope": "build",
+      "path": "build.log",
+      "matches": true
+    }
+  ],
+  "results": [
+    {
+      "name": "csr-nwk-discovery-ordering-smoke",
+      "historical_hashes_match": {
+        "source": true,
+        "binary": true,
+        "log": true
+      },
+      "exit_code": 0,
+      "passed": true,
+      "pass_lines": [
+        "PASS: OPNET discovery cadence/completion and destination order"
+      ],
+      "fail_lines": [],
+      "rerun_stdout_sha256": "0b3c74ccd058f990713c1369c0fa93ad1aa330d50358e0394d647c0dadd999de"
+    },
+    {
+      "name": "csr-nwk-autonomous-convergence-smoke",
+      "historical_hashes_match": {
+        "source": true,
+        "binary": true,
+        "log": true
+      },
+      "exit_code": 0,
+      "passed": true,
+      "pass_lines": [
+        "PASS: gateway-driven discovery/SNMP convergence test"
+      ],
+      "fail_lines": [],
+      "rerun_stdout_sha256": "dfe4214c5d235439d86cc884497737e9528ec880dcb784c86897f5f61e06082f"
+    },
+    {
+      "name": "csr-nwk-arl-admission-security-smoke",
+      "historical_hashes_match": {
+        "source": true,
+        "binary": true,
+        "log": true
+      },
+      "exit_code": 0,
+      "passed": true,
+      "pass_lines": [
+        "PASS: ARL key exchange and neighbor admission test"
+      ],
+      "fail_lines": [],
+      "rerun_stdout_sha256": "6153e3f45ba2d8cf1cbf1db1e44498d3540ea52727cbcbe34269719d533d60c2"
+    },
+    {
+      "name": "csr-nwk-arl-routing-stream-smoke",
+      "historical_hashes_match": {
+        "source": true,
+        "binary": true,
+        "log": true
+      },
+      "exit_code": 0,
+      "passed": true,
+      "pass_lines": [
+        "PASS: ARL routing byte-stream parity test"
+      ],
+      "fail_lines": [],
+      "rerun_stdout_sha256": "5e1055d9423cfee5ae85d031e480cfb02a8054d0dffa36092078abf7fd0e16c8"
+    },
+    {
+      "name": "csr-nwk-self-capability-smoke",
+      "historical_hashes_match": {
+        "source": true,
+        "binary": true,
+        "log": true
+      },
+      "exit_code": 0,
+      "passed": true,
+      "pass_lines": [
+        "PASS: source-owned self-route capability parity test"
+      ],
+      "fail_lines": [],
+      "rerun_stdout_sha256": "7cc91846dd1f335181b9aaec8eda0f6f7754101150093eae241c8e33c2248c0e"
+    },
+    {
+      "name": "csr-nwk-grouped-route-propagation-smoke",
+      "historical_hashes_match": {
+        "source": true,
+        "binary": true,
+        "log": true
+      },
+      "exit_code": 0,
+      "passed": true,
+      "pass_lines": [
+        "PASS: source-exact grouped route propagation test"
+      ],
+      "fail_lines": [],
+      "rerun_stdout_sha256": "2a920fe862331ab25e755ca2fb0184e1e1f4b947b8b4412570ba5701d12b6ad0"
+    },
+    {
+      "name": "csr-nwk-residual-routing-retry-smoke",
+      "historical_hashes_match": {
+        "source": true,
+        "binary": true,
+        "log": true
+      },
+      "exit_code": 0,
+      "passed": true,
+      "pass_lines": [
+        "PASS: NWK-owned residual routing retry"
+      ],
+      "fail_lines": [],
+      "rerun_stdout_sha256": "fe7c3e63690181a9d6b96a148f00bb32c17c84c76059c4740a903ef8613b2415"
+    },
+    {
+      "name": "csr-nwk-same-pass-info-coupling-smoke",
+      "historical_hashes_match": {
+        "source": true,
+        "binary": true,
+        "log": true
+      },
+      "exit_code": 0,
+      "passed": true,
+      "pass_lines": [
+        "PASS: same-pass routing INFO coupling"
+      ],
+      "fail_lines": [],
+      "rerun_stdout_sha256": "7baf9ca3487f82ba89f1dfd3c5ce6ba0f903d3c4c48ee8e6fd31e942ff1ca57c"
+    },
+    {
+      "name": "csr-nwk-legacy-strict-smoke",
+      "historical_hashes_match": {
+        "source": true,
+        "binary": true,
+        "log": true
+      },
+      "exit_code": 0,
+      "passed": true,
+      "pass_lines": [
+        "PASS: strict OPNET NWK legacy behavior test"
+      ],
+      "fail_lines": [],
+      "rerun_stdout_sha256": "844066890a0d9fbd28fc30d225de35fd5755d164250ce2838bc3b3baf18c33c6"
+    },
+    {
+      "name": "csr-nwk-hop-integration-smoke",
+      "historical_hashes_match": {
+        "source": true,
+        "binary": true,
+        "log": true
+      },
+      "exit_code": 0,
+      "passed": true,
+      "pass_lines": [
+        "PASS: NWK/HOP integration parity test"
+      ],
+      "fail_lines": [],
+      "rerun_stdout_sha256": "9da565aaecbf4b660959e205e9c8db1e1b11357ac891c7de2c9d8a038b4eb64c"
+    },
+    {
+      "name": "csr-nwk-relay-holdoff-smoke",
+      "historical_hashes_match": {
+        "source": true,
+        "binary": true,
+        "log": true
+      },
+      "exit_code": 0,
+      "passed": true,
+      "pass_lines": [
+        "PASS: relay-holdoff signaling and control-order parity test"
+      ],
+      "fail_lines": [],
+      "rerun_stdout_sha256": "5e427b5ecbf7678fe614df62f116fec8038642ee90f569be4212ebd1d95cf1fc"
+    },
+    {
+      "name": "csr-hop-multidest-routing-smoke",
+      "historical_hashes_match": {
+        "source": true,
+        "binary": true,
+        "log": true
+      },
+      "exit_code": 0,
+      "passed": true,
+      "pass_lines": [
+        "PASS: OPNET multidestination routing ACK parity test"
+      ],
+      "fail_lines": [],
+      "rerun_stdout_sha256": "87ffa9674c4ad7d11b02ea1a589ace233db268692838e5f3e0e870a874d5480c"
+    }
+  ],
+  "passed_workflows": 12,
+  "total_workflows": 12,
+  "fresh_build_performed": false,
+  "fresh_build_blocker": "CMake is not installed in the current workspace; preserved binaries only were re-executed.",
+  "additional_unexecuted_workflows": [
+    "csr-hop-group-security-smoke",
+    "csr-hop-neighbor-check-security-smoke",
+    "csr-hop-remaining-security-smoke",
+    "csr-hop-security-crypto-smoke",
+    "csr-wire-format-smoke"
+  ],
+  "matlab_executed": false,
+  "scope": "Hash-verified preserved reference executable rerun, not a fresh compilation or MATLAB parity result."
+}
