@@ -6,6 +6,9 @@ Behavioral port of `mjburke4/CSR-Project-NS3-part2`, currently pinned to main
 ## Tranche 4 candidate: research scenarios and shared-input comparisons
 
 The research/comparison candidate builds on merged Tranche 3 at `c37a39e`.
+The initial R2025a run passed 330/331 tests and stopped on an evidence-utility
+failure. This corrected candidate contains 333 tests; its rerun is pending.
+See the [repair record](docs/tranche-4-r2025a-repair.md).
 It adds nine synthetic network experiments, five shared canonical ns-3 inputs,
 a fail-closed application comparator and a validation runner with source/data
 hashes, complete trace inventories and a compact evidence ZIP.

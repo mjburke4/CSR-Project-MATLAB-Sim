@@ -15,7 +15,9 @@ classdef Artifacts
             cleanup = onCleanup(@() fclose(fid)); %#ok<NASGU>
             bytes = fread(fid,Inf,'*uint8');
             hasher = javaMethod('getInstance','java.security.MessageDigest','SHA-256');
-            hasher.update(typecast(bytes,'int8'));
+            % MATLAB cannot reliably dispatch an empty array to Java's
+            % overloaded update methods. No update hashes the empty stream.
+            if ~isempty(bytes), hasher.update(typecast(bytes,'int8')); end
             raw = typecast(hasher.digest(),'uint8');
             digest = lower(reshape(dec2hex(raw,2).',1,[]));
         end
@@ -28,6 +30,7 @@ classdef Artifacts
         end
 
         function files = sourceSnapshot(root)
+            root = csr.validation.Artifacts.canonicalPath(root);
             % Include executable MATLAB, BER data and shared inputs. Result
             % directories are excluded so creating evidence cannot change it.
             listing = [dir(fullfile(root,'*.m')); ...
@@ -55,18 +58,37 @@ classdef Artifacts
             end
         end
 
-        function files = fileInventory(directory)
-            source = javaObject('java.io.File',directory);
-            directory = char(source.getCanonicalPath());
+        function path = canonicalPath(path)
+            if isstring(path) && isscalar(path), path = char(path); end
+            if ~ischar(path) || ~isrow(path) || isempty(path)
+                error('csr:validation:Path','Expected a nonempty path.');
+            end
+            source = javaObject('java.io.File',path);
+            if ~source.isAbsolute()
+                % JVM user.dir need not follow MATLAB cd. Supply MATLAB's
+                % current folder explicitly without changing Java globals.
+                source = javaObject('java.io.File',pwd,path);
+            end
+            path = char(source.getCanonicalPath());
+        end
+
+        function files = fileInventory(directory,excludedPaths)
+            if nargin < 2, excludedPaths = {}; end
+            directory = csr.validation.Artifacts.canonicalPath(directory);
+            if ~isfolder(directory)
+                error('csr:validation:Directory','Inventory directory does not exist: %s.',directory);
+            end
             listing = dir(fullfile(directory,'**','*'));
             listing = listing(~[listing.isdir]);
             files = repmat(struct('path','','sha256','','bytes',0),numel(listing),1);
             for k = 1:numel(listing)
                 path = fullfile(listing(k).folder,listing(k).name);
                 files(k).path = strrep(path(numel(directory)+2:end),filesep,'/');
+                if ismember(files(k).path,excludedPaths), continue; end
                 files(k).sha256 = csr.validation.Artifacts.sha256(path);
                 files(k).bytes = listing(k).bytes;
             end
+            files = files(~ismember({files.path},excludedPaths));
             [~,order] = sort({files.path}); files = files(order);
         end
     end

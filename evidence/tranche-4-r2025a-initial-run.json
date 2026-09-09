@@ -1,0 +1,45 @@
+{
+  "schema": "csr-matlab-owner-runtime-report-v1",
+  "recorded_utc_date": "2026-09-09",
+  "tranche": 4,
+  "candidate_commit": "a6d017a9164ba167c56c084356bae1c1730d9a04",
+  "candidate_archive": "CSR-MATLAB-Tranche4-a6d017a.zip",
+  "candidate_identity_basis": "Archive folder in the owner's pasted console stack; no source hashes supplied for this run",
+  "runtime": "MATLAB",
+  "version": "25.1.0.2943329 (R2025a)",
+  "release": "2025a",
+  "backend": "portable",
+  "command": "report = run_tranche4_validation;",
+  "evidence_kind": "Owner-pasted console transcript summarized here; no machine-readable evidence archive supplied",
+  "total": 331,
+  "passed": 330,
+  "failed": 1,
+  "incomplete": 1,
+  "test_duration_seconds": 100.1566,
+  "failed_test": "TestResearchEvidence/inventoryUsesPathsRelativeToItsDirectory",
+  "test_failure": {
+    "verification": "Inventory returned a 0-by-0 cell array; expected one summary.json entry",
+    "secondary_error_id": "MATLAB:minrhs",
+    "secondary_error": "The subsequent files.sha256 access expanded an empty struct into no actual argument"
+  },
+  "runner_failure": {
+    "method": "java.security.MessageDigest$Delegate/update",
+    "message": "A Non-scalar value was passed for a scalar argument",
+    "stack": [
+      "csr.validation.Artifacts.sha256:18",
+      "csr.validation.Artifacts.fileInventory:67",
+      "run_tranche4_validation/writeReport:149",
+      "run_tranche4_validation:124"
+    ],
+    "boundary": "Failure reporting replaced the original unsuccessful-test exception; the specific file being hashed was not identified in the transcript"
+  },
+  "shared_matlab_scenarios_reached": false,
+  "research_matlab_scenarios_reached": false,
+  "separate_tranche_2_and_3_export_loops_reached": false,
+  "native_tests_executed": false,
+  "long_run_executed": false,
+  "source_hashes_independently_verified": false,
+  "cross_simulator_comparison_executed": false,
+  "tranche_4_accepted": false,
+  "repair_document": "../docs/tranche-4-r2025a-repair.md"
+}

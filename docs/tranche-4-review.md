@@ -32,8 +32,12 @@ validation. Synthetic Python fixtures are not MATLAB execution evidence.
 ## Remaining runtime gate
 
 All 83 MATLAB files pass MISS_HIT using its MATLAB 2022a syntax profile.
-All 42 Python tests pass. The 331 prepared portable MATLAB tests, research
-exports and shared MATLAB scenarios still require owner execution on R2025a
-and R2026a. The optional six native tests and 6000-second workload are separate
+All 42 Python tests pass. The initial owner R2025a run subsequently passed
+330/331 tests and stopped on evidence path/hash defects. A bounded independent
+review found no blocking issue in the fixes described in the
+[repair record](tranche-4-r2025a-repair.md). It also requested protection for
+a failed diary reopen, which is now included. The corrected 333-method suite,
+research exports and shared MATLAB scenarios require a rerun on R2025a and
+execution on R2026a. The optional six native tests and 6000-second workload are separate
 requested gates. Actual cross-simulator comparisons can start after the shared
 MATLAB exports are returned. No full-network parity claim is made.

@@ -38,6 +38,14 @@ classdef TestNs3ScenarioImport < matlab.unittest.TestCase
         end
         function exactSourceProvenanceAndOptions(test)
             path = test.fixture();
+            previous = pwd;
+            cleanup = onCleanup(@() cd(previous)); %#ok<NASGU>
+            cd(test.Folder);
+            [~,name,extension] = fileparts(path);
+            relativeConfig = csr.scenario.importNs3([name extension]);
+            test.verifyEqual(relativeConfig.SharedScenario.SourcePath, ...
+                csr.validation.Artifacts.canonicalPath(path));
+            test.verifyEqual(relativeConfig.SharedScenario.SourceSHA256,test.hash(path));
             config = csr.scenario.importNs3(string(path),struct('FlowLimit',uint8(2),'Backend',"wireless-clock"));
             evidence = config.SharedScenario;
             test.verifyEqual(config.Backend,'wireless-clock');
@@ -183,6 +191,9 @@ classdef TestNs3ScenarioImport < matlab.unittest.TestCase
             test.verifyEqual(config.SharedScenario.CoordinateScaleMetersPerUnit,1000);
         end
         function malformedCsvIsRejected(test)
+            emptyPath = fullfile(test.Folder,'empty.csv');
+            fid = fopen(emptyPath,'wb'); fclose(fid);
+            test.verifyError(@() csr.scenario.importNs3(emptyPath),'csr:scenario:ImportCsv');
             contents = {'schema,record,record\n', ...
                 'schema,record\ncsr-opnet-scenario-v1,run,extra\n', ...
                 'schema,record\n"unterminated,run\n', ...

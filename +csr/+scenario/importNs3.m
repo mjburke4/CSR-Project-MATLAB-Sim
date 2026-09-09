@@ -204,8 +204,7 @@ for index = 1:size(flows,1)
 end
 runOptions = struct('opnetAppGating',false,'stochasticSyncThreshold',false, ...
     'dutyCycling',true,'opnetAlignedDutyCycle',true,'gatewayDiscovery',true);
-sourceFile = javaObject('java.io.File',path);
-canonicalPath = char(sourceFile.getCanonicalPath());
+canonicalPath = csr.validation.Artifacts.canonicalPath(path);
 config.SharedScenario = struct('Schema','csr-opnet-scenario-v1', ...
     'SourcePath',canonicalPath,'SourceSHA256',digest, ...
     'SourceCommit','486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b', ...
@@ -268,7 +267,7 @@ if fid < 0, error('csr:scenario:ImportPath','Cannot read canonical CSV: %s.',pat
 cleanup = onCleanup(@() fclose(fid)); %#ok<NASGU>
 bytes = fread(fid,Inf,'*uint8');
 hasher = javaMethod('getInstance','java.security.MessageDigest','SHA-256');
-hasher.update(typecast(bytes,'int8'));
+if ~isempty(bytes), hasher.update(typecast(bytes,'int8')); end
 digest = lower(reshape(dec2hex(typecast(hasher.digest(),'uint8'),2).',1,[]));
 text = native2unicode(reshape(bytes,1,[]),'UTF-8');
 lines = regexp(text,'\r\n|\n|\r','split');

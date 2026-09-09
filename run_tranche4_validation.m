@@ -14,8 +14,7 @@ if isstring(outputRoot) && isscalar(outputRoot), outputRoot = char(outputRoot); 
 if ~ischar(outputRoot) || ~isrow(outputRoot) || isempty(outputRoot)
     error('csr:validation:Output','Output root must be a path.');
 end
-outputFile = javaObject('java.io.File',outputRoot);
-outputRoot = char(outputFile.getCanonicalPath());
+outputRoot = csr.validation.Artifacts.canonicalPath(outputRoot);
 stamp = char(datetime('now','TimeZone','UTC','Format','yyyyMMdd_HHmmss_SSS'));
 [~,token] = fileparts(tempname);
 directory = fullfile(outputRoot,['run_' stamp '_' token]);
@@ -112,16 +111,39 @@ try
         fullfile(directory,report.EvidenceArchive));
     fprintf('Compare shared exports with the archived ns-3 references using scripts/compare_matlab_ns3.py.\n');
 catch failure
-    diary(fullfile(directory,'validation.log'));
+    try
+        diary(fullfile(directory,'validation.log'));
+    catch diaryFailure
+        report.DiaryFailure = struct('Identifier',diaryFailure.identifier,'Message',diaryFailure.message);
+    end
     report.Status = 'failed';
     report.CompletedUTC = csr.validation.Artifacts.utcNow();
     report.Failure = struct('Identifier',failure.identifier,'Message',failure.message);
-    report = updateTestCounts(report,directory);
+    try
+        report = updateTestCounts(report,directory);
+    catch countFailure
+        report.TestEvidenceFailure = struct('Identifier',countFailure.identifier,'Message',countFailure.message);
+    end
     if report.NativeAttempted && ~strcmp(report.NativeStatus,'passed')
         report.NativeStatus = 'failed';
         report.NativeExecuted = isfile(fullfile(directory,'native','native_test_results.csv'));
     end
-    writeReport();
+    report.EvidenceArchive = 'tranche4_evidence.zip';
+    try
+        writeReport();
+    catch reportFailure
+        % Preserve the original failure even if an artifact cannot be read
+        % or hashed. A minimal metadata record does not require an inventory.
+        report.EvidenceWriteFailure = struct('Identifier',reportFailure.identifier,'Message',reportFailure.message);
+        for field = {'Artifacts','LocalArtifacts'}
+            if isfield(report,field{1}), report = rmfield(report,field{1}); end
+        end
+        try
+            csr.validation.Artifacts.writeJson(fullfile(directory,'validation_metadata.json'),report);
+        catch metadataFailure
+            fprintf(2,'Failure metadata could not be written: %s\n',metadataFailure.message);
+        end
+    end
     diary('off');
     try
         packageEvidence(directory);
@@ -146,10 +168,8 @@ end
         % Hash completed artifacts, including nested regression CSVs, configs
         % and logs; do not hash a live diary whose final bytes can still grow.
         if ~strcmp(report.Status,'running')
-            inventory = csr.validation.Artifacts.fileInventory(directory);
-            paths = {inventory.path};
-            inventory = inventory(~strcmp(paths,'validation_metadata.json') & ...
-                ~strcmp(paths,'validation.log') & ~strcmp(paths,'tranche4_evidence.zip'));
+            inventory = csr.validation.Artifacts.fileInventory(directory, ...
+                {'validation_metadata.json','validation.log','tranche4_evidence.zip'});
             local = endsWith({inventory.path},'.mat');
             report.LocalArtifacts = inventory(local);
             report.Artifacts = inventory(~local);

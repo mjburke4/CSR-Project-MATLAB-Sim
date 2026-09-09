@@ -10,6 +10,9 @@ The branch is `agent/tranche-4-research-validation`, based on merged PR #3,
 This is an implementation candidate. No MATLAB or Octave runtime is available
 in the engineering workspace. R2025a/R2026a execution, the 6000-second MATLAB
 experiment and actual MATLAB/ns-3 numerical comparisons remain pending.
+The owner's initial R2025a run passed 330/331 tests and stopped in evidence
+utilities before the shared/research loops. The corrected 333-method candidate
+awaits a rerun; see the [repair record](tranche-4-r2025a-repair.md).
 Tranche 3's 289/289 R2025a acceptance remains historical evidence for its
 unchanged core; it is not presented as an execution of the new tests.
 
