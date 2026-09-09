@@ -3,19 +3,22 @@
 Behavioral port of `mjburke4/CSR-Project-NS3-part2`, currently pinned to main
 `486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b` (2026-09-07, PR #50).
 
-## Tranche 4 candidate: research scenarios and shared-input comparisons
+## Accepted portable Tranche 4 research scenarios and shared-input comparisons
 
-The research/comparison candidate builds on merged Tranche 3 at `c37a39e`.
-The initial R2025a run passed 330/331 tests and stopped on an evidence-utility
-failure. This corrected candidate contains 333 tests; its rerun is pending.
-See the [repair record](docs/tranche-4-r2025a-repair.md).
+Tranche 4 builds on merged Tranche 3 at `c37a39e`. The corrected code at
+`6fdf238` passed **333/333 tests on R2025a**, all 11 new scenario exports and
+all eight T3/nine T2 regressions. All 83 MATLAB source hashes match the package.
+See [portable acceptance](docs/tranche-4-portable-acceptance.md) and the
+[historical repair record](docs/tranche-4-r2025a-repair.md).
 It adds nine synthetic network experiments, five shared canonical ns-3 inputs,
 a fail-closed application comparator and a validation runner with source/data
 hashes, complete trace inventories and a compact evidence ZIP.
 
-**Tranche 4 MATLAB execution is pending.** The five source-side ns-3 reference
-cases have run successfully; they do not establish MATLAB numerical parity.
-Extract the candidate ZIP, select its repository root in MATLAB, then run:
+**All five actual shared MATLAB/ns-3 comparisons pass application equality.**
+Generation, payload, DSCP and delivery outcomes match for 15 applications;
+latency and OTA transmission counts differ. Full protocol parity is unproven.
+R2026a, native tests, 6000 seconds and seed sweeps remain separate gates.
+To reproduce the portable validation, select the repository root in MATLAB:
 
 ```matlab
 report = run_tranche4_validation;
@@ -43,7 +46,8 @@ disabled-transit fixture accounts for three intentional application drops.
 See [Tranche 3 acceptance](docs/tranche-3-portable-acceptance.md) and the
 [historical repairs](docs/tranche-3-r2025a-repair.md).
 Twelve unchanged native ns-3 reference workflows passed separately; R2026a
-and cross-simulator network comparison remain pending. See the
+and full protocol comparison remain pending; T4 adds the first five bounded
+application comparisons. See the
 [Tranche 3 handoff](docs/tranche-3-handoff.md) for capabilities, validation and
 known differences. No R2026a-only API was added to the portable core.
 

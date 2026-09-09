@@ -1,4 +1,8 @@
-# Running the Tranche 4 candidate
+# Running Tranche 4 validation
+
+The default R2025a run is accepted at `6fdf238`; see
+[verified results and limitations](tranche-4-portable-acceptance.md).
+These commands reproduce or extend that run.
 
 Use base MATLAB R2025a at work or R2026a at home. The portable run does not
 require the Wireless Network Simulator or Python. Keep MATLAB's standard JVM

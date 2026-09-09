@@ -1,5 +1,12 @@
 # Tranche 4 independent review record
 
+The subsequent runtime audit verified 333/333 owner R2025a tests, all source
+and bundled artifact hashes, complete research trace accounting, and five
+passing shared application comparisons. No blocker to bounded acceptance was
+found; control failures, recovery churn and timing differences remain explicit
+in [portable acceptance](tranche-4-portable-acceptance.md). The review below
+records the preparation and repair gates that preceded that accepted run.
+
 Reviewed on 2026-09-09 against the merged Tranche 3 base. Independent agents
 examined source-contract mapping, research layouts and the assembled validation
 runner. A final bounded recheck examined the compact evidence archive contract.

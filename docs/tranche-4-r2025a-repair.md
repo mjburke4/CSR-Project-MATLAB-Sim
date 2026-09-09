@@ -1,5 +1,9 @@
 # Tranche 4 initial R2025a run and evidence-utility repair
 
+Historical repair record: the subsequent owner run of `6fdf238` passed all
+333 tests and completed every default export. See the current
+[portable acceptance](tranche-4-portable-acceptance.md).
+
 The owner ran candidate `a6d017a` on MATLAB R2025a
 `25.1.0.2943329`. The pasted console reports 330/331 tests passed, one failed
 and incomplete method, and 100.1566 seconds of test execution. The failing

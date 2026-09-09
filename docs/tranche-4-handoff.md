@@ -1,4 +1,4 @@
-# Tranche 4: research scenarios and shared-input validation candidate
+# Tranche 4: accepted portable research scenarios and shared-input validation
 
 Objective: make the accepted PHY/MAC/HOP/NWK stack usable for reproducible
 network experiments and start direct MATLAB/ns-3 application comparisons.
@@ -7,14 +7,14 @@ The branch is `agent/tranche-4-research-validation`, based on merged PR #3,
 2026-09-09 and remains pinned to
 `486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b`.
 
-This is an implementation candidate. No MATLAB or Octave runtime is available
-in the engineering workspace. R2025a/R2026a execution, the 6000-second MATLAB
-experiment and actual MATLAB/ns-3 numerical comparisons remain pending.
-The owner's initial R2025a run passed 330/331 tests and stopped in evidence
-utilities before the shared/research loops. The corrected 333-method candidate
-awaits a rerun; see the [repair record](tranche-4-r2025a-repair.md).
-Tranche 3's 289/289 R2025a acceptance remains historical evidence for its
-unchanged core; it is not presented as an execution of the new tests.
+Code `6fdf238` is accepted for the bounded R2025a portable scope: 333/333 tests,
+all 11 new exports and eight T3/nine T2 regressions completed. All 83 MATLAB
+source hashes match. Five actual shared comparisons pass application equality;
+latency and radio transmission-count differences remain explicit. See
+[portable acceptance](tranche-4-portable-acceptance.md). R2026a, 6000 seconds,
+seed sweeps and full protocol parity remain separate gates. No MATLAB runtime
+was available in the engineering workspace; MATLAB execution was on the owner
+machine. The prior 330/331 run remains in the [repair record](tranche-4-r2025a-repair.md).
 
 ## Capabilities and architecture
 
@@ -80,13 +80,15 @@ native-execution reporting, and the compact ZIP's MAT-file inventory. MAT
 objects remain on the owner machine and are listed separately from bundled
 CSV/JSON/log evidence. A clean static review cannot replace the MATLAB run.
 
-## Boundaries and next acceptance step
+## Boundaries and next step
 
-Run [the validation command](tranche-4-validation.md) on R2025a, then R2026a
-when available, and return the generated evidence ZIP. The same shared inputs
-can then be compared directly with the archived source reference traces.
-Research delivery/loss, pending work, control rejection and convergence are
-measured outcomes; structural completion does not declare them equivalent.
+The [acceptance record](tranche-4-portable-acceptance.md) separates the five
+matching application comparisons from measured timing and control residuals.
+Six research cases drain; the leaf's five policy drops are intentional.
+Hidden-node/recovery have terminal control failures, and recovery's aggressive
+freshness causes route churn and up to 135.9404 seconds of application delay.
+Expand [validation](tranche-4-validation.md) to R2026a, 6000 seconds and seeds
+before interpreting these fixtures as broad performance benchmarks.
 
 No existing protocol, PHY/ECC or scheduler implementation was changed in this
 tranche. Bounded custody/control queues, retry policies, behavioral security,
@@ -96,9 +98,7 @@ link adaptation, equivalent OPNET aggregates and large-network certification
 remain separate work. Battery, supervisory behavior, BBN routing, GUI,
 Simulink and waveform-level work remain excluded.
 
-Once the owner results pass their structural gate and the shared comparisons
-have been examined, the next practical tranche is research usability and
-performance: parameter sweeps around a chosen work scenario, visualization of
-those measured results, and the highest-impact discrepancies found by this
-comparison harness. Tranche 4 is locally committed for runtime review; remote
-publication follows the owner's acceptance/authorization workflow.
+The next practical tranche is research usability and performance: parameter
+sweeps around a chosen work scenario and the highest-impact discrepancies
+found by this comparison harness. Tranche 4 is locally accepted and ready for
+a PR; remote publication follows the owner's authorization workflow.

@@ -1,7 +1,7 @@
 {
   "schema": "csr-matlab-tranche-4-candidate-v1",
   "prepared_utc": "2026-09-09T16:47:13.830104+00:00",
-  "status": "Accepted bounded portable Tranche 4 on owner R2025a: 333/333 tests, 11 new exports and five matching shared application comparisons; full protocol parity remains unproven",
+  "status": "Corrected local candidate after owner R2025a 330/331 run; 333-method rerun and shared/research exports pending",
   "branch": "agent/tranche-4-research-validation",
   "published_base_commit": "c37a39e2d03d0f675271fb37ac2c4c0bcafd9f4b",
   "published_base_pr": "https://github.com/mjburke4/CSR-Project-MATLAB-Sim/pull/3",
@@ -10,7 +10,7 @@
   "ns3_engine_commit": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
   "source_main_rechecked_utc": "2026-09-09",
   "matlab_executed_in_workspace": false,
-  "tranche_4_matlab_execution_completed": true,
+  "tranche_4_matlab_execution_completed": false,
   "matlab_runtime_results": [
     {
       "evidence": "tranche-4-r2025a-initial-run.json",
@@ -23,24 +23,9 @@
       "incomplete": 1,
       "source_hashes_verified": false,
       "shared_and_research_exports_reached": false
-    },
-    {
-      "evidence": "tranche-4-portable-acceptance.json",
-      "evidence_sha256": "133fc1cd55ae0a8f654a2895caf84ed93bcf82321a3012c479097521498a3665",
-      "candidate_commit": "6fdf23835dec2f702ef0d7012776bbc30790b307",
-      "runtime": "MATLAB R2025a 25.1.0.2943329",
-      "total": 333,
-      "passed": 333,
-      "failed": 0,
-      "incomplete": 0,
-      "source_hashes_verified": true,
-      "matlab_source_hashes_verified": 83,
-      "shared_and_research_exports_reached": true,
-      "shared_and_research_exports_completed": 11,
-      "shared_application_comparisons_passed": 5
     }
   ],
-  "cross_simulator_comparison_executed": true,
+  "cross_simulator_comparison_executed": false,
   "numerical_parity_established": false,
   "remote_publication_performed_for_tranche_4": false,
   "historical_owner_acceptance": "tranche-3-portable-acceptance.json",
@@ -122,10 +107,7 @@
     "All accepted PHY/ECC/HOP/MAC/NWK/scheduler source files are unchanged; bounded custody/control policies and behavioral security remain explicit.",
     "Structural completion measures balanced accounting and complete traces; it does not require all data delivered or establish numerical parity.",
     "MAT files stay local; portable evidence ZIP carries CSV/JSON/log inventories.",
-    "The 6000-second MATLAB workload, six native tests, full feedback adaptation, integrated native packet transport, OPNET comparison and broad network certification remain pending.",
-    "Actual shared application equality does not remove observed 60.667-104 ms mean latency deltas or radio transmission-count differences.",
-    "Research control retries sometimes exhaust; recovery freshness stress creates route churn and up to 135.9404 seconds of latency. All tested data/control ownership drains.",
-    "R2025a seed128 accepted. R2026a, the 6000-second workload, multiseed scaling and OPNET/full-protocol comparisons remain separate."
+    "The 6000-second MATLAB workload, six native tests, full feedback adaptation, integrated native packet transport, OPNET comparison and broad network certification remain pending."
   ],
   "excluded_scope": [
     "battery/energy",
@@ -236,11 +218,5 @@
   "initial_candidate_evidence": "tranche-4-initial-candidate.json",
   "initial_candidate_evidence_sha256": "688bca9978f38387e587d38db2f90acf75ac97a716214adafe9bc5b46c853936",
   "initial_local_checks": "tranche-4-local-checks.json",
-  "repair_document": "../docs/tranche-4-r2025a-repair.md",
-  "updated_utc": "2026-09-09T17:16:28.669820+00:00",
-  "shared_application_comparison_equal": true,
-  "acceptance_evidence": "tranche-4-portable-acceptance.json",
-  "acceptance_evidence_sha256": "133fc1cd55ae0a8f654a2895caf84ed93bcf82321a3012c479097521498a3665",
-  "validated_candidate_evidence": "tranche-4-validated-candidate.json",
-  "accepted_code_commit": "6fdf23835dec2f702ef0d7012776bbc30790b307"
+  "repair_document": "../docs/tranche-4-r2025a-repair.md"
 }
