@@ -4,6 +4,9 @@ classdef SignalEngine < handle
     % Every transmission reaches every non-self peer; addressing belongs above
     % PHY. onReceive(frame,receiverId,decision) runs once at physical completion.
     % onTrace(eventName,frame,receiverId,details) is optional and never owns RNG.
+    % onState(receiverId,state) is optional. It runs after each actual state
+    % transition and its PHY bookkeeping are complete. MAC owns wake/sleep,
+    % post-TX wait and access timers; PHY owns acquisition and half-duplex TX.
     %
     % T1 uses source's always-awake Search default. setReceiverState is a
     % controlled Idle/Search hook; MAC duty cycling, post-TX wait and access
@@ -18,6 +21,7 @@ classdef SignalEngine < handle
         Streams
         OnReceive
         OnTrace
+        OnState
         Receivers
         NextSignalId = 1
         Outstanding = 0
@@ -27,14 +31,16 @@ classdef SignalEngine < handle
         CaptureMarginDb = 10.5
     end
     methods
-        function obj = SignalEngine(config, scheduler, streams, onReceive, onTrace)
+        function obj = SignalEngine(config, scheduler, streams, onReceive, onTrace, onState)
             if nargin < 5, onTrace = []; end
+            if nargin < 6, onState = []; end
             if ~isa(onReceive,'function_handle') || ...
-                    (~isempty(onTrace) && ~isa(onTrace,'function_handle'))
-                error('csr:phy:Callback','Receive and optional trace callbacks must be function handles.');
+                    (~isempty(onTrace) && ~isa(onTrace,'function_handle')) || ...
+                    (~isempty(onState) && ~isa(onState,'function_handle'))
+                error('csr:phy:Callback','Receive and optional trace/state callbacks must be function handles.');
             end
             obj.Config=config; obj.Scheduler=scheduler; obj.Streams=streams;
-            obj.OnReceive=onReceive; obj.OnTrace=onTrace;
+            obj.OnReceive=onReceive; obj.OnTrace=onTrace; obj.OnState=onState;
             if isfield(config,'Phy')
                 options={'MaxActiveSignals','MaxIntervalsPerSignal','SyncToTrackSeconds','CaptureMarginDb'};
                 for k=1:numel(options)
@@ -60,8 +66,20 @@ classdef SignalEngine < handle
         function value=state(obj,nodeId)
             value=obj.Receivers(obj.nodeIndex(nodeId)).State;
         end
+        function present=hasSync(obj,nodeId)
+            % Match CsrNetDevice::UpdateSyncPresence: presence is the admitted
+            % SYNC table, not raw RF energy. Track-rejected admitted preambles
+            % remain present; weak/off-band signals never enter this table.
+            signals=obj.Receivers(obj.nodeIndex(nodeId)).Signals;
+            present=false;
+            for k=1:numel(signals)
+                if signals{k}.SyncEligible && signals{k}.PreambleActive
+                    present=true; return
+                end
+            end
+        end
         function setReceiverState(obj,nodeId,value)
-            % Explicit controlled-fixture/future MAC hook, not a duty-cycle model.
+            % MAC's explicit wake/sleep hook; no PHY-owned duty-cycle timer.
             value=char(value); index=obj.nodeIndex(nodeId);
             if ~any(strcmp(value,{'Search','Idle'}))
                 error('csr:phy:ReceiverState','Explicit receiver state must be Search or Idle.');
@@ -69,6 +87,7 @@ classdef SignalEngine < handle
             if strcmp(obj.Receivers(index).State,'Tx')
                 error('csr:phy:ReceiverBusy','Cannot override an active half-duplex transmission.');
             end
+            previous=obj.Receivers(index).State;
             if strcmp(value,'Idle')
                 obj.cancelAcquisition(index);
                 for k=1:numel(obj.Receivers(index).Signals)
@@ -79,6 +98,7 @@ classdef SignalEngine < handle
             end
             obj.Receivers(index).State=value;
             if strcmp(value,'Search'), obj.scheduleAcquisition(index); end
+            obj.notifyState(index,previous);
         end
         function transmit(obj,frame,duration)
             if nargin<3
@@ -103,6 +123,7 @@ classdef SignalEngine < handle
                 active=obj.Receivers(txIndex).Signals{k}; active.HalfDuplex=true;
                 obj.Receivers(txIndex).Signals{k}=active;
             end
+            previous=obj.Receivers(txIndex).State;
             obj.Receivers(txIndex).State='Tx';
             obj.Receivers(txIndex).TxUntil=now+duration;
             if obj.Receivers(txIndex).TxEvent~=0
@@ -138,6 +159,7 @@ classdef SignalEngine < handle
                     obj.Scheduler.scheduleAt(signal.EndSec,@()obj.finishOccluded(index,signal));
                 end
             end
+            obj.notifyState(txIndex,previous);
         end
     end
     methods (Access=private)
@@ -152,9 +174,11 @@ classdef SignalEngine < handle
             end
         end
         function finishTx(obj,index)
+            previous=obj.Receivers(index).State;
             obj.Receivers(index).TxEvent=uint64(0);
             obj.Receivers(index).State='Search';
             obj.scheduleAcquisition(index);
+            obj.notifyState(index,previous);
         end
         function cancelAcquisition(obj,index)
             id=obj.Receivers(index).AcquireEvent;
@@ -337,8 +361,10 @@ classdef SignalEngine < handle
             end
             obj.Receivers(index).Signals{selected}=signal;
             obj.Receivers(index).TrackedId=signal.Id;
+            previous=obj.Receivers(index).State;
             obj.Receivers(index).State='Track';
             obj.emit('phy_track',index,signal,struct('Collided',signal.Collided,'JsrDb',obj.Receivers(index).JsrDb));
+            obj.notifyState(index,previous);
         end
         function closeIntervals(obj,index,endSec)
             for k=1:numel(obj.Receivers(index).Signals)
@@ -411,20 +437,46 @@ classdef SignalEngine < handle
             end
             obj.refreshHighRateInterference(index);
             obj.Outstanding=obj.Outstanding-1;
-            if wasTracked && ~strcmp(obj.Receivers(index).State,'Tx')
+            if ~isempty(obj.OnState)
+                % ns-3 delivers decoded segments while still Track, allowing
+                % HOP to enqueue ACK before MAC's Track -> Search preparation.
+                % Retire PHY signal bookkeeping first so callbacks cannot
+                % invalidate indices in this completed receive operation.
+                obj.emit('phy_signal_end',index,signal,decision);
+                obj.OnReceive(signal.Frame,obj.Receivers(index).Id,decision);
+            end
+            resumeTracked=wasTracked && ~strcmp(obj.Receivers(index).State,'Tx');
+            if ~isempty(obj.OnState)
+                % The completed frame no longer owns a receiver that MAC
+                % synchronously slept or woke during its receive callback.
+                resumeTracked=resumeTracked && strcmp(obj.Receivers(index).State,'Track');
+            end
+            if resumeTracked
                 if decision.Success
                     obj.returnToSearch(index);
                 else
                     % ns-3 nanosecond resolution quantizes 1/36 MHz to 28 ns.
-                    obj.Scheduler.scheduleAt(obj.Scheduler.Now+28e-9,@()obj.returnToSearch(index));
+                    obj.Scheduler.scheduleAt(obj.Scheduler.Now+28e-9,@()obj.returnRejectedToSearch(index));
                 end
             end
-            obj.emit('phy_signal_end',index,signal,decision);
-            obj.OnReceive(signal.Frame,obj.Receivers(index).Id,decision);
+            if isempty(obj.OnState)
+                % Preserve T1's callback-observable ordering for standalone
+                % consumers that have not installed the MAC state bridge.
+                obj.emit('phy_signal_end',index,signal,decision);
+                obj.OnReceive(signal.Frame,obj.Receivers(index).Id,decision);
+            end
+        end
+        function returnRejectedToSearch(obj,index)
+            % A MAC-owned wake/sleep change can supersede a rejected packet's
+            % fallback. Do not let its old completion wake the receiver again.
+            if ~isempty(obj.OnState) && ~strcmp(obj.Receivers(index).State,'Track'), return; end
+            obj.returnToSearch(index);
         end
         function returnToSearch(obj,index)
             if strcmp(obj.Receivers(index).State,'Tx'), return; end
+            previous=obj.Receivers(index).State;
             obj.Receivers(index).State='Search'; obj.scheduleAcquisition(index);
+            obj.notifyState(index,previous);
         end
         function refreshHighRateInterference(obj,index)
             signals=obj.Receivers(index).Signals;
@@ -485,6 +537,14 @@ classdef SignalEngine < handle
             if isempty(obj.OnTrace), return; end
             details.TimeSeconds=obj.Scheduler.Now; details.SignalId=signal.Id;
             obj.OnTrace(name,signal.Frame,obj.Receivers(index).Id,details);
+        end
+        function notifyState(obj,index,previous)
+            current=obj.Receivers(index).State;
+            if isempty(obj.OnState) || strcmp(previous,current), return; end
+            % Call only at the end of a transition. A MAC callback can safely
+            % query state/SYNC or schedule work without later PHY assignment
+            % overwriting a synchronous Idle/Search decision it makes here.
+            obj.OnState(obj.Receivers(index).Id,current);
         end
     end
     methods (Static,Access=private)

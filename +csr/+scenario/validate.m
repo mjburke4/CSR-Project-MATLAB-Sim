@@ -11,6 +11,10 @@ end
 if ~any(strcmp(config.Backend, {'portable','wireless-clock'}))
     error('csr:scenario:Backend', 'Backend must be portable or wireless-clock.');
 end
+if ~isfield(config,'Stack'), config.Stack = 'phy-only'; end
+if ~any(strcmp(config.Stack,{'phy-only','mac-hop'}))
+    error('csr:scenario:Stack','Stack must be phy-only or mac-hop.');
+end
 if ~isfield(config.Channel, 'Model'), config.Channel.Model = 'controlled'; end
 if ~any(strcmp(config.Channel.Model, {'controlled','csr-phy'}))
     error('csr:scenario:Channel', 'Channel.Model must be controlled or csr-phy.');
@@ -118,5 +122,61 @@ for index = 1:numel(config.Traffic)
 end
 for field = fieldnames(config.Phy)'
     config.Phy.(field{1}) = double(config.Phy.(field{1}));
+end
+if strcmp(config.Stack,'mac-hop')
+    config = csr.hop.validateConfig(config);
+    if ~strcmp(config.Channel.Model,'csr-phy')
+        error('csr:scenario:MacHopChannel','The MAC/HOP stack requires the CSR PHY channel.');
+    end
+    if ~isfield(config,'NetworkQueueLimit'), config.NetworkQueueLimit = 512; end
+    validateattributes(config.NetworkQueueLimit,{'numeric'}, {'scalar','integer','positive','finite','real'});
+    config.NetworkQueueLimit = double(config.NetworkQueueLimit);
+    for k = 1:numel(config.Traffic)
+        if ~isfield(config.Traffic(k),'Path') || isempty(config.Traffic(k).Path)
+            config.Traffic(k).Path = [config.Traffic(k).SourceId,config.Traffic(k).DestinationId];
+        end
+        path = config.Traffic(k).Path;
+        validateattributes(path,{'numeric'},{'vector','integer','finite','real','nonnegative'});
+        path = reshape(double(path),1,[]);
+        if numel(path)<2 || numel(unique(path))~=numel(path) || ~all(ismember(path,ids)) || ...
+                path(1)~=config.Traffic(k).SourceId || path(end)~=config.Traffic(k).DestinationId
+            error('csr:scenario:Path','Each explicit path must connect the flow endpoints through distinct existing nodes.');
+        end
+        config.Traffic(k).Path = path;
+        if ~isfield(config.Traffic(k),'Dscp') || isempty(config.Traffic(k).Dscp), config.Traffic(k).Dscp = 0; end
+        if ~isfield(config.Traffic(k),'AckRequired') || isempty(config.Traffic(k).AckRequired), config.Traffic(k).AckRequired = true; end
+        validateattributes(config.Traffic(k).Dscp,{'numeric'},{'scalar','integer','finite','real','>=',0,'<=',255});
+        validateattributes(config.Traffic(k).AckRequired,{'logical'},{'scalar'});
+        config.Traffic(k).Dscp = double(config.Traffic(k).Dscp);
+    end
+    fault = struct('Kind','*','SourceId',-1,'DestinationId',-1, ...
+        'First',1,'Count',1,'StartSeconds',0,'EndSeconds',Inf);
+    if ~isfield(config,'Faults') || isempty(config.Faults)
+        config.Faults = repmat(fault,0,1);
+    else
+        if ~isstruct(config.Faults) || ~all(isfield(config.Faults,fieldnames(fault))) || ...
+                ~isempty(setdiff(fieldnames(config.Faults),fieldnames(fault)))
+            error('csr:scenario:Faults','Faults must use the documented receive-erasure fields.');
+        end
+        for k = 1:numel(config.Faults)
+            rule = config.Faults(k);
+            if ~any(strcmp(rule.Kind,{'DATA','ACK','DACK','*'}))
+                error('csr:scenario:Faults','Fault Kind must be DATA, ACK, DACK or *.');
+            end
+            for field = {'SourceId','DestinationId'}
+                value = rule.(field{1});
+                validateattributes(value,{'numeric'},{'scalar','integer','finite','real'});
+                if value~=-1 && ~ismember(value,ids), error('csr:scenario:Faults','Fault endpoints must exist or use -1 wildcard.'); end
+            end
+            validateattributes(rule.First,{'numeric'},{'scalar','integer','finite','positive','real'});
+            validateattributes(rule.Count,{'numeric'},{'scalar','nonnegative','real','nonnan'});
+            if isfinite(rule.Count) && fix(rule.Count)~=rule.Count, error('csr:scenario:Faults','Fault Count must be integer or Inf.'); end
+            validateattributes(rule.StartSeconds,{'numeric'},{'scalar','nonnegative','finite','real'});
+            validateattributes(rule.EndSeconds,{'numeric'},{'scalar','real','nonnan','>=',rule.StartSeconds});
+            for field = {'SourceId','DestinationId','First','Count','StartSeconds','EndSeconds'}
+                config.Faults(k).(field{1}) = double(rule.(field{1}));
+            end
+        end
+    end
 end
 end

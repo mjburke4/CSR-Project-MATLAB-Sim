@@ -1,0 +1,191 @@
+{
+  "schema": "csr-matlab-tranche-2-owner-runtime-v1",
+  "recorded_utc": "2026-09-08T16:33:07.961202+00:00",
+  "execution_performed_by": "Owner MATLAB environment; not this workspace",
+  "command": "run_tranche2_validation",
+  "runtime": {
+    "Runtime": "MATLAB",
+    "Version": "25.1.0.2943329 (R2025a)",
+    "Release": "2025a",
+    "Backend": "portable",
+    "HasWirelessNetworkSimulator": false,
+    "HasWnetNode": false,
+    "HasWirelessPacket": false,
+    "WirelessAdapterImplemented": true,
+    "NativePacketTransportIntegrated": false
+  },
+  "associated_candidate_commit": "ad5704094e14c8182d1c3f6c2f15c6313705cf2f",
+  "runtime_source_hash_independently_verified": false,
+  "revision_association_basis": "Issued package and matching test names/count/path; runtime did not provide a source hash",
+  "inputs": [
+    {
+      "name": "Pasted markdown(1).md",
+      "sha256": "6867f28972f5dedf960dfc28f21a162526d31441d59b66c2b5b7f72dac8e074d",
+      "role": "Owner console transcript inspected"
+    },
+    {
+      "name": "test_results.csv",
+      "sha256": "4e004525fcb73b9c0c47c4552fb0725d859ddca73797c3178f1f27dd6bb60983",
+      "stored_as": "tranche-2-r2025a-initial-test-results.csv",
+      "role": "Owner test-results CSV inspected and preserved byte-for-byte"
+    }
+  ],
+  "tests": {
+    "total": 145,
+    "passed": 121,
+    "failed": 24,
+    "incomplete": 18,
+    "incomplete_is_subset_of_failed": true,
+    "reported_duration_seconds": 28.7179,
+    "classes": {
+      "TestBerTables": {
+        "total": 7,
+        "passed": 7,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestCppBerReference": {
+        "total": 5,
+        "passed": 5,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestEventScheduler": {
+        "total": 6,
+        "passed": 6,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestFoundation": {
+        "total": 8,
+        "passed": 8,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestHopFrames": {
+        "total": 11,
+        "passed": 11,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestHopLayer": {
+        "total": 20,
+        "passed": 7,
+        "failed": 13,
+        "incomplete": 9
+      },
+      "TestMacHopCustody": {
+        "total": 3,
+        "passed": 3,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestMacHopScenarios": {
+        "total": 12,
+        "passed": 12,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestMacLayer": {
+        "total": 18,
+        "passed": 7,
+        "failed": 11,
+        "incomplete": 9
+      },
+      "TestPhyFoundation": {
+        "total": 5,
+        "passed": 5,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestPhyMacBridge": {
+        "total": 9,
+        "passed": 9,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestPhyModel": {
+        "total": 13,
+        "passed": 13,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestPhyScenarios": {
+        "total": 7,
+        "passed": 7,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestRandomStreams": {
+        "total": 5,
+        "passed": 5,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestSignalEngine": {
+        "total": 13,
+        "passed": 13,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestTranche1Integration": {
+        "total": 3,
+        "passed": 3,
+        "failed": 0,
+        "incomplete": 0
+      }
+    },
+    "failed_methods": [
+      "TestHopLayer/ackReleasesCustodyAndCancelsQueuedCopy",
+      "TestHopLayer/custodyRefusalAllowsFreshRetry",
+      "TestHopLayer/dackReleasesNsdpAndHoldsCapacity",
+      "TestHopLayer/duplicateIsAckedWithoutRedelivery",
+      "TestHopLayer/finalTimeoutHasDoubleGrace",
+      "TestHopLayer/localDeliveryNeverDacks",
+      "TestHopLayer/noRouteFirstReceptionSuppressedAndRetryAcked",
+      "TestHopLayer/relayCountFifteenStillAcksTheSixteenth",
+      "TestHopLayer/relayDackUsesPreenqueueCountAndCanBeReassessed",
+      "TestHopLayer/relayDeliveryPrecedesFeedback",
+      "TestHopLayer/retryKeepsSequenceAndDscpAndWaitsForSent",
+      "TestHopLayer/sequenceWindowWrapAndOutOfOrder",
+      "TestHopLayer/unknownFeedbackAndSingleDackStillCoalesceWake",
+      "TestMacLayer/acknowledgementIsPackedBeforePriorityData",
+      "TestMacLayer/aggregateHasAtMostSixteenSegments",
+      "TestMacLayer/aggregateUsesSlowestRateAndItsPower",
+      "TestMacLayer/canceledDataNeverReachesTransmitter",
+      "TestMacLayer/exactAckDeduplicatesAndMacOwnsFiveTransmissions",
+      "TestMacLayer/fullAckQueueStillReplacesCumulativeWindow",
+      "TestMacLayer/highRateHeadsMakeProgressWithoutInventedConcatLimit",
+      "TestMacLayer/preambleFollowsFreshnessAndOrderedAggregateWalk",
+      "TestMacLayer/queueLimitRejectsNewPriorityAndPreservesStableOrder",
+      "TestMacLayer/strictConcatBoundaryBlocksLaterHead",
+      "TestMacLayer/syncAndTrackFreezeAccessCountdown"
+    ]
+  },
+  "separate_scenario_export_stage_reached": false,
+  "stop_reason": "run_validation assertSuccess failed before controlled fixture and outer nine-scenario exports",
+  "diagnosis": "Test-only anonymous value captures froze initial observation logs and mutable NSDP/route/SYNC controls",
+  "repair": {
+    "files": [
+      "tests/TestHopLayer.m",
+      "tests/TestMacLayer.m"
+    ],
+    "approach": "Named nested getters sharing mutable fixture callback state",
+    "existing_verification_assertions_preserved": true,
+    "extra_assertions": "Two frame-count checks in existing HOP retry method",
+    "portable_method_count_after_repair": 145,
+    "protocol_files_changed": false,
+    "matlab_rerun_executed": false,
+    "static_validation": {
+      "tool": "MISS_HIT 0.9.44",
+      "syntax_profile": "MATLAB 2022a",
+      "files_analyzed": 54,
+      "exit_code": 0,
+      "output": "MISS_HIT Lint Summary: 54 file(s) analysed, everything seems fine",
+      "matlab_executed": false
+    }
+  },
+  "acceptance_status": "Not accepted; repaired full-suite rerun and scenario exports required",
+  "native_R2026a_validated": false,
+  "full_network_ns3_differential_validated": false
+}

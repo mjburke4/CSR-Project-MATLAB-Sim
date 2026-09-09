@@ -1,0 +1,46 @@
+[MAC 1] active_nodes set to 16 for local slotting and post-TX wait
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=16 opnet_slot_range=255
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] slot reservation table exhausted; using random fallback
+[MAC 1] PickTxSlot chose 155 using OPNET free-slot ordinal range [1,255]
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=16 opnet_slot_range=255
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] controlled differential reservation slot=254
+[MAC 1] active_nodes set to 4 for local slotting and post-TX wait
+[MAC 1] max_reported_active_nodes updated to 13
+[MAC 1] Learned neighbor 9 uses slot 0 (rtCounter=0)
+[MAC 1] PickTxSlot chose 0 using historical coarse inclusive range [0,31] without reservation avoidance
+[MAC 1] active_nodes set to 4 for local slotting and post-TX wait
+[MAC 1] max_reported_active_nodes updated to 13
+[MAC 1] Learned neighbor 9 uses slot 31 (rtCounter=31)
+[MAC 1] PickTxSlot chose 31 using historical coarse inclusive range [0,31] without reservation avoidance
+[MAC 1] active_nodes set to 13 for local slotting and post-TX wait
+[MAC 1] max_reported_active_nodes updated to 1
+[MAC 1] Learned neighbor 9 uses slot 255 (rtCounter=255)
+[MAC 1] PickTxSlot chose 255 using historical coarse inclusive range [0,255] without reservation avoidance
+[MAC 5] active_nodes set to 4 for local slotting and post-TX wait
+[MAC 5] max_reported_active_nodes updated to 7
+[MAC 5] active_nodes set to 5 for local slotting and post-TX wait
+[MAC 1] active_nodes set to 1 for local slotting and post-TX wait
+[MAC 1] Learned neighbor 9 uses slot 3 (rtCounter=3)
+[MAC] Enqueue TX pkt dscp=1 insert_pos=0 queue_size_before=0
+[MAC] Enqueue TX pkt dscp=7 insert_pos=0 queue_size_before=1
+[MAC] Enqueue TX pkt dscp=7 insert_pos=1 queue_size_before=2
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] avoiding neighbor 9 currentReservedSlot=2 rtslot_counter=2
+[MAC 1] PickTxSlot(dest=2) avoid: 2
+[MAC 1] PickTxSlot chose 18 using OPNET free-slot ordinal range [1,18]
+[MAC 1] starts Pre-Tx with new slot=18 holdoff_over=0
+[MAC 1] rtslot_counter expired for neighbor 9 reserveSlot=3
+[MAC 1] OPNET 300-ms transmit holdoff complete
+[MAC 1] PickTxSlot(dest=2) active_nodes_for_slotting=1 opnet_slot_range=18
+[MAC 1] PickTxSlot(dest=2) avoid:
+[MAC 1] PickTxSlot chose 18 using OPNET free-slot ordinal range [1,18]
+[MAC 1] TX opportunity reached currentSlot=18 reserveNextSlot=18
+... type=0 speedKey=128[t=0.546] TX from node 1 to dest 2 seq 2 size 135 bytes segments 3 at slot 18 rate 128 kbps txPower 0 dBm (133333 bps) preamble LONG duration 1.02018 s
+[MAC 1] OPNET aggregate transmitted segments=3 ackSegments=0 dataSegments=3 bytes=135 rate=128
+[MAC 1] Learned neighbor 10 uses slot 5 (rtCounter=5)
+[MAC 1] post-TX WAIT_FOR_ACK until 18.5662 (POST_TX_WAIT=17 s)
+[MAC 1] rtslot_counter expired for neighbor 10 reserveSlot=5
+[MAC 1] local advertised reservation expired
+PASS: OPNET MAC slot scheduling parity test
