@@ -10,6 +10,8 @@ Tranche 4 builds on merged Tranche 3 at `c37a39e`. The corrected code at
 all eight T3/nine T2 regressions. All 83 MATLAB source hashes match the package.
 See [portable acceptance](docs/tranche-4-portable-acceptance.md) and the
 [historical repair record](docs/tranche-4-r2025a-repair.md).
+The [publication record](evidence/tranche-4-publication.json) maps local and
+published commit identities with identical source/evidence file trees.
 It adds nine synthetic network experiments, five shared canonical ns-3 inputs,
 a fail-closed application comparator and a validation runner with source/data
 hashes, complete trace inventories and a compact evidence ZIP.

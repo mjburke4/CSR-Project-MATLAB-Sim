@@ -100,5 +100,6 @@ Simulink and waveform-level work remain excluded.
 
 The next practical tranche is research usability and performance: parameter
 sweeps around a chosen work scenario and the highest-impact discrepancies
-found by this comparison harness. Tranche 4 is locally accepted and ready for
-a PR; remote publication follows the owner's authorization workflow.
+found by this comparison harness. Tranche 4 is accepted and published for
+review with owner authorization. The [publication record](../evidence/tranche-4-publication.json)
+preserves the local-to-published commit mapping and identical file trees.

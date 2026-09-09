@@ -101,6 +101,12 @@ demonstrate eventual delivery, not stable convergence or autonomous rediscovery.
 The portable implementation and evidence are ready for a Tranche 4 PR. This
 local acceptance update does not publish, approve or merge a PR.
 
+Publication subsequently proceeded with owner authorization. The
+[publication record](../evidence/tranche-4-publication.json) maps the three
+local implementation/repair/acceptance commits to their published identities;
+every file tree is identical. The acceptance JSON's publication flag describes
+its historical prepublication state. No MATLAB source changed during publication.
+
 R2026a portable execution, six native tests, the 6000-second workload and seed
 sweeps remain separate gates. These light, synthetic seed-128 experiments do
 not certify saturation behavior or the historical campus dataset. Complete
