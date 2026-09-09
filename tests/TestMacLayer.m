@@ -150,6 +150,28 @@ classdef TestMacLayer < matlab.unittest.TestCase
             testCase.verifyEqual(mac.Counters.PackingBlocked, 1);
         end
 
+        function sourceOversizedRoutingSectionIsPackingBlockedAtEightKbps(testCase)
+            [mac, scheduler, observed] = fixture(struct());
+            mac.enqueue(controlFrame(1, [2], 'ROUTING', 716, 8));
+            mac.enqueue(controlFrame(2, [2], 'ROUTING', 26, 8));
+            scheduler.run(1);
+            testCase.verifyEmpty(observed());
+            testCase.verifyEqual(mac.DataQueueCount, 2);
+            testCase.verifyEqual(mac.Counters.PackingBlocked, 1);
+        end
+
+        function multiSectionRoutingMakesProgressAtOneTwentyEightKbps(testCase)
+            [mac, scheduler, observed] = fixture(struct());
+            mac.enqueue(controlFrame(1, [2], 'ROUTING', 716, 128));
+            mac.enqueue(controlFrame(2, [2], 'ROUTING', 716, 128));
+            scheduler.run(0.326);
+            sent = observed();
+            testCase.assertNumElements(sent, 1);
+            testCase.verifyEqual(numel(sent{1}.Segments), 2);
+            testCase.verifyEqual(sent{1}.RateKeyKbps, 128);
+            testCase.verifyEqual(mac.DataQueueCount, 0);
+        end
+
         function highRateHeadsMakeProgressWithoutInventedConcatLimit(testCase)
             [mac, scheduler, observed] = fixture(struct());
             first = frame(1, 'DATA', 2, 0);
@@ -228,6 +250,30 @@ classdef TestMacLayer < matlab.unittest.TestCase
             otherScheduler.run(0.326);
             sent = trace();
             testCase.verifyEqual(sent{1}.Preamble, 'long');
+        end
+
+        function standaloneGroupedControlUsesOnlyPrimaryForPreamble(testCase)
+            [mac, scheduler, observed] = fixture(struct());
+            heard = frame(0, 'DATA', 1, 0); heard.SourceId = 2;
+            mac.receive(heard, struct('Success', true));
+            mac.enqueue(controlFrame(1, [2 3], 'ROUTING', 80, 128));
+            scheduler.run(0.326);
+            sent = observed();
+            testCase.assertNumElements(sent, 1);
+            % Frozen source quirk: outside concatenation, only the primary
+            % destination contributes to preamble freshness.
+            testCase.verifyEqual(sent{1}.Preamble, 'short');
+        end
+
+        function keyRequestReplacementCancelsOnlyMatchingUnsentControl(testCase)
+            [mac, ~, observed] = fixture(struct());
+            mac.enqueue(controlFrame(1, 2, 'KEY_REQUEST', 18, 8));
+            mac.enqueue(controlFrame(2, 3, 'KEY_REQUEST', 18, 8));
+            mac.enqueue(controlFrame(3, 2, 'KEY_UPDATE', 62, 8));
+            testCase.verifyEqual(mac.cancelControl(2, 'KEY_REQUEST'), 1);
+            testCase.verifyEqual(mac.DataQueueCount, 2);
+            testCase.verifyEqual(mac.Counters.Canceled, 1);
+            testCase.verifyEmpty(observed());
         end
 
         function dutyWakeAndNoSignalSleepActuallyTransition(testCase)
@@ -317,4 +363,16 @@ output = struct('Id', uint64(sequence + 1), 'SourceId', 1, ...
     'RateKeyKbps', 8, 'TxPowerDbm', 0, 'WirePayloadBytes', 60, ...
     'ApplicationPayloadBytes', 20 * strcmp(kind, 'DATA'), ...
     'GeneratedSeconds', 0, 'Preamble', 'long', 'EnvelopeProfile', 'bare');
+end
+
+function output = controlFrame(sequence, peers, kind, bytes, rate)
+peers = reshape(double(peers), 1, []);
+output = frame(sequence, 'CONTROL', peers(1), 7);
+output.AckRequired = ~strcmp(kind, 'KEY_REQUEST');
+output.DestinationIds = peers;
+output.HopSequences = uint16(sequence + (0:numel(peers)-1));
+output.Control = struct('Id', uint64(sequence), 'Type', kind, 'Payload', struct(), ...
+    'WirePayloadBytes', bytes);
+output.WirePayloadBytes = bytes;
+output.RateKeyKbps = rate;
 end

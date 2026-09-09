@@ -41,6 +41,13 @@ classdef TestHopLayer < matlab.unittest.TestCase
             cancelled=h.Cancelled(); test.verifyEqual(cancelled{1},[2 double(f.Sequence)]);
             releases=h.Releases(); test.verifyEqual(releases{1}.Reason,'ack');
         end
+        function ackWakeRunsOnlyAtNextTic(test)
+            h=hopHarness(); [~,f]=h.Hop.send(appPacket(1,1,2),2);
+            h.Hop.receive(feedback(2,1,f.Sequence,uint64(1),uint64(0)));
+            test.verifyEqual(h.Wakes(),0); h.Clock.run(0);
+            test.verifyEqual(h.Wakes(),0); h.Clock.run(1/36e6);
+            test.verifyEqual(h.Wakes(),1);
+        end
         function thirdAckGrowsBeforeRetryStreakReset(test)
             h=hopHarness();
             for n=1:3

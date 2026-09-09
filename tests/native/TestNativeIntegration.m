@@ -68,6 +68,29 @@ classdef TestNativeIntegration < matlab.unittest.TestCase
             test.verifyEqual(wireless.Statistics, portable.Statistics);
             test.verifyEqual(wireless.Trace, portable.Trace);
         end
+        function nativeClockPreservesAutonomousRoutedNetwork(test)
+            % R2026a-only optional gate: the native clock drives the same
+            % autonomous NWK, MAC/HOP and CSR PHY model, not native packets.
+            config = csr.scenario.routedNetwork('autonomous');
+            config.Backend = 'portable';
+            portable = csr.runScenario(config);
+            config.Backend = 'wireless-clock';
+            wireless = csr.runScenario(config);
+            test.assertGreaterThan(portable.Statistics.Received,0);
+            test.assertNotEmpty(portable.ProtocolTrace);
+            test.assertNotEmpty(portable.PhyTrace);
+            % Config.Backend and Metadata.RuntimeSeconds intentionally differ;
+            % compare semantic outputs, never wall-clock/runtime metadata.
+            test.verifyEqual(wireless.Statistics,portable.Statistics);
+            test.verifyEqual(wireless.ProtocolTrace,portable.ProtocolTrace);
+            test.verifyEqual(wireless.PhyTrace,portable.PhyTrace);
+            test.verifyEqual(wireless.Routes,portable.Routes);
+            test.verifyEqual(wireless.Neighbors,portable.Neighbors);
+            test.verifyEqual(wireless.NodeStatistics,portable.NodeStatistics);
+            test.verifyEqual(wireless.NodeMacStatistics,portable.NodeMacStatistics);
+            test.verifyEqual(wireless.NodeNwkStatistics,portable.NodeNwkStatistics);
+            test.verifyEqual(wireless.NodeHopStatistics,portable.NodeHopStatistics);
+        end
         function nativePacketChannelLifecycle(test)
             report = csr.sim.native.probePacketTransport();
             test.verifyEqual(report.Status, 'passed');

@@ -3,6 +3,7 @@ function config = smallNetwork()
 % Bytes are application bytes; this fixture uses the source's bare envelope.
 config.Schema = 'csr-matlab-scenario-v1';
 config.Name = 'three_node_controlled';
+config.ApplicationProfile = 'current-send-only';
 config.DurationSeconds = 10;
 config.Seed = 128;
 config.Backend = 'portable';

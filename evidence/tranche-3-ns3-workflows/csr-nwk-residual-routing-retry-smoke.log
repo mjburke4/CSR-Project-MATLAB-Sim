@@ -1,0 +1,396 @@
+[NWK 1] nodeType=Ordinary
+[NWK 1] ARL neighbor admission=disabled
+[NWK 1] automatic_route_propagation=disabled
+[MAC 1] active_nodes set to 2 for local slotting and post-TX wait
+[NWK 1] active_nodes=2 pushed to MAC
+[MAC 1] max_reported_active_nodes updated to 1
+[NWK 1] New HELLO neighbor=2 hopSrc=2 speedKey=8 activeNodes=1 pathloss=70 snr=20
+[NWK 1] link_calc neighbor=2 s0=-105 pathloss=70 numFailures=0 speed=128 txPower=0 estDistance=75 speedMargin=53 totalMargin=65 costMode=local-only cost=29
+[NWK 1] Added route candidate dst=2 nextHop=2 hops=1 cost=29 linkCost=29 advCost=0 learnedFrom=2 selectionDeferred=0 selected=1
+[NWK 1] Updated selected-route preference dst=2 preferredNextHop=2
+[NWK 1] Selected route changed dst=2 reason=candidate update pendingDestinations=1
+[NWK 1] ARL route message from 2 type=None advCount=0
+[NWK 1] Routes: dst=2->nh=2(hops=1,cost=29,linkCost=29,advCost=0,from=2,imm=1,pl=70,valid=1,path=[2])
+[MAC 1] active_nodes set to 3 for local slotting and post-TX wait
+[NWK 1] active_nodes=3 pushed to MAC
+[NWK 1] New HELLO neighbor=3 hopSrc=3 speedKey=8 activeNodes=1 pathloss=70 snr=20
+[NWK 1] link_calc neighbor=3 s0=-105 pathloss=70 numFailures=0 speed=128 txPower=0 estDistance=75 speedMargin=53 totalMargin=65 costMode=local-only cost=29
+[NWK 1] Added route candidate dst=3 nextHop=3 hops=1 cost=29 linkCost=29 advCost=0 learnedFrom=3 selectionDeferred=0 selected=1
+[NWK 1] Updated selected-route preference dst=3 preferredNextHop=3
+[NWK 1] Selected route changed dst=3 reason=candidate update pendingDestinations=2
+[NWK 1] ARL route message from 3 type=None advCount=0
+[NWK 1] Routes: dst=2->nh=2(hops=1,cost=29,linkCost=29,advCost=0,from=2,imm=1,pl=70,valid=1,path=[2]) dst=3->nh=3(hops=1,cost=29,linkCost=29,advCost=0,from=3,imm=1,pl=70,valid=1,path=[3])
+[MAC 1] active_nodes set to 4 for local slotting and post-TX wait
+[NWK 1] active_nodes=4 pushed to MAC
+[NWK 1] New HELLO neighbor=4 hopSrc=4 speedKey=8 activeNodes=1 pathloss=70 snr=20
+[NWK 1] link_calc neighbor=4 s0=-105 pathloss=70 numFailures=0 speed=128 txPower=0 estDistance=75 speedMargin=53 totalMargin=65 costMode=local-only cost=29
+[NWK 1] Added route candidate dst=4 nextHop=4 hops=1 cost=29 linkCost=29 advCost=0 learnedFrom=4 selectionDeferred=0 selected=1
+[NWK 1] Updated selected-route preference dst=4 preferredNextHop=4
+[NWK 1] Selected route changed dst=4 reason=candidate update pendingDestinations=3
+[NWK 1] ARL route message from 4 type=None advCount=0
+[NWK 1] Routes: dst=2->nh=2(hops=1,cost=29,linkCost=29,advCost=0,from=2,imm=1,pl=70,valid=1,path=[2]) dst=3->nh=3(hops=1,cost=29,linkCost=29,advCost=0,from=3,imm=1,pl=70,valid=1,path=[3]) dst=4->nh=4(hops=1,cost=29,linkCost=29,advCost=0,from=4,imm=1,pl=70,valid=1,path=[4])
+[NWK 1] routesProcess grouped selected-route changes count=3 infoChanged=0 time=0
+[NWK 1] Best route dst=4 nextHop=4 cost=29 hops=1 learnedFrom=4 candidates=1 validCandidates=1
+[NWK 1] Best route dst=3 nextHop=3 cost=29 hops=1 learnedFrom=3 candidates=1 validCandidates=1
+[NWK 1] Best route dst=2 nextHop=2 cost=29 hops=1 learnedFrom=2 candidates=1 validCandidates=1
+[NWK 1] Automatic route propagation disabled; reporting only
+[NWK 1] automatic_route_propagation=enabled
+[NWK 1] Cleared selected-route preference dst=1 reason=no-valid-route
+[NWK 1] Selected route changed dst=1 reason=local capability changed pendingDestinations=1
+[NWK 1] nodeType=Routable
+[NWK 1] routesProcess grouped selected-route changes count=1 infoChanged=0 time=0
+[NWK 1] Source-owned self route dst=1 nextHop=1 cost=0 hops=0 capability=1 advertised=1
+[NWK 1] Sending source-exact grouped route changes routingSequence=0 infoChanged=0 destinations=1 neighbors=3 groups=1 sections=1
+[NWK 1] Retained grouped routing-control owner routingSequence=0 operation=Update section=0/1 destinations=3 owners=1
+[HOP 1] link_control dest=4 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] link_control dest=3 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] link_control dest=2 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] TX reliable RoutingControl targets=4:1,3:1,2:1
+[MAC] Enqueue TX pkt dscp=7 insert_pos=0 queue_size_before=0
+[NWK 1] Reliable RoutingControl ACKed neighbor=4 routingSequence=0 operation=Update section=0/1 lastOfInfo=0
+[NWK 1] Updated grouped routing-control residual ACKed=4 removed=1 lastOfInfo=0 remaining=2
+[NWK 1] Reliable RoutingControl ACKed neighbor=4 routingSequence=0 operation=Update section=0/1 lastOfInfo=0
+[NWK 1] Updated grouped routing-control residual ACKed=4 removed=0 lastOfInfo=0 remaining=2
+[NWK 1] Reliable RoutingControl failure neighbors=4,3,2 routingSequence=0 operation=Update section=0/1 lastOfInfo=1
+[NWK 1] Grouped routing-control owner ready for residual retry routingSequence=0 section=0 originalAttempt=3 residual=2
+[NWK 1] Retrying grouped routing-control residual routingSequence=0 operation=Update section=0/1 destinations=2
+[HOP 1] link_control dest=3 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] link_control dest=2 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] TX reliable RoutingControl targets=3:2,2:2
+[MAC] Enqueue TX pkt dscp=7 insert_pos=1 queue_size_before=1
+[NWK 1] Reliable RoutingControl ACKed neighbor=3 routingSequence=0 operation=Update section=0/1 lastOfInfo=0
+[NWK 1] Updated grouped routing-control residual ACKed=3 removed=1 lastOfInfo=0 remaining=1
+[NWK 1] Reliable RoutingControl failure neighbors=3,2 routingSequence=0 operation=Update section=0/1 lastOfInfo=1
+[NWK 1] Grouped routing-control owner ready for residual retry routingSequence=0 section=0 originalAttempt=2 residual=1
+[NWK 1] Retrying grouped routing-control residual routingSequence=0 operation=Update section=0/1 destinations=1
+[HOP 1] link_control dest=2 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] TX reliable RoutingControl targets=2:3
+[MAC] Enqueue TX pkt dscp=7 insert_pos=2 queue_size_before=2
+[NWK 1] Reliable RoutingControl ACKed neighbor=2 routingSequence=0 operation=Update section=0/1 lastOfInfo=1
+[NWK 1] Updated grouped routing-control residual ACKed=2 removed=1 lastOfInfo=1 remaining=0
+[NWK 1] Released completed grouped routing-control owner routingSequence=0 section=0
+[NWK 1] nodeType=Ordinary
+[NWK 1] ARL neighbor admission=disabled
+[NWK 1] automatic_route_propagation=disabled
+[MAC 1] active_nodes set to 2 for local slotting and post-TX wait
+[NWK 1] active_nodes=2 pushed to MAC
+[MAC 1] max_reported_active_nodes updated to 1
+[NWK 1] New HELLO neighbor=2 hopSrc=2 speedKey=8 activeNodes=1 pathloss=70 snr=20
+[NWK 1] link_calc neighbor=2 s0=-105 pathloss=70 numFailures=0 speed=128 txPower=0 estDistance=75 speedMargin=53 totalMargin=65 costMode=local-only cost=29
+[NWK 1] Added route candidate dst=2 nextHop=2 hops=1 cost=29 linkCost=29 advCost=0 learnedFrom=2 selectionDeferred=0 selected=1
+[NWK 1] Updated selected-route preference dst=2 preferredNextHop=2
+[NWK 1] Selected route changed dst=2 reason=candidate update pendingDestinations=1
+[NWK 1] ARL route message from 2 type=None advCount=0
+[NWK 1] Routes: dst=2->nh=2(hops=1,cost=29,linkCost=29,advCost=0,from=2,imm=1,pl=70,valid=1,path=[2])
+[MAC 1] active_nodes set to 3 for local slotting and post-TX wait
+[NWK 1] active_nodes=3 pushed to MAC
+[NWK 1] New HELLO neighbor=3 hopSrc=3 speedKey=8 activeNodes=1 pathloss=70 snr=20
+[NWK 1] link_calc neighbor=3 s0=-105 pathloss=70 numFailures=0 speed=128 txPower=0 estDistance=75 speedMargin=53 totalMargin=65 costMode=local-only cost=29
+[NWK 1] Added route candidate dst=3 nextHop=3 hops=1 cost=29 linkCost=29 advCost=0 learnedFrom=3 selectionDeferred=0 selected=1
+[NWK 1] Updated selected-route preference dst=3 preferredNextHop=3
+[NWK 1] Selected route changed dst=3 reason=candidate update pendingDestinations=2
+[NWK 1] ARL route message from 3 type=None advCount=0
+[NWK 1] Routes: dst=2->nh=2(hops=1,cost=29,linkCost=29,advCost=0,from=2,imm=1,pl=70,valid=1,path=[2]) dst=3->nh=3(hops=1,cost=29,linkCost=29,advCost=0,from=3,imm=1,pl=70,valid=1,path=[3])
+[MAC 1] active_nodes set to 4 for local slotting and post-TX wait
+[NWK 1] active_nodes=4 pushed to MAC
+[NWK 1] New HELLO neighbor=4 hopSrc=4 speedKey=8 activeNodes=1 pathloss=70 snr=20
+[NWK 1] link_calc neighbor=4 s0=-105 pathloss=70 numFailures=0 speed=128 txPower=0 estDistance=75 speedMargin=53 totalMargin=65 costMode=local-only cost=29
+[NWK 1] Added route candidate dst=4 nextHop=4 hops=1 cost=29 linkCost=29 advCost=0 learnedFrom=4 selectionDeferred=0 selected=1
+[NWK 1] Updated selected-route preference dst=4 preferredNextHop=4
+[NWK 1] Selected route changed dst=4 reason=candidate update pendingDestinations=3
+[NWK 1] ARL route message from 4 type=None advCount=0
+[NWK 1] Routes: dst=2->nh=2(hops=1,cost=29,linkCost=29,advCost=0,from=2,imm=1,pl=70,valid=1,path=[2]) dst=3->nh=3(hops=1,cost=29,linkCost=29,advCost=0,from=3,imm=1,pl=70,valid=1,path=[3]) dst=4->nh=4(hops=1,cost=29,linkCost=29,advCost=0,from=4,imm=1,pl=70,valid=1,path=[4])
+[NWK 1] routesProcess grouped selected-route changes count=3 infoChanged=0 time=0
+[NWK 1] Best route dst=4 nextHop=4 cost=29 hops=1 learnedFrom=4 candidates=1 validCandidates=1
+[NWK 1] Best route dst=3 nextHop=3 cost=29 hops=1 learnedFrom=3 candidates=1 validCandidates=1
+[NWK 1] Best route dst=2 nextHop=2 cost=29 hops=1 learnedFrom=2 candidates=1 validCandidates=1
+[NWK 1] Automatic route propagation disabled; reporting only
+[NWK 1] automatic_route_propagation=enabled
+[NWK 1] Cleared selected-route preference dst=1 reason=no-valid-route
+[NWK 1] Selected route changed dst=1 reason=local capability changed pendingDestinations=1
+[NWK 1] nodeType=Routable
+[NWK 1] routesProcess grouped selected-route changes count=1 infoChanged=0 time=0
+[NWK 1] Source-owned self route dst=1 nextHop=1 cost=0 hops=0 capability=1 advertised=1
+[NWK 1] Sending source-exact grouped route changes routingSequence=0 infoChanged=0 destinations=1 neighbors=3 groups=1 sections=1
+[NWK 1] Retained grouped routing-control owner routingSequence=0 operation=Update section=0/1 destinations=3 owners=1
+[HOP 1] link_control dest=4 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] link_control dest=3 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] link_control dest=2 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] TX reliable RoutingControl targets=4:1,3:1,2:1
+[MAC] Enqueue TX pkt dscp=7 insert_pos=0 queue_size_before=0
+[NWK 1] Reliable RoutingControl ACKed neighbor=4 routingSequence=0 operation=Update section=0/1 lastOfInfo=0
+[NWK 1] Updated grouped routing-control residual ACKed=4 removed=1 lastOfInfo=0 remaining=2
+[NWK 1] automatic_route_propagation=disabled
+[NWK 1] Link failure to nextHop=2 numFailures=1
+[NWK 1] ARL neighbor INACTIVE neighbor=2 reason=link failure wasActive=1
+[NWK 1] recompute hop-cost neighbor=2 failures=1 costMode=local-only newLinkCost=29
+[NWK 1] Recomputed route after link change dst=2 nextHop=2 oldCost=29 newCost=29 linkCost=29 advertisedCost=0 numFailures=1
+[NWK 1] Reliable RoutingControl failure neighbors=4,3,2 routingSequence=0 operation=Update section=0/1 lastOfInfo=1
+[NWK 1] Grouped routing-control owner ready for residual retry routingSequence=0 section=0 originalAttempt=3 residual=2
+[NWK 1] routesProcess grouped selected-route changes count=0 infoChanged=0 time=1e-09
+[NWK 1] Automatic route propagation disabled; reporting only
+[NWK 1] Sending ARL Discover Chirp
+[NWK 1] Chirp includes active neighbor=4
+[NWK 1] Chirp includes active neighbor=3
+[NWK 1] Chirp activeNeighborCount=2
+[NWK 1] ARL Discover sent without Routes_PAYLOAD
+[NWK 1] HELLO advertising 0 routes
+[NWK 1] HELLO ARL route msg type=1
+[HOP 1] link_control dest=16777215 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] TX GroupEstablish Discover securityCount=1 securityBytes=7
+[MAC] Enqueue TX pkt dscp=7 insert_pos=1 queue_size_before=1
+[NWK 1] Deferred entire grouped routing-control residual routingSequence=0 section=0 destinations=1 bufferFull=1
+[NWK 1] NeighborCheck success neighbor=3 subtype=Message discoverySequence=0 stale=0->0 numFailures=0->0
+[NWK 1] recompute hop-cost neighbor=3 failures=0 costMode=local-only newLinkCost=29
+[NWK 1] Recomputed route after link change dst=3 nextHop=3 oldCost=29 newCost=29 linkCost=29 advertisedCost=0 numFailures=0
+[NWK 1] Retrying grouped routing-control residual routingSequence=0 operation=Update section=0/1 destinations=1
+[HOP 1] link_control dest=3 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] TX reliable RoutingControl targets=3:2
+[MAC] Enqueue TX pkt dscp=7 insert_pos=2 queue_size_before=2
+[NWK 1] nodeType=Ordinary
+[NWK 1] ARL neighbor admission=disabled
+[NWK 1] automatic_route_propagation=disabled
+[MAC 1] active_nodes set to 2 for local slotting and post-TX wait
+[NWK 1] active_nodes=2 pushed to MAC
+[MAC 1] max_reported_active_nodes updated to 1
+[NWK 1] New HELLO neighbor=2 hopSrc=2 speedKey=8 activeNodes=1 pathloss=70 snr=20
+[NWK 1] link_calc neighbor=2 s0=-105 pathloss=70 numFailures=0 speed=128 txPower=0 estDistance=75 speedMargin=53 totalMargin=65 costMode=local-only cost=29
+[NWK 1] Added route candidate dst=2 nextHop=2 hops=1 cost=29 linkCost=29 advCost=0 learnedFrom=2 selectionDeferred=0 selected=1
+[NWK 1] Updated selected-route preference dst=2 preferredNextHop=2
+[NWK 1] Selected route changed dst=2 reason=candidate update pendingDestinations=1
+[NWK 1] ARL route message from 2 type=None advCount=0
+[NWK 1] Routes: dst=2->nh=2(hops=1,cost=29,linkCost=29,advCost=0,from=2,imm=1,pl=70,valid=1,path=[2])
+[MAC 1] active_nodes set to 3 for local slotting and post-TX wait
+[NWK 1] active_nodes=3 pushed to MAC
+[NWK 1] New HELLO neighbor=3 hopSrc=3 speedKey=8 activeNodes=1 pathloss=70 snr=20
+[NWK 1] link_calc neighbor=3 s0=-105 pathloss=70 numFailures=0 speed=128 txPower=0 estDistance=75 speedMargin=53 totalMargin=65 costMode=local-only cost=29
+[NWK 1] Added route candidate dst=3 nextHop=3 hops=1 cost=29 linkCost=29 advCost=0 learnedFrom=3 selectionDeferred=0 selected=1
+[NWK 1] Updated selected-route preference dst=3 preferredNextHop=3
+[NWK 1] Selected route changed dst=3 reason=candidate update pendingDestinations=2
+[NWK 1] ARL route message from 3 type=None advCount=0
+[NWK 1] Routes: dst=2->nh=2(hops=1,cost=29,linkCost=29,advCost=0,from=2,imm=1,pl=70,valid=1,path=[2]) dst=3->nh=3(hops=1,cost=29,linkCost=29,advCost=0,from=3,imm=1,pl=70,valid=1,path=[3])
+[MAC 1] active_nodes set to 4 for local slotting and post-TX wait
+[NWK 1] active_nodes=4 pushed to MAC
+[NWK 1] New HELLO neighbor=4 hopSrc=4 speedKey=8 activeNodes=1 pathloss=70 snr=20
+[NWK 1] link_calc neighbor=4 s0=-105 pathloss=70 numFailures=0 speed=128 txPower=0 estDistance=75 speedMargin=53 totalMargin=65 costMode=local-only cost=29
+[NWK 1] Added route candidate dst=4 nextHop=4 hops=1 cost=29 linkCost=29 advCost=0 learnedFrom=4 selectionDeferred=0 selected=1
+[NWK 1] Updated selected-route preference dst=4 preferredNextHop=4
+[NWK 1] Selected route changed dst=4 reason=candidate update pendingDestinations=3
+[NWK 1] ARL route message from 4 type=None advCount=0
+[NWK 1] Routes: dst=2->nh=2(hops=1,cost=29,linkCost=29,advCost=0,from=2,imm=1,pl=70,valid=1,path=[2]) dst=3->nh=3(hops=1,cost=29,linkCost=29,advCost=0,from=3,imm=1,pl=70,valid=1,path=[3]) dst=4->nh=4(hops=1,cost=29,linkCost=29,advCost=0,from=4,imm=1,pl=70,valid=1,path=[4])
+[NWK 1] routesProcess grouped selected-route changes count=3 infoChanged=0 time=0
+[NWK 1] Best route dst=4 nextHop=4 cost=29 hops=1 learnedFrom=4 candidates=1 validCandidates=1
+[NWK 1] Best route dst=3 nextHop=3 cost=29 hops=1 learnedFrom=3 candidates=1 validCandidates=1
+[NWK 1] Best route dst=2 nextHop=2 cost=29 hops=1 learnedFrom=2 candidates=1 validCandidates=1
+[NWK 1] Automatic route propagation disabled; reporting only
+[NWK 1] automatic_route_propagation=enabled
+[NWK 1] Cleared selected-route preference dst=1 reason=no-valid-route
+[NWK 1] Selected route changed dst=1 reason=local capability changed pendingDestinations=1
+[NWK 1] nodeType=Routable
+[NWK 1] routesProcess grouped selected-route changes count=1 infoChanged=0 time=0
+[NWK 1] Source-owned self route dst=1 nextHop=1 cost=0 hops=0 capability=1 advertised=1
+[NWK 1] Sending source-exact grouped route changes routingSequence=0 infoChanged=0 destinations=1 neighbors=3 groups=1 sections=1
+[NWK 1] Retained grouped routing-control owner routingSequence=0 operation=Update section=0/1 destinations=3 owners=1
+[HOP 1] link_control dest=4 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] link_control dest=3 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] link_control dest=2 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] TX reliable RoutingControl targets=4:1,3:1,2:1
+[MAC] Enqueue TX pkt dscp=7 insert_pos=0 queue_size_before=0
+[NWK 1] Reliable RoutingControl failure neighbors=4,3,2 routingSequence=0 operation=Update section=0/1 lastOfInfo=1
+[NWK 1] Grouped routing-control owner ready for residual retry routingSequence=0 section=0 originalAttempt=3 residual=3
+[NWK 1] Deferred entire grouped routing-control residual routingSequence=0 section=0 destinations=3 bufferFull=1
+[NWK 1] Cleared selected-route preference dst=1 reason=no-valid-route
+[NWK 1] Selected route changed dst=1 reason=local capability changed pendingDestinations=1
+[NWK 1] nodeType=Ordinary
+[NWK 1] routesProcess grouped selected-route changes count=1 infoChanged=0 time=2e-09
+[NWK 1] Source-owned self route dst=1 nextHop=1 cost=0 hops=0 capability=0 advertised=0
+[NWK 1] Sending source-exact grouped route changes routingSequence=1 infoChanged=0 destinations=1 neighbors=3 groups=1 sections=1
+[NWK 1] Retained grouped routing-control owner routingSequence=1 operation=Update section=0/1 destinations=3 owners=2
+[HOP 1] link_control dest=4 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] link_control dest=3 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] link_control dest=2 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] TX reliable RoutingControl targets=4:2,3:2,2:2
+[MAC] Enqueue TX pkt dscp=7 insert_pos=1 queue_size_before=1
+[NWK 1] Reliable RoutingControl ACKed neighbor=4 routingSequence=1 operation=Update section=0/1 lastOfInfo=0
+[NWK 1] Updated grouped routing-control residual ACKed=4 removed=1 lastOfInfo=0 remaining=2
+[NWK 1] Reliable RoutingControl ACKed neighbor=3 routingSequence=1 operation=Update section=0/1 lastOfInfo=0
+[NWK 1] Updated grouped routing-control residual ACKed=3 removed=1 lastOfInfo=0 remaining=1
+[NWK 1] Reliable RoutingControl ACKed neighbor=2 routingSequence=1 operation=Update section=0/1 lastOfInfo=1
+[NWK 1] Updated grouped routing-control residual ACKed=2 removed=1 lastOfInfo=1 remaining=0
+[NWK 1] Released completed grouped routing-control owner routingSequence=1 section=0
+[NWK 1] Retrying grouped routing-control residual routingSequence=0 operation=Update section=0/1 destinations=3
+[HOP 1] link_control dest=4 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] link_control dest=3 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] link_control dest=2 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] TX reliable RoutingControl targets=4:3,3:3,2:3
+[MAC] Enqueue TX pkt dscp=7 insert_pos=2 queue_size_before=2
+[NWK 1] nodeType=Ordinary
+[NWK 1] ARL neighbor admission=disabled
+[NWK 1] automatic_route_propagation=disabled
+[MAC 1] active_nodes set to 2 for local slotting and post-TX wait
+[NWK 1] active_nodes=2 pushed to MAC
+[MAC 1] max_reported_active_nodes updated to 1
+[NWK 1] New HELLO neighbor=2 hopSrc=2 speedKey=8 activeNodes=1 pathloss=70 snr=20
+[NWK 1] link_calc neighbor=2 s0=-105 pathloss=70 numFailures=0 speed=128 txPower=0 estDistance=75 speedMargin=53 totalMargin=65 costMode=local-only cost=29
+[NWK 1] Added route candidate dst=2 nextHop=2 hops=1 cost=29 linkCost=29 advCost=0 learnedFrom=2 selectionDeferred=0 selected=1
+[NWK 1] Updated selected-route preference dst=2 preferredNextHop=2
+[NWK 1] Selected route changed dst=2 reason=candidate update pendingDestinations=1
+[NWK 1] ARL route message from 2 type=None advCount=0
+[NWK 1] Routes: dst=2->nh=2(hops=1,cost=29,linkCost=29,advCost=0,from=2,imm=1,pl=70,valid=1,path=[2])
+[MAC 1] active_nodes set to 3 for local slotting and post-TX wait
+[NWK 1] active_nodes=3 pushed to MAC
+[NWK 1] New HELLO neighbor=3 hopSrc=3 speedKey=8 activeNodes=1 pathloss=70 snr=20
+[NWK 1] link_calc neighbor=3 s0=-105 pathloss=70 numFailures=0 speed=128 txPower=0 estDistance=75 speedMargin=53 totalMargin=65 costMode=local-only cost=29
+[NWK 1] Added route candidate dst=3 nextHop=3 hops=1 cost=29 linkCost=29 advCost=0 learnedFrom=3 selectionDeferred=0 selected=1
+[NWK 1] Updated selected-route preference dst=3 preferredNextHop=3
+[NWK 1] Selected route changed dst=3 reason=candidate update pendingDestinations=2
+[NWK 1] ARL route message from 3 type=None advCount=0
+[NWK 1] Routes: dst=2->nh=2(hops=1,cost=29,linkCost=29,advCost=0,from=2,imm=1,pl=70,valid=1,path=[2]) dst=3->nh=3(hops=1,cost=29,linkCost=29,advCost=0,from=3,imm=1,pl=70,valid=1,path=[3])
+[MAC 1] active_nodes set to 4 for local slotting and post-TX wait
+[NWK 1] active_nodes=4 pushed to MAC
+[NWK 1] New HELLO neighbor=4 hopSrc=4 speedKey=8 activeNodes=1 pathloss=70 snr=20
+[NWK 1] link_calc neighbor=4 s0=-105 pathloss=70 numFailures=0 speed=128 txPower=0 estDistance=75 speedMargin=53 totalMargin=65 costMode=local-only cost=29
+[NWK 1] Added route candidate dst=4 nextHop=4 hops=1 cost=29 linkCost=29 advCost=0 learnedFrom=4 selectionDeferred=0 selected=1
+[NWK 1] Updated selected-route preference dst=4 preferredNextHop=4
+[NWK 1] Selected route changed dst=4 reason=candidate update pendingDestinations=3
+[NWK 1] ARL route message from 4 type=None advCount=0
+[NWK 1] Routes: dst=2->nh=2(hops=1,cost=29,linkCost=29,advCost=0,from=2,imm=1,pl=70,valid=1,path=[2]) dst=3->nh=3(hops=1,cost=29,linkCost=29,advCost=0,from=3,imm=1,pl=70,valid=1,path=[3]) dst=4->nh=4(hops=1,cost=29,linkCost=29,advCost=0,from=4,imm=1,pl=70,valid=1,path=[4])
+[NWK 1] routesProcess grouped selected-route changes count=3 infoChanged=0 time=0
+[NWK 1] Best route dst=4 nextHop=4 cost=29 hops=1 learnedFrom=4 candidates=1 validCandidates=1
+[NWK 1] Best route dst=3 nextHop=3 cost=29 hops=1 learnedFrom=3 candidates=1 validCandidates=1
+[NWK 1] Best route dst=2 nextHop=2 cost=29 hops=1 learnedFrom=2 candidates=1 validCandidates=1
+[NWK 1] Automatic route propagation disabled; reporting only
+[NWK 1] automatic_route_propagation=enabled
+[NWK 1] Cleared selected-route preference dst=1 reason=no-valid-route
+[NWK 1] Selected route changed dst=1 reason=local capability changed pendingDestinations=1
+[NWK 1] nodeType=Routable
+[NWK 1] routesProcess grouped selected-route changes count=1 infoChanged=0 time=0
+[NWK 1] Source-owned self route dst=1 nextHop=1 cost=0 hops=0 capability=1 advertised=1
+[NWK 1] Sending source-exact grouped route changes routingSequence=0 infoChanged=0 destinations=1 neighbors=3 groups=1 sections=1
+[NWK 1] Retained grouped routing-control owner routingSequence=0 operation=Update section=0/1 destinations=3 owners=1
+[HOP 1] link_control dest=4 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] link_control dest=3 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] link_control dest=2 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] TX reliable RoutingControl targets=4:1,3:1,2:1
+[MAC] Enqueue TX pkt dscp=7 insert_pos=0 queue_size_before=0
+[MAC 1] PickTxSlot(dest=4) active_nodes_for_slotting=4 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=4) avoid:
+[MAC 1] PickTxSlot chose 2 using OPNET free-slot ordinal range [1,31]
+[MAC 1] starts Pre-Tx with new slot=2 holdoff_over=0
+[MAC 1] OPNET 300-ms transmit holdoff complete
+[MAC 1] PickTxSlot(dest=4) active_nodes_for_slotting=4 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=4) avoid:
+[MAC 1] PickTxSlot chose 14 using OPNET free-slot ordinal range [1,31]
+[MAC 1] TX opportunity reached currentSlot=2 reserveNextSlot=14
+... type=6 speedKey=8[t=0.338] TX from node 1 to dest 4 seq 1 size 33 bytes segments 1 at slot 14 rate 8 kbps txPower 30 dBm (7843.14 bps) preamble LONG duration 1.04958 s
+[HOP 1] MAC sent confirmation dest=4 seq=1 transmission=1 sentAt=0.338
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=0 dataSegments=1 bytes=33 rate=8
+[t=0.338] RX SYNC at node 2 from node 1 seq 1 power 27.8722 dBm noise -106.975 dBm snr 134.847 dB state=1
+[t=0.338] RX SYNC at node 3 from node 1 seq 1 power 27.8722 dBm noise -106.975 dBm snr 134.847 dB state=1
+[t=0.338] RX SYNC at node 4 from node 1 seq 1 power 27.8722 dBm noise -106.975 dBm snr 134.847 dB state=1
+[t=0.34463] MAC 2 enters Track on node 1 seq 1 power 27.8722 dBm
+[t=0.34463] MAC 3 enters Track on node 1 seq 1 power 27.8722 dBm
+[t=0.34463] MAC 4 enters Track on node 1 seq 1 power 27.8722 dBm
+[MAC 1] post-TX WAIT_FOR_ACK until 22.8876 (POST_TX_WAIT=21.5 s)
+[t=1.38758] RX at node 2 from node 1 seq 1 rate 8 kbps txPower 30 dBm preamble LONG pathloss 2.12777 dB snr 134.847 dB (slot 14, len 33B, ackable=1)
+[MAC 2] Ignore first-contact reservation from unknown neighbor 1 slot=14
+[t=1.38758] RX at node 3 from node 1 seq 1 rate 8 kbps txPower 30 dBm preamble LONG pathloss 2.12777 dB snr 134.847 dB (slot 14, len 33B, ackable=1)
+[MAC 3] Ignore first-contact reservation from unknown neighbor 1 slot=14
+[t=1.38758] RX at node 4 from node 1 seq 1 rate 8 kbps txPower 30 dBm preamble LONG pathloss 2.12777 dB snr 134.847 dB (slot 14, len 33B, ackable=1)
+[MAC 4] Ignore first-contact reservation from unknown neighbor 1 slot=14
+[HOP 1] New neighbor 3 heard at t=1.38758s
+[HOP 1] RX ACK from 3 seq=1
+[HOP 1] Reliable RoutingControl ACK progress with 3 seq=1 routingSequence=0 section=0/1
+[NWK 1] Reliable RoutingControl ACKed neighbor=3 routingSequence=0 operation=Update section=0/1 lastOfInfo=0
+[NWK 1] Updated grouped routing-control residual ACKed=3 removed=1 lastOfInfo=0 remaining=2
+[HOP 1] RoutingControl partial ACK neighbor=3 seq=1 resendEntryRetained=1
+[NWK 1] CheckNwkQueue: size=0
+[MAC 1] local advertised reservation expired
+[MAC] Enqueue TX pkt dscp=7 insert_pos=0 queue_size_before=0
+[MAC 1] PickTxSlot(dest=4) active_nodes_for_slotting=4 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=4) avoid:
+[MAC 1] PickTxSlot chose 31 using OPNET free-slot ordinal range [1,31]
+[MAC 1] starts Pre-Tx with new slot=31 holdoff_over=1
+[MAC 1] PickTxSlot(dest=4) active_nodes_for_slotting=4 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=4) avoid:
+[MAC 1] PickTxSlot chose 13 using OPNET free-slot ordinal range [1,31]
+[MAC 1] TX opportunity reached currentSlot=31 reserveNextSlot=13
+... type=6 speedKey=8[t=2.756] TX from node 1 to dest 4 seq 1 size 33 bytes segments 1 at slot 13 rate 8 kbps txPower 30 dBm (7843.14 bps) preamble LONG duration 1.04958 s
+[HOP 1] MAC sent confirmation dest=4 seq=1 transmission=2 sentAt=2.756
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=0 dataSegments=1 bytes=33 rate=8
+[t=2.756] RX SYNC at node 2 from node 1 seq 1 power 27.8722 dBm noise -106.975 dBm snr 134.847 dB state=1
+[t=2.756] RX SYNC at node 3 from node 1 seq 1 power 27.8722 dBm noise -106.975 dBm snr 134.847 dB state=1
+[t=2.756] RX SYNC at node 4 from node 1 seq 1 power 27.8722 dBm noise -106.975 dBm snr 134.847 dB state=1
+[t=2.76263] MAC 2 enters Track on node 1 seq 1 power 27.8722 dBm
+[t=2.76263] MAC 3 enters Track on node 1 seq 1 power 27.8722 dBm
+[t=2.76263] MAC 4 enters Track on node 1 seq 1 power 27.8722 dBm
+[MAC 1] post-TX WAIT_FOR_ACK until 25.3056 (POST_TX_WAIT=21.5 s)
+[t=3.80558] RX at node 2 from node 1 seq 1 rate 8 kbps txPower 30 dBm preamble LONG pathloss 2.12777 dB snr 134.847 dB (slot 13, len 33B, ackable=1)
+[MAC 2] Learned neighbor 1 uses slot 13 (rtCounter=13)
+[t=3.80558] RX at node 3 from node 1 seq 1 rate 8 kbps txPower 30 dBm preamble LONG pathloss 2.12777 dB snr 134.847 dB (slot 13, len 33B, ackable=1)
+[MAC 3] Learned neighbor 1 uses slot 13 (rtCounter=13)
+[t=3.80558] RX at node 4 from node 1 seq 1 rate 8 kbps txPower 30 dBm preamble LONG pathloss 2.12777 dB snr 134.847 dB (slot 13, len 33B, ackable=1)
+[MAC 4] Learned neighbor 1 uses slot 13 (rtCounter=13)
+[MAC 2] rtslot_counter expired for neighbor 1 reserveSlot=13
+[MAC 3] rtslot_counter expired for neighbor 1 reserveSlot=13
+[MAC 4] rtslot_counter expired for neighbor 1 reserveSlot=13
+[MAC 1] local advertised reservation expired
+[MAC] Enqueue TX pkt dscp=7 insert_pos=0 queue_size_before=0
+[MAC 1] PickTxSlot(dest=4) active_nodes_for_slotting=4 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=4) avoid:
+[MAC 1] PickTxSlot chose 28 using OPNET free-slot ordinal range [1,31]
+[MAC 1] starts Pre-Tx with new slot=28 holdoff_over=1
+[MAC 1] PickTxSlot(dest=4) active_nodes_for_slotting=4 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=4) avoid:
+[MAC 1] PickTxSlot chose 3 using OPNET free-slot ordinal range [1,31]
+[MAC 1] TX opportunity reached currentSlot=28 reserveNextSlot=3
+... type=6 speedKey=8[t=5.135] TX from node 1 to dest 4 seq 1 size 33 bytes segments 1 at slot 3 rate 8 kbps txPower 30 dBm (7843.14 bps) preamble LONG duration 1.04958 s
+[HOP 1] MAC sent confirmation dest=4 seq=1 transmission=3 sentAt=5.135
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=0 dataSegments=1 bytes=33 rate=8
+[t=5.135] RX SYNC at node 2 from node 1 seq 1 power 27.8722 dBm noise -106.975 dBm snr 134.847 dB state=1
+[t=5.135] RX SYNC at node 3 from node 1 seq 1 power 27.8722 dBm noise -106.975 dBm snr 134.847 dB state=1
+[t=5.135] RX SYNC at node 4 from node 1 seq 1 power 27.8722 dBm noise -106.975 dBm snr 134.847 dB state=1
+[t=5.14163] MAC 2 enters Track on node 1 seq 1 power 27.8722 dBm
+[t=5.14163] MAC 3 enters Track on node 1 seq 1 power 27.8722 dBm
+[t=5.14163] MAC 4 enters Track on node 1 seq 1 power 27.8722 dBm
+[MAC 1] post-TX WAIT_FOR_ACK until 27.6846 (POST_TX_WAIT=21.5 s)
+[t=6.18458] RX at node 2 from node 1 seq 1 rate 8 kbps txPower 30 dBm preamble LONG pathloss 2.12777 dB snr 134.847 dB (slot 3, len 33B, ackable=1)
+[MAC 2] Learned neighbor 1 uses slot 3 (rtCounter=3)
+[t=6.18458] RX at node 3 from node 1 seq 1 rate 8 kbps txPower 30 dBm preamble LONG pathloss 2.12777 dB snr 134.847 dB (slot 3, len 33B, ackable=1)
+[MAC 3] Learned neighbor 1 uses slot 3 (rtCounter=3)
+[t=6.18458] RX at node 4 from node 1 seq 1 rate 8 kbps txPower 30 dBm preamble LONG pathloss 2.12777 dB snr 134.847 dB (slot 3, len 33B, ackable=1)
+[MAC 4] Learned neighbor 1 uses slot 3 (rtCounter=3)
+[MAC 2] rtslot_counter expired for neighbor 1 reserveSlot=3
+[MAC 3] rtslot_counter expired for neighbor 1 reserveSlot=3
+[MAC 4] rtslot_counter expired for neighbor 1 reserveSlot=3
+[MAC 1] local advertised reservation expired
+[HOP 1] Reliable RoutingControl FAILED neighbor=4 routingSequence=0 operation=2 section=0/1
+[NWK 1] Reliable RoutingControl failure neighbors=4,3,2 routingSequence=0 operation=Update section=0/1 lastOfInfo=1
+[NWK 1] Grouped routing-control owner ready for residual retry routingSequence=0 section=0 originalAttempt=3 residual=2
+[NWK 1] Retrying grouped routing-control residual routingSequence=0 operation=Update section=0/1 destinations=2
+[HOP 1] link_control dest=4 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] link_control dest=2 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 1] TX reliable RoutingControl targets=4:2,2:2
+[MAC] Enqueue TX pkt dscp=7 insert_pos=0 queue_size_before=0
+[NWK 1] CheckNwkQueue: size=0
+[MAC 1] PickTxSlot(dest=4) active_nodes_for_slotting=4 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=4) avoid:
+[MAC 1] PickTxSlot chose 1 using OPNET free-slot ordinal range [1,31]
+[MAC 1] starts Pre-Tx with new slot=1 holdoff_over=1
+[MAC 1] PickTxSlot(dest=4) active_nodes_for_slotting=4 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=4) avoid:
+[MAC 1] PickTxSlot chose 11 using OPNET free-slot ordinal range [1,31]
+[MAC 1] TX opportunity reached currentSlot=1 reserveNextSlot=11
+... type=6 speedKey=8[t=9.165] TX from node 1 to dest 4 seq 2 size 33 bytes segments 1 at slot 11 rate 8 kbps txPower 30 dBm (7843.14 bps) preamble LONG duration 1.04958 s
+[HOP 1] MAC sent confirmation dest=4 seq=2 transmission=1 sentAt=9.165
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=0 dataSegments=1 bytes=33 rate=8
+[t=9.165] RX SYNC at node 2 from node 1 seq 2 power 27.8722 dBm noise -106.975 dBm snr 134.847 dB state=1
+[t=9.165] RX SYNC at node 3 from node 1 seq 2 power 27.8722 dBm noise -106.975 dBm snr 134.847 dB state=1
+[t=9.165] RX SYNC at node 4 from node 1 seq 2 power 27.8722 dBm noise -106.975 dBm snr 134.847 dB state=1
+[t=9.17163] MAC 2 enters Track on node 1 seq 2 power 27.8722 dBm
+[t=9.17163] MAC 3 enters Track on node 1 seq 2 power 27.8722 dBm
+[t=9.17163] MAC 4 enters Track on node 1 seq 2 power 27.8722 dBm
+[MAC 1] post-TX WAIT_FOR_ACK until 31.7146 (POST_TX_WAIT=21.5 s)
+[t=10.2146] RX at node 2 from node 1 seq 2 rate 8 kbps txPower 30 dBm preamble LONG pathloss 2.12777 dB snr 134.847 dB (slot 11, len 33B, ackable=1)
+[MAC 2] Learned neighbor 1 uses slot 11 (rtCounter=11)
+PASS: NWK-owned residual routing retry

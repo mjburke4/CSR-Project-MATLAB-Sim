@@ -115,6 +115,7 @@ classdef Simulation < handle
                 'OmittedPhyTraceRecords',obj.OmittedPhyTraceRecords);
             metadata = csr.sim.capabilities();
             metadata.SourceCommit = '486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b';
+            metadata.ApplicationProfile = obj.Config.ApplicationProfile;
             metadata.Backend = obj.Config.Backend;
             metadata.ChannelModel = obj.Config.Channel.Model;
             if strcmp(obj.Config.Channel.Model,'csr-phy')

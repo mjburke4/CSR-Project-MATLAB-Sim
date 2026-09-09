@@ -1,0 +1,215 @@
+{
+  "schema": "csr-matlab-tranche-3-owner-runtime-v1",
+  "recorded_utc": "2026-09-09T13:28:32.050609+00:00",
+  "execution_performed_by": "Owner MATLAB environment; not this workspace",
+  "command": "run_tranche3_validation",
+  "runtime": {
+    "Runtime": "MATLAB",
+    "Version": "25.1.0.2943329 (R2025a)",
+    "Release": "2025a",
+    "Backend": "portable",
+    "HasWirelessNetworkSimulator": false,
+    "HasWnetNode": false,
+    "HasWirelessPacket": false,
+    "WirelessAdapterImplemented": true,
+    "NativePacketTransportIntegrated": false
+  },
+  "associated_candidate_commit": "16d469f125f828861d15e76af4be6ebb8e135c89",
+  "runtime_source_hash_independently_verified": false,
+  "revision_association_basis": "Issued archive name visible in pasted console paths plus matching method names/count; runtime source hashes and validation metadata not supplied",
+  "inputs": [
+    {
+      "name": "test_results(2).csv",
+      "sha256": "d86b35c38a5fe223f7c6ecb5be8d2d103e8eb1e6486bc808517483f7a220aea7",
+      "stored_as": "tranche-3-r2025a-rerun-1-test-results.csv",
+      "role": "Owner CSV inspected and preserved byte-for-byte"
+    },
+    {
+      "kind": "owner_inline_console",
+      "role": "MATLAB release/version, error stack locations, totals and runner stop inspected"
+    }
+  ],
+  "test_results_csv_supplied": true,
+  "validation_metadata_supplied": false,
+  "tests": {
+    "total": 289,
+    "passed": 287,
+    "failed": 2,
+    "incomplete": 2,
+    "incomplete_is_subset_of_failed": true,
+    "reported_duration_seconds": 112.2301,
+    "csv_summed_duration_seconds": 112.2300692,
+    "classes": {
+      "TestBerTables": {
+        "total": 7,
+        "passed": 7,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestControlWireProfile": {
+        "total": 6,
+        "passed": 6,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestCppBerReference": {
+        "total": 5,
+        "passed": 5,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestEventScheduler": {
+        "total": 6,
+        "passed": 6,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestFoundation": {
+        "total": 8,
+        "passed": 8,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestHopControls": {
+        "total": 27,
+        "passed": 27,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestHopFrames": {
+        "total": 11,
+        "passed": 11,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestHopLayer": {
+        "total": 21,
+        "passed": 21,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestMacHopCustody": {
+        "total": 3,
+        "passed": 3,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestMacHopScenarios": {
+        "total": 12,
+        "passed": 12,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestMacLayer": {
+        "total": 22,
+        "passed": 22,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestNeighbors": {
+        "total": 20,
+        "passed": 20,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestNetworkConfig": {
+        "total": 11,
+        "passed": 11,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestNwkLayer": {
+        "total": 31,
+        "passed": 29,
+        "failed": 2,
+        "incomplete": 2
+      },
+      "TestNwkScenarios": {
+        "total": 10,
+        "passed": 10,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestPhyFoundation": {
+        "total": 5,
+        "passed": 5,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestPhyMacBridge": {
+        "total": 9,
+        "passed": 9,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestPhyModel": {
+        "total": 13,
+        "passed": 13,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestPhyScenarios": {
+        "total": 7,
+        "passed": 7,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestRandomStreams": {
+        "total": 5,
+        "passed": 5,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestRoutes": {
+        "total": 23,
+        "passed": 23,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestRoutingCodec": {
+        "total": 11,
+        "passed": 11,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestSignalEngine": {
+        "total": 13,
+        "passed": 13,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestTranche1Integration": {
+        "total": 3,
+        "passed": 3,
+        "failed": 0,
+        "incomplete": 0
+      }
+    }
+  },
+  "failures": [
+    {
+      "kind": "fixture_logical_index_shape",
+      "error_id": "MATLAB:badsubscript",
+      "affected_methods": [
+        "TestNwkLayer/simultaneousActivationsUseIndependentForwardSnapshots",
+        "TestNwkLayer/discoveryCompletionRefreshesLinksAndRequestsSnapshots"
+      ],
+      "cause": "Row strcmp mask and column arrayfun mask implicitly expand to an N-by-N mask",
+      "repair": "Use one scalar predicate per callback-log element; isRouteRequest already guards control kind"
+    }
+  ],
+  "same_pattern_additional_repair": "TestNwkLayer/routingPartialAckRetryWaitsForLaterEventAndKeepsBytes uses the same row/column mixed mask; corrected its group selection although it passed this run",
+  "prior_runtime_fixes": {
+    "neighbor_boolean_validation": "20/20 TestNeighbors passed",
+    "canonical_empty_routing_path": "11/11 TestRoutingCodec passed"
+  },
+  "integrated_network_scenario_test_methods": {
+    "passed": 10,
+    "total": 10,
+    "scope": "Executed within portable unit suite, including autonomous convergence, recovery, custody and export regression; separate runner export loops not reached"
+  },
+  "runner_stop": "run_validation assertSuccess, before the later Tranche 2 and Tranche 3 scenario export loops",
+  "scenario_export_loops_reached": false,
+  "status": "Two fixture errors repaired; complete corrected runner acceptance remains pending",
+  "evidence_boundary": "CSV does not embed release/source hashes. Console supplies release and associated revision; current fixture correction requires rerun. Production MATLAB code is unchanged by this correction. Native and cross-simulator parity gates remain separate."
+}

@@ -12,6 +12,11 @@ if isfield(result,'NodeMacStatistics')
     writetable(result.NodeHopStatistics,fullfile(outputDirectory,'hop_nodes.csv'));
     writetable(result.ProtocolTrace,fullfile(outputDirectory,'protocol_trace.csv'));
 end
+if isfield(result,'NodeNwkStatistics')
+    writetable(result.NodeNwkStatistics,fullfile(outputDirectory,'nwk_nodes.csv'));
+    writetable(result.Routes,fullfile(outputDirectory,'routes.csv'));
+    writetable(result.Neighbors,fullfile(outputDirectory,'neighbors.csv'));
+end
 summary = struct('Metadata', result.Metadata, 'Statistics', result.Statistics, 'Config', result.Config);
 % JSON records named/anonymous callback descriptions; the MAT file above
 % retains the actual handle. JSON callback metadata is not executable config.

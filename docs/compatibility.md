@@ -1,6 +1,10 @@
 # MATLAB release compatibility
 
-Current T2 status: the corrected portable MAC/HOP implementation passed all
+Current T3 status: autonomous NWK/control code is prepared for portable MATLAB
+validation. No release-specific API or toolbox dependency was added. No T3
+MATLAB execution is claimed; R2025a and R2026a results must be recorded separately.
+
+Accepted T2 status: the corrected portable MAC/HOP implementation passed all
 145 owner-run tests and nine exported scenarios. No new native API or toolbox
 dependency was added. The run is associated with R2025a 25.1.0.2943329 from
 the preceding console; the new test/scenario CSVs contain no release field.
@@ -19,7 +23,7 @@ the original architecture assessment below records the basis for the decision.
 
 Documentation checked: 2026-09-08. No MATLAB runtime was available during this assessment.
 
-**Decision:** retain the deterministic portable MATLAB scheduler and release-independent CSR classes through Tranche 2. The optional R2026a `wnet.Node` clock adapter was added in Tranche 1 and remains separately gated. R2025a keeps the portable backend until its installed library's supported integration contract is inspected and exercised. This preserves useful work-machine operation without making newer classes core dependencies.
+**Decision:** retain the deterministic portable MATLAB scheduler and release-independent CSR classes through Tranche 3. The optional R2026a `wnet.Node` clock adapter was added in Tranche 1 and remains separately gated. R2025a keeps the portable backend until its installed library's supported integration contract is inspected and exercised. This preserves useful work-machine operation without making newer classes core dependencies.
 
 | Capability | R2025a | R2026a | Port decision |
 |---|---|---|---|
