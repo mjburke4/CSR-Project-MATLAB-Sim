@@ -1,0 +1,33 @@
+{
+  "schema": "csr-matlab-tranche-4-repair-checks-v1",
+  "checked_utc": "2026-09-09T16:47:13.830104+00:00",
+  "base_candidate_commit": "a6d017a9164ba167c56c084356bae1c1730d9a04",
+  "matlab_executed_in_workspace": false,
+  "repair_matlab_runtime_pass_claimed": false,
+  "static_lint": {
+    "tool": "MISS_HIT 0.9.44",
+    "profile": "MATLAB 2022a",
+    "files_analyzed": 83,
+    "exit_code": 0,
+    "log": "evidence/tranche-4-r2025a-repair-checks/matlab-static-lint.log",
+    "log_sha256": "68c87fbe103899eab8ec29f4170b80015f06bcc52715974820e87ac124c6e3a2"
+  },
+  "prepared_portable_tests": 333,
+  "added_test_methods": 2,
+  "modified_matlab_files_sha256": {
+    "+csr/+scenario/importNs3.m": "fb1f690224d13d176c064199db67cbcc87d27ced44d2aa004724fcaa350b048e",
+    "+csr/+validation/Artifacts.m": "3cd255e3d2d385d361ace0d37a3195692a050210d53075724f1dea833af92be4",
+    "run_tranche4_validation.m": "e51c2bd164b432465cc97604316abafd8b71c1f30fb591d854a425940da20fb9",
+    "tests/TestNs3ScenarioImport.m": "b9d7dc0d5dbf34bae655a8c781414b5bb608512689a593d04aed45de561b1ad4",
+    "tests/TestResearchEvidence.m": "66eae9a1675d5a7df11376e87014bfb43c3dbe293f13e3368e11a9d4eb6b2740"
+  },
+  "accepted_tranche_3_matlab_source_hashes_unchanged": 74,
+  "python_tools_and_shared_inputs_unchanged": true,
+  "retained_python_test_evidence": "tranche-4-local-checks.json",
+  "python_tests_rerun_for_matlab_only_repair": false,
+  "ns3_reference_rerun_for_matlab_only_repair": false,
+  "independent_static_review": "../docs/tranche-4-review.md",
+  "owner_initial_runtime_evidence": "tranche-4-r2025a-initial-run.json",
+  "owner_initial_runtime_evidence_sha256": "a0c06227fd7cc2f6a377fead1ec33ce2118203ba0d37b6c82a1b31147dc51af7",
+  "boundary": "Owner console reports 330/331 initial tests. The corrected 333-method suite and shared/research exports remain pending on MATLAB."
+}

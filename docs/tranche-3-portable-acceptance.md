@@ -80,5 +80,7 @@ outside this acceptance. The high rates remain separate extension fixtures.
 Battery, supervisory behavior and BBN routing stay excluded.
 
 The next engineering tranche is reusable research scenarios and MATLAB/ns-3
-comparisons. Tranche 3 is ready to present as a portable implementation PR;
-this acceptance update is committed locally and performs no push or PR creation.
+comparisons. Tranche 3 merged through
+[PR #3](https://github.com/mjburke4/CSR-Project-MATLAB-Sim/pull/3) on 2026-09-09.
+The [publication record](../evidence/tranche-3-publication.json) preserves
+the local-to-published commit mapping; the owner runtime evidence is unchanged.
