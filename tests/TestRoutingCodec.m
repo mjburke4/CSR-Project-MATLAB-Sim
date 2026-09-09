@@ -138,6 +138,18 @@ classdef TestRoutingCodec < matlab.unittest.TestCase
                 'csr:nwk:InvalidRoutingSections');
         end
 
+        function zeroHopPathsNormalizeToCanonicalEmptyWithoutChangingWireBytes(test)
+            paths = {[],zeros(1,0),zeros(0,1)};
+            expected = uint8([2 1 2 3 2 0 0 137 171 205 239]);
+            canonical = {update(hex2dec('010203'),2,0,hex2dec('89abcdef'),[])};
+            for index = 1:numel(paths)
+                records = {update(hex2dec('010203'),2,0,hex2dec('89abcdef'),paths{index})};
+                bytes = csr.nwk.RoutingCodec.encodeRecords(records);
+                test.verifyEqual(bytes,expected);
+                test.verifyEqual(csr.nwk.RoutingCodec.decodeRecords(bytes),canonical);
+            end
+        end
+
         function sourceWireLimitsRemainSeparateFromRoutingPolicy(test)
             records = {update(16777215,255,0,4294967295,[])};
             bytes = csr.nwk.RoutingCodec.encodeRecords(records);

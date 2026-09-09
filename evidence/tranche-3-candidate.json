@@ -1,7 +1,7 @@
 {
   "schema": "csr-matlab-tranche-3-candidate-v1",
-  "prepared_utc": "2026-09-09T12:54:46.222972+00:00",
-  "status": "Astra-corrected Tranche 3 candidate; MATLAB runtime acceptance pending",
+  "prepared_utc": "2026-09-09T13:17:40.519248+00:00",
+  "status": "R2025a runtime repair candidate; initial run failed, corrected MATLAB rerun pending",
   "branch": "agent/tranche-3-routing-admission",
   "published_base_commit": "88e56a83c2e9baa295be89f63b873bbe1fa1aa5f",
   "published_base_pr": "https://github.com/mjburke4/CSR-Project-MATLAB-Sim/pull/2",
@@ -9,9 +9,21 @@
   "ns3_source_tree": "b611b233fb369569b98f0914ece24d029ccc2f42",
   "ns3_engine_commit": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
   "matlab_executed_in_workspace": false,
-  "tranche_3_matlab_runtime_results": [],
+  "tranche_3_matlab_runtime_results": [
+    {
+      "evidence": "tranche-3-r2025a-initial-run.json",
+      "evidence_sha256": "ec6299645bd8aca9e87b3e9c866c90ba14de10225faa56ea5d2329dcd18b14d5",
+      "associated_candidate_commit": "fda305ee4d5bfcc51a0e93082629706934e97a61",
+      "runtime": "MATLAB R2025a 25.1.0.2943329",
+      "total": 286,
+      "passed": 215,
+      "failed": 71,
+      "incomplete": 70,
+      "scope": "Owner console transcript; source hashes not supplied; applies to initial candidate only"
+    }
+  ],
   "historical_owner_acceptance": "tranche-2-portable-acceptance.json",
-  "prepared_portable_test_methods": 286,
+  "prepared_portable_test_methods": 289,
   "portable_test_classes": {
     "TestBerTables.m": 7,
     "TestControlWireProfile.m": 6,
@@ -24,7 +36,7 @@
     "TestMacHopCustody.m": 3,
     "TestMacHopScenarios.m": 12,
     "TestMacLayer.m": 22,
-    "TestNeighbors.m": 18,
+    "TestNeighbors.m": 20,
     "TestNetworkConfig.m": 11,
     "TestNwkLayer.m": 31,
     "TestNwkScenarios.m": 10,
@@ -34,7 +46,7 @@
     "TestPhyScenarios.m": 7,
     "TestRandomStreams.m": 5,
     "TestRoutes.m": 23,
-    "TestRoutingCodec.m": 10,
+    "TestRoutingCodec.m": 11,
     "TestSignalEngine.m": 13,
     "TestTranche1Integration.m": 3
   },
@@ -70,7 +82,7 @@
   },
   "independent_review": "../docs/tranche-3-review.md",
   "acceptance_command": "run_tranche3_validation",
-  "first_runtime_target": "MATLAB R2025a portable; R2026a portable/native remain separate gates",
+  "first_runtime_target": "Corrected candidate rerun on MATLAB R2025a portable; R2026a portable/native remain separate gates",
   "remote_publication_performed_for_tranche_3": false,
   "known_scope": [
     "Behavioral admission only; no authentication, encryption, key material or replay security",
@@ -102,10 +114,10 @@
     "+csr/+hop/validateConfig.m": "12c2460af8f21a180539935825c4642bdca1161a1a5f51ca6f913acddaf7d366",
     "+csr/+mac/Layer.m": "72f3af3162a3757793b3fcb9d82607f136eb4a4c433b7583b12a85dd73515e7d",
     "+csr/+nwk/Layer.m": "81b6c1e09eead9fa454ffb650327d190c5088da9728319ad77866ff1e31f3773",
-    "+csr/+nwk/Neighbors.m": "e484853509016fd028399700990f4ed162cc5df5a5b53ec1e68eb835868083f4",
+    "+csr/+nwk/Neighbors.m": "990d60ba0fb9ab29bdefa3c2dd95626ac5e9cf08dddd65847b1627d85211d4f7",
     "+csr/+nwk/Reassembly.m": "61c337dd7ff3228f1f18d0b9daa768fca8f20fb1a20f2e79c039a62ec36e6bd3",
     "+csr/+nwk/Routes.m": "065377bcafcceab0a75ca11cabc3e2058a18a55f01bbfe518ba9785f16ef8721",
-    "+csr/+nwk/RoutingCodec.m": "043dd6e6ef4706b89bcd407e7d4a9a48afa7c878ef0ce580c56d478f1159fe3a",
+    "+csr/+nwk/RoutingCodec.m": "09ed97af746dbcc7427da868c977e7be334aa67aaf1824142b2f3bf004783121",
     "+csr/+nwk/controlWireBytes.m": "e8bbfa99fbb2b47240839c5566482bc4a9c21fedbcd1639c286e2e67b5ec948a",
     "+csr/+nwk/defaults.m": "d6089036954c93d6c4de66d4fdcbea21c96d2013bb92b1215d30af6f0f3cd142",
     "+csr/+nwk/linkCost.m": "faf632398c6d02f3ef73e79e23012b656227214b188013160db8d8aa112dbd8b",
@@ -155,7 +167,7 @@
     "tests/TestMacHopCustody.m": "7ea5d6040e387b73b13afda59d9047e2623890e646bc16df39619bf1bd6c5a47",
     "tests/TestMacHopScenarios.m": "56aeac203586acfdb9058f26cf88b5cd009c8769ad868e86a2c516c275ead013",
     "tests/TestMacLayer.m": "885c701b22b3151e3bf102947b4f58683e965dd90b0a52751a98deb0373f3dfc",
-    "tests/TestNeighbors.m": "0ddb0cd980d478966f53a779d924c60ddcf44bf745b6e773f3bdf80b50a9c201",
+    "tests/TestNeighbors.m": "e4d04b1a9860952c88601f805f4442a24ae3c1688bdacff11a6a581c6c6b3ad9",
     "tests/TestNetworkConfig.m": "dc10f3dfe1cb3137b00a1c4e188fc37c044bb4108611dbeb72f44d5803eceae2",
     "tests/TestNwkLayer.m": "2a934f28e6a846447447f67b1be8a1078ec2d0cea99106ff91db81dafb052f55",
     "tests/TestNwkScenarios.m": "50cf3d77d56ec1e070d0b6850b90c91eafed433afaf63d1b968a4770c20ddd38",
@@ -165,7 +177,7 @@
     "tests/TestPhyScenarios.m": "99473cb8ee78597eab2b766c39af5057af6aed1385c0221a411dddaed9a5dde9",
     "tests/TestRandomStreams.m": "bf0232d84e2a4ba5f4c867999bd4d2332a3109ba6cff6def510057780a722ee2",
     "tests/TestRoutes.m": "aa670a0ebb15cc2b72ba5b17d6553b6d550b3fb0c27d99eefc802d0c226da47e",
-    "tests/TestRoutingCodec.m": "ae53e23e36c98176a168c6ad9fbef9aed618cdb2f74c88c350a4267e30ab6e1f",
+    "tests/TestRoutingCodec.m": "11225b29a37d59b127460378e2f7e0729aa6b2353ab707cfe0bd442121730afb",
     "tests/TestSignalEngine.m": "3faa46ccc16d87c0da2239add5bda7a3590b76ba2baf4611d4982fb62aff0392",
     "tests/TestTranche1Integration.m": "f0a32365909bd9da261feda04bbfb389390a244d5a1c3e3c3b580769be7301d6",
     "tests/native/TestNativeIntegration.m": "a3d00305d8fb386aae1750249b323b8a61b1b8e1b6e006c4cc6d139c99def086",
@@ -174,5 +186,15 @@
   "recovered_candidate_commit": "602ddd3",
   "transplanted_candidate_commit": "f3b366f5d97fb7a854bf3ec96d9f8ca6403d2f42",
   "candidate_identity": "The commit containing this manifest plus MATLAB file SHA-256 entries; runtime runner records actual HEAD and raw source hashes.",
-  "review_model": "gpt-6-astra, owner-requested routing and integration closeout"
+  "review_model": "gpt-6-astra, owner-requested routing and integration closeout",
+  "runtime_repair": {
+    "parent_commit": "fda305ee4d5bfcc51a0e93082629706934e97a61",
+    "changes": [
+      "Direct scalar logical/numeric Boolean validation for neighbor options",
+      "Canonical empty zero-hop decoded routing path"
+    ],
+    "added_portable_test_methods": 3,
+    "corrected_matlab_execution_completed": false,
+    "record": "../docs/tranche-3-r2025a-repair.md"
+  }
 }

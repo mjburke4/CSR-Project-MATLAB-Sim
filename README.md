@@ -11,9 +11,13 @@ controls, dynamic multi-hop custody, gateway selection, route loss/recovery,
 link-cost driven radio settings and route/neighbor exports. Eight reusable
 network scenarios require no configured paths.
 
-**MATLAB execution of Tranche 3 is pending.** Twelve unchanged native ns-3
-reference workflows passed; these are source-side evidence. Run
-`run_tranche3_validation` on R2025a first. See the
+**The first R2025a Tranche 3 run reported 215 passed, 71 failed and 70 incomplete.**
+The 70 incomplete tests share a logical-option validation error; one additional
+codec assertion found an empty-path shape mismatch. Both causes are repaired;
+the revised 289-test candidate requires a MATLAB rerun. See the
+[initial result and repair](docs/tranche-3-r2025a-repair.md).
+Twelve unchanged native ns-3 reference workflows passed separately.
+Run `run_tranche3_validation` on R2025a again. See the
 [Tranche 3 handoff](docs/tranche-3-handoff.md) for capabilities, validation and
 known differences. No R2026a-only API was added to the portable core.
 

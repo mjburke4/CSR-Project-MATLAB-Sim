@@ -1,6 +1,34 @@
 classdef TestNeighbors < matlab.unittest.TestCase
     % Admission proofs and discovery timer behavior, independent of the PHY.
     methods (Test)
+        function logicalAndNumericBooleansConstructAndControlAdmission(test)
+            values={false,true,0,1,single(0),single(1),uint8(0),uint8(1),int16(0),int16(1)};
+            for index=1:numel(values)
+                item=values{index}; scheduler=csr.sim.EventScheduler();
+                options=struct('AdmissionEnabled',item, ...
+                    'DiscoveryResponseEnabled',item,'FreshnessEnabled',item);
+                neighbors=csr.nwk.Neighbors(1,scheduler,options,struct());
+                neighbors.start();
+                test.verifyEqual(scheduler.PendingCount,double(logical(item)), ...
+                    'Freshness scheduling must honor the normalized Boolean.');
+                neighbors.observe(2);
+                test.verifyEqual(neighbors.isActive(2),~logical(item), ...
+                    'Admission-disabled peers activate without exchanging proofs.');
+            end
+        end
+        function invalidNeighborBooleansAreRejectedBeforeScheduling(test)
+            invalid={-1,2,0.5,NaN,Inf,complex(1,1),[],[false true], ...
+                'true',"true",{true},struct()};
+            for name={'AdmissionEnabled','DiscoveryResponseEnabled','FreshnessEnabled'}
+                for index=1:numel(invalid)
+                    options=struct(); options.(name{1})=invalid{index};
+                    scheduler=csr.sim.EventScheduler();
+                    test.verifyError(@()csr.nwk.Neighbors(1,scheduler,options,struct()), ...
+                        'csr:nwk:InvalidNeighborConfig');
+                    test.verifyEqual(scheduler.PendingCount,0);
+                end
+            end
+        end
         function discoveryCadenceAndImmediateRestart(test)
             h=neighborHarness(); test.verifyTrue(h.Neighbors.startDiscovery());
             test.verifyFalse(h.Neighbors.startDiscovery());

@@ -4,6 +4,12 @@ Objective: connect application custody, autonomous ARL routing and admission to
 the accepted CSR HOP/MAC/PHY foundation. The candidate is prepared for MATLAB
 execution; portable Tranche 3 acceptance remains pending.
 
+The first owner R2025a run of `fda305e` reported 215/286 passing, 71 failed
+and 70 incomplete. The current revision fixes the two reported causes and adds
+three focused methods (289 prepared portable tests). Extract the new package
+into a fresh folder and rerun the command below. See the
+[initial result and repair record](tranche-3-r2025a-repair.md).
+
 Tranche 2 is merged through [PR #2](https://github.com/mjburke4/CSR-Project-MATLAB-Sim/pull/2)
 at `88e56a83c2e9baa295be89f63b873bbe1fa1aa5f`. This local tranche is on
 `agent/tranche-3-routing-admission`. The recovered candidate was transplanted

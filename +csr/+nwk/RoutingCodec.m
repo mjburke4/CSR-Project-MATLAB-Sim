@@ -81,7 +81,9 @@ classdef RoutingCodec
                             'Path',[]);
                         offset = offset+10;
                         csr.nwk.RoutingCodec.requireBytes(stream,offset,3*record.HopCount);
-                        record.Path = zeros(1,record.HopCount);
+                        if record.HopCount > 0
+                            record.Path = zeros(1,record.HopCount);
+                        end
                         for hop = 1:record.HopCount
                             record.Path(hop) = csr.nwk.RoutingCodec.unpack(stream(offset:offset+2));
                             offset = offset+3;

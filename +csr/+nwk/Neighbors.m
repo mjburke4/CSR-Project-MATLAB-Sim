@@ -424,8 +424,13 @@ for k=1:numel(names)
 end
 for name={'AdmissionEnabled','DiscoveryResponseEnabled','FreshnessEnabled'}
     item=options.(name{1});
-    validateattributes(item,{'logical','numeric'},{'scalar','real','finite','>=',0,'<=',1});
-    if item~=0 && item~=1, error('csr:nwk:InvalidNeighborConfig','Boolean option must be 0 or 1.'); end
+    % validateattributes range comparisons do not support logical inputs.
+    % Check the Boolean domain directly before normalizing numeric 0/1.
+    if ~(islogical(item) || isnumeric(item)) || ~isscalar(item) || ...
+            ~isreal(item) || ~(item==0 || item==1)
+        error('csr:nwk:InvalidNeighborConfig', ...
+            'Boolean option %s must be a logical scalar or numeric 0 or 1.',name{1});
+    end
     options.(name{1})=logical(item);
 end
 for name={'AdmissionRetrySeconds','DiscoveryIntervalSeconds','DiscoveryDurationSeconds', ...

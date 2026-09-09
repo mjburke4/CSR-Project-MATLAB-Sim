@@ -9,6 +9,9 @@ The earlier review of recovered candidate `602ddd3` missed several observable
 protocol differences; those conclusions are superseded by this correction pass.
 Astra performed the routing and integration closeout at the owner's request.
 No MATLAB or Octave test execution occurred in this workspace.
+The subsequent owner R2025a run reported 215 passed, 71 failed and 70
+incomplete. The [runtime repair record](tranche-3-r2025a-repair.md) documents
+the two reported causes and the corrected candidate's pending rerun.
 
 ## Architecture retained
 
