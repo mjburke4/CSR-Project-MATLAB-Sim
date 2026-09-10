@@ -93,9 +93,18 @@ def csv_rows(path, fields=()):
 
 
 def integer(value, label):
-    require(not isinstance(value, bool) and re.fullmatch(r"[0-9]+", str(value)),
-            f"{label}: expected nonnegative integer")
-    return int(value)
+    # MATLAB jsonencode can write exact counts in exponent notation, e.g.
+    # 2.485837E+6 bytes. json.loads represents those JSON numbers as floats.
+    # Permit integral floats only inside the unambiguous binary64 integer
+    # range; never round a fraction or coerce digit strings through float.
+    if type(value) is int and value >= 0:
+        return value
+    if isinstance(value, str) and re.fullmatch(r"[0-9]+", value):
+        return int(value)
+    if type(value) is float and math.isfinite(value) and value >= 0 and value.is_integer():
+        require(value < 2**53, f"{label}: integer float exceeds exact safe range")
+        return int(value)
+    raise EvidenceError(f"{label}: expected nonnegative integer")
 
 
 def finite(value, label):

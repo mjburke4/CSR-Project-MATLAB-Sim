@@ -14,6 +14,37 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import analyze_research_sweep as analyzer
 
 
+class IntegerParsingTests(unittest.TestCase):
+    def test_real_matlab_scientific_json_byte_counts(self):
+        # Exact numeric tokens from the returned R2025a Tranche 5 inventory.
+        for token, expected in (("2.485837E+6", 2485837), ("1.01088E+6", 1010880)):
+            with self.subTest(token=token):
+                value = json.loads(token)
+                self.assertIs(type(value), float)
+                self.assertEqual(analyzer.integer(value, "bytes"), expected)
+
+    def test_safe_integral_floats_and_exact_large_integer_identifiers(self):
+        for value in (0.0, 1.0, float(2**53-1)):
+            with self.subTest(value=value):
+                self.assertEqual(analyzer.integer(value, "count"), int(value))
+        # Digit strings and Python JSON integers retain every digit beyond
+        # binary64 precision and must not pass through float conversion.
+        for value in (2**53+1, 2**64-1):
+            self.assertEqual(analyzer.integer(value, "id"), value)
+            self.assertEqual(analyzer.integer(str(value), "id"), value)
+
+    def test_invalid_counts_and_ambiguous_large_floats_are_rejected(self):
+        for value in (True, False, -1, -1.0, 1.5, float("nan"), float("inf"),
+                      -float("inf"), None, [], {}, "1.0", "1E3", "-1", " 1 ", ""):
+            with self.subTest(value=value):
+                with self.assertRaisesRegex(analyzer.EvidenceError, "nonnegative integer"):
+                    analyzer.integer(value, "count")
+        for value in (float(2**53), float(2**53+1), float(2**54)):
+            with self.subTest(value=value):
+                with self.assertRaisesRegex(analyzer.EvidenceError, "exact safe range"):
+                    analyzer.integer(value, "count")
+
+
 class SweepAnalysisTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
@@ -196,6 +227,19 @@ class SweepAnalysisTests(unittest.TestCase):
 
     def test_bad_hash_is_rejected_independently_of_bytes(self):
         self.metadata["Artifacts"][0]["sha256"] = "f"*64
+        self.write_json(self.root / "validation_metadata.json", self.metadata)
+        self.assert_invalid("SHA-256 mismatch")
+
+    def test_scientific_json_byte_count_keeps_size_and_hash_checks(self):
+        entry = self.metadata["Artifacts"][0]
+        entry["bytes"] = float(entry["bytes"])
+        self.write_json(self.root / "validation_metadata.json", self.metadata)
+        self.assertEqual(self.analyze()[0]["case_count"], 6)
+        entry["bytes"] += 1.0
+        self.write_json(self.root / "validation_metadata.json", self.metadata)
+        self.assert_invalid("byte count mismatch")
+        entry["bytes"] -= 1.0
+        entry["sha256"] = "f"*64
         self.write_json(self.root / "validation_metadata.json", self.metadata)
         self.assert_invalid("SHA-256 mismatch")
 
