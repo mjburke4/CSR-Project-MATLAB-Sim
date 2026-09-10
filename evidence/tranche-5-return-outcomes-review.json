@@ -1,0 +1,1664 @@
+{
+  "schema": "csr-matlab-tranche-5-return-outcomes-review-v1",
+  "scope": "Independent application reconstruction, all selected-parameter config diffs, baseline equality and bounded outcome interpretation; no simulator rerun or protocol tuning.",
+  "candidate_commit": "536b288",
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "input_archive_sha256": "824cf0f5cb6a735ee896ebc5431be5c72f69d9d95135c8e03311238bd0ca75c1",
+  "top_metadata_sha256": "bd0a46d92e0a57875db9d8d6c2d9102a9edaf92937300170a3d227938a39fdd0",
+  "performance_summary_sha256": "403bf6e44be44652972e315e8c10d386fb342ecfd9bb9fefe2379fdc5a7c2514",
+  "application_reconstruction_cases_passed": 18,
+  "applications_reconstructed": 357,
+  "totals": {
+    "Generated": 357,
+    "Received": 336,
+    "Dropped": 21,
+    "Pending": 0
+  },
+  "parameter_isolation_checks": [
+    {
+      "baseline_case": "offered_load_x1_seed128",
+      "case": "offered_load_x2_seed128",
+      "changed_config_paths": [
+        ".Name",
+        ".Research.Sweep.Value",
+        ".Traffic[0].IntervalSeconds",
+        ".Traffic[0].PacketCount",
+        ".Traffic[1].IntervalSeconds",
+        ".Traffic[1].PacketCount"
+      ]
+    },
+    {
+      "baseline_case": "offered_load_x1_seed128",
+      "case": "offered_load_x4_seed128",
+      "changed_config_paths": [
+        ".Name",
+        ".Research.Sweep.Value",
+        ".Traffic[0].IntervalSeconds",
+        ".Traffic[0].PacketCount",
+        ".Traffic[1].IntervalSeconds",
+        ".Traffic[1].PacketCount"
+      ]
+    },
+    {
+      "baseline_case": "recovery_freshness_s60_seed128",
+      "case": "recovery_freshness_s180_seed128",
+      "changed_config_paths": [
+        ".Name",
+        ".Nwk.Neighbor.FreshnessTimeoutSeconds",
+        ".Research.Sweep.Value"
+      ]
+    },
+    {
+      "baseline_case": "recovery_freshness_s60_seed128",
+      "case": "recovery_freshness_s300_seed128",
+      "changed_config_paths": [
+        ".Name",
+        ".Nwk.Neighbor.FreshnessTimeoutSeconds",
+        ".Research.Sweep.Value"
+      ]
+    },
+    {
+      "baseline_case": "offered_load_x1_seed129",
+      "case": "offered_load_x2_seed129",
+      "changed_config_paths": [
+        ".Name",
+        ".Research.Sweep.Value",
+        ".Traffic[0].IntervalSeconds",
+        ".Traffic[0].PacketCount",
+        ".Traffic[1].IntervalSeconds",
+        ".Traffic[1].PacketCount"
+      ]
+    },
+    {
+      "baseline_case": "offered_load_x1_seed129",
+      "case": "offered_load_x4_seed129",
+      "changed_config_paths": [
+        ".Name",
+        ".Research.Sweep.Value",
+        ".Traffic[0].IntervalSeconds",
+        ".Traffic[0].PacketCount",
+        ".Traffic[1].IntervalSeconds",
+        ".Traffic[1].PacketCount"
+      ]
+    },
+    {
+      "baseline_case": "recovery_freshness_s60_seed129",
+      "case": "recovery_freshness_s180_seed129",
+      "changed_config_paths": [
+        ".Name",
+        ".Nwk.Neighbor.FreshnessTimeoutSeconds",
+        ".Research.Sweep.Value"
+      ]
+    },
+    {
+      "baseline_case": "recovery_freshness_s60_seed129",
+      "case": "recovery_freshness_s300_seed129",
+      "changed_config_paths": [
+        ".Name",
+        ".Nwk.Neighbor.FreshnessTimeoutSeconds",
+        ".Research.Sweep.Value"
+      ]
+    },
+    {
+      "baseline_case": "offered_load_x1_seed130",
+      "case": "offered_load_x2_seed130",
+      "changed_config_paths": [
+        ".Name",
+        ".Research.Sweep.Value",
+        ".Traffic[0].IntervalSeconds",
+        ".Traffic[0].PacketCount",
+        ".Traffic[1].IntervalSeconds",
+        ".Traffic[1].PacketCount"
+      ]
+    },
+    {
+      "baseline_case": "offered_load_x1_seed130",
+      "case": "offered_load_x4_seed130",
+      "changed_config_paths": [
+        ".Name",
+        ".Research.Sweep.Value",
+        ".Traffic[0].IntervalSeconds",
+        ".Traffic[0].PacketCount",
+        ".Traffic[1].IntervalSeconds",
+        ".Traffic[1].PacketCount"
+      ]
+    },
+    {
+      "baseline_case": "recovery_freshness_s60_seed130",
+      "case": "recovery_freshness_s180_seed130",
+      "changed_config_paths": [
+        ".Name",
+        ".Nwk.Neighbor.FreshnessTimeoutSeconds",
+        ".Research.Sweep.Value"
+      ]
+    },
+    {
+      "baseline_case": "recovery_freshness_s60_seed130",
+      "case": "recovery_freshness_s300_seed130",
+      "changed_config_paths": [
+        ".Name",
+        ".Nwk.Neighbor.FreshnessTimeoutSeconds",
+        ".Research.Sweep.Value"
+      ]
+    }
+  ],
+  "baseline_checks": [
+    {
+      "case": "offered_load_x1_seed128",
+      "returned_baseline": "regression/run_20260909_175721_119_tp1f30addf_1355_45a2_a2a9_5f9b63badacf/research/hidden_node_seed_128/summary.json",
+      "changed_config_paths": [
+        ".Name",
+        ".Research.Sweep",
+        ".Trace.MaxPhyRecords",
+        ".Trace.MaxRecords"
+      ],
+      "all_statistics_equal": true,
+      "protocol_phy_and_hop_nwk_mac_tables_byte_identical": true
+    },
+    {
+      "case": "recovery_freshness_s60_seed128",
+      "returned_baseline": "regression/run_20260909_175721_119_tp1f30addf_1355_45a2_a2a9_5f9b63badacf/research/route_recovery_seed_128/summary.json",
+      "changed_config_paths": [
+        ".Name",
+        ".Research.Sweep",
+        ".Trace.MaxPhyRecords",
+        ".Trace.MaxRecords"
+      ],
+      "all_statistics_equal": true,
+      "protocol_phy_and_hop_nwk_mac_tables_byte_identical": true
+    }
+  ],
+  "groups": [
+    {
+      "experiment": "offered_load",
+      "value": 1,
+      "seeds": [
+        128,
+        129,
+        130
+      ],
+      "generated": 48,
+      "delivered": 48,
+      "dropped": 0,
+      "pending": 0,
+      "per_seed_mean_latency_range_s": [
+        1.13114641663825,
+        1.45939641663771
+      ],
+      "max_delivered_latency_s": 2.90149266666776,
+      "route_change_range": [
+        14,
+        15
+      ],
+      "neighbor_deactivation_range": [
+        0,
+        0
+      ],
+      "hop_control_owner_failures": 1,
+      "nwk_control_failures": 1
+    },
+    {
+      "experiment": "offered_load",
+      "value": 2,
+      "seeds": [
+        128,
+        129,
+        130
+      ],
+      "generated": 90,
+      "delivered": 90,
+      "dropped": 0,
+      "pending": 0,
+      "per_seed_mean_latency_range_s": [
+        1.16254133330555,
+        1.30597466663878
+      ],
+      "max_delivered_latency_s": 4.62549266662143,
+      "route_change_range": [
+        14,
+        15
+      ],
+      "neighbor_deactivation_range": [
+        0,
+        0
+      ],
+      "hop_control_owner_failures": 1,
+      "nwk_control_failures": 1
+    },
+    {
+      "experiment": "offered_load",
+      "value": 4,
+      "seeds": [
+        128,
+        129,
+        130
+      ],
+      "generated": 174,
+      "delivered": 171,
+      "dropped": 3,
+      "pending": 0,
+      "per_seed_mean_latency_range_s": [
+        1.37307852870801,
+        1.561948456112
+      ],
+      "max_delivered_latency_s": 4.9814926666686,
+      "route_change_range": [
+        14,
+        15
+      ],
+      "neighbor_deactivation_range": [
+        0,
+        0
+      ],
+      "hop_control_owner_failures": 1,
+      "nwk_control_failures": 1
+    },
+    {
+      "experiment": "recovery_freshness",
+      "value": 60,
+      "seeds": [
+        128,
+        129,
+        130
+      ],
+      "generated": 15,
+      "delivered": 15,
+      "dropped": 0,
+      "pending": 0,
+      "per_seed_mean_latency_range_s": [
+        68.0003966667033,
+        68.9193166667057
+      ],
+      "max_delivered_latency_s": 135.940412666693,
+      "route_change_range": [
+        102,
+        118
+      ],
+      "neighbor_deactivation_range": [
+        24,
+        29
+      ],
+      "hop_control_owner_failures": 5,
+      "nwk_control_failures": 1
+    },
+    {
+      "experiment": "recovery_freshness",
+      "value": 180,
+      "seeds": [
+        128,
+        129,
+        130
+      ],
+      "generated": 15,
+      "delivered": 6,
+      "dropped": 9,
+      "pending": 0,
+      "per_seed_mean_latency_range_s": [
+        13.0826126667008,
+        16.5933726667099
+      ],
+      "max_delivered_latency_s": 29.6011126666971,
+      "route_change_range": [
+        41,
+        52
+      ],
+      "neighbor_deactivation_range": [
+        6,
+        10
+      ],
+      "hop_control_owner_failures": 3,
+      "nwk_control_failures": 0
+    },
+    {
+      "experiment": "recovery_freshness",
+      "value": 300,
+      "seeds": [
+        128,
+        129,
+        130
+      ],
+      "generated": 15,
+      "delivered": 6,
+      "dropped": 9,
+      "pending": 0,
+      "per_seed_mean_latency_range_s": [
+        1.72894266671523,
+        1.77864266671543
+      ],
+      "max_delivered_latency_s": 3.02387266667074,
+      "route_change_range": [
+        17,
+        18
+      ],
+      "neighbor_deactivation_range": [
+        1,
+        1
+      ],
+      "hop_control_owner_failures": 0,
+      "nwk_control_failures": 0
+    }
+  ],
+  "cases": [
+    {
+      "case": "offered_load_x1_seed128",
+      "seed": 128,
+      "experiment": "offered_load",
+      "value": 1,
+      "metrics": {
+        "MeanLatencySeconds": 1.45939641663771,
+        "MaxLatencySeconds": 2.90149266666776,
+        "LatencyP95Seconds": 2.90149266666776,
+        "Generated": 16,
+        "Received": 16,
+        "Dropped": 0,
+        "Pending": 0,
+        "PhysicalTransmissions": 272,
+        "RouteChanges": 15,
+        "NeighborActivations": 4,
+        "NeighborDeactivations": 0,
+        "HopDataRetransmissions": 8,
+        "HopControlRetransmissions": 7,
+        "HopControlFailures": 1,
+        "ControlFailures": 1,
+        "ControlResidualRetries": 0,
+        "ApplicationsDrained": 1,
+        "DataDrained": 1,
+        "ControlsDrained": 1,
+        "OwnershipDrained": 1,
+        "ResendQueueDepth": 0,
+        "ControlPending": 0,
+        "ControlPendingTargets": 0,
+        "NwkPendingControlMessages": 0,
+        "PendingSchedulerEvents": 3
+      },
+      "drop_applications": [],
+      "control_owner_failures": [
+        {
+          "TimeSeconds": "20.3020000277778",
+          "NodeId": "2",
+          "PeerId": "1",
+          "PacketId": "2",
+          "Reason": "retry_exhausted",
+          "ControlType": "KEY_UPDATE"
+        }
+      ],
+      "neighbor_deactivations_before_during_after_blackout": null,
+      "first_delivery_s": 241.553952666667,
+      "stop_boundary_events": [],
+      "summary_sha256": "a199b37436fc3bda1a5dab5b835d49216044939de1c19fa1bb7d70801bb29de0",
+      "protocol_trace_sha256": "762cf9a12440260836021b717d3ebccdacac8459bc6c7a1e0f87c2cb1ef5edb6",
+      "application_diagnostic_sha256": "8b6eb2fa232a83b435c21bcd3b5fc512d6ec64ef60cf8007be0ad10f0e823f52"
+    },
+    {
+      "case": "offered_load_x1_seed129",
+      "seed": 129,
+      "experiment": "offered_load",
+      "value": 1,
+      "metrics": {
+        "MeanLatencySeconds": 1.13114641663825,
+        "MaxLatencySeconds": 2.68049266666767,
+        "LatencyP95Seconds": 2.68049266666767,
+        "Generated": 16,
+        "Received": 16,
+        "Dropped": 0,
+        "Pending": 0,
+        "PhysicalTransmissions": 238,
+        "RouteChanges": 14,
+        "NeighborActivations": 4,
+        "NeighborDeactivations": 0,
+        "HopDataRetransmissions": 6,
+        "HopControlRetransmissions": 3,
+        "HopControlFailures": 0,
+        "ControlFailures": 0,
+        "ControlResidualRetries": 0,
+        "ApplicationsDrained": 1,
+        "DataDrained": 1,
+        "ControlsDrained": 1,
+        "OwnershipDrained": 1,
+        "ResendQueueDepth": 0,
+        "ControlPending": 0,
+        "ControlPendingTargets": 0,
+        "NwkPendingControlMessages": 0,
+        "PendingSchedulerEvents": 3
+      },
+      "drop_applications": [],
+      "control_owner_failures": [],
+      "neighbor_deactivations_before_during_after_blackout": null,
+      "first_delivery_s": 241.540952666667,
+      "stop_boundary_events": [],
+      "summary_sha256": "b0aed5afedb89bdcb2cbfe4e0374e7b859a8c8123a9cc1d228902586e48d7b21",
+      "protocol_trace_sha256": "d44bbac63671d889f17f3bda22b6a9855600e111801d38714f8bf22ce495ce4c",
+      "application_diagnostic_sha256": "119fa2c6e712ec20556688dd554a04ac22f31fe3848de188c572dfffcacb9aa8"
+    },
+    {
+      "case": "offered_load_x1_seed130",
+      "seed": 130,
+      "experiment": "offered_load",
+      "value": 1,
+      "metrics": {
+        "MeanLatencySeconds": 1.29445891663799,
+        "MaxLatencySeconds": 2.78449266666772,
+        "LatencyP95Seconds": 2.78449266666772,
+        "Generated": 16,
+        "Received": 16,
+        "Dropped": 0,
+        "Pending": 0,
+        "PhysicalTransmissions": 221,
+        "RouteChanges": 14,
+        "NeighborActivations": 4,
+        "NeighborDeactivations": 0,
+        "HopDataRetransmissions": 7,
+        "HopControlRetransmissions": 1,
+        "HopControlFailures": 0,
+        "ControlFailures": 0,
+        "ControlResidualRetries": 0,
+        "ApplicationsDrained": 1,
+        "DataDrained": 1,
+        "ControlsDrained": 1,
+        "OwnershipDrained": 1,
+        "ResendQueueDepth": 0,
+        "ControlPending": 0,
+        "ControlPendingTargets": 0,
+        "NwkPendingControlMessages": 0,
+        "PendingSchedulerEvents": 3
+      },
+      "drop_applications": [],
+      "control_owner_failures": [],
+      "neighbor_deactivations_before_during_after_blackout": null,
+      "first_delivery_s": 241.462952666667,
+      "stop_boundary_events": [],
+      "summary_sha256": "7a04b3c23a22db8b6492de66417df01936f63ba3b0772ecdca2e0c369bb5ce19",
+      "protocol_trace_sha256": "9a46b827539dd0b74dd2bc6d60d1c93f952fa7d9136f31da5332ff7a4cbe26d1",
+      "application_diagnostic_sha256": "4e557fcf027d352d483095e9a2341ec27a6d1e1388418bd3e9b8afb04f15232d"
+    },
+    {
+      "case": "offered_load_x2_seed128",
+      "seed": 128,
+      "experiment": "offered_load",
+      "value": 2,
+      "metrics": {
+        "MeanLatencySeconds": 1.25050799997225,
+        "MaxLatencySeconds": 2.90149266666776,
+        "LatencyP95Seconds": 2.50149266665733,
+        "Generated": 30,
+        "Received": 30,
+        "Dropped": 0,
+        "Pending": 0,
+        "PhysicalTransmissions": 351,
+        "RouteChanges": 15,
+        "NeighborActivations": 4,
+        "NeighborDeactivations": 0,
+        "HopDataRetransmissions": 13,
+        "HopControlRetransmissions": 7,
+        "HopControlFailures": 1,
+        "ControlFailures": 1,
+        "ControlResidualRetries": 0,
+        "ApplicationsDrained": 1,
+        "DataDrained": 1,
+        "ControlsDrained": 1,
+        "OwnershipDrained": 1,
+        "ResendQueueDepth": 0,
+        "ControlPending": 0,
+        "ControlPendingTargets": 0,
+        "NwkPendingControlMessages": 0,
+        "PendingSchedulerEvents": 3
+      },
+      "drop_applications": [],
+      "control_owner_failures": [
+        {
+          "TimeSeconds": "20.3020000277778",
+          "NodeId": "2",
+          "PeerId": "1",
+          "PacketId": "2",
+          "Reason": "retry_exhausted",
+          "ControlType": "KEY_UPDATE"
+        }
+      ],
+      "neighbor_deactivations_before_during_after_blackout": null,
+      "first_delivery_s": 241.553952666667,
+      "stop_boundary_events": [],
+      "summary_sha256": "ddae152cf6d0fddd9a8a478c79654557f553aeeeedbdac1fcbf68cf6750f6aba",
+      "protocol_trace_sha256": "d061b6b65e697884f4ffcc9f7803be0319820563de0c0f317d6ffaeed2f453c2",
+      "application_diagnostic_sha256": "dcfae729df48eb1849658105ba86ce7447445a6a7ef486686b7a859aebc6a035"
+    },
+    {
+      "case": "offered_load_x2_seed129",
+      "seed": 129,
+      "experiment": "offered_load",
+      "value": 2,
+      "metrics": {
+        "MeanLatencySeconds": 1.16254133330555,
+        "MaxLatencySeconds": 4.62549266662143,
+        "LatencyP95Seconds": 2.68049266666767,
+        "Generated": 30,
+        "Received": 30,
+        "Dropped": 0,
+        "Pending": 0,
+        "PhysicalTransmissions": 310,
+        "RouteChanges": 14,
+        "NeighborActivations": 4,
+        "NeighborDeactivations": 0,
+        "HopDataRetransmissions": 12,
+        "HopControlRetransmissions": 3,
+        "HopControlFailures": 0,
+        "ControlFailures": 0,
+        "ControlResidualRetries": 0,
+        "ApplicationsDrained": 1,
+        "DataDrained": 1,
+        "ControlsDrained": 1,
+        "OwnershipDrained": 1,
+        "ResendQueueDepth": 0,
+        "ControlPending": 0,
+        "ControlPendingTargets": 0,
+        "NwkPendingControlMessages": 0,
+        "PendingSchedulerEvents": 3
+      },
+      "drop_applications": [],
+      "control_owner_failures": [],
+      "neighbor_deactivations_before_during_after_blackout": null,
+      "first_delivery_s": 241.540952666667,
+      "stop_boundary_events": [],
+      "summary_sha256": "bbed8a08029e9db18fb57173c60412453362853194cabe23ae35b93e81789a87",
+      "protocol_trace_sha256": "b33c4ddf7d4b24b0b301f50514bcc1e52fd57124ee40c489b4fdb12fd047a159",
+      "application_diagnostic_sha256": "665021a2fc818ff336c45c27815ba0fb73b085cbf8a0400714fdbb5fe655433c"
+    },
+    {
+      "case": "offered_load_x2_seed130",
+      "seed": 130,
+      "experiment": "offered_load",
+      "value": 2,
+      "metrics": {
+        "MeanLatencySeconds": 1.30597466663878,
+        "MaxLatencySeconds": 2.78449266666772,
+        "LatencyP95Seconds": 2.63949266658483,
+        "Generated": 30,
+        "Received": 30,
+        "Dropped": 0,
+        "Pending": 0,
+        "PhysicalTransmissions": 303,
+        "RouteChanges": 14,
+        "NeighborActivations": 4,
+        "NeighborDeactivations": 0,
+        "HopDataRetransmissions": 14,
+        "HopControlRetransmissions": 1,
+        "HopControlFailures": 0,
+        "ControlFailures": 0,
+        "ControlResidualRetries": 0,
+        "ApplicationsDrained": 1,
+        "DataDrained": 1,
+        "ControlsDrained": 1,
+        "OwnershipDrained": 1,
+        "ResendQueueDepth": 0,
+        "ControlPending": 0,
+        "ControlPendingTargets": 0,
+        "NwkPendingControlMessages": 0,
+        "PendingSchedulerEvents": 3
+      },
+      "drop_applications": [],
+      "control_owner_failures": [],
+      "neighbor_deactivations_before_during_after_blackout": null,
+      "first_delivery_s": 241.462952666667,
+      "stop_boundary_events": [],
+      "summary_sha256": "8290c797e02312f561ede7e06c4e27ac44dd3b93aed82e50a679aeea9ac21fc4",
+      "protocol_trace_sha256": "6ef2902e4817dd5865118f6469b7ca736d91ca2edad676dfa51bb4e6921f05b2",
+      "application_diagnostic_sha256": "f98954ff79be1f5ae4bece8d9bfd92510a5cfc6f1e33df0c7e3bc01d151841a5"
+    },
+    {
+      "case": "offered_load_x4_seed128",
+      "seed": 128,
+      "experiment": "offered_load",
+      "value": 4,
+      "metrics": {
+        "MeanLatencySeconds": 1.37307852870801,
+        "MaxLatencySeconds": 4.78951266660522,
+        "LatencyP95Seconds": 2.60451266665729,
+        "Generated": 58,
+        "Received": 58,
+        "Dropped": 0,
+        "Pending": 0,
+        "PhysicalTransmissions": 398,
+        "RouteChanges": 15,
+        "NeighborActivations": 4,
+        "NeighborDeactivations": 0,
+        "HopDataRetransmissions": 27,
+        "HopControlRetransmissions": 7,
+        "HopControlFailures": 1,
+        "ControlFailures": 1,
+        "ControlResidualRetries": 0,
+        "ApplicationsDrained": 1,
+        "DataDrained": 1,
+        "ControlsDrained": 1,
+        "OwnershipDrained": 1,
+        "ResendQueueDepth": 0,
+        "ControlPending": 0,
+        "ControlPendingTargets": 0,
+        "NwkPendingControlMessages": 0,
+        "PendingSchedulerEvents": 3
+      },
+      "drop_applications": [],
+      "control_owner_failures": [
+        {
+          "TimeSeconds": "20.3020000277778",
+          "NodeId": "2",
+          "PeerId": "1",
+          "PacketId": "2",
+          "Reason": "retry_exhausted",
+          "ControlType": "KEY_UPDATE"
+        }
+      ],
+      "neighbor_deactivations_before_during_after_blackout": null,
+      "first_delivery_s": 241.553952666667,
+      "stop_boundary_events": [],
+      "summary_sha256": "000d469fa855fa79ae4d7d3449906b34e52fecab08e1a10a3d760e7468b2c498",
+      "protocol_trace_sha256": "31f1e7a759e46f72f8b068ad270adeff888eb43c1424ee827c58217501bb6e96",
+      "application_diagnostic_sha256": "0e5446c2c7e88efebad5c787992e8c521131caed9930d318bc2bc820cc305903"
+    },
+    {
+      "case": "offered_load_x4_seed129",
+      "seed": 129,
+      "experiment": "offered_load",
+      "value": 4,
+      "metrics": {
+        "MeanLatencySeconds": 1.3745437380681,
+        "MaxLatencySeconds": 4.77151266663736,
+        "LatencyP95Seconds": 4.62151266666172,
+        "Generated": 58,
+        "Received": 56,
+        "Dropped": 2,
+        "Pending": 0,
+        "PhysicalTransmissions": 372,
+        "RouteChanges": 14,
+        "NeighborActivations": 4,
+        "NeighborDeactivations": 0,
+        "HopDataRetransmissions": 31,
+        "HopControlRetransmissions": 3,
+        "HopControlFailures": 0,
+        "ControlFailures": 0,
+        "ControlResidualRetries": 0,
+        "ApplicationsDrained": 1,
+        "DataDrained": 1,
+        "ControlsDrained": 1,
+        "OwnershipDrained": 1,
+        "ResendQueueDepth": 0,
+        "ControlPending": 0,
+        "ControlPendingTargets": 0,
+        "NwkPendingControlMessages": 0,
+        "PendingSchedulerEvents": 3
+      },
+      "drop_applications": [
+        {
+          "PacketId": "28",
+          "SourceId": "3",
+          "DestinationId": "1",
+          "ApplicationBytes": "64",
+          "Dscp": "0",
+          "GeneratedSeconds": "269.25",
+          "LastEventSeconds": "277.871000027752",
+          "ReceivedSeconds": null,
+          "LatencySeconds": null,
+          "Outcome": "dropped",
+          "DropReason": "retry_exhausted"
+        },
+        {
+          "PacketId": "53",
+          "SourceId": "2",
+          "DestinationId": "1",
+          "ApplicationBytes": "64",
+          "Dscp": "0",
+          "GeneratedSeconds": "298.5",
+          "LastEventSeconds": "307.1210000277",
+          "ReceivedSeconds": null,
+          "LatencySeconds": null,
+          "Outcome": "dropped",
+          "DropReason": "retry_exhausted"
+        }
+      ],
+      "control_owner_failures": [],
+      "neighbor_deactivations_before_during_after_blackout": null,
+      "first_delivery_s": 241.540952666667,
+      "stop_boundary_events": [],
+      "summary_sha256": "08a0e95c0de479d502aabe47186cf875dba07025c359d198ef9496a67f722b05",
+      "protocol_trace_sha256": "675f8ca58f80073a059b5ed4222c787b88929fc95cdc92863b9cf482d354570e",
+      "application_diagnostic_sha256": "e47fc91b9378383ff09f12873225ef8de6f77be79809598ed94d22e120e27350"
+    },
+    {
+      "case": "offered_load_x4_seed130",
+      "seed": 130,
+      "experiment": "offered_load",
+      "value": 4,
+      "metrics": {
+        "MeanLatencySeconds": 1.561948456112,
+        "MaxLatencySeconds": 4.9814926666686,
+        "LatencyP95Seconds": 4.71351266666557,
+        "Generated": 58,
+        "Received": 57,
+        "Dropped": 1,
+        "Pending": 0,
+        "PhysicalTransmissions": 351,
+        "RouteChanges": 14,
+        "NeighborActivations": 4,
+        "NeighborDeactivations": 0,
+        "HopDataRetransmissions": 32,
+        "HopControlRetransmissions": 1,
+        "HopControlFailures": 0,
+        "ControlFailures": 0,
+        "ControlResidualRetries": 0,
+        "ApplicationsDrained": 1,
+        "DataDrained": 1,
+        "ControlsDrained": 1,
+        "OwnershipDrained": 1,
+        "ResendQueueDepth": 0,
+        "ControlPending": 0,
+        "ControlPendingTargets": 0,
+        "NwkPendingControlMessages": 0,
+        "PendingSchedulerEvents": 3
+      },
+      "drop_applications": [
+        {
+          "PacketId": "20",
+          "SourceId": "3",
+          "DestinationId": "1",
+          "ApplicationBytes": "64",
+          "Dscp": "0",
+          "GeneratedSeconds": "260.25",
+          "LastEventSeconds": "268.875000027768",
+          "ReceivedSeconds": null,
+          "LatencySeconds": null,
+          "Outcome": "dropped",
+          "DropReason": "retry_exhausted"
+        }
+      ],
+      "control_owner_failures": [],
+      "neighbor_deactivations_before_during_after_blackout": null,
+      "first_delivery_s": 241.462952666667,
+      "stop_boundary_events": [],
+      "summary_sha256": "f1924ba421a9b7899a62fb7d714ee57728a6de0279fcaf556cbea44df6d8fab5",
+      "protocol_trace_sha256": "bceed03364996a439e92574b7b42cc2a58f1264aeefed3730f0d0dbae97233ad",
+      "application_diagnostic_sha256": "074cbe387cb2b1ffa03bc7d3db57491b57cb172934388a878db6d2d4dfdace31"
+    },
+    {
+      "case": "recovery_freshness_s60_seed128",
+      "seed": 128,
+      "experiment": "recovery_freshness",
+      "value": 60,
+      "metrics": {
+        "MeanLatencySeconds": 68.9193166667057,
+        "MaxLatencySeconds": 135.940412666693,
+        "LatencyP95Seconds": 135.940412666693,
+        "Generated": 5,
+        "Received": 5,
+        "Dropped": 0,
+        "Pending": 0,
+        "PhysicalTransmissions": 704,
+        "RouteChanges": 103,
+        "NeighborActivations": 28,
+        "NeighborDeactivations": 24,
+        "HopDataRetransmissions": 3,
+        "HopControlRetransmissions": 50,
+        "HopControlFailures": 5,
+        "ControlFailures": 1,
+        "ControlResidualRetries": 4,
+        "ApplicationsDrained": 1,
+        "DataDrained": 1,
+        "ControlsDrained": 1,
+        "OwnershipDrained": 1,
+        "ResendQueueDepth": 0,
+        "ControlPending": 0,
+        "ControlPendingTargets": 0,
+        "NwkPendingControlMessages": 0,
+        "PendingSchedulerEvents": 6
+      },
+      "drop_applications": [],
+      "control_owner_failures": [
+        {
+          "TimeSeconds": "412.941000027765",
+          "NodeId": "1",
+          "PeerId": "2",
+          "PacketId": "41",
+          "Reason": "retry_exhausted",
+          "ControlType": "ROUTING"
+        },
+        {
+          "TimeSeconds": "421.27400002775",
+          "NodeId": "1",
+          "PeerId": "2",
+          "PacketId": "42",
+          "Reason": "retry_exhausted",
+          "ControlType": "ROUTING"
+        },
+        {
+          "TimeSeconds": "429.698000027735",
+          "NodeId": "1",
+          "PeerId": "2",
+          "PacketId": "43",
+          "Reason": "retry_exhausted",
+          "ControlType": "ROUTING"
+        },
+        {
+          "TimeSeconds": "870.892000027796",
+          "NodeId": "1",
+          "PeerId": "2",
+          "PacketId": "66",
+          "Reason": "retry_exhausted",
+          "ControlType": "ROUTING"
+        },
+        {
+          "TimeSeconds": "870.892000027796",
+          "NodeId": "1",
+          "PeerId": "2",
+          "PacketId": "67",
+          "Reason": "retry_exhausted",
+          "ControlType": "ROUTING"
+        }
+      ],
+      "neighbor_deactivations_before_during_after_blackout": [
+        11,
+        4,
+        9
+      ],
+      "first_delivery_s": 585.940412666693,
+      "stop_boundary_events": [],
+      "summary_sha256": "131fabc70b850eb4107eae66240eb44d4b67bcd13b5a6f466ecfe5b9d3b29661",
+      "protocol_trace_sha256": "6d64f539540a09407fc77f3623693a029ea0be407762105f75c296b2b997c5f0",
+      "application_diagnostic_sha256": "c3c010a535a58945ad2b6c5cd707c78dfdaa0848f2e18fc98178c5352c260eb4"
+    },
+    {
+      "case": "recovery_freshness_s60_seed129",
+      "seed": 129,
+      "experiment": "recovery_freshness",
+      "value": 60,
+      "metrics": {
+        "MeanLatencySeconds": 68.0003966667033,
+        "MaxLatencySeconds": 135.860132666692,
+        "LatencyP95Seconds": 135.860132666692,
+        "Generated": 5,
+        "Received": 5,
+        "Dropped": 0,
+        "Pending": 0,
+        "PhysicalTransmissions": 740,
+        "RouteChanges": 118,
+        "NeighborActivations": 33,
+        "NeighborDeactivations": 29,
+        "HopDataRetransmissions": 2,
+        "HopControlRetransmissions": 49,
+        "HopControlFailures": 0,
+        "ControlFailures": 0,
+        "ControlResidualRetries": 0,
+        "ApplicationsDrained": 1,
+        "DataDrained": 1,
+        "ControlsDrained": 1,
+        "OwnershipDrained": 1,
+        "ResendQueueDepth": 0,
+        "ControlPending": 0,
+        "ControlPendingTargets": 0,
+        "NwkPendingControlMessages": 0,
+        "PendingSchedulerEvents": 12
+      },
+      "drop_applications": [],
+      "control_owner_failures": [],
+      "neighbor_deactivations_before_during_after_blackout": [
+        11,
+        4,
+        14
+      ],
+      "first_delivery_s": 585.860132666692,
+      "stop_boundary_events": [],
+      "summary_sha256": "5a0f912b83ff9cf743da2240dad79916d13cdd2972fb7095ca1c83f8add191b3",
+      "protocol_trace_sha256": "e070d8e69d0960cb95f8d4e0e212b7ae4fa5b5cfaae77367ae96bef71c684a62",
+      "application_diagnostic_sha256": "7398a1cf7818487cc92916bd87eb988545e98bf598315b1a2587be0c79482796"
+    },
+    {
+      "case": "recovery_freshness_s60_seed130",
+      "seed": 130,
+      "experiment": "recovery_freshness",
+      "value": 60,
+      "metrics": {
+        "MeanLatencySeconds": 68.646832666705,
+        "MaxLatencySeconds": 134.199212666688,
+        "LatencyP95Seconds": 134.199212666688,
+        "Generated": 5,
+        "Received": 5,
+        "Dropped": 0,
+        "Pending": 0,
+        "PhysicalTransmissions": 687,
+        "RouteChanges": 102,
+        "NeighborActivations": 29,
+        "NeighborDeactivations": 25,
+        "HopDataRetransmissions": 5,
+        "HopControlRetransmissions": 28,
+        "HopControlFailures": 0,
+        "ControlFailures": 0,
+        "ControlResidualRetries": 0,
+        "ApplicationsDrained": 1,
+        "DataDrained": 1,
+        "ControlsDrained": 1,
+        "OwnershipDrained": 1,
+        "ResendQueueDepth": 0,
+        "ControlPending": 0,
+        "ControlPendingTargets": 0,
+        "NwkPendingControlMessages": 0,
+        "PendingSchedulerEvents": 6
+      },
+      "drop_applications": [],
+      "control_owner_failures": [],
+      "neighbor_deactivations_before_during_after_blackout": [
+        8,
+        4,
+        13
+      ],
+      "first_delivery_s": 584.199212666688,
+      "stop_boundary_events": [],
+      "summary_sha256": "e39cd8b6ece74b04243199dd7a56e71cdbfea05658761e517aa5bdb6fd9a1e6b",
+      "protocol_trace_sha256": "afe674e9de9ce6cc045f1db141f9027cfa823ed63f586aaf05cb18de791b7a72",
+      "application_diagnostic_sha256": "7b0ce876ccf325c7f295cc323555e4e5d11d36a72f544f4cf85b44c35c50ca34"
+    },
+    {
+      "case": "recovery_freshness_s180_seed128",
+      "seed": 128,
+      "experiment": "recovery_freshness",
+      "value": 180,
+      "metrics": {
+        "MeanLatencySeconds": 16.0722226667086,
+        "MaxLatencySeconds": 29.6011126666971,
+        "LatencyP95Seconds": 29.6011126666971,
+        "Generated": 5,
+        "Received": 2,
+        "Dropped": 3,
+        "Pending": 0,
+        "PhysicalTransmissions": 431,
+        "RouteChanges": 44,
+        "NeighborActivations": 11,
+        "NeighborDeactivations": 7,
+        "HopDataRetransmissions": 8,
+        "HopControlRetransmissions": 19,
+        "HopControlFailures": 1,
+        "ControlFailures": 0,
+        "ControlResidualRetries": 0,
+        "ApplicationsDrained": 1,
+        "DataDrained": 1,
+        "ControlsDrained": 1,
+        "OwnershipDrained": 1,
+        "ResendQueueDepth": 0,
+        "ControlPending": 0,
+        "ControlPendingTargets": 0,
+        "NwkPendingControlMessages": 0,
+        "PendingSchedulerEvents": 6
+      },
+      "drop_applications": [
+        {
+          "PacketId": "1",
+          "SourceId": "3",
+          "DestinationId": "1",
+          "ApplicationBytes": "64",
+          "Dscp": "0",
+          "GeneratedSeconds": "450",
+          "LastEventSeconds": "458.649000027769",
+          "ReceivedSeconds": null,
+          "LatencySeconds": null,
+          "Outcome": "dropped",
+          "DropReason": "retry_exhausted"
+        },
+        {
+          "PacketId": "2",
+          "SourceId": "3",
+          "DestinationId": "1",
+          "ApplicationBytes": "64",
+          "Dscp": "0",
+          "GeneratedSeconds": "486",
+          "LastEventSeconds": "494.62000002777",
+          "ReceivedSeconds": null,
+          "LatencySeconds": null,
+          "Outcome": "dropped",
+          "DropReason": "retry_exhausted"
+        },
+        {
+          "PacketId": "3",
+          "SourceId": "3",
+          "DestinationId": "1",
+          "ApplicationBytes": "64",
+          "Dscp": "0",
+          "GeneratedSeconds": "522",
+          "LastEventSeconds": "532.359000027794",
+          "ReceivedSeconds": null,
+          "LatencySeconds": null,
+          "Outcome": "dropped",
+          "DropReason": "retry_exhausted"
+        }
+      ],
+      "control_owner_failures": [
+        {
+          "TimeSeconds": "531.293000027797",
+          "NodeId": "2",
+          "PeerId": "3",
+          "PacketId": "44",
+          "Reason": "retry_exhausted",
+          "ControlType": "ROUTING"
+        }
+      ],
+      "neighbor_deactivations_before_during_after_blackout": [
+        2,
+        4,
+        1
+      ],
+      "first_delivery_s": 587.601112666697,
+      "stop_boundary_events": [],
+      "summary_sha256": "c27f7b952a8e7dd0f3cf810228a0befddea6cc9c2401dea3e1accc6f64611108",
+      "protocol_trace_sha256": "9020b2428e2d9932679fdf9188ebb0c863232c29acf2b19ff0751714377f686a",
+      "application_diagnostic_sha256": "285c770b0adc1f4df7a1e51c0f0cf7cfc748c2fcc6a63e642c66bc33c5a53378"
+    },
+    {
+      "case": "recovery_freshness_s180_seed129",
+      "seed": 129,
+      "experiment": "recovery_freshness",
+      "value": 180,
+      "metrics": {
+        "MeanLatencySeconds": 16.5933726667099,
+        "MaxLatencySeconds": 27.8953326666924,
+        "LatencyP95Seconds": 27.8953326666924,
+        "Generated": 5,
+        "Received": 2,
+        "Dropped": 3,
+        "Pending": 0,
+        "PhysicalTransmissions": 457,
+        "RouteChanges": 52,
+        "NeighborActivations": 14,
+        "NeighborDeactivations": 10,
+        "HopDataRetransmissions": 9,
+        "HopControlRetransmissions": 22,
+        "HopControlFailures": 1,
+        "ControlFailures": 0,
+        "ControlResidualRetries": 0,
+        "ApplicationsDrained": 1,
+        "DataDrained": 1,
+        "ControlsDrained": 1,
+        "OwnershipDrained": 1,
+        "ResendQueueDepth": 0,
+        "ControlPending": 0,
+        "ControlPendingTargets": 0,
+        "NwkPendingControlMessages": 0,
+        "PendingSchedulerEvents": 6
+      },
+      "drop_applications": [
+        {
+          "PacketId": "1",
+          "SourceId": "3",
+          "DestinationId": "1",
+          "ApplicationBytes": "64",
+          "Dscp": "0",
+          "GeneratedSeconds": "450",
+          "LastEventSeconds": "458.818000027769",
+          "ReceivedSeconds": null,
+          "LatencySeconds": null,
+          "Outcome": "dropped",
+          "DropReason": "retry_exhausted"
+        },
+        {
+          "PacketId": "2",
+          "SourceId": "3",
+          "DestinationId": "1",
+          "ApplicationBytes": "64",
+          "Dscp": "0",
+          "GeneratedSeconds": "486",
+          "LastEventSeconds": "494.60700002777",
+          "ReceivedSeconds": null,
+          "LatencySeconds": null,
+          "Outcome": "dropped",
+          "DropReason": "retry_exhausted"
+        },
+        {
+          "PacketId": "3",
+          "SourceId": "3",
+          "DestinationId": "1",
+          "ApplicationBytes": "64",
+          "Dscp": "0",
+          "GeneratedSeconds": "522",
+          "LastEventSeconds": "532.281000027794",
+          "ReceivedSeconds": null,
+          "LatencySeconds": null,
+          "Outcome": "dropped",
+          "DropReason": "retry_exhausted"
+        }
+      ],
+      "control_owner_failures": [
+        {
+          "TimeSeconds": "531.163000027796",
+          "NodeId": "2",
+          "PeerId": "3",
+          "PacketId": "43",
+          "Reason": "retry_exhausted",
+          "ControlType": "ROUTING"
+        }
+      ],
+      "neighbor_deactivations_before_during_after_blackout": [
+        2,
+        4,
+        4
+      ],
+      "first_delivery_s": 585.895332666692,
+      "stop_boundary_events": [],
+      "summary_sha256": "52f4dc54e871606446bd67b1c64badf3e13ca824aa6a4de51d0607aacb8cd4fe",
+      "protocol_trace_sha256": "2fbd574db1033de2ed8dda7b1de826c7fbdd0ee64319cc2b50acd8fb208f2508",
+      "application_diagnostic_sha256": "fce7d9eacfc27f1d5b32a1b83bba5392ffb25b9101210251344e7eb5bc716904"
+    },
+    {
+      "case": "recovery_freshness_s180_seed130",
+      "seed": 130,
+      "experiment": "recovery_freshness",
+      "value": 180,
+      "metrics": {
+        "MeanLatencySeconds": 13.0826126667008,
+        "MaxLatencySeconds": 25.5752126666865,
+        "LatencyP95Seconds": 25.5752126666865,
+        "Generated": 5,
+        "Received": 2,
+        "Dropped": 3,
+        "Pending": 0,
+        "PhysicalTransmissions": 417,
+        "RouteChanges": 41,
+        "NeighborActivations": 10,
+        "NeighborDeactivations": 6,
+        "HopDataRetransmissions": 6,
+        "HopControlRetransmissions": 13,
+        "HopControlFailures": 1,
+        "ControlFailures": 0,
+        "ControlResidualRetries": 0,
+        "ApplicationsDrained": 1,
+        "DataDrained": 1,
+        "ControlsDrained": 1,
+        "OwnershipDrained": 1,
+        "ResendQueueDepth": 0,
+        "ControlPending": 0,
+        "ControlPendingTargets": 0,
+        "NwkPendingControlMessages": 0,
+        "PendingSchedulerEvents": 6
+      },
+      "drop_applications": [
+        {
+          "PacketId": "1",
+          "SourceId": "3",
+          "DestinationId": "1",
+          "ApplicationBytes": "64",
+          "Dscp": "0",
+          "GeneratedSeconds": "450",
+          "LastEventSeconds": "458.805000027769",
+          "ReceivedSeconds": null,
+          "LatencySeconds": null,
+          "Outcome": "dropped",
+          "DropReason": "retry_exhausted"
+        },
+        {
+          "PacketId": "2",
+          "SourceId": "3",
+          "DestinationId": "1",
+          "ApplicationBytes": "64",
+          "Dscp": "0",
+          "GeneratedSeconds": "486",
+          "LastEventSeconds": "494.62000002777",
+          "ReceivedSeconds": null,
+          "LatencySeconds": null,
+          "Outcome": "dropped",
+          "DropReason": "retry_exhausted"
+        },
+        {
+          "PacketId": "3",
+          "SourceId": "3",
+          "DestinationId": "1",
+          "ApplicationBytes": "64",
+          "Dscp": "0",
+          "GeneratedSeconds": "522",
+          "LastEventSeconds": "532.502000027795",
+          "ReceivedSeconds": null,
+          "LatencySeconds": null,
+          "Outcome": "dropped",
+          "DropReason": "retry_exhausted"
+        }
+      ],
+      "control_owner_failures": [
+        {
+          "TimeSeconds": "531.384000027797",
+          "NodeId": "2",
+          "PeerId": "3",
+          "PacketId": "43",
+          "Reason": "retry_exhausted",
+          "ControlType": "ROUTING"
+        }
+      ],
+      "neighbor_deactivations_before_during_after_blackout": [
+        1,
+        4,
+        1
+      ],
+      "first_delivery_s": 583.575212666687,
+      "stop_boundary_events": [],
+      "summary_sha256": "81ee86d4fb3711dfeab939c8c75c16bb0082d4513e7d0ee7e6ea2d22f0ac532f",
+      "protocol_trace_sha256": "18a368dab9734d26ae9d0bbbe0130bfad6e7cf3ac3dd15be607f331e94d8fc57",
+      "application_diagnostic_sha256": "aa794edab5f2f194fe1ee78fc8f9462f028f28c6cf4908e7fc82809506adcca9"
+    },
+    {
+      "case": "recovery_freshness_s300_seed128",
+      "seed": 128,
+      "experiment": "recovery_freshness",
+      "value": 300,
+      "metrics": {
+        "MeanLatencySeconds": 1.77864266671543,
+        "MaxLatencySeconds": 2.88087266667037,
+        "LatencyP95Seconds": 2.88087266667037,
+        "Generated": 5,
+        "Received": 2,
+        "Dropped": 3,
+        "Pending": 0,
+        "PhysicalTransmissions": 327,
+        "RouteChanges": 18,
+        "NeighborActivations": 4,
+        "NeighborDeactivations": 1,
+        "HopDataRetransmissions": 7,
+        "HopControlRetransmissions": 5,
+        "HopControlFailures": 0,
+        "ControlFailures": 0,
+        "ControlResidualRetries": 0,
+        "ApplicationsDrained": 1,
+        "DataDrained": 0,
+        "ControlsDrained": 0,
+        "OwnershipDrained": 0,
+        "ResendQueueDepth": 1,
+        "ControlPending": 1,
+        "ControlPendingTargets": 1,
+        "NwkPendingControlMessages": 2,
+        "PendingSchedulerEvents": 7
+      },
+      "drop_applications": [
+        {
+          "PacketId": "1",
+          "SourceId": "3",
+          "DestinationId": "1",
+          "ApplicationBytes": "64",
+          "Dscp": "0",
+          "GeneratedSeconds": "450",
+          "LastEventSeconds": "458.779000027769",
+          "ReceivedSeconds": null,
+          "LatencySeconds": null,
+          "Outcome": "dropped",
+          "DropReason": "retry_exhausted"
+        },
+        {
+          "PacketId": "2",
+          "SourceId": "3",
+          "DestinationId": "1",
+          "ApplicationBytes": "64",
+          "Dscp": "0",
+          "GeneratedSeconds": "486",
+          "LastEventSeconds": "494.763000027769",
+          "ReceivedSeconds": null,
+          "LatencySeconds": null,
+          "Outcome": "dropped",
+          "DropReason": "retry_exhausted"
+        },
+        {
+          "PacketId": "3",
+          "SourceId": "3",
+          "DestinationId": "1",
+          "ApplicationBytes": "64",
+          "Dscp": "0",
+          "GeneratedSeconds": "522",
+          "LastEventSeconds": "530.59100002779",
+          "ReceivedSeconds": null,
+          "LatencySeconds": null,
+          "Outcome": "dropped",
+          "DropReason": "retry_exhausted"
+        }
+      ],
+      "control_owner_failures": [],
+      "neighbor_deactivations_before_during_after_blackout": [
+        0,
+        0,
+        1
+      ],
+      "first_delivery_s": 560.88087266667,
+      "stop_boundary_events": [
+        {
+          "TimeSeconds": "900",
+          "Event": "neighbor_inactive",
+          "NodeId": "2",
+          "PeerId": "1",
+          "PacketId": "0",
+          "Reason": "neighbor_failure",
+          "ControlType": ""
+        },
+        {
+          "TimeSeconds": "900",
+          "Event": "mac_enqueue",
+          "NodeId": "2",
+          "PeerId": "3",
+          "PacketId": "47",
+          "Reason": "",
+          "ControlType": "ROUTING"
+        },
+        {
+          "TimeSeconds": "900",
+          "Event": "hop_control_admit",
+          "NodeId": "2",
+          "PeerId": "3",
+          "PacketId": "47",
+          "Reason": "",
+          "ControlType": "ROUTING"
+        },
+        {
+          "TimeSeconds": "900",
+          "Event": "neighbor_control_send",
+          "NodeId": "2",
+          "PeerId": "16777215",
+          "PacketId": "0",
+          "Reason": "",
+          "ControlType": ""
+        },
+        {
+          "TimeSeconds": "900",
+          "Event": "mac_enqueue",
+          "NodeId": "2",
+          "PeerId": "16777215",
+          "PacketId": "48",
+          "Reason": "",
+          "ControlType": "DISCOVER"
+        },
+        {
+          "TimeSeconds": "900",
+          "Event": "hop_control_admit",
+          "NodeId": "2",
+          "PeerId": "16777215",
+          "PacketId": "48",
+          "Reason": "",
+          "ControlType": "DISCOVER"
+        }
+      ],
+      "summary_sha256": "d27bac9737d75d93b57a45e14830358eea14897ff5cc53db3bc646891af2c560",
+      "protocol_trace_sha256": "8136f4cd00b9cdd7ed40beb6f5e250d43749126c8f386630dd8714a63fe8b8d2",
+      "application_diagnostic_sha256": "cdf0c4aa4b1d456ee073bdc400192c4bda81e067a4b1033a6d8513ca9f45ecdd"
+    },
+    {
+      "case": "recovery_freshness_s300_seed129",
+      "seed": 129,
+      "experiment": "recovery_freshness",
+      "value": 300,
+      "metrics": {
+        "MeanLatencySeconds": 1.72894266671523,
+        "MaxLatencySeconds": 3.02387266667074,
+        "LatencyP95Seconds": 3.02387266667074,
+        "Generated": 5,
+        "Received": 2,
+        "Dropped": 3,
+        "Pending": 0,
+        "PhysicalTransmissions": 339,
+        "RouteChanges": 17,
+        "NeighborActivations": 4,
+        "NeighborDeactivations": 1,
+        "HopDataRetransmissions": 7,
+        "HopControlRetransmissions": 10,
+        "HopControlFailures": 0,
+        "ControlFailures": 0,
+        "ControlResidualRetries": 0,
+        "ApplicationsDrained": 1,
+        "DataDrained": 0,
+        "ControlsDrained": 0,
+        "OwnershipDrained": 0,
+        "ResendQueueDepth": 1,
+        "ControlPending": 1,
+        "ControlPendingTargets": 1,
+        "NwkPendingControlMessages": 2,
+        "PendingSchedulerEvents": 7
+      },
+      "drop_applications": [
+        {
+          "PacketId": "1",
+          "SourceId": "3",
+          "DestinationId": "1",
+          "ApplicationBytes": "64",
+          "Dscp": "0",
+          "GeneratedSeconds": "450",
+          "LastEventSeconds": "458.922000027769",
+          "ReceivedSeconds": null,
+          "LatencySeconds": null,
+          "Outcome": "dropped",
+          "DropReason": "retry_exhausted"
+        },
+        {
+          "PacketId": "2",
+          "SourceId": "3",
+          "DestinationId": "1",
+          "ApplicationBytes": "64",
+          "Dscp": "0",
+          "GeneratedSeconds": "486",
+          "LastEventSeconds": "494.854000027769",
+          "ReceivedSeconds": null,
+          "LatencySeconds": null,
+          "Outcome": "dropped",
+          "DropReason": "retry_exhausted"
+        },
+        {
+          "PacketId": "3",
+          "SourceId": "3",
+          "DestinationId": "1",
+          "ApplicationBytes": "64",
+          "Dscp": "0",
+          "GeneratedSeconds": "522",
+          "LastEventSeconds": "530.61700002779",
+          "ReceivedSeconds": null,
+          "LatencySeconds": null,
+          "Outcome": "dropped",
+          "DropReason": "retry_exhausted"
+        }
+      ],
+      "control_owner_failures": [],
+      "neighbor_deactivations_before_during_after_blackout": [
+        0,
+        0,
+        1
+      ],
+      "first_delivery_s": 561.023872666671,
+      "stop_boundary_events": [
+        {
+          "TimeSeconds": "900",
+          "Event": "neighbor_inactive",
+          "NodeId": "2",
+          "PeerId": "1",
+          "PacketId": "0",
+          "Reason": "neighbor_failure",
+          "ControlType": ""
+        },
+        {
+          "TimeSeconds": "900",
+          "Event": "mac_enqueue",
+          "NodeId": "2",
+          "PeerId": "3",
+          "PacketId": "47",
+          "Reason": "",
+          "ControlType": "ROUTING"
+        },
+        {
+          "TimeSeconds": "900",
+          "Event": "hop_control_admit",
+          "NodeId": "2",
+          "PeerId": "3",
+          "PacketId": "47",
+          "Reason": "",
+          "ControlType": "ROUTING"
+        },
+        {
+          "TimeSeconds": "900",
+          "Event": "neighbor_control_send",
+          "NodeId": "2",
+          "PeerId": "16777215",
+          "PacketId": "0",
+          "Reason": "",
+          "ControlType": ""
+        },
+        {
+          "TimeSeconds": "900",
+          "Event": "mac_enqueue",
+          "NodeId": "2",
+          "PeerId": "16777215",
+          "PacketId": "48",
+          "Reason": "",
+          "ControlType": "DISCOVER"
+        },
+        {
+          "TimeSeconds": "900",
+          "Event": "hop_control_admit",
+          "NodeId": "2",
+          "PeerId": "16777215",
+          "PacketId": "48",
+          "Reason": "",
+          "ControlType": "DISCOVER"
+        }
+      ],
+      "summary_sha256": "f4a73ad7e648f9d50762e574fa4987dd68047b295e8eb593c7e51e2a76051aea",
+      "protocol_trace_sha256": "16e4886737e370e1419c92bc85da7c0d24dc11e1a1d439c1abc0b65e15489d5d",
+      "application_diagnostic_sha256": "ed7583dae183b4191b92349a90df8b098888721b010d6c8f898f37f4fd6e681e"
+    },
+    {
+      "case": "recovery_freshness_s300_seed130",
+      "seed": 130,
+      "experiment": "recovery_freshness",
+      "value": 300,
+      "metrics": {
+        "MeanLatencySeconds": 1.7637426667153,
+        "MaxLatencySeconds": 2.91987266667047,
+        "LatencyP95Seconds": 2.91987266667047,
+        "Generated": 5,
+        "Received": 2,
+        "Dropped": 3,
+        "Pending": 0,
+        "PhysicalTransmissions": 321,
+        "RouteChanges": 18,
+        "NeighborActivations": 4,
+        "NeighborDeactivations": 1,
+        "HopDataRetransmissions": 7,
+        "HopControlRetransmissions": 6,
+        "HopControlFailures": 0,
+        "ControlFailures": 0,
+        "ControlResidualRetries": 0,
+        "ApplicationsDrained": 1,
+        "DataDrained": 0,
+        "ControlsDrained": 0,
+        "OwnershipDrained": 0,
+        "ResendQueueDepth": 1,
+        "ControlPending": 1,
+        "ControlPendingTargets": 1,
+        "NwkPendingControlMessages": 2,
+        "PendingSchedulerEvents": 7
+      },
+      "drop_applications": [
+        {
+          "PacketId": "1",
+          "SourceId": "3",
+          "DestinationId": "1",
+          "ApplicationBytes": "64",
+          "Dscp": "0",
+          "GeneratedSeconds": "450",
+          "LastEventSeconds": "458.857000027769",
+          "ReceivedSeconds": null,
+          "LatencySeconds": null,
+          "Outcome": "dropped",
+          "DropReason": "retry_exhausted"
+        },
+        {
+          "PacketId": "2",
+          "SourceId": "3",
+          "DestinationId": "1",
+          "ApplicationBytes": "64",
+          "Dscp": "0",
+          "GeneratedSeconds": "486",
+          "LastEventSeconds": "494.54200002777",
+          "ReceivedSeconds": null,
+          "LatencySeconds": null,
+          "Outcome": "dropped",
+          "DropReason": "retry_exhausted"
+        },
+        {
+          "PacketId": "3",
+          "SourceId": "3",
+          "DestinationId": "1",
+          "ApplicationBytes": "64",
+          "Dscp": "0",
+          "GeneratedSeconds": "522",
+          "LastEventSeconds": "530.91600002779",
+          "ReceivedSeconds": null,
+          "LatencySeconds": null,
+          "Outcome": "dropped",
+          "DropReason": "retry_exhausted"
+        }
+      ],
+      "control_owner_failures": [],
+      "neighbor_deactivations_before_during_after_blackout": [
+        0,
+        0,
+        1
+      ],
+      "first_delivery_s": 560.91987266667,
+      "stop_boundary_events": [
+        {
+          "TimeSeconds": "900",
+          "Event": "neighbor_inactive",
+          "NodeId": "2",
+          "PeerId": "1",
+          "PacketId": "0",
+          "Reason": "neighbor_failure",
+          "ControlType": ""
+        },
+        {
+          "TimeSeconds": "900",
+          "Event": "mac_enqueue",
+          "NodeId": "2",
+          "PeerId": "3",
+          "PacketId": "47",
+          "Reason": "",
+          "ControlType": "ROUTING"
+        },
+        {
+          "TimeSeconds": "900",
+          "Event": "hop_control_admit",
+          "NodeId": "2",
+          "PeerId": "3",
+          "PacketId": "47",
+          "Reason": "",
+          "ControlType": "ROUTING"
+        },
+        {
+          "TimeSeconds": "900",
+          "Event": "neighbor_control_send",
+          "NodeId": "2",
+          "PeerId": "16777215",
+          "PacketId": "0",
+          "Reason": "",
+          "ControlType": ""
+        },
+        {
+          "TimeSeconds": "900",
+          "Event": "mac_enqueue",
+          "NodeId": "2",
+          "PeerId": "16777215",
+          "PacketId": "48",
+          "Reason": "",
+          "ControlType": "DISCOVER"
+        },
+        {
+          "TimeSeconds": "900",
+          "Event": "hop_control_admit",
+          "NodeId": "2",
+          "PeerId": "16777215",
+          "PacketId": "48",
+          "Reason": "",
+          "ControlType": "DISCOVER"
+        }
+      ],
+      "summary_sha256": "0783f37f2acc4f194093b4eb066a5d15ed9542336c2a6dbf522e6e99c928bebc",
+      "protocol_trace_sha256": "cd92efd938847405b864a37eff5ebf86543f3aea2baaa6281594001664e12505",
+      "application_diagnostic_sha256": "11eeac42a95187e902375263900a5a6585e275a64fec139cb2195bd95345de01"
+    }
+  ],
+  "interpretation_limits": [
+    "Three seeds are descriptive observations, not a precision or optimality claim.",
+    "300-second freshness has newly admitted control work exactly at finite stop; conservative DataDrained flag includes CONTROL in shared Resends.",
+    "Recovery latency describes delivered survivors and includes administrative receive blackout plus scheduled rediscovery stimuli.",
+    "No native, long-run, network timing parity, or source-default optimal timeout claim."
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "schema": "csr-tranche5-publication-provenance-v1",
+  "date": "2026-09-10",
+  "repository": "mjburke4/CSR-Project-MATLAB-Sim",
+  "branch": "agent/tranche-5-research-performance",
+  "recovered_commit": "a514e6de124f94db36890cbd20de2712eb9e7fc9",
+  "merged_tranche4_base": "7edaab558f4f00290d11e0681d883364141d547c",
+  "mapping": [
+    {
+      "role": "validated MATLAB baseline",
+      "original_commit": "536b288d765a7b18007ff7898eaf3f2e173d9e58",
+      "published_commit": "db2bd08da5ef016244787116b8f2755aeb175399",
+      "identical_tree": "af86dc6be4059ec77061fe1c1fe4ed8ce1b324fd"
+    },
+    {
+      "role": "Python-only reporting repair",
+      "original_commit": "7109ae06fefcbbf91446aee3b4826c47084db5ba",
+      "published_commit": "9c0e55e917abdf63946742cc3f8cb37e056d3305",
+      "identical_tree": "d8ecaf971c7e3744e6d09af648649d42d30f0301"
+    },
+    {
+      "role": "accepted evidence and review",
+      "original_commit": "1f515648de89c950a8bc6beccfb6a0f815a82eb9",
+      "published_commit": "5153b74b52da6ec517438942d5fa977189020eaa",
+      "identical_tree": "c3f351d9c45a87e7ddeb242c497df4b4553c43a9"
+    }
+  ],
+  "recovery_gap": {
+    "restored_paths": [
+      "+csr/+validation/Artifacts.m",
+      "README.md",
+      "docs/parity-ledger.csv",
+      "evidence/source-baseline.json",
+      "tests/TestResearchEvidence.m"
+    ],
+    "explanation": "The recovered publication retained older content at five paths; its complete-byte-preservation claim was incorrect. Exact original baseline tree restored before applying repair and acceptance."
+  },
+  "accepted_archive": {
+    "path": "evidence/tranche-5-r2025a-accepted/tranche5_evidence.zip",
+    "bytes": 3727389,
+    "sha256": "824cf0f5cb6a735ee896ebc5431be5c72f69d9d95135c8e03311238bd0ca75c1",
+    "git_blob": "5e89b1148963a7e31ec72663aa99b38b242c91e9"
+  },
+  "publication_validation": {
+    "identical_original_trees": 3,
+    "matlab_files_matching_baseline": 88,
+    "source_snapshot_hashes_checked": 116,
+    "archive_inventory_entries_checked": 550,
+    "python_tests_passed": 75,
+    "independent_read_only_review": "passed",
+    "matlab_rerun": false,
+    "ns3_rerun": false
+  },
+  "accepted_runtime": {
+    "release": "R2025a",
+    "version": "25.1.0.2943329",
+    "backend": "portable",
+    "tests_passed": 367,
+    "sweep_cases_completed": 18,
+    "application_comparisons_passed": 5,
+    "applications_generated": 357,
+    "applications_delivered": 336,
+    "retry_exhaustion_drops": 21,
+    "applications_pending": 0,
+    "cases_with_stop_boundary_controls": 3
+  },
+  "limitations": [
+    "Original accepted records retain their original commit IDs, paths, timestamps and acceptance-time publication status; this mapping supersedes historical no-publication statements.",
+    "48 execution-machine MAT artifacts were not supplied and are not independently inspected.",
+    "Native/R2026a, 6000-second workloads and full protocol timing parity remain unexecuted or uncertified.",
+    "Outage detection, stale-route retry/custody behavior and stop-boundary control drain remain open; PHY/ECC, battery/supervisory and BBN scope unchanged."
+  ],
+  "published_acceptance_paths": [
+    "docs/tranche-5-r2025a-evidence-review-repair.md",
+    "scripts/analyze_research_sweep.py",
+    "scripts/tests/test_analyze_research_sweep.py",
+    "README.md",
+    "docs/parity-ledger.csv",
+    "docs/tranche-5-handoff.md",
+    "docs/tranche-5-portable-acceptance.md",
+    "docs/tranche-5-return-integrity-review.md",
+    "docs/tranche-5-return-outcomes-review.md",
+    "docs/tranche-5-validation.md",
+    "evidence/source-baseline.json",
+    "evidence/tranche-5-candidate.json",
+    "evidence/tranche-5-portable-acceptance.json",
+    "evidence/tranche-5-r2025a-accepted/analysis-initial-failure.json",
+    "evidence/tranche-5-r2025a-accepted/analysis/group_statistics.csv",
+    "evidence/tranche-5-r2025a-accepted/analysis/seed_observations.csv",
+    "evidence/tranche-5-r2025a-accepted/analysis/sweep_analysis.json",
+    "evidence/tranche-5-r2025a-accepted/comparison/high_rate_1000/applications.csv",
+    "evidence/tranche-5-r2025a-accepted/comparison/high_rate_1000/comparison.json",
+    "evidence/tranche-5-r2025a-accepted/comparison/high_rate_1000/flows.csv",
+    "evidence/tranche-5-r2025a-accepted/comparison/high_rate_500/applications.csv",
+    "evidence/tranche-5-r2025a-accepted/comparison/high_rate_500/comparison.json",
+    "evidence/tranche-5-r2025a-accepted/comparison/high_rate_500/flows.csv",
+    "evidence/tranche-5-r2025a-accepted/comparison/line_3_8/applications.csv",
+    "evidence/tranche-5-r2025a-accepted/comparison/line_3_8/comparison.json",
+    "evidence/tranche-5-r2025a-accepted/comparison/line_3_8/flows.csv",
+    "evidence/tranche-5-r2025a-accepted/comparison/two_node_128/applications.csv",
+    "evidence/tranche-5-r2025a-accepted/comparison/two_node_128/comparison.json",
+    "evidence/tranche-5-r2025a-accepted/comparison/two_node_128/flows.csv",
+    "evidence/tranche-5-r2025a-accepted/comparison/two_node_8/applications.csv",
+    "evidence/tranche-5-r2025a-accepted/comparison/two_node_8/comparison.json",
+    "evidence/tranche-5-r2025a-accepted/comparison/two_node_8/flows.csv",
+    "evidence/tranche-5-r2025a-accepted/performance_summary.csv",
+    "evidence/tranche-5-r2025a-accepted/regression_metadata.json",
+    "evidence/tranche-5-r2025a-accepted/scenario_summary.csv",
+    "evidence/tranche-5-r2025a-accepted/sweep_cases.csv",
+    "evidence/tranche-5-r2025a-accepted/sweep_plan.json",
+    "evidence/tranche-5-r2025a-accepted/test_results.csv",
+    "evidence/tranche-5-r2025a-accepted/tranche2_scenario_summary.csv",
+    "evidence/tranche-5-r2025a-accepted/tranche3_scenario_summary.csv",
+    "evidence/tranche-5-r2025a-accepted/tranche4_scenario_summary.csv",
+    "evidence/tranche-5-r2025a-accepted/tranche5_evidence.zip",
+    "evidence/tranche-5-r2025a-accepted/validation.log",
+    "evidence/tranche-5-r2025a-accepted/validation_metadata.json",
+    "evidence/tranche-5-return-integrity.json",
+    "evidence/tranche-5-return-outcomes-review.json",
+    "evidence/tranche-5-validated-candidate.json"
+  ]
+}

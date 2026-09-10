@@ -31,15 +31,18 @@ classdef Artifacts
 
         function files = sourceSnapshot(root)
             root = csr.validation.Artifacts.canonicalPath(root);
-            % Include executable MATLAB, BER data and shared inputs. Result
-            % directories are excluded so creating evidence cannot change it.
+            % Bind simulator and analysis code, BER data, shared inputs and
+            % candidate identities. Results are excluded: writing evidence
+            % must not invalidate the source snapshot that produced it.
             listing = [dir(fullfile(root,'*.m')); ...
                 dir(fullfile(root,'+csr','**','*.m')); ...
                 dir(fullfile(root,'tests','**','*.m')); ...
+                dir(fullfile(root,'examples','**','*.m')); ...
+                dir(fullfile(root,'scripts','**','*.py')); ...
                 dir(fullfile(root,'data','**','*')); ...
-                dir(fullfile(root,'scenarios','shared','**','*'))];
-            candidate = fullfile(root,'evidence','tranche-4-candidate.json');
-            if isfile(candidate), listing = [listing; dir(candidate)]; end
+                dir(fullfile(root,'scenarios','shared','**','*')); ...
+                dir(fullfile(root,'evidence','tranche-*-candidate.json')); ...
+                dir(fullfile(root,'evidence','source-baseline.json'))];
             listing = listing(~[listing.isdir]);
             files = repmat(struct('path','','sha256',''),numel(listing),1);
             for k = 1:numel(listing)
@@ -54,7 +57,7 @@ classdef Artifacts
         function checkSnapshot(root,expected)
             if ~isequal(expected,csr.validation.Artifacts.sourceSnapshot(root))
                 error('csr:validation:SourceChanged', ...
-                    'MATLAB source, BER data, shared inputs or candidate changed during validation.');
+                    'Simulator/analysis source, BER data, shared inputs or candidate changed during validation.');
             end
         end
 

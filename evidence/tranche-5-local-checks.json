@@ -1,0 +1,57 @@
+{
+  "schema": "csr-matlab-tranche-5-local-checks-v1",
+  "checked_utc": "2026-09-09T17:53:06.648392+00:00",
+  "matlab_executed": false,
+  "octave_executed": false,
+  "new_ns3_simulation_executed": false,
+  "python_version": "3.12.14",
+  "matlab_static_lint": {
+    "tool": "MISS_HIT 0.9.44",
+    "syntax_profile": "MATLAB 2022a",
+    "files": 88,
+    "exit_code": 0
+  },
+  "python_tests": {
+    "command": "python3 -m unittest discover -s scripts/tests -v",
+    "passed": 71,
+    "failed": 0,
+    "exit_code": 0,
+    "sweep_report_tests": 24,
+    "residual_audit_tests": 5,
+    "retained_tests": 42
+  },
+  "prepared_matlab_test_methods": 367,
+  "prepared_native_test_methods": 6,
+  "runtime_gate": "Pending owner MATLAB R2025a execution of run_tranche5_validation; R2026a/native/long-run remain separate",
+  "retrospective_evidence": {
+    "archived_shared_comparisons_passed": 5,
+    "final_envelope_transits_matching": 15,
+    "archived_research_counter_checks_passed": 11,
+    "source": "Accepted T4 R2025a ZIP and retained ns-3 evidence; no new MATLAB or ns-3 execution"
+  },
+  "accepted_protocol_and_simulator_files_unchanged": 33,
+  "accepted_matlab_files_unchanged": 81,
+  "baseline_matlab_files": 83,
+  "independent_review": "docs/tranche-5-review.md",
+  "log_sha256": {
+    "evidence/tranche-5-local-checks/archived-counter-checks.json": "c6343f23ded3c64f8eb926b2c8c34fdb60957d71e0c8b6c1de5845d929177998",
+    "evidence/tranche-5-local-checks/matlab-static-lint.log": "cfe60dc349fea65b96c43bb064e0f8ac069a0a2ef712d00477c30eff318212f6",
+    "evidence/tranche-5-local-checks/python-tests.log": "d4d357f2882a90de3a4cc8e03eb4603970b996cc31b931623ed33c58cfae7f91"
+  },
+  "diagnostic_code_sha256": {
+    "scripts/analyze_research_sweep.py": "c439d8aafa00d6b8f4b7779599bb507f63de40ec6dc3005e28080d460e7ff13b",
+    "scripts/audit_tranche4_residuals.py": "5bee6259ed876340cb22aac4287d148300054b9370d8001212f558e767f63c84",
+    "scripts/compare_matlab_ns3.py": "4675d71c12ddc9875bca3afa8a7a20fb26f81ed7300d3c7ce82626ff43342ce8",
+    "scripts/import_ber_tables.py": "5233e12e16d3bbb57e181a7d86999c2ee05dc03015bbbe8b1459241ccf6e5c0b",
+    "scripts/run_tranche2_ns3_reference.py": "39ae01b78dc4bc8887f382a82788fda2878150d00a3e75f09c4099a6fbdcfbb2",
+    "scripts/run_tranche3_ns3_reference.py": "3b6640be57471b7a4006688899066fc3b7b4244bd0665feffd833d0991a211ce",
+    "scripts/run_tranche4_ns3_reference.py": "03d877451d011fd05c7aae7f6b9f407978b7747ffd0ecb3f58ba9d09130eaa3f",
+    "scripts/source_reference_vectors.py": "082df0e2a8f4c46ac50494c88a1d8d056e90e2929ba790872ea009faa7510234",
+    "scripts/tests/test_analyze_research_sweep.py": "8d31362704dc5d1f8c6d93d824c8d6f9b04bbc1ba9720ff608122712b32009a5",
+    "scripts/tests/test_audit_tranche4_residuals.py": "e6d71437aadfdb7bc7863b0f1c4a9c17e7e6a4d6cd13f0558cf68cb6ed35dc86",
+    "scripts/tests/test_compare_matlab_ns3.py": "f9c7a3b96317f9e33f51a2b2a62881ee1c6e8a1abd9e6a68335bcce1c5a1445b",
+    "scripts/tests/test_tranche4_reference.py": "732f8aaba7aad1fe9ac9d85337198b34ac8398f7f1c92777efccbcb63c8a5278"
+  },
+  "candidate_sha256": "63f1442ac301d32d24891fc14437b30021f182fcb4cb6e4a532dee052c774e35",
+  "scope": "Static code/tool checks and retrospective evidence checks; not T5 portable acceptance or full network parity."
+}
