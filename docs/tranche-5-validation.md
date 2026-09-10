@@ -6,9 +6,10 @@ commit `7edaab558f4f00290d11e0681d883364141d547c` and retains ns-3 source pin
 `486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b`. It does not change the accepted
 PHY, MAC, HOP or NWK protocol implementation.
 
-MATLAB execution of this new candidate remains pending. Static checks and
-the prior Tranche 4 R2025a acceptance are not execution evidence for Tranche 5.
-The default gate is portable MATLAB R2025a at work, then R2026a at home. The
+The owner R2025a run passed 367/367 tests and all 18 default sweep cases;
+see [acceptance and measured limits](tranche-5-portable-acceptance.md).
+The accepted MATLAB code is `536b288`; the Python evidence-review repair
+requires no MATLAB rerun. R2026a remains the next separate runtime gate. The
 portable implementation needs neither the native Wireless Network Simulator
 nor Python. Keep MATLAB's standard JVM enabled for raw-byte SHA-256 hashing.
 
@@ -152,6 +153,6 @@ execution and native transport integration remain distinct gates.
 Implementation is concentrated in `csr.scenario.researchSweep`,
 `csr.analysis.performanceSummary`, `run_tranche5_validation` and the offline
 sweep analysis script. After the returned default evidence is reviewed, the
-next engineering work should target a measured dominant discrepancy or
-runtime bottleneck, with optional long-run and R2026a results informing its
+next engineering work should target the measured outage/retry losses,
+with optional long-run and R2026a results informing its
 priority. Battery, supervisory logic and BBN routing remain outside scope.

@@ -1,7 +1,7 @@
 {
   "schema": "csr-matlab-tranche-5-candidate-v1",
   "prepared_utc": "2026-09-09T17:49:17.167775+00:00",
-  "status": "Accepted bounded portable R2025a research tooling at code 536b288; 367 tests and 18 sweeps completed, measured loss/recovery limits remain open",
+  "status": "Implemented candidate; portable MATLAB execution and multi-seed/long-run acceptance pending",
   "branch": "agent/tranche-5-research-performance",
   "published_base_commit": "7edaab558f4f00290d11e0681d883364141d547c",
   "published_base_pr": "https://github.com/mjburke4/CSR-Project-MATLAB-Sim/pull/4",
@@ -9,8 +9,8 @@
   "ns3_source_tree": "b611b233fb369569b98f0914ece24d029ccc2f42",
   "source_main_rechecked_utc": "2026-09-09",
   "matlab_executed_in_workspace": false,
-  "tranche_5_matlab_execution_completed": true,
-  "tranche_5_accepted": true,
+  "tranche_5_matlab_execution_completed": false,
+  "tranche_5_accepted": false,
   "remote_publication_performed_for_tranche_5": false,
   "protocol_changed": false,
   "accepted_baseline_matlab_files": 83,
@@ -177,16 +177,11 @@
   "local_checks": "tranche-5-local-checks.json",
   "review": "../docs/tranche-5-review.md",
   "scope_limits": [
-    "Owner R2025a executed 367 tests and all 18 default sweeps; original code and archive identities are preserved.",
-    "336 of 357 sweep applications delivered; 21 retry_exhausted drops and stop-boundary control work remain measured limits.",
+    "No new MATLAB or ns-3 simulation execution in this tranche so far; retrospective T4 evidence reanalysis is labeled separately.",
+    "No forced protocol changes from single-seed latency means; final-envelope timing matches all 15 archived shared deliveries.",
     "Three-seed summaries are descriptive; equal seeds do not align random draws after changing event order.",
-    "6000-second case remains synthetic, optional and unexecuted.",
+    "6000-second case is synthetic, optional and unexecuted on MATLAB.",
     "Full feedback adaptation, native packet transport, R2026a and OPNET/historical generator equivalence remain separate.",
     "Battery, supervisory layer and BBN routing excluded."
-  ],
-  "owner_acceptance": "tranche-5-portable-acceptance.json",
-  "owner_validated_code_commit": "536b288d765a7b18007ff7898eaf3f2e173d9e58",
-  "owner_validated_candidate": "tranche-5-validated-candidate.json",
-  "python_evidence_review_repair_commit": "7109ae06fefcbbf91446aee3b4826c47084db5ba",
-  "python_review_tests_passed": 75
+  ]
 }

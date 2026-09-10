@@ -1,0 +1,165 @@
+{
+  "Schema": "csr-matlab-research-sweep-plan-v1",
+  "Status": "planned-not-executed",
+  "Description": "Controlled synthetic offered-load and recovery-freshness experiments over repeated seeds.",
+  "Options": {
+    "Seeds": [
+      128,
+      129,
+      130
+    ],
+    "Experiments": [
+      "offered_load",
+      "recovery_freshness"
+    ],
+    "IncludeLongRun": false,
+    "LoadMultipliers": [
+      1,
+      2,
+      4
+    ],
+    "FreshnessTimeoutSeconds": [
+      60,
+      180,
+      300
+    ]
+  },
+  "CaseCount": 18,
+  "MaxCaseCount": 200,
+  "LongRunCaseCount": 0,
+  "TotalSimulatedSeconds": 13500,
+  "TotalApplications": 357,
+  "Ordering": "Requested experiment order, requested parameter order, requested seed order; long runs last.",
+  "SeedInterpretation": "Paired seed identities reproduce each configuration; changed event order can consume random draws differently across parameter values.",
+  "TracePolicy": "Short cases: 250000 protocol and 250000 PHY records. Long cases: 1000000 protocol and 500000 PHY records. Omitted counters must be checked.",
+  "DeliveryCertified": false,
+  "NumericalParityCertified": false,
+  "Cases": [
+    {
+      "CaseId": "offered_load_x1_seed128",
+      "Experiment": "offered_load",
+      "Parameter": "LoadMultiplier",
+      "Value": 1,
+      "Seed": 128
+    },
+    {
+      "CaseId": "offered_load_x1_seed129",
+      "Experiment": "offered_load",
+      "Parameter": "LoadMultiplier",
+      "Value": 1,
+      "Seed": 129
+    },
+    {
+      "CaseId": "offered_load_x1_seed130",
+      "Experiment": "offered_load",
+      "Parameter": "LoadMultiplier",
+      "Value": 1,
+      "Seed": 130
+    },
+    {
+      "CaseId": "offered_load_x2_seed128",
+      "Experiment": "offered_load",
+      "Parameter": "LoadMultiplier",
+      "Value": 2,
+      "Seed": 128
+    },
+    {
+      "CaseId": "offered_load_x2_seed129",
+      "Experiment": "offered_load",
+      "Parameter": "LoadMultiplier",
+      "Value": 2,
+      "Seed": 129
+    },
+    {
+      "CaseId": "offered_load_x2_seed130",
+      "Experiment": "offered_load",
+      "Parameter": "LoadMultiplier",
+      "Value": 2,
+      "Seed": 130
+    },
+    {
+      "CaseId": "offered_load_x4_seed128",
+      "Experiment": "offered_load",
+      "Parameter": "LoadMultiplier",
+      "Value": 4,
+      "Seed": 128
+    },
+    {
+      "CaseId": "offered_load_x4_seed129",
+      "Experiment": "offered_load",
+      "Parameter": "LoadMultiplier",
+      "Value": 4,
+      "Seed": 129
+    },
+    {
+      "CaseId": "offered_load_x4_seed130",
+      "Experiment": "offered_load",
+      "Parameter": "LoadMultiplier",
+      "Value": 4,
+      "Seed": 130
+    },
+    {
+      "CaseId": "recovery_freshness_s60_seed128",
+      "Experiment": "recovery_freshness",
+      "Parameter": "FreshnessTimeoutSeconds",
+      "Value": 60,
+      "Seed": 128
+    },
+    {
+      "CaseId": "recovery_freshness_s60_seed129",
+      "Experiment": "recovery_freshness",
+      "Parameter": "FreshnessTimeoutSeconds",
+      "Value": 60,
+      "Seed": 129
+    },
+    {
+      "CaseId": "recovery_freshness_s60_seed130",
+      "Experiment": "recovery_freshness",
+      "Parameter": "FreshnessTimeoutSeconds",
+      "Value": 60,
+      "Seed": 130
+    },
+    {
+      "CaseId": "recovery_freshness_s180_seed128",
+      "Experiment": "recovery_freshness",
+      "Parameter": "FreshnessTimeoutSeconds",
+      "Value": 180,
+      "Seed": 128
+    },
+    {
+      "CaseId": "recovery_freshness_s180_seed129",
+      "Experiment": "recovery_freshness",
+      "Parameter": "FreshnessTimeoutSeconds",
+      "Value": 180,
+      "Seed": 129
+    },
+    {
+      "CaseId": "recovery_freshness_s180_seed130",
+      "Experiment": "recovery_freshness",
+      "Parameter": "FreshnessTimeoutSeconds",
+      "Value": 180,
+      "Seed": 130
+    },
+    {
+      "CaseId": "recovery_freshness_s300_seed128",
+      "Experiment": "recovery_freshness",
+      "Parameter": "FreshnessTimeoutSeconds",
+      "Value": 300,
+      "Seed": 128
+    },
+    {
+      "CaseId": "recovery_freshness_s300_seed129",
+      "Experiment": "recovery_freshness",
+      "Parameter": "FreshnessTimeoutSeconds",
+      "Value": 300,
+      "Seed": 129
+    },
+    {
+      "CaseId": "recovery_freshness_s300_seed130",
+      "Experiment": "recovery_freshness",
+      "Parameter": "FreshnessTimeoutSeconds",
+      "Value": 300,
+      "Seed": 130
+    }
+  ]
+}

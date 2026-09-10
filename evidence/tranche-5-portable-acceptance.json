@@ -1,0 +1,397 @@
+{
+  "schema": "csr-matlab-tranche-5-portable-acceptance-v1",
+  "recorded_utc": "2026-09-09T18:39:26.254793+00:00",
+  "decision": "Accepted bounded portable R2025a research tooling and structural execution; outage robustness and full protocol parity not certified",
+  "associated_code_commit": "536b288d765a7b18007ff7898eaf3f2e173d9e58",
+  "analyzer_repair_commit": "7109ae06fefcbbf91446aee3b4826c47084db5ba",
+  "matlab_source_changed_during_review": false,
+  "matlab_rerun_required_for_python_repair": false,
+  "owner_runtime": {
+    "Runtime": "MATLAB",
+    "Version": "25.1.0.2943329 (R2025a)",
+    "Release": "2025a",
+    "HasWirelessNetworkSimulator": false,
+    "HasWnetNode": false,
+    "HasWirelessPacket": false,
+    "DefaultBackend": "portable",
+    "WirelessAdapterImplemented": true,
+    "WirelessAdapterScope": "Optional R2026a wireless-clock candidate; runtime validation pending",
+    "NativePacketTransportIntegrated": false,
+    "ProbeScope": "Symbol discovery only; licenses and execution are not validated."
+  },
+  "run_started_utc": "2026-09-09T17:57:20.558Z",
+  "run_completed_utc": "2026-09-09T18:17:16.677Z",
+  "wall_runtime_seconds": 1196.119,
+  "tests": {
+    "exact_portable_names_verified": 367,
+    "classes": 29,
+    "passed": 367,
+    "failed": 0,
+    "incomplete": 0,
+    "test_csv_sha256": "0bba05d281b6d499c0125508f9b40977c13e648b42006a2f1709c587ab2c2c60",
+    "duration_seconds": 151.2638557
+  },
+  "matlab_source_hashes_verified": 88,
+  "all_source_snapshot_hashes_verified": 116,
+  "top_level_artifacts_verified": 550,
+  "zip_files": 551,
+  "case_manifests_verified": 29,
+  "local_mat_artifacts_retained_on_owner_machine": 48,
+  "sweep_cases_completed": 18,
+  "retained_scenarios": {
+    "tranche4": 11,
+    "tranche3": 8,
+    "tranche2": 9
+  },
+  "shared_application_comparisons": [
+    {
+      "case": "high_rate_1000",
+      "application_equal": true,
+      "report_path": "evidence/tranche-5-r2025a-accepted/comparison/high_rate_1000/comparison.json",
+      "report_sha256": "b239d271a3519c2c4b1903513907df6182775f13aed3323f27ac0b692f78aa1b"
+    },
+    {
+      "case": "high_rate_500",
+      "application_equal": true,
+      "report_path": "evidence/tranche-5-r2025a-accepted/comparison/high_rate_500/comparison.json",
+      "report_sha256": "afcad4b60540f05bbfc0fab813fe71bf8e94186ee6d9a820ced35374462f65c6"
+    },
+    {
+      "case": "line_3_8",
+      "application_equal": true,
+      "report_path": "evidence/tranche-5-r2025a-accepted/comparison/line_3_8/comparison.json",
+      "report_sha256": "3d08463794e9c47202fd5b3eceee0f8046b488a3c12a1e6fa0220b9f6d70c23a"
+    },
+    {
+      "case": "two_node_128",
+      "application_equal": true,
+      "report_path": "evidence/tranche-5-r2025a-accepted/comparison/two_node_128/comparison.json",
+      "report_sha256": "a94c262a74d8a2fa27c5eac17fdb943b4fd77d6d23df5b806acfb70650259fdb"
+    },
+    {
+      "case": "two_node_8",
+      "application_equal": true,
+      "report_path": "evidence/tranche-5-r2025a-accepted/comparison/two_node_8/comparison.json",
+      "report_sha256": "dc0e26d41172d840881af41031812f7b66507b73e7b0cb85c54a2e081204f905"
+    }
+  ],
+  "sweep_totals": {
+    "Generated": 357,
+    "Received": 336,
+    "Dropped": 21,
+    "Pending": 0,
+    "HopPendingData": 0,
+    "NwkPendingCustody": 0,
+    "PhysicalPending": 0,
+    "ControlPending": 3,
+    "ControlPendingTargets": 3,
+    "NwkPendingControlMessages": 6,
+    "ResendQueueDepth": 3
+  },
+  "drop_reason": "All 21 sweep drops are retry_exhausted; attribution is reviewed in the outcome record.",
+  "sweep_groups": [
+    {
+      "experiment": "offered_load",
+      "parameter_value": 1,
+      "seeds": [
+        128,
+        129,
+        130
+      ],
+      "Generated": 48,
+      "Received": 48,
+      "Dropped": 0,
+      "Pending": 0,
+      "HopDataRetransmissions": 21,
+      "HopControlFailures": 1,
+      "ControlFailures": 1,
+      "ControlPending": 0,
+      "ControlPendingTargets": 0,
+      "NwkPendingControlMessages": 0,
+      "ResendQueueDepth": 0,
+      "HopPendingData": 0,
+      "NwkPendingCustody": 0,
+      "PhysicalPending": 0,
+      "QueueAdmissionRejections": 0,
+      "ControlQueueRejections": 0,
+      "NeighborDeactivations": 0,
+      "RouteChanges": 43,
+      "delivery_ratio": 1.0,
+      "per_run_latency_p95_seconds": [
+        2.90149266666776,
+        2.68049266666767,
+        2.78449266666772
+      ],
+      "per_run_max_latency_seconds": [
+        2.90149266666776,
+        2.68049266666767,
+        2.78449266666772
+      ],
+      "all_reported_ownership_drained": true
+    },
+    {
+      "experiment": "offered_load",
+      "parameter_value": 2,
+      "seeds": [
+        128,
+        129,
+        130
+      ],
+      "Generated": 90,
+      "Received": 90,
+      "Dropped": 0,
+      "Pending": 0,
+      "HopDataRetransmissions": 39,
+      "HopControlFailures": 1,
+      "ControlFailures": 1,
+      "ControlPending": 0,
+      "ControlPendingTargets": 0,
+      "NwkPendingControlMessages": 0,
+      "ResendQueueDepth": 0,
+      "HopPendingData": 0,
+      "NwkPendingCustody": 0,
+      "PhysicalPending": 0,
+      "QueueAdmissionRejections": 0,
+      "ControlQueueRejections": 0,
+      "NeighborDeactivations": 0,
+      "RouteChanges": 43,
+      "delivery_ratio": 1.0,
+      "per_run_latency_p95_seconds": [
+        2.50149266665733,
+        2.68049266666767,
+        2.63949266658483
+      ],
+      "per_run_max_latency_seconds": [
+        2.90149266666776,
+        4.62549266662143,
+        2.78449266666772
+      ],
+      "all_reported_ownership_drained": true
+    },
+    {
+      "experiment": "offered_load",
+      "parameter_value": 4,
+      "seeds": [
+        128,
+        129,
+        130
+      ],
+      "Generated": 174,
+      "Received": 171,
+      "Dropped": 3,
+      "Pending": 0,
+      "HopDataRetransmissions": 90,
+      "HopControlFailures": 1,
+      "ControlFailures": 1,
+      "ControlPending": 0,
+      "ControlPendingTargets": 0,
+      "NwkPendingControlMessages": 0,
+      "ResendQueueDepth": 0,
+      "HopPendingData": 0,
+      "NwkPendingCustody": 0,
+      "PhysicalPending": 0,
+      "QueueAdmissionRejections": 0,
+      "ControlQueueRejections": 0,
+      "NeighborDeactivations": 0,
+      "RouteChanges": 43,
+      "delivery_ratio": 0.9827586206896551,
+      "per_run_latency_p95_seconds": [
+        2.60451266665729,
+        4.62151266666172,
+        4.71351266666557
+      ],
+      "per_run_max_latency_seconds": [
+        4.78951266660522,
+        4.77151266663736,
+        4.9814926666686
+      ],
+      "all_reported_ownership_drained": true
+    },
+    {
+      "experiment": "recovery_freshness",
+      "parameter_value": 60,
+      "seeds": [
+        128,
+        129,
+        130
+      ],
+      "Generated": 15,
+      "Received": 15,
+      "Dropped": 0,
+      "Pending": 0,
+      "HopDataRetransmissions": 10,
+      "HopControlFailures": 5,
+      "ControlFailures": 1,
+      "ControlPending": 0,
+      "ControlPendingTargets": 0,
+      "NwkPendingControlMessages": 0,
+      "ResendQueueDepth": 0,
+      "HopPendingData": 0,
+      "NwkPendingCustody": 0,
+      "PhysicalPending": 0,
+      "QueueAdmissionRejections": 0,
+      "ControlQueueRejections": 0,
+      "NeighborDeactivations": 78,
+      "RouteChanges": 323,
+      "delivery_ratio": 1.0,
+      "per_run_latency_p95_seconds": [
+        135.940412666693,
+        135.860132666692,
+        134.199212666688
+      ],
+      "per_run_max_latency_seconds": [
+        135.940412666693,
+        135.860132666692,
+        134.199212666688
+      ],
+      "all_reported_ownership_drained": true
+    },
+    {
+      "experiment": "recovery_freshness",
+      "parameter_value": 180,
+      "seeds": [
+        128,
+        129,
+        130
+      ],
+      "Generated": 15,
+      "Received": 6,
+      "Dropped": 9,
+      "Pending": 0,
+      "HopDataRetransmissions": 23,
+      "HopControlFailures": 3,
+      "ControlFailures": 0,
+      "ControlPending": 0,
+      "ControlPendingTargets": 0,
+      "NwkPendingControlMessages": 0,
+      "ResendQueueDepth": 0,
+      "HopPendingData": 0,
+      "NwkPendingCustody": 0,
+      "PhysicalPending": 0,
+      "QueueAdmissionRejections": 0,
+      "ControlQueueRejections": 0,
+      "NeighborDeactivations": 23,
+      "RouteChanges": 137,
+      "delivery_ratio": 0.4,
+      "per_run_latency_p95_seconds": [
+        29.6011126666971,
+        27.8953326666924,
+        25.5752126666865
+      ],
+      "per_run_max_latency_seconds": [
+        29.6011126666971,
+        27.8953326666924,
+        25.5752126666865
+      ],
+      "all_reported_ownership_drained": true
+    },
+    {
+      "experiment": "recovery_freshness",
+      "parameter_value": 300,
+      "seeds": [
+        128,
+        129,
+        130
+      ],
+      "Generated": 15,
+      "Received": 6,
+      "Dropped": 9,
+      "Pending": 0,
+      "HopDataRetransmissions": 21,
+      "HopControlFailures": 0,
+      "ControlFailures": 0,
+      "ControlPending": 3,
+      "ControlPendingTargets": 3,
+      "NwkPendingControlMessages": 6,
+      "ResendQueueDepth": 3,
+      "HopPendingData": 0,
+      "NwkPendingCustody": 0,
+      "PhysicalPending": 0,
+      "QueueAdmissionRejections": 0,
+      "ControlQueueRejections": 0,
+      "NeighborDeactivations": 3,
+      "RouteChanges": 53,
+      "delivery_ratio": 0.4,
+      "per_run_latency_p95_seconds": [
+        2.88087266667037,
+        3.02387266667074,
+        2.91987266667047
+      ],
+      "per_run_max_latency_seconds": [
+        2.88087266667037,
+        3.02387266667074,
+        2.91987266667047
+      ],
+      "all_reported_ownership_drained": false
+    }
+  ],
+  "stop_boundary_control_work": "All three freshness-300 cases enqueue new routing/discovery ownership at exactly 900 seconds; shared resend depth includes CONTROL. No applications or HOP DATA/NWK custody pending. DataDrained remains false as recorded.",
+  "numerical_parity_established": false,
+  "native_executed": false,
+  "long_run_6000_executed": false,
+  "python_review_tests_passed": 75,
+  "analyzer_focused_tests_passed": 28,
+  "remote_publication_performed": false,
+  "uploaded_archive": {
+    "path": "tranche-5-r2025a-accepted/tranche5_evidence.zip",
+    "bytes": 3727389,
+    "sha256": "824cf0f5cb6a735ee896ebc5431be5c72f69d9d95135c8e03311238bd0ca75c1"
+  },
+  "validated_candidate": {
+    "path": "evidence/tranche-5-validated-candidate.json",
+    "sha256": "63f1442ac301d32d24891fc14437b30021f182fcb4cb6e4a532dee052c774e35"
+  },
+  "review_references": [
+    "docs/tranche-5-return-integrity-review.md",
+    "docs/tranche-5-return-outcomes-review.md",
+    "docs/tranche-5-r2025a-evidence-review-repair.md"
+  ],
+  "remaining_gates": [
+    "R2026a portable execution and optional native adapter tests",
+    "Optional 6000-second synthetic workload",
+    "Higher-load and outage recovery robustness; do not optimize survivor-only latency",
+    "Full ACK feedback adaptation and native packet transport",
+    "Historical application-generator/OPNET aggregate equivalence and full protocol timing"
+  ],
+  "preserved_files": {
+    "evidence/tranche-5-r2025a-accepted/analysis/group_statistics.csv": "49fe889c29f9b6c175f45af15783a609d6786631284321406f4fb191f158d301",
+    "evidence/tranche-5-r2025a-accepted/analysis/seed_observations.csv": "8b2bc7b22a0e7074817494918b8134a92ec10fcbe8a0d44a0c1149abc28bc5c0",
+    "evidence/tranche-5-r2025a-accepted/analysis/sweep_analysis.json": "a53449ca77e354dab20200fbc6ec92b09e42b0c324d6b76d86e3095616818186",
+    "evidence/tranche-5-r2025a-accepted/analysis-initial-failure.json": "6ac5bbc9e917b995781a440f2a87ce991e54a3f4f575434fbfe0dea0b003c367",
+    "evidence/tranche-5-r2025a-accepted/comparison/high_rate_1000/applications.csv": "91e6f3d93b5849b1849364688cff345cb280ef6660769988cf8e4ad0f522bc47",
+    "evidence/tranche-5-r2025a-accepted/comparison/high_rate_1000/comparison.json": "b239d271a3519c2c4b1903513907df6182775f13aed3323f27ac0b692f78aa1b",
+    "evidence/tranche-5-r2025a-accepted/comparison/high_rate_1000/flows.csv": "dcafbfe96a2cc761e760d201ceccf91d1401492ca7de311fef051861b516f668",
+    "evidence/tranche-5-r2025a-accepted/comparison/high_rate_500/applications.csv": "11fe18e71568bed6d4a5ab272f6e3c7ac824954ceba16e2d607a9583cb3e359a",
+    "evidence/tranche-5-r2025a-accepted/comparison/high_rate_500/comparison.json": "afcad4b60540f05bbfc0fab813fe71bf8e94186ee6d9a820ced35374462f65c6",
+    "evidence/tranche-5-r2025a-accepted/comparison/high_rate_500/flows.csv": "b254f483d6a4d2726c901ee054e4718f520efe1aabc5f5646d6acb2d46f22cd8",
+    "evidence/tranche-5-r2025a-accepted/comparison/line_3_8/applications.csv": "a6a21b207e55444a5e7dc075b8c537b85566aae1ef59b5c4eaccfcf973b734d6",
+    "evidence/tranche-5-r2025a-accepted/comparison/line_3_8/comparison.json": "3d08463794e9c47202fd5b3eceee0f8046b488a3c12a1e6fa0220b9f6d70c23a",
+    "evidence/tranche-5-r2025a-accepted/comparison/line_3_8/flows.csv": "fc3a2c03ba99a0180b303f3a06b76a7586488ad63c00119067f3513a1a18d7f0",
+    "evidence/tranche-5-r2025a-accepted/comparison/two_node_128/applications.csv": "2a8f269517abb9069dc25f4cb268ca6a4eebf57dd43b458efde074b2ae4571e1",
+    "evidence/tranche-5-r2025a-accepted/comparison/two_node_128/comparison.json": "a94c262a74d8a2fa27c5eac17fdb943b4fd77d6d23df5b806acfb70650259fdb",
+    "evidence/tranche-5-r2025a-accepted/comparison/two_node_128/flows.csv": "d40b46045424b9065d0a2c471c5acddd7f68a555bd5ce5efaac32fea977eda57",
+    "evidence/tranche-5-r2025a-accepted/comparison/two_node_8/applications.csv": "75c7bb90b109f9ca4b81a59b21acc4d2475d2d5832dee37dbfbb9dd3a3eeca15",
+    "evidence/tranche-5-r2025a-accepted/comparison/two_node_8/comparison.json": "dc0e26d41172d840881af41031812f7b66507b73e7b0cb85c54a2e081204f905",
+    "evidence/tranche-5-r2025a-accepted/comparison/two_node_8/flows.csv": "26ba3cea134c898c6cc088f9fb3dbf8fac2dbcc378bf2ee958aea685cf1920f6",
+    "evidence/tranche-5-r2025a-accepted/performance_summary.csv": "403bf6e44be44652972e315e8c10d386fb342ecfd9bb9fefe2379fdc5a7c2514",
+    "evidence/tranche-5-r2025a-accepted/regression_metadata.json": "a981339fe3735d75a4bd6f78041d2479ab14591cf8afa9ff803469f9ccda6dd2",
+    "evidence/tranche-5-r2025a-accepted/scenario_summary.csv": "9715b95a4ea2786510383875cb62d957c76571903553a74a217eb95e4909bfff",
+    "evidence/tranche-5-r2025a-accepted/sweep_cases.csv": "ae706ff37af54a7729dd96d2348dd586d66dce3745310bef39e395c1369acd23",
+    "evidence/tranche-5-r2025a-accepted/sweep_plan.json": "2967816680a4d23f316f8595e9f132a8899a5c6519426ceaba92f3139559aa52",
+    "evidence/tranche-5-r2025a-accepted/test_results.csv": "0bba05d281b6d499c0125508f9b40977c13e648b42006a2f1709c587ab2c2c60",
+    "evidence/tranche-5-r2025a-accepted/tranche2_scenario_summary.csv": "b566fe515792fba73110094059a57b8abbb18d52a7f4566ba45dfebceb49922a",
+    "evidence/tranche-5-r2025a-accepted/tranche3_scenario_summary.csv": "e5a86571d9bdf203fccfbc18e3fc7ddfe54b865dd2a9dd98eddd19ae9f6b124d",
+    "evidence/tranche-5-r2025a-accepted/tranche4_scenario_summary.csv": "07b8b1984dd7e8fe17301520c5d32abf3efc54f4c17d5ce6c73b06ae8841c350",
+    "evidence/tranche-5-r2025a-accepted/tranche5_evidence.zip": "824cf0f5cb6a735ee896ebc5431be5c72f69d9d95135c8e03311238bd0ca75c1",
+    "evidence/tranche-5-r2025a-accepted/validation.log": "26cb08296c770531cdf2f778e4a831c911aa303b35e9b89ccbe6524d76c0e53e",
+    "evidence/tranche-5-r2025a-accepted/validation_metadata.json": "bd0a46d92e0a57875db9d8d6c2d9102a9edaf92937300170a3d227938a39fdd0"
+  },
+  "independent_review_evidence": {
+    "evidence/tranche-5-return-integrity.json": "c05959106b96e37f30e735e4d59acb963c11e4ff6595becdd388c5733378acbc",
+    "evidence/tranche-5-return-outcomes-review.json": "c7db5bbc0e510b7a837570614b7c34f824b49df96a625fe552e7759f3005b0b3"
+  },
+  "review_tool_sha256": {
+    "scripts/analyze_research_sweep.py": "f11af9be9db91a6f1cb507c713d7b9d7ade46694bc435d54d39422783242f0bb",
+    "scripts/tests/test_analyze_research_sweep.py": "f5e392906ac4e45ec2540cda79ec0ecc66e8d294be918ad498256820324eaaed"
+  }
+}

@@ -3,7 +3,7 @@
 Behavioral port of `mjburke4/CSR-Project-NS3-part2`, currently pinned to main
 `486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b` (2026-09-07, PR #50).
 
-## Tranche 5 candidate: research sweeps and performance diagnostics
+## Accepted portable Tranche 5: research sweeps and performance diagnostics
 
 Tranche 5 starts from merged [PR #4](https://github.com/mjburke4/CSR-Project-MATLAB-Sim/pull/4)
 at `7edaab5`. It adds controlled offered-load and recovery-freshness sweeps,
@@ -13,16 +13,22 @@ report with descriptive summaries across seeds. The default plan contains
 with seeds 128, 129 and 130. A 6000-second synthetic line remains an explicit
 option. The protocol implementation and PHY/ECC remain the accepted baseline.
 
-The candidate needs execution on MATLAB; it is not a new acceptance record.
-Run from a fresh extraction in MATLAB R2025a:
+**R2025a passed 367/367 tests, all 18 sweeps and the retained 28 scenarios.**
+All 88 MATLAB source hashes match validated code `536b288`, and all five
+shared application comparisons pass. The sweeps delivered 336/357 applications;
+21 retry-exhausted drops and stop-boundary control work are measured limits.
+See [portable acceptance](docs/tranche-5-portable-acceptance.md).
+
+To reproduce the accepted run from a fresh extraction in MATLAB R2025a:
 
 ```matlab
 report = run_tranche5_validation;
 ```
 
 The command first reruns the portable regression/shared/research validation,
-then the new sweep. Return the printed `tranche5_evidence.zip`. Expect more
-work than the roughly 12-minute Tranche 4 run; total time is not yet measured.
+then the new sweep. The accepted run took 19 minutes 56 seconds. Return the
+printed `tranche5_evidence.zip` for any subsequent validation.
+The Python-only review repair at `7109ae0` requires no MATLAB rerun.
 See [validation options](docs/tranche-5-validation.md),
 [controlled sweeps](docs/tranche-5-research-sweeps.md), and the
 [handoff](docs/tranche-5-handoff.md). Existing acceptance below applies to
@@ -219,7 +225,7 @@ the protocol core never subclasses `wnet.Node`.
 | 2 | Accepted portable MAC/HOP with fixed-path relays | High | Portable gate passed; native gate separate |
 | 3 | Accepted portable autonomous ARL on R2025a | High | 289/289 tests and eight network scenarios; native gate separate |
 | 4 | Accepted R2025a research scenarios and five application comparisons | Medium | Merged PR #4; timing/native/long-run gates separate |
-| 5 | Research sweeps, performance diagnostics and measured residual audit | High, bounded by priorities | Candidate on merged T4; new MATLAB execution pending |
+| 5 | Accepted R2025a sweeps, diagnostics and measured residual audit | High, bounded by priorities | 367 tests and 18 sweeps; loss/recovery/native/long-run limits documented |
 
 Baseline excludes battery, supervisory layer, and BBN routing. Keep major
 working increments; source-exact micro-ordering only blocks when structural
