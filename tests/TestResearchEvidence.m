@@ -76,6 +76,35 @@ classdef TestResearchEvidence < matlab.unittest.TestCase
             test.verifyEqual(csr.validation.Artifacts.sha256(path), ...
                 '76be8b528d0075f7aae98d6fa57a6d3c83ae480a8469e668d7b0af968995ac71');
         end
+        function snapshotBindsCurrentCandidateAndAnalysisTools(test)
+            folder = tempname; mkdir(folder);
+            cleanup = onCleanup(@() removeDirectory(folder)); %#ok<NASGU>
+            mkdir(fullfile(folder,'evidence')); mkdir(fullfile(folder,'scripts'));
+            candidate = fullfile(folder,'evidence','tranche-5-candidate.json');
+            script = fullfile(folder,'scripts','analyze.py');
+            csr.validation.Artifacts.writeJson(candidate,struct('revision',1));
+            fid = fopen(script,'w'); fprintf(fid,'# first revision\n'); fclose(fid);
+            initial = csr.validation.Artifacts.sourceSnapshot(folder);
+            test.verifyTrue(all(ismember({'evidence/tranche-5-candidate.json', ...
+                'scripts/analyze.py'},{initial.path})));
+            csr.validation.Artifacts.writeJson(candidate,struct('revision',2));
+            test.verifyError(@() csr.validation.Artifacts.checkSnapshot(folder,initial), ...
+                'csr:validation:SourceChanged');
+            updated = csr.validation.Artifacts.sourceSnapshot(folder);
+            fid = fopen(script,'w'); fprintf(fid,'# second revision\n'); fclose(fid);
+            test.verifyError(@() csr.validation.Artifacts.checkSnapshot(folder,updated), ...
+                'csr:validation:SourceChanged');
+        end
+        function snapshotIgnoresGeneratedResults(test)
+            folder = tempname; mkdir(folder);
+            cleanup = onCleanup(@() removeDirectory(folder)); %#ok<NASGU>
+            mkdir(fullfile(folder,'evidence')); mkdir(fullfile(folder,'results'));
+            csr.validation.Artifacts.writeJson(fullfile(folder,'evidence','source-baseline.json'), ...
+                struct('source','pinned'));
+            initial = csr.validation.Artifacts.sourceSnapshot(folder);
+            csr.validation.Artifacts.writeJson(fullfile(folder,'results','output.json'),struct('value',1));
+            test.verifyEqual(csr.validation.Artifacts.sourceSnapshot(folder),initial);
+        end
         function failedRunPreservesOriginalErrorUnderRelativeOutputRoot(test)
             previous = pwd; folder = tempname; mkdir(folder);
             diaryState = get(0,'Diary');
