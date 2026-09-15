@@ -1,0 +1,61 @@
+{
+  "Schema": "csr-tranche-14-observer-repair-independent-review-v1",
+  "CreatedUTC": "2026-09-15T12:54:19.384782+00:00",
+  "Reviewer": "/root/t14r_review",
+  "Status": "approved_for_owner_matlab_rerun",
+  "Approved": true,
+  "MATLABExecuted": false,
+  "AcceptanceEstablished": false,
+  "NumericalParityEstablished": false,
+  "ReviewScope": "Independent source-contract, repair diff, regression assertion and immutable baseline/reference review. No code edits; no MATLAB runtime execution.",
+  "OwnerArchiveSHA256": "bb1e3cc388c2cb3681f22032d4b16d264db7c8914af872b8c6d35004e8fb34c8",
+  "ObservedOwnerReturn": {
+    "RuntimeVersion": "25.1.0.2943329 (R2025a)",
+    "PassedTests": 97,
+    "FailedTests": 9,
+    "TotalTests": 106,
+    "RetainedPassedTests": 88,
+    "FailedDiagnosticCases": 6,
+    "CommonFailure": "MATLAB:nonExistentField, SourceId, observe line 333 during first source ACK observation"
+  },
+  "RootCause": "Frames.base gives every frame an App field; ACK App is a fieldless scalar struct. The old isfield(frame,App) condition dereferenced DATA-specific SourceId/Id on a valid ACK.",
+  "Disposition": "The DATA-kind guard matches the actual constructors and callbacks. ACK/NONE keep zero application identity; malformed DATA still fails explicitly.",
+  "RegressionCoverage": [
+    "Real acknowledgment constructor retains Kind ACK and fieldless scalar App.",
+    "All six boundary rows are required before iteration; no empty-loop pass for this regression.",
+    "First real source aggregate retains ACK app identity 0/0 and DATA identity 5/3.",
+    "Every ACK observation in aggregate_tx, ack_tx and feedback_ingress has zero app identity.",
+    "Previously vacuous delivery and ACK/drain tests now assert six boundary rows and the exact ordered case identities before iterating."
+  ],
+  "RemainingAccessAudit": [
+    "selectedMembers uses short-circuit && after strcmp(b.Kind,DATA) before b.App.SourceId/Id.",
+    "Prime and ingress DATA frames are built by Frames.data, which validates required application fields.",
+    "deliver receives the NWK Delivered application callback and creates an explicit Kind DATA observation.",
+    "settled uses struct(), retains NONE kind and zero identity.",
+    "Sequence and ACK/DACK bitmap reads remain isfield-guarded; MAC queue and transmission counters come from the existing MAC schema."
+  ],
+  "SourceBindings": [
+    {
+      "path": "+csr/+validation/ackEdgeContract.m",
+      "original_sha256": "f299b3c5fc09f62fdbe31044a0ea9e811b1ff26841524fbccd84dcea18e8952b",
+      "sha256": "87cff2b6c64b8a62d55b1b2ad97a5ce53be887dd8c3d89aa7c8e453213de0e94"
+    },
+    {
+      "path": "tests/TestAckEdgeContract.m",
+      "original_sha256": "3ebd0d5a38cae3dcf55e8a9889aa3be7383fa3e09684809d20f7ad77fca05fd7",
+      "sha256": "8ec230f95b7c2b6a2f801ed79594dccef2b3e4120adfbbaa3589f445c46a1bd2"
+    }
+  ],
+  "BaselineSourceFilesUnchanged": 271,
+  "BaselineMatlabFilesUnchanged": 138,
+  "OriginalTranche14ReferenceFilesUnchanged": 283,
+  "ProductionTimingOrProtocolChanges": false,
+  "NativeReferenceChanged": false,
+  "MATLABTestNamesUnchanged": true,
+  "MATLABTestCount": 106,
+  "NewMATLABTestCount": 18,
+  "RetainedMATLABTestCount": 88,
+  "StructuralCheckCountUnchanged": 222,
+  "BlockingFindings": [],
+  "Limitation": "The failure prevented the original owner run from reaching the target ACK boundary in all six cases. Repair correctness is source-reviewed; runtime closure and timing/parity conclusions require the new owner t14.zip."
+}

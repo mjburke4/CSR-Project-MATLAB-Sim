@@ -1,0 +1,59 @@
+{
+  "Schema": "csr-tranche-14-r2-provenance-v1",
+  "Revision": "r2",
+  "Status": "typed_diagnostic_tables_repaired_matlab_rerun_pending",
+  "CreatedUTC": "2026-09-15T13:20:39.810670+00:00",
+  "PreviousCandidateSHA256": "94bde01e85eac80af05b0e9aa81132b4b7b0fee7907fc3420d28ae8b49eb9609",
+  "OriginalCandidateSHA256": "38d3e5cbbf30528a5a5a99a39b04d45490f22663486e3ebdafbfaeb95f4003d1",
+  "FailedOwnerEvidenceSHA256": "b91453bd508bccd5cb10ca12b10e75ff006dd3bbf7f7bfc1386017487d09db2f",
+  "PreviousPackageInventorySHA256": "8457a3316f9cb31a1c6bbe92b13fcdedb0c6a6d4de82fb803fcca4e20a72c489",
+  "UpdateBaseRecipe": "Cumulative repair applied to the complete original T14 installation or issued r1. Original T14 is reproducible from verified csr13.zip plus t14up.zip.",
+  "UpdateBaseArchiveSHA256": "58927369d49317bdcf90ba53c2127a6bbd43743fe0671de61c7878dbeeaf4de1",
+  "UpdateBaseOverlaySHA256": "a3f0523fb1a1b3ee4a3d25ae97df74865e65ffb6c7f1700250e4867d8823b3fc",
+  "StandaloneOriginalFullArchiveUsed": false,
+  "ChangedMatlabFiles": [
+    {
+      "Path": "+csr/+validation/edgeRecordTable.m",
+      "SHA256": "7667f185627a3aa1bb301b0cd70a1f7b9fe65caa3b07ab95e62dd6030b44075d",
+      "Bytes": 2367
+    },
+    {
+      "Path": "+csr/+validation/ackEdgeContract.m",
+      "SHA256": "d53d70d23ad42fa92d2d6ba5bef046c8f7f34f609a0d1e072d02a27ca470bb32",
+      "Bytes": 31019
+    },
+    {
+      "Path": "+csr/+validation/TraceScheduler.m",
+      "SHA256": "a538c067be72df309b0cec6190bdf7c35c2e948f0a87085e75df6816c70eafec",
+      "Bytes": 3627
+    },
+    {
+      "Path": "tests/TestEdgeRecords.m",
+      "SHA256": "57ee6cdbf28fc99dddc6bfdf2878a9ca5692cf10ed86741e33d6febfa5c3aba0",
+      "Bytes": 6442
+    },
+    {
+      "Path": "tests/TestAckEdgeContract.m",
+      "SHA256": "d13181b351c919a7e6f594230b9b0602902741ee257937be24dad0de67c33e89",
+      "Bytes": 20309
+    },
+    {
+      "Path": "run_tranche14_validation.m",
+      "SHA256": "143c02834b9daa6b214cc78d8feb61f4b8e0f30bec6e6ac0d216b544198fc7ff",
+      "Bytes": 13598
+    }
+  ],
+  "SourceFilesUnchangedFromValidatedT13": 271,
+  "MatlabFilesUnchangedFromValidatedT13": 138,
+  "PreviousReferenceFilesUnchanged": 299,
+  "PreviousTestNamesRetained": true,
+  "IndependentPreflightTestsAdded": 3,
+  "TestCount": 109,
+  "StructuralChecks": 222,
+  "NativeRerunForRepair": false,
+  "NativeReferenceManifestSHA256": "5e0aa0bad502538a8a3b57f37390461fb0a2b58313c21d658e82d832046e827f",
+  "MATLABExecutedForRepair": false,
+  "AcceptanceEstablished": false,
+  "NumericalParityEstablished": false,
+  "Scope": "Explicit text and exact integer types in all six new T14 diagnostic outputs, independent preflight regressions, per-case partial evidence and honest incomplete-result reporting. Includes r1 DATA-only identity fix. No validated production protocol, timing, PHY/ECC, native or shared-input changes."
+}

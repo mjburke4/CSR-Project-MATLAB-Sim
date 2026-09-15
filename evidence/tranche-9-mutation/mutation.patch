@@ -1,0 +1,18 @@
+--- source/csr-net-device.h
++++ mutant/csr-net-device.h
+@@ -2361,6 +2361,7 @@
+       ++it;
+     }
+ 
++  if (!HasPendingFrame ()) m_txPreparationActive = false;
+   return removed;
+ }
+ 
+@@ -2395,6 +2396,7 @@
+                 << std::endl;
+     }
+ 
++  if (!HasPendingFrame ()) m_txPreparationActive = false;
+   return removed;
+ }
+ 

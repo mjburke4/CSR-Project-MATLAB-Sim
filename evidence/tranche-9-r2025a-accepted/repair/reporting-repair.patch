@@ -1,0 +1,195 @@
+diff --git a/scripts/analyze_tranche9_return.py b/scripts/analyze_tranche9_return.py
+index f726537..7845107 100644
+--- a/scripts/analyze_tranche9_return.py
++++ b/scripts/analyze_tranche9_return.py
+@@ -8,11 +8,12 @@ matching pseudorandom streams. Use the exact candidate --source-root snapshot.
+ from __future__ import annotations
+ 
+ import argparse
++import copy
+ import csv
+ import io
+ import json
+ import math
+-from pathlib import Path
++from pathlib import Path, PurePosixPath
+ import sys
+ import zipfile
+ 
+@@ -155,6 +156,27 @@ def csv_difference(first, second):
+         return {"semantic_equal": False, "first_difference": str(failure)}
+ 
+ 
++def verify_anchor_configuration(before, after, case):
++    """Bind the same input while permitting its installation root to move."""
++    configs = [copy.deepcopy(before), copy.deepcopy(after)]
++    paths = []
++    suffix = PurePosixPath(case["scenario_file"]).parts
++    for config in configs:
++        shared = config.get("SharedScenario")
++        require(isinstance(shared, dict) and shared.get("SourceSHA256") == case["scenario_sha256"],
++                "T9 anchor configuration input hash differs from the accepted plan")
++        path = shared.get("SourcePath")
++        require(isinstance(path, str) and path, "T9 anchor configuration source path is missing")
++        parts = PurePosixPath(path.replace("\\", "/")).parts
++        require(".." not in parts and len(parts) > len(suffix) and parts[-len(suffix):] == suffix,
++                "T9 anchor configuration source path does not identify the planned input")
++        paths.append(shared.pop("SourcePath"))
++    require(configs[0] == configs[1], "T9 changed accepted T8 experiment configuration")
++    return {"field": "SharedScenario.SourcePath", "before": paths[0], "after": paths[1],
++            "scenario_file": case["scenario_file"], "scenario_sha256": case["scenario_sha256"],
++            "scope": "Only the installation prefix of this hash-bound input path may differ; all other configuration fields compare exactly."}
++
++
+ def verify_t8_anchors(root, source_root, plan):
+     archive = source_root/plan["baseline_anchor"]["archive"]
+     require(sweep.digest(archive) == ANCHOR_SHA, "Accepted T8 archive hash mismatch")
+@@ -166,7 +188,7 @@ def verify_t8_anchors(root, source_root, plan):
+             prefix = f"b/{key}/"
+             old_summary = json.loads(bundle.read(prefix+"raw/summary.json"))
+             new_summary = sweep.json_object(current/"raw/summary.json")
+-            require(old_summary["Config"] == new_summary["Config"], "T9 changed accepted T8 experiment configuration")
++            relocation = verify_anchor_configuration(old_summary["Config"], new_summary["Config"], case)
+             files = []
+             for name in t8.UNCHANGED_CSV:
+                 with bundle.open(prefix+"raw/"+name) as old, (current/"raw"/name).open(encoding="utf-8-sig", newline="") as new:
+@@ -176,7 +198,10 @@ def verify_t8_anchors(root, source_root, plan):
+             counts_new = t7.count_balance(new_summary["Statistics"], f"T9 {key}")
+             cases.append({"case_id": case["case_id"], "storage_key": key,
+                           "statistics_equal": old_summary["Statistics"] == new_summary["Statistics"],
+-                          "configuration_equal": True, "before_counts": counts_old, "after_counts": counts_new,
++                          "configuration_equal": True,
++                          "configuration_exact_equal": old_summary["Config"] == new_summary["Config"],
++                          "configuration_path_relocation": relocation,
++                          "before_counts": counts_old, "after_counts": counts_new,
+                           "count_changes": {name: counts_new[name]-counts_old[name] for name in t7.COUNTS},
+                           "files": files})
+     equal = all(row["statistics_equal"] and all(file["semantic_equal"] for file in row["files"]) for row in cases)
+diff --git a/scripts/tests/test_tranche9_return.py b/scripts/tests/test_tranche9_return.py
+index 87dc599..7f83838 100644
+--- a/scripts/tests/test_tranche9_return.py
++++ b/scripts/tests/test_tranche9_return.py
+@@ -138,6 +138,42 @@ def legacy(row):
+     return {name: row[name] for name in ("TimeSeconds", "Event", "NodeId", "PeerId", "PacketId", "FrameKind", "Reason", "ControlType")}
+ 
+ 
++class AnchorConfiguration(unittest.TestCase):
++    def setUp(self):
++        self.case = dict(scenario_file="scenarios/link_diagnostics/inputs/case.csv", scenario_sha256="a"*64)
++        self.before = dict(Seed=129, SharedScenario=dict(SourcePath="C:\\csr8\\scenarios\\link_diagnostics\\inputs\\case.csv",
++                                                       SourceSHA256="a"*64), Other=dict(SourcePath="unchanged"))
++        self.after = copy.deepcopy(self.before)
++        self.after["SharedScenario"]["SourcePath"] = "/new/csr9/scenarios/link_diagnostics/inputs/case.csv"
++
++    def test_only_hash_bound_input_installation_prefix_may_change(self):
++        original = copy.deepcopy(self.before)
++        result = review.verify_anchor_configuration(self.before, self.after, self.case)
++        self.assertEqual(result["scenario_sha256"], "a"*64)
++        self.assertEqual(self.before, original)
++        self.assertIn("SourcePath", self.after["SharedScenario"])
++
++    def test_changed_input_hash_is_rejected(self):
++        self.after["SharedScenario"]["SourceSHA256"] = "b"*64
++        with self.assertRaisesRegex(ValueError, "input hash differs"):
++            review.verify_anchor_configuration(self.before, self.after, self.case)
++
++    def test_changed_seed_is_rejected(self):
++        self.after["Seed"] = 130
++        with self.assertRaisesRegex(ValueError, "changed accepted T8 experiment configuration"):
++            review.verify_anchor_configuration(self.before, self.after, self.case)
++
++    def test_same_hash_cannot_hide_a_different_input_filename(self):
++        self.after["SharedScenario"]["SourcePath"] = "/new/csr9/scenarios/link_diagnostics/inputs/other.csv"
++        with self.assertRaisesRegex(ValueError, "does not identify the planned input"):
++            review.verify_anchor_configuration(self.before, self.after, self.case)
++
++    def test_other_path_fields_are_not_ignored(self):
++        self.after["Other"]["SourcePath"] = "changed"
++        with self.assertRaisesRegex(ValueError, "changed accepted T8 experiment configuration"):
++            review.verify_anchor_configuration(self.before, self.after, self.case)
++
++
+ class MatlabServiceIntegrity(unittest.TestCase):
+     def setUp(self):
+         self.plan = {"service_window_s": [300, 320], "service_max_records": 100000}
+@@ -146,7 +182,8 @@ class MatlabServiceIntegrity(unittest.TestCase):
+                     "Reason": "admitted", "DiscoveryActive": "0", "TopologyKnown": "1", "GatewayCached": "1",
+                     "GatewayNodeId": "1", "RouteCheckPerformed": "1", "RouteAvailable": "1", "NsdpCount": "0",
+                     "NsdpLimit": "16", "NwkQueueSize": "0"}
+-        details = {name: value if name == "Reason" else float(value) for name, value in original.items()}
++        details = {name: value if name == "Reason" else value == "1" if name in service.ADMISSION_BOOL_FIELDS
++                   else float(value) for name, value in original.items()}
+         self.rows = [observation(1, 300, "application_attempt", kind="APP", details=details, admission=True),
+                      observation(2, 300, "network_enqueue", kind="APP", details={"QueueDepth": 1}),
+                      observation(3, 300, "hop_admit", details={"PendingData": 1, "GlobalAllowed": True}),
+@@ -177,6 +214,41 @@ class MatlabServiceIntegrity(unittest.TestCase):
+         result = self.verify()
+         self.assertEqual((result["protocol_callbacks_joined"], result["application_attempts_joined"]), (3, 1))
+ 
++    def test_matlab_logical_json_matches_csv_zero_one(self):
++        details = json.loads(self.rows[0]["DetailsJSON"])
++        self.assertTrue(all(type(details[name]) is bool for name in service.ADMISSION_BOOL_FIELDS))
++        self.assertTrue(details["Accepted"])
++        self.assertFalse(details["DiscoveryActive"])
++        self.assertEqual(self.verify()["application_attempts_joined"], 1)
++
++    def test_numeric_zero_one_logical_details_remain_supported(self):
++        details = json.loads(self.rows[0]["DetailsJSON"])
++        for name in service.ADMISSION_BOOL_FIELDS:
++            details[name] = int(details[name])
++        self.rows[0]["DetailsJSON"] = json.dumps(details)
++        self.assertEqual(self.verify()["application_attempts_joined"], 1)
++
++    def test_logical_json_value_must_match_original_admission(self):
++        details = json.loads(self.rows[0]["DetailsJSON"])
++        details["TopologyKnown"] = False
++        self.rows[0]["DetailsJSON"] = json.dumps(details)
++        with self.assertRaisesRegex(ValueError, "admission logical value differs"):
++            self.verify()
++
++    def test_logical_admission_field_rejects_non_boolean_number(self):
++        details = json.loads(self.rows[0]["DetailsJSON"])
++        details["TopologyKnown"] = 2
++        self.rows[0]["DetailsJSON"] = json.dumps(details)
++        with self.assertRaisesRegex(ValueError, "expected Boolean or numeric 0/1"):
++            self.verify()
++
++    def test_numeric_admission_identity_still_rejects_boolean(self):
++        details = json.loads(self.rows[0]["DetailsJSON"])
++        details["AttemptIndex"] = True
++        self.rows[0]["DetailsJSON"] = json.dumps(details)
++        with self.assertRaisesRegex(ValueError, "AttemptIndex: Boolean is not numeric"):
++            self.verify()
++
+     def test_control_packet_id_collision_does_not_enter_application_ordering(self):
+         control = observation(1, 300, "hop_control_ack", kind="CONTROL")
+         self.rows.insert(0, control)
+diff --git a/scripts/tranche9_metrics.py b/scripts/tranche9_metrics.py
+index a0149df..d2bd6b0 100644
+--- a/scripts/tranche9_metrics.py
++++ b/scripts/tranche9_metrics.py
+@@ -31,6 +31,8 @@ DETAIL_FIELDS = ("PreparationActive", "RemovedCount", "ReservationSlot", "Reserv
+                  "ResendCount", "AckWaitSeconds", "DurationSeconds", "HoldSeconds", "FirstReception", "LocalDelivery",
+                  "IsDack", "CapacityReleased", "FlowIndex", "AttemptIndex", "Accepted")
+ BOOL_DETAILS = {"PreparationActive", "GlobalAllowed", "NeighborAllowed", "FirstReception", "LocalDelivery", "IsDack", "CapacityReleased", "Accepted"}
++ADMISSION_BOOL_FIELDS = {"Accepted", "DiscoveryActive", "TopologyKnown", "GatewayCached",
++                         "RouteCheckPerformed", "RouteAvailable"}
+ NATIVE_FIELDS = ("schema,event_index,time_s,event,node,peer,packet_type,src,dst,sequence,"
+                  "success,reason,reservation_slot,reservation_counter,detail,packet_uid,"
+                  "prior_packet_uid,decision_id,prior_decision_id,mac_state,preparation_active,"
+@@ -143,6 +145,15 @@ def verify_matlab_rows(rows, protocol, admissions, feedback, summary, plan):
+             for field, value in expected.items():
+                 if field == "Reason":
+                     require(details[field] == value, "Service admission reason differs from original attempt")
++                elif field in ADMISSION_BOOL_FIELDS:
++                    # jsonencode preserves MATLAB logical values as true/false;
++                    # writetable represents the same admission fields as 1/0.
++                    # Restrict this conversion to the declared logical fields.
++                    observed = details[field]
++                    require(type(observed) in (bool, int, float) and observed in (0, 1),
++                            f"Service admission {field}: expected Boolean or numeric 0/1")
++                    require(bool(observed) == sweep.boolean(value, field),
++                            "Service admission logical value differs from original attempt")
+                 else:
+                     require(equal_number(finite(details[field], field), finite(value, field)),
+                             "Service admission identity/value differs from original attempt")

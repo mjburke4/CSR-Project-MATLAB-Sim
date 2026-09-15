@@ -1,0 +1,60 @@
+{
+  "schema": "csr-benchmark-comparison-input-v1",
+  "scenario": "blue_radio_campus-multihop",
+  "scenario_sha256": "90b143d93c13c6c2761bc5f2875ccc3fff98f85af6f2550370e435df2aaabcfc",
+  "profile_id": "hist-adb97c54-bare",
+  "duration_s": 6000,
+  "bucket_width_s": 60,
+  "inputs": [
+    {
+      "source": "matlab",
+      "aggregate_file": "/tmp/csr-t7-return-v6fhd7y2/b/campus/analysis/aggregates.csv",
+      "aggregate_sha256": "cb279cbed41517f46a1c85051627a58e3f8f79f69729fc330ee58f087528f273",
+      "provenance_file": "/tmp/csr-t7-return-v6fhd7y2/b/campus/analysis/aggregate_provenance.json",
+      "provenance_sha256": "dccc7633513ec5677c0d7eaab96d9fe0dffc72d8e6381e545b000970df8c7a8f"
+    },
+    {
+      "source": "ns3",
+      "aggregate_file": "/workspace/scratch/1a5b1ad6ce1b/csr10/evidence/tranche-7-ns3-reference/campus_multihop_6000/ns3-aggregates.csv",
+      "aggregate_sha256": "d0b37516ba57ce76fc5692ce295dc4bed65e0654e9849a9e5b087d164f8870b1",
+      "provenance_file": "/workspace/scratch/1a5b1ad6ce1b/csr10/evidence/tranche-7-ns3-reference/campus_multihop_6000/ns3-benchmark.provenance.json",
+      "provenance_sha256": "449aa0512e577b10cffeb370e9f283f4b178e85d11b88fc25bf863b4477e9787",
+      "excluded_statistics": [
+        "ECC.Traffic Dropped (packets/sec)",
+        "HOP.Resend Queue Size (packets)",
+        "MAC.ACK Queue Size (packets)",
+        "MAC.Tx Queue Size (packets)",
+        "MAC.Tx Queuing Delay (sec)",
+        "NWK.Network Queue Size (packets)",
+        "NWK.Network Queuing Delay (sec)"
+      ]
+    },
+    {
+      "source": "opnet",
+      "aggregate_file": "/workspace/scratch/1a5b1ad6ce1b/csr10/evidence/tranche-7-ns3-reference/campus_multihop_6000/opnet-aggregates.csv",
+      "aggregate_sha256": "472ae8b183281d7c70bf1252de08ecb6fb3d3b508fe549d3b13a7ac56fc5399c",
+      "provenance_file": "/workspace/scratch/1a5b1ad6ce1b/csr10/evidence/tranche-7-ns3-reference/campus_multihop_6000/opnet-benchmark.provenance.json",
+      "provenance_sha256": "57a6bb65476195fcf4baa59ff434023089d42ae68fba7cadc7360601bcfb95c7",
+      "excluded_statistics": [
+        "Generator.Packet Interarrival Time (secs)",
+        "HOP.Resend Queue Size (packets)",
+        "MAC.ACK Queue Size (packets)",
+        "MAC.Tx Queue Size (packets)",
+        "MAC.Tx Queuing Delay (sec)"
+      ]
+    }
+  ],
+  "case_binding": {
+    "matlab_manifest_file": "/tmp/csr-t7-return-v6fhd7y2/b/campus/benchmark_manifest.json",
+    "matlab_manifest_sha256": "9872228c26366d815f38e943693a8207b44bd989843a2285fdf81cb578c2c315",
+    "reference_manifest_file": "/workspace/scratch/1a5b1ad6ce1b/csr10/evidence/tranche-7-ns3-reference/campus_multihop_6000/manifest.json",
+    "reference_manifest_sha256": "309f1343eb86c8d5ceb167546c351be7d753ba721930d6e677a4fd3d4e6faaa6",
+    "matlab_inventory_files_verified": 19,
+    "reference_inventory_files_verified": 15,
+    "matlab_source_snapshot_sha256": "9be444b0fb1ffbfe818cab86502a287b19e3da83467d210ef426ec3b19e183da",
+    "source_trace_bytes_verified": true,
+    "canonical_scenario_file": "/workspace/scratch/1a5b1ad6ce1b/csr10/scenarios/benchmarks/campus_multihop_6000.csv",
+    "canonical_scenario_sha256": "90b143d93c13c6c2761bc5f2875ccc3fff98f85af6f2550370e435df2aaabcfc",
+    "scope": "Case identity, recorded generator/MAC/envelope settings, inventories, traces and aggregate provenance; outer suite acceptance is separate"
+  }
+}

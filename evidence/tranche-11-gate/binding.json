@@ -1,0 +1,152 @@
+{
+  "schema": "csr-tranche11-final-binding-review-v1",
+  "status": "passed",
+  "generated_utc": "2026-09-14T17:49:17.425972+00:00",
+  "matlab_executed": false,
+  "no_benchmarks_rerun": true,
+  "candidate_sha256": "21db9b8367055364faaf027a569a36aae76b7010abeb662f609b79ae7772be24",
+  "runner_sha256": "8c7fc91d9d71cb48e932b41419311ede1aa177c3d0209166a6fa4950e4fd45f7",
+  "replay_fixture_sha256": "6574f3c0fe65771d049a81ebdce5eca39ad603d15c2d096a3d6a5a6aad778d0c",
+  "checks": {
+    "candidate_sha256": {
+      "passed": true,
+      "details": "21db9b8367055364faaf027a569a36aae76b7010abeb662f609b79ae7772be24"
+    },
+    "exact_52_test_names": {
+      "passed": true,
+      "details": {
+        "tests/TestReplayStreams.m": 13,
+        "tests/TestReplayContract.m": 8,
+        "tests/TestContentionContract.m": 19,
+        "tests/TestAckServiceContract.m": 7,
+        "tests/TestRandomStreams.m": 5
+      }
+    },
+    "accepted_baseline_snapshot_hash": {
+      "passed": true,
+      "details": "9be444b0fb1ffbfe818cab86502a287b19e3da83467d210ef426ec3b19e183da"
+    },
+    "225_sources_124_matlab_unchanged": {
+      "passed": true,
+      "details": []
+    },
+    "base_archive_hash": {
+      "passed": true,
+      "details": "df3ad517708fccc9e4c85d8e38c3492b97aff8d2d5236b3f05249da3cd15b900"
+    },
+    "fixture_plan_hash": {
+      "passed": true,
+      "details": "4980ccbae6a52d378ca149be0bba81a08fb81e41608886388d985f9178ce27cc"
+    },
+    "native_manifest_hash": {
+      "passed": true,
+      "details": "98bc1123da593ab0a3b3cc53785614630b8a26b598f0bd0cfd2722512281a1f0"
+    },
+    "native_reference_files_closed_and_hashed": {
+      "passed": true,
+      "details": {
+        "files": 37,
+        "bad": [],
+        "closed": true
+      }
+    },
+    "reference_root:evidence/tranche-11-replay-reference": {
+      "passed": true,
+      "details": 38
+    },
+    "reference_root:evidence/tranche-11-native-build": {
+      "passed": true,
+      "details": 25
+    },
+    "reference_root:evidence/tranche-10-contract-reference": {
+      "passed": true,
+      "details": 5
+    },
+    "reference_root:evidence/tranche-9-contract-reference": {
+      "passed": true,
+      "details": 5
+    },
+    "reference_file:evidence/tranche-11-native-build.json": {
+      "passed": true,
+      "details": null
+    },
+    "reference_file:evidence/tranche-11-main-check.json": {
+      "passed": true,
+      "details": null
+    },
+    "reference_file:evidence/tranche-10-r2025a-accepted/owner/source_snapshot.json": {
+      "passed": true,
+      "details": null
+    },
+    "reference_file:evidence/tranche-10-portable-acceptance.json": {
+      "passed": true,
+      "details": null
+    },
+    "reference_file:evidence/tranche-10-r2025a-accepted/acceptance.json": {
+      "passed": true,
+      "details": null
+    },
+    "reference_selectors_no_overlap": {
+      "passed": true,
+      "details": 78
+    },
+    "selected_test_references_bound": {
+      "passed": true,
+      "details": [
+        "evidence/tranche-9-contract-reference/checkpoints.csv",
+        "evidence/tranche-10-contract-reference/checkpoints.csv",
+        "evidence/tranche-10-r2025a-accepted/owner/source_snapshot.json",
+        "evidence/tranche-11-replay-reference/events.csv",
+        "evidence/tranche-11-replay-reference/draws.csv",
+        "evidence/tranche-11-replay-reference/usage.csv",
+        "evidence/tranche-11-replay-reference/manifest.json"
+      ]
+    },
+    "plan_candidate_native_cases_agree": {
+      "passed": true,
+      "details": [
+        "ab",
+        "ba",
+        "slow",
+        "track"
+      ]
+    },
+    "native_input_hashes_match_current": {
+      "passed": true,
+      "details": {
+        "cases.csv": "c4bf66202e96f255eebe6888b63f1f9c4792d2fd68dd773f6e8146bdf03630a9",
+        "draws.csv": "8fc8605dca0f762caf03d110747562d5f9c211e11e05c3300bbf253d491e0929",
+        "plan.json": "4980ccbae6a52d378ca149be0bba81a08fb81e41608886388d985f9178ce27cc"
+      }
+    },
+    "native_fixture_hashes_match_current": {
+      "passed": true,
+      "details": {
+        "run_tranche11_ns3_reference.py": "5bf3c8a77b093c20ae5f8f7a53935a6b6031aba1c5158bea626319d88926cf4f",
+        "build_tranche11_overlay.py": "6329f4a7ea7b359a7d978ce2252b000db49e6422f634ce421da5f252b36bd2ae",
+        "tranche11_replay.cc": "b4147218fd15c45a2b5643e362f4afca6f32ae2581a1a39e31e65623d60795ba",
+        "tranche11-replay-hooks.h": "2df5483ab8bf77fabdcc117880a7cb64dc4e2e640dddfe9d63d6a090a936a9fa"
+      }
+    },
+    "runner_fixture_return_fields_bound": {
+      "passed": true,
+      "details": [
+        "DiagnosticCompleted",
+        "MatchesNative",
+        "CaseCount",
+        "EventCount",
+        "DrawCount",
+        "UnmatchedCount"
+      ]
+    },
+    "runner_export_and_incremental_tests": {
+      "passed": true,
+      "details": null
+    },
+    "candidate_honest_pending_scope": {
+      "passed": true,
+      "details": null
+    }
+  },
+  "blockers": []
+}

@@ -1,0 +1,307 @@
+{
+  "schema": "csr-tranche10-source-recovery-v1",
+  "created_utc": "2026-09-11T19:25:03.366447+00:00",
+  "source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "status": "passed",
+  "method": "Verified T9 observer overlay bytes, reversed complete recorded observational patch with fuzz zero, then verified each original model/runner input hash and all 15 contract source-header hashes.",
+  "source_model_and_runner_files": 24,
+  "contract_headers": 15,
+  "git_checkout_recovered": false,
+  "engine_libraries_recovered": false,
+  "initial_copy_attempt_note": "Initial source-prefix filter also included a historical analysis script absent from the overlay; stopped before patching. Resumed verified unchanged partial copies with scope restricted to model files and runner.",
+  "source_patch": {
+    "path": "/workspace/scratch/1a5b1ad6ce1b/csr10/evidence/tranche-9-ns3-reference/observational-overlay.patch",
+    "sha256": "0d75b0637fcc89a2296cfa71a4a0b580fe329b00fcf407852381c23db5a5fba3"
+  },
+  "build_manifest": {
+    "path": "/workspace/scratch/1a5b1ad6ce1b/csr10/evidence/tranche-9-ns3-reference/build.json",
+    "sha256": "58aa3e8c32388eb56907495a2549bdd7eb0db1ad7d91dc6b75683eb96aba9783"
+  },
+  "contract_manifest": {
+    "path": "/workspace/scratch/1a5b1ad6ce1b/csr10/evidence/tranche-9-contract-reference/manifest.json",
+    "sha256": "d5aef54b32db07ec503468764af7b5ec12bf67f90ce95e990d6b0741d4723f8a"
+  },
+  "patch_command": [
+    "patch",
+    "-p1",
+    "-R",
+    "--batch",
+    "--fuzz=0",
+    "-i",
+    "/workspace/scratch/1a5b1ad6ce1b/csr10/evidence/tranche-9-ns3-reference/observational-overlay.patch"
+  ],
+  "patch_exit_code": 0,
+  "patch_stdout": "patching file csr-common.h\npatching file csr-differential-trace.h\npatching file csr-hop-layer.h\npatching file csr-mac-core.h\npatching file csr-net-device.h\npatching file csr-nwk-layer.h\npatching file csr-opnet-scenario-runner.cc\n",
+  "patch_stderr": "",
+  "files": [
+    {
+      "original_source_path": "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/csr-opnet-scenario-runner.cc",
+      "overlay_path": "/workspace/scratch/1a5b1ad6ce1b/t9b/b3/o/csr-opnet-scenario-runner.cc",
+      "overlay_sha256": "76c494a1473f329e462dd4361149d269d76cce81e1d2b5f9ab498f69175fd2c3",
+      "expected_source_sha256": "08cf347ba60153c7cddd48b2cc633f589d29484efeeb28cd3df4786e80ac9841",
+      "recovered_path": "csr-opnet-scenario-runner.cc",
+      "recovered_sha256": "08cf347ba60153c7cddd48b2cc633f589d29484efeeb28cd3df4786e80ac9841"
+    },
+    {
+      "original_source_path": "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/model/csr-arl-routing-message.cc",
+      "overlay_path": "/workspace/scratch/1a5b1ad6ce1b/t9b/b3/o/include/ns3/csr-arl-routing-message.cc",
+      "overlay_sha256": "046d7b1c91d4339f7cb67cda7066532ae4659b8e324b1bd482b6aba0a5562c3f",
+      "expected_source_sha256": "046d7b1c91d4339f7cb67cda7066532ae4659b8e324b1bd482b6aba0a5562c3f",
+      "recovered_path": "model/csr-arl-routing-message.cc",
+      "recovered_sha256": "046d7b1c91d4339f7cb67cda7066532ae4659b8e324b1bd482b6aba0a5562c3f"
+    },
+    {
+      "original_source_path": "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/model/csr-arl-routing-message.h",
+      "overlay_path": "/workspace/scratch/1a5b1ad6ce1b/t9b/b3/o/include/ns3/csr-arl-routing-message.h",
+      "overlay_sha256": "0eddd945d264965c90bcea60d73b14cab2159bc0664e0e526d38e50b0d363a8c",
+      "expected_source_sha256": "0eddd945d264965c90bcea60d73b14cab2159bc0664e0e526d38e50b0d363a8c",
+      "recovered_path": "model/csr-arl-routing-message.h",
+      "recovered_sha256": "0eddd945d264965c90bcea60d73b14cab2159bc0664e0e526d38e50b0d363a8c"
+    },
+    {
+      "original_source_path": "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/model/csr-common.h",
+      "overlay_path": "/workspace/scratch/1a5b1ad6ce1b/t9b/b3/o/include/ns3/csr-common.h",
+      "overlay_sha256": "1869c9cd50202ed308e5a65bbad05507770f57babaa3ae55236cffaf8a2a2199",
+      "expected_source_sha256": "f1e0a962862ef1cc5a6994f24988858a2bea70385ce02b1264285de194fe6ae1",
+      "recovered_path": "model/csr-common.h",
+      "recovered_sha256": "f1e0a962862ef1cc5a6994f24988858a2bea70385ce02b1264285de194fe6ae1"
+    },
+    {
+      "original_source_path": "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/model/csr-differential-trace.h",
+      "overlay_path": "/workspace/scratch/1a5b1ad6ce1b/t9b/b3/o/include/ns3/csr-differential-trace.h",
+      "overlay_sha256": "9208eee7a6c3095262102e005ff9f138b1cd049694e88ebb8666b3125b794c31",
+      "expected_source_sha256": "78b443af6e91e927c398450ef71245e815ba4bd02ad9369a06fd95f98e2dff84",
+      "recovered_path": "model/csr-differential-trace.h",
+      "recovered_sha256": "78b443af6e91e927c398450ef71245e815ba4bd02ad9369a06fd95f98e2dff84"
+    },
+    {
+      "original_source_path": "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/model/csr-hello-header.cc",
+      "overlay_path": "/workspace/scratch/1a5b1ad6ce1b/t9b/b3/o/include/ns3/csr-hello-header.cc",
+      "overlay_sha256": "e6a1a9e95312d089404873fd7d9d4c87bf024d754af224064328106d5c886a4f",
+      "expected_source_sha256": "e6a1a9e95312d089404873fd7d9d4c87bf024d754af224064328106d5c886a4f",
+      "recovered_path": "model/csr-hello-header.cc",
+      "recovered_sha256": "e6a1a9e95312d089404873fd7d9d4c87bf024d754af224064328106d5c886a4f"
+    },
+    {
+      "original_source_path": "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/model/csr-hello-header.h",
+      "overlay_path": "/workspace/scratch/1a5b1ad6ce1b/t9b/b3/o/include/ns3/csr-hello-header.h",
+      "overlay_sha256": "741ccff278e1694ea40c4c6c5b1cb14a3a6034864d0328c6a2e04420935fb7d4",
+      "expected_source_sha256": "741ccff278e1694ea40c4c6c5b1cb14a3a6034864d0328c6a2e04420935fb7d4",
+      "recovered_path": "model/csr-hello-header.h",
+      "recovered_sha256": "741ccff278e1694ea40c4c6c5b1cb14a3a6034864d0328c6a2e04420935fb7d4"
+    },
+    {
+      "original_source_path": "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/model/csr-hop-layer.h",
+      "overlay_path": "/workspace/scratch/1a5b1ad6ce1b/t9b/b3/o/include/ns3/csr-hop-layer.h",
+      "overlay_sha256": "3fb6126f6811b89dd951c3a7e994afdbcb7adc85d6e2928cdd0aba085ab52721",
+      "expected_source_sha256": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+      "recovered_path": "model/csr-hop-layer.h",
+      "recovered_sha256": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b"
+    },
+    {
+      "original_source_path": "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/model/csr-hop-security.cc",
+      "overlay_path": "/workspace/scratch/1a5b1ad6ce1b/t9b/b3/o/include/ns3/csr-hop-security.cc",
+      "overlay_sha256": "2b390e6496c98e87a771ed10613e69ecd702922a0b9f54e8058170653271cc6a",
+      "expected_source_sha256": "2b390e6496c98e87a771ed10613e69ecd702922a0b9f54e8058170653271cc6a",
+      "recovered_path": "model/csr-hop-security.cc",
+      "recovered_sha256": "2b390e6496c98e87a771ed10613e69ecd702922a0b9f54e8058170653271cc6a"
+    },
+    {
+      "original_source_path": "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/model/csr-hop-security.h",
+      "overlay_path": "/workspace/scratch/1a5b1ad6ce1b/t9b/b3/o/include/ns3/csr-hop-security.h",
+      "overlay_sha256": "9bca9c9a6e4ae04a20a3309ac8a8787589ac4ad65785cbf57fbe20c5e8e37d5e",
+      "expected_source_sha256": "9bca9c9a6e4ae04a20a3309ac8a8787589ac4ad65785cbf57fbe20c5e8e37d5e",
+      "recovered_path": "model/csr-hop-security.h",
+      "recovered_sha256": "9bca9c9a6e4ae04a20a3309ac8a8787589ac4ad65785cbf57fbe20c5e8e37d5e"
+    },
+    {
+      "original_source_path": "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/model/csr-legacy-crypto.cc",
+      "overlay_path": "/workspace/scratch/1a5b1ad6ce1b/t9b/b3/o/include/ns3/csr-legacy-crypto.cc",
+      "overlay_sha256": "c3f32f583813dead77c42d51736f73fb300a59b33f9fa75da4fc939c7e6553e0",
+      "expected_source_sha256": "c3f32f583813dead77c42d51736f73fb300a59b33f9fa75da4fc939c7e6553e0",
+      "recovered_path": "model/csr-legacy-crypto.cc",
+      "recovered_sha256": "c3f32f583813dead77c42d51736f73fb300a59b33f9fa75da4fc939c7e6553e0"
+    },
+    {
+      "original_source_path": "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/model/csr-legacy-crypto.h",
+      "overlay_path": "/workspace/scratch/1a5b1ad6ce1b/t9b/b3/o/include/ns3/csr-legacy-crypto.h",
+      "overlay_sha256": "ce2e76387addc44e63601b8638d066b484dbd13f301bc09882bd21959a118306",
+      "expected_source_sha256": "ce2e76387addc44e63601b8638d066b484dbd13f301bc09882bd21959a118306",
+      "recovered_path": "model/csr-legacy-crypto.h",
+      "recovered_sha256": "ce2e76387addc44e63601b8638d066b484dbd13f301bc09882bd21959a118306"
+    },
+    {
+      "original_source_path": "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/model/csr-mac-core.h",
+      "overlay_path": "/workspace/scratch/1a5b1ad6ce1b/t9b/b3/o/include/ns3/csr-mac-core.h",
+      "overlay_sha256": "1f879338745f4aee24b33e11eca8e8fa931241d70e7f841962eb18245d6ab245",
+      "expected_source_sha256": "64a71ad280ba14ab2b00d5d2b9dac708fabea939dfa385ad62dd73e5e40203e9",
+      "recovered_path": "model/csr-mac-core.h",
+      "recovered_sha256": "64a71ad280ba14ab2b00d5d2b9dac708fabea939dfa385ad62dd73e5e40203e9"
+    },
+    {
+      "original_source_path": "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/model/csr-module.cc",
+      "overlay_path": "/workspace/scratch/1a5b1ad6ce1b/t9b/b3/o/include/ns3/csr-module.cc",
+      "overlay_sha256": "34b32e33586f4adaddd47c41d1795c8f81205c00b8f4981355cad8674c23ad8e",
+      "expected_source_sha256": "34b32e33586f4adaddd47c41d1795c8f81205c00b8f4981355cad8674c23ad8e",
+      "recovered_path": "model/csr-module.cc",
+      "recovered_sha256": "34b32e33586f4adaddd47c41d1795c8f81205c00b8f4981355cad8674c23ad8e"
+    },
+    {
+      "original_source_path": "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/model/csr-net-device.h",
+      "overlay_path": "/workspace/scratch/1a5b1ad6ce1b/t9b/b3/o/include/ns3/csr-net-device.h",
+      "overlay_sha256": "b38ae47c52ecfddc8ed9516953c8e9bf701403c327ba32cd1aae8d72c7b751c8",
+      "expected_source_sha256": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+      "recovered_path": "model/csr-net-device.h",
+      "recovered_sha256": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb"
+    },
+    {
+      "original_source_path": "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/model/csr-nwk-layer.h",
+      "overlay_path": "/workspace/scratch/1a5b1ad6ce1b/t9b/b3/o/include/ns3/csr-nwk-layer.h",
+      "overlay_sha256": "236788b3648a54d8690e8ece3bd44410364c08ff4efaa96f33b040a526cdd449",
+      "expected_source_sha256": "bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc",
+      "recovered_path": "model/csr-nwk-layer.h",
+      "recovered_sha256": "bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc"
+    },
+    {
+      "original_source_path": "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/model/csr-opnet-ber-tables-data.inc",
+      "overlay_path": "/workspace/scratch/1a5b1ad6ce1b/t9b/b3/o/include/ns3/csr-opnet-ber-tables-data.inc",
+      "overlay_sha256": "d10a9ba3ded2301598b79d6bf28a6ea318da34b5ce79709ba2a06a0b8fce95b8",
+      "expected_source_sha256": "d10a9ba3ded2301598b79d6bf28a6ea318da34b5ce79709ba2a06a0b8fce95b8",
+      "recovered_path": "model/csr-opnet-ber-tables-data.inc",
+      "recovered_sha256": "d10a9ba3ded2301598b79d6bf28a6ea318da34b5ce79709ba2a06a0b8fce95b8"
+    },
+    {
+      "original_source_path": "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/model/csr-opnet-ber-tables.cc",
+      "overlay_path": "/workspace/scratch/1a5b1ad6ce1b/t9b/b3/o/include/ns3/csr-opnet-ber-tables.cc",
+      "overlay_sha256": "0af0b66c23ea95bbf74f32099ab0562a8a781e1b1048f5eb0b45faea83b73cf6",
+      "expected_source_sha256": "0af0b66c23ea95bbf74f32099ab0562a8a781e1b1048f5eb0b45faea83b73cf6",
+      "recovered_path": "model/csr-opnet-ber-tables.cc",
+      "recovered_sha256": "0af0b66c23ea95bbf74f32099ab0562a8a781e1b1048f5eb0b45faea83b73cf6"
+    },
+    {
+      "original_source_path": "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/model/csr-opnet-ber-tables.h",
+      "overlay_path": "/workspace/scratch/1a5b1ad6ce1b/t9b/b3/o/include/ns3/csr-opnet-ber-tables.h",
+      "overlay_sha256": "8034348552990ce6a0aa0fd673a319299762fbd75c402de59a64ac160eb7cfb5",
+      "expected_source_sha256": "8034348552990ce6a0aa0fd673a319299762fbd75c402de59a64ac160eb7cfb5",
+      "recovered_path": "model/csr-opnet-ber-tables.h",
+      "recovered_sha256": "8034348552990ce6a0aa0fd673a319299762fbd75c402de59a64ac160eb7cfb5"
+    },
+    {
+      "original_source_path": "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/model/csr-opnet-envelope.h",
+      "overlay_path": "/workspace/scratch/1a5b1ad6ce1b/t9b/b3/o/include/ns3/csr-opnet-envelope.h",
+      "overlay_sha256": "e67b526126907f43f2ee4199552c583ac9c2a0f927cf942fe76aa328900e001a",
+      "expected_source_sha256": "e67b526126907f43f2ee4199552c583ac9c2a0f927cf942fe76aa328900e001a",
+      "recovered_path": "model/csr-opnet-envelope.h",
+      "recovered_sha256": "e67b526126907f43f2ee4199552c583ac9c2a0f927cf942fe76aa328900e001a"
+    },
+    {
+      "original_source_path": "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/model/csr-opnet-packet-model.cc",
+      "overlay_path": "/workspace/scratch/1a5b1ad6ce1b/t9b/b3/o/include/ns3/csr-opnet-packet-model.cc",
+      "overlay_sha256": "16af5d39e7f12c17e1f27a49f80c1ea313618bce87d3c5b75b07bc38cebf2056",
+      "expected_source_sha256": "16af5d39e7f12c17e1f27a49f80c1ea313618bce87d3c5b75b07bc38cebf2056",
+      "recovered_path": "model/csr-opnet-packet-model.cc",
+      "recovered_sha256": "16af5d39e7f12c17e1f27a49f80c1ea313618bce87d3c5b75b07bc38cebf2056"
+    },
+    {
+      "original_source_path": "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/model/csr-opnet-packet-model.h",
+      "overlay_path": "/workspace/scratch/1a5b1ad6ce1b/t9b/b3/o/include/ns3/csr-opnet-packet-model.h",
+      "overlay_sha256": "59eb4ccd19d109f623fb8ea4d9ad23b2d936f081268261c100231c26cb2dccc6",
+      "expected_source_sha256": "59eb4ccd19d109f623fb8ea4d9ad23b2d936f081268261c100231c26cb2dccc6",
+      "recovered_path": "model/csr-opnet-packet-model.h",
+      "recovered_sha256": "59eb4ccd19d109f623fb8ea4d9ad23b2d936f081268261c100231c26cb2dccc6"
+    },
+    {
+      "original_source_path": "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/model/csr-phy-model.h",
+      "overlay_path": "/workspace/scratch/1a5b1ad6ce1b/t9b/b3/o/include/ns3/csr-phy-model.h",
+      "overlay_sha256": "d690b4c572491a9ea8c48735b1726770938b118dcbcd931e92920e602cae18fc",
+      "expected_source_sha256": "d690b4c572491a9ea8c48735b1726770938b118dcbcd931e92920e602cae18fc",
+      "recovered_path": "model/csr-phy-model.h",
+      "recovered_sha256": "d690b4c572491a9ea8c48735b1726770938b118dcbcd931e92920e602cae18fc"
+    },
+    {
+      "original_source_path": "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/model/csr-wire-format.h",
+      "overlay_path": "/workspace/scratch/1a5b1ad6ce1b/t9b/b3/o/include/ns3/csr-wire-format.h",
+      "overlay_sha256": "eb9097e1588c8e235a06cec5f0b28c13a22a3f3c88c6b8581e4186d69fc94c2f",
+      "expected_source_sha256": "eb9097e1588c8e235a06cec5f0b28c13a22a3f3c88c6b8581e4186d69fc94c2f",
+      "recovered_path": "model/csr-wire-format.h",
+      "recovered_sha256": "eb9097e1588c8e235a06cec5f0b28c13a22a3f3c88c6b8581e4186d69fc94c2f"
+    }
+  ],
+  "header_checks": [
+    {
+      "path": "model/csr-arl-routing-message.h",
+      "sha256": "0eddd945d264965c90bcea60d73b14cab2159bc0664e0e526d38e50b0d363a8c",
+      "passed": true
+    },
+    {
+      "path": "model/csr-common.h",
+      "sha256": "f1e0a962862ef1cc5a6994f24988858a2bea70385ce02b1264285de194fe6ae1",
+      "passed": true
+    },
+    {
+      "path": "model/csr-differential-trace.h",
+      "sha256": "78b443af6e91e927c398450ef71245e815ba4bd02ad9369a06fd95f98e2dff84",
+      "passed": true
+    },
+    {
+      "path": "model/csr-hello-header.h",
+      "sha256": "741ccff278e1694ea40c4c6c5b1cb14a3a6034864d0328c6a2e04420935fb7d4",
+      "passed": true
+    },
+    {
+      "path": "model/csr-hop-layer.h",
+      "sha256": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+      "passed": true
+    },
+    {
+      "path": "model/csr-hop-security.h",
+      "sha256": "9bca9c9a6e4ae04a20a3309ac8a8787589ac4ad65785cbf57fbe20c5e8e37d5e",
+      "passed": true
+    },
+    {
+      "path": "model/csr-legacy-crypto.h",
+      "sha256": "ce2e76387addc44e63601b8638d066b484dbd13f301bc09882bd21959a118306",
+      "passed": true
+    },
+    {
+      "path": "model/csr-mac-core.h",
+      "sha256": "64a71ad280ba14ab2b00d5d2b9dac708fabea939dfa385ad62dd73e5e40203e9",
+      "passed": true
+    },
+    {
+      "path": "model/csr-net-device.h",
+      "sha256": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+      "passed": true
+    },
+    {
+      "path": "model/csr-nwk-layer.h",
+      "sha256": "bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc",
+      "passed": true
+    },
+    {
+      "path": "model/csr-opnet-ber-tables.h",
+      "sha256": "8034348552990ce6a0aa0fd673a319299762fbd75c402de59a64ac160eb7cfb5",
+      "passed": true
+    },
+    {
+      "path": "model/csr-opnet-envelope.h",
+      "sha256": "e67b526126907f43f2ee4199552c583ac9c2a0f927cf942fe76aa328900e001a",
+      "passed": true
+    },
+    {
+      "path": "model/csr-opnet-packet-model.h",
+      "sha256": "59eb4ccd19d109f623fb8ea4d9ad23b2d936f081268261c100231c26cb2dccc6",
+      "passed": true
+    },
+    {
+      "path": "model/csr-phy-model.h",
+      "sha256": "d690b4c572491a9ea8c48735b1726770938b118dcbcd931e92920e602cae18fc",
+      "passed": true
+    },
+    {
+      "path": "model/csr-wire-format.h",
+      "sha256": "eb9097e1588c8e235a06cec5f0b28c13a22a3f3c88c6b8581e4186d69fc94c2f",
+      "passed": true
+    }
+  ]
+}

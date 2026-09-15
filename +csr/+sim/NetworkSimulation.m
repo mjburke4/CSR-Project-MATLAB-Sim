@@ -26,14 +26,29 @@ classdef NetworkSimulation < handle
         Counters
         DropReasons
         PhysicalDropReasons
+        ApplicationGenerators
+        AdmissionRows
+        AdmissionCount = 0
+        LinkObserver = []
+        FeedbackContext = []
+        FeedbackQueueEvent = ''
         HasRun = false
     end
     methods
-        function obj = NetworkSimulation(config)
+        function obj = NetworkSimulation(config,linkObserver)
             obj.Config = csr.scenario.validate(config);
             config = obj.Config;
             if ~strcmp(config.Stack,'network') || ~strcmp(config.Channel.Model,'csr-phy')
                 error('csr:sim:NetworkBackend','NWK requires Stack=network and Channel.Model=csr-phy.');
+            end
+            % Optional passive instrumentation is external to Config and the
+            % packet model. It owns no simulator callback, event or RNG stream.
+            if nargin>1 && ~isempty(linkObserver)
+                if ~isa(linkObserver,'csr.sim.LinkDiagnostics') || ~isscalar(linkObserver)
+                    error('csr:sim:LinkObserver','Expected one csr.sim.LinkDiagnostics observer.');
+                end
+                linkObserver.attach(config.Mac.AckTransmissions);
+                obj.LinkObserver = linkObserver;
             end
             if strcmp(config.Backend,'portable')
                 obj.Scheduler = csr.sim.EventScheduler(config.MaxEvents);
@@ -45,6 +60,14 @@ classdef NetworkSimulation < handle
             obj.Records = containers.Map('KeyType','char','ValueType','any');
             obj.DropReasons = containers.Map('KeyType','char','ValueType','double');
             obj.PhysicalDropReasons = containers.Map('KeyType','char','ValueType','double');
+            obj.ApplicationGenerators = cell(1,numel(config.Traffic));
+            historical = strcmp(config.ApplicationGenerator,'historical-opnet-gated');
+            for k = 1:numel(config.Traffic)
+                obj.ApplicationGenerators{k} = csr.sim.ApplicationGenerator(k, ...
+                    config.Traffic(k),historical,config.ApplicationFlowLimit);
+            end
+            obj.AdmissionRows = repmat(csr.sim.ApplicationGenerator.emptyTrace(), ...
+                config.Trace.MaxApplicationAdmissionRecords*double(config.Trace.Enabled)*double(historical),1);
             n = numel(config.Nodes);
             obj.Nodes = cell(1,n); obj.Macs = cell(1,n); obj.Hops = cell(1,n);
             obj.Networks = cell(1,n); obj.NodeEnabled = true(1,n);
@@ -59,7 +82,8 @@ classdef NetworkSimulation < handle
                 'Overheard',0,'Collisions',0,'FaultDrops',0,'QueueDrops',0,'QueueAdmissionRejections',0, ...
                 'HopFailures',0,'UnconfirmedHopTransfers',0,'UnretainedHopAcks',0,'RelayAccepted',0, ...
                 'LateDeliveries',0,'LateCustodyRecoveries',0, ...
-                'MaxNetworkQueueDepth',0,'OmittedTraceRecords',0,'OmittedPhyTraceRecords',0);
+                'MaxNetworkQueueDepth',0,'OmittedTraceRecords',0,'OmittedPhyTraceRecords',0, ...
+                'OmittedApplicationAdmissionRecords',0);
             obj.FaultMatches = zeros(1,numel(config.Faults));
             trace = struct('TimeSeconds',0,'Event','','NodeId',0,'PeerId',0, ...
                 'PacketId',uint64(0),'ApplicationBytes',0,'Reason','', ...
@@ -100,6 +124,10 @@ classdef NetworkSimulation < handle
                     'NsdpCount',@(app)obj.Networks{k}.nsdpCount(app), ...
                     'RouteAvailable',@(app)obj.Networks{k}.routeAvailable(app), ...
                     'Event',@(event,frame,details)obj.hopEvent(nodeId,event,frame,details));
+                if isa(obj.LinkObserver,'csr.sim.AckServiceDiagnostics')
+                    hopCallbacks.CancelMac=@(peer,sequence)obj.cancelMacObserved(nodeId,peer,sequence);
+                    hopCallbacks.CancelMacControl=@(peer,type)obj.cancelMacControlObserved(nodeId,peer,type);
+                end
                 obj.Hops{k} = csr.hop.Layer(nodeId,obj.Scheduler,obj.Streams,config,hopCallbacks);
                 networkCallbacks = struct('CanSendData',@(peer)obj.Hops{k}.canSend(peer), ...
                     'SendData',@(app,peer,options)obj.Hops{k}.send(app,peer,options), ...
@@ -197,6 +225,8 @@ classdef NetworkSimulation < handle
             metadata = csr.sim.capabilities();
             metadata.SourceCommit = '486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b';
             metadata.ApplicationProfile = obj.Config.ApplicationProfile;
+            metadata.ApplicationGenerator = obj.Config.ApplicationGenerator;
+            metadata.ApplicationFlowLimit = obj.Config.ApplicationFlowLimit;
             metadata.Backend = obj.Config.Backend;
             metadata.ChannelModel = 'csr-phy';
             metadata.ModelStage = 'tranche-3-autonomous-network-routing';
@@ -226,7 +256,15 @@ classdef NetworkSimulation < handle
                 'UnconfirmedHopTransfers','Hop feedback failure after custody moved onward or application delivered', ...
                 'UnretainedHopAcks','ACK/DACK completion without onward custody; recorded as loss, recoverable by late reception');
             trace = struct2table(obj.TraceRows(1:obj.TraceCount),'AsArray',true);
+            templateGenerator = csr.sim.ApplicationGenerator(0, ...
+                struct('SourceId',0,'DestinationId',1),false,0);
+            admission = repmat(templateGenerator.Statistics,numel(obj.ApplicationGenerators),1);
+            for k = 1:numel(obj.ApplicationGenerators)
+                admission(k) = obj.ApplicationGenerators{k}.Statistics;
+            end
             result = struct('Config',obj.Config,'Statistics',stats, ...
+                'ApplicationAdmissionStatistics',struct2table(admission,'AsArray',true), ...
+                'ApplicationAdmissionTrace',struct2table(obj.AdmissionRows(1:obj.AdmissionCount),'AsArray',true), ...
                 'NodeStatistics',struct2table(nodeRows,'AsArray',true), ...
                 'NodeMacStatistics',struct2table(vertcat(macRows{:}),'AsArray',true), ...
                 'NodeHopStatistics',struct2table(hopStats,'AsArray',true), ...
@@ -236,18 +274,50 @@ classdef NetworkSimulation < handle
                 'Trace',trace,'ProtocolTrace',trace, ...
                 'PhyTrace',struct2table(obj.PhyRows(1:obj.PhyCount),'AsArray',true), ...
                 'Metadata',metadata);
+            if ~isempty(obj.LinkObserver)
+                observed = obj.LinkObserver.snapshot();
+                result.LinkDecisionTrace = observed.LinkDecisionTrace;
+                result.ActualFeedbackTrace = observed.ActualFeedbackTrace;
+                result.LinkDiagnostics = observed.LinkDiagnostics;
+                if isfield(observed,'ServiceTrace')
+                    result.ServiceTrace = observed.ServiceTrace;
+                    result.ServiceDiagnostics = observed.ServiceDiagnostics;
+                end
+            end
         end
     end
     methods (Access = private)
         function generate(obj,flowIndex,ordinal)
             flow = obj.Config.Traffic(flowIndex);
+            generator = obj.ApplicationGenerators{flowIndex};
+            historical = strcmp(obj.Config.ApplicationGenerator,'historical-opnet-gated');
+            if ~generator.canAttempt(), return; end
+            if historical
+                % ns-3 uses integer nanosecond Time and posts the next
+                % interrupt before admission. Simulator::Stop runs before
+                % recursively posted generator events exactly at the stop.
+                next = (round(obj.Scheduler.Now*1e9)+round(flow.IntervalSeconds*1e9))/1e9;
+                if ordinal < flow.PacketCount && round(next*1e9) < round(obj.Config.DurationSeconds*1e9)
+                    obj.Scheduler.scheduleAt(next,@()obj.generate(flowIndex,ordinal+1));
+                end
+            end
+            index = obj.NodeIndex(flow.SourceId);
+            observe = @(destination)obj.Networks{index}.applicationState(destination);
+            draw = @()rand(obj.Streams.get(flow.SourceId,'traffic'));
+            [accepted,destination,admission] = generator.attempt(obj.Scheduler.Now,observe,draw);
+            if ~accepted
+                obj.recordAdmission(admission);
+                return
+            end
+            flow.DestinationId = destination;
             app = csr.packet(obj.NextApplicationId,flow,obj.Scheduler.Now,obj.Config.Radio);
             app.FlowIndex = flowIndex; app.FlowOrdinal = ordinal;
             app.HopCount = 0; app.Traversal = app.SourceId; app.Dscp = flow.Dscp;
             app.AckRequired = flow.AckRequired;
             obj.NextApplicationId = obj.NextApplicationId + uint64(1);
             obj.Counters.Generated = obj.Counters.Generated + 1;
-            index = obj.NodeIndex(app.SourceId);
+            admission.PacketId = app.Id;
+            if historical, obj.recordAdmission(admission); end
             obj.Nodes{index}.Generated = obj.Nodes{index}.Generated + 1;
             obj.Records(obj.key(app)) = struct('App',app,'Status','pending', ...
                 'CustodyNodeId',app.SourceId,'CustodyHopCount',0,'DropNodeId',0,'DropReason','', ...
@@ -255,9 +325,23 @@ classdef NetworkSimulation < handle
             obj.record('app_generate',app,app.SourceId,app.DestinationId,'',struct());
             obj.Networks{index}.sendApplication(app);
             next = flow.StartSeconds + ordinal*flow.IntervalSeconds;
-            if ordinal < flow.PacketCount && next <= obj.Config.DurationSeconds
+            if ~historical && ordinal < flow.PacketCount && next <= obj.Config.DurationSeconds
                 obj.Scheduler.scheduleAt(next,@()obj.generate(flowIndex,ordinal+1));
             end
+        end
+
+        function recordAdmission(obj,row)
+            if isa(obj.LinkObserver,'csr.sim.AckServiceDiagnostics')
+                obj.LinkObserver.observeAdmission(row);
+            end
+            if ~obj.Config.Trace.Enabled, return; end
+            if obj.AdmissionCount >= numel(obj.AdmissionRows)
+                obj.Counters.OmittedApplicationAdmissionRecords = ...
+                    obj.Counters.OmittedApplicationAdmissionRecords+1;
+                return
+            end
+            obj.AdmissionCount = obj.AdmissionCount+1;
+            obj.AdmissionRows(obj.AdmissionCount) = row;
         end
 
         function accepted = receiveData(obj,nodeId,app,previousHop)
@@ -379,6 +463,9 @@ classdef NetworkSimulation < handle
                 end
             end
             obj.record('tx_start',frame,frame.SourceId,frame.DestinationId,'',struct());
+            if ~isempty(obj.LinkObserver)
+                obj.LinkObserver.observeTransmission(obj.Scheduler.Now,frame);
+            end
             obj.Engine.transmit(frame,duration);
         end
 
@@ -391,10 +478,28 @@ classdef NetworkSimulation < handle
 
         function accepted = enqueueMac(obj,nodeId,frame)
             index = obj.NodeIndex(nodeId);
-            if isempty(frame.TxPowerDbm)
+            obj.refreshHistoricalPopulation(index);
+            powerDefaulted = isempty(frame.TxPowerDbm);
+            if powerDefaulted
                 frame.TxPowerDbm = obj.Config.Nodes(index).RadioProfile.TxPowerDbm;
             end
+            observe = ~isempty(obj.LinkObserver) && any(strcmp(frame.Kind,{'ACK','DACK'}));
+            if observe, obj.FeedbackQueueEvent = ''; end
             accepted = obj.Macs{index}.enqueue(frame);
+            if observe
+                failures = NaN;
+                % This accessor copies existing NWK entries only. It does
+                % not call HOP state/admission accessors that create peers.
+                peers = obj.Networks{index}.neighborsSnapshot();
+                if ~isempty(peers)
+                    peerIndex = find([peers.PeerId]==frame.DestinationId,1);
+                    if ~isempty(peerIndex), failures = peers(peerIndex).Failures; end
+                end
+                obj.LinkObserver.observeDecision(obj.Scheduler.Now,frame, ...
+                    obj.FeedbackContext,obj.Config.Nodes(index).RadioProfile.TxPowerDbm, ...
+                    powerDefaulted,accepted,obj.FeedbackQueueEvent,failures);
+                obj.FeedbackQueueEvent = '';
+            end
         end
 
         function receive(obj,frame,nodeId,decision)
@@ -428,21 +533,38 @@ classdef NetworkSimulation < handle
             end
             index = obj.NodeIndex(nodeId);
             members = obj.members(frame);
-            % Legacy SNMP bypasses NWK neighbor observation. Other decoded
-            % members, including feedback and overheard traffic, still refresh.
+            % Passive HOP radio measurements are distinct from NWK liveness.
+            % DATA, ACK and overheard frames update radio metrics without
+            % postponing the neighbor freshness deadline. Legacy SNMP skips
+            % even this passive observation.
             isSnmp=cellfun(@(member)strcmp(member.Kind,'CONTROL') && ...
                 any(strcmp(member.Control.Type,{'SNMP_START','SNMP_DONE'})),members);
-            if any(~isSnmp), obj.Networks{index}.observe(frame.SourceId,decision); end
+            if any(~isSnmp), obj.Networks{index}.observeRadio(frame.SourceId,decision); end
             obj.Macs{index}.receive(frame,decision);
             addressed = false;
             for k = 1:numel(members)
                 member = members{k};
                 if obj.addressedTo(member,nodeId)
                     addressed = true;
+                    if ~isempty(obj.LinkObserver)
+                        obj.FeedbackContext = struct('Frame',member, ...
+                            'AggregateId',frame.Id,'Decision',decision,'NodeId',nodeId);
+                    end
                     obj.Hops{index}.receive(member,decision);
+                    if ~isempty(obj.LinkObserver), obj.FeedbackContext = []; end
+                    obj.refreshHistoricalPopulation(index);
                 end
             end
             if ~addressed, obj.Counters.Overheard = obj.Counters.Overheard+1; end
+        end
+
+        function refreshHistoricalPopulation(obj,index)
+            if ~strcmp(obj.Config.ApplicationGenerator,'historical-opnet-gated'), return; end
+            % Pinned GetActiveNodeCount includes persistent direct NWK peers
+            % with a qualifying last-heard marker, including stale peers. It
+            % excludes transitive routes and passive DATA/ACK observations.
+            state = obj.Networks{index}.applicationState();
+            obj.Macs{index}.setActiveNodes(state.ActiveNodeCount);
         end
 
         function dropped = forceDrop(obj,frame,nodeId)
@@ -504,7 +626,56 @@ classdef NetworkSimulation < handle
             obj.protocolEvent(nodeId,event,frame,details);
         end
 
+        function removed = cancelMacObserved(obj,nodeId,peer,sequence)
+            mac=obj.Macs{obj.NodeIndex(nodeId)};
+            observe=obj.cancellationInWindow();
+            if observe
+                obj.LinkObserver.observeCancellation(obj.Scheduler.Now,nodeId,'mac_cancel_before', ...
+                    peer,sequence,'',NaN,obj.cancellationSnapshot(mac));
+            end
+            removed=mac.cancel(peer,sequence);
+            if observe
+                obj.LinkObserver.observeCancellation(obj.Scheduler.Now,nodeId,'mac_cancel_after', ...
+                    peer,sequence,'',removed,obj.cancellationSnapshot(mac));
+            end
+        end
+
+        function removed = cancelMacControlObserved(obj,nodeId,peer,type)
+            mac=obj.Macs{obj.NodeIndex(nodeId)};
+            observe=obj.cancellationInWindow();
+            if observe
+                obj.LinkObserver.observeCancellation(obj.Scheduler.Now,nodeId,'mac_control_cancel_before', ...
+                    peer,NaN,type,NaN,obj.cancellationSnapshot(mac));
+            end
+            removed=mac.cancelControl(peer,type);
+            if observe
+                obj.LinkObserver.observeCancellation(obj.Scheduler.Now,nodeId,'mac_control_cancel_after', ...
+                    peer,NaN,type,removed,obj.cancellationSnapshot(mac));
+            end
+        end
+
+        function inside = cancellationInWindow(obj)
+            window=obj.LinkObserver.WindowSeconds;
+            inside=obj.Scheduler.Now>=window(1) && obj.Scheduler.Now<window(2);
+        end
+
+        function details = cancellationSnapshot(~,mac)
+            % These six public scalar reads have no side effects. In
+            % particular, the queue-count getters only return numel(queue).
+            details=struct('State',mac.State,'PreparationActive',mac.PreparationActive, ...
+                'ReservationSlot',mac.ReservationSlot,'ReservationCounter',mac.ReservationCounter, ...
+                'DataDepth',mac.DataQueueCount,'AckDepth',mac.AckQueueCount);
+        end
+
         function protocolEvent(obj,nodeId,event,frame,details)
+            if isa(obj.LinkObserver,'csr.sim.AckServiceDiagnostics')
+                obj.LinkObserver.observeService(obj.Scheduler.Now,nodeId,event,frame,details);
+            end
+            if ~isempty(obj.LinkObserver) && ...
+                    any(strcmp(obj.fieldOr(frame,'Kind',''),{'ACK','DACK'})) && ...
+                    any(strcmp(event,{'mac_enqueue','mac_ack_replace','mac_queue_drop'}))
+                obj.FeedbackQueueEvent = char(event);
+            end
             peer = obj.fieldOr(frame,'DestinationId',0);
             if contains(event,'receive') || any(strcmp(event,{'hop_no_route','hop_custody_refused'}))
                 peer = obj.fieldOr(frame,'SourceId',0);

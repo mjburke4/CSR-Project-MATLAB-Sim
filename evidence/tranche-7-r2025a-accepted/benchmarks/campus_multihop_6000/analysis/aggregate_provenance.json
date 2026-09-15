@@ -1,0 +1,85 @@
+{
+  "schema": "csr-benchmark-source-provenance-v1",
+  "output_schema": "csr-aggregate-series-v1",
+  "source": "matlab",
+  "scenario": "blue_radio_campus-multihop",
+  "scenario_sha256": "90b143d93c13c6c2761bc5f2875ccc3fff98f85af6f2550370e435df2aaabcfc",
+  "profile_id": "hist-adb97c54-bare",
+  "window": {
+    "start_time_s": 0,
+    "stop_time_s": 6000,
+    "bucket_width_s": 60,
+    "bucket_count": 100,
+    "timestamp": "bucket_end",
+    "start_endpoint": "inclusive",
+    "stop_endpoint": "exclusive",
+    "interval": "[previous_bucket_end,bucket_end); t=0 included, t=stop excluded",
+    "boundary_quotient_absolute_tolerance": 1E-12
+  },
+  "source_file": "raw/protocol_trace.csv",
+  "source_file_sha256": "0c4d1fd04279faf1e2a7afe2bcf4507bd7f97395a905fce3cd757a00dfecd6ce",
+  "source_snapshot_sha256": "b2139677d30438b0e9479566a7508ea29465aeb94a0ff532f9d1a1ace4ac14d6",
+  "ns3_reference_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "application_accounting": {
+    "generated": 12382,
+    "received": 11727,
+    "dropped": 401,
+    "pending": 254,
+    "in_window_sent": 12382,
+    "in_window_received": 11727,
+    "excluded_at_stop_sent": 0,
+    "excluded_at_stop_received": 0,
+    "excluded_after_stop_sent": 0,
+    "excluded_after_stop_received": 0,
+    "delay_matching": "Exact MATLAB application ID; validated final destination, size, DSCP and generation time",
+    "delivery_semantics": "Unique final-destination applications; ns-3 source-proved repeated delivery rows can differ"
+  },
+  "application_size_semantics": {
+    "payload_field": "ProtocolTrace.ApplicationBytes",
+    "network_header_bytes": 7,
+    "derived_bits": "8 * (ApplicationBytes + 7)",
+    "legacy_trace_size_exclusion_bits": 0,
+    "importer_exclusion": "Legacy configured bytes minus 8 br_app bytes minus 7 NWK header bytes gives payload"
+  },
+  "missing_sample_mean_bucket_ends_s": {
+    "packet_size": [
+      60,
+      120,
+      180,
+      240,
+      300
+    ],
+    "end_to_end_delay": [
+      60,
+      120,
+      180,
+      240,
+      300
+    ]
+  },
+  "mean_definitions": {
+    "reported_bucket_mean": "Arithmetic mean of observed bucket means; not a packet-weighted mean",
+    "delay_bucket": "Arithmetic mean of final-delivery latencies received in the bucket",
+    "packet_size_bucket": "Arithmetic mean of modeled br_Network bits generated in the bucket"
+  },
+  "semantic_limits": [
+    "Aggregate observations do not establish OPNET packet/event equivalence.",
+    "Different seeds, generators, MAC/envelope profiles or observation windows must not be silently compared.",
+    "PHY/ECC and queue sample statistics are unavailable from these application observations.",
+    "Missing sample means remain empty and do not become zero."
+  ],
+  "application_admission": {
+    "Attempts": 1.71E+6,
+    "Admitted": 12382,
+    "BlockedDiscovery": 0,
+    "BlockedTopology": 0,
+    "BlockedGatewayRoute": 0,
+    "BlockedDestination": 0,
+    "BlockedNsdp": 1.697618E+6,
+    "Semantics": "Generator attempts include pre-creation gate blocks; traffic-sent series counts admitted app_generate only"
+  },
+  "output": {
+    "path": "analysis/aggregates.csv",
+    "sha256": "b950a46163a402c2506307363088c68d14ddd6ea193a4a70657c8ca431f7f66d"
+  }
+}

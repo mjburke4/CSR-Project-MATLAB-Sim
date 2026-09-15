@@ -1,0 +1,73 @@
+{
+  "schema": "csr-tranche7-independent-final-gate-v1",
+  "reviewed_utc": "2026-09-10T16:12:27.217475+00:00",
+  "status": "approved_for_finalization",
+  "blockers": [],
+  "candidate_commit": "28ed878f5673e308047cbea7878b933697d932f3",
+  "reviewed_files": [
+    {
+      "path": "docs/tranche-7-portable-acceptance.md",
+      "sha256": "8c15142476eff24a0322606646b69a9d4fd407bc262720a78ab76445b62ac266"
+    },
+    {
+      "path": "evidence/tranche-7-portable-acceptance.json",
+      "sha256": "2619989f391b73ced583dab775a877f48f5085cbc970c1561878c25c66c92d68"
+    },
+    {
+      "path": "README.md",
+      "sha256": "fe8ba80694f5733748cb7c6b59012e56e39e7575f2d9aa62ddebeb139006bd3b"
+    },
+    {
+      "path": "docs/tranche-7-handoff.md",
+      "sha256": "fddccc2e570af3319a443c86f03f78d4ecdc2203fba013c43e25aa2c140775b1"
+    },
+    {
+      "path": "docs/tranche-7-validation.md",
+      "sha256": "245f4a512148ae65d13d953bf603a40128ea3b00710f4f0b5022501e345d4dc3"
+    },
+    {
+      "path": "docs/parity-ledger.csv",
+      "sha256": "709a3bcbe7f8ed2362371b20a5703d5c4747760c7f11ede31c43767e7300a98c"
+    },
+    {
+      "path": "evidence/source-baseline.json",
+      "sha256": "d39cf75eaf1a900678bea794b15331e88bc4e39dc9c835a1cac3ef4e8353f5ee"
+    }
+  ],
+  "reviewed_revision_boundary": "Hashes identify the pre-finalization documents. At review time the acceptance JSON intentionally had independent_gate=pending_final_document_review and an empty evidence_artifacts list; the root agent is authorized to finalize those fields and their artifact bindings without changing the accepted scientific scope.",
+  "verified": {
+    "matlab_code_files_unchanged": 103,
+    "candidate_python_files_unchanged": 23,
+    "reference_files_unchanged": 50,
+    "bound_source_changes": [
+      "evidence/source-baseline.json"
+    ],
+    "selected_return_files_byte_identical": 65,
+    "archive_copy_byte_identical": true,
+    "candidate_tree_verified": "aa4fde3b8cdc3e98a70a7df3a7b10ceb4c1d4226",
+    "reported_matlab_application_counts_runtimes_quantiles_and_physical_counts_match_return": true,
+    "source_baseline_acceptance_pointer_correct": true,
+    "parity_ledger_rectangular": true,
+    "retained_t6_sweep_and_raw_statistics_equal": true,
+    "independent_outcomes_support_reported_benchmark_comparisons": true
+  },
+  "disposition_review": {
+    "portable_R2025a_seed128_scope_explicit": true,
+    "numeric_full_protocol_multiseed_equivalence_not_claimed": true,
+    "OPNET_archive_vs_execution_distinction_explicit": true,
+    "finite_stop_pending_and_retry_drops_explicit": true,
+    "admission_trace_cap_and_no_protocol_PHY_truncation_explicit": true,
+    "bucket_mean_vs_packet_weighted_latency_distinction_explicit": true,
+    "per_flow_residuals_and_unproven_causality_explicit": true,
+    "MAC_feedback_queue_observability_limit_explicit": true,
+    "R2026a_native_and_outage_boundaries_preserved": true,
+    "new_behavior_changes_deferred_to_next_milestone": true
+  },
+  "required_finalization": [
+    "Set the acceptance JSON independent gate status to passed/approved and bind this final gate report.",
+    "Populate and verify the evidence_artifacts hash inventory after copying final independent reports.",
+    "Preserve the original returned ZIP, candidate MATLAB/Python/reference bytes, and the accepted scope during finalization."
+  ],
+  "numerical_parity_established": false,
+  "reviewer_modified_candidate_files": false
+}

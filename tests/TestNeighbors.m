@@ -89,6 +89,107 @@ classdef TestNeighbors < matlab.unittest.TestCase
             h.Clock.run(19); sent=h.Sent('KEY_REQUEST'); test.verifyEqual([sent.Time],[0 5 14 19]);
             state=h.Neighbors.snapshot(); test.verifyEqual(state.Peers.KeyRequestDelay,10);
         end
+        function fractionalDiscoverKeyRequestRetriesAtItsScheduledDeadline(test)
+            % A received DISCOVER at a real fractional time used to exhaust
+            % this small cap by rearming the retry at the same instant.
+            for delay=[5 0.1 0.2]
+                h=neighborHarness(struct('AdmissionRetrySeconds',delay),16);
+                started=11.013; deadline=started+delay;
+                test.assertLessThan(deadline-started,delay);
+                h.Clock.run(started);
+                h.Neighbors.receiveControl('DISCOVER',2,discover(1));
+                test.verifyEqual(h.Clock.nextTime(),deadline);
+                h.Clock.run(deadline-1e-9);
+                test.verifyNumElements(h.Sent('KEY_REQUEST'),1);
+                h.Clock.run(deadline);
+                sent=h.Sent('KEY_REQUEST'); test.assertNumElements(sent,2);
+                test.verifyEqual([sent.Time],[started deadline]);
+                test.verifyFalse(any([sent.Reliable]));
+                test.verifyFalse(h.Neighbors.isActive(2));
+                state=h.Neighbors.snapshot();
+                test.verifyEqual(state.Peers.KeyRequestDelay,2*delay);
+                test.verifyEqual(h.Clock.PendingCount,1);
+                test.verifyEqual(h.Clock.nextTime(),deadline+2*delay);
+            end
+        end
+        function fractionalRejectedKeyUpdateRetriesAtItsScheduledDeadline(test)
+            for delay=[5 0.1]
+                h=neighborHarness(struct('AdmissionRetrySeconds',delay),16);
+                started=11.013; deadline=started+delay;
+                h.Clock.run(started); h.SetAccept(false);
+                h.Neighbors.receiveControl('KEY_UPDATE',2,struct());
+                h.Clock.run(deadline-1e-9);
+                test.verifyNumElements(h.Sent('KEY_UPDATE'),1);
+                h.Clock.run(deadline);
+                sent=h.Sent('KEY_UPDATE'); test.assertNumElements(sent,2);
+                test.verifyEqual([sent.Time],[started deadline]);
+                test.verifyTrue(all([sent.Reliable]));
+                state=h.Neighbors.snapshot();
+                test.verifyTrue(state.Peers.ReceivedKey);
+                test.verifyFalse(state.Peers.SentKey || state.Peers.KeySendActive);
+                test.verifyFalse(h.Neighbors.isActive(2));
+                test.verifyEqual(state.Peers.KeySendDelay,2*delay);
+                test.verifyEqual(h.Clock.PendingCount,1);
+                test.verifyEqual(h.Clock.nextTime(),deadline+2*delay);
+            end
+        end
+        function fractionalInFlightKeyUpdateKeepsCompletionOwnership(test)
+            h=neighborHarness(struct(),16); started=11.013;
+            h.Clock.run(started);
+            h.Neighbors.receiveControl('KEY_UPDATE',2,struct());
+            % Reaching the deadline does not synthesize a failed transport
+            % completion or enqueue a duplicate while the first is active.
+            h.Clock.run(started+10);
+            sent=h.Sent('KEY_UPDATE'); test.assertNumElements(sent,1);
+            state=h.Neighbors.snapshot();
+            test.verifyTrue(state.Peers.KeySendActive);
+            test.verifyFalse(state.Peers.SentKey);
+            h.Neighbors.controlCompleted('KEY_UPDATE',2,sent.Payload,false);
+            sent=h.Sent('KEY_UPDATE'); test.assertNumElements(sent,2);
+            test.verifyEqual(sent(2).Time,started+10);
+            state=h.Neighbors.snapshot();
+            test.verifyTrue(state.Peers.KeySendActive);
+            test.verifyFalse(state.Peers.SentKey);
+        end
+        function fractionalOverheardRetryAdvancesWithoutAdmittingPeer(test)
+            for delay=[5 0.1]
+                h=neighborHarness(struct('AdmissionRetrySeconds',delay),16);
+                started=11.013; deadline=started+2*delay;
+                test.assertLessThan(deadline-started,2*delay);
+                h.Clock.run(started);
+                h.Neighbors.receiveControl('KEY_UPDATE',2,struct());
+                keys=h.Sent('KEY_UPDATE');
+                h.Neighbors.controlCompleted('KEY_UPDATE',2,keys.Payload,true);
+                checks=h.Sent('NEIGHBOR_CHECK'); test.assertNumElements(checks,1);
+                test.verifyEqual(checks.Payload.Subtype,'overheard');
+                h.Neighbors.controlCompleted('NEIGHBOR_CHECK',2,checks.Payload,false);
+                h.Clock.run(deadline-1e-9);
+                test.verifyNumElements(h.Sent('NEIGHBOR_CHECK'),1);
+                h.Clock.run(deadline);
+                checks=h.Sent('NEIGHBOR_CHECK'); test.assertNumElements(checks,2);
+                test.verifyEqual([checks.Time],[started deadline]);
+                test.verifyEqual(checks(2).Payload.Subtype,'overheard');
+                test.verifyFalse(h.Neighbors.isActive(2));
+                state=h.Neighbors.snapshot();
+                test.verifyEqual(state.Peers.OverheardDelay,4*delay);
+                test.verifyEqual(h.Clock.PendingCount,1);
+                test.verifyEqual(h.Clock.nextTime(),deadline+4*delay);
+            end
+        end
+        function fractionalFailedDiscoveryCheckRetainsSequenceAndCadence(test)
+            h=neighborHarness(struct(),16); started=11.013; deadline=started+5;
+            h.Clock.run(started); admitKeys(h,2,9);
+            checks=h.Sent('NEIGHBOR_CHECK'); test.assertNumElements(checks,1);
+            h.Neighbors.controlCompleted('NEIGHBOR_CHECK',2,checks.Payload,false);
+            h.Clock.run(deadline-1e-9);
+            test.verifyNumElements(h.Sent('NEIGHBOR_CHECK'),1);
+            h.Clock.run(deadline);
+            checks=h.Sent('NEIGHBOR_CHECK'); test.assertNumElements(checks,2);
+            test.verifyEqual([checks.Time],[started deadline]);
+            test.verifyEqual(checks(2).Payload.Subtype,'discovery');
+            test.verifyEqual(checks(2).Payload.Sequence,uint32(9));
+            test.verifyFalse(h.Neighbors.isActive(2));
+        end
         function rejectedKeyUpdateCanRetryWithoutFakeAck(test)
             h=neighborHarness(); h.SetAccept(false);
             h.Neighbors.receiveControl('KEY_REQUEST',2,struct());
@@ -219,9 +320,10 @@ classdef TestNeighbors < matlab.unittest.TestCase
     end
 end
 
-function h = neighborHarness(options)
+function h = neighborHarness(options,maxEvents)
 if nargin<1, options=struct(); end
-scheduler=csr.sim.EventScheduler();
+if nargin<2, maxEvents=1000000; end
+scheduler=csr.sim.EventScheduler(maxEvents);
 sent=repmat(struct('Time',0,'Kind','','Peers',[],'Payload',struct(),'Reliable',false),0,1);
 changes=repmat(struct('Peer',0,'Active',false),0,1); done=0; accept=true;
 callbacks=struct('SendControl',@send,'NeighborChanged',@changed,'DiscoveryFinished',@finished);

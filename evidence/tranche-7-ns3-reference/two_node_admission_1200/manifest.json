@@ -1,0 +1,182 @@
+{
+  "schema": "csr-tranche7-benchmark-reference-case-v1",
+  "case_id": "two_node_admission_1200",
+  "status": "completed",
+  "started_utc": "2026-09-10T13:38:18.146993+00:00",
+  "case": {
+    "case_id": "two_node_admission_1200",
+    "scenario": "tranche7-two-node-admission",
+    "scenario_file": "scenarios/benchmarks/two_node_admission_1200.csv",
+    "scenario_sha256": "65ac85ca17e699a1b3220937b10c22ffd9e52ddd76f7b51717fb6ddd599b33e1",
+    "profile_id": "hist-adb97c54-bare",
+    "duration_s": 1200,
+    "seed": 128,
+    "bucket_width_s": 12,
+    "default": true,
+    "flow_limit": 0,
+    "reference_directory": "evidence/tranche-7-ns3-reference/two_node_admission_1200",
+    "historical_benchmark": true,
+    "opnet_available": false,
+    "compare_core_applications": true,
+    "source_kind": "synthetic_diagnostic",
+    "recipe_file": "scenarios/benchmarks/two_node_admission_1200.recipe.json"
+  },
+  "runner_sha256": "1dba24abff867499c695ed1e1bd4484e869370664ebff69d489c87069bc5ce75",
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "full_ns3_rebuild_performed": false,
+  "matlab_executed": false,
+  "opnet_executed": false,
+  "stages": {
+    "run_ns3": {
+      "command": [
+        "/workspace/scratch/1a5b1ad6ce1b/t7-ns3-build/csr-opnet-scenario-runner",
+        "--scenario=/workspace/scratch/1a5b1ad6ce1b/tranche7/scenarios/benchmarks/two_node_admission_1200.csv",
+        "--trace=/workspace/scratch/1a5b1ad6ce1b/t7-reference-live/two_node_admission_1200/ns3-trace.csv",
+        "--appDiagnostics=/workspace/scratch/1a5b1ad6ce1b/t7-reference-live/two_node_admission_1200/app-admission-diagnostics.csv",
+        "--stop=1200",
+        "--flowLimit=0",
+        "--dutyCycling=1",
+        "--opnetAlignedDutyCycle=1",
+        "--gatewayDiscovery=1",
+        "--opnetAppGating=1",
+        "--aggregateTraceOnly=1",
+        "--quietModelLogs=1"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 2.7332991540024523,
+      "log": "ns3-run.log"
+    },
+    "aggregate_ns3": {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-I",
+        "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/utils/aggregate-ns3-trace.py",
+        "/workspace/scratch/1a5b1ad6ce1b/t7-reference-live/two_node_admission_1200/ns3-trace.csv",
+        "/workspace/scratch/1a5b1ad6ce1b/t7-reference-live/two_node_admission_1200/ns3-aggregates.csv",
+        "--scenario",
+        "tranche7-two-node-admission",
+        "--bucket-width",
+        "12",
+        "--stop-time",
+        "1200",
+        "--legacy-trace-size-exclusion-bits",
+        "0",
+        "--require-zero-size-mismatches",
+        "--provenance",
+        "/workspace/scratch/1a5b1ad6ce1b/t7-reference-live/two_node_admission_1200/ns3-aggregates.provenance.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.21786375100055,
+      "log": "ns3-aggregate.log"
+    }
+  },
+  "compressed_artifacts": [
+    {
+      "original_name": "ns3-trace.csv",
+      "original_sha256": "1c350bb58552425b2a3eb90340c54f4cd0d39602466c3d85eaae291e19202c3e",
+      "original_bytes": 17163989,
+      "path": "ns3-trace.csv.gz",
+      "sha256": "e96afd49a84cb86ccc5fe05bfaecae097bec26d1bc39e7b4354afadda77905af",
+      "bytes": 1159937
+    }
+  ],
+  "application_admission_totals": {
+    "attempts": 45000,
+    "admitted": 11380,
+    "blocked_discovery": 0,
+    "blocked_topology": 0,
+    "blocked_gateway_route": 0,
+    "blocked_destination": 0,
+    "blocked_nsdp": 33620
+  },
+  "exact_sequence_validation": {
+    "matched_count": 11364,
+    "matched_by_method": {
+      "exact_sequence": 11364
+    },
+    "source_exact_dack_retry_duplicate_proof_count": 0,
+    "source_exact_dack_retry_duplicate_delivery_count": 0,
+    "unmatched_delivery_count": 0,
+    "matched_size_compared_count": 11364,
+    "matched_size_mismatch_count": 0
+  },
+  "normalized_sidecars": [
+    {
+      "schema": "csr-benchmark-source-provenance-v1",
+      "source": "ns3",
+      "scenario": "tranche7-two-node-admission",
+      "scenario_sha256": "65ac85ca17e699a1b3220937b10c22ffd9e52ddd76f7b51717fb6ddd599b33e1",
+      "profile_id": "hist-adb97c54-bare",
+      "source_file_sha256": "1c350bb58552425b2a3eb90340c54f4cd0d39602466c3d85eaae291e19202c3e",
+      "source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+      "window": {
+        "start_time_s": 0,
+        "stop_time_s": 1200,
+        "bucket_width_s": 12,
+        "bucket_count": 100,
+        "start_endpoint": "inclusive",
+        "stop_endpoint": "exclusive"
+      },
+      "output": {
+        "path": "ns3-aggregates.csv",
+        "sha256": "bcd16c7820b1e89beb79a9a42ec1e2c6c8f0648c9059ad3f9600b94bbdd2e90b"
+      },
+      "upstream_provenance": {
+        "path": "ns3-aggregates.provenance.json",
+        "sha256": "d5120be1113537705739615403833cec38c6e21040aa82eb92760d76f2cbd68d",
+        "bytes": 14673
+      },
+      "excluded_extra_statistics": [
+        "ECC.Traffic Dropped (packets/sec)",
+        "HOP.Resend Queue Size (packets)",
+        "MAC.ACK Queue Size (packets)",
+        "MAC.Tx Queue Size (packets)",
+        "MAC.Tx Queuing Delay (sec)",
+        "NWK.Network Queue Size (packets)",
+        "NWK.Network Queuing Delay (sec)"
+      ],
+      "opnet_runtime_executed": false,
+      "matlab_runtime_executed": false,
+      "source_kind": "synthetic_diagnostic"
+    }
+  ],
+  "completed_utc": "2026-09-10T13:38:22.856177+00:00",
+  "files": [
+    {
+      "path": "app-admission-diagnostics.csv",
+      "sha256": "0f7a109bbfcadca2d5c1a6a564d81f010e625590c6c3e279808409ea7cf019ca",
+      "bytes": 382
+    },
+    {
+      "path": "ns3-aggregate.log",
+      "sha256": "2c2122305c206766b049efd24d9d88eec284188ca906779c5d510e9c37d76960",
+      "bytes": 243
+    },
+    {
+      "path": "ns3-aggregates.csv",
+      "sha256": "bcd16c7820b1e89beb79a9a42ec1e2c6c8f0648c9059ad3f9600b94bbdd2e90b",
+      "bytes": 323786
+    },
+    {
+      "path": "ns3-aggregates.provenance.json",
+      "sha256": "d5120be1113537705739615403833cec38c6e21040aa82eb92760d76f2cbd68d",
+      "bytes": 14673
+    },
+    {
+      "path": "ns3-benchmark.provenance.json",
+      "sha256": "5698a574bea19c8e74a157a467c9974b3b7522969cd363860ce154c52ac9b969",
+      "bytes": 1311
+    },
+    {
+      "path": "ns3-run.log",
+      "sha256": "bd7d82a4f89dadce53b7e599958f601e76e54671b8312cb66733c660067dab22",
+      "bytes": 344
+    },
+    {
+      "path": "ns3-trace.csv.gz",
+      "sha256": "e96afd49a84cb86ccc5fe05bfaecae097bec26d1bc39e7b4354afadda77905af",
+      "bytes": 1159937
+    }
+  ]
+}

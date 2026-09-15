@@ -1,0 +1,119 @@
+{
+  "schema": "csr-tranche10-neighbor-retry-regression-review-v1",
+  "created_utc": "2026-09-14T12:54:38.800738+00:00",
+  "matlab_executed": false,
+  "tests_file": "tests/TestNeighbors.m",
+  "before_sha256": "e4d04b1a9860952c88601f805f4442a24ae3c1688bdacff11a6a581c6c6b3ad9",
+  "after_sha256": "75fe7378590f9e8f8b133c8c6ee50d6f35b13010a3d1bc2835a11e8361736052",
+  "matlab_static_lint": {
+    "command": "python3 -m miss_hit.mh_lint --brief tests/TestNeighbors.m",
+    "exit_code": 0,
+    "summary": "1 file analysed, everything seems fine"
+  },
+  "new_test_methods": [
+    "fractionalDiscoverKeyRequestRetriesAtItsScheduledDeadline",
+    "fractionalRejectedKeyUpdateRetriesAtItsScheduledDeadline",
+    "fractionalInFlightKeyUpdateKeepsCompletionOwnership",
+    "fractionalOverheardRetryAdvancesWithoutAdmittingPeer",
+    "fractionalFailedDiscoveryCheckRetainsSequenceAndCadence"
+  ],
+  "test_design": {
+    "public_api_only": true,
+    "per_run_event_cap": 16,
+    "old_gate_failure_expected": "csr:sim:EventLimitExceeded for affected retry tests",
+    "checks": [
+      "no send before stored deadline",
+      "one send exactly at deadline",
+      "exponential backoff preserved",
+      "single future retry maintained",
+      "no fabricated admission or key-send ACK",
+      "in-flight accepted KEY_UPDATE remains owned by transport completion",
+      "failed discovery response retains sequence and five-second cadence"
+    ]
+  },
+  "numeric_counterfactual_records": [
+    {
+      "gate": "key-request",
+      "start_seconds": 11.013,
+      "delay_seconds": 5.0,
+      "scheduled_deadline_repr": "16.012999999999998",
+      "elapsed_at_deadline_repr": "4.999999999999998",
+      "old_elapsed_gate_due": false,
+      "old_remaining_retry_delay": 0.0,
+      "old_next_retry_equals_now": true,
+      "absolute_deadline_gate_due": true
+    },
+    {
+      "gate": "key-request",
+      "start_seconds": 11.013,
+      "delay_seconds": 0.1,
+      "scheduled_deadline_repr": "11.113",
+      "elapsed_at_deadline_repr": "0.09999999999999964",
+      "old_elapsed_gate_due": false,
+      "old_remaining_retry_delay": 0.0,
+      "old_next_retry_equals_now": true,
+      "absolute_deadline_gate_due": true
+    },
+    {
+      "gate": "key-request",
+      "start_seconds": 11.013,
+      "delay_seconds": 0.2,
+      "scheduled_deadline_repr": "11.213",
+      "elapsed_at_deadline_repr": "0.1999999999999993",
+      "old_elapsed_gate_due": false,
+      "old_remaining_retry_delay": 0.0,
+      "old_next_retry_equals_now": true,
+      "absolute_deadline_gate_due": true
+    },
+    {
+      "gate": "key-update",
+      "start_seconds": 11.013,
+      "delay_seconds": 5.0,
+      "scheduled_deadline_repr": "16.012999999999998",
+      "elapsed_at_deadline_repr": "4.999999999999998",
+      "old_elapsed_gate_due": false,
+      "old_remaining_retry_delay": 0.0,
+      "old_next_retry_equals_now": true,
+      "absolute_deadline_gate_due": true
+    },
+    {
+      "gate": "key-update",
+      "start_seconds": 11.013,
+      "delay_seconds": 0.1,
+      "scheduled_deadline_repr": "11.113",
+      "elapsed_at_deadline_repr": "0.09999999999999964",
+      "old_elapsed_gate_due": false,
+      "old_remaining_retry_delay": 0.0,
+      "old_next_retry_equals_now": true,
+      "absolute_deadline_gate_due": true
+    },
+    {
+      "gate": "overheard",
+      "start_seconds": 11.013,
+      "delay_seconds": 10.0,
+      "scheduled_deadline_repr": "21.012999999999998",
+      "elapsed_at_deadline_repr": "9.999999999999998",
+      "old_elapsed_gate_due": false,
+      "old_remaining_retry_delay": 0.0,
+      "old_next_retry_equals_now": true,
+      "absolute_deadline_gate_due": true
+    },
+    {
+      "gate": "overheard",
+      "start_seconds": 11.013,
+      "delay_seconds": 0.2,
+      "scheduled_deadline_repr": "11.213",
+      "elapsed_at_deadline_repr": "0.1999999999999993",
+      "old_elapsed_gate_due": false,
+      "old_remaining_retry_delay": 0.0,
+      "old_next_retry_equals_now": true,
+      "absolute_deadline_gate_due": true
+    }
+  ],
+  "numeric_scope": "Python IEEE binary64 calculations independently establish the addition/subtraction contradiction, not execution of MATLAB or the full mesh.",
+  "production_source_changed": false,
+  "notes": [
+    "Restored source directory has no git metadata; patch compared against exact restored csr10.zip instead.",
+    "No execution claim until owner MATLAB run."
+  ]
+}

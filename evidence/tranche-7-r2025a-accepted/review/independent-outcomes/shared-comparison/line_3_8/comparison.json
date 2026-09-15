@@ -1,0 +1,47 @@
+{
+  "schema": "csr-matlab-ns3-application-comparison-v1",
+  "status": "application_match",
+  "evidence_valid": true,
+  "application_equal": true,
+  "full_protocol_parity": false,
+  "scenario": "line_3_8",
+  "identity": {
+    "scenario_sha256": "54a100716cd17dd858485a8fd9d816656d13be1a1ed278f397311c7f6198bc45",
+    "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+    "flow_limit": 3,
+    "application_profile": "current-send-only",
+    "mac_profile": "current-fine-free-slot",
+    "hop_security_profile": "production-pairwise16"
+  },
+  "generation_time_tolerance_seconds": 1e-06,
+  "matlab_manifest_sha256": "dd7d458ecfcda56cf168bccdfc693f34ce16a5a914caec69b2581c4a20aa7f21",
+  "ns3_manifest_sha256": "216b4800f26cae8fefc964b5037e754088adc26def0cedb60b42248cbcd4b5de",
+  "application_count_matlab": 3,
+  "application_count_ns3": 3,
+  "differences": [],
+  "flows": [
+    {
+      "source": 3,
+      "destination": 1,
+      "matlab_generated": 3,
+      "ns3_generated": 3,
+      "matlab_delivered": 3,
+      "ns3_delivered": 3,
+      "matlab_delivery_ratio": 1.0,
+      "ns3_delivery_ratio": 1.0,
+      "matlab_delivered_payload_bytes": 192,
+      "ns3_delivered_payload_bytes": 192,
+      "matlab_mean_latency_s": 1.3152333333393311,
+      "ns3_mean_latency_s": 1.4192333329999987,
+      "application_equal": true
+    }
+  ],
+  "limitations": [
+    "Application identities are aligned by source/destination generation ordinal; runtime IDs are not equated.",
+    "Payload conversion: ns-3 size_bytes minus 7; scenario flow_packet_bytes minus 15.",
+    "Latency differences are diagnostic and do not fail application equality.",
+    "Missing ns-3 delivery is not evidence of terminal application drop.",
+    "PHY/MAC/NWK timing, rates, control counts, RNG streams and security equivalence are not certified.",
+    "A matching application outcome does not establish OPNET or full network-level parity."
+  ]
+}

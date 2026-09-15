@@ -1,0 +1,88 @@
+{
+  "Schema": "csr-matlab-benchmark-plan-v1",
+  "Status": "planned-not-executed",
+  "SourceCommit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "CatalogSHA256": "62f129727536691f8ff59bbfe7f81192c192b9a3f05ce8c5b8abf468a5900721",
+  "CaseCount": 3,
+  "TotalSimulatedSeconds": 7560,
+  "Cases": [
+    {
+      "CaseId": "campus_multihop_6000",
+      "Scenario": "blue_radio_campus-multihop",
+      "ScenarioFile": "scenarios/benchmarks/campus_multihop_6000.csv",
+      "ScenarioSHA256": "90b143d93c13c6c2761bc5f2875ccc3fff98f85af6f2550370e435df2aaabcfc",
+      "ProfileId": "hist-adb97c54-bare",
+      "DurationSeconds": 6000,
+      "Seed": 128,
+      "BucketWidthSeconds": 60,
+      "SourceKind": "archived_opnet",
+      "OpnetAvailable": true,
+      "ReferenceDirectory": "evidence/tranche-7-ns3-reference/campus_multihop_6000"
+    },
+    {
+      "CaseId": "two_node_admission_1200",
+      "Scenario": "tranche7-two-node-admission",
+      "ScenarioFile": "scenarios/benchmarks/two_node_admission_1200.csv",
+      "ScenarioSHA256": "65ac85ca17e699a1b3220937b10c22ffd9e52ddd76f7b51717fb6ddd599b33e1",
+      "ProfileId": "hist-adb97c54-bare",
+      "DurationSeconds": 1200,
+      "Seed": 128,
+      "BucketWidthSeconds": 12,
+      "SourceKind": "synthetic_diagnostic",
+      "OpnetAvailable": false,
+      "ReferenceDirectory": "evidence/tranche-7-ns3-reference/two_node_admission_1200"
+    },
+    {
+      "CaseId": "three_node_contention_360",
+      "Scenario": "tranche7-three-node-contention",
+      "ScenarioFile": "scenarios/benchmarks/three_node_contention_360.csv",
+      "ScenarioSHA256": "1f4f8e626559a1f613c27233d5a113a2f5a460b4d5f5e6bbd2b5d4358b4fac8f",
+      "ProfileId": "hist-adb97c54-bare",
+      "DurationSeconds": 360,
+      "Seed": 128,
+      "BucketWidthSeconds": 3.6,
+      "SourceKind": "synthetic_diagnostic",
+      "OpnetAvailable": false,
+      "ReferenceDirectory": "evidence/tranche-7-ns3-reference/three_node_contention_360"
+    }
+  ],
+  "DefaultCases": [
+    "campus_multihop_6000",
+    "two_node_admission_1200",
+    "three_node_contention_360"
+  ],
+  "ApplicationCountsAreAdmittedOutcomes": true,
+  "NumericalParityEstablished": false,
+  "DeferredCases": [
+    {
+      "case_id": "two_node_latency_1200",
+      "reason": "Original coarse-inclusive MAC executable profile has no audited bare HOP-envelope tuple in the current source; synthetic campus-tuple admission test is a separate experiment."
+    },
+    {
+      "case_id": "visible_nodes_360",
+      "reason": "Original visible-node executable/application/MAC/HOP tuple has not been fully bound; no archived OPNET comparison substituted under a guessed tuple."
+    },
+    {
+      "case_id": "hidden_symmetrical_60000",
+      "scenario": "blue_radio_campus-hidden_nodes_symmetrical",
+      "scenario_file": "scenarios/benchmarks/hidden_symmetrical_60000.csv",
+      "scenario_sha256": "dab052197f36099293bcb4a59f6822eebf9b9be775b51a0a6593b7e0c75ea6ac",
+      "profile_id": "hist-dd3f38e8-bare",
+      "duration_s": 60000,
+      "seed": 128,
+      "bucket_width_s": 600,
+      "default": false,
+      "flow_limit": 0,
+      "reference_directory": "evidence/tranche-7-ns3-reference/hidden_symmetrical_60000",
+      "historical_benchmark": true,
+      "opnet_available": true,
+      "compare_core_applications": true,
+      "source_kind": "archived_opnet",
+      "opnet_ov_file": "evidence/tranche-7-benchmark-inputs/originals/blue_radio_campus.project/blue_radio_campus-hidden_nodes_symmetrical-DES-1.ov",
+      "probe_definition_file": "evidence/tranche-7-benchmark-inputs/originals/blue_radio_campus.project/blue_radio_campus-hidden_nodes_symmetrical.pb.m",
+      "opnet_source_file": "evidence/tranche-7-benchmark-inputs/originals/blue_radio_campus.project/blue_radio_campus-hidden_nodes_symmetrical.nt.m",
+      "reason": "Deferred: canonical gateway height100m differs from other nodes1m; per-node PHY height and full149.25-million-attempt budget require support before this benchmark is runnable.",
+      "runnable": false
+    }
+  ]
+}

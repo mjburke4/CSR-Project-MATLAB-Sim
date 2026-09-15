@@ -194,6 +194,8 @@ classdef Layer < handle
                 obj.Counters.MalformedControl=obj.Counters.MalformedControl+1; return
             end
             kind=upper(char(control.Type)); payload=control.Payload;
+            metrics=struct();
+            if isKey(obj.Metrics,double(peer)), metrics=obj.Metrics(double(peer)); end
             switch kind
                 case {'DISCOVER','KEY_REQUEST','KEY_UPDATE','NEIGHBOR_CHECK'}
                     if strcmp(kind,'NEIGHBOR_CHECK') && strcmpi(option(payload,'Subtype',''),'no_path')
@@ -212,12 +214,18 @@ classdef Layer < handle
                             ~ismember(peer,obj.AdmissionRequestPeers)
                         obj.AdmissionRequestPeers(end+1)=peer;
                     end
-                    obj.Neighbors.receiveControl(kind,peer,payload);
+                    obj.Neighbors.receiveControl(kind,peer,payload,metrics);
+                    if any(strcmp(kind,{'DISCOVER','NEIGHBOR_CHECK'})), obj.refreshLink(peer); end
                 case 'ROUTING'
-                    if ~obj.Neighbors.isActive(peer), obj.Neighbors.noteInactiveTraffic(peer); end
-                    if ~isfield(payload,'Bytes')
+                    if ~obj.validateControl(control,peer)
                         obj.Counters.MalformedControl=obj.Counters.MalformedControl+1; return
                     end
+                    % Each first accepted section reaches source ProcessHello,
+                    % even before a multi-section stream can be reassembled.
+                    % HOP filters malformed and duplicate controls before this
+                    % callback, so neither renews the NWK freshness deadline.
+                    obj.observe(peer,metrics);
+                    if ~obj.Neighbors.isActive(peer), obj.Neighbors.noteInactiveTraffic(peer); end
                     [complete,records,sequence]=obj.Reassembly.accept(peer,payload.Bytes);
                     if ~complete, return; end
                     obj.Counters.RoutingMessagesReceived=obj.Counters.RoutingMessagesReceived+1;
@@ -304,10 +312,21 @@ classdef Layer < handle
         end
 
         function observe(obj,peer,decision)
+            % Explicit NWK liveness observation, equivalent to a qualifying
+            % source ProcessHello path. Passive reception uses observeRadio.
             if peer==obj.NodeId || peer==16777215, return; end
             if isfield(decision,'Success') && ~decision.Success, return; end
             obj.Metrics(double(peer))=decision;
             obj.Neighbors.observe(peer,decision); obj.refreshLink(peer);
+        end
+
+        function observeRadio(obj,peer,decision)
+            % Source HOP UpdateNeighborHeard updates its radio table before
+            % address filtering. It neither creates a NWK neighbor nor
+            % refreshes NWK.lastHeardSec or the selected network route.
+            if peer==obj.NodeId || peer==16777215, return; end
+            if isfield(decision,'Success') && ~decision.Success, return; end
+            obj.Metrics(double(peer))=decision;
         end
 
         function available = routeAvailable(obj,app)
@@ -332,6 +351,38 @@ classdef Layer < handle
                 other=obj.Pending{index}.App;
                 count=count+double(other.SourceId==app.SourceId && other.DestinationId==app.DestinationId);
             end
+        end
+
+        function state = applicationState(obj,destination)
+            % Read-only source br_app observations. Persistent topology and
+            % destination populations are broader than currently usable routes.
+            % Gateway caching and admission decisions belong to the generator.
+            if nargin<2, destination=obj.NodeId; end
+            validateattributes(destination,{'numeric'}, ...
+                {'scalar','real','finite','integer','>=',0,'<=',16777215});
+            neighbors=obj.Neighbors.snapshot();
+            destinations=obj.Routes.applicationDestinationCandidates();
+            if isempty(destinations) && ~isempty(neighbors.Peers)
+                % Source m_nwkNeighbors is a std::map keyed by node ID.
+                destinations=sort([neighbors.Peers.Id]);
+                destinations=destinations(destinations~=obj.NodeId);
+            end
+            waiting=0;
+            for index=1:numel(obj.Pending)
+                waiting=waiting+double(~obj.Pending{index}.Submitted);
+            end
+            pair=struct('SourceId',obj.NodeId,'DestinationId',double(destination));
+            state=struct('DiscoveryActive',strcmp(obj.Neighbors.DiscoveryState,'active'), ...
+                'TopologyKnown',~isempty(obj.Routes.Candidates) || ~isempty(neighbors.Peers), ...
+                'GatewayId',obj.Routes.applicationGateway(), ...
+                'DestinationCandidates',reshape(destinations,1,[]), ...
+                'NsdpCount',obj.nsdpCount(pair),'NsdpLimit',16, ...
+                'NwkQueueSize',waiting,'PendingCustody',numel(obj.Pending), ...
+                'ActiveNodeCount',1+sum([neighbors.Peers.LastHeardSeconds]>=0));
+            % Source m_nwkQueue drops an item at HOP handoff. MATLAB keeps its
+            % Submitted custody owner until feedback; do not count that owner
+            % as a still-queued NWK item. Direct-peer population includes stale
+            % or inactive entries that retain a qualifying last-heard marker.
         end
 
         function release(obj,app,reason)

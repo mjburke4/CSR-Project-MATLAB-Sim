@@ -1,0 +1,4197 @@
+{
+  "schema": "csr-matlab-tranche-8-return-review-v1",
+  "status": "structural_review_completed",
+  "evidence_integrity_verified": true,
+  "default_structural_gate_completed": true,
+  "diagnostic_only": false,
+  "matlab_runtime": {
+    "Runtime": "MATLAB",
+    "Version": "25.1.0.2943329 (R2025a)",
+    "Release": "2025a",
+    "HasWirelessNetworkSimulator": false,
+    "HasWnetNode": false,
+    "HasWirelessPacket": false,
+    "DefaultBackend": "portable",
+    "WirelessAdapterImplemented": true,
+    "WirelessAdapterScope": "Optional R2026a wireless-clock candidate; runtime validation pending",
+    "NativePacketTransportIntegrated": false,
+    "ProbeScope": "Symbol discovery only; licenses and execution are not validated."
+  },
+  "tests": {
+    "status": "passed",
+    "requested": true,
+    "count": 485,
+    "scope": "Candidate portable unit tests; no retained scenario/sweep or campus rerun."
+  },
+  "source_files_verified": 189,
+  "source_snapshot_sha256": "9bf7f657c08826ab1b502c7ef919b1dbca95dfa815636e69b4b088d82d4a64c7",
+  "metadata_sha256": "815eaf4864c7db275131aac05bf9a121c629ee368ede115841604a8b5e444b1d",
+  "reference_files_verified": 192,
+  "cases": [
+    {
+      "case_id": "two_node_admission_1200_s128",
+      "counts": {
+        "Generated": 11395,
+        "Received": 11385,
+        "Dropped": 0,
+        "Pending": 10
+      },
+      "admission": {
+        "attempts": 45000,
+        "admitted": 11395,
+        "blocked": 33605,
+        "trace_records": 45000,
+        "omitted_trace_records": 0,
+        "flows": [
+          {
+            "flow_index": 1,
+            "source": 2,
+            "configured_destination": 1,
+            "attempts": 45000,
+            "admitted": 11395,
+            "delivered": 11385,
+            "made_progress": true
+          }
+        ],
+        "all_flows_made_progress": true
+      },
+      "data_drained": false,
+      "controls_drained": true,
+      "base_case_id": "two_node_admission_1200",
+      "seed": 128,
+      "matlab_applications": {
+        "simulator": "matlab",
+        "case_id": "two_node_admission_1200_s128",
+        "base_case_id": "two_node_admission_1200",
+        "seed": 128,
+        "duration_s": 1200.0,
+        "attempts": 45000,
+        "admitted": 11395,
+        "admission_blocked": 33605,
+        "delivered": 11385,
+        "delivered_unique": 11385,
+        "duplicate_delivery_events": 0,
+        "unmatched_sends": 10,
+        "explicit_drops": 0,
+        "pending": 10,
+        "drop_reasons": {},
+        "network_bytes_sent": 6745840,
+        "network_bytes_received": 6739920,
+        "delay_samples": 11385,
+        "delay_sum_s": 10675.966402238737,
+        "mean_packet_latency_s": 0.9377221258005038,
+        "max_packet_latency_s": 4.748723999991,
+        "populated_delay_buckets": 75,
+        "bucket_latency_mean_sum_s": 70.6942095044377,
+        "mean_populated_bucket_latency_s": 0.9425894600591692,
+        "received_packet_rate_over_full_window": 9.4875,
+        "flows": [
+          {
+            "source": 2,
+            "destination": 1,
+            "admitted": 11395,
+            "delivered": 11385,
+            "delivered_unique": 11385,
+            "delay_sum_s": 10675.966402238582,
+            "delay_samples": 11385,
+            "mean_packet_latency_s": 0.9377221258004903,
+            "unmatched_sends": 10
+          }
+        ]
+      },
+      "ns3_applications": {
+        "simulator": "ns3",
+        "case_id": "two_node_admission_1200_s128",
+        "base_case_id": "two_node_admission_1200",
+        "seed": 128,
+        "duration_s": 1200.0,
+        "attempts": 45000,
+        "admitted": 11380,
+        "admission_blocked": 33620,
+        "delivered": 11364,
+        "delivered_unique": 11364,
+        "duplicate_delivery_events": 0,
+        "unmatched_sends": 16,
+        "explicit_drops": null,
+        "pending": null,
+        "drop_reasons": null,
+        "network_bytes_sent": 6736960,
+        "network_bytes_received": 6727488,
+        "delay_samples": 11364,
+        "delay_sum_s": 10713.633955999989,
+        "mean_packet_latency_s": 0.942769619500175,
+        "max_packet_latency_s": 4.293724000000054,
+        "populated_delay_buckets": 75,
+        "bucket_latency_mean_sum_s": 71.0633120269368,
+        "mean_populated_bucket_latency_s": 0.947510827025824,
+        "received_packet_rate_over_full_window": 9.47,
+        "flows": [
+          {
+            "source": 2,
+            "destination": 1,
+            "admitted": 11380,
+            "delivered": 11364,
+            "delivered_unique": 11364,
+            "delay_sum_s": 10713.633955999843,
+            "delay_samples": 11364,
+            "mean_packet_latency_s": 0.9427696195001622,
+            "unmatched_sends": 16
+          }
+        ]
+      },
+      "matlab_feedback": {
+        "decision_count": 11399,
+        "actual_feedback_member_count": 2066,
+        "distinct_decisions_transmitted": 1397,
+        "decisions_not_transmitted": 10002,
+        "queue_dispositions": {
+          "enqueued": 18,
+          "replaced": 11381
+        },
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 5
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 11394
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 25
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 2041
+          }
+        ],
+        "actual_vs_selected_rate_change_count": 0,
+        "actual_vs_selected_power_change_count": 0,
+        "incoming_context_missing_count": 0,
+        "feedback_forms": [
+          {
+            "feedback_form": "exact_sequence",
+            "selection_count": 14,
+            "ota_feedback_member_count": 70,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 5
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 9
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 25
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 45
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 0,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": null,
+            "last_radio_override_time_s": null
+          },
+          {
+            "feedback_form": "cumulative_window",
+            "selection_count": 11385,
+            "ota_feedback_member_count": 1996,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 11385
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 1996
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 0,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": null,
+            "last_radio_override_time_s": null
+          }
+        ],
+        "peer_s0_dbm": null,
+        "hop_failure_count": null,
+        "scope": "Selections are MAC-admission observations; actual rows count transmitted members including repeats. Replaced/rejected/retained-duplicate decisions may never transmit."
+      },
+      "ns3_feedback": {
+        "rows": 24797,
+        "selection_count": 11379,
+        "ordinary_data_context_count": 11364,
+        "ota_feedback_member_count": 2054,
+        "ota_aggregates_containing_feedback": 2018,
+        "distinct_decisions_transmitted": 1414,
+        "actual_vs_selected_rate_change_count": 1,
+        "actual_vs_selected_power_change_count": 0,
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 11379
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 1
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 2053
+          }
+        ],
+        "incoming_vs_selected_rate_difference_count": 0,
+        "incoming_vs_selected_power_difference_count": 0,
+        "incoming_context_missing_count": 15,
+        "feedback_forms": [
+          {
+            "feedback_form": "exact_sequence",
+            "selection_count": 15,
+            "ota_feedback_member_count": 75,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 15
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 1
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 74
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 1,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": 25.545,
+            "last_radio_override_time_s": 25.545
+          },
+          {
+            "feedback_form": "cumulative_window",
+            "selection_count": 11364,
+            "ota_feedback_member_count": 1979,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 11364
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 1979
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 0,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": null,
+            "last_radio_override_time_s": null
+          }
+        ],
+        "nonperturbation": {
+          "observer_on_off_application_evidence_equal": true,
+          "pristine_runner_and_t7_anchor_checked": true,
+          "scope": "Complete application trace and admission records; no claim that all ns-3 internal state was separately serialized."
+        },
+        "scope": "Selection is feedback construction after ApplyLinkControl, not successful MAC admission; OTA rows count actual members including repeats. Control-exact incoming context is unavailable."
+      }
+    },
+    {
+      "case_id": "three_node_contention_360_s128",
+      "counts": {
+        "Generated": 954,
+        "Received": 928,
+        "Dropped": 0,
+        "Pending": 26
+      },
+      "admission": {
+        "attempts": 60000,
+        "admitted": 954,
+        "blocked": 59046,
+        "trace_records": 60000,
+        "omitted_trace_records": 0,
+        "flows": [
+          {
+            "flow_index": 1,
+            "source": 2,
+            "configured_destination": 1,
+            "attempts": 30000,
+            "admitted": 493,
+            "delivered": 477,
+            "made_progress": true
+          },
+          {
+            "flow_index": 2,
+            "source": 3,
+            "configured_destination": 1,
+            "attempts": 30000,
+            "admitted": 461,
+            "delivered": 451,
+            "made_progress": true
+          }
+        ],
+        "all_flows_made_progress": true
+      },
+      "data_drained": false,
+      "controls_drained": true,
+      "base_case_id": "three_node_contention_360",
+      "seed": 128,
+      "matlab_applications": {
+        "simulator": "matlab",
+        "case_id": "three_node_contention_360_s128",
+        "base_case_id": "three_node_contention_360",
+        "seed": 128,
+        "duration_s": 360.0,
+        "attempts": 60000,
+        "admitted": 954,
+        "admission_blocked": 59046,
+        "delivered": 928,
+        "delivered_unique": 928,
+        "duplicate_delivery_events": 0,
+        "unmatched_sends": 26,
+        "explicit_drops": 0,
+        "pending": 26,
+        "drop_reasons": {},
+        "network_bytes_sent": 564768,
+        "network_bytes_received": 549376,
+        "delay_samples": 928,
+        "delay_sum_s": 1522.5430319468842,
+        "mean_packet_latency_s": 1.6406713706324183,
+        "max_packet_latency_s": 6.766723999988017,
+        "populated_delay_buckets": 17,
+        "bucket_latency_mean_sum_s": 29.35942332259922,
+        "mean_populated_bucket_latency_s": 1.727024901329366,
+        "received_packet_rate_over_full_window": 2.577777777777778,
+        "flows": [
+          {
+            "source": 2,
+            "destination": 1,
+            "admitted": 493,
+            "delivered": 477,
+            "delivered_unique": 477,
+            "delay_sum_s": 727.6562879726052,
+            "delay_samples": 477,
+            "mean_packet_latency_s": 1.5254848804457133,
+            "unmatched_sends": 16
+          },
+          {
+            "source": 3,
+            "destination": 1,
+            "admitted": 461,
+            "delivered": 451,
+            "delivered_unique": 451,
+            "delay_sum_s": 794.8867439742828,
+            "delay_samples": 451,
+            "mean_packet_latency_s": 1.762498323668033,
+            "unmatched_sends": 10
+          }
+        ]
+      },
+      "ns3_applications": {
+        "simulator": "ns3",
+        "case_id": "three_node_contention_360_s128",
+        "base_case_id": "three_node_contention_360",
+        "seed": 128,
+        "duration_s": 360.0,
+        "attempts": 60000,
+        "admitted": 946,
+        "admission_blocked": 59054,
+        "delivered": 914,
+        "delivered_unique": 914,
+        "duplicate_delivery_events": 0,
+        "unmatched_sends": 32,
+        "explicit_drops": null,
+        "pending": null,
+        "drop_reasons": null,
+        "network_bytes_sent": 560032,
+        "network_bytes_received": 541088,
+        "delay_samples": 914,
+        "delay_sum_s": 1549.0888160000009,
+        "mean_packet_latency_s": 1.6948455317286661,
+        "max_packet_latency_s": 9.40572400000002,
+        "populated_delay_buckets": 17,
+        "bucket_latency_mean_sum_s": 32.54608225413618,
+        "mean_populated_bucket_latency_s": 1.914475426713893,
+        "received_packet_rate_over_full_window": 2.5388888888888888,
+        "flows": [
+          {
+            "source": 2,
+            "destination": 1,
+            "admitted": 460,
+            "delivered": 444,
+            "delivered_unique": 444,
+            "delay_sum_s": 754.1683560000021,
+            "delay_samples": 444,
+            "mean_packet_latency_s": 1.698577378378383,
+            "unmatched_sends": 16
+          },
+          {
+            "source": 3,
+            "destination": 1,
+            "admitted": 486,
+            "delivered": 470,
+            "delivered_unique": 470,
+            "delay_sum_s": 794.920460000003,
+            "delay_samples": 470,
+            "mean_packet_latency_s": 1.6913201276595808,
+            "unmatched_sends": 16
+          }
+        ]
+      },
+      "matlab_feedback": {
+        "decision_count": 967,
+        "actual_feedback_member_count": 366,
+        "distinct_decisions_transmitted": 159,
+        "decisions_not_transmitted": 808,
+        "queue_dispositions": {
+          "enqueued": 42,
+          "replaced": 925
+        },
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 17
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 950
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 88
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 278
+          }
+        ],
+        "actual_vs_selected_rate_change_count": 3,
+        "actual_vs_selected_power_change_count": 0,
+        "incoming_context_missing_count": 0,
+        "feedback_forms": [
+          {
+            "feedback_form": "exact_sequence",
+            "selection_count": 39,
+            "ota_feedback_member_count": 195,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 17
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 22
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 88
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 107
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 3,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": 15.041,
+            "last_radio_override_time_s": 15.041
+          },
+          {
+            "feedback_form": "cumulative_window",
+            "selection_count": 928,
+            "ota_feedback_member_count": 171,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 928
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 171
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 0,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": null,
+            "last_radio_override_time_s": null
+          }
+        ],
+        "peer_s0_dbm": null,
+        "hop_failure_count": null,
+        "scope": "Selections are MAC-admission observations; actual rows count transmitted members including repeats. Replaced/rejected/retained-duplicate decisions may never transmit."
+      },
+      "ns3_feedback": {
+        "rows": 2264,
+        "selection_count": 958,
+        "ordinary_data_context_count": 915,
+        "ota_feedback_member_count": 391,
+        "ota_aggregates_containing_feedback": 166,
+        "distinct_decisions_transmitted": 163,
+        "actual_vs_selected_rate_change_count": 19,
+        "actual_vs_selected_power_change_count": 0,
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 10
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 948
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 69
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 322
+          }
+        ],
+        "incoming_vs_selected_rate_difference_count": 0,
+        "incoming_vs_selected_power_difference_count": 0,
+        "incoming_context_missing_count": 43,
+        "feedback_forms": [
+          {
+            "feedback_form": "exact_sequence",
+            "selection_count": 43,
+            "ota_feedback_member_count": 215,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 10
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 33
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 69
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 146
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 19,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": 15.158,
+            "last_radio_override_time_s": 42.367
+          },
+          {
+            "feedback_form": "cumulative_window",
+            "selection_count": 915,
+            "ota_feedback_member_count": 176,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 915
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 176
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 0,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": null,
+            "last_radio_override_time_s": null
+          }
+        ],
+        "nonperturbation": {
+          "observer_on_off_application_evidence_equal": true,
+          "pristine_runner_and_t7_anchor_checked": true,
+          "scope": "Complete application trace and admission records; no claim that all ns-3 internal state was separately serialized."
+        },
+        "scope": "Selection is feedback construction after ApplyLinkControl, not successful MAC admission; OTA rows count actual members including repeats. Control-exact incoming context is unavailable."
+      }
+    },
+    {
+      "case_id": "two_node_admission_1200_s129",
+      "counts": {
+        "Generated": 11358,
+        "Received": 11354,
+        "Dropped": 0,
+        "Pending": 4
+      },
+      "admission": {
+        "attempts": 45000,
+        "admitted": 11358,
+        "blocked": 33642,
+        "trace_records": 45000,
+        "omitted_trace_records": 0,
+        "flows": [
+          {
+            "flow_index": 1,
+            "source": 2,
+            "configured_destination": 1,
+            "attempts": 45000,
+            "admitted": 11358,
+            "delivered": 11354,
+            "made_progress": true
+          }
+        ],
+        "all_flows_made_progress": true
+      },
+      "data_drained": false,
+      "controls_drained": true,
+      "base_case_id": "two_node_admission_1200",
+      "seed": 129,
+      "matlab_applications": {
+        "simulator": "matlab",
+        "case_id": "two_node_admission_1200_s129",
+        "base_case_id": "two_node_admission_1200",
+        "seed": 129,
+        "duration_s": 1200.0,
+        "attempts": 45000,
+        "admitted": 11358,
+        "admission_blocked": 33642,
+        "delivered": 11354,
+        "delivered_unique": 11354,
+        "duplicate_delivery_events": 0,
+        "unmatched_sends": 4,
+        "explicit_drops": 0,
+        "pending": 4,
+        "drop_reasons": {},
+        "network_bytes_sent": 6723936,
+        "network_bytes_received": 6721568,
+        "delay_samples": 11354,
+        "delay_sum_s": 10548.1058781923,
+        "mean_packet_latency_s": 0.9290211271967853,
+        "max_packet_latency_s": 4.644723999992038,
+        "populated_delay_buckets": 75,
+        "bucket_latency_mean_sum_s": 70.11793145718849,
+        "mean_populated_bucket_latency_s": 0.9349057527625132,
+        "received_packet_rate_over_full_window": 9.461666666666666,
+        "flows": [
+          {
+            "source": 2,
+            "destination": 1,
+            "admitted": 11358,
+            "delivered": 11354,
+            "delivered_unique": 11354,
+            "delay_sum_s": 10548.105878192157,
+            "delay_samples": 11354,
+            "mean_packet_latency_s": 0.9290211271967727,
+            "unmatched_sends": 4
+          }
+        ]
+      },
+      "ns3_applications": {
+        "simulator": "ns3",
+        "case_id": "two_node_admission_1200_s129",
+        "base_case_id": "two_node_admission_1200",
+        "seed": 129,
+        "duration_s": 1200.0,
+        "attempts": 45000,
+        "admitted": 11234,
+        "admission_blocked": 33766,
+        "delivered": 11227,
+        "delivered_unique": 11227,
+        "duplicate_delivery_events": 0,
+        "unmatched_sends": 7,
+        "explicit_drops": null,
+        "pending": null,
+        "drop_reasons": null,
+        "network_bytes_sent": 6650528,
+        "network_bytes_received": 6646384,
+        "delay_samples": 11227,
+        "delay_sum_s": 10775.197447999995,
+        "mean_packet_latency_s": 0.9597574995991801,
+        "max_packet_latency_s": 4.65772400000003,
+        "populated_delay_buckets": 75,
+        "bucket_latency_mean_sum_s": 72.25062396472156,
+        "mean_populated_bucket_latency_s": 0.963341652862954,
+        "received_packet_rate_over_full_window": 9.355833333333333,
+        "flows": [
+          {
+            "source": 2,
+            "destination": 1,
+            "admitted": 11234,
+            "delivered": 11227,
+            "delivered_unique": 11227,
+            "delay_sum_s": 10775.197447999828,
+            "delay_samples": 11227,
+            "mean_packet_latency_s": 0.9597574995991652,
+            "unmatched_sends": 7
+          }
+        ]
+      },
+      "matlab_feedback": {
+        "decision_count": 11368,
+        "actual_feedback_member_count": 2081,
+        "distinct_decisions_transmitted": 1378,
+        "decisions_not_transmitted": 9990,
+        "queue_dispositions": {
+          "enqueued": 19,
+          "replaced": 11349
+        },
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 5
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 11363
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 25
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 2056
+          }
+        ],
+        "actual_vs_selected_rate_change_count": 0,
+        "actual_vs_selected_power_change_count": 0,
+        "incoming_context_missing_count": 0,
+        "feedback_forms": [
+          {
+            "feedback_form": "exact_sequence",
+            "selection_count": 14,
+            "ota_feedback_member_count": 70,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 5
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 9
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 25
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 45
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 0,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": null,
+            "last_radio_override_time_s": null
+          },
+          {
+            "feedback_form": "cumulative_window",
+            "selection_count": 11354,
+            "ota_feedback_member_count": 2011,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 11354
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 2011
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 0,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": null,
+            "last_radio_override_time_s": null
+          }
+        ],
+        "peer_s0_dbm": null,
+        "hop_failure_count": null,
+        "scope": "Selections are MAC-admission observations; actual rows count transmitted members including repeats. Replaced/rejected/retained-duplicate decisions may never transmit."
+      },
+      "ns3_feedback": {
+        "rows": 24546,
+        "selection_count": 11242,
+        "ordinary_data_context_count": 11227,
+        "ota_feedback_member_count": 2077,
+        "ota_aggregates_containing_feedback": 2042,
+        "distinct_decisions_transmitted": 1404,
+        "actual_vs_selected_rate_change_count": 1,
+        "actual_vs_selected_power_change_count": 0,
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 11242
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 1
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 2076
+          }
+        ],
+        "incoming_vs_selected_rate_difference_count": 0,
+        "incoming_vs_selected_power_difference_count": 0,
+        "incoming_context_missing_count": 15,
+        "feedback_forms": [
+          {
+            "feedback_form": "exact_sequence",
+            "selection_count": 15,
+            "ota_feedback_member_count": 75,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 15
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 1
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 74
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 1,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": 25.61,
+            "last_radio_override_time_s": 25.61
+          },
+          {
+            "feedback_form": "cumulative_window",
+            "selection_count": 11227,
+            "ota_feedback_member_count": 2002,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 11227
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 2002
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 0,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": null,
+            "last_radio_override_time_s": null
+          }
+        ],
+        "nonperturbation": {
+          "observer_on_off_application_evidence_equal": true,
+          "pristine_runner_and_t7_anchor_checked": false,
+          "scope": "Complete application trace and admission records; no claim that all ns-3 internal state was separately serialized."
+        },
+        "scope": "Selection is feedback construction after ApplyLinkControl, not successful MAC admission; OTA rows count actual members including repeats. Control-exact incoming context is unavailable."
+      }
+    },
+    {
+      "case_id": "three_node_contention_360_s129",
+      "counts": {
+        "Generated": 980,
+        "Received": 948,
+        "Dropped": 0,
+        "Pending": 32
+      },
+      "admission": {
+        "attempts": 60000,
+        "admitted": 980,
+        "blocked": 59020,
+        "trace_records": 60000,
+        "omitted_trace_records": 0,
+        "flows": [
+          {
+            "flow_index": 1,
+            "source": 2,
+            "configured_destination": 1,
+            "attempts": 30000,
+            "admitted": 526,
+            "delivered": 510,
+            "made_progress": true
+          },
+          {
+            "flow_index": 2,
+            "source": 3,
+            "configured_destination": 1,
+            "attempts": 30000,
+            "admitted": 454,
+            "delivered": 438,
+            "made_progress": true
+          }
+        ],
+        "all_flows_made_progress": true
+      },
+      "data_drained": false,
+      "controls_drained": true,
+      "base_case_id": "three_node_contention_360",
+      "seed": 129,
+      "matlab_applications": {
+        "simulator": "matlab",
+        "case_id": "three_node_contention_360_s129",
+        "base_case_id": "three_node_contention_360",
+        "seed": 129,
+        "duration_s": 360.0,
+        "attempts": 60000,
+        "admitted": 980,
+        "admission_blocked": 59020,
+        "delivered": 948,
+        "delivered_unique": 948,
+        "duplicate_delivery_events": 0,
+        "unmatched_sends": 32,
+        "explicit_drops": 0,
+        "pending": 32,
+        "drop_reasons": {},
+        "network_bytes_sent": 580160,
+        "network_bytes_received": 561216,
+        "delay_samples": 948,
+        "delay_sum_s": 1519.2543119454808,
+        "mean_packet_latency_s": 1.602588936651351,
+        "max_packet_latency_s": 7.156723999988003,
+        "populated_delay_buckets": 17,
+        "bucket_latency_mean_sum_s": 29.113743763498398,
+        "mean_populated_bucket_latency_s": 1.7125731625587293,
+        "received_packet_rate_over_full_window": 2.6333333333333333,
+        "flows": [
+          {
+            "source": 2,
+            "destination": 1,
+            "admitted": 526,
+            "delivered": 510,
+            "delivered_unique": 510,
+            "delay_sum_s": 760.9792599712073,
+            "delay_samples": 510,
+            "mean_packet_latency_s": 1.492116196021975,
+            "unmatched_sends": 16
+          },
+          {
+            "source": 3,
+            "destination": 1,
+            "admitted": 454,
+            "delivered": 438,
+            "delivered_unique": 438,
+            "delay_sum_s": 758.2750519742788,
+            "delay_samples": 438,
+            "mean_packet_latency_s": 1.7312215798499515,
+            "unmatched_sends": 16
+          }
+        ]
+      },
+      "ns3_applications": {
+        "simulator": "ns3",
+        "case_id": "three_node_contention_360_s129",
+        "base_case_id": "three_node_contention_360",
+        "seed": 129,
+        "duration_s": 360.0,
+        "attempts": 60000,
+        "admitted": 854,
+        "admission_blocked": 59146,
+        "delivered": 822,
+        "delivered_unique": 822,
+        "duplicate_delivery_events": 0,
+        "unmatched_sends": 32,
+        "explicit_drops": null,
+        "pending": null,
+        "drop_reasons": null,
+        "network_bytes_sent": 505568,
+        "network_bytes_received": 486624,
+        "delay_samples": 822,
+        "delay_sum_s": 1577.159847999998,
+        "mean_packet_latency_s": 1.918685946472017,
+        "max_packet_latency_s": 13.896704,
+        "populated_delay_buckets": 17,
+        "bucket_latency_mean_sum_s": 39.58978010321478,
+        "mean_populated_bucket_latency_s": 2.3288105943067516,
+        "received_packet_rate_over_full_window": 2.283333333333333,
+        "flows": [
+          {
+            "source": 2,
+            "destination": 1,
+            "admitted": 369,
+            "delivered": 353,
+            "delivered_unique": 353,
+            "delay_sum_s": 784.4755120000009,
+            "delay_samples": 353,
+            "mean_packet_latency_s": 2.22231023229462,
+            "unmatched_sends": 16
+          },
+          {
+            "source": 3,
+            "destination": 1,
+            "admitted": 485,
+            "delivered": 469,
+            "delivered_unique": 469,
+            "delay_sum_s": 792.6843360000017,
+            "delay_samples": 469,
+            "mean_packet_latency_s": 1.6901584989339056,
+            "unmatched_sends": 16
+          }
+        ]
+      },
+      "matlab_feedback": {
+        "decision_count": 994,
+        "actual_feedback_member_count": 402,
+        "distinct_decisions_transmitted": 170,
+        "decisions_not_transmitted": 824,
+        "queue_dispositions": {
+          "enqueued": 48,
+          "replaced": 946
+        },
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 26
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 968
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 145
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 257
+          }
+        ],
+        "actual_vs_selected_rate_change_count": 15,
+        "actual_vs_selected_power_change_count": 0,
+        "incoming_context_missing_count": 0,
+        "feedback_forms": [
+          {
+            "feedback_form": "exact_sequence",
+            "selection_count": 46,
+            "ota_feedback_member_count": 230,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 26
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 20
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 145
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 85
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 15,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": 15.067,
+            "last_radio_override_time_s": 17.6540000000002
+          },
+          {
+            "feedback_form": "cumulative_window",
+            "selection_count": 948,
+            "ota_feedback_member_count": 172,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 948
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 172
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 0,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": null,
+            "last_radio_override_time_s": null
+          }
+        ],
+        "peer_s0_dbm": null,
+        "hop_failure_count": null,
+        "scope": "Selections are MAC-admission observations; actual rows count transmitted members including repeats. Replaced/rejected/retained-duplicate decisions may never transmit."
+      },
+      "ns3_feedback": {
+        "rows": 2133,
+        "selection_count": 874,
+        "ordinary_data_context_count": 823,
+        "ota_feedback_member_count": 436,
+        "ota_aggregates_containing_feedback": 183,
+        "distinct_decisions_transmitted": 166,
+        "actual_vs_selected_rate_change_count": 30,
+        "actual_vs_selected_power_change_count": 0,
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 14
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 860
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 100
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 336
+          }
+        ],
+        "incoming_vs_selected_rate_difference_count": 0,
+        "incoming_vs_selected_power_difference_count": 0,
+        "incoming_context_missing_count": 51,
+        "feedback_forms": [
+          {
+            "feedback_form": "exact_sequence",
+            "selection_count": 51,
+            "ota_feedback_member_count": 255,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 14
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 37
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 100
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 155
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 30,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": 15.34,
+            "last_radio_override_time_s": 57.811
+          },
+          {
+            "feedback_form": "cumulative_window",
+            "selection_count": 823,
+            "ota_feedback_member_count": 181,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 823
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 181
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 0,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": null,
+            "last_radio_override_time_s": null
+          }
+        ],
+        "nonperturbation": {
+          "observer_on_off_application_evidence_equal": true,
+          "pristine_runner_and_t7_anchor_checked": false,
+          "scope": "Complete application trace and admission records; no claim that all ns-3 internal state was separately serialized."
+        },
+        "scope": "Selection is feedback construction after ApplyLinkControl, not successful MAC admission; OTA rows count actual members including repeats. Control-exact incoming context is unavailable."
+      }
+    },
+    {
+      "case_id": "two_node_admission_1200_s130",
+      "counts": {
+        "Generated": 11326,
+        "Received": 11315,
+        "Dropped": 0,
+        "Pending": 11
+      },
+      "admission": {
+        "attempts": 45000,
+        "admitted": 11326,
+        "blocked": 33674,
+        "trace_records": 45000,
+        "omitted_trace_records": 0,
+        "flows": [
+          {
+            "flow_index": 1,
+            "source": 2,
+            "configured_destination": 1,
+            "attempts": 45000,
+            "admitted": 11326,
+            "delivered": 11315,
+            "made_progress": true
+          }
+        ],
+        "all_flows_made_progress": true
+      },
+      "data_drained": false,
+      "controls_drained": true,
+      "base_case_id": "two_node_admission_1200",
+      "seed": 130,
+      "matlab_applications": {
+        "simulator": "matlab",
+        "case_id": "two_node_admission_1200_s130",
+        "base_case_id": "two_node_admission_1200",
+        "seed": 130,
+        "duration_s": 1200.0,
+        "attempts": 45000,
+        "admitted": 11326,
+        "admission_blocked": 33674,
+        "delivered": 11315,
+        "delivered_unique": 11315,
+        "duplicate_delivery_events": 0,
+        "unmatched_sends": 11,
+        "explicit_drops": 0,
+        "pending": 11,
+        "drop_reasons": {},
+        "network_bytes_sent": 6704992,
+        "network_bytes_received": 6698480,
+        "delay_samples": 11315,
+        "delay_sum_s": 10702.472962224978,
+        "mean_packet_latency_s": 0.9458659268426848,
+        "max_packet_latency_s": 4.228723999992042,
+        "populated_delay_buckets": 75,
+        "bucket_latency_mean_sum_s": 71.28318617347253,
+        "mean_populated_bucket_latency_s": 0.950442482312967,
+        "received_packet_rate_over_full_window": 9.429166666666667,
+        "flows": [
+          {
+            "source": 2,
+            "destination": 1,
+            "admitted": 11326,
+            "delivered": 11315,
+            "delivered_unique": 11315,
+            "delay_sum_s": 10702.472962224825,
+            "delay_samples": 11315,
+            "mean_packet_latency_s": 0.9458659268426712,
+            "unmatched_sends": 11
+          }
+        ]
+      },
+      "ns3_applications": {
+        "simulator": "ns3",
+        "case_id": "two_node_admission_1200_s130",
+        "base_case_id": "two_node_admission_1200",
+        "seed": 130,
+        "duration_s": 1200.0,
+        "attempts": 45000,
+        "admitted": 11412,
+        "admission_blocked": 33588,
+        "delivered": 11396,
+        "delivered_unique": 11396,
+        "duplicate_delivery_events": 0,
+        "unmatched_sends": 16,
+        "explicit_drops": null,
+        "pending": null,
+        "drop_reasons": null,
+        "network_bytes_sent": 6755904,
+        "network_bytes_received": 6746432,
+        "delay_samples": 11396,
+        "delay_sum_s": 10708.578243999997,
+        "mean_packet_latency_s": 0.9396786805896803,
+        "max_packet_latency_s": 5.190724000000046,
+        "populated_delay_buckets": 75,
+        "bucket_latency_mean_sum_s": 71.04185231127649,
+        "mean_populated_bucket_latency_s": 0.9472246974836864,
+        "received_packet_rate_over_full_window": 9.496666666666666,
+        "flows": [
+          {
+            "source": 2,
+            "destination": 1,
+            "admitted": 11412,
+            "delivered": 11396,
+            "delivered_unique": 11396,
+            "delay_sum_s": 10708.57824399987,
+            "delay_samples": 11396,
+            "mean_packet_latency_s": 0.9396786805896691,
+            "unmatched_sends": 16
+          }
+        ]
+      },
+      "matlab_feedback": {
+        "decision_count": 11329,
+        "actual_feedback_member_count": 2107,
+        "distinct_decisions_transmitted": 1400,
+        "decisions_not_transmitted": 9929,
+        "queue_dispositions": {
+          "enqueued": 20,
+          "replaced": 11309
+        },
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 5
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 11324
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 25
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 2082
+          }
+        ],
+        "actual_vs_selected_rate_change_count": 0,
+        "actual_vs_selected_power_change_count": 0,
+        "incoming_context_missing_count": 0,
+        "feedback_forms": [
+          {
+            "feedback_form": "exact_sequence",
+            "selection_count": 14,
+            "ota_feedback_member_count": 70,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 5
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 9
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 25
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 45
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 0,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": null,
+            "last_radio_override_time_s": null
+          },
+          {
+            "feedback_form": "cumulative_window",
+            "selection_count": 11315,
+            "ota_feedback_member_count": 2037,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 11315
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 2037
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 0,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": null,
+            "last_radio_override_time_s": null
+          }
+        ],
+        "peer_s0_dbm": null,
+        "hop_failure_count": null,
+        "scope": "Selections are MAC-admission observations; actual rows count transmitted members including repeats. Replaced/rejected/retained-duplicate decisions may never transmit."
+      },
+      "ns3_feedback": {
+        "rows": 24900,
+        "selection_count": 11411,
+        "ordinary_data_context_count": 11396,
+        "ota_feedback_member_count": 2093,
+        "ota_aggregates_containing_feedback": 2055,
+        "distinct_decisions_transmitted": 1418,
+        "actual_vs_selected_rate_change_count": 1,
+        "actual_vs_selected_power_change_count": 0,
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 11411
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 1
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 2092
+          }
+        ],
+        "incoming_vs_selected_rate_difference_count": 0,
+        "incoming_vs_selected_power_difference_count": 0,
+        "incoming_context_missing_count": 15,
+        "feedback_forms": [
+          {
+            "feedback_form": "exact_sequence",
+            "selection_count": 15,
+            "ota_feedback_member_count": 75,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 15
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 1
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 74
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 1,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": 25.727,
+            "last_radio_override_time_s": 25.727
+          },
+          {
+            "feedback_form": "cumulative_window",
+            "selection_count": 11396,
+            "ota_feedback_member_count": 2018,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 11396
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 2018
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 0,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": null,
+            "last_radio_override_time_s": null
+          }
+        ],
+        "nonperturbation": {
+          "observer_on_off_application_evidence_equal": true,
+          "pristine_runner_and_t7_anchor_checked": false,
+          "scope": "Complete application trace and admission records; no claim that all ns-3 internal state was separately serialized."
+        },
+        "scope": "Selection is feedback construction after ApplyLinkControl, not successful MAC admission; OTA rows count actual members including repeats. Control-exact incoming context is unavailable."
+      }
+    },
+    {
+      "case_id": "three_node_contention_360_s130",
+      "counts": {
+        "Generated": 926,
+        "Received": 894,
+        "Dropped": 0,
+        "Pending": 32
+      },
+      "admission": {
+        "attempts": 60000,
+        "admitted": 926,
+        "blocked": 59074,
+        "trace_records": 60000,
+        "omitted_trace_records": 0,
+        "flows": [
+          {
+            "flow_index": 1,
+            "source": 2,
+            "configured_destination": 1,
+            "attempts": 30000,
+            "admitted": 465,
+            "delivered": 449,
+            "made_progress": true
+          },
+          {
+            "flow_index": 2,
+            "source": 3,
+            "configured_destination": 1,
+            "attempts": 30000,
+            "admitted": 461,
+            "delivered": 445,
+            "made_progress": true
+          }
+        ],
+        "all_flows_made_progress": true
+      },
+      "data_drained": false,
+      "controls_drained": true,
+      "base_case_id": "three_node_contention_360",
+      "seed": 130,
+      "matlab_applications": {
+        "simulator": "matlab",
+        "case_id": "three_node_contention_360_s130",
+        "base_case_id": "three_node_contention_360",
+        "seed": 130,
+        "duration_s": 360.0,
+        "attempts": 60000,
+        "admitted": 926,
+        "admission_blocked": 59074,
+        "delivered": 894,
+        "delivered_unique": 894,
+        "duplicate_delivery_events": 0,
+        "unmatched_sends": 32,
+        "explicit_drops": 0,
+        "pending": 32,
+        "drop_reasons": {},
+        "network_bytes_sent": 548192,
+        "network_bytes_received": 529248,
+        "delay_samples": 894,
+        "delay_sum_s": 1587.378135946979,
+        "mean_packet_latency_s": 1.7755907560928177,
+        "max_packet_latency_s": 9.080723999984002,
+        "populated_delay_buckets": 17,
+        "bucket_latency_mean_sum_s": 33.46711775154717,
+        "mean_populated_bucket_latency_s": 1.9686539853851277,
+        "received_packet_rate_over_full_window": 2.4833333333333334,
+        "flows": [
+          {
+            "source": 2,
+            "destination": 1,
+            "admitted": 465,
+            "delivered": 449,
+            "delivered_unique": 449,
+            "delay_sum_s": 806.4667359747214,
+            "delay_samples": 449,
+            "mean_packet_latency_s": 1.7961397237744352,
+            "unmatched_sends": 16
+          },
+          {
+            "source": 3,
+            "destination": 1,
+            "admitted": 461,
+            "delivered": 445,
+            "delivered_unique": 445,
+            "delay_sum_s": 780.9113999722624,
+            "delay_samples": 445,
+            "mean_packet_latency_s": 1.7548570785893538,
+            "unmatched_sends": 16
+          }
+        ]
+      },
+      "ns3_applications": {
+        "simulator": "ns3",
+        "case_id": "three_node_contention_360_s130",
+        "base_case_id": "three_node_contention_360",
+        "seed": 130,
+        "duration_s": 360.0,
+        "attempts": 60000,
+        "admitted": 948,
+        "admission_blocked": 59052,
+        "delivered": 916,
+        "delivered_unique": 916,
+        "duplicate_delivery_events": 0,
+        "unmatched_sends": 32,
+        "explicit_drops": null,
+        "pending": null,
+        "drop_reasons": null,
+        "network_bytes_sent": 561216,
+        "network_bytes_received": 542272,
+        "delay_samples": 916,
+        "delay_sum_s": 1520.2360640000038,
+        "mean_packet_latency_s": 1.6596463580786067,
+        "max_packet_latency_s": 8.612724000000014,
+        "populated_delay_buckets": 17,
+        "bucket_latency_mean_sum_s": 32.21848666205529,
+        "mean_populated_bucket_latency_s": 1.8952050977679582,
+        "received_packet_rate_over_full_window": 2.5444444444444443,
+        "flows": [
+          {
+            "source": 2,
+            "destination": 1,
+            "admitted": 473,
+            "delivered": 457,
+            "delivered_unique": 457,
+            "delay_sum_s": 773.5283280000056,
+            "delay_samples": 457,
+            "mean_packet_latency_s": 1.6926221619256139,
+            "unmatched_sends": 16
+          },
+          {
+            "source": 3,
+            "destination": 1,
+            "admitted": 475,
+            "delivered": 459,
+            "delivered_unique": 459,
+            "delay_sum_s": 746.7077360000035,
+            "delay_samples": 459,
+            "mean_packet_latency_s": 1.6268142396514238,
+            "unmatched_sends": 16
+          }
+        ]
+      },
+      "matlab_feedback": {
+        "decision_count": 943,
+        "actual_feedback_member_count": 432,
+        "distinct_decisions_transmitted": 177,
+        "decisions_not_transmitted": 766,
+        "queue_dispositions": {
+          "enqueued": 50,
+          "replaced": 893
+        },
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 25
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 918
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 126
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 306
+          }
+        ],
+        "actual_vs_selected_rate_change_count": 1,
+        "actual_vs_selected_power_change_count": 0,
+        "incoming_context_missing_count": 0,
+        "feedback_forms": [
+          {
+            "feedback_form": "exact_sequence",
+            "selection_count": 48,
+            "ota_feedback_member_count": 240,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 25
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 23
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 126
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 114
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 1,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": 15.028,
+            "last_radio_override_time_s": 15.028
+          },
+          {
+            "feedback_form": "cumulative_window",
+            "selection_count": 895,
+            "ota_feedback_member_count": 192,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 895
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 192
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 0,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": null,
+            "last_radio_override_time_s": null
+          }
+        ],
+        "peer_s0_dbm": null,
+        "hop_failure_count": null,
+        "scope": "Selections are MAC-admission observations; actual rows count transmitted members including repeats. Replaced/rejected/retained-duplicate decisions may never transmit."
+      },
+      "ns3_feedback": {
+        "rows": 2304,
+        "selection_count": 968,
+        "ordinary_data_context_count": 918,
+        "ota_feedback_member_count": 418,
+        "ota_aggregates_containing_feedback": 183,
+        "distinct_decisions_transmitted": 171,
+        "actual_vs_selected_rate_change_count": 24,
+        "actual_vs_selected_power_change_count": 0,
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 14
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 954
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 94
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 324
+          }
+        ],
+        "incoming_vs_selected_rate_difference_count": 0,
+        "incoming_vs_selected_power_difference_count": 0,
+        "incoming_context_missing_count": 50,
+        "feedback_forms": [
+          {
+            "feedback_form": "exact_sequence",
+            "selection_count": 50,
+            "ota_feedback_member_count": 250,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 14
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 36
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 94
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 156
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 24,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": 25.441,
+            "last_radio_override_time_s": 57.798
+          },
+          {
+            "feedback_form": "cumulative_window",
+            "selection_count": 918,
+            "ota_feedback_member_count": 168,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 918
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 168
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 0,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": null,
+            "last_radio_override_time_s": null
+          }
+        ],
+        "nonperturbation": {
+          "observer_on_off_application_evidence_equal": true,
+          "pristine_runner_and_t7_anchor_checked": false,
+          "scope": "Complete application trace and admission records; no claim that all ns-3 internal state was separately serialized."
+        },
+        "scope": "Selection is feedback construction after ApplyLinkControl, not successful MAC admission; OTA rows count actual members including repeats. Control-exact incoming context is unavailable."
+      }
+    },
+    {
+      "case_id": "two_node_admission_1200_s131",
+      "counts": {
+        "Generated": 11265,
+        "Received": 11249,
+        "Dropped": 0,
+        "Pending": 16
+      },
+      "admission": {
+        "attempts": 45000,
+        "admitted": 11265,
+        "blocked": 33735,
+        "trace_records": 45000,
+        "omitted_trace_records": 0,
+        "flows": [
+          {
+            "flow_index": 1,
+            "source": 2,
+            "configured_destination": 1,
+            "attempts": 45000,
+            "admitted": 11265,
+            "delivered": 11249,
+            "made_progress": true
+          }
+        ],
+        "all_flows_made_progress": true
+      },
+      "data_drained": false,
+      "controls_drained": true,
+      "base_case_id": "two_node_admission_1200",
+      "seed": 131,
+      "matlab_applications": {
+        "simulator": "matlab",
+        "case_id": "two_node_admission_1200_s131",
+        "base_case_id": "two_node_admission_1200",
+        "seed": 131,
+        "duration_s": 1200.0,
+        "attempts": 45000,
+        "admitted": 11265,
+        "admission_blocked": 33735,
+        "delivered": 11249,
+        "delivered_unique": 11249,
+        "duplicate_delivery_events": 0,
+        "unmatched_sends": 16,
+        "explicit_drops": 0,
+        "pending": 16,
+        "drop_reasons": {},
+        "network_bytes_sent": 6668880,
+        "network_bytes_received": 6659408,
+        "delay_samples": 11249,
+        "delay_sum_s": 10629.900018236374,
+        "mean_packet_latency_s": 0.9449639984208706,
+        "max_packet_latency_s": 7.296723999987023,
+        "populated_delay_buckets": 75,
+        "bucket_latency_mean_sum_s": 71.93290035531123,
+        "mean_populated_bucket_latency_s": 0.9591053380708164,
+        "received_packet_rate_over_full_window": 9.374166666666667,
+        "flows": [
+          {
+            "source": 2,
+            "destination": 1,
+            "admitted": 11265,
+            "delivered": 11249,
+            "delivered_unique": 11249,
+            "delay_sum_s": 10629.90001823626,
+            "delay_samples": 11249,
+            "mean_packet_latency_s": 0.9449639984208605,
+            "unmatched_sends": 16
+          }
+        ]
+      },
+      "ns3_applications": {
+        "simulator": "ns3",
+        "case_id": "two_node_admission_1200_s131",
+        "base_case_id": "two_node_admission_1200",
+        "seed": 131,
+        "duration_s": 1200.0,
+        "attempts": 45000,
+        "admitted": 11334,
+        "admission_blocked": 33666,
+        "delivered": 11330,
+        "delivered_unique": 11330,
+        "duplicate_delivery_events": 0,
+        "unmatched_sends": 4,
+        "explicit_drops": null,
+        "pending": null,
+        "drop_reasons": null,
+        "network_bytes_sent": 6709728,
+        "network_bytes_received": 6707360,
+        "delay_samples": 11330,
+        "delay_sum_s": 10574.37786,
+        "mean_packet_latency_s": 0.9333078428949692,
+        "max_packet_latency_s": 4.163724000000002,
+        "populated_delay_buckets": 75,
+        "bucket_latency_mean_sum_s": 70.38271189075107,
+        "mean_populated_bucket_latency_s": 0.9384361585433476,
+        "received_packet_rate_over_full_window": 9.441666666666666,
+        "flows": [
+          {
+            "source": 2,
+            "destination": 1,
+            "admitted": 11334,
+            "delivered": 11330,
+            "delivered_unique": 11330,
+            "delay_sum_s": 10574.377859999886,
+            "delay_samples": 11330,
+            "mean_packet_latency_s": 0.933307842894959,
+            "unmatched_sends": 4
+          }
+        ]
+      },
+      "matlab_feedback": {
+        "decision_count": 11263,
+        "actual_feedback_member_count": 2094,
+        "distinct_decisions_transmitted": 1373,
+        "decisions_not_transmitted": 9890,
+        "queue_dispositions": {
+          "enqueued": 22,
+          "replaced": 11241
+        },
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 5
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 11258
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 25
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 2069
+          }
+        ],
+        "actual_vs_selected_rate_change_count": 0,
+        "actual_vs_selected_power_change_count": 0,
+        "incoming_context_missing_count": 0,
+        "feedback_forms": [
+          {
+            "feedback_form": "exact_sequence",
+            "selection_count": 14,
+            "ota_feedback_member_count": 70,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 5
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 9
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 25
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 45
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 0,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": null,
+            "last_radio_override_time_s": null
+          },
+          {
+            "feedback_form": "cumulative_window",
+            "selection_count": 11249,
+            "ota_feedback_member_count": 2024,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 11249
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 2024
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 0,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": null,
+            "last_radio_override_time_s": null
+          }
+        ],
+        "peer_s0_dbm": null,
+        "hop_failure_count": null,
+        "scope": "Selections are MAC-admission observations; actual rows count transmitted members including repeats. Replaced/rejected/retained-duplicate decisions may never transmit."
+      },
+      "ns3_feedback": {
+        "rows": 24710,
+        "selection_count": 11345,
+        "ordinary_data_context_count": 11330,
+        "ota_feedback_member_count": 2035,
+        "ota_aggregates_containing_feedback": 1999,
+        "distinct_decisions_transmitted": 1385,
+        "actual_vs_selected_rate_change_count": 1,
+        "actual_vs_selected_power_change_count": 0,
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 11345
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 1
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 2034
+          }
+        ],
+        "incoming_vs_selected_rate_difference_count": 0,
+        "incoming_vs_selected_power_difference_count": 0,
+        "incoming_context_missing_count": 15,
+        "feedback_forms": [
+          {
+            "feedback_form": "exact_sequence",
+            "selection_count": 15,
+            "ota_feedback_member_count": 75,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 15
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 1
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 74
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 1,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": 25.311,
+            "last_radio_override_time_s": 25.311
+          },
+          {
+            "feedback_form": "cumulative_window",
+            "selection_count": 11330,
+            "ota_feedback_member_count": 1960,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 11330
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 1960
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 0,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": null,
+            "last_radio_override_time_s": null
+          }
+        ],
+        "nonperturbation": {
+          "observer_on_off_application_evidence_equal": true,
+          "pristine_runner_and_t7_anchor_checked": false,
+          "scope": "Complete application trace and admission records; no claim that all ns-3 internal state was separately serialized."
+        },
+        "scope": "Selection is feedback construction after ApplyLinkControl, not successful MAC admission; OTA rows count actual members including repeats. Control-exact incoming context is unavailable."
+      }
+    },
+    {
+      "case_id": "three_node_contention_360_s131",
+      "counts": {
+        "Generated": 927,
+        "Received": 895,
+        "Dropped": 0,
+        "Pending": 32
+      },
+      "admission": {
+        "attempts": 60000,
+        "admitted": 927,
+        "blocked": 59073,
+        "trace_records": 60000,
+        "omitted_trace_records": 0,
+        "flows": [
+          {
+            "flow_index": 1,
+            "source": 2,
+            "configured_destination": 1,
+            "attempts": 30000,
+            "admitted": 458,
+            "delivered": 442,
+            "made_progress": true
+          },
+          {
+            "flow_index": 2,
+            "source": 3,
+            "configured_destination": 1,
+            "attempts": 30000,
+            "admitted": 469,
+            "delivered": 453,
+            "made_progress": true
+          }
+        ],
+        "all_flows_made_progress": true
+      },
+      "data_drained": false,
+      "controls_drained": true,
+      "base_case_id": "three_node_contention_360",
+      "seed": 131,
+      "matlab_applications": {
+        "simulator": "matlab",
+        "case_id": "three_node_contention_360_s131",
+        "base_case_id": "three_node_contention_360",
+        "seed": 131,
+        "duration_s": 360.0,
+        "attempts": 60000,
+        "admitted": 927,
+        "admission_blocked": 59073,
+        "delivered": 895,
+        "delivered_unique": 895,
+        "duplicate_delivery_events": 0,
+        "unmatched_sends": 32,
+        "explicit_drops": 0,
+        "pending": 32,
+        "drop_reasons": {},
+        "network_bytes_sent": 548784,
+        "network_bytes_received": 529840,
+        "delay_samples": 895,
+        "delay_sum_s": 1535.3116599465498,
+        "mean_packet_latency_s": 1.7154320222866477,
+        "max_packet_latency_s": 9.431723999983035,
+        "populated_delay_buckets": 17,
+        "bucket_latency_mean_sum_s": 33.272641799760656,
+        "mean_populated_bucket_latency_s": 1.9572142235153327,
+        "received_packet_rate_over_full_window": 2.486111111111111,
+        "flows": [
+          {
+            "source": 2,
+            "destination": 1,
+            "admitted": 458,
+            "delivered": 442,
+            "delivered_unique": 442,
+            "delay_sum_s": 764.1606279731761,
+            "delay_samples": 442,
+            "mean_packet_latency_s": 1.7288701990343351,
+            "unmatched_sends": 16
+          },
+          {
+            "source": 3,
+            "destination": 1,
+            "admitted": 469,
+            "delivered": 453,
+            "delivered_unique": 453,
+            "delay_sum_s": 771.1510319733782,
+            "delay_samples": 453,
+            "mean_packet_latency_s": 1.7023201588816295,
+            "unmatched_sends": 16
+          }
+        ]
+      },
+      "ns3_applications": {
+        "simulator": "ns3",
+        "case_id": "three_node_contention_360_s131",
+        "base_case_id": "three_node_contention_360",
+        "seed": 131,
+        "duration_s": 360.0,
+        "attempts": 60000,
+        "admitted": 903,
+        "admission_blocked": 59097,
+        "delivered": 883,
+        "delivered_unique": 883,
+        "duplicate_delivery_events": 0,
+        "unmatched_sends": 20,
+        "explicit_drops": null,
+        "pending": null,
+        "drop_reasons": null,
+        "network_bytes_sent": 534576,
+        "network_bytes_received": 522736,
+        "delay_samples": 883,
+        "delay_sum_s": 1568.2216120000003,
+        "mean_packet_latency_s": 1.7760154156285395,
+        "max_packet_latency_s": 9.912724000000026,
+        "populated_delay_buckets": 17,
+        "bucket_latency_mean_sum_s": 35.71456284685447,
+        "mean_populated_bucket_latency_s": 2.100856638050263,
+        "received_packet_rate_over_full_window": 2.452777777777778,
+        "flows": [
+          {
+            "source": 2,
+            "destination": 1,
+            "admitted": 433,
+            "delivered": 417,
+            "delivered_unique": 417,
+            "delay_sum_s": 783.6291280000021,
+            "delay_samples": 417,
+            "mean_packet_latency_s": 1.8792065419664319,
+            "unmatched_sends": 16
+          },
+          {
+            "source": 3,
+            "destination": 1,
+            "admitted": 470,
+            "delivered": 466,
+            "delivered_unique": 466,
+            "delay_sum_s": 784.5924840000022,
+            "delay_samples": 466,
+            "mean_packet_latency_s": 1.6836748583691035,
+            "unmatched_sends": 4
+          }
+        ]
+      },
+      "matlab_feedback": {
+        "decision_count": 942,
+        "actual_feedback_member_count": 410,
+        "distinct_decisions_transmitted": 163,
+        "decisions_not_transmitted": 779,
+        "queue_dispositions": {
+          "enqueued": 48,
+          "replaced": 894
+        },
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 33
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 909
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 175
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 235
+          }
+        ],
+        "actual_vs_selected_rate_change_count": 10,
+        "actual_vs_selected_power_change_count": 0,
+        "incoming_context_missing_count": 0,
+        "feedback_forms": [
+          {
+            "feedback_form": "exact_sequence",
+            "selection_count": 46,
+            "ota_feedback_member_count": 230,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 33
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 13
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 175
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 55
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 10,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": 15.249,
+            "last_radio_override_time_s": 17.8880000000002
+          },
+          {
+            "feedback_form": "cumulative_window",
+            "selection_count": 896,
+            "ota_feedback_member_count": 180,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 896
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 180
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 0,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": null,
+            "last_radio_override_time_s": null
+          }
+        ],
+        "peer_s0_dbm": null,
+        "hop_failure_count": null,
+        "scope": "Selections are MAC-admission observations; actual rows count transmitted members including repeats. Replaced/rejected/retained-duplicate decisions may never transmit."
+      },
+      "ns3_feedback": {
+        "rows": 2251,
+        "selection_count": 935,
+        "ordinary_data_context_count": 885,
+        "ota_feedback_member_count": 431,
+        "ota_aggregates_containing_feedback": 187,
+        "distinct_decisions_transmitted": 171,
+        "actual_vs_selected_rate_change_count": 30,
+        "actual_vs_selected_power_change_count": 0,
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 14
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 921
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 100
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 331
+          }
+        ],
+        "incoming_vs_selected_rate_difference_count": 0,
+        "incoming_vs_selected_power_difference_count": 0,
+        "incoming_context_missing_count": 50,
+        "feedback_forms": [
+          {
+            "feedback_form": "exact_sequence",
+            "selection_count": 50,
+            "ota_feedback_member_count": 250,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 14
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 36
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 100
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 150
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 30,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": 15.21,
+            "last_radio_override_time_s": 58.682
+          },
+          {
+            "feedback_form": "cumulative_window",
+            "selection_count": 885,
+            "ota_feedback_member_count": 181,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 885
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 181
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 0,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": null,
+            "last_radio_override_time_s": null
+          }
+        ],
+        "nonperturbation": {
+          "observer_on_off_application_evidence_equal": true,
+          "pristine_runner_and_t7_anchor_checked": false,
+          "scope": "Complete application trace and admission records; no claim that all ns-3 internal state was separately serialized."
+        },
+        "scope": "Selection is feedback construction after ApplyLinkControl, not successful MAC admission; OTA rows count actual members including repeats. Control-exact incoming context is unavailable."
+      }
+    },
+    {
+      "case_id": "two_node_admission_1200_s132",
+      "counts": {
+        "Generated": 11369,
+        "Received": 11359,
+        "Dropped": 0,
+        "Pending": 10
+      },
+      "admission": {
+        "attempts": 45000,
+        "admitted": 11369,
+        "blocked": 33631,
+        "trace_records": 45000,
+        "omitted_trace_records": 0,
+        "flows": [
+          {
+            "flow_index": 1,
+            "source": 2,
+            "configured_destination": 1,
+            "attempts": 45000,
+            "admitted": 11369,
+            "delivered": 11359,
+            "made_progress": true
+          }
+        ],
+        "all_flows_made_progress": true
+      },
+      "data_drained": false,
+      "controls_drained": true,
+      "base_case_id": "two_node_admission_1200",
+      "seed": 132,
+      "matlab_applications": {
+        "simulator": "matlab",
+        "case_id": "two_node_admission_1200_s132",
+        "base_case_id": "two_node_admission_1200",
+        "seed": 132,
+        "duration_s": 1200.0,
+        "attempts": 45000,
+        "admitted": 11369,
+        "admission_blocked": 33631,
+        "delivered": 11359,
+        "delivered_unique": 11359,
+        "duplicate_delivery_events": 0,
+        "unmatched_sends": 10,
+        "explicit_drops": 0,
+        "pending": 10,
+        "drop_reasons": {},
+        "network_bytes_sent": 6730448,
+        "network_bytes_received": 6724528,
+        "delay_samples": 11359,
+        "delay_sum_s": 10588.431858205857,
+        "mean_packet_latency_s": 0.9321623257510218,
+        "max_packet_latency_s": 4.579723999992041,
+        "populated_delay_buckets": 75,
+        "bucket_latency_mean_sum_s": 70.32264816929353,
+        "mean_populated_bucket_latency_s": 0.9376353089239138,
+        "received_packet_rate_over_full_window": 9.465833333333334,
+        "flows": [
+          {
+            "source": 2,
+            "destination": 1,
+            "admitted": 11369,
+            "delivered": 11359,
+            "delivered_unique": 11359,
+            "delay_sum_s": 10588.431858205699,
+            "delay_samples": 11359,
+            "mean_packet_latency_s": 0.9321623257510079,
+            "unmatched_sends": 10
+          }
+        ]
+      },
+      "ns3_applications": {
+        "simulator": "ns3",
+        "case_id": "two_node_admission_1200_s132",
+        "base_case_id": "two_node_admission_1200",
+        "seed": 132,
+        "duration_s": 1200.0,
+        "attempts": 45000,
+        "admitted": 11383,
+        "admission_blocked": 33617,
+        "delivered": 11375,
+        "delivered_unique": 11375,
+        "duplicate_delivery_events": 0,
+        "unmatched_sends": 8,
+        "explicit_drops": null,
+        "pending": null,
+        "drop_reasons": null,
+        "network_bytes_sent": 6738736,
+        "network_bytes_received": 6734000,
+        "delay_samples": 11375,
+        "delay_sum_s": 10575.736120000009,
+        "mean_packet_latency_s": 0.9297350435164843,
+        "max_packet_latency_s": 4.462724000000037,
+        "populated_delay_buckets": 75,
+        "bucket_latency_mean_sum_s": 70.09063720533892,
+        "mean_populated_bucket_latency_s": 0.9345418294045189,
+        "received_packet_rate_over_full_window": 9.479166666666666,
+        "flows": [
+          {
+            "source": 2,
+            "destination": 1,
+            "admitted": 11383,
+            "delivered": 11375,
+            "delivered_unique": 11375,
+            "delay_sum_s": 10575.736119999881,
+            "delay_samples": 11375,
+            "mean_packet_latency_s": 0.9297350435164731,
+            "unmatched_sends": 8
+          }
+        ]
+      },
+      "matlab_feedback": {
+        "decision_count": 11373,
+        "actual_feedback_member_count": 2071,
+        "distinct_decisions_transmitted": 1373,
+        "decisions_not_transmitted": 10000,
+        "queue_dispositions": {
+          "enqueued": 19,
+          "replaced": 11354
+        },
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 5
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 11368
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 25
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 2046
+          }
+        ],
+        "actual_vs_selected_rate_change_count": 0,
+        "actual_vs_selected_power_change_count": 0,
+        "incoming_context_missing_count": 0,
+        "feedback_forms": [
+          {
+            "feedback_form": "exact_sequence",
+            "selection_count": 14,
+            "ota_feedback_member_count": 70,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 5
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 9
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 25
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 45
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 0,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": null,
+            "last_radio_override_time_s": null
+          },
+          {
+            "feedback_form": "cumulative_window",
+            "selection_count": 11359,
+            "ota_feedback_member_count": 2001,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 11359
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 2001
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 0,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": null,
+            "last_radio_override_time_s": null
+          }
+        ],
+        "peer_s0_dbm": null,
+        "hop_failure_count": null,
+        "scope": "Selections are MAC-admission observations; actual rows count transmitted members including repeats. Replaced/rejected/retained-duplicate decisions may never transmit."
+      },
+      "ns3_feedback": {
+        "rows": 24865,
+        "selection_count": 11390,
+        "ordinary_data_context_count": 11375,
+        "ota_feedback_member_count": 2100,
+        "ota_aggregates_containing_feedback": 2063,
+        "distinct_decisions_transmitted": 1372,
+        "actual_vs_selected_rate_change_count": 1,
+        "actual_vs_selected_power_change_count": 0,
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 11390
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 1
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 2099
+          }
+        ],
+        "incoming_vs_selected_rate_difference_count": 0,
+        "incoming_vs_selected_power_difference_count": 0,
+        "incoming_context_missing_count": 15,
+        "feedback_forms": [
+          {
+            "feedback_form": "exact_sequence",
+            "selection_count": 15,
+            "ota_feedback_member_count": 75,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 15
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 1
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 74
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 1,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": 25.805,
+            "last_radio_override_time_s": 25.805
+          },
+          {
+            "feedback_form": "cumulative_window",
+            "selection_count": 11375,
+            "ota_feedback_member_count": 2025,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 11375
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 2025
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 0,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": null,
+            "last_radio_override_time_s": null
+          }
+        ],
+        "nonperturbation": {
+          "observer_on_off_application_evidence_equal": true,
+          "pristine_runner_and_t7_anchor_checked": false,
+          "scope": "Complete application trace and admission records; no claim that all ns-3 internal state was separately serialized."
+        },
+        "scope": "Selection is feedback construction after ApplyLinkControl, not successful MAC admission; OTA rows count actual members including repeats. Control-exact incoming context is unavailable."
+      }
+    },
+    {
+      "case_id": "three_node_contention_360_s132",
+      "counts": {
+        "Generated": 949,
+        "Received": 917,
+        "Dropped": 0,
+        "Pending": 32
+      },
+      "admission": {
+        "attempts": 60000,
+        "admitted": 949,
+        "blocked": 59051,
+        "trace_records": 60000,
+        "omitted_trace_records": 0,
+        "flows": [
+          {
+            "flow_index": 1,
+            "source": 2,
+            "configured_destination": 1,
+            "attempts": 30000,
+            "admitted": 446,
+            "delivered": 430,
+            "made_progress": true
+          },
+          {
+            "flow_index": 2,
+            "source": 3,
+            "configured_destination": 1,
+            "attempts": 30000,
+            "admitted": 503,
+            "delivered": 487,
+            "made_progress": true
+          }
+        ],
+        "all_flows_made_progress": true
+      },
+      "data_drained": false,
+      "controls_drained": true,
+      "base_case_id": "three_node_contention_360",
+      "seed": 132,
+      "matlab_applications": {
+        "simulator": "matlab",
+        "case_id": "three_node_contention_360_s132",
+        "base_case_id": "three_node_contention_360",
+        "seed": 132,
+        "duration_s": 360.0,
+        "attempts": 60000,
+        "admitted": 949,
+        "admission_blocked": 59051,
+        "delivered": 917,
+        "delivered_unique": 917,
+        "duplicate_delivery_events": 0,
+        "unmatched_sends": 32,
+        "explicit_drops": 0,
+        "pending": 32,
+        "drop_reasons": {},
+        "network_bytes_sent": 561808,
+        "network_bytes_received": 542864,
+        "delay_samples": 917,
+        "delay_sum_s": 1552.4388279466757,
+        "mean_packet_latency_s": 1.6929540108469745,
+        "max_packet_latency_s": 8.742723999985003,
+        "populated_delay_buckets": 17,
+        "bucket_latency_mean_sum_s": 31.548201794239283,
+        "mean_populated_bucket_latency_s": 1.8557765761317224,
+        "received_packet_rate_over_full_window": 2.547222222222222,
+        "flows": [
+          {
+            "source": 2,
+            "destination": 1,
+            "admitted": 446,
+            "delivered": 430,
+            "delivered_unique": 430,
+            "delay_sum_s": 786.8321799744283,
+            "delay_samples": 430,
+            "mean_packet_latency_s": 1.8298422790102984,
+            "unmatched_sends": 16
+          },
+          {
+            "source": 3,
+            "destination": 1,
+            "admitted": 503,
+            "delivered": 487,
+            "delivered_unique": 487,
+            "delay_sum_s": 765.6066479722524,
+            "delay_samples": 487,
+            "mean_packet_latency_s": 1.5720875728383006,
+            "unmatched_sends": 16
+          }
+        ]
+      },
+      "ns3_applications": {
+        "simulator": "ns3",
+        "case_id": "three_node_contention_360_s132",
+        "base_case_id": "three_node_contention_360",
+        "seed": 132,
+        "duration_s": 360.0,
+        "attempts": 60000,
+        "admitted": 952,
+        "admission_blocked": 59048,
+        "delivered": 920,
+        "delivered_unique": 920,
+        "duplicate_delivery_events": 0,
+        "unmatched_sends": 32,
+        "explicit_drops": null,
+        "pending": null,
+        "drop_reasons": null,
+        "network_bytes_sent": 563584,
+        "network_bytes_received": 544640,
+        "delay_samples": 920,
+        "delay_sum_s": 1521.011,
+        "mean_packet_latency_s": 1.6532728260869565,
+        "max_packet_latency_s": 10.081724000000008,
+        "populated_delay_buckets": 17,
+        "bucket_latency_mean_sum_s": 32.34364616462861,
+        "mean_populated_bucket_latency_s": 1.9025674214487418,
+        "received_packet_rate_over_full_window": 2.5555555555555554,
+        "flows": [
+          {
+            "source": 2,
+            "destination": 1,
+            "admitted": 467,
+            "delivered": 451,
+            "delivered_unique": 451,
+            "delay_sum_s": 772.5877440000006,
+            "delay_samples": 451,
+            "mean_packet_latency_s": 1.7130548647450123,
+            "unmatched_sends": 16
+          },
+          {
+            "source": 3,
+            "destination": 1,
+            "admitted": 485,
+            "delivered": 469,
+            "delivered_unique": 469,
+            "delay_sum_s": 748.4232560000034,
+            "delay_samples": 469,
+            "mean_packet_latency_s": 1.5957851940298582,
+            "unmatched_sends": 16
+          }
+        ]
+      },
+      "matlab_feedback": {
+        "decision_count": 965,
+        "actual_feedback_member_count": 409,
+        "distinct_decisions_transmitted": 170,
+        "decisions_not_transmitted": 795,
+        "queue_dispositions": {
+          "enqueued": 49,
+          "replaced": 916
+        },
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 25
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 940
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 125
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 284
+          }
+        ],
+        "actual_vs_selected_rate_change_count": 0,
+        "actual_vs_selected_power_change_count": 0,
+        "incoming_context_missing_count": 0,
+        "feedback_forms": [
+          {
+            "feedback_form": "exact_sequence",
+            "selection_count": 47,
+            "ota_feedback_member_count": 235,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 25
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 22
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 125
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 110
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 0,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": null,
+            "last_radio_override_time_s": null
+          },
+          {
+            "feedback_form": "cumulative_window",
+            "selection_count": 918,
+            "ota_feedback_member_count": 174,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 918
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 174
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 0,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": null,
+            "last_radio_override_time_s": null
+          }
+        ],
+        "peer_s0_dbm": null,
+        "hop_failure_count": null,
+        "scope": "Selections are MAC-admission observations; actual rows count transmitted members including repeats. Replaced/rejected/retained-duplicate decisions may never transmit."
+      },
+      "ns3_feedback": {
+        "rows": 2316,
+        "selection_count": 970,
+        "ordinary_data_context_count": 921,
+        "ota_feedback_member_count": 425,
+        "ota_aggregates_containing_feedback": 182,
+        "distinct_decisions_transmitted": 170,
+        "actual_vs_selected_rate_change_count": 31,
+        "actual_vs_selected_power_change_count": 0,
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 14
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 956
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 101
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 324
+          }
+        ],
+        "incoming_vs_selected_rate_difference_count": 0,
+        "incoming_vs_selected_power_difference_count": 0,
+        "incoming_context_missing_count": 49,
+        "feedback_forms": [
+          {
+            "feedback_form": "exact_sequence",
+            "selection_count": 49,
+            "ota_feedback_member_count": 245,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 14
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 35
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 8,
+                "power_dbm": 33.0,
+                "count": 101
+              },
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 144
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 31,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": 25.298,
+            "last_radio_override_time_s": 58.578
+          },
+          {
+            "feedback_form": "cumulative_window",
+            "selection_count": 921,
+            "ota_feedback_member_count": 180,
+            "selection_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 921
+              }
+            ],
+            "ota_member_distribution": [
+              {
+                "frame_type": "ACK",
+                "rate_key_kbps": 128,
+                "power_dbm": 33.0,
+                "count": 180
+              }
+            ],
+            "actual_vs_selected_rate_change_count": 0,
+            "actual_vs_selected_power_change_count": 0,
+            "first_radio_override_time_s": null,
+            "last_radio_override_time_s": null
+          }
+        ],
+        "nonperturbation": {
+          "observer_on_off_application_evidence_equal": true,
+          "pristine_runner_and_t7_anchor_checked": false,
+          "scope": "Complete application trace and admission records; no claim that all ns-3 internal state was separately serialized."
+        },
+        "scope": "Selection is feedback construction after ApplyLinkControl, not successful MAC admission; OTA rows count actual members including repeats. Control-exact incoming context is unavailable."
+      }
+    }
+  ],
+  "nonperturbation": {
+    "schema": "csr-link-diagnostic-nonperturbation-v1",
+    "status": "completed",
+    "planned_control_count": 2,
+    "completed_control_count": 2,
+    "passed": true,
+    "cases": [
+      {
+        "case_id": "two_node_admission_1200_s128",
+        "observer_on_directory": "b/a128/raw",
+        "observer_off_directory": "c/a128/raw",
+        "statistics_equal": true,
+        "config_equal": true,
+        "compared_files": [
+          {
+            "path": "trace.csv",
+            "observer_on_sha256": "57e07e10166d922a85e4cf9026ff3bef242fb1a39b02149cb8616a4788204c58",
+            "observer_off_sha256": "57e07e10166d922a85e4cf9026ff3bef242fb1a39b02149cb8616a4788204c58",
+            "equal": true
+          },
+          {
+            "path": "protocol_trace.csv",
+            "observer_on_sha256": "57e07e10166d922a85e4cf9026ff3bef242fb1a39b02149cb8616a4788204c58",
+            "observer_off_sha256": "57e07e10166d922a85e4cf9026ff3bef242fb1a39b02149cb8616a4788204c58",
+            "equal": true
+          },
+          {
+            "path": "phy_trace.csv",
+            "observer_on_sha256": "fc60d2f64a8e9a043568d27763180e950bf45b14cd4418926abb814f02e83e88",
+            "observer_off_sha256": "fc60d2f64a8e9a043568d27763180e950bf45b14cd4418926abb814f02e83e88",
+            "equal": true
+          },
+          {
+            "path": "nodes.csv",
+            "observer_on_sha256": "f09411c3df196398519db422db02e649fa442e2d5eeed8e83c8bb22670d4e9fe",
+            "observer_off_sha256": "f09411c3df196398519db422db02e649fa442e2d5eeed8e83c8bb22670d4e9fe",
+            "equal": true
+          },
+          {
+            "path": "mac_nodes.csv",
+            "observer_on_sha256": "fd35a4a059faf01b342abb41d1d2c0ff90f75723474461d51d79d5193510e6d8",
+            "observer_off_sha256": "fd35a4a059faf01b342abb41d1d2c0ff90f75723474461d51d79d5193510e6d8",
+            "equal": true
+          },
+          {
+            "path": "hop_nodes.csv",
+            "observer_on_sha256": "91c6ce595497df369c2bf346021df8af0fa80ff09a0544fef4ea394e81fc9b99",
+            "observer_off_sha256": "91c6ce595497df369c2bf346021df8af0fa80ff09a0544fef4ea394e81fc9b99",
+            "equal": true
+          },
+          {
+            "path": "nwk_nodes.csv",
+            "observer_on_sha256": "4eac3e43801a9ab7b8590f21b4124322aab338b267c8fe9bbf953338b8876cef",
+            "observer_off_sha256": "4eac3e43801a9ab7b8590f21b4124322aab338b267c8fe9bbf953338b8876cef",
+            "equal": true
+          },
+          {
+            "path": "routes.csv",
+            "observer_on_sha256": "2d442873efee2d100569b644741ed5e90c52aa7258fee195239a7dc14f2e9cbe",
+            "observer_off_sha256": "2d442873efee2d100569b644741ed5e90c52aa7258fee195239a7dc14f2e9cbe",
+            "equal": true
+          },
+          {
+            "path": "neighbors.csv",
+            "observer_on_sha256": "e7f10d31370460dc517ce7e296505a63df6a9c0b34e3e9e679ba2c9e322134a2",
+            "observer_off_sha256": "e7f10d31370460dc517ce7e296505a63df6a9c0b34e3e9e679ba2c9e322134a2",
+            "equal": true
+          },
+          {
+            "path": "application_admission_statistics.csv",
+            "observer_on_sha256": "c6954776f6a7e4938205cb863f1369b8a1e36628b8affd8eb0117cf4de76fc49",
+            "observer_off_sha256": "c6954776f6a7e4938205cb863f1369b8a1e36628b8affd8eb0117cf4de76fc49",
+            "equal": true
+          },
+          {
+            "path": "application_admission_trace.csv",
+            "observer_on_sha256": "a0471cc084ae0b7f1063b79e782e09389e8b4cbd772af49e0136216ef02a595c",
+            "observer_off_sha256": "a0471cc084ae0b7f1063b79e782e09389e8b4cbd772af49e0136216ef02a595c",
+            "equal": true
+          },
+          {
+            "path": "scenario.csv",
+            "observer_on_sha256": "f145c4614a81809e3fd24a9651e7ecf5f4ab4011b1c61588f6a21d0799e9a27f",
+            "observer_off_sha256": "f145c4614a81809e3fd24a9651e7ecf5f4ab4011b1c61588f6a21d0799e9a27f",
+            "equal": true
+          }
+        ],
+        "passed": true
+      },
+      {
+        "case_id": "three_node_contention_360_s128",
+        "observer_on_directory": "b/c128/raw",
+        "observer_off_directory": "c/c128/raw",
+        "statistics_equal": true,
+        "config_equal": true,
+        "compared_files": [
+          {
+            "path": "trace.csv",
+            "observer_on_sha256": "2abf7e760ffc4a60734dc1b1d3df51a586b20c85ae9c7b6387334d6a9056ce3e",
+            "observer_off_sha256": "2abf7e760ffc4a60734dc1b1d3df51a586b20c85ae9c7b6387334d6a9056ce3e",
+            "equal": true
+          },
+          {
+            "path": "protocol_trace.csv",
+            "observer_on_sha256": "2abf7e760ffc4a60734dc1b1d3df51a586b20c85ae9c7b6387334d6a9056ce3e",
+            "observer_off_sha256": "2abf7e760ffc4a60734dc1b1d3df51a586b20c85ae9c7b6387334d6a9056ce3e",
+            "equal": true
+          },
+          {
+            "path": "phy_trace.csv",
+            "observer_on_sha256": "42b3939036cb4023830dead8c9acdc6fafb64255edcd88d53a76679c1322fdab",
+            "observer_off_sha256": "42b3939036cb4023830dead8c9acdc6fafb64255edcd88d53a76679c1322fdab",
+            "equal": true
+          },
+          {
+            "path": "nodes.csv",
+            "observer_on_sha256": "3c5ea9497ef63e1851e0a8d486e785d800cea88697c0e4fd66df30cdd2356a19",
+            "observer_off_sha256": "3c5ea9497ef63e1851e0a8d486e785d800cea88697c0e4fd66df30cdd2356a19",
+            "equal": true
+          },
+          {
+            "path": "mac_nodes.csv",
+            "observer_on_sha256": "20199e174ec5a58745a704999970ca6734f9f6638a3faa631de9709344486e52",
+            "observer_off_sha256": "20199e174ec5a58745a704999970ca6734f9f6638a3faa631de9709344486e52",
+            "equal": true
+          },
+          {
+            "path": "hop_nodes.csv",
+            "observer_on_sha256": "43eda4b00293afbd0602797ceacc2ca8970de83200aedc47fd3173d9b7eb27ff",
+            "observer_off_sha256": "43eda4b00293afbd0602797ceacc2ca8970de83200aedc47fd3173d9b7eb27ff",
+            "equal": true
+          },
+          {
+            "path": "nwk_nodes.csv",
+            "observer_on_sha256": "e291d990d12e082931663633deba776a25e561d0d952cb13cfe5c41293f50c5d",
+            "observer_off_sha256": "e291d990d12e082931663633deba776a25e561d0d952cb13cfe5c41293f50c5d",
+            "equal": true
+          },
+          {
+            "path": "routes.csv",
+            "observer_on_sha256": "bf8698e6af43cb510c914d65b6f952c6b8d9594dfdee3853dfb1da6aa3668397",
+            "observer_off_sha256": "bf8698e6af43cb510c914d65b6f952c6b8d9594dfdee3853dfb1da6aa3668397",
+            "equal": true
+          },
+          {
+            "path": "neighbors.csv",
+            "observer_on_sha256": "d66966a1711092012bde31574af9fa3511bc4ee8397fa1267923e2431b5ad707",
+            "observer_off_sha256": "d66966a1711092012bde31574af9fa3511bc4ee8397fa1267923e2431b5ad707",
+            "equal": true
+          },
+          {
+            "path": "application_admission_statistics.csv",
+            "observer_on_sha256": "f189c1f8f47d9a11c0da841c071d1a6bfa3a68e3764e26c0819c4295f28199f7",
+            "observer_off_sha256": "f189c1f8f47d9a11c0da841c071d1a6bfa3a68e3764e26c0819c4295f28199f7",
+            "equal": true
+          },
+          {
+            "path": "application_admission_trace.csv",
+            "observer_on_sha256": "4db1b2410d9c3bbfa9b5d7baf28d1f8dd6840f10d5412e6af766a2dca702b0b5",
+            "observer_off_sha256": "4db1b2410d9c3bbfa9b5d7baf28d1f8dd6840f10d5412e6af766a2dca702b0b5",
+            "equal": true
+          },
+          {
+            "path": "scenario.csv",
+            "observer_on_sha256": "c366b61b26986949f506b3d2e831a8335c34565fac37db7dddcc2f2a026f21cf",
+            "observer_off_sha256": "c366b61b26986949f506b3d2e831a8335c34565fac37db7dddcc2f2a026f21cf",
+            "equal": true
+          }
+        ],
+        "passed": true
+      }
+    ]
+  },
+  "accepted_tranche7_anchor": {
+    "archive_sha256": "ea39b86ef68f91a551e4e22d176e2e96dc5305f33673741eee0adc6039599655",
+    "cases": [
+      {
+        "case_id": "two_node_admission_1200_s128",
+        "base_case_id": "two_node_admission_1200",
+        "passed": true,
+        "statistics_equal": true,
+        "files": [
+          {
+            "path": "protocol_trace.csv",
+            "semantic_records": 154491
+          },
+          {
+            "path": "trace.csv",
+            "semantic_records": 154491
+          },
+          {
+            "path": "phy_trace.csv",
+            "semantic_records": 20045
+          },
+          {
+            "path": "nodes.csv",
+            "semantic_records": 2
+          },
+          {
+            "path": "mac_nodes.csv",
+            "semantic_records": 2
+          },
+          {
+            "path": "hop_nodes.csv",
+            "semantic_records": 2
+          },
+          {
+            "path": "nwk_nodes.csv",
+            "semantic_records": 2
+          },
+          {
+            "path": "neighbors.csv",
+            "semantic_records": 2
+          },
+          {
+            "path": "routes.csv",
+            "semantic_records": 2
+          },
+          {
+            "path": "application_admission_statistics.csv",
+            "semantic_records": 1
+          },
+          {
+            "path": "application_admission_trace.csv",
+            "semantic_records": 45000
+          }
+        ]
+      },
+      {
+        "case_id": "three_node_contention_360_s128",
+        "base_case_id": "three_node_contention_360",
+        "passed": true,
+        "statistics_equal": true,
+        "files": [
+          {
+            "path": "protocol_trace.csv",
+            "semantic_records": 15358
+          },
+          {
+            "path": "trace.csv",
+            "semantic_records": 15358
+          },
+          {
+            "path": "phy_trace.csv",
+            "semantic_records": 3518
+          },
+          {
+            "path": "nodes.csv",
+            "semantic_records": 3
+          },
+          {
+            "path": "mac_nodes.csv",
+            "semantic_records": 3
+          },
+          {
+            "path": "hop_nodes.csv",
+            "semantic_records": 3
+          },
+          {
+            "path": "nwk_nodes.csv",
+            "semantic_records": 3
+          },
+          {
+            "path": "neighbors.csv",
+            "semantic_records": 6
+          },
+          {
+            "path": "routes.csv",
+            "semantic_records": 6
+          },
+          {
+            "path": "application_admission_statistics.csv",
+            "semantic_records": 2
+          },
+          {
+            "path": "application_admission_trace.csv",
+            "semantic_records": 60000
+          }
+        ]
+      }
+    ],
+    "passed": true,
+    "comparison": "All unchanged protocol/PHY/node/admission CSV observations and complete Statistics; only text numeric/newline formatting may differ."
+  },
+  "multiseed": {
+    "groups": [
+      {
+        "base_case_id": "three_node_contention_360",
+        "simulator": "matlab",
+        "seeds": [
+          128,
+          129,
+          130,
+          131,
+          132
+        ],
+        "pooled": {
+          "attempts": 300000,
+          "admitted": 4736,
+          "delivered": 4582,
+          "delivered_unique": 4582,
+          "duplicate_delivery_events": 0,
+          "unmatched_sends": 154,
+          "network_bytes_sent": 2803712,
+          "network_bytes_received": 2712544,
+          "delay_samples": 4582,
+          "delay_sum_s": 7716.92596773257,
+          "populated_delay_buckets": 85,
+          "bucket_latency_mean_sum_s": 156.76112843164472,
+          "duration_s": 1800.0,
+          "mean_packet_latency_s": 1.684182882525659,
+          "mean_populated_bucket_latency_s": 1.8442485697840556,
+          "explicit_drops": 0,
+          "pending": 154
+        },
+        "per_seed_delivered": {
+          "count": 5,
+          "minimum": 894,
+          "maximum": 948,
+          "mean": 916.4,
+          "sample_standard_deviation": 22.87575135378071
+        },
+        "per_seed_packet_latency": {
+          "count": 5,
+          "minimum": 1.602588936651351,
+          "maximum": 1.7755907560928177,
+          "mean": 1.685447419302042,
+          "sample_standard_deviation": 0.06699191962875346
+        }
+      },
+      {
+        "base_case_id": "three_node_contention_360",
+        "simulator": "ns3",
+        "seeds": [
+          128,
+          129,
+          130,
+          131,
+          132
+        ],
+        "pooled": {
+          "attempts": 300000,
+          "admitted": 4603,
+          "delivered": 4455,
+          "delivered_unique": 4455,
+          "duplicate_delivery_events": 0,
+          "unmatched_sends": 148,
+          "network_bytes_sent": 2724976,
+          "network_bytes_received": 2637360,
+          "delay_samples": 4455,
+          "delay_sum_s": 7735.717340000003,
+          "populated_delay_buckets": 85,
+          "bucket_latency_mean_sum_s": 172.41255803088933,
+          "duration_s": 1800.0,
+          "mean_packet_latency_s": 1.736412421997756,
+          "mean_populated_bucket_latency_s": 2.0283830356575216,
+          "explicit_drops": null,
+          "pending": null
+        },
+        "per_seed_delivered": {
+          "count": 5,
+          "minimum": 822,
+          "maximum": 920,
+          "mean": 891.0,
+          "sample_standard_deviation": 41.291645644125154
+        },
+        "per_seed_packet_latency": {
+          "count": 5,
+          "minimum": 1.6532728260869565,
+          "maximum": 1.918685946472017,
+          "mean": 1.740493215598957,
+          "sample_standard_deviation": 0.11095246481174198
+        }
+      },
+      {
+        "base_case_id": "two_node_admission_1200",
+        "simulator": "matlab",
+        "seeds": [
+          128,
+          129,
+          130,
+          131,
+          132
+        ],
+        "pooled": {
+          "attempts": 225000,
+          "admitted": 56713,
+          "delivered": 56662,
+          "delivered_unique": 56662,
+          "duplicate_delivery_events": 0,
+          "unmatched_sends": 51,
+          "network_bytes_sent": 33574096,
+          "network_bytes_received": 33543904,
+          "delay_samples": 56662,
+          "delay_sum_s": 53144.877119098244,
+          "populated_delay_buckets": 375,
+          "bucket_latency_mean_sum_s": 354.3508756597035,
+          "duration_s": 6000.0,
+          "mean_packet_latency_s": 0.9379280138205189,
+          "mean_populated_bucket_latency_s": 0.944935668425876,
+          "explicit_drops": 0,
+          "pending": 51
+        },
+        "per_seed_delivered": {
+          "count": 5,
+          "minimum": 11249,
+          "maximum": 11385,
+          "mean": 11332.4,
+          "sample_standard_deviation": 52.91313636517873
+        },
+        "per_seed_packet_latency": {
+          "count": 5,
+          "minimum": 0.9290211271967853,
+          "maximum": 0.9458659268426848,
+          "mean": 0.9379471008023733,
+          "sample_standard_deviation": 0.007502197994572119
+        }
+      },
+      {
+        "base_case_id": "two_node_admission_1200",
+        "simulator": "ns3",
+        "seeds": [
+          128,
+          129,
+          130,
+          131,
+          132
+        ],
+        "pooled": {
+          "attempts": 225000,
+          "admitted": 56743,
+          "delivered": 56692,
+          "delivered_unique": 56692,
+          "duplicate_delivery_events": 0,
+          "unmatched_sends": 51,
+          "network_bytes_sent": 33591856,
+          "network_bytes_received": 33561664,
+          "delay_samples": 56692,
+          "delay_sum_s": 53347.52362799999,
+          "populated_delay_buckets": 375,
+          "bucket_latency_mean_sum_s": 354.82913739902483,
+          "duration_s": 6000.0,
+          "mean_packet_latency_s": 0.94100620242715,
+          "mean_populated_bucket_latency_s": 0.9462110330640662,
+          "explicit_drops": null,
+          "pending": null
+        },
+        "per_seed_delivered": {
+          "count": 5,
+          "minimum": 11227,
+          "maximum": 11396,
+          "mean": 11338.4,
+          "sample_standard_deviation": 66.69557706474995
+        },
+        "per_seed_packet_latency": {
+          "count": 5,
+          "minimum": 0.9297350435164843,
+          "maximum": 0.9597574995991801,
+          "mean": 0.9410497372200977,
+          "sample_standard_deviation": 0.011648791631768006
+        }
+      }
+    ],
+    "paired_by_seed": [
+      {
+        "base_case_id": "three_node_contention_360",
+        "seed": 128,
+        "admitted": {
+          "matlab": 954,
+          "ns3": 946,
+          "difference_matlab_minus_ns3": 8,
+          "relative_difference_percent": 0.8456659619450317
+        },
+        "delivered": {
+          "matlab": 928,
+          "ns3": 914,
+          "difference_matlab_minus_ns3": 14,
+          "relative_difference_percent": 1.5317286652078774
+        },
+        "mean_packet_latency_s": {
+          "matlab": 1.6406713706324183,
+          "ns3": 1.6948455317286661,
+          "difference_matlab_minus_ns3": -0.05417416109624784,
+          "relative_difference_percent": -3.1964069929719576
+        },
+        "mean_populated_bucket_latency_s": {
+          "matlab": 1.727024901329366,
+          "ns3": 1.914475426713893,
+          "difference_matlab_minus_ns3": -0.1874505253845271,
+          "relative_difference_percent": -9.791221280195646
+        }
+      },
+      {
+        "base_case_id": "three_node_contention_360",
+        "seed": 129,
+        "admitted": {
+          "matlab": 980,
+          "ns3": 854,
+          "difference_matlab_minus_ns3": 126,
+          "relative_difference_percent": 14.754098360655737
+        },
+        "delivered": {
+          "matlab": 948,
+          "ns3": 822,
+          "difference_matlab_minus_ns3": 126,
+          "relative_difference_percent": 15.328467153284672
+        },
+        "mean_packet_latency_s": {
+          "matlab": 1.602588936651351,
+          "ns3": 1.918685946472017,
+          "difference_matlab_minus_ns3": -0.3160970098206659,
+          "relative_difference_percent": -16.474661233741205
+        },
+        "mean_populated_bucket_latency_s": {
+          "matlab": 1.7125731625587293,
+          "ns3": 2.3288105943067516,
+          "difference_matlab_minus_ns3": -0.6162374317480224,
+          "relative_difference_percent": -26.461466349154342
+        }
+      },
+      {
+        "base_case_id": "three_node_contention_360",
+        "seed": 130,
+        "admitted": {
+          "matlab": 926,
+          "ns3": 948,
+          "difference_matlab_minus_ns3": -22,
+          "relative_difference_percent": -2.320675105485232
+        },
+        "delivered": {
+          "matlab": 894,
+          "ns3": 916,
+          "difference_matlab_minus_ns3": -22,
+          "relative_difference_percent": -2.4017467248908297
+        },
+        "mean_packet_latency_s": {
+          "matlab": 1.7755907560928177,
+          "ns3": 1.6596463580786067,
+          "difference_matlab_minus_ns3": 0.11594439801421097,
+          "relative_difference_percent": 6.986090587903392
+        },
+        "mean_populated_bucket_latency_s": {
+          "matlab": 1.9686539853851277,
+          "ns3": 1.8952050977679582,
+          "difference_matlab_minus_ns3": 0.0734488876171695,
+          "relative_difference_percent": 3.875511294459504
+        }
+      },
+      {
+        "base_case_id": "three_node_contention_360",
+        "seed": 131,
+        "admitted": {
+          "matlab": 927,
+          "ns3": 903,
+          "difference_matlab_minus_ns3": 24,
+          "relative_difference_percent": 2.6578073089700998
+        },
+        "delivered": {
+          "matlab": 895,
+          "ns3": 883,
+          "difference_matlab_minus_ns3": 12,
+          "relative_difference_percent": 1.3590033975084939
+        },
+        "mean_packet_latency_s": {
+          "matlab": 1.7154320222866477,
+          "ns3": 1.7760154156285395,
+          "difference_matlab_minus_ns3": -0.06058339334189178,
+          "relative_difference_percent": -3.411197493488594
+        },
+        "mean_populated_bucket_latency_s": {
+          "matlab": 1.9572142235153327,
+          "ns3": 2.100856638050263,
+          "difference_matlab_minus_ns3": -0.14364241453493043,
+          "relative_difference_percent": -6.8373258761835505
+        }
+      },
+      {
+        "base_case_id": "three_node_contention_360",
+        "seed": 132,
+        "admitted": {
+          "matlab": 949,
+          "ns3": 952,
+          "difference_matlab_minus_ns3": -3,
+          "relative_difference_percent": -0.31512605042016806
+        },
+        "delivered": {
+          "matlab": 917,
+          "ns3": 920,
+          "difference_matlab_minus_ns3": -3,
+          "relative_difference_percent": -0.32608695652173914
+        },
+        "mean_packet_latency_s": {
+          "matlab": 1.6929540108469745,
+          "ns3": 1.6532728260869565,
+          "difference_matlab_minus_ns3": 0.03968118476001803,
+          "relative_difference_percent": 2.4001594978087986
+        },
+        "mean_populated_bucket_latency_s": {
+          "matlab": 1.8557765761317224,
+          "ns3": 1.9025674214487418,
+          "difference_matlab_minus_ns3": -0.04679084531701938,
+          "relative_difference_percent": -2.459352808710963
+        }
+      },
+      {
+        "base_case_id": "two_node_admission_1200",
+        "seed": 128,
+        "admitted": {
+          "matlab": 11395,
+          "ns3": 11380,
+          "difference_matlab_minus_ns3": 15,
+          "relative_difference_percent": 0.13181019332161686
+        },
+        "delivered": {
+          "matlab": 11385,
+          "ns3": 11364,
+          "difference_matlab_minus_ns3": 21,
+          "relative_difference_percent": 0.18479408658922913
+        },
+        "mean_packet_latency_s": {
+          "matlab": 0.9377221258005038,
+          "ns3": 0.942769619500175,
+          "difference_matlab_minus_ns3": -0.005047493699671168,
+          "relative_difference_percent": -0.5353899399460051
+        },
+        "mean_populated_bucket_latency_s": {
+          "matlab": 0.9425894600591692,
+          "ns3": 0.947510827025824,
+          "difference_matlab_minus_ns3": -0.004921366966654794,
+          "relative_difference_percent": -0.5193995494597831
+        }
+      },
+      {
+        "base_case_id": "two_node_admission_1200",
+        "seed": 129,
+        "admitted": {
+          "matlab": 11358,
+          "ns3": 11234,
+          "difference_matlab_minus_ns3": 124,
+          "relative_difference_percent": 1.1037920598184083
+        },
+        "delivered": {
+          "matlab": 11354,
+          "ns3": 11227,
+          "difference_matlab_minus_ns3": 127,
+          "relative_difference_percent": 1.1312015676494165
+        },
+        "mean_packet_latency_s": {
+          "matlab": 0.9290211271967853,
+          "ns3": 0.9597574995991801,
+          "difference_matlab_minus_ns3": -0.030736372402394796,
+          "relative_difference_percent": -3.2025144284083336
+        },
+        "mean_populated_bucket_latency_s": {
+          "matlab": 0.9349057527625132,
+          "ns3": 0.963341652862954,
+          "difference_matlab_minus_ns3": -0.028435900100440836,
+          "relative_difference_percent": -2.951798047549612
+        }
+      },
+      {
+        "base_case_id": "two_node_admission_1200",
+        "seed": 130,
+        "admitted": {
+          "matlab": 11326,
+          "ns3": 11412,
+          "difference_matlab_minus_ns3": -86,
+          "relative_difference_percent": -0.7535927094286716
+        },
+        "delivered": {
+          "matlab": 11315,
+          "ns3": 11396,
+          "difference_matlab_minus_ns3": -81,
+          "relative_difference_percent": -0.7107757107757108
+        },
+        "mean_packet_latency_s": {
+          "matlab": 0.9458659268426848,
+          "ns3": 0.9396786805896803,
+          "difference_matlab_minus_ns3": 0.006187246253004486,
+          "relative_difference_percent": 0.6584427614258289
+        },
+        "mean_populated_bucket_latency_s": {
+          "matlab": 0.950442482312967,
+          "ns3": 0.9472246974836864,
+          "difference_matlab_minus_ns3": 0.00321778482928059,
+          "relative_difference_percent": 0.33970660159396954
+        }
+      },
+      {
+        "base_case_id": "two_node_admission_1200",
+        "seed": 131,
+        "admitted": {
+          "matlab": 11265,
+          "ns3": 11334,
+          "difference_matlab_minus_ns3": -69,
+          "relative_difference_percent": -0.6087877183695076
+        },
+        "delivered": {
+          "matlab": 11249,
+          "ns3": 11330,
+          "difference_matlab_minus_ns3": -81,
+          "relative_difference_percent": -0.7149161518093556
+        },
+        "mean_packet_latency_s": {
+          "matlab": 0.9449639984208706,
+          "ns3": 0.9333078428949692,
+          "difference_matlab_minus_ns3": 0.01165615552590149,
+          "relative_difference_percent": 1.2489079155004197
+        },
+        "mean_populated_bucket_latency_s": {
+          "matlab": 0.9591053380708164,
+          "ns3": 0.9384361585433476,
+          "difference_matlab_minus_ns3": 0.02066917952746883,
+          "relative_difference_percent": 2.202513121356256
+        }
+      },
+      {
+        "base_case_id": "two_node_admission_1200",
+        "seed": 132,
+        "admitted": {
+          "matlab": 11369,
+          "ns3": 11383,
+          "difference_matlab_minus_ns3": -14,
+          "relative_difference_percent": -0.12299042431696389
+        },
+        "delivered": {
+          "matlab": 11359,
+          "ns3": 11375,
+          "difference_matlab_minus_ns3": -16,
+          "relative_difference_percent": -0.14065934065934066
+        },
+        "mean_packet_latency_s": {
+          "matlab": 0.9321623257510218,
+          "ns3": 0.9297350435164843,
+          "difference_matlab_minus_ns3": 0.0024272822345374756,
+          "relative_difference_percent": 0.2610724691366804
+        },
+        "mean_populated_bucket_latency_s": {
+          "matlab": 0.9376353089239138,
+          "ns3": 0.9345418294045189,
+          "difference_matlab_minus_ns3": 0.0030934795193948705,
+          "relative_difference_percent": 0.3310156294840228
+        }
+      }
+    ],
+    "scope": "Descriptive observations for seeds 128..132 only. Simulator random streams are not assumed identical.",
+    "population_equivalence_established": false,
+    "latency_convention": "Packet-weighted means pool actual delivery delay samples. Bucket means equally weight each populated receive bucket."
+  },
+  "acceptance_established": false,
+  "numerical_parity_established": false,
+  "population_equivalence_established": false,
+  "limitations": [
+    "Recorded MATLAB execution is owner-returned evidence; this Python reviewer does not run MATLAB.",
+    "No campus, retained sweep, native-backend, or OPNET execution is part of this diagnostic gate.",
+    "Finite-stop pending work remains reported; ns-3 unmatched sends are not classified as drops or pending work.",
+    "Packet identities and pseudorandom streams are simulator-specific; seed pairing is a declared experiment index.",
+    "ACK/DACK observer correlation proves recorded local choices and transmissions, not protocol equivalence."
+  ],
+  "uploaded_zip_sha256": "bfc4f7f05f0800316b371df3ec316f309f14e3482ef259c3f9c7bd7eea025d77"
+}

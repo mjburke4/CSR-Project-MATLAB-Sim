@@ -1,0 +1,196 @@
+{
+  "schema": "csr-tranche10-failure-evidence-audit-v1",
+  "created_utc": "2026-09-14T12:47:16.350173+00:00",
+  "review_role": "independent evidence and event-budget audit; no source edits",
+  "restored_candidate_commit": "87d0d69e",
+  "owner_log": {
+    "path": "/workspace/scratch/1a5b1ad6ce1b/upload/Pasted markdown(3).md",
+    "sha256": "bc1a1a0490844b3bf87e9bf4942f19e131a23bbc5a768780d361a8c33f9183cc",
+    "log_only": true,
+    "returned_full_evidence_available": false,
+    "contract_counts": {
+      "mac": 279,
+      "rx": 154,
+      "ack": 101
+    },
+    "retained_completed_before_failure": 26,
+    "failing_case": "research_mesh_6_seed_128",
+    "duration_seconds": 900,
+    "error_identifier_from_source": "csr:sim:EventLimitExceeded",
+    "max_events": 2000000,
+    "failure_now_unknown": true
+  },
+  "prior_evidence": [
+    {
+      "tranche": 6,
+      "archive": "evidence/tranche-6-r2025a-accepted/tranche6_evidence.zip",
+      "archive_sha256": "5c8ec2997ae8c248625240c3fd084aaaca85d5221ec7a347a0aaad2dabeb1e17",
+      "mesh_summary_count": 1,
+      "mesh": {
+        "summary_path": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/mesh_6_seed_128/summary.json",
+        "summary_sha256": "8d88b7d576fdba7aaacfa2aaaad2ee75ac21cd48f32875a29329316e2aad5694",
+        "config": {
+          "Name": "research_mesh_6",
+          "DurationSeconds": 900,
+          "Seed": 128,
+          "MaxEvents": 2000000.0,
+          "Trace": {
+            "Enabled": true,
+            "MaxRecords": 100000,
+            "MaxPhyRecords": 100000
+          }
+        },
+        "runtime": {
+          "Runtime": "MATLAB",
+          "Version": "25.1.0.2943329 (R2025a)",
+          "Release": "2025a",
+          "RuntimeSeconds": 59.8085751,
+          "PendingEvents": 6
+        },
+        "statistics": {
+          "Generated": 15,
+          "Received": 15,
+          "Dropped": 0,
+          "PhysicalTransmissions": 1183,
+          "PhysicalAttempts": 5915,
+          "OmittedTraceRecords": 0,
+          "OmittedPhyTraceRecords": 0,
+          "Pending": 0
+        },
+        "csv_rows": {
+          "hop_nodes.csv": 6,
+          "mac_nodes.csv": 6,
+          "neighbors.csv": 14,
+          "nodes.csv": 6,
+          "nwk_nodes.csv": 6,
+          "phy_trace.csv": 20851,
+          "protocol_trace.csv": 19472,
+          "research_summary.csv": 1,
+          "routes.csv": 30,
+          "trace.csv": 19472
+        },
+        "executed_event_count_available": false,
+        "source_hashes": {
+          "+csr/+mac/Layer.m": "72f3af3162a3757793b3fcb9d82607f136eb4a4c433b7583b12a85dd73515e7d",
+          "+csr/+scenario/researchNetwork.m": "903f78913a0e7c0d06e9adeeafe30af8b82703dd2cbd1c40705ef6a6644a372a",
+          "+csr/+sim/EventScheduler.m": "22a937be4cc18d5e2e5b2956f87273b65dfcdf7a37ee0f0487dfe2a6f647f9b3"
+        }
+      }
+    },
+    {
+      "tranche": 7,
+      "archive": "evidence/tranche-7-r2025a-accepted/tranche7_evidence.zip",
+      "archive_sha256": "ea39b86ef68f91a551e4e22d176e2e96dc5305f33673741eee0adc6039599655",
+      "mesh_summary_count": 1,
+      "mesh": {
+        "summary_path": "regression/run_20260910_142546_493_tp03e07df4_9a8f_486f_96c8_4e2bcbba114d/regression/run_20260910_142546_976_tpc41b99e6_6ccb_40e9_b855_8cc0b40d425f/regression/run_20260910_142547_252_tpd17bb41a_a358_4788_a1a4_587b96550f48/research/mesh_6_seed_128/summary.json",
+        "summary_sha256": "dfc3897cefb830996822af06a659f9804de2e5a15aaf1e6acc555d6187c7b6b5",
+        "config": {
+          "Name": "research_mesh_6",
+          "DurationSeconds": 900,
+          "Seed": 128,
+          "MaxEvents": 2000000.0,
+          "Trace": {
+            "Enabled": true,
+            "MaxRecords": 100000,
+            "MaxPhyRecords": 100000,
+            "MaxApplicationAdmissionRecords": 100000
+          }
+        },
+        "runtime": {
+          "Runtime": "MATLAB",
+          "Version": "25.1.0.2943329 (R2025a)",
+          "Release": "2025a",
+          "RuntimeSeconds": 59.8014808,
+          "PendingEvents": 6
+        },
+        "statistics": {
+          "Generated": 15,
+          "Received": 15,
+          "Dropped": 0,
+          "PhysicalTransmissions": 1183,
+          "PhysicalAttempts": 5915,
+          "OmittedTraceRecords": 0,
+          "OmittedPhyTraceRecords": 0,
+          "OmittedApplicationAdmissionRecords": 0,
+          "Pending": 0
+        },
+        "csv_rows": {
+          "application_admission_statistics.csv": 3,
+          "application_admission_trace.csv": 0,
+          "hop_nodes.csv": 6,
+          "mac_nodes.csv": 6,
+          "neighbors.csv": 14,
+          "nodes.csv": 6,
+          "nwk_nodes.csv": 6,
+          "phy_trace.csv": 20851,
+          "protocol_trace.csv": 19472,
+          "research_summary.csv": 1,
+          "routes.csv": 30,
+          "trace.csv": 19472
+        },
+        "executed_event_count_available": false,
+        "source_hashes": {
+          "+csr/+mac/Layer.m": "35769fb532ccf4ac111d84117dc85142427043e42de621f92b3277e5fe94473d",
+          "+csr/+scenario/researchNetwork.m": "903f78913a0e7c0d06e9adeeafe30af8b82703dd2cbd1c40705ef6a6644a372a",
+          "+csr/+sim/EventScheduler.m": "22a937be4cc18d5e2e5b2956f87273b65dfcdf7a37ee0f0487dfe2a6f647f9b3"
+        }
+      }
+    },
+    {
+      "tranche": 9,
+      "archive": "evidence/tranche-9-r2025a-accepted/tranche9_evidence.zip",
+      "archive_sha256": "ddcede0a83b5ff906a7736f63406fc4cecb11e841795e39e93237364e0e11edf",
+      "mesh_summary_count": 0
+    }
+  ],
+  "current_file_hashes": {
+    "+csr/+scenario/researchNetwork.m": "903f78913a0e7c0d06e9adeeafe30af8b82703dd2cbd1c40705ef6a6644a372a",
+    "+csr/+sim/EventScheduler.m": "22a937be4cc18d5e2e5b2956f87273b65dfcdf7a37ee0f0487dfe2a6f647f9b3",
+    "run_tranche10_validation.m": "183ba623a2095e56a729a6b64e0e5fd1e896c42c155f18cefd483fc70725d0b4",
+    "tests/TestResearchEvidence.m": "c38f5f4a7d9d7cd5e7ef90ea291b035cf5d977cb28b398e83562ae801116e981"
+  },
+  "expected_negative_test": {
+    "file": "tests/TestResearchEvidence.m",
+    "method": "failedRunPreservesOriginalErrorUnderRelativeOutputRoot",
+    "method_start_line": 108,
+    "verify_error_line": 117,
+    "identifier": "csr:validation:Catalog",
+    "expected_case": "unknown_case",
+    "disposition": "Printed Tranche 4 failed message inside this test is expected negative-test output; source asserts failed metadata and preserved tranche4_evidence.zip."
+  },
+  "conclusions": [
+    "The current factory SHA equals the accepted T7 factory SHA; duration and MaxEvents are unchanged.",
+    "Accepted T6 and T7 mesh both completed at the current event cap and delivered 15/15 applications with no omitted protocol/PHY records.",
+    "Executed scheduler callback counts were deliberately unavailable in legacy summaries; protocol and PHY row counts must not be used as callback counts.",
+    "Hitting MaxEvents is a structural blocker. Owner log alone cannot prove zero-time recursion versus a genuine changed workload, and does not justify raising the event cap.",
+    "Tranche 9 return did not run this mesh fixture.",
+    "Full run catch preserves completed cases and tests but cannot export the failing simulation state because csr.runScenario local handle unwinds before any result exists."
+  ],
+  "targeted_diagnostic": {
+    "factory": "csr.scenario.researchNetwork('mesh_6',struct('Seed',128))",
+    "construction": "sim = csr.sim.NetworkSimulation(config);",
+    "execution": "sim.run() once with unchanged DurationSeconds=900 and MaxEvents=2000000",
+    "capture_after_error": [
+      "error identifier and message",
+      "source snapshot and complete validated config",
+      "sim.Scheduler.Now",
+      "sim.Scheduler.nextTime()",
+      "sim.Scheduler.PendingCount",
+      "sim.Macs{k}.snapshot(), Counters, PreparationActive, HoldoffOver",
+      "sim.Hops{k}.stats()",
+      "sim.Networks{k}.stats(), routesSnapshot(), neighborsSnapshot()"
+    ],
+    "next_callback_limitation": "Callback heap is private. Add a failure-only read-only diagnostic method/message to the scheduler if the callback identity is needed; include func2str of next callback, next time and active event ID. Avoid callbacks/RNG changes.",
+    "path_recommendation": "Short single-case output such as results/m10/r... and a compact mesh evidence ZIP.",
+    "do_not": [
+      "raise MaxEvents without identifying the load",
+      "change topology, traffic, rate/power or seed",
+      "change total duration",
+      "split run into multiple scheduler.run calls because the current cap resets per call",
+      "repeat the campus or all 26 earlier cases merely to reproduce this failure"
+    ]
+  },
+  "matlab_executed_in_this_review": false,
+  "code_changed_in_this_review": false
+}

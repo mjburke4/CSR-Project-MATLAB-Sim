@@ -1,0 +1,47 @@
+{
+  "schema": "csr-tranche7-benchmark-input-verification-v1",
+  "status": "passed",
+  "input_manifest_sha256": "82c4e6a6fab359c6657b8d4c857030939741d5d5c0f528932e1ff59ee0e9b86a",
+  "catalog_sha256": "62f129727536691f8ff59bbfe7f81192c192b9a3f05ce8c5b8abf468a5900721",
+  "original_files_verified": 10,
+  "scenario_reproductions": [
+    {
+      "case_id": "campus_multihop_6000",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/utils/import-opnet-scenario.py",
+        "/workspace/scratch/1a5b1ad6ce1b/tranche7/evidence/tranche-7-benchmark-inputs/originals/blue_radio_campus.project/blue_radio_campus-multihop.nt.m",
+        "/tmp/csr-tranche7-import-check-q07jn86m/campus_multihop_6000.csv",
+        "--infer-gateway-flows",
+        "--application-profile",
+        "legacy-send-only-no-dscp",
+        "--mac-profile",
+        "hist-2014-next-tslot-modulo-probe",
+        "--hop-security-profile",
+        "hist-adb97c54-bare"
+      ],
+      "regenerated_sha256": "90b143d93c13c6c2761bc5f2875ccc3fff98f85af6f2550370e435df2aaabcfc",
+      "exact_match": true
+    },
+    {
+      "case_id": "two_node_admission_1200",
+      "command": [
+        "synthetic_rows",
+        "scenarios/benchmarks/two_node_admission_1200.recipe.json",
+        "campus_multihop_6000.csv"
+      ],
+      "regenerated_sha256": "65ac85ca17e699a1b3220937b10c22ffd9e52ddd76f7b51717fb6ddd599b33e1",
+      "exact_match": true
+    },
+    {
+      "case_id": "three_node_contention_360",
+      "command": [
+        "synthetic_rows",
+        "scenarios/benchmarks/three_node_contention_360.recipe.json",
+        "campus_multihop_6000.csv"
+      ],
+      "regenerated_sha256": "1f4f8e626559a1f613c27233d5a113a2f5a460b4d5f5e6bbd2b5d4358b4fac8f",
+      "exact_match": true
+    }
+  ]
+}

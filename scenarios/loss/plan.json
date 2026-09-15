@@ -1,0 +1,232 @@
+{
+  "schema": "csr-tranche13-loss-input-v1",
+  "source_pin": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "scope": "Synthetic continued application demand through the real NSDP16 admission rule, production NWK custody/HOP reliability/MAC scheduling, and controlled whole-addressed-aggregate DATA/feedback loss; fixed pre-admitted 4->5->1 chain. Excludes node reset, discovery/reconvergence, full ApplicationGenerator parity, RF collision/half-duplex, PHY/ECC, adaptive radio and campus population parity.",
+  "cases": [
+    "ok",
+    "data",
+    "ack",
+    "out"
+  ],
+  "nodes": [
+    1,
+    4,
+    5
+  ],
+  "gateway": 1,
+  "sources": [
+    4,
+    5
+  ],
+  "relay": 5,
+  "applications_per_active_source": 48,
+  "application_payload_bytes": 16,
+  "dscp": 0,
+  "wire_profile": "bare",
+  "rate_kbps": 128,
+  "power_dbm": 33,
+  "slot_profile": "hist-2014-next-tslot-modulo-probe",
+  "slot_range": 31,
+  "slot_reduction": 0,
+  "active_nodes": 3,
+  "reported_active_nodes": 3,
+  "duty_cycle": false,
+  "slot_seconds": 0.013,
+  "holdoff_seconds": 0.3,
+  "initial_mac_state": "Search",
+  "initial_neighbor_reservation": -1,
+  "initial_neighbor_last_heard_seconds": 0,
+  "known_neighbors": {
+    "1": [
+      5
+    ],
+    "4": [
+      5
+    ],
+    "5": [
+      1,
+      4
+    ]
+  },
+  "next_hops": {
+    "4": 5,
+    "5": 1
+  },
+  "precondition": "Neighbor security admission and freshness disabled; real public neighbor/route APIs establish only the fixed chain before zero-time callbacks settle; no MAC timers or data are prewarmed",
+  "route_target": 1,
+  "route_capability": 2,
+  "neighbor_admission_enabled": false,
+  "neighbor_freshness_enabled": false,
+  "automatic_route_control_transport": false,
+  "matlab_control_retry_seconds": 1000,
+  "matlab_snapshot_watchdog_seconds": 1000,
+  "control_scope": "Bootstrap routing controls are excluded from radio service: native propagation/snapshot response disabled, MATLAB CanSendControl false with retry/watchdog beyond horizon; retain and disclose per-implementation pending controls; no claim of equivalent control queues",
+  "prescribed_sync_present": false,
+  "transport": "Actual emitted aggregate selected segments, one cached loss decision per aggregate and addressed receiver at actual TX start, applied at TX end plus1us. Drop every segment addressed to that receiver, including companion kinds, with no MAC heard/reservation or HOP ingress. Other receiver groups follow their own cached decision. No transport-generated ACK.",
+  "propagation_seconds": 1e-06,
+  "pathloss_db": 70,
+  "snr_db": 20,
+  "offered_start_seconds": 0,
+  "offered_poll_seconds": 0.02,
+  "offered_poll_stop_exclusive_seconds": 40,
+  "offer_rule": "Load offers.csv. Schedule generation callbacks in CSV order before scheduling admission polls. Each generated identity enters a source FIFO. Poll source4 then5 once every20ms before40s. If FIFO nonempty, offer oldest identity; query real application NSDP16 gate, retain blocked identity, call real NWK on admission. Never offer from release or HOP wake. Native NWK owns its pump; MATLAB callback wrappers look up completed objects at callback time.",
+  "application_id_rule": "Per-source identities1..48; IDs1..20 due0, ID20+t due integer t seconds for t1..28. GeneratedSeconds is due_ns/1e9, independent of admission delay. CSV row order at each due time is app_id then source4,source5. Every generation callback is queued before every admission poll, so due generation precedes same-time polling.",
+  "application_nsdp_limit": 16,
+  "tape_entries_per_node": 1024,
+  "tape_rule": "Exact support0..31 with contiguous1-based1024 entries/node/case; exhaust/invalid/support/unused accounting failures are structural. Node1 draw1; node4 alternates3,7; node5 alternates9,1 in every case. Entire usage compared, different functional trajectories may consume different exact tapes; no prefix-only parity claim.",
+  "events_schema": [
+    "case",
+    "order",
+    "time_ns",
+    "event",
+    "node",
+    "peer",
+    "app_source",
+    "app_id",
+    "hop_seq",
+    "ack_bits",
+    "dack_bits",
+    "mac_state",
+    "ack_queue",
+    "data_queue",
+    "prep",
+    "counter",
+    "opportunity",
+    "advertised",
+    "hop_pending",
+    "neighbor_outstanding",
+    "neighbor_threshold",
+    "resend_queue",
+    "admitted",
+    "rate_kbps",
+    "power_dbm",
+    "nwk_waiting",
+    "nwk_custody",
+    "nsdp4",
+    "nsdp5",
+    "dack_holds"
+  ],
+  "draws_output_schema": [
+    "case",
+    "node",
+    "ordinal",
+    "time_ns",
+    "min",
+    "max",
+    "draw",
+    "resolved",
+    "purpose"
+  ],
+  "numeric_conventions": {
+    "not_applicable": 0,
+    "no_app_or_sequence": 0,
+    "state_codes": {
+      "Idle": 0,
+      "Search": 1,
+      "Track": 2,
+      "Tx": 3
+    },
+    "time_ns": "round(actual scheduler seconds*1e9) for logging and declared loss comparison; do not quantize scheduler. Exact trajectory residuals disclosed separately from functional pass.",
+    "ack_bits": "Exact uint64 integer decimal text. Import/export/compare without double conversion.",
+    "dack_bits": "Exact uint64 integer decimal text. Import/export/compare without double conversion."
+  },
+  "event_names": [
+    "generate",
+    "offer",
+    "admit",
+    "blocked",
+    "tx_start",
+    "loss",
+    "ingress_before",
+    "ingress_after",
+    "release",
+    "deliver",
+    "checkpoint",
+    "final"
+  ],
+  "radio_scope": "Fixed128kbps/+33dBm; does not validate adaptive radio rate/power decisions",
+  "native_link_margin_db": 6,
+  "final_snapshots": [
+    {
+      "node": 1,
+      "peer": 0
+    },
+    {
+      "node": 4,
+      "peer": 5
+    },
+    {
+      "node": 5,
+      "peer": 1
+    }
+  ],
+  "release_identity": "app_source from real callback; app_id/hop_seq/bitmaps0; peer4->5 or5->1; observe after real NWK release callback before HOP resend removal",
+  "custody_scope": "nwk_waiting counts only unsubmitted data; nwk_custody counts outstanding original plus relayed data awaiting release (MATLAB PendingCustody, native NSDP4+NSDP5); nsdp4/nsdp5 are row-node counts for source4/source5 to destination1. Excludes bootstrap control owners.",
+  "checkpoint_seconds": [
+    8,
+    9.5,
+    20,
+    24,
+    40
+  ],
+  "capacity_release_scope": "Continue generated demand through28s, admission polls through40s, real production timers to64s. Stable checkpoints require pending=resends+DACKholds and custody=NSDP4+NSDP5; release callbacks retain intermediate cleanup-order observations. Record whether a local admission after20s and successful post-blackout delivery occur, whether DACK holds were observed then expired, and final pending queues. Do not hand-clear, extend stop after observing outputs, or require exact traces to pass functional checks.",
+  "duration_seconds": 64,
+  "loss_time_basis": "TX start rounded to integer nanoseconds for loss comparison/logging only; scheduler event times are unchanged. Outage is half-open[8e9,9.5e9)ns. For every emitted recipient group in out, boundary distance<=1000ns raises a structural ambiguity error; no tie is silently rounded into a different outcome.",
+  "loss_boundary_guard_ns": 1000,
+  "loss_policies": {
+    "ok": "pass all addressed receiver groups",
+    "data": "drop first group containing DATA on each forward edge4->5 and5->1; pass later groups",
+    "ack": "drop first group containing ACK or DACK on each feedback edge5->4 and1->5; pass later groups",
+    "out": "drop all groups on either chain edge, in either direction, whose actual TX start is in[8s,9.5s)"
+  },
+  "loss_is_not_node_outage": "The out case is a link blackout around the relay. Node5 continues all timers, queues, admission, local generation and transmission. No reboot or routing withdrawal is simulated.",
+  "offers_schema": [
+    "case",
+    "source",
+    "app_id",
+    "due_ns"
+  ],
+  "cases_schema": [
+    "case",
+    "apps4",
+    "apps5",
+    "duration_seconds",
+    "loss_policy",
+    "loss_start_ns",
+    "loss_stop_ns"
+  ],
+  "transport_schema": [
+    "case",
+    "tx_id",
+    "group_id",
+    "segment_index",
+    "group_segments",
+    "tx_time_ns",
+    "arrival_ns",
+    "sender",
+    "receiver",
+    "kind",
+    "app_source",
+    "app_id",
+    "hop_seq",
+    "ack_bits",
+    "dack_bits",
+    "decision",
+    "reason",
+    "boundary_distance_ns"
+  ],
+  "transport_id_rule": "tx_id is1-based per-case actual aggregate emission order; group_id is1-based per-case receiver-group order, assigned by first receiver occurrence in actual selected segment order; segment_index is1-based position in the entire emitted aggregate. All receiver-group rows share group_segments,decision,reason,times; preserve aggregate segment order. kinds DATA/ACK/DACK; decision pass/drop; reasons none/first_data/first_feedback/outage; boundary_distance_ns=-1 outside out.",
+  "terminal_schema": [
+    "case",
+    "order",
+    "time_ns",
+    "node",
+    "app_source",
+    "app_id",
+    "success",
+    "reason"
+  ],
+  "terminal_rule": "Observe actual HOP terminal results in per-case event order. Common reasons ack(success1),dack_custody(success1),retry_exhausted(success0). Native raw differential ack/true maps ack/1; dack/false maps dack_custody/1 because its bool is direct ACK status while real NWK custody has transferred; no_ack/false maps retry_exhausted/0. Preserve raw native trace and disclose this normalization. DACK terminal success does not assert capacity already released. Delivery and retry-exhausted sets may overlap after feedback loss.",
+  "loss_event_rule": "At scheduled arrival, one loss event per dropped segment, receiving node and transmitting peer plus real frame metadata. No corresponding ingress_before/after, delivered or MAC heard mutation is performed for dropped segments. The cached decision is made only once at TX start.",
+  "functional_scope": "Structural completion requires a completed safe fixture, exact scheduled generation identities, valid FIFO admission, no duplicate app delivery or unexplained loss, valid loss decisions, continuing admission after20s, final released custody/data queues and explicit whole-tape accounting. Reconcile generated into admitted/not-admitted, and admitted into delivered or actual retry_exhausted terminal evidence (these latter sets may overlap after feedback loss); disclose every undelivered or unadmitted identity. Never infer terminal failure from silence or force all loss cases to deliver. Compare observed delivery, release, recovery and terminal counts with native as functional outcomes. Numeric timing/state/queue-order differences stay separate; native outcomes are reference observations, never injected trajectories."
+}

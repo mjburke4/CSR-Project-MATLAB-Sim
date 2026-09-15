@@ -1,0 +1,30 @@
+{
+  "schema": "csr-tranche7-reference-packaging-restoration-v1",
+  "case_id": "two_node_admission_1200",
+  "problem": "Post-execution packaging audit found a truncated gzip and unmanifested raw trace duplicates. Cause undetermined. Aggregate and original producer manifests remained hash-correct.",
+  "recovery": "Same pinned binary, scenario, seed and runner options regenerated the exact previously manifested complete raw trace and deterministic gzip. Original execution metadata and comparisons preserved.",
+  "runner_sha256": "1dba24abff867499c695ed1e1bd4484e869370664ebff69d489c87069bc5ce75",
+  "command": [
+    "/workspace/scratch/1a5b1ad6ce1b/t7-ns3-build/csr-opnet-scenario-runner",
+    "--scenario=/workspace/scratch/1a5b1ad6ce1b/tranche7/scenarios/benchmarks/two_node_admission_1200.csv",
+    "--trace=/workspace/scratch/1a5b1ad6ce1b/t7-reference-restore-n2t1t8st/trace.csv",
+    "--appDiagnostics=/workspace/scratch/1a5b1ad6ce1b/t7-reference-restore-n2t1t8st/admission.csv",
+    "--stop=1200",
+    "--flowLimit=0",
+    "--dutyCycling=1",
+    "--opnetAlignedDutyCycle=1",
+    "--gatewayDiscovery=1",
+    "--opnetAppGating=1",
+    "--aggregateTraceOnly=1",
+    "--quietModelLogs=1"
+  ],
+  "rerun_exit_code": 0,
+  "expected_original_sha256": "1c350bb58552425b2a3eb90340c54f4cd0d39602466c3d85eaae291e19202c3e",
+  "actual_original_sha256": "1c350bb58552425b2a3eb90340c54f4cd0d39602466c3d85eaae291e19202c3e",
+  "restored_gzip_sha256": "e96afd49a84cb86ccc5fe05bfaecae097bec26d1bc39e7b4354afadda77905af",
+  "raw_trace_bytes": 17163989,
+  "gzip_bytes": 1159937,
+  "raw_duplicates_quarantined": true,
+  "malformed_gzip_quarantined": true,
+  "quarantine_location": "/workspace/scratch/1a5b1ad6ce1b/t7-reference-quarantine"
+}

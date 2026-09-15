@@ -1,0 +1,44 @@
+{
+  "schema": "csr-tranche13-independent-gate-review-v1",
+  "created_utc": "2026-09-14T19:43:07.189294+00:00",
+  "reviewer": "t13_review",
+  "status": "passed",
+  "matlab_executed": false,
+  "owner_archive_fabricated_or_accepted": false,
+  "bindings": {
+    "csr13/scripts/analyze_tranche13_return.py": "9f0ec66ca49c03fcc2bdec58a14d5a6644f92c1bcc5413907cb633fe6d2cc550",
+    "csr13/scripts/tests/test_tranche13_return.py": "9e7f48536ecd446ef76753456b7f6f55969e22766d2fae286acfcf91260b24de",
+    "csr13/scripts/analyze_tranche11_return.py": "02253f30deb2067e53d3e17b4226e3b063541728d6a1ec3b5c1f84d4f778d8e6",
+    "csr13/scripts/analyze_tranche12_return.py": "99ad4f65a1aa33d54377b99641ba8d11ff1787e70db71afa07043523e458f648",
+    "csr13/run_tranche13_validation.m": "b73cb2790aa918c84a485978f36a472b428fbb5ca04c13db096aff9c1c2d539e",
+    "csr13/+csr/+validation/lossContract.m": "283d5d83990aeb05523b6e6f3c0e81343b9e51f532891c340f75751cfdef401b",
+    "t13n/gate/tests.log": "d2d9e8f33d2768ede2f306de0759e35a451d39e1f0b098743dfa5a4570566aea"
+  },
+  "existing_mutation_tests_log_verified": {
+    "count": 44,
+    "passed": 44,
+    "failed": 0
+  },
+  "checks_reviewed": [
+    "Runner/candidate metadata field names, selected tests, runtime version binding, 264 ordered functional checks, completion and conservative acceptance flags match the actual MATLAB fixture interface.",
+    "Source snapshots are compared against actual candidate files before/after; all259T12/135MATLAB source bindings and225/124core bindings are preserved. Exact parent owner archive/candidate links are checked.",
+    "ZIP reader rejects traversal, duplicate/case-colliding members, symlinks, encrypted and nonregular members and oversized archives. Artifact membership, size, hash and CRC are closed. Reference roots and before/after identities are independently closed.",
+    "Full uint64 values use Decimal/int in event, transport, and ordered comparison logic. The adjacent full-width bitmap comparison tests and float-rounded uint64 max rejection remain meaningful.",
+    "Generated identities, due schedule, FIFO offers and every expected20ms poll are independently reconstructed; counters cannot substitute for raw identities.",
+    "Per-aggregate first-occurrence recipient groups, cached drop policy, actual TX segments and pass/loss ingress outcomes are reconciled exactly.",
+    "Real HOP owner identities and terminal success/reason pairs are distinct from gateway delivery; delivered-and-failed-retirement overlap is allowed only with actual owner records. All final queue checks and strict96delivery/0failure no-loss control are recomputed.",
+    "Native reference is rebound to actual raw native traces and known build/source/library hashes; 47file closure,255disabled controls,25selftests and264checks align."
+  ],
+  "findings_resolved": [
+    {
+      "finding": "validate_draws inherited upper bound255 despite fixed effective slot range0..31.",
+      "resolution": "Tightened resolved slot maximum to31 and added concrete resolved32 rejection mutation; existing suite now44/44passes."
+    }
+  ],
+  "limitations": [
+    "No returned Tranche13 MATLAB evidence exists yet; the top-level review will still require the owner runtime archive. No synthetic owner archive was accepted for this review.",
+    "Unexpected mac_queue_full is rejected by gate terminal schema; this is appropriate as a structural failure for the bounded workload and must remain an explicit failure, not be normalized as numerical drift.",
+    "The native checker and static analysis verify evidence integrity and contracts, not MATLAB runtime execution or general RF/campus parity."
+  ],
+  "outstanding_blockers": []
+}

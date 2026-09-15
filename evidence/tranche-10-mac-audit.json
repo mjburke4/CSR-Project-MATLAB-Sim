@@ -1,0 +1,586 @@
+{
+  "schema": "csr-tranche10-mac-source-audit-v1",
+  "created_utc": "2026-09-11T19:37:10.891798+00:00",
+  "source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "matlab_base_commit": "386f669f369f90b18d1d553db85b017b0ca8c77c",
+  "scope": "MAC initial reservation, receiver busy gating, shared TSLOT and Idle RTS timing. No PHY/ECC or stochastic-policy changes.",
+  "evidence": {
+    "accepted_t9_zip_sha256": "ddcede0a83b5ff906a7736f63406fc4cecb11e841795e39e93237364e0e11edf",
+    "native_c129_service_sha256": "4f98950d4e620776dcdab4d144bb951ed0fa0164b9bc0ad5dbba142be4ec4682",
+    "source_mac_sha256": "64a71ad280ba14ab2b00d5d2b9dac708fabea939dfa385ad62dd73e5e40203e9",
+    "source_device_sha256": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb"
+  },
+  "source_aligned_rules": [
+    "Search epoch begins from wake/start timing, stable across Track/Search/Tx",
+    "Idle cancels TSLOT/holdoff and later Search restarts",
+    "Only Search without SYNC decrements local/neighbor counters",
+    "Local countdown additionally requires holdoff over",
+    "Preparation activates under SYNC although countdown freezes",
+    "Track-to-Search with queued work prepares immediately",
+    "Current and historical slot supports/probing match; seeded RNG streams are deliberately independent"
+  ],
+  "confirmed_fixes": [
+    {
+      "id": "strict_future_idle_rts",
+      "source": "CsrMacCore::ScheduleIdleRts integer TimeStep division",
+      "matlab": "Layer.scheduleIdleRts floating division can schedule same instant",
+      "examples": [
+        {
+          "name": "computed15",
+          "arrival": 0.19499999999999998,
+          "quotient": 14.999999999999998,
+          "legacy_due": 0.19499999999999998,
+          "strict_future_due": 0.208,
+          "native_integer_due": 0.208,
+          "same_instant": true
+        },
+        {
+          "name": "literal15",
+          "arrival": 0.195,
+          "quotient": 15.000000000000002,
+          "legacy_due": 0.208,
+          "strict_future_due": 0.208,
+          "native_integer_due": 0.208,
+          "same_instant": false
+        },
+        {
+          "name": "computed30",
+          "arrival": 0.38999999999999996,
+          "quotient": 29.999999999999996,
+          "legacy_due": 0.38999999999999996,
+          "strict_future_due": 0.40299999999999997,
+          "native_integer_due": 0.403,
+          "same_instant": true
+        },
+        {
+          "name": "computed51",
+          "arrival": 0.6629999999999999,
+          "quotient": 50.99999999999999,
+          "legacy_due": 0.6629999999999999,
+          "strict_future_due": 0.6759999999999999,
+          "native_integer_due": 0.676,
+          "same_instant": true
+        },
+        {
+          "name": "computed60",
+          "arrival": 0.7799999999999999,
+          "quotient": 59.99999999999999,
+          "legacy_due": 0.7799999999999999,
+          "strict_future_due": 0.7929999999999999,
+          "native_integer_due": 0.793,
+          "same_instant": true
+        },
+        {
+          "name": "before15",
+          "arrival": 0.194999999,
+          "quotient": 14.999999923076924,
+          "legacy_due": 0.19499999999999998,
+          "strict_future_due": 0.19499999999999998,
+          "native_integer_due": 0.195,
+          "same_instant": false
+        },
+        {
+          "name": "after15",
+          "arrival": 0.195000001,
+          "quotient": 15.000000076923078,
+          "legacy_due": 0.208,
+          "strict_future_due": 0.208,
+          "native_integer_due": 0.208,
+          "same_instant": false
+        }
+      ],
+      "implemented": "Guard the computed boundary; advance one grid index only when due <= Now."
+    },
+    {
+      "id": "mac_slot_epoch_fifo",
+      "source": "CsrMacCore::StartSlotTick/SlotTick integer native timestamps and insertion ordering",
+      "matlab": "Repeated Now+0.013 moves nominal simultaneous TSLOT after prescribed .312 receiver transition",
+      "examples": [
+        {
+          "index": 23,
+          "legacy_recursive_seconds": 0.29900000000000015,
+          "nanosecond_grid_seconds": 0.299
+        },
+        {
+          "index": 24,
+          "legacy_recursive_seconds": 0.31200000000000017,
+          "nanosecond_grid_seconds": 0.312
+        },
+        {
+          "index": 25,
+          "legacy_recursive_seconds": 0.3250000000000002,
+          "nanosecond_grid_seconds": 0.325
+        },
+        {
+          "index": 31,
+          "legacy_recursive_seconds": 0.40300000000000025,
+          "nanosecond_grid_seconds": 0.403
+        },
+        {
+          "index": 32,
+          "legacy_recursive_seconds": 0.41600000000000026,
+          "nanosecond_grid_seconds": 0.416
+        }
+      ],
+      "implemented": "MAC-local integer-ns epoch and slot index for exact integral-ns periods, with original continuous fallback for fractional-ns periods or unsafe integer horizon. Idle resets epoch; Track/Search/Tx preserve it.",
+      "epoch_quantization_bound_ns": 0.5,
+      "native_same_boundary_predictions": {
+        "early_inserted_track_at_0_312": {
+          "counter_while_track": 1,
+          "tx_time": 0.416
+        },
+        "late_inserted_track_at_0_312": {
+          "counter_while_track": 0,
+          "tx_time": 0.403
+        }
+      }
+    }
+  ],
+  "known_source_differences_not_changed": [
+    {
+      "id": "wake_window_lookup",
+      "locations": [
+        "Layer.m start periodic wake computation",
+        "Layer.m scheduleIdleRts nextWake computation",
+        "CsrNetDevice::ScheduleOpnetPeriodicWake",
+        "CsrNetDevice::GetNextPeriodicWake"
+      ],
+      "note": "MATLAB repeats floor/period arithmetic for wake setup/comparison. Native unconditional periodic-wake setup uses integer TimeStep; native GetNextPeriodicWake separately returns now while inside the current awake window. Do not blanket-share the strict-future helper across these different semantics. No periodic-wake change in T10."
+    },
+    {
+      "id": "forced_slot_override",
+      "note": "Native existing override both redraws and aligns a future0.1s timer epoch; MATLAB override only returns a selection. No matched fixture uses either override."
+    }
+  ],
+  "c129": {
+    "same_initial_search_seconds": 300.001,
+    "same_initial_holdoff_seconds": 300.301,
+    "initial_slots": {
+      "matlab_node2": 9,
+      "matlab_node3": 1,
+      "ns3_node2": 3,
+      "ns3_node3": 7
+    },
+    "first_data_tx": {
+      "matlab": {
+        "node": 3,
+        "time": 300.326
+      },
+      "ns3": {
+        "node": 2,
+        "time": 300.352
+      }
+    },
+    "conclusion": "First contention histories diverge at independent slot draws before DATA reception/ACK service. The new boundary corrections are source-backed but are not established causes of the seed129 delivery residual. Owner replay must measure outcomes.",
+    "matlab_early_observations": [
+      {
+        "TimeSeconds": "300.001",
+        "Event": "mac_state",
+        "NodeId": "2",
+        "State": "Search",
+        "ReservationSlot": "NaN",
+        "ReservationCounter": "NaN",
+        "DetailsJSON": "{\"State\":\"Search\"}"
+      },
+      {
+        "TimeSeconds": "300.001",
+        "Event": "mac_prepare",
+        "NodeId": "2",
+        "State": "",
+        "ReservationSlot": "9",
+        "ReservationCounter": "9",
+        "DetailsJSON": "{\"ReservationSlot\":9,\"ReservationCounter\":9}"
+      },
+      {
+        "TimeSeconds": "300.001",
+        "Event": "mac_state",
+        "NodeId": "3",
+        "State": "Search",
+        "ReservationSlot": "NaN",
+        "ReservationCounter": "NaN",
+        "DetailsJSON": "{\"State\":\"Search\"}"
+      },
+      {
+        "TimeSeconds": "300.001",
+        "Event": "mac_prepare",
+        "NodeId": "3",
+        "State": "",
+        "ReservationSlot": "1",
+        "ReservationCounter": "1",
+        "DetailsJSON": "{\"ReservationSlot\":1,\"ReservationCounter\":1}"
+      },
+      {
+        "TimeSeconds": "300.301",
+        "Event": "mac_holdoff",
+        "NodeId": "2",
+        "State": "",
+        "ReservationSlot": "NaN",
+        "ReservationCounter": "9",
+        "DetailsJSON": "{\"ReservationCounter\":9}"
+      },
+      {
+        "TimeSeconds": "300.301",
+        "Event": "mac_holdoff",
+        "NodeId": "3",
+        "State": "",
+        "ReservationSlot": "NaN",
+        "ReservationCounter": "1",
+        "DetailsJSON": "{\"ReservationCounter\":1}"
+      },
+      {
+        "TimeSeconds": "300.325999999999",
+        "Event": "mac_state",
+        "NodeId": "3",
+        "State": "Tx",
+        "ReservationSlot": "NaN",
+        "ReservationCounter": "NaN",
+        "DetailsJSON": "{\"State\":\"Tx\"}"
+      },
+      {
+        "TimeSeconds": "300.325999999999",
+        "Event": "mac_transmit",
+        "NodeId": "3",
+        "State": "",
+        "ReservationSlot": "6",
+        "ReservationCounter": "NaN",
+        "DetailsJSON": "{\"DurationSeconds\":1.0491000000000001,\"Segments\":1,\"ReservationSlot\":6}"
+      },
+      {
+        "TimeSeconds": "300.332637999999",
+        "Event": "mac_state",
+        "NodeId": "2",
+        "State": "Track",
+        "ReservationSlot": "NaN",
+        "ReservationCounter": "NaN",
+        "DetailsJSON": "{\"State\":\"Track\"}"
+      },
+      {
+        "TimeSeconds": "300.352",
+        "Event": "mac_state",
+        "NodeId": "1",
+        "State": "Search",
+        "ReservationSlot": "NaN",
+        "ReservationCounter": "NaN",
+        "DetailsJSON": "{\"State\":\"Search\"}"
+      },
+      {
+        "TimeSeconds": "300.35863",
+        "Event": "mac_state",
+        "NodeId": "1",
+        "State": "Track",
+        "ReservationSlot": "NaN",
+        "ReservationCounter": "NaN",
+        "DetailsJSON": "{\"State\":\"Track\"}"
+      },
+      {
+        "TimeSeconds": "300.652",
+        "Event": "mac_holdoff",
+        "NodeId": "1",
+        "State": "",
+        "ReservationSlot": "NaN",
+        "ReservationCounter": "-1",
+        "DetailsJSON": "{\"ReservationCounter\":-1}"
+      },
+      {
+        "TimeSeconds": "301.375099999999",
+        "Event": "mac_state",
+        "NodeId": "3",
+        "State": "Search",
+        "ReservationSlot": "NaN",
+        "ReservationCounter": "NaN",
+        "DetailsJSON": "{\"State\":\"Search\"}"
+      },
+      {
+        "TimeSeconds": "301.375103999999",
+        "Event": "mac_state",
+        "NodeId": "1",
+        "State": "Search",
+        "ReservationSlot": "NaN",
+        "ReservationCounter": "NaN",
+        "DetailsJSON": "{\"State\":\"Search\"}"
+      },
+      {
+        "TimeSeconds": "301.375103999999",
+        "Event": "mac_prepare",
+        "NodeId": "1",
+        "State": "",
+        "ReservationSlot": "10",
+        "ReservationCounter": "10",
+        "DetailsJSON": "{\"ReservationSlot\":10,\"ReservationCounter\":10}"
+      },
+      {
+        "TimeSeconds": "301.375107999999",
+        "Event": "mac_state",
+        "NodeId": "2",
+        "State": "Search",
+        "ReservationSlot": "NaN",
+        "ReservationCounter": "NaN",
+        "DetailsJSON": "{\"State\":\"Search\"}"
+      },
+      {
+        "TimeSeconds": "301.469999999997",
+        "Event": "mac_state",
+        "NodeId": "2",
+        "State": "Tx",
+        "ReservationSlot": "NaN",
+        "ReservationCounter": "NaN",
+        "DetailsJSON": "{\"State\":\"Tx\"}"
+      },
+      {
+        "TimeSeconds": "301.469999999997",
+        "Event": "mac_transmit",
+        "NodeId": "2",
+        "State": "",
+        "ReservationSlot": "10",
+        "ReservationCounter": "NaN",
+        "DetailsJSON": "{\"DurationSeconds\":1.0491000000000001,\"Segments\":1,\"ReservationSlot\":10}"
+      },
+      {
+        "TimeSeconds": "301.476633999997",
+        "Event": "mac_state",
+        "NodeId": "1",
+        "State": "Track",
+        "ReservationSlot": "NaN",
+        "ReservationCounter": "NaN",
+        "DetailsJSON": "{\"State\":\"Track\"}"
+      },
+      {
+        "TimeSeconds": "301.476637999997",
+        "Event": "mac_state",
+        "NodeId": "3",
+        "State": "Track",
+        "ReservationSlot": "NaN",
+        "ReservationCounter": "NaN",
+        "DetailsJSON": "{\"State\":\"Track\"}"
+      }
+    ],
+    "native_early_observations": [
+      {
+        "time_s": "300.00099999999998",
+        "event": "mac_state",
+        "node": "2",
+        "reservation_slot": "",
+        "reservation_counter": "",
+        "detail": "search",
+        "reason": ""
+      },
+      {
+        "time_s": "300.00099999999998",
+        "event": "reservation_prepare",
+        "node": "2",
+        "reservation_slot": "3",
+        "reservation_counter": "3",
+        "detail": "",
+        "reason": "new"
+      },
+      {
+        "time_s": "300.00099999999998",
+        "event": "mac_state",
+        "node": "3",
+        "reservation_slot": "",
+        "reservation_counter": "",
+        "detail": "search",
+        "reason": ""
+      },
+      {
+        "time_s": "300.00099999999998",
+        "event": "reservation_prepare",
+        "node": "3",
+        "reservation_slot": "7",
+        "reservation_counter": "7",
+        "detail": "",
+        "reason": "new"
+      },
+      {
+        "time_s": "300.30099999999999",
+        "event": "mac_holdoff_expired",
+        "node": "2",
+        "reservation_slot": "3",
+        "reservation_counter": "3",
+        "detail": "",
+        "reason": ""
+      },
+      {
+        "time_s": "300.30099999999999",
+        "event": "mac_holdoff_expired",
+        "node": "3",
+        "reservation_slot": "7",
+        "reservation_counter": "7",
+        "detail": "",
+        "reason": ""
+      },
+      {
+        "time_s": "300.35199999999998",
+        "event": "mac_state",
+        "node": "1",
+        "reservation_slot": "",
+        "reservation_counter": "",
+        "detail": "search",
+        "reason": ""
+      },
+      {
+        "time_s": "300.35199999999998",
+        "event": "tx_start",
+        "node": "2",
+        "reservation_slot": "27",
+        "reservation_counter": "27",
+        "detail": "long",
+        "reason": ""
+      },
+      {
+        "time_s": "300.35199999999998",
+        "event": "mac_state",
+        "node": "2",
+        "reservation_slot": "",
+        "reservation_counter": "",
+        "detail": "tx",
+        "reason": ""
+      },
+      {
+        "time_s": "300.358634",
+        "event": "mac_state",
+        "node": "1",
+        "reservation_slot": "",
+        "reservation_counter": "",
+        "detail": "track",
+        "reason": ""
+      },
+      {
+        "time_s": "300.35863799999998",
+        "event": "mac_state",
+        "node": "3",
+        "reservation_slot": "",
+        "reservation_counter": "",
+        "detail": "track",
+        "reason": ""
+      },
+      {
+        "time_s": "300.65199999999999",
+        "event": "mac_holdoff_expired",
+        "node": "1",
+        "reservation_slot": "-1",
+        "reservation_counter": "-1",
+        "detail": "",
+        "reason": ""
+      },
+      {
+        "time_s": "301.40109999999999",
+        "event": "mac_state",
+        "node": "2",
+        "reservation_slot": "",
+        "reservation_counter": "",
+        "detail": "search",
+        "reason": ""
+      },
+      {
+        "time_s": "301.40110399999998",
+        "event": "reservation_prepare",
+        "node": "1",
+        "reservation_slot": "28",
+        "reservation_counter": "28",
+        "detail": "",
+        "reason": "new"
+      },
+      {
+        "time_s": "301.40110399999998",
+        "event": "mac_state",
+        "node": "1",
+        "reservation_slot": "",
+        "reservation_counter": "",
+        "detail": "search",
+        "reason": ""
+      },
+      {
+        "time_s": "301.40110800000002",
+        "event": "mac_state",
+        "node": "3",
+        "reservation_slot": "",
+        "reservation_counter": "",
+        "detail": "search",
+        "reason": ""
+      },
+      {
+        "time_s": "301.44400000000002",
+        "event": "tx_start",
+        "node": "3",
+        "reservation_slot": "29",
+        "reservation_counter": "29",
+        "detail": "long",
+        "reason": ""
+      },
+      {
+        "time_s": "301.44400000000002",
+        "event": "mac_state",
+        "node": "3",
+        "reservation_slot": "",
+        "reservation_counter": "",
+        "detail": "tx",
+        "reason": ""
+      },
+      {
+        "time_s": "301.45063399999998",
+        "event": "mac_state",
+        "node": "1",
+        "reservation_slot": "",
+        "reservation_counter": "",
+        "detail": "track",
+        "reason": ""
+      },
+      {
+        "time_s": "301.45063800000003",
+        "event": "mac_state",
+        "node": "2",
+        "reservation_slot": "",
+        "reservation_counter": "",
+        "detail": "track",
+        "reason": ""
+      }
+    ]
+  },
+  "implementation": {
+    "files": [
+      "+csr/+mac/Layer.m",
+      "+csr/+validation/contentionContract.m",
+      "tests/TestContentionContract.m",
+      "scripts/ns3/tranche10_contention_contract.cc"
+    ],
+    "reference_checkpoints_expected": 279,
+    "fixtures": 15,
+    "prepared_matlab_tests": 19,
+    "api": "csr.validation.contentionContract(outputDirectory)",
+    "schema": "csr-tranche10-contention-contract-v1",
+    "reference": "evidence/tranche-10-contract-reference/checkpoints.csv",
+    "comparison_tolerance_seconds": 1e-09
+  },
+  "execution": {
+    "python_double_arithmetic_reproduction": true,
+    "native_t10_execution": {
+      "status": "passed",
+      "checkpoint_count": 279,
+      "fixture_count": 15,
+      "hashes": {
+        "checkpoints.csv": "2f27b671229782b5fe64f3bb5c8730a10a3be648ef4345e28bd8a1cbb2ff088a",
+        "summary.json": "724fcbf00a92ed09516a32646812f61c2b88393daec17704061152259b16f44d",
+        "manifest.json": "fc69ae2ed1399c0bb2bb8f0af774fd6dd9c3d83cb70faba0d7686d7ef5ed02c1"
+      }
+    },
+    "matlab_execution": false,
+    "octave_execution": false,
+    "matlab_static_lint": {
+      "status": "passed",
+      "tool": "MISS_HIT0.9.44",
+      "parser": "MATLAB2022a",
+      "files": 3
+    },
+    "repository_whitespace_check": true,
+    "arithmetic_counterfactual": {
+      "status": "passed",
+      "python_script_sha256": "2f11fb80542104f86427dfaa7ada0256eecd417d7ebed3e53e5ae8b1d2da30ee",
+      "result_sha256": "cbba4ddbe3d6c5e75df5391f0afdf1f518b908dda04eb224a819b0ca04eb5cf0",
+      "boundary_cases": 4,
+      "fifo_cases": 2,
+      "scope": "Python arithmetic/FIFO replay, not MATLAB execution or full CSR simulation"
+    }
+  },
+  "next_gate": "Fresh native contracts, independent review, full portable unit suite and prior T9 six-case replay, then planned 6000s campus comparison. No throughput or numerical parity improvement claim before owner evidence."
+}

@@ -1,0 +1,72 @@
+{
+  "schema": "csr-tranche12-independent-final-runner-binding-v1",
+  "status": "passed",
+  "checked_utc": "2026-09-14T18:34:58.320958+00:00",
+  "matlab_executed": false,
+  "candidate_path": "evidence/tranche-12-candidate.json",
+  "candidate_sha256": "65a6fe4edd6d925ec596fad6c0ec257be483d623616aa7f41bbd9805a6548703",
+  "test_count": 72,
+  "reference_file_count": 130,
+  "baseline_checks": [
+    {
+      "path": "evidence/tranche-11-r2025a-review/source.json",
+      "sha256": "9093dea75f92205dbd782b8ce5691e7bf75cdf0181d055cd234755515624cf26",
+      "source_files": 241,
+      "matlab_files": 130,
+      "changed_files": []
+    },
+    {
+      "path": "evidence/tranche-10-r2025a-accepted/owner/source_snapshot.json",
+      "sha256": "9be444b0fb1ffbfe818cab86502a287b19e3da83467d210ef426ec3b19e183da",
+      "source_files": 225,
+      "matlab_files": 124,
+      "changed_files": []
+    }
+  ],
+  "manifest_checks": [
+    {
+      "path": "evidence/tranche-12-relay-reference/manifest.json",
+      "sha256": "1e2cedbd73d5a377d99d373d8a1c77d466b4b96bc7861e919c972e0397633206",
+      "artifact_count": 41,
+      "mismatches": []
+    },
+    {
+      "path": "evidence/tranche-12-clock-reference/manifest.json",
+      "sha256": "2c7402f22bc6120243940ab7ab468385fd8b222ba456d3ff4b47fe7e4bcff935",
+      "artifact_count": 5,
+      "mismatches": []
+    }
+  ],
+  "new_matlab_files": [
+    {
+      "path": "run_tranche12_validation.m",
+      "sha256": "0116a40e0885525150d41abdb45279d8e81d619002acd1fece55be9188b49f5e"
+    },
+    {
+      "path": "+csr/+validation/relayContract.m",
+      "sha256": "9f41fd2a5147c93dd0deb5ba3bb503c6653c47749f5c3480d6f167df1e92c8bc"
+    },
+    {
+      "path": "+csr/+validation/clockBoundaryContract.m",
+      "sha256": "015ecb4eb6995c32449be5333b39aa2fb816bdbd9abef043a08738d212e64181"
+    },
+    {
+      "path": "tests/TestRelayContract.m",
+      "sha256": "e58a5a79b8f076ced6df45d124670a89afce8e61f26eb62011210333acf9e491"
+    },
+    {
+      "path": "tests/TestClockBoundaryContract.m",
+      "sha256": "e897d4a7c64b2db0b316d066bb46a03d4e631a7988f331148371366b005708f9"
+    }
+  ],
+  "static_lint": {
+    "exit_code": 0,
+    "stdout": "MISS_HIT Lint Summary: 5 file(s) analysed, everything seems fine\n",
+    "stderr": ""
+  },
+  "open_issues": [],
+  "limitations": [
+    "Static API and binding review does not establish MATLAB execution.",
+    "Component failures are preserved in metadata/logs; fixture CSV export requires reaching its export code."
+  ]
+}

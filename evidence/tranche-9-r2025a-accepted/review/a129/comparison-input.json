@@ -1,0 +1,46 @@
+{
+  "schema": "csr-benchmark-comparison-input-v1",
+  "scenario": "tranche8-two-node-admission-s129",
+  "scenario_sha256": "bdb8301b90cc472f564aaf565d1909a4f2aba1f7e4fc097fedc8eb90d07ddf23",
+  "profile_id": "hist-adb97c54-bare",
+  "duration_s": 1200,
+  "bucket_width_s": 12,
+  "inputs": [
+    {
+      "source": "matlab",
+      "aggregate_file": "/tmp/csr-t7-return-ahkae8w2/b/a129/analysis/aggregates.csv",
+      "aggregate_sha256": "0aa4d1eafde83b7b0a7f0c30228d17c9983c23d2efca1a259212d9dc734288a9",
+      "provenance_file": "/tmp/csr-t7-return-ahkae8w2/b/a129/analysis/aggregate_provenance.json",
+      "provenance_sha256": "ba0defa706295c3fa1bc20984bcfb62fec30186daad817ea53af7f55a1d378b6"
+    },
+    {
+      "source": "ns3",
+      "aggregate_file": "/workspace/scratch/1a5b1ad6ce1b/t9r/src/evidence/tranche-8-ns3-reference/two_node_admission_1200_s129/ns3-aggregates.csv",
+      "aggregate_sha256": "674ebf57ba5b0b7804183b5ec2b985f46ece938ce815b203abc4942b766fd2bd",
+      "provenance_file": "/workspace/scratch/1a5b1ad6ce1b/t9r/src/evidence/tranche-8-ns3-reference/two_node_admission_1200_s129/ns3-benchmark.provenance.json",
+      "provenance_sha256": "2193bd7ff1a60cef23c3e291cde73564e2df4168449dec2413cac3dea5f493a9",
+      "excluded_statistics": [
+        "ECC.Traffic Dropped (packets/sec)",
+        "HOP.Resend Queue Size (packets)",
+        "MAC.ACK Queue Size (packets)",
+        "MAC.Tx Queue Size (packets)",
+        "MAC.Tx Queuing Delay (sec)",
+        "NWK.Network Queue Size (packets)",
+        "NWK.Network Queuing Delay (sec)"
+      ]
+    }
+  ],
+  "case_binding": {
+    "matlab_manifest_file": "/tmp/csr-t7-return-ahkae8w2/b/a129/benchmark_manifest.json",
+    "matlab_manifest_sha256": "fc9ecbc9a05f906450ddb34451a3832f53ce639ad544de0e7a3507c083999a59",
+    "reference_manifest_file": "/workspace/scratch/1a5b1ad6ce1b/t9r/src/evidence/tranche-8-ns3-reference/two_node_admission_1200_s129/manifest.json",
+    "reference_manifest_sha256": "2f62e7f556f38288efaa77262adef15342291f292f5214b1f8557044c0840127",
+    "matlab_inventory_files_verified": 22,
+    "reference_inventory_files_verified": 12,
+    "matlab_source_snapshot_sha256": "657b84111d5dadf7e8099b1f28f26865b2a7c55f551e83f50d81623dbf1bf7b5",
+    "source_trace_bytes_verified": true,
+    "canonical_scenario_file": "/workspace/scratch/1a5b1ad6ce1b/t9r/src/scenarios/link_diagnostics/inputs/two_node_admission_1200_s129.csv",
+    "canonical_scenario_sha256": "bdb8301b90cc472f564aaf565d1909a4f2aba1f7e4fc097fedc8eb90d07ddf23",
+    "scope": "Case identity, recorded generator/MAC/envelope settings, inventories, traces and aggregate provenance; outer suite acceptance is separate"
+  }
+}

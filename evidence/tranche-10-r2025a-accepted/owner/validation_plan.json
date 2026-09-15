@@ -1,0 +1,545 @@
+{
+  "schema": "csr-contention-timing-plan-v1",
+  "status": "planned-not-executed",
+  "matlab_base_commit": "386f669f369f90b18d1d553db85b017b0ca8c77c",
+  "accepted_tranche9_matlab_commit": "99fff0381fe9621ccd76fbdce41eac9aba5a9469",
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "stimuli_changed": false,
+  "policy_changes": true,
+  "phy_ecc_changed": false,
+  "radio_policy_changed": false,
+  "rng_policy_changed": false,
+  "purpose": "Check MAC time boundaries and receiver timing against pinned native contracts, retain earlier regression workloads, measure six unchanged diagnostics and rerun the 6000-second campus benchmark.",
+  "diagnostic_plan": "scenarios/ack_service/plan.json",
+  "diagnostic_plan_sha256": "372db92a385781d9854a096149fd419b90ae79823125b79269506bd9877e0116",
+  "diagnostic_case_count": 6,
+  "diagnostic_order": [
+    "c129",
+    "c128",
+    "c130",
+    "c131",
+    "c132",
+    "a129"
+  ],
+  "control_keys": [
+    "c129",
+    "a129"
+  ],
+  "service_window_s": [
+    300,
+    320
+  ],
+  "service_window_end_exclusive": true,
+  "service_max_records": 100000,
+  "feedback_max_records": 100000,
+  "retained_case_count": 29,
+  "retained_cases": [
+    {
+      "case_id": "foundation_default",
+      "kind": "foundation",
+      "name": "default",
+      "storage_key": "01",
+      "factory": "csr.scenario.smallNetwork",
+      "fixture": "",
+      "scenario_file": ""
+    },
+    {
+      "case_id": "mac_hop_reliable",
+      "kind": "mac_hop",
+      "name": "reliable",
+      "storage_key": "02",
+      "factory": "csr.scenario.macHopNetwork",
+      "fixture": "reliable",
+      "scenario_file": ""
+    },
+    {
+      "case_id": "mac_hop_ack_loss",
+      "kind": "mac_hop",
+      "name": "ack_loss",
+      "storage_key": "03",
+      "factory": "csr.scenario.macHopNetwork",
+      "fixture": "ack_loss",
+      "scenario_file": ""
+    },
+    {
+      "case_id": "mac_hop_data_loss",
+      "kind": "mac_hop",
+      "name": "data_loss",
+      "storage_key": "04",
+      "factory": "csr.scenario.macHopNetwork",
+      "fixture": "data_loss",
+      "scenario_file": ""
+    },
+    {
+      "case_id": "mac_hop_dack",
+      "kind": "mac_hop",
+      "name": "dack",
+      "storage_key": "05",
+      "factory": "csr.scenario.macHopNetwork",
+      "fixture": "dack",
+      "scenario_file": ""
+    },
+    {
+      "case_id": "mac_hop_collision",
+      "kind": "mac_hop",
+      "name": "collision",
+      "storage_key": "06",
+      "factory": "csr.scenario.macHopNetwork",
+      "fixture": "collision",
+      "scenario_file": ""
+    },
+    {
+      "case_id": "mac_hop_relay",
+      "kind": "mac_hop",
+      "name": "relay",
+      "storage_key": "07",
+      "factory": "csr.scenario.macHopNetwork",
+      "fixture": "relay",
+      "scenario_file": ""
+    },
+    {
+      "case_id": "mac_hop_queue_pressure",
+      "kind": "mac_hop",
+      "name": "queue_pressure",
+      "storage_key": "08",
+      "factory": "csr.scenario.macHopNetwork",
+      "fixture": "queue_pressure",
+      "scenario_file": ""
+    },
+    {
+      "case_id": "mac_hop_high_rate_500",
+      "kind": "mac_hop",
+      "name": "high_rate_500",
+      "storage_key": "09",
+      "factory": "csr.scenario.macHopNetwork",
+      "fixture": "high_rate_500",
+      "scenario_file": ""
+    },
+    {
+      "case_id": "mac_hop_high_rate_1000",
+      "kind": "mac_hop",
+      "name": "high_rate_1000",
+      "storage_key": "10",
+      "factory": "csr.scenario.macHopNetwork",
+      "fixture": "high_rate_1000",
+      "scenario_file": ""
+    },
+    {
+      "case_id": "routed_autonomous",
+      "kind": "routed",
+      "name": "autonomous",
+      "storage_key": "11",
+      "factory": "csr.scenario.routedNetwork",
+      "fixture": "autonomous",
+      "scenario_file": ""
+    },
+    {
+      "case_id": "routed_no_route_custody",
+      "kind": "routed",
+      "name": "no_route_custody",
+      "storage_key": "12",
+      "factory": "csr.scenario.routedNetwork",
+      "fixture": "no_route_custody",
+      "scenario_file": ""
+    },
+    {
+      "case_id": "routed_control_loss",
+      "kind": "routed",
+      "name": "control_loss",
+      "storage_key": "13",
+      "factory": "csr.scenario.routedNetwork",
+      "fixture": "control_loss",
+      "scenario_file": ""
+    },
+    {
+      "case_id": "routed_route_recovery",
+      "kind": "routed",
+      "name": "route_recovery",
+      "storage_key": "14",
+      "factory": "csr.scenario.routedNetwork",
+      "fixture": "route_recovery",
+      "scenario_file": ""
+    },
+    {
+      "case_id": "routed_gateway",
+      "kind": "routed",
+      "name": "gateway",
+      "storage_key": "15",
+      "factory": "csr.scenario.routedNetwork",
+      "fixture": "gateway",
+      "scenario_file": ""
+    },
+    {
+      "case_id": "routed_leaf_no_transit",
+      "kind": "routed",
+      "name": "leaf_no_transit",
+      "storage_key": "16",
+      "factory": "csr.scenario.routedNetwork",
+      "fixture": "leaf_no_transit",
+      "scenario_file": ""
+    },
+    {
+      "case_id": "routed_high_rate_500",
+      "kind": "routed",
+      "name": "high_rate_500",
+      "storage_key": "17",
+      "factory": "csr.scenario.routedNetwork",
+      "fixture": "high_rate_500",
+      "scenario_file": ""
+    },
+    {
+      "case_id": "routed_high_rate_1000",
+      "kind": "routed",
+      "name": "high_rate_1000",
+      "storage_key": "18",
+      "factory": "csr.scenario.routedNetwork",
+      "fixture": "high_rate_1000",
+      "scenario_file": ""
+    },
+    {
+      "case_id": "shared_two_node_8",
+      "kind": "shared",
+      "name": "two_node_8",
+      "storage_key": "19",
+      "factory": "csr.scenario.importNs3",
+      "fixture": "two_node_8",
+      "scenario_file": "scenarios/shared/two_node_8.csv"
+    },
+    {
+      "case_id": "shared_two_node_128",
+      "kind": "shared",
+      "name": "two_node_128",
+      "storage_key": "20",
+      "factory": "csr.scenario.importNs3",
+      "fixture": "two_node_128",
+      "scenario_file": "scenarios/shared/two_node_128.csv"
+    },
+    {
+      "case_id": "shared_line_3_8",
+      "kind": "shared",
+      "name": "line_3_8",
+      "storage_key": "21",
+      "factory": "csr.scenario.importNs3",
+      "fixture": "line_3_8",
+      "scenario_file": "scenarios/shared/line_3_8.csv"
+    },
+    {
+      "case_id": "shared_high_rate_500",
+      "kind": "shared",
+      "name": "high_rate_500",
+      "storage_key": "22",
+      "factory": "csr.scenario.importNs3",
+      "fixture": "high_rate_500",
+      "scenario_file": "scenarios/shared/high_rate_500.csv"
+    },
+    {
+      "case_id": "shared_high_rate_1000",
+      "kind": "shared",
+      "name": "high_rate_1000",
+      "storage_key": "23",
+      "factory": "csr.scenario.importNs3",
+      "fixture": "high_rate_1000",
+      "scenario_file": "scenarios/shared/high_rate_1000.csv"
+    },
+    {
+      "case_id": "research_two_node_seed_128",
+      "kind": "research",
+      "name": "two_node_seed_128",
+      "storage_key": "24",
+      "factory": "csr.scenario.researchNetwork",
+      "fixture": "two_node",
+      "scenario_file": ""
+    },
+    {
+      "case_id": "research_line_4_seed_128",
+      "kind": "research",
+      "name": "line_4_seed_128",
+      "storage_key": "25",
+      "factory": "csr.scenario.researchNetwork",
+      "fixture": "line_4",
+      "scenario_file": ""
+    },
+    {
+      "case_id": "research_hidden_node_seed_128",
+      "kind": "research",
+      "name": "hidden_node_seed_128",
+      "storage_key": "26",
+      "factory": "csr.scenario.researchNetwork",
+      "fixture": "hidden_node",
+      "scenario_file": ""
+    },
+    {
+      "case_id": "research_mesh_6_seed_128",
+      "kind": "research",
+      "name": "mesh_6_seed_128",
+      "storage_key": "27",
+      "factory": "csr.scenario.researchNetwork",
+      "fixture": "mesh_6",
+      "scenario_file": ""
+    },
+    {
+      "case_id": "research_route_recovery_seed_128",
+      "kind": "research",
+      "name": "route_recovery_seed_128",
+      "storage_key": "28",
+      "factory": "csr.scenario.researchNetwork",
+      "fixture": "route_recovery",
+      "scenario_file": ""
+    },
+    {
+      "case_id": "research_leaf_no_transit_seed_128",
+      "kind": "research",
+      "name": "leaf_no_transit_seed_128",
+      "storage_key": "29",
+      "factory": "csr.scenario.researchNetwork",
+      "fixture": "leaf_no_transit",
+      "scenario_file": ""
+    }
+  ],
+  "sweep_case_count": 18,
+  "sweep_cases": [
+    {
+      "case_id": "offered_load_x1_seed128",
+      "storage_key": "01"
+    },
+    {
+      "case_id": "offered_load_x1_seed129",
+      "storage_key": "02"
+    },
+    {
+      "case_id": "offered_load_x1_seed130",
+      "storage_key": "03"
+    },
+    {
+      "case_id": "offered_load_x2_seed128",
+      "storage_key": "04"
+    },
+    {
+      "case_id": "offered_load_x2_seed129",
+      "storage_key": "05"
+    },
+    {
+      "case_id": "offered_load_x2_seed130",
+      "storage_key": "06"
+    },
+    {
+      "case_id": "offered_load_x4_seed128",
+      "storage_key": "07"
+    },
+    {
+      "case_id": "offered_load_x4_seed129",
+      "storage_key": "08"
+    },
+    {
+      "case_id": "offered_load_x4_seed130",
+      "storage_key": "09"
+    },
+    {
+      "case_id": "recovery_freshness_s60_seed128",
+      "storage_key": "10"
+    },
+    {
+      "case_id": "recovery_freshness_s60_seed129",
+      "storage_key": "11"
+    },
+    {
+      "case_id": "recovery_freshness_s60_seed130",
+      "storage_key": "12"
+    },
+    {
+      "case_id": "recovery_freshness_s180_seed128",
+      "storage_key": "13"
+    },
+    {
+      "case_id": "recovery_freshness_s180_seed129",
+      "storage_key": "14"
+    },
+    {
+      "case_id": "recovery_freshness_s180_seed130",
+      "storage_key": "15"
+    },
+    {
+      "case_id": "recovery_freshness_s300_seed128",
+      "storage_key": "16"
+    },
+    {
+      "case_id": "recovery_freshness_s300_seed129",
+      "storage_key": "17"
+    },
+    {
+      "case_id": "recovery_freshness_s300_seed130",
+      "storage_key": "18"
+    }
+  ],
+  "campus": {
+    "case_id": "campus_multihop_6000",
+    "scenario": "blue_radio_campus-multihop",
+    "scenario_file": "scenarios/benchmarks/campus_multihop_6000.csv",
+    "scenario_sha256": "90b143d93c13c6c2761bc5f2875ccc3fff98f85af6f2550370e435df2aaabcfc",
+    "profile_id": "hist-adb97c54-bare",
+    "duration_s": 6000,
+    "seed": 128,
+    "bucket_width_s": 60,
+    "default": true,
+    "flow_limit": 0,
+    "reference_directory": "evidence/tranche-7-ns3-reference/campus_multihop_6000",
+    "historical_benchmark": true,
+    "opnet_available": true,
+    "compare_core_applications": true,
+    "source_kind": "archived_opnet",
+    "opnet_ov_file": "evidence/tranche-7-benchmark-inputs/originals/blue_radio_campus.project/blue_radio_campus-multihop-DES-1.ov",
+    "probe_definition_file": "evidence/tranche-7-benchmark-inputs/originals/blue_radio_campus.project/blue_radio_campus-multihop.pb.m",
+    "opnet_source_file": "evidence/tranche-7-benchmark-inputs/originals/blue_radio_campus.project/blue_radio_campus-multihop.nt.m",
+    "storage_key": "campus"
+  },
+  "contract_references": [
+    {
+      "kind": "mac",
+      "directory": "evidence/tranche-10-contract-reference",
+      "reference_schema": "csr-tranche10-contention-contract-reference-v1",
+      "summary_schema": "csr-tranche10-contention-contract-v1"
+    },
+    {
+      "kind": "rx",
+      "directory": "evidence/tranche-10-receiver-reference",
+      "reference_schema": "csr-tranche10-receiver-contract-reference-v1",
+      "summary_schema": "csr-tranche10-receiver-contract-v1"
+    },
+    {
+      "kind": "ack",
+      "directory": "evidence/tranche-9-contract-reference",
+      "reference_schema": "csr-tranche9-ack-contract-reference-v1",
+      "summary_schema": "csr-tranche9-ack-service-contract-v1"
+    }
+  ],
+  "input_files": [
+    {
+      "path": "+csr/+scenario/smallNetwork.m",
+      "sha256": "4c1111014b6c871d1947563446ea7af089c41e32f13eb0a472c18c0ca9ccf521",
+      "bytes": 973
+    },
+    {
+      "path": "+csr/+scenario/macHopNetwork.m",
+      "sha256": "a043dc45ac3b1d6d81e968ba3df270d0130a4a5e3fc5b8953419e95ae0315fc5",
+      "bytes": 2588
+    },
+    {
+      "path": "+csr/+scenario/routedNetwork.m",
+      "sha256": "fa3d497753a78c26515eb4e314ddb5402f77ef5b0ab4bcf14fa0d2243ed06faf",
+      "bytes": 3434
+    },
+    {
+      "path": "+csr/+scenario/researchNetwork.m",
+      "sha256": "903f78913a0e7c0d06e9adeeafe30af8b82703dd2cbd1c40705ef6a6644a372a",
+      "bytes": 9185
+    },
+    {
+      "path": "+csr/+scenario/researchSweep.m",
+      "sha256": "fe3abe1a4d493be2be8a6afd501b6eafa2adf84ef10910b0d9e00725caadaa3d",
+      "bytes": 8588
+    },
+    {
+      "path": "+csr/+scenario/benchmarkSuite.m",
+      "sha256": "e453d762d432b327bcdf2dcb97d4813957f3834f043994ce3d7bc5fa7dee0bd7",
+      "bytes": 5812
+    },
+    {
+      "path": "+csr/+scenario/ackServiceSuite.m",
+      "sha256": "93630ea97e9e2544a704e476223abc899d3e31929e1e2862da0af5262d66249b",
+      "bytes": 3354
+    },
+    {
+      "path": "+csr/+scenario/linkDiagnosticSuite.m",
+      "sha256": "7174cdf95c0bb1b091b4037a8b0877522e0a275052d07960b35fa5da2e4e696a",
+      "bytes": 5002
+    },
+    {
+      "path": "scenarios/shared/catalog.json",
+      "sha256": "e562095e9610180b284f1468e0714b30f9c82ec84c9ed5b67b4e75536326ecc2",
+      "bytes": 883
+    },
+    {
+      "path": "scenarios/benchmarks/catalog.json",
+      "sha256": "62f129727536691f8ff59bbfe7f81192c192b9a3f05ce8c5b8abf468a5900721",
+      "bytes": 4672
+    },
+    {
+      "path": "scenarios/ack_service/plan.json",
+      "sha256": "372db92a385781d9854a096149fd419b90ae79823125b79269506bd9877e0116",
+      "bytes": 8474
+    },
+    {
+      "path": "scenarios/shared/two_node_8.csv",
+      "sha256": "eb213925dd4c0ad2b306a5aee58f6a210a81cde8420d4b85d4bb7aa4ed7c098e",
+      "bytes": 1020
+    },
+    {
+      "path": "scenarios/shared/two_node_128.csv",
+      "sha256": "c4faec189fecd2d2f9415c8984b87a6d13ca165833c0ec60fca3ddcd11db830a",
+      "bytes": 1030
+    },
+    {
+      "path": "scenarios/shared/line_3_8.csv",
+      "sha256": "54a100716cd17dd858485a8fd9d816656d13be1a1ed278f397311c7f6198bc45",
+      "bytes": 1133
+    },
+    {
+      "path": "scenarios/shared/high_rate_500.csv",
+      "sha256": "f1f8e2fd67d79b3b96e3e66ea3dc654498fd4c279d1cb7d7253e33de3c7eb08e",
+      "bytes": 1031
+    },
+    {
+      "path": "scenarios/shared/high_rate_1000.csv",
+      "sha256": "7bcf97c71fe0d91725c27e14b307e7ce72327b284377ff3d48d84cc951d89463",
+      "bytes": 1036
+    },
+    {
+      "path": "scenarios/benchmarks/campus_multihop_6000.csv",
+      "sha256": "90b143d93c13c6c2761bc5f2875ccc3fff98f85af6f2550370e435df2aaabcfc",
+      "bytes": 2408
+    }
+  ],
+  "accepted_anchors": [
+    {
+      "tranche": 7,
+      "path": "evidence/tranche-7-r2025a-accepted/tranche7_evidence.zip",
+      "sha256": "ea39b86ef68f91a551e4e22d176e2e96dc5305f33673741eee0adc6039599655",
+      "bytes": 23627006
+    },
+    {
+      "tranche": 8,
+      "path": "evidence/tranche-8-r2025a-accepted/tranche8_evidence.zip",
+      "sha256": "bfc4f7f05f0800316b371df3ec316f309f14e3482ef259c3f9c7bd7eea025d77",
+      "bytes": 17925128
+    },
+    {
+      "tranche": 9,
+      "path": "evidence/tranche-9-r2025a-accepted/tranche9_evidence.zip",
+      "sha256": "ddcede0a83b5ff906a7736f63406fc4cecb11e841795e39e93237364e0e11edf",
+      "bytes": 10194267
+    }
+  ],
+  "reference_directories": [
+    "evidence/tranche-7-ns3-reference",
+    "evidence/tranche-7-benchmark-inputs",
+    "evidence/tranche-8-ns3-reference",
+    "evidence/tranche-9-ns3-reference",
+    "evidence/tranche-9-contract-reference",
+    "evidence/tranche-10-contract-reference",
+    "evidence/tranche-10-receiver-reference",
+    "evidence/tranche-10-native-build"
+  ],
+  "acceptance_policy": "Default completion requires all portable tests, all three contract families, all 29 retained cases, all 18 sweeps, six diagnostics, two observer controls, and campus6000. Any skipped tests or campus is diagnostic-only. Numerical differences are measured, without post-hoc fitting or a numerical-parity claim.",
+  "reference_files": [
+    {
+      "path": "evidence/tranche-10-native-build.json",
+      "sha256": "fb2eea7c6969d371968e44ffcd24e2edf58f6ed900df22f1ce648c100835141c",
+      "bytes": 24560
+    },
+    {
+      "path": "evidence/tranche-10-source-recheck.json",
+      "sha256": "9a99a116ac9eb70f87e0396db821080990ae7b58125f6796101b1dc5cea2289b",
+      "bytes": 845
+    }
+  ]
+}

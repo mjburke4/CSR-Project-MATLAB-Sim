@@ -1,0 +1,116 @@
+{
+  "schema": "csr-tranche14-independent-implementation-review-v1",
+  "status": "passed",
+  "created_utc": "2026-09-15T12:34:47.906932+00:00",
+  "blocking_findings": [],
+  "reviewer_executed_matlab": false,
+  "matlab_execution_status": "Owner R2025a/R2026a run pending; static checks only",
+  "review_scope": [
+    "shared design and source/engine pins",
+    "real MAC packing/opportunity, receiver HOP/NWK ingress and ACK replacement",
+    "transparent scheduler observer exact decimal/hex timestamps and real event IDs",
+    "all four new MATLAB files and eighteen new MATLAB tests",
+    "runner source/reference/test-name provenance and failure evidence packaging",
+    "final native reference closure, raw protocol conservation and clean/disabled seam controls",
+    "handoff scope and short-path instructions"
+  ],
+  "baseline": {
+    "verified_source_files": 271,
+    "verified_matlab_files": 138,
+    "all_hashes_unchanged": true
+  },
+  "matlab_static": {
+    "tool": "MISS_HIT",
+    "files": 4,
+    "passed": true,
+    "new_tests": 18,
+    "selected_tests": 106,
+    "structural_checks": 222,
+    "case_count": 6,
+    "simulated_seconds_per_case": 4
+  },
+  "native": {
+    "case_count": 6,
+    "closed_artifacts": 67,
+    "event_count": 202,
+    "structural_checks": 222,
+    "raw_draws": 74,
+    "gateway_deliveries": 18,
+    "clean_disabled_control_checks": 327,
+    "self_tests": 14,
+    "raw_final_equals_independently_audited_pre": true,
+    "closed_manifest_verified": true,
+    "build_and_input_and_fixture_bindings_verified": true,
+    "native_manifest_sha256": "5e0aa0bad502538a8a3b57f37390461fb0a2b58313c21d658e82d832046e827f"
+  },
+  "resolved_findings": [
+    {
+      "finding": "Plan draw usage columns differed from actual shared ReplayStreams/native output",
+      "resolution": "Only new plan usage schema amended to case,node,supplied,consumed,unused; all consumers now share final plan hash."
+    },
+    {
+      "finding": "Quantized subsequent feedback transport scope differed from final spec",
+      "resolution": "The quantized diagnostic case now converts all fixture transports per duration to nanoseconds; production code unchanged."
+    },
+    {
+      "finding": "Node4 companion receiver preconditioning missing in initial MATLAB implementation",
+      "resolution": "Added public receive preconditioning matching native known neighbor inputs."
+    },
+    {
+      "finding": "Initial MATLAB case checks could derive shared-control expectation only from observed order",
+      "resolution": "Explicit independent before/tie_early/local_ns versus after/tie_late control-order check added."
+    },
+    {
+      "finding": "Gate first ACK opportunity initially tested rounded nanoseconds only",
+      "resolution": "Gate additionally requires actual ACK full-precision hexadecimal time to match planned MAC opportunity."
+    }
+  ],
+  "conclusions": [
+    "Native output proves the exact reconstructed 89byte mixed ACK/DATA input exercises real gateway ACK service and produces different cumulative ACKs across insertion controls.",
+    "New MATLAB callbacks use real MAC transmit and real HOP/NWK receive; no fabricated gateway ACK output or generic timer substitutes for MAC service.",
+    "TraceScheduler delegates unchanged EventScheduler and records true local IDs; observations do not add scheduler events.",
+    "No sender custody/admission improvement, RF result, global quantization, production timing change or full-network parity is claimed.",
+    "Any production transport modification requires owner boundary evidence and subsequent controlled-loss validation."
+  ],
+  "bindings": {
+    "AGENTS.md": "0ded7471df78325c00c73cd339798338b987ef86b73b483b5e45f0358d6877fa",
+    "+csr/+validation/ackEdgeContract.m": "f299b3c5fc09f62fdbe31044a0ea9e811b1ff26841524fbccd84dcea18e8952b",
+    "+csr/+validation/TraceScheduler.m": "462f0e5a3fe872d17d2d5d48711c6f2b9f9a2b1abbfcfc598ec792a3175cc3d2",
+    "tests/TestAckEdgeContract.m": "3ebd0d5a38cae3dcf55e8a9889aa3be7383fa3e09684809d20f7ad77fca05fd7",
+    "run_tranche14_validation.m": "9385cc99276d46dc4755994ff4787b444d00dbaaa329ed4cb3cd1e8470ad5f05",
+    "scripts/ns3/tranche14_edge.cc": "8e86e443f02ca0d1952cbae98e3a89f9592ec49e3494f2c476b03ad886f5bad0",
+    "scripts/run_tranche14_ns3_reference.py": "eeb1384a5661a332dac024adda512b53f4e95414bdfc4e4245fb587f1295566e",
+    "scenarios/edge/plan.json": "7e7ec33e946cb1fb315b0990813a2102d18c64b6f966b46cee021f8f273b61b9",
+    "scenarios/edge/cases.csv": "df29719730e7022f7bb8e912e0863c2109bae300fb75021d4eb8d8bb2a13262f",
+    "scenarios/edge/draws.csv": "5aff5bb3467c36370cc0c2617724022f69fc87d1601fee65f34fb06bef0efeb8",
+    "docs/tranche-14-spec.md": "5f6682350da0b4822d507dafdbee043730d96a0b01bd2a7196bd1a4c1a7bdfbe",
+    "START_T14.md": "272337af97f43d4d6238b2c6e12f54ce1b67f77c998af38c4521eba5a90f3c84",
+    "UPDATE_T14.md": "47d76f2f92fa4be08432605db27ed46ea574956700d982c8477c883498801ff4",
+    "evidence/tranche-14-candidate.json": "38d3e5cbbf30528a5a5a99a39b04d45490f22663486e3ebdafbfaeb95f4003d1",
+    "evidence/tranche-14-native-build.json": "b9209a063e57902dbda3fdcc81b3f26a6247e2ccec7799dd7ed5671f5690da9b",
+    "evidence/tranche-14-edge-reference/manifest.json": "5e0aa0bad502538a8a3b57f37390461fb0a2b58313c21d658e82d832046e827f",
+    "scripts/analyze_tranche14_return.py": "ef944899915b80d32252d8574893d0a7022253ab564a4796ea7becfa87daf699",
+    "scripts/tests/test_tranche14_return.py": "15424ab114ba8cb30747a9b4174e1192696c4f2c75bfa6e931b85a8041e9ed80"
+  },
+  "python_return_gate": {
+    "status": "passed",
+    "tests_executed": 37,
+    "tests_passed": 37,
+    "matlab_owner_archive_fabricated": false,
+    "reviewed": [
+      "closed archive/source/reference/test identity checks",
+      "exact uint64 bitmaps and decimal/hex round trips",
+      "signed boundary deltas distinct from nonnegative event times",
+      "FIFO replay of actual schedule/cancel/execute operations and parent callbacks",
+      "actual first ACK full-precision time versus planned tick",
+      "explicit mixed aggregate identity and all repeated-feedback ingress conservation",
+      "quantized followup feedback transport matches fixture scope",
+      "native reference raw/canonical correspondence and fresh build/control provenance"
+    ],
+    "preflight_sha256": "2670228e8bc38958e147b1bc4d745a13717ea775beeac20781b6915047e394de",
+    "test_log_sha256": "b777b8d117bb55a81d2fc9327e8378d4651987c3656c8bb4bd2ec2b22890aac7",
+    "reported_source_count": 283,
+    "reported_matlab_source_count": 142,
+    "reported_reference_count": 283
+  }
+}

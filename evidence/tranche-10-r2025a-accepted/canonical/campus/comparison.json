@@ -1,0 +1,897 @@
+{
+  "schema": "csr-benchmark-aggregate-comparison-v1",
+  "status": "structural_pass",
+  "structural_gate_passed": true,
+  "numeric_tolerance_gate_applied": false,
+  "full_protocol_parity_established": false,
+  "scenario": "blue_radio_campus-multihop",
+  "scenario_sha256": "90b143d93c13c6c2761bc5f2875ccc3fff98f85af6f2550370e435df2aaabcfc",
+  "profile_id": "hist-adb97c54-bare",
+  "duration_s": 6000.0,
+  "bucket_width_s": 60.0,
+  "bucket_count": 100,
+  "input_manifest": "/workspace/scratch/1a5b1ad6ce1b/t10v/canonical/campus/comparison-input.json",
+  "input_manifest_sha256": "dbbdcc562fba0739b0a4f8630ed5de1bae306e31db9acf0f00e196d2398e30c3",
+  "inputs": {
+    "matlab": {
+      "aggregate_file": "/tmp/csr-t7-return-v6fhd7y2/b/campus/analysis/aggregates.csv",
+      "aggregate_sha256": "cb279cbed41517f46a1c85051627a58e3f8f79f69729fc330ee58f087528f273",
+      "provenance_file": "/tmp/csr-t7-return-v6fhd7y2/b/campus/analysis/aggregate_provenance.json",
+      "provenance_sha256": "dccc7633513ec5677c0d7eaab96d9fe0dffc72d8e6381e545b000970df8c7a8f",
+      "source_file_sha256": "a8d220785b8f003a573f3776902fb81bb91f0c6b9e9db96be474672bd5e8b26b",
+      "compared_series_count": 8,
+      "compared_bucket_count": 800,
+      "excluded_source_only_statistics": {},
+      "provenance": {
+        "schema": "csr-benchmark-source-provenance-v1",
+        "output_schema": "csr-aggregate-series-v1",
+        "source": "matlab",
+        "scenario": "blue_radio_campus-multihop",
+        "scenario_sha256": "90b143d93c13c6c2761bc5f2875ccc3fff98f85af6f2550370e435df2aaabcfc",
+        "profile_id": "hist-adb97c54-bare",
+        "window": {
+          "start_time_s": 0,
+          "stop_time_s": 6000,
+          "bucket_width_s": 60,
+          "bucket_count": 100,
+          "timestamp": "bucket_end",
+          "start_endpoint": "inclusive",
+          "stop_endpoint": "exclusive",
+          "interval": "[previous_bucket_end,bucket_end); t=0 included, t=stop excluded",
+          "boundary_quotient_absolute_tolerance": 1e-12
+        },
+        "source_file": "raw/protocol_trace.csv",
+        "source_file_sha256": "a8d220785b8f003a573f3776902fb81bb91f0c6b9e9db96be474672bd5e8b26b",
+        "source_snapshot_sha256": "9be444b0fb1ffbfe818cab86502a287b19e3da83467d210ef426ec3b19e183da",
+        "ns3_reference_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+        "application_accounting": {
+          "generated": 12484,
+          "received": 11825,
+          "dropped": 402,
+          "pending": 257,
+          "in_window_sent": 12484,
+          "in_window_received": 11825,
+          "excluded_at_stop_sent": 0,
+          "excluded_at_stop_received": 0,
+          "excluded_after_stop_sent": 0,
+          "excluded_after_stop_received": 0,
+          "delay_matching": "Exact MATLAB application ID; validated final destination, size, DSCP and generation time",
+          "delivery_semantics": "Unique final-destination applications; ns-3 source-proved repeated delivery rows can differ"
+        },
+        "application_size_semantics": {
+          "payload_field": "ProtocolTrace.ApplicationBytes",
+          "network_header_bytes": 7,
+          "derived_bits": "8 * (ApplicationBytes + 7)",
+          "legacy_trace_size_exclusion_bits": 0,
+          "importer_exclusion": "Legacy configured bytes minus 8 br_app bytes minus 7 NWK header bytes gives payload"
+        },
+        "missing_sample_mean_bucket_ends_s": {
+          "packet_size": [
+            60,
+            120,
+            180,
+            240,
+            300
+          ],
+          "end_to_end_delay": [
+            60,
+            120,
+            180,
+            240,
+            300
+          ]
+        },
+        "mean_definitions": {
+          "reported_bucket_mean": "Arithmetic mean of observed bucket means; not a packet-weighted mean",
+          "delay_bucket": "Arithmetic mean of final-delivery latencies received in the bucket",
+          "packet_size_bucket": "Arithmetic mean of modeled br_Network bits generated in the bucket"
+        },
+        "semantic_limits": [
+          "Aggregate observations do not establish OPNET packet/event equivalence.",
+          "Different seeds, generators, MAC/envelope profiles or observation windows must not be silently compared.",
+          "PHY/ECC and queue sample statistics are unavailable from these application observations.",
+          "Missing sample means remain empty and do not become zero."
+        ],
+        "application_admission": {
+          "Attempts": 1710000.0,
+          "Admitted": 12484,
+          "BlockedDiscovery": 0,
+          "BlockedTopology": 0,
+          "BlockedGatewayRoute": 0,
+          "BlockedDestination": 0,
+          "BlockedNsdp": 1697516.0,
+          "Semantics": "Generator attempts include pre-creation gate blocks; traffic-sent series counts admitted app_generate only"
+        },
+        "output": {
+          "path": "analysis/aggregates.csv",
+          "sha256": "cb279cbed41517f46a1c85051627a58e3f8f79f69729fc330ee58f087528f273"
+        }
+      }
+    },
+    "ns3": {
+      "aggregate_file": "/workspace/scratch/1a5b1ad6ce1b/csr10/evidence/tranche-7-ns3-reference/campus_multihop_6000/ns3-aggregates.csv",
+      "aggregate_sha256": "d0b37516ba57ce76fc5692ce295dc4bed65e0654e9849a9e5b087d164f8870b1",
+      "provenance_file": "/workspace/scratch/1a5b1ad6ce1b/csr10/evidence/tranche-7-ns3-reference/campus_multihop_6000/ns3-benchmark.provenance.json",
+      "provenance_sha256": "449aa0512e577b10cffeb370e9f283f4b178e85d11b88fc25bf863b4477e9787",
+      "source_file_sha256": "b5d4a7fd8da818c8581a73bef52ab8f98ced815f821745350e8f95c7c7f02722",
+      "compared_series_count": 8,
+      "compared_bucket_count": 800,
+      "excluded_source_only_statistics": {
+        "ECC.Traffic Dropped (packets/sec)": 100,
+        "HOP.Resend Queue Size (packets)": 100,
+        "MAC.ACK Queue Size (packets)": 100,
+        "MAC.Tx Queue Size (packets)": 100,
+        "MAC.Tx Queuing Delay (sec)": 100,
+        "NWK.Network Queue Size (packets)": 100,
+        "NWK.Network Queuing Delay (sec)": 100
+      },
+      "provenance": {
+        "schema": "csr-benchmark-source-provenance-v1",
+        "source": "ns3",
+        "scenario": "blue_radio_campus-multihop",
+        "scenario_sha256": "90b143d93c13c6c2761bc5f2875ccc3fff98f85af6f2550370e435df2aaabcfc",
+        "profile_id": "hist-adb97c54-bare",
+        "source_file_sha256": "b5d4a7fd8da818c8581a73bef52ab8f98ced815f821745350e8f95c7c7f02722",
+        "source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+        "window": {
+          "start_time_s": 0,
+          "stop_time_s": 6000,
+          "bucket_width_s": 60,
+          "bucket_count": 100,
+          "start_endpoint": "inclusive",
+          "stop_endpoint": "exclusive"
+        },
+        "output": {
+          "path": "ns3-aggregates.csv",
+          "sha256": "d0b37516ba57ce76fc5692ce295dc4bed65e0654e9849a9e5b087d164f8870b1"
+        },
+        "upstream_provenance": {
+          "path": "ns3-aggregates.provenance.json",
+          "sha256": "ce7f21c0bd452b832ddda196f39e93fe394b550584ecd8592e4d3a14feb34c91",
+          "bytes": 12757
+        },
+        "excluded_extra_statistics": [
+          "ECC.Traffic Dropped (packets/sec)",
+          "HOP.Resend Queue Size (packets)",
+          "MAC.ACK Queue Size (packets)",
+          "MAC.Tx Queue Size (packets)",
+          "MAC.Tx Queuing Delay (sec)",
+          "NWK.Network Queue Size (packets)",
+          "NWK.Network Queuing Delay (sec)"
+        ],
+        "opnet_runtime_executed": false,
+        "matlab_runtime_executed": false,
+        "source_kind": "archived_opnet"
+      }
+    },
+    "opnet": {
+      "aggregate_file": "/workspace/scratch/1a5b1ad6ce1b/csr10/evidence/tranche-7-ns3-reference/campus_multihop_6000/opnet-aggregates.csv",
+      "aggregate_sha256": "472ae8b183281d7c70bf1252de08ecb6fb3d3b508fe549d3b13a7ac56fc5399c",
+      "provenance_file": "/workspace/scratch/1a5b1ad6ce1b/csr10/evidence/tranche-7-ns3-reference/campus_multihop_6000/opnet-benchmark.provenance.json",
+      "provenance_sha256": "57a6bb65476195fcf4baa59ff434023089d42ae68fba7cadc7360601bcfb95c7",
+      "source_file_sha256": "b643bee5c1d0260581a0135c0add5c87441bd98f70f66388fac0bf95096c39ee",
+      "compared_series_count": 8,
+      "compared_bucket_count": 800,
+      "excluded_source_only_statistics": {
+        "Generator.Packet Interarrival Time (secs)": 100,
+        "HOP.Resend Queue Size (packets)": 100,
+        "MAC.ACK Queue Size (packets)": 100,
+        "MAC.Tx Queue Size (packets)": 100,
+        "MAC.Tx Queuing Delay (sec)": 100
+      },
+      "provenance": {
+        "schema": "csr-benchmark-source-provenance-v1",
+        "source": "opnet",
+        "scenario": "blue_radio_campus-multihop",
+        "scenario_sha256": "90b143d93c13c6c2761bc5f2875ccc3fff98f85af6f2550370e435df2aaabcfc",
+        "profile_id": "hist-adb97c54-bare",
+        "source_file_sha256": "b643bee5c1d0260581a0135c0add5c87441bd98f70f66388fac0bf95096c39ee",
+        "source_commit": null,
+        "window": {
+          "start_time_s": 0,
+          "stop_time_s": 6000,
+          "bucket_width_s": 60,
+          "bucket_count": 100,
+          "start_endpoint": "inclusive",
+          "stop_endpoint": "exclusive"
+        },
+        "output": {
+          "path": "opnet-aggregates.csv",
+          "sha256": "472ae8b183281d7c70bf1252de08ecb6fb3d3b508fe549d3b13a7ac56fc5399c"
+        },
+        "upstream_provenance": {
+          "path": "opnet-extract.json",
+          "sha256": "561a1a56e558246a6c16180bcf68235bb3288f9a6f517d687e3eb6605f5831ce",
+          "bytes": 264304
+        },
+        "excluded_extra_statistics": [
+          "Generator.Packet Interarrival Time (secs)",
+          "HOP.Resend Queue Size (packets)",
+          "MAC.ACK Queue Size (packets)",
+          "MAC.Tx Queue Size (packets)",
+          "MAC.Tx Queuing Delay (sec)"
+        ],
+        "opnet_runtime_executed": false,
+        "matlab_runtime_executed": false,
+        "source_kind": "archived_opnet"
+      }
+    }
+  },
+  "comparisons": [
+    {
+      "candidate": "matlab",
+      "reference": "ns3",
+      "series": [
+        {
+          "statistic": "Generator.Traffic Sent (packets/sec)",
+          "unit": "packets/s",
+          "aggregation": "bucket_sum_per_second",
+          "aligned_bucket_count": 100,
+          "numeric_pair_count": 100,
+          "exact_numeric_difference_count": 94,
+          "candidate_observed_bucket_count": 100,
+          "reference_observed_bucket_count": 100,
+          "candidate_observed_bucket_mean": 2.0806666666666667,
+          "reference_observed_bucket_mean": 2.0695,
+          "observed_bucket_mean_difference": 0.011166666666666547,
+          "observed_bucket_mean_relative_difference_percent": 0.5395828299911354,
+          "paired_candidate_bucket_mean": 2.0806666666666667,
+          "paired_reference_bucket_mean": 2.0695,
+          "paired_bucket_mean_difference": 0.011166666666666547,
+          "paired_bucket_mean_relative_difference_percent": 0.5395828299911354,
+          "maximum_absolute_bucket_difference": 0.5000000000000002,
+          "missing_bucket_ends_s": {
+            "both_missing": [],
+            "candidate_missing_only": [],
+            "reference_missing_only": []
+          }
+        },
+        {
+          "statistic": "Generator.Traffic Sent (bits/sec)",
+          "unit": "bits/s",
+          "aggregation": "bucket_sum_per_second",
+          "aligned_bucket_count": 100,
+          "numeric_pair_count": 100,
+          "exact_numeric_difference_count": 94,
+          "candidate_observed_bucket_count": 100,
+          "reference_observed_bucket_count": 100,
+          "candidate_observed_bucket_mean": 3195.904,
+          "reference_observed_bucket_mean": 3178.752,
+          "observed_bucket_mean_difference": 17.152000000000044,
+          "observed_bucket_mean_relative_difference_percent": 0.5395828299911426,
+          "paired_candidate_bucket_mean": 3195.904,
+          "paired_reference_bucket_mean": 3178.752,
+          "paired_bucket_mean_difference": 17.152000000000044,
+          "paired_bucket_mean_relative_difference_percent": 0.5395828299911426,
+          "maximum_absolute_bucket_difference": 768.0,
+          "missing_bucket_ends_s": {
+            "both_missing": [],
+            "candidate_missing_only": [],
+            "reference_missing_only": []
+          }
+        },
+        {
+          "statistic": "Generator.Packet Size (bits)",
+          "unit": "bits",
+          "aggregation": "bucket_sample_mean",
+          "aligned_bucket_count": 100,
+          "numeric_pair_count": 95,
+          "exact_numeric_difference_count": 0,
+          "candidate_observed_bucket_count": 95,
+          "reference_observed_bucket_count": 95,
+          "candidate_observed_bucket_mean": 1536.0,
+          "reference_observed_bucket_mean": 1536.0,
+          "observed_bucket_mean_difference": 0.0,
+          "observed_bucket_mean_relative_difference_percent": 0.0,
+          "paired_candidate_bucket_mean": 1536.0,
+          "paired_reference_bucket_mean": 1536.0,
+          "paired_bucket_mean_difference": 0.0,
+          "paired_bucket_mean_relative_difference_percent": 0.0,
+          "maximum_absolute_bucket_difference": 0.0,
+          "missing_bucket_ends_s": {
+            "both_missing": [
+              60.0,
+              120.0,
+              180.0,
+              240.0,
+              300.0
+            ],
+            "candidate_missing_only": [],
+            "reference_missing_only": []
+          }
+        },
+        {
+          "statistic": "Sink.Traffic Received (packets/sec)",
+          "unit": "packets/s",
+          "aggregation": "bucket_sum_per_second",
+          "aligned_bucket_count": 100,
+          "numeric_pair_count": 100,
+          "exact_numeric_difference_count": 94,
+          "candidate_observed_bucket_count": 100,
+          "reference_observed_bucket_count": 100,
+          "candidate_observed_bucket_mean": 1.9708333333333334,
+          "reference_observed_bucket_mean": 1.9615,
+          "observed_bucket_mean_difference": 0.009333333333333416,
+          "observed_bucket_mean_relative_difference_percent": 0.4758263233919661,
+          "paired_candidate_bucket_mean": 1.9708333333333334,
+          "paired_reference_bucket_mean": 1.9615,
+          "paired_bucket_mean_difference": 0.009333333333333416,
+          "paired_bucket_mean_relative_difference_percent": 0.4758263233919661,
+          "maximum_absolute_bucket_difference": 0.3666666666666667,
+          "missing_bucket_ends_s": {
+            "both_missing": [],
+            "candidate_missing_only": [],
+            "reference_missing_only": []
+          }
+        },
+        {
+          "statistic": "Sink.Traffic Received (packets)",
+          "unit": "packets",
+          "aggregation": "bucket_sum",
+          "aligned_bucket_count": 100,
+          "numeric_pair_count": 100,
+          "exact_numeric_difference_count": 94,
+          "candidate_observed_bucket_count": 100,
+          "reference_observed_bucket_count": 100,
+          "candidate_observed_bucket_mean": 118.25,
+          "reference_observed_bucket_mean": 117.69,
+          "observed_bucket_mean_difference": 0.5600000000000023,
+          "observed_bucket_mean_relative_difference_percent": 0.47582632339196385,
+          "paired_candidate_bucket_mean": 118.25,
+          "paired_reference_bucket_mean": 117.69,
+          "paired_bucket_mean_difference": 0.5600000000000023,
+          "paired_bucket_mean_relative_difference_percent": 0.47582632339196385,
+          "maximum_absolute_bucket_difference": 22.0,
+          "missing_bucket_ends_s": {
+            "both_missing": [],
+            "candidate_missing_only": [],
+            "reference_missing_only": []
+          }
+        },
+        {
+          "statistic": "Sink.Traffic Received (bits/sec)",
+          "unit": "bits/s",
+          "aggregation": "bucket_sum_per_second",
+          "aligned_bucket_count": 100,
+          "numeric_pair_count": 100,
+          "exact_numeric_difference_count": 94,
+          "candidate_observed_bucket_count": 100,
+          "reference_observed_bucket_count": 100,
+          "candidate_observed_bucket_mean": 3027.2000000000003,
+          "reference_observed_bucket_mean": 3012.864,
+          "observed_bucket_mean_difference": 14.33600000000024,
+          "observed_bucket_mean_relative_difference_percent": 0.4758263233919699,
+          "paired_candidate_bucket_mean": 3027.2000000000003,
+          "paired_reference_bucket_mean": 3012.864,
+          "paired_bucket_mean_difference": 14.33600000000024,
+          "paired_bucket_mean_relative_difference_percent": 0.4758263233919699,
+          "maximum_absolute_bucket_difference": 563.1999999999998,
+          "missing_bucket_ends_s": {
+            "both_missing": [],
+            "candidate_missing_only": [],
+            "reference_missing_only": []
+          }
+        },
+        {
+          "statistic": "Sink.Traffic Received (bits)",
+          "unit": "bits",
+          "aggregation": "bucket_sum",
+          "aligned_bucket_count": 100,
+          "numeric_pair_count": 100,
+          "exact_numeric_difference_count": 94,
+          "candidate_observed_bucket_count": 100,
+          "reference_observed_bucket_count": 100,
+          "candidate_observed_bucket_mean": 181632.0,
+          "reference_observed_bucket_mean": 180771.84,
+          "observed_bucket_mean_difference": 860.1600000000035,
+          "observed_bucket_mean_relative_difference_percent": 0.47582632339196385,
+          "paired_candidate_bucket_mean": 181632.0,
+          "paired_reference_bucket_mean": 180771.84,
+          "paired_bucket_mean_difference": 860.1600000000035,
+          "paired_bucket_mean_relative_difference_percent": 0.47582632339196385,
+          "maximum_absolute_bucket_difference": 33792.0,
+          "missing_bucket_ends_s": {
+            "both_missing": [],
+            "candidate_missing_only": [],
+            "reference_missing_only": []
+          }
+        },
+        {
+          "statistic": "Sink.End-to-End Delay (seconds)",
+          "unit": "s",
+          "aggregation": "bucket_sample_mean",
+          "aligned_bucket_count": 100,
+          "numeric_pair_count": 95,
+          "exact_numeric_difference_count": 95,
+          "candidate_observed_bucket_count": 95,
+          "reference_observed_bucket_count": 95,
+          "candidate_observed_bucket_mean": 98.09146890252902,
+          "reference_observed_bucket_mean": 103.18100582955141,
+          "observed_bucket_mean_difference": -5.089536927022394,
+          "observed_bucket_mean_relative_difference_percent": -4.932629689063113,
+          "paired_candidate_bucket_mean": 98.09146890252902,
+          "paired_reference_bucket_mean": 103.18100582955141,
+          "paired_bucket_mean_difference": -5.089536927022394,
+          "paired_bucket_mean_relative_difference_percent": -4.932629689063113,
+          "maximum_absolute_bucket_difference": 138.81742796138644,
+          "missing_bucket_ends_s": {
+            "both_missing": [
+              60.0,
+              120.0,
+              180.0,
+              240.0,
+              300.0
+            ],
+            "candidate_missing_only": [],
+            "reference_missing_only": []
+          }
+        }
+      ]
+    },
+    {
+      "candidate": "matlab",
+      "reference": "opnet",
+      "series": [
+        {
+          "statistic": "Generator.Traffic Sent (packets/sec)",
+          "unit": "packets/s",
+          "aggregation": "bucket_sum_per_second",
+          "aligned_bucket_count": 100,
+          "numeric_pair_count": 100,
+          "exact_numeric_difference_count": 94,
+          "candidate_observed_bucket_count": 100,
+          "reference_observed_bucket_count": 100,
+          "candidate_observed_bucket_mean": 2.0806666666666667,
+          "reference_observed_bucket_mean": 2.012,
+          "observed_bucket_mean_difference": 0.06866666666666665,
+          "observed_bucket_mean_relative_difference_percent": 3.412856196156394,
+          "paired_candidate_bucket_mean": 2.0806666666666667,
+          "paired_reference_bucket_mean": 2.012,
+          "paired_bucket_mean_difference": 0.06866666666666665,
+          "paired_bucket_mean_relative_difference_percent": 3.412856196156394,
+          "maximum_absolute_bucket_difference": 0.5666666666666669,
+          "missing_bucket_ends_s": {
+            "both_missing": [],
+            "candidate_missing_only": [],
+            "reference_missing_only": []
+          }
+        },
+        {
+          "statistic": "Generator.Traffic Sent (bits/sec)",
+          "unit": "bits/s",
+          "aggregation": "bucket_sum_per_second",
+          "aligned_bucket_count": 100,
+          "numeric_pair_count": 100,
+          "exact_numeric_difference_count": 94,
+          "candidate_observed_bucket_count": 100,
+          "reference_observed_bucket_count": 100,
+          "candidate_observed_bucket_mean": 3195.904,
+          "reference_observed_bucket_mean": 3090.4320000000002,
+          "observed_bucket_mean_difference": 105.47199999999975,
+          "observed_bucket_mean_relative_difference_percent": 3.4128561961563864,
+          "paired_candidate_bucket_mean": 3195.904,
+          "paired_reference_bucket_mean": 3090.4320000000002,
+          "paired_bucket_mean_difference": 105.47199999999975,
+          "paired_bucket_mean_relative_difference_percent": 3.4128561961563864,
+          "maximum_absolute_bucket_difference": 870.4000000000001,
+          "missing_bucket_ends_s": {
+            "both_missing": [],
+            "candidate_missing_only": [],
+            "reference_missing_only": []
+          }
+        },
+        {
+          "statistic": "Generator.Packet Size (bits)",
+          "unit": "bits",
+          "aggregation": "bucket_sample_mean",
+          "aligned_bucket_count": 100,
+          "numeric_pair_count": 95,
+          "exact_numeric_difference_count": 0,
+          "candidate_observed_bucket_count": 95,
+          "reference_observed_bucket_count": 95,
+          "candidate_observed_bucket_mean": 1536.0,
+          "reference_observed_bucket_mean": 1536.0,
+          "observed_bucket_mean_difference": 0.0,
+          "observed_bucket_mean_relative_difference_percent": 0.0,
+          "paired_candidate_bucket_mean": 1536.0,
+          "paired_reference_bucket_mean": 1536.0,
+          "paired_bucket_mean_difference": 0.0,
+          "paired_bucket_mean_relative_difference_percent": 0.0,
+          "maximum_absolute_bucket_difference": 0.0,
+          "missing_bucket_ends_s": {
+            "both_missing": [
+              60.0,
+              120.0,
+              180.0,
+              240.0,
+              300.0
+            ],
+            "candidate_missing_only": [],
+            "reference_missing_only": []
+          }
+        },
+        {
+          "statistic": "Sink.Traffic Received (packets/sec)",
+          "unit": "packets/s",
+          "aggregation": "bucket_sum_per_second",
+          "aligned_bucket_count": 100,
+          "numeric_pair_count": 100,
+          "exact_numeric_difference_count": 94,
+          "candidate_observed_bucket_count": 100,
+          "reference_observed_bucket_count": 100,
+          "candidate_observed_bucket_mean": 1.9708333333333334,
+          "reference_observed_bucket_mean": 1.9016666666666666,
+          "observed_bucket_mean_difference": 0.06916666666666682,
+          "observed_bucket_mean_relative_difference_percent": 3.6371603856266512,
+          "paired_candidate_bucket_mean": 1.9708333333333334,
+          "paired_reference_bucket_mean": 1.9016666666666666,
+          "paired_bucket_mean_difference": 0.06916666666666682,
+          "paired_bucket_mean_relative_difference_percent": 3.6371603856266512,
+          "maximum_absolute_bucket_difference": 0.7333333333333332,
+          "missing_bucket_ends_s": {
+            "both_missing": [],
+            "candidate_missing_only": [],
+            "reference_missing_only": []
+          }
+        },
+        {
+          "statistic": "Sink.Traffic Received (packets)",
+          "unit": "packets",
+          "aggregation": "bucket_sum",
+          "aligned_bucket_count": 100,
+          "numeric_pair_count": 95,
+          "exact_numeric_difference_count": 94,
+          "candidate_observed_bucket_count": 100,
+          "reference_observed_bucket_count": 95,
+          "candidate_observed_bucket_mean": 118.25,
+          "reference_observed_bucket_mean": 120.10526315789474,
+          "observed_bucket_mean_difference": -1.8552631578947398,
+          "observed_bucket_mean_relative_difference_percent": -1.5446976336546914,
+          "paired_candidate_bucket_mean": 124.47368421052632,
+          "paired_reference_bucket_mean": 120.10526315789474,
+          "paired_bucket_mean_difference": 4.368421052631575,
+          "paired_bucket_mean_relative_difference_percent": 3.63716038562664,
+          "maximum_absolute_bucket_difference": 44.0,
+          "missing_bucket_ends_s": {
+            "both_missing": [],
+            "candidate_missing_only": [],
+            "reference_missing_only": [
+              60.0,
+              120.0,
+              180.0,
+              240.0,
+              300.0
+            ]
+          }
+        },
+        {
+          "statistic": "Sink.Traffic Received (bits/sec)",
+          "unit": "bits/s",
+          "aggregation": "bucket_sum_per_second",
+          "aligned_bucket_count": 100,
+          "numeric_pair_count": 100,
+          "exact_numeric_difference_count": 94,
+          "candidate_observed_bucket_count": 100,
+          "reference_observed_bucket_count": 100,
+          "candidate_observed_bucket_mean": 3027.2000000000003,
+          "reference_observed_bucket_mean": 2920.96,
+          "observed_bucket_mean_difference": 106.24000000000024,
+          "observed_bucket_mean_relative_difference_percent": 3.6371603856266512,
+          "paired_candidate_bucket_mean": 3027.2000000000003,
+          "paired_reference_bucket_mean": 2920.96,
+          "paired_bucket_mean_difference": 106.24000000000024,
+          "paired_bucket_mean_relative_difference_percent": 3.6371603856266512,
+          "maximum_absolute_bucket_difference": 1126.4,
+          "missing_bucket_ends_s": {
+            "both_missing": [],
+            "candidate_missing_only": [],
+            "reference_missing_only": []
+          }
+        },
+        {
+          "statistic": "Sink.Traffic Received (bits)",
+          "unit": "bits",
+          "aggregation": "bucket_sum",
+          "aligned_bucket_count": 100,
+          "numeric_pair_count": 95,
+          "exact_numeric_difference_count": 94,
+          "candidate_observed_bucket_count": 100,
+          "reference_observed_bucket_count": 95,
+          "candidate_observed_bucket_mean": 181632.0,
+          "reference_observed_bucket_mean": 184481.68421052632,
+          "observed_bucket_mean_difference": -2849.6842105263204,
+          "observed_bucket_mean_relative_difference_percent": -1.5446976336546914,
+          "paired_candidate_bucket_mean": 191191.57894736843,
+          "paired_reference_bucket_mean": 184481.68421052632,
+          "paired_bucket_mean_difference": 6709.894736842107,
+          "paired_bucket_mean_relative_difference_percent": 3.637160385626644,
+          "maximum_absolute_bucket_difference": 67584.0,
+          "missing_bucket_ends_s": {
+            "both_missing": [],
+            "candidate_missing_only": [],
+            "reference_missing_only": [
+              60.0,
+              120.0,
+              180.0,
+              240.0,
+              300.0
+            ]
+          }
+        },
+        {
+          "statistic": "Sink.End-to-End Delay (seconds)",
+          "unit": "s",
+          "aggregation": "bucket_sample_mean",
+          "aligned_bucket_count": 100,
+          "numeric_pair_count": 95,
+          "exact_numeric_difference_count": 95,
+          "candidate_observed_bucket_count": 95,
+          "reference_observed_bucket_count": 95,
+          "candidate_observed_bucket_mean": 98.09146890252902,
+          "reference_observed_bucket_mean": 112.74800745492433,
+          "observed_bucket_mean_difference": -14.656538552395318,
+          "observed_bucket_mean_relative_difference_percent": -12.999377002963778,
+          "paired_candidate_bucket_mean": 98.09146890252902,
+          "paired_reference_bucket_mean": 112.74800745492433,
+          "paired_bucket_mean_difference": -14.656538552395318,
+          "paired_bucket_mean_relative_difference_percent": -12.999377002963778,
+          "maximum_absolute_bucket_difference": 173.65568864566643,
+          "missing_bucket_ends_s": {
+            "both_missing": [
+              60.0,
+              120.0,
+              180.0,
+              240.0,
+              300.0
+            ],
+            "candidate_missing_only": [],
+            "reference_missing_only": []
+          }
+        }
+      ]
+    },
+    {
+      "candidate": "ns3",
+      "reference": "opnet",
+      "series": [
+        {
+          "statistic": "Generator.Traffic Sent (packets/sec)",
+          "unit": "packets/s",
+          "aggregation": "bucket_sum_per_second",
+          "aligned_bucket_count": 100,
+          "numeric_pair_count": 100,
+          "exact_numeric_difference_count": 89,
+          "candidate_observed_bucket_count": 100,
+          "reference_observed_bucket_count": 100,
+          "candidate_observed_bucket_mean": 2.0695,
+          "reference_observed_bucket_mean": 2.012,
+          "observed_bucket_mean_difference": 0.05750000000000011,
+          "observed_bucket_mean_relative_difference_percent": 2.857852882703783,
+          "paired_candidate_bucket_mean": 2.0695,
+          "paired_reference_bucket_mean": 2.012,
+          "paired_bucket_mean_difference": 0.05750000000000011,
+          "paired_bucket_mean_relative_difference_percent": 2.857852882703783,
+          "maximum_absolute_bucket_difference": 0.75,
+          "missing_bucket_ends_s": {
+            "both_missing": [],
+            "candidate_missing_only": [],
+            "reference_missing_only": []
+          }
+        },
+        {
+          "statistic": "Generator.Traffic Sent (bits/sec)",
+          "unit": "bits/s",
+          "aggregation": "bucket_sum_per_second",
+          "aligned_bucket_count": 100,
+          "numeric_pair_count": 100,
+          "exact_numeric_difference_count": 89,
+          "candidate_observed_bucket_count": 100,
+          "reference_observed_bucket_count": 100,
+          "candidate_observed_bucket_mean": 3178.752,
+          "reference_observed_bucket_mean": 3090.4320000000002,
+          "observed_bucket_mean_difference": 88.31999999999971,
+          "observed_bucket_mean_relative_difference_percent": 2.8578528827037677,
+          "paired_candidate_bucket_mean": 3178.752,
+          "paired_reference_bucket_mean": 3090.4320000000002,
+          "paired_bucket_mean_difference": 88.31999999999971,
+          "paired_bucket_mean_relative_difference_percent": 2.8578528827037677,
+          "maximum_absolute_bucket_difference": 1151.9999999999995,
+          "missing_bucket_ends_s": {
+            "both_missing": [],
+            "candidate_missing_only": [],
+            "reference_missing_only": []
+          }
+        },
+        {
+          "statistic": "Generator.Packet Size (bits)",
+          "unit": "bits",
+          "aggregation": "bucket_sample_mean",
+          "aligned_bucket_count": 100,
+          "numeric_pair_count": 95,
+          "exact_numeric_difference_count": 0,
+          "candidate_observed_bucket_count": 95,
+          "reference_observed_bucket_count": 95,
+          "candidate_observed_bucket_mean": 1536.0,
+          "reference_observed_bucket_mean": 1536.0,
+          "observed_bucket_mean_difference": 0.0,
+          "observed_bucket_mean_relative_difference_percent": 0.0,
+          "paired_candidate_bucket_mean": 1536.0,
+          "paired_reference_bucket_mean": 1536.0,
+          "paired_bucket_mean_difference": 0.0,
+          "paired_bucket_mean_relative_difference_percent": 0.0,
+          "maximum_absolute_bucket_difference": 0.0,
+          "missing_bucket_ends_s": {
+            "both_missing": [
+              60.0,
+              120.0,
+              180.0,
+              240.0,
+              300.0
+            ],
+            "candidate_missing_only": [],
+            "reference_missing_only": []
+          }
+        },
+        {
+          "statistic": "Sink.Traffic Received (packets/sec)",
+          "unit": "packets/s",
+          "aggregation": "bucket_sum_per_second",
+          "aligned_bucket_count": 100,
+          "numeric_pair_count": 100,
+          "exact_numeric_difference_count": 92,
+          "candidate_observed_bucket_count": 100,
+          "reference_observed_bucket_count": 100,
+          "candidate_observed_bucket_mean": 1.9615,
+          "reference_observed_bucket_mean": 1.9016666666666666,
+          "observed_bucket_mean_difference": 0.059833333333333405,
+          "observed_bucket_mean_relative_difference_percent": 3.146362839614377,
+          "paired_candidate_bucket_mean": 1.9615,
+          "paired_reference_bucket_mean": 1.9016666666666666,
+          "paired_bucket_mean_difference": 0.059833333333333405,
+          "paired_bucket_mean_relative_difference_percent": 3.146362839614377,
+          "maximum_absolute_bucket_difference": 0.5333333333333334,
+          "missing_bucket_ends_s": {
+            "both_missing": [],
+            "candidate_missing_only": [],
+            "reference_missing_only": []
+          }
+        },
+        {
+          "statistic": "Sink.Traffic Received (packets)",
+          "unit": "packets",
+          "aggregation": "bucket_sum",
+          "aligned_bucket_count": 100,
+          "numeric_pair_count": 95,
+          "exact_numeric_difference_count": 92,
+          "candidate_observed_bucket_count": 100,
+          "reference_observed_bucket_count": 95,
+          "candidate_observed_bucket_mean": 117.69,
+          "reference_observed_bucket_mean": 120.10526315789474,
+          "observed_bucket_mean_difference": -2.415263157894742,
+          "observed_bucket_mean_relative_difference_percent": -2.01095530236635,
+          "paired_candidate_bucket_mean": 123.88421052631578,
+          "paired_reference_bucket_mean": 120.10526315789474,
+          "paired_bucket_mean_difference": 3.7789473684210435,
+          "paired_bucket_mean_relative_difference_percent": 3.146362839614366,
+          "maximum_absolute_bucket_difference": 32.0,
+          "missing_bucket_ends_s": {
+            "both_missing": [],
+            "candidate_missing_only": [],
+            "reference_missing_only": [
+              60.0,
+              120.0,
+              180.0,
+              240.0,
+              300.0
+            ]
+          }
+        },
+        {
+          "statistic": "Sink.Traffic Received (bits/sec)",
+          "unit": "bits/s",
+          "aggregation": "bucket_sum_per_second",
+          "aligned_bucket_count": 100,
+          "numeric_pair_count": 100,
+          "exact_numeric_difference_count": 92,
+          "candidate_observed_bucket_count": 100,
+          "reference_observed_bucket_count": 100,
+          "candidate_observed_bucket_mean": 3012.864,
+          "reference_observed_bucket_mean": 2920.96,
+          "observed_bucket_mean_difference": 91.904,
+          "observed_bucket_mean_relative_difference_percent": 3.146362839614373,
+          "paired_candidate_bucket_mean": 3012.864,
+          "paired_reference_bucket_mean": 2920.96,
+          "paired_bucket_mean_difference": 91.904,
+          "paired_bucket_mean_relative_difference_percent": 3.146362839614373,
+          "maximum_absolute_bucket_difference": 819.1999999999998,
+          "missing_bucket_ends_s": {
+            "both_missing": [],
+            "candidate_missing_only": [],
+            "reference_missing_only": []
+          }
+        },
+        {
+          "statistic": "Sink.Traffic Received (bits)",
+          "unit": "bits",
+          "aggregation": "bucket_sum",
+          "aligned_bucket_count": 100,
+          "numeric_pair_count": 95,
+          "exact_numeric_difference_count": 92,
+          "candidate_observed_bucket_count": 100,
+          "reference_observed_bucket_count": 95,
+          "candidate_observed_bucket_mean": 180771.84,
+          "reference_observed_bucket_mean": 184481.68421052632,
+          "observed_bucket_mean_difference": -3709.844210526324,
+          "observed_bucket_mean_relative_difference_percent": -2.01095530236635,
+          "paired_candidate_bucket_mean": 190286.14736842105,
+          "paired_reference_bucket_mean": 184481.68421052632,
+          "paired_bucket_mean_difference": 5804.46315789473,
+          "paired_bucket_mean_relative_difference_percent": 3.1463628396143695,
+          "maximum_absolute_bucket_difference": 49152.0,
+          "missing_bucket_ends_s": {
+            "both_missing": [],
+            "candidate_missing_only": [],
+            "reference_missing_only": [
+              60.0,
+              120.0,
+              180.0,
+              240.0,
+              300.0
+            ]
+          }
+        },
+        {
+          "statistic": "Sink.End-to-End Delay (seconds)",
+          "unit": "s",
+          "aggregation": "bucket_sample_mean",
+          "aligned_bucket_count": 100,
+          "numeric_pair_count": 95,
+          "exact_numeric_difference_count": 95,
+          "candidate_observed_bucket_count": 95,
+          "reference_observed_bucket_count": 95,
+          "candidate_observed_bucket_mean": 103.18100582955141,
+          "reference_observed_bucket_mean": 112.74800745492433,
+          "observed_bucket_mean_difference": -9.567001625372924,
+          "observed_bucket_mean_relative_difference_percent": -8.485295519921031,
+          "paired_candidate_bucket_mean": 103.18100582955141,
+          "paired_reference_bucket_mean": 112.74800745492433,
+          "paired_bucket_mean_difference": -9.567001625372924,
+          "paired_bucket_mean_relative_difference_percent": -8.485295519921031,
+          "maximum_absolute_bucket_difference": 201.37420889137252,
+          "missing_bucket_ends_s": {
+            "both_missing": [
+              60.0,
+              120.0,
+              180.0,
+              240.0,
+              300.0
+            ],
+            "candidate_missing_only": [],
+            "reference_missing_only": []
+          }
+        }
+      ]
+    }
+  ],
+  "interpretation": [
+    "Pass means hash-bound profile, series, unit, aggregation and bucket coverage checks passed.",
+    "Numeric residuals and unequal no-sample coverage remain descriptive results, not tolerance failures.",
+    "Observed-bucket means use each source's measured buckets; paired means use only jointly observed buckets.",
+    "Bucket sample means are not packet-weighted latency or time-weighted queue occupancy.",
+    "OPNET aggregate data supplies no chronological packet, path, retry or PHY/ECC event truth.",
+    "Source-file hashes bind the declared source artifacts; this tool verifies the provided CSVs and sidecars, not unprovided upstream binaries or traces."
+  ],
+  "case_binding": {
+    "matlab_manifest_file": "/tmp/csr-t7-return-v6fhd7y2/b/campus/benchmark_manifest.json",
+    "matlab_manifest_sha256": "9872228c26366d815f38e943693a8207b44bd989843a2285fdf81cb578c2c315",
+    "reference_manifest_file": "/workspace/scratch/1a5b1ad6ce1b/csr10/evidence/tranche-7-ns3-reference/campus_multihop_6000/manifest.json",
+    "reference_manifest_sha256": "309f1343eb86c8d5ceb167546c351be7d753ba721930d6e677a4fd3d4e6faaa6",
+    "matlab_inventory_files_verified": 19,
+    "reference_inventory_files_verified": 15,
+    "matlab_source_snapshot_sha256": "9be444b0fb1ffbfe818cab86502a287b19e3da83467d210ef426ec3b19e183da",
+    "source_trace_bytes_verified": true,
+    "canonical_scenario_file": "/workspace/scratch/1a5b1ad6ce1b/csr10/scenarios/benchmarks/campus_multihop_6000.csv",
+    "canonical_scenario_sha256": "90b143d93c13c6c2761bc5f2875ccc3fff98f85af6f2550370e435df2aaabcfc",
+    "scope": "Case identity, recorded generator/MAC/envelope settings, inventories, traces and aggregate provenance; outer suite acceptance is separate"
+  }
+}

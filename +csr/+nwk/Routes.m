@@ -342,6 +342,15 @@ classdef Routes < handle
             end
         end
 
+        function destinations = applicationDestinationCandidates(obj)
+            % Source GetApplicationDestinationCandidates scans every stored
+            % route, including unselected/invalid entries, in insertion order.
+            % Neighbor fallback belongs to Layer, which owns persistent peers.
+            % This observation must not run selection or alter preferences.
+            destinations=unique([obj.Candidates.DestinationId],'stable');
+            destinations=destinations(destinations~=obj.NodeId);
+        end
+
         function destinations = reachableDestinations(obj)
             destinations = [];
             for destination = obj.DestinationOrder

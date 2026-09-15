@@ -1,0 +1,155 @@
+{
+  "schema": "csr-tranche9-independent-final-disposition-v1",
+  "reviewed_utc": "2026-09-11T18:50:44.409092+00:00",
+  "status": "conditional_pass_pending_inventory_refresh",
+  "test_or_simulation_reruns": false,
+  "checks": [
+    {
+      "name": "executed_candidate_identity",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "reporting_repair_identity",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "complete_acceptance_artifact_membership",
+      "passed": false,
+      "details": {
+        "files": 75,
+        "missing_listed_files": [],
+        "known_append_awaiting_inventory_refresh": {
+          "path": "tranche-9-r2025a-accepted/preservation.json",
+          "bytes": 801,
+          "sha256": "3d628569fbf5dc555525a74d3a216ee43fd0e88f5c49b67e0cdf90614dad0d62"
+        },
+        "condition": "Primary gate refreshes final acceptance inventory after appended preservation and disposition records, then verifies exact membership and hashes."
+      }
+    },
+    {
+      "name": "acceptance_artifact_hashes_and_sizes",
+      "passed": true,
+      "details": {
+        "checks": 75,
+        "mismatches": []
+      }
+    },
+    {
+      "name": "original_owner_archive_preserved",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "selected_owner_records_unchanged",
+      "passed": true,
+      "details": {
+        "records": 31,
+        "mismatches": []
+      }
+    },
+    {
+      "name": "frozen_matlab_source_unchanged",
+      "passed": true,
+      "details": {
+        "matlab_files": 115
+      }
+    },
+    {
+      "name": "only_declared_snapshot_changes",
+      "passed": true,
+      "details": {
+        "unchanged": 202,
+        "changed": [
+          "evidence/source-baseline.json",
+          "scripts/analyze_tranche9_return.py",
+          "scripts/tests/test_tranche9_return.py",
+          "scripts/tranche9_metrics.py"
+        ]
+      }
+    },
+    {
+      "name": "python_repair_bytes_unchanged_since_review",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "independent_records_preserved",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "successful_full_review_preserved",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "acceptance_gate_counts_match_independent_receipt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "cancellation_totals_match_independent_receipt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "owner_execution_duration_and_runtime",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "per_seed_counts_match_primary_review",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "before_after_limits_match_verified_comparisons",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "service_interpretation_retained",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "numerical_and_runtime_limits_are_explicit",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "campus_next_milestone_scoped",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "source_baseline_identifies_accepted_executed_candidate",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "blockers": [],
+  "manual_disposition": "Acceptance wording and ledger match the independent structural receipts and service inspection. Bounded reservation/capacity contract matches are correctly separated from unresolved early contention, numerical, full protocol and population parity. The c131 local 78ms DATA advancement is described alongside its net latency increase and unchanged delivery totals. The next campus milestone is future work against archived T7/ns3/OPNET evidence, with no new campus/native/OPNET execution claimed. All 115 MATLAB source files remain identical to the executed candidate.",
+  "recommendation": "No substantive acceptance blocker found. Refresh the final acceptance inventory for preservation.json and any subsequently appended disposition record, verify exact membership and hashes, then commit acceptance if the primary final gate passes.",
+  "pending_checks": [
+    {
+      "name": "complete_acceptance_artifact_membership",
+      "passed": false,
+      "details": {
+        "files": 75
+      }
+    }
+  ],
+  "reviewed_draft_acceptance_files": {
+    "README.md": "640af6194a7b51a4b580ab584bf369c5e17996f2da9afcf7d7c2b185032c1889",
+    "docs/tranche-9-portable-acceptance.md": "33ba73c9d8d8039fa62f4c5ee64ea75c4a95649cbc5b40b999e0df25cad3cbb3",
+    "docs/tranche-9-handoff.md": "1dd69fa25e7a3109349f8871be1c76052f3a3c7ff4c4b56350b8954ad584c22b",
+    "docs/tranche-9-validation.md": "a1a5847d3eaf68a48048f176484e21fdaeee7d6e270f4f6e736c9b53894d40d5",
+    "docs/parity-ledger.csv": "9711b000b3313b974e23497c847167fdbd726a156cc4acacee64d2cf624293ed",
+    "evidence/source-baseline.json": "4a93d3358606d24881628398fa981ecb1d8c080ac26d671925c08a5069acef4c",
+    "evidence/tranche-9-portable-acceptance.json": "b1f39f203687889125631bd860f69f04ccf3d0cf6f21da8105c610a598d1bb5b"
+  },
+  "reviewed_hash_scope": "Hashes identify the draft reviewed before the primary final inventory refresh. They do not claim to identify a final acceptance manifest that includes this disposition itself."
+}

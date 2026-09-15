@@ -27,11 +27,16 @@ if ~result.Config.Trace.Enabled || s.OmittedTraceRecords ~= 0 || s.OmittedPhyTra
     error('csr:research:TruncatedTrace','Research evidence requires enabled, complete protocol and PHY traces.');
 end
 expected = 0;
-for k = 1:numel(result.Config.Traffic)
-    f = result.Config.Traffic(k);
-    if f.StartSeconds <= result.Config.DurationSeconds
-        count = floor((result.Config.DurationSeconds-f.StartSeconds)/f.IntervalSeconds)+1;
-        expected = expected+min(f.PacketCount,count);
+if isfield(result.Config,'ApplicationGenerator') && ...
+        strcmp(result.Config.ApplicationGenerator,'historical-opnet-gated')
+    expected = historicalGeneration(result);
+else
+    for k = 1:numel(result.Config.Traffic)
+        f = result.Config.Traffic(k);
+        if f.StartSeconds <= result.Config.DurationSeconds
+            count = floor((result.Config.DurationSeconds-f.StartSeconds)/f.IntervalSeconds)+1;
+            expected = expected+min(f.PacketCount,count);
+        end
     end
 end
 if s.Generated ~= expected || sum(result.NodeStatistics.Generated) ~= s.Generated || ...
@@ -95,6 +100,108 @@ row = struct('Scenario',result.Config.Name,'Seed',result.Config.Seed, ...
     'DataDrained',s.Pending == 0 && sum(hop.PendingData) == 0 && ...
         sum(hop.ResendQueueDepth) == 0 && sum(hop.DackHoldCount) == 0 && sum(nwk.PendingCustody) == 0, ...
     'ApplicationProfile',result.Config.ApplicationProfile,'MATLABRelease',result.Metadata.Release);
+end
+
+function admitted = historicalGeneration(result)
+% An attempt blocked by br_app creates no application packet. Complete
+% per-flow counters are required even when the separate admission trace is
+% explicitly bounded; the main protocol/PHY traces remain complete gates.
+if ~all(isfield(result,{'ApplicationAdmissionStatistics','ApplicationAdmissionTrace'}))
+    error('csr:research:Admission','Historical execution needs admission evidence.');
+end
+rows = result.ApplicationAdmissionStatistics;
+trace = result.ApplicationAdmissionTrace;
+names = {'Attempts','Admitted','BlockedDiscovery','BlockedTopology', ...
+    'BlockedGatewayRoute','BlockedDestination','BlockedNsdp'};
+required = [{'FlowIndex','SourceId','ConfiguredDestinationId'},names];
+if ~istable(rows) || ~all(ismember(required,rows.Properties.VariableNames)) || ...
+        height(rows) ~= numel(result.Config.Traffic) || ...
+        ~isequal(double(rows.FlowIndex(:)),(1:height(rows))')
+    error('csr:research:Admission','Admission rows must identify every configured flow.');
+end
+values = rows{:,names};
+if any(~isfinite(values(:)) | values(:)<0 | fix(values(:))~=values(:)) || ...
+        any(rows.Attempts ~= sum(values(:,2:end),2))
+    error('csr:research:Admission','Every attempt must partition into admission or one gate reason.');
+end
+limit = result.Config.ApplicationFlowLimit;
+for k = 1:height(rows)
+    flow = result.Config.Traffic(k);
+    stopTick = round(result.Config.DurationSeconds*1e9);
+    startTick = round(flow.StartSeconds*1e9);
+    intervalTick = round(flow.IntervalSeconds*1e9);
+    if intervalTick<1
+        error('csr:research:Admission','Historical attempts require at least one nanosecond intervals.');
+    end
+    possible = min(flow.PacketCount,max(0,floor((stopTick-1-startTick)/intervalTick)+1));
+    if rows.SourceId(k)~=flow.SourceId || rows.ConfiguredDestinationId(k)~=flow.DestinationId || ...
+            rows.Attempts(k)>possible || (limit>0 && rows.Admitted(k)>limit) || ...
+            ((limit==0 || rows.Admitted(k)<limit) && rows.Attempts(k)~=possible)
+        error('csr:research:Admission','Timed attempts, endpoints or admitted cap disagree with the configuration.');
+    end
+end
+required = {'TimeSeconds','FlowIndex','AttemptIndex','SourceId', ...
+    'DestinationId','PacketId','Accepted','Reason'};
+if ~istable(trace) || ~all(ismember(required,trace.Properties.VariableNames)) || ...
+        ~isfield(result.Statistics,'OmittedApplicationAdmissionRecords')
+    error('csr:research:Admission','Admission trace and its explicit omission count are required.');
+end
+omitted = result.Statistics.OmittedApplicationAdmissionRecords;
+if ~isnumeric(omitted) || ~isscalar(omitted) || ~isfinite(omitted) || ...
+        omitted<0 || fix(omitted)~=omitted || ...
+        height(trace)+omitted~=sum(rows.Attempts)
+    error('csr:research:Admission','Bounded trace coverage does not equal all counted attempts.');
+end
+if any(~isfinite(trace.TimeSeconds)) || any(diff(trace.TimeSeconds)<0) || ...
+        any(trace.TimeSeconds<0 | trace.TimeSeconds>=result.Config.DurationSeconds) || ...
+        any(~isfinite(trace.FlowIndex) | trace.FlowIndex<1 | ...
+            trace.FlowIndex>height(rows) | fix(trace.FlowIndex)~=trace.FlowIndex) || ...
+        any(~ismember(double(trace.Accepted),[0 1]))
+    error('csr:research:Admission','Admission trace time, flow or success flag is invalid.');
+end
+reasons = {'discovery_active','topology_unknown','gateway_route_unknown', ...
+    'destination_unavailable','nsdp_full'};
+yes = logical(trace.Accepted);
+if any(trace.PacketId(~yes)~=0) || any(trace.PacketId(yes)==0) || ...
+        any(~ismember(trace.Reason(~yes),reasons)) || ...
+        any(~strcmp(trace.Reason(yes),'admitted'))
+    error('csr:research:Admission','A blocked attempt cannot own a packet or an unknown reason.');
+end
+for k = 1:height(rows)
+    selected = trace.FlowIndex==k;
+    indices = trace.AttemptIndex(selected);
+    if any(~isfinite(indices) | indices<1 | fix(indices)~=indices | indices>rows.Attempts(k)) || ...
+            any(diff(indices)~=1) || (~isempty(indices) && indices(1)~=1) || ...
+            any(trace.SourceId(selected)~=rows.SourceId(k))
+        error('csr:research:Admission','Recorded attempts must be the ordered prefix for each flow.');
+    end
+    flow = result.Config.Traffic(k);
+    ticks = round(flow.StartSeconds*1e9)+(indices-1)*round(flow.IntervalSeconds*1e9);
+    if any(abs(trace.TimeSeconds(selected)-ticks/1e9)>1e-12)
+        error('csr:research:Admission','Recorded attempt times disagree with the configured interrupt schedule.');
+    end
+    observed = zeros(1,numel(names)-1);
+    observed(1) = sum(yes(selected));
+    for j = 1:numel(reasons)
+        observed(j+1) = sum(strcmp(trace.Reason(selected),reasons{j}));
+    end
+    counted = values(k,2:end);
+    if any(observed>counted) || (omitted==0 && any(observed~=counted))
+        error('csr:research:Admission','Observed admission reasons disagree with per-flow counters.');
+    end
+end
+sent = result.ProtocolTrace(strcmp(result.ProtocolTrace.Event,'app_generate'),:);
+accepted = trace(yes,:);
+[known,index] = ismember(accepted.PacketId,sent.PacketId);
+if ~all(known) || numel(unique(accepted.PacketId))~=height(accepted) || ...
+        any(accepted.TimeSeconds~=sent.TimeSeconds(index)) || ...
+        any(accepted.SourceId~=sent.NodeId(index)) || any(accepted.DestinationId~=sent.PeerId(index))
+    error('csr:research:Admission','Admitted identities do not match actual generated applications.');
+end
+if omitted==0 && height(accepted)~=sum(rows.Admitted)
+    error('csr:research:Admission','A complete admission trace must contain every admitted application.');
+end
+admitted = sum(rows.Admitted);
 end
 
 function value = quantileNearest(values,probability)

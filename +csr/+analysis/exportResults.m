@@ -17,7 +17,22 @@ if isfield(result,'NodeNwkStatistics')
     writetable(result.Routes,fullfile(outputDirectory,'routes.csv'));
     writetable(result.Neighbors,fullfile(outputDirectory,'neighbors.csv'));
 end
+if isfield(result,'ApplicationAdmissionStatistics')
+    writetable(result.ApplicationAdmissionStatistics, ...
+        fullfile(outputDirectory,'application_admission_statistics.csv'));
+    writetable(result.ApplicationAdmissionTrace, ...
+        fullfile(outputDirectory,'application_admission_trace.csv'));
+end
+if isfield(result,'LinkDecisionTrace')
+    writetable(result.LinkDecisionTrace,fullfile(outputDirectory,'link_decisions.csv'));
+    writetable(result.ActualFeedbackTrace,fullfile(outputDirectory,'actual_feedback.csv'));
+end
+if isfield(result,'ServiceTrace')
+    writetable(result.ServiceTrace,fullfile(outputDirectory,'service_trace.csv'));
+end
 summary = struct('Metadata', result.Metadata, 'Statistics', result.Statistics, 'Config', result.Config);
+if isfield(result,'LinkDiagnostics'), summary.LinkDiagnostics = result.LinkDiagnostics; end
+if isfield(result,'ServiceDiagnostics'), summary.ServiceDiagnostics = result.ServiceDiagnostics; end
 % JSON records named/anonymous callback descriptions; the MAT file above
 % retains the actual handle. JSON callback metadata is not executable config.
 summary = jsonSafe(summary);

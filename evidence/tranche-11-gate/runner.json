@@ -1,0 +1,86 @@
+{
+  "schema": "csr-tranche11-runner-static-review-v1",
+  "reviewer": "t11_native_build independent review of root runner",
+  "generated_utc": "2026-09-14T17:34:48.291730+00:00",
+  "status": "provisional_static_pass",
+  "matlab_executed": false,
+  "scope": "Read-only MATLAB runner, shared replay plan/tapes, provenance and failure packaging. Fixture source and candidate not yet present at review time.",
+  "reviewed_sha256": {
+    "run_tranche11_validation.m": "8c7fc91d9d71cb48e932b41419311ede1aa177c3d0209166a6fa4950e4fd45f7",
+    "scenarios/replay/plan.json": "4980ccbae6a52d378ca149be0bba81a08fb81e41608886388d985f9178ce27cc",
+    "scenarios/replay/cases.csv": "c4bf66202e96f255eebe6888b63f1f9c4792d2fd68dd773f6e8146bdf03630a9",
+    "scenarios/replay/draws.csv": "8fc8605dca0f762caf03d110747562d5f9c211e11e05c3300bbf253d491e0929",
+    "+csr/+validation/Artifacts.m": "29ab6503cc85e723c6f8677c2f33da5125f22cefe2c1e0a5b6b1a8de10742c5e",
+    "run_tranche10_mesh.m": "28f73894e999215861285438a7264482b24967aa9c267dd4198366fc9944df5c"
+  },
+  "confirmed_blockers": [],
+  "findings": [
+    {
+      "id": "R11-01",
+      "severity": "minor",
+      "location": "run_tranche11_validation.m focused test loop",
+      "finding": "Completed test classes are retained only in memory until every class returns. A later runtests discovery/load exception leaves tests.csv absent and metadata counters zero despite prior completed classes. Replay evidence is still retained. Ordinary unit assertion failures return TestResult and are handled correctly.",
+      "recommendation": "Write cumulative tests.csv and counters after each class, before advancing, while keeping TestsPassed false until exact full identity comparison completes.",
+      "status": "resolved",
+      "resolution": "Root added cumulative writeTests and writeMetadata after each completed class, plus TestClassesCompleted. Re-reviewed source confirms earlier class results survive a later runtests exception."
+    }
+  ],
+  "planned_dependencies": [
+    "Assemble evidence/tranche-11-candidate.json with exactly the intended five TestFiles and exact ExpectedTestNames.",
+    "Publish replayContract implementation with the returned field names used by the runner, and ensure its own failure paths export available observations.",
+    "Candidate ReferenceRoots/ReferenceFiles must include all reference folders used by the five selected test classes, accepted baseline snapshot, shared replay plan/cases/draws, and native replay evidence.",
+    "Close final fixture/runner schema binding and archive maximum relative path checks after assembly."
+  ],
+  "verified": {
+    "accepted_baseline_source_count": 225,
+    "accepted_baseline_matlab_count": 124,
+    "accepted_baseline_mismatches": [],
+    "replay_cases": [
+      "ab",
+      "ba",
+      "slow",
+      "track"
+    ],
+    "seconds_per_case": 8,
+    "tape_groups": 12,
+    "entries_per_group": 128,
+    "all_tape_ordinals_and_support_valid": true,
+    "report_struct_scalar_construction_valid_by_source_review": true,
+    "source_snapshot_covers_new_code_and_shared_inputs": true,
+    "replay_export_precedes_tests": true,
+    "mismatch_does_not_skip_evidence_packaging": true,
+    "unit_test_names_compared_exactly_and_uniquely": true,
+    "source_and_reference_stability_checked_after_run": true,
+    "full_acceptance_and_numerical_parity_remain_false": true,
+    "uses_existing_accepted_matlab_apis": true,
+    "short_output_directory_pattern": "results/t11/rYYMMDD_HHMMSS_xxxx",
+    "archive_name": "t11.zip",
+    "completed_test_classes_checkpointed": true,
+    "planned_replay_return_fields_match_runner": [
+      "DiagnosticCompleted",
+      "MatchesNative",
+      "CaseCount",
+      "EventCount",
+      "DrawCount",
+      "UnmatchedCount"
+    ]
+  },
+  "limits": [
+    "No MATLAB execution or MATLAB syntax-check execution available.",
+    "Partial results cannot be packaged if the output directory itself cannot be created or written.",
+    "Runtime/execution claims depend on subsequent owner MATLAB evidence."
+  ],
+  "selected_test_files": [
+    "tests/TestReplayStreams.m",
+    "tests/TestReplayContract.m",
+    "tests/TestContentionContract.m",
+    "tests/TestAckServiceContract.m",
+    "tests/TestRandomStreams.m"
+  ],
+  "selected_existing_test_counts": {
+    "tests/TestReplayStreams.m": 13,
+    "tests/TestContentionContract.m": 19,
+    "tests/TestAckServiceContract.m": 7,
+    "tests/TestRandomStreams.m": 5
+  }
+}

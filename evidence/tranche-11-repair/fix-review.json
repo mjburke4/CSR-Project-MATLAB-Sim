@@ -1,0 +1,70 @@
+{
+  "schema": "csr-tranche11-repair-source-review-v1",
+  "created_utc": "2026-09-14T18:01:57.997823+00:00",
+  "status": "source_review_passed_matlab_runtime_pending",
+  "matlab_executed": false,
+  "acceptance_established": false,
+  "numerical_parity_established": false,
+  "review_scope": "Read-only independent review of minimal fixture/test repair against immutable issued csr11",
+  "matlab_files": {
+    "current_total": 134,
+    "only_changed": [
+      "tests/TestReplayContract.m",
+      "+csr/+validation/replayContract.m"
+    ],
+    "bindings": {
+      "+csr/+validation/replayContract.m": {
+        "issued_sha256": "6574f3c0fe65771d049a81ebdce5eca39ad603d15c2d096a3d6a5a6aad778d0c",
+        "repaired_sha256": "b63fc14f5f2de4294511fa599ddb526f1aacd969d4f3cd32bc2e016c126a2e3f"
+      },
+      "tests/TestReplayContract.m": {
+        "issued_sha256": "499520214ebdd4908bfc9eda260ebdc54829917645c49ccee9da8e0d2777c899",
+        "repaired_sha256": "b68c66c43ba2687a1ec1e8cfba7bd2d07c8151a8e64651ba926dfa14e994970e"
+      }
+    }
+  },
+  "baseline": {
+    "source_count": 225,
+    "matlab_count": 124,
+    "all_unchanged": true
+  },
+  "test_selection": {
+    "count": 52,
+    "identities_unchanged": true,
+    "methods_in_replay_class": 8
+  },
+  "findings": [
+    {
+      "check": "Empty ACK power default at adapter boundary",
+      "passed": true,
+      "evidence": "HOP Layer.makeAck and makeControlAck intentionally emit TxPowerDbm=[]. Production MacHopSimulation.enqueueMac defaults empty power immediately before MAC.enqueue. The repaired fixture enqueue now applies the same rule using the pinned plan.power_dbm (+33 dBm). MAC Layer transmit uses scalar cellfun results for powers, so the formerly empty ACK caused the observed failure."
+    },
+    {
+      "check": "Supplied frame power preserved",
+      "passed": true,
+      "evidence": "The single assignment is guarded by isempty(frame.TxPowerDbm). Nonempty caller-supplied powers, rates, ordering, frame identity, queue semantics and production algorithms are unchanged."
+    },
+    {
+      "check": "ErrorStack schema coherent",
+      "passed": true,
+      "evidence": "CaseResults template and each case result both add ErrorStack. Success initializes a zero-element struct with file/name/line fields; catch retains the authentic MException.stack. No runtime error is suppressed or converted into completion."
+    },
+    {
+      "check": "Regression assertions address failure",
+      "passed": true,
+      "evidence": "Existing everyBoundedCaseCompletes additionally requires scalar observed 128 kbps / +33 dBm TX rows, a real gateway ACK transmission in each case, and empty error stacks for completed cases. Total selected test names remains 52 (8 TestReplayContract methods)."
+    },
+    {
+      "check": "Return gate compatible with additional field",
+      "passed": true,
+      "evidence": "Unchanged analyzer validates required case fields and their values without demanding exact CaseResults key membership; the extra ErrorStack field is allowed. Completed false or nonempty ErrorIdentifier/ErrorMessage still rejects the evidence. Source and candidate bindings are independently enforced."
+    },
+    {
+      "check": "Validated baseline intact",
+      "passed": true,
+      "evidence": "All 225 accepted sources, including 124 MATLAB files, remain byte-identical in csr11r. Only the two named new Tranche 11 MATLAB files differ from csr11."
+    }
+  ],
+  "open_blockers": [],
+  "remaining_gate": "Owner must rerun all four replay cases and 52 MATLAB tests; source review is not MATLAB execution."
+}

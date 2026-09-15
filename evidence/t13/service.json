@@ -1,0 +1,566 @@
+{
+  "Schema": "csr-tranche13-service-review-v1",
+  "OwnerArchive": "upload/t13(1).zip",
+  "OwnerSHA256": "82fb77cc5724f79f554e7c0d91169e79d89da5b47713064f003d380a2fd7d9b1",
+  "ReferenceManifestSHA256": "5060717c9fa32c73ed78f5ab392783d3835c00b90209df0af1352b19989a1a13",
+  "Method": "Independent exact-string/integer CSV reconstruction; semantic identity alignment. Bitmaps never parsed as floating point. No source edits or MATLAB execution in this review.",
+  "Scope": "Bounded controlled transport on fixed pre-admitted 4->5->1 chain; functional recovery, not exact trajectory or campus parity.",
+  "Cases": {
+    "ok": {
+      "matlab": {
+        "Generated": 96,
+        "Admitted": 96,
+        "Delivered": 96,
+        "UniqueTerminalOwners": 144,
+        "TerminalOwnerCounts": {
+          "4,4,ack": 43,
+          "5,5,ack": 48,
+          "4,4,dack_custody": 5,
+          "5,4,ack": 48
+        },
+        "DataRetries": 0,
+        "FeedbackSegments": 257,
+        "LatencySeconds": {
+          "4": {
+            "n": 48,
+            "min": 0.128841,
+            "mean": 5.601258083333334,
+            "max": 20.120601
+          },
+          "5": {
+            "n": 48,
+            "min": 0.120601,
+            "mean": 0.8082568333333333,
+            "max": 2.427001
+          }
+        },
+        "LastDeliverySeconds": 28.159841,
+        "LastAdmissionSeconds": 28.0,
+        "Source4FirstBlockedWithDackSeconds": 18.0,
+        "Source4LastBlockedWithDackSeconds": 21.98,
+        "Source4ResumedAdmissionSeconds": 22.14,
+        "FinalDataCustodyAndQueuesZero": true,
+        "ExcludedBootstrapControlOwners": [
+          2,
+          0,
+          0,
+          2,
+          3
+        ]
+      },
+      "ns3": {
+        "Generated": 96,
+        "Admitted": 96,
+        "Delivered": 96,
+        "UniqueTerminalOwners": 144,
+        "TerminalOwnerCounts": {
+          "4,4,ack": 43,
+          "5,5,ack": 48,
+          "4,4,dack_custody": 5,
+          "5,4,ack": 48
+        },
+        "DataRetries": 0,
+        "FeedbackSegments": 257,
+        "LatencySeconds": {
+          "4": {
+            "n": 48,
+            "min": 0.128841028,
+            "mean": 5.601258111333333,
+            "max": 20.120601028
+          },
+          "5": {
+            "n": 48,
+            "min": 0.120601028,
+            "mean": 0.8082568613333333,
+            "max": 2.427001028
+          }
+        },
+        "LastDeliverySeconds": 28.159841028,
+        "LastAdmissionSeconds": 28.0,
+        "Source4FirstBlockedWithDackSeconds": 18.0,
+        "Source4LastBlockedWithDackSeconds": 21.98,
+        "Source4ResumedAdmissionSeconds": 22.14,
+        "FinalDataCustodyAndQueuesZero": true,
+        "ExcludedBootstrapControlOwners": [
+          2,
+          0,
+          0,
+          2,
+          3
+        ]
+      },
+      "IdentityAndTerminalOutcomesEqual": true,
+      "AdmissionTimeDeltaNs": {},
+      "DeliveryTimeDeltaNsStats": {
+        "4": {
+          "n": 48,
+          "min": -28,
+          "mean": -28,
+          "max": -28
+        },
+        "5": {
+          "n": 48,
+          "min": -28,
+          "mean": -28,
+          "max": -28
+        }
+      },
+      "LatencyDeltaMilliseconds": {
+        "4": -2.799999965219513e-05,
+        "5": -2.7999999985262036e-05
+      },
+      "DownstreamSequenceChanges": [],
+      "TransportTimeDeltaNsCounts": {
+        "-28": 401
+      },
+      "TransportPayloadEqualExceptFeedbackKindLabel": true
+    },
+    "data": {
+      "matlab": {
+        "Generated": 96,
+        "Admitted": 96,
+        "Delivered": 96,
+        "UniqueTerminalOwners": 144,
+        "TerminalOwnerCounts": {
+          "4,4,ack": 43,
+          "5,5,ack": 48,
+          "4,4,dack_custody": 5,
+          "5,4,ack": 48
+        },
+        "DataRetries": 2,
+        "FeedbackSegments": 246,
+        "LatencySeconds": {
+          "4": {
+            "n": 48,
+            "min": 0.158841,
+            "mean": 7.671544333333333,
+            "max": 22.395601
+          },
+          "5": {
+            "n": 48,
+            "min": 0.049961,
+            "mean": 1.8770939166666667,
+            "max": 4.540241
+          }
+        },
+        "LastDeliverySeconds": 28.159841,
+        "LastAdmissionSeconds": 28.0,
+        "Source4FirstBlockedWithDackSeconds": 18.0,
+        "Source4LastBlockedWithDackSeconds": 24.32,
+        "Source4ResumedAdmissionSeconds": 24.4,
+        "FinalDataCustodyAndQueuesZero": true,
+        "ExcludedBootstrapControlOwners": [
+          2,
+          0,
+          0,
+          2,
+          3
+        ]
+      },
+      "ns3": {
+        "Generated": 96,
+        "Admitted": 96,
+        "Delivered": 96,
+        "UniqueTerminalOwners": 144,
+        "TerminalOwnerCounts": {
+          "4,4,ack": 43,
+          "5,5,ack": 48,
+          "4,4,dack_custody": 5,
+          "5,4,ack": 48
+        },
+        "DataRetries": 2,
+        "FeedbackSegments": 242,
+        "LatencySeconds": {
+          "4": {
+            "n": 48,
+            "min": 0.158841028,
+            "mean": 7.6003035279999995,
+            "max": 22.408601028
+          },
+          "5": {
+            "n": 48,
+            "min": 0.062961028,
+            "mean": 1.7922543613333333,
+            "max": 4.345241028
+          }
+        },
+        "LastDeliverySeconds": 28.159841028,
+        "LastAdmissionSeconds": 28.0,
+        "Source4FirstBlockedWithDackSeconds": 18.0,
+        "Source4LastBlockedWithDackSeconds": 24.34,
+        "Source4ResumedAdmissionSeconds": 24.42,
+        "FinalDataCustodyAndQueuesZero": true,
+        "ExcludedBootstrapControlOwners": [
+          2,
+          0,
+          0,
+          2,
+          3
+        ]
+      },
+      "IdentityAndTerminalOutcomesEqual": true,
+      "AdmissionTimeDeltaNs": {
+        "4,21": -20000000,
+        "4,22": -20000000,
+        "4,38": -20000000,
+        "4,39": -20000000,
+        "4,40": -20000000,
+        "4,41": -20000000,
+        "4,42": -20000000,
+        "4,43": -20000000,
+        "4,44": -20000000,
+        "5,19": 40000000,
+        "5,20": 160000000,
+        "5,21": 220000000,
+        "5,22": 220000000,
+        "5,23": 180000000
+      },
+      "DeliveryTimeDeltaNsStats": {
+        "4": {
+          "n": 48,
+          "min": -31760028,
+          "mean": 71240805.33333333,
+          "max": 194999972
+        },
+        "5": {
+          "n": 48,
+          "min": -13000028,
+          "mean": 84839555.33333333,
+          "max": 408759972
+        }
+      },
+      "LatencyDeltaMilliseconds": {
+        "4": 71.24080533333377,
+        "5": 84.83955533333342
+      },
+      "DownstreamSequenceChanges": [
+        {
+          "sender": "5",
+          "receiver": "1",
+          "source": "4",
+          "app_id": "5",
+          "matlab": "24",
+          "ns3": "25"
+        },
+        {
+          "sender": "5",
+          "receiver": "1",
+          "source": "4",
+          "app_id": "6",
+          "matlab": "25",
+          "ns3": "26"
+        },
+        {
+          "sender": "5",
+          "receiver": "1",
+          "source": "5",
+          "app_id": "20",
+          "matlab": "26",
+          "ns3": "24"
+        },
+        {
+          "sender": "5",
+          "receiver": "1",
+          "source": "4",
+          "app_id": "7",
+          "matlab": "27",
+          "ns3": "29"
+        },
+        {
+          "sender": "5",
+          "receiver": "1",
+          "source": "4",
+          "app_id": "8",
+          "matlab": "28",
+          "ns3": "30"
+        },
+        {
+          "sender": "5",
+          "receiver": "1",
+          "source": "5",
+          "app_id": "21",
+          "matlab": "29",
+          "ns3": "27"
+        },
+        {
+          "sender": "5",
+          "receiver": "1",
+          "source": "4",
+          "app_id": "9",
+          "matlab": "30",
+          "ns3": "32"
+        },
+        {
+          "sender": "5",
+          "receiver": "1",
+          "source": "4",
+          "app_id": "10",
+          "matlab": "31",
+          "ns3": "33"
+        },
+        {
+          "sender": "5",
+          "receiver": "1",
+          "source": "4",
+          "app_id": "11",
+          "matlab": "32",
+          "ns3": "34"
+        },
+        {
+          "sender": "5",
+          "receiver": "1",
+          "source": "5",
+          "app_id": "22",
+          "matlab": "33",
+          "ns3": "28"
+        },
+        {
+          "sender": "5",
+          "receiver": "1",
+          "source": "5",
+          "app_id": "23",
+          "matlab": "34",
+          "ns3": "31"
+        }
+      ]
+    },
+    "ack": {
+      "matlab": {
+        "Generated": 96,
+        "Admitted": 96,
+        "Delivered": 96,
+        "UniqueTerminalOwners": 144,
+        "TerminalOwnerCounts": {
+          "4,4,ack": 43,
+          "5,5,ack": 48,
+          "4,4,dack_custody": 5,
+          "5,4,ack": 48
+        },
+        "DataRetries": 0,
+        "FeedbackSegments": 266,
+        "LatencySeconds": {
+          "4": {
+            "n": 48,
+            "min": 0.158841,
+            "mean": 5.6909651666666665,
+            "max": 20.081601
+          },
+          "5": {
+            "n": 48,
+            "min": 0.060961,
+            "mean": 0.8823026666666667,
+            "max": 2.619541
+          }
+        },
+        "LastDeliverySeconds": 28.159841,
+        "LastAdmissionSeconds": 28.0,
+        "Source4FirstBlockedWithDackSeconds": 18.0,
+        "Source4LastBlockedWithDackSeconds": 21.96,
+        "Source4ResumedAdmissionSeconds": 22.1,
+        "FinalDataCustodyAndQueuesZero": true,
+        "ExcludedBootstrapControlOwners": [
+          2,
+          0,
+          0,
+          2,
+          3
+        ]
+      },
+      "ns3": {
+        "Generated": 96,
+        "Admitted": 96,
+        "Delivered": 96,
+        "UniqueTerminalOwners": 144,
+        "TerminalOwnerCounts": {
+          "4,4,ack": 43,
+          "5,5,ack": 48,
+          "4,4,dack_custody": 5,
+          "5,4,ack": 48
+        },
+        "DataRetries": 0,
+        "FeedbackSegments": 266,
+        "LatencySeconds": {
+          "4": {
+            "n": 48,
+            "min": 0.158841028,
+            "mean": 5.690965194666667,
+            "max": 20.081601028
+          },
+          "5": {
+            "n": 48,
+            "min": 0.060961028,
+            "mean": 0.8823026946666667,
+            "max": 2.619541028
+          }
+        },
+        "LastDeliverySeconds": 28.159841028,
+        "LastAdmissionSeconds": 28.0,
+        "Source4FirstBlockedWithDackSeconds": 18.0,
+        "Source4LastBlockedWithDackSeconds": 21.96,
+        "Source4ResumedAdmissionSeconds": 22.1,
+        "FinalDataCustodyAndQueuesZero": true,
+        "ExcludedBootstrapControlOwners": [
+          2,
+          0,
+          0,
+          2,
+          3
+        ]
+      },
+      "IdentityAndTerminalOutcomesEqual": true,
+      "AdmissionTimeDeltaNs": {},
+      "DeliveryTimeDeltaNsStats": {
+        "4": {
+          "n": 48,
+          "min": -28,
+          "mean": -28,
+          "max": -28
+        },
+        "5": {
+          "n": 48,
+          "min": -28,
+          "mean": -28,
+          "max": -28
+        }
+      },
+      "LatencyDeltaMilliseconds": {
+        "4": -2.800000054037355e-05,
+        "5": -2.7999999985262036e-05
+      },
+      "DownstreamSequenceChanges": [],
+      "TransportTimeDeltaNsCounts": {
+        "-28": 405,
+        "12999972": 5
+      },
+      "TransportPayloadEqualExceptFeedbackKindLabel": true
+    },
+    "out": {
+      "matlab": {
+        "Generated": 96,
+        "Admitted": 96,
+        "Delivered": 96,
+        "UniqueTerminalOwners": 144,
+        "TerminalOwnerCounts": {
+          "4,4,ack": 43,
+          "5,5,ack": 48,
+          "4,4,dack_custody": 5,
+          "5,4,ack": 48
+        },
+        "DataRetries": 2,
+        "FeedbackSegments": 247,
+        "LatencySeconds": {
+          "4": {
+            "n": 48,
+            "min": 0.128841,
+            "mean": 5.601258083333334,
+            "max": 20.120601
+          },
+          "5": {
+            "n": 48,
+            "min": 0.120601,
+            "mean": 0.8919135,
+            "max": 2.427001
+          }
+        },
+        "LastDeliverySeconds": 28.159841,
+        "LastAdmissionSeconds": 28.0,
+        "Source4FirstBlockedWithDackSeconds": 18.0,
+        "Source4LastBlockedWithDackSeconds": 21.98,
+        "Source4ResumedAdmissionSeconds": 22.14,
+        "FinalDataCustodyAndQueuesZero": true,
+        "ExcludedBootstrapControlOwners": [
+          2,
+          0,
+          0,
+          2,
+          3
+        ]
+      },
+      "ns3": {
+        "Generated": 96,
+        "Admitted": 96,
+        "Delivered": 96,
+        "UniqueTerminalOwners": 144,
+        "TerminalOwnerCounts": {
+          "4,4,ack": 43,
+          "5,5,ack": 48,
+          "4,4,dack_custody": 5,
+          "5,4,ack": 48
+        },
+        "DataRetries": 2,
+        "FeedbackSegments": 247,
+        "LatencySeconds": {
+          "4": {
+            "n": 48,
+            "min": 0.128841028,
+            "mean": 5.601258111333333,
+            "max": 20.120601028
+          },
+          "5": {
+            "n": 48,
+            "min": 0.120601028,
+            "mean": 0.891913528,
+            "max": 2.427001028
+          }
+        },
+        "LastDeliverySeconds": 28.159841028,
+        "LastAdmissionSeconds": 28.0,
+        "Source4FirstBlockedWithDackSeconds": 18.0,
+        "Source4LastBlockedWithDackSeconds": 21.98,
+        "Source4ResumedAdmissionSeconds": 22.14,
+        "FinalDataCustodyAndQueuesZero": true,
+        "ExcludedBootstrapControlOwners": [
+          2,
+          0,
+          0,
+          2,
+          3
+        ]
+      },
+      "IdentityAndTerminalOutcomesEqual": true,
+      "AdmissionTimeDeltaNs": {},
+      "DeliveryTimeDeltaNsStats": {
+        "4": {
+          "n": 48,
+          "min": -28,
+          "mean": -28,
+          "max": -28
+        },
+        "5": {
+          "n": 48,
+          "min": -28,
+          "mean": -28,
+          "max": -28
+        }
+      },
+      "LatencyDeltaMilliseconds": {
+        "4": -2.799999965219513e-05,
+        "5": -2.7999999985262036e-05
+      },
+      "DownstreamSequenceChanges": [],
+      "TransportTimeDeltaNsCounts": {
+        "-28": 393
+      },
+      "TransportPayloadEqualExceptFeedbackKindLabel": true
+    }
+  },
+  "Residuals": [
+    {
+      "Name": "Known clock phase",
+      "Evidence": "ok/out all transport TX+arrival differ MATLAB-native exactly -28ns. ok/ack/out all application deliveries differ -28ns and admission times agree. ACK-loss case has five gateway ACK transmissions delayed 12,999,972ns, and one terminal owner (node5/source5/app43) delayed likewise; no added DATA retry or application delivery delay."
+    },
+    {
+      "Name": "Feedback label",
+      "Evidence": "MATLAB labels 7 feedback segments DACK in each case; native labels all feedback ACK. In ok/ack/out all fields including exact ACK+DACK bitmaps agree other than kind/time; mixed ACK and DACK bits occur in one real feedback frame. This is a representation residual, not 7 extra terminal DACKs."
+    },
+    {
+      "Name": "DATA-loss service divergence",
+      "Evidence": "All +28 events, +7 draws, and +4 feedback segments occur in data case. Extra events split +8 offer,+8 blocked,+4 TX,+4 ingress_before,+4 ingress_after. DATA retransmissions stay2. Fourteen admissions shift -20 to+220ms,11 downstream HOP sequence assignments differ, maximum delivery delay difference+408.759972ms."
+    },
+    {
+      "Name": "First boundary mechanism",
+      "Evidence": "Parent source/trace inspection identifies MATLAB gateway ACKseq2 bitmap3 transmitted before DATA5/app3 arrival at logged3.144961s, versus native processing that arrival before transmitting ACKseq3 bitmap7. MATLAB scheduled arrival adds floating duration+propagation, whereas slot tick is anchored; inferred one-ULP ordering mechanism requires narrow diagnostic confirmation and is not raw timestamp proof."
+    }
+  ],
+  "Recommendation": "Accept this bounded functional recovery milestone with exact-parity residuals documented. Before broader loss stresses, run a narrow simultaneous DATA-arrival/ACK-transmit boundary diagnostic at full scheduler precision; preserve all validated production sources and existing strict comparator until causal evidence supports a change."
+}

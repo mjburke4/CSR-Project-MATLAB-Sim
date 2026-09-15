@@ -1,0 +1,59 @@
+{
+  "schema": "csr-matlab-tranche-10-portable-acceptance-index-v1",
+  "status": "accepted_portable_structural_gate_with_numerical_limits",
+  "acceptance_established": true,
+  "numerical_parity_established": false,
+  "artifact_root": "tranche-10-r2025a-accepted",
+  "acceptance_file": "tranche-10-r2025a-accepted/acceptance.json",
+  "acceptance_sha256": "87de3f5bc4ffb6d55f00c573a43d17d2b5990e3fdf80d4568fd06dba0248f75b",
+  "executed_build": {
+    "archive": {
+      "path": "csr10r.zip",
+      "bytes": 92464765,
+      "sha256": "df3ad517708fccc9e4c85d8e38c3492b97aff8d2d5236b3f05249da3cd15b900",
+      "included_in_review_bundle": false,
+      "library_file_id": "libfile_988a4958b93c819191c07ae63c66201c",
+      "library_version": 1
+    },
+    "base_candidate_commit": "87d0d69ed7f23496f711816bb0f048548366ac7c",
+    "executed_repaired_code_commit": null,
+    "identity_note": "The owner ran the repaired archive, not the unmodified base commit. The repair has no recorded Git commit; archive and all source hashes identify the executed build.",
+    "source_snapshot_sha256": "9be444b0fb1ffbfe818cab86502a287b19e3da83467d210ef426ec3b19e183da",
+    "source_files_verified": 225,
+    "matlab_files_verified": 124,
+    "repair_files": [
+      {
+        "path": "+csr/+nwk/Neighbors.m",
+        "sha256": "65cb269a9b7e3cade654aad4b262bc6d7ebdf103743fa2581d8694bc6e45aed7"
+      },
+      {
+        "path": "+csr/+sim/EventScheduler.m",
+        "sha256": "0e1887cf9d1195a20ab8e4a24c7ff182a2e72303abfec67d34a61eaa1fa9585e"
+      },
+      {
+        "path": "tests/TestNeighbors.m",
+        "sha256": "75fe7378590f9e8f8b133c8c6ee50d6f35b13010a3d1bc2835a11e8361736052"
+      },
+      {
+        "path": "tests/TestEventScheduler.m",
+        "sha256": "5276cace17dc168beda48029c37a4458f64af3c8c4dbce30b90b3d5922112223"
+      },
+      {
+        "path": "run_tranche10_mesh.m",
+        "sha256": "28f73894e999215861285438a7264482b24967aa9c267dd4198366fc9944df5c"
+      }
+    ],
+    "source_unchanged_during_acceptance_review": true
+  },
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "review_bundle": {
+    "name": "t10_accept.zip",
+    "bytes": 29181736,
+    "sha256": "34df542e08ae8a892c910b40fd825e10c14399c23a48b8c482fcddf74e5e6961",
+    "library_file_id": "libfile_6c93ab038c6881919178a0a3adb3d93e",
+    "file_id": "file_00000000eed481fd8d8d888263c65aa2",
+    "library_version": 0,
+    "library_path": "/NS3 to MATLAB Network Simulation/t10_accept.zip"
+  },
+  "note": "All paths in the full acceptance record resolve relative to artifact_root. Original candidate metadata and source hashes remain unchanged."
+}

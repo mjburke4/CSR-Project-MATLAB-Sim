@@ -1,0 +1,36 @@
+{
+  "schema": "csr-benchmark-source-provenance-v1",
+  "source": "opnet",
+  "scenario": "blue_radio_campus-multihop",
+  "scenario_sha256": "90b143d93c13c6c2761bc5f2875ccc3fff98f85af6f2550370e435df2aaabcfc",
+  "profile_id": "hist-adb97c54-bare",
+  "source_file_sha256": "b643bee5c1d0260581a0135c0add5c87441bd98f70f66388fac0bf95096c39ee",
+  "source_commit": null,
+  "window": {
+    "start_time_s": 0,
+    "stop_time_s": 6000,
+    "bucket_width_s": 60,
+    "bucket_count": 100,
+    "start_endpoint": "inclusive",
+    "stop_endpoint": "exclusive"
+  },
+  "output": {
+    "path": "opnet-aggregates.csv",
+    "sha256": "472ae8b183281d7c70bf1252de08ecb6fb3d3b508fe549d3b13a7ac56fc5399c"
+  },
+  "upstream_provenance": {
+    "path": "opnet-extract.json",
+    "sha256": "561a1a56e558246a6c16180bcf68235bb3288f9a6f517d687e3eb6605f5831ce",
+    "bytes": 264304
+  },
+  "excluded_extra_statistics": [
+    "Generator.Packet Interarrival Time (secs)",
+    "HOP.Resend Queue Size (packets)",
+    "MAC.ACK Queue Size (packets)",
+    "MAC.Tx Queue Size (packets)",
+    "MAC.Tx Queuing Delay (sec)"
+  ],
+  "opnet_runtime_executed": false,
+  "matlab_runtime_executed": false,
+  "source_kind": "archived_opnet"
+}

@@ -28,12 +28,37 @@ if ~isfield(config,'Stack'), config.Stack = 'phy-only'; end
 if ~any(strcmp(config.Stack,{'phy-only','mac-hop','network'}))
     error('csr:scenario:Stack','Stack must be phy-only, mac-hop or network.');
 end
+if ~isfield(config,'ApplicationGenerator') || isempty(config.ApplicationGenerator)
+    config.ApplicationGenerator = 'configured-count';
+end
+if isstring(config.ApplicationGenerator) && isscalar(config.ApplicationGenerator)
+    config.ApplicationGenerator = char(config.ApplicationGenerator);
+end
+if ~ischar(config.ApplicationGenerator) || ~isrow(config.ApplicationGenerator) || ...
+        ~any(strcmp(config.ApplicationGenerator,{'configured-count','historical-opnet-gated'}))
+    error('csr:scenario:ApplicationGenerator','Unsupported application generator.');
+end
+historicalGenerator = strcmp(config.ApplicationGenerator,'historical-opnet-gated');
+if historicalGenerator && ~strcmp(config.Stack,'network')
+    error('csr:scenario:ApplicationGenerator','Historical application admission requires the network stack.');
+end
+if ~isfield(config,'ApplicationFlowLimit'), config.ApplicationFlowLimit = 0; end
+validateattributes(config.ApplicationFlowLimit,{'numeric'}, ...
+    {'scalar','real','finite','integer','nonnegative','<=',flintmax});
+config.ApplicationFlowLimit = double(config.ApplicationFlowLimit);
+if ~historicalGenerator && config.ApplicationFlowLimit ~= 0
+    error('csr:scenario:ApplicationGenerator', ...
+        'ApplicationFlowLimit applies only to the historical generator; use Traffic.PacketCount otherwise.');
+end
 if ~isfield(config.Channel, 'Model'), config.Channel.Model = 'controlled'; end
 if ~any(strcmp(config.Channel.Model, {'controlled','csr-phy'}))
     error('csr:scenario:Channel', 'Channel.Model must be controlled or csr-phy.');
 end
 if ~isfield(config.Channel, 'FixedDropProbability'), config.Channel.FixedDropProbability = 0; end
 if ~isfield(config.Trace, 'MaxPhyRecords'), config.Trace.MaxPhyRecords = config.Trace.MaxRecords; end
+if ~isfield(config.Trace,'MaxApplicationAdmissionRecords')
+    config.Trace.MaxApplicationAdmissionRecords = min(config.Trace.MaxRecords,100000);
+end
 if ~isfield(config, 'Phy'), config.Phy = struct(); end
 phyDefaults = struct('MaxActiveSignals',100000,'MaxIntervalsPerSignal',10000, ...
     'SyncToTrackSeconds',0.00663,'CaptureMarginDb',10.5);
@@ -92,7 +117,19 @@ for index = 1:numel(config.Traffic)
         config.Traffic(index).Preamble = config.Radio.Preamble;
     end
     if ~isfield(config.Traffic(index),'TxPowerDbm'), config.Traffic(index).TxPowerDbm = []; end
+    if ~isfield(config.Traffic(index),'DestinationMode') || isempty(config.Traffic(index).DestinationMode)
+        config.Traffic(index).DestinationMode = 'fixed';
+    end
+    if isstring(config.Traffic(index).DestinationMode) && isscalar(config.Traffic(index).DestinationMode)
+        config.Traffic(index).DestinationMode = char(config.Traffic(index).DestinationMode);
+    end
     flow = config.Traffic(index);
+    if ~ischar(flow.DestinationMode) || ~isrow(flow.DestinationMode) || ...
+            ~any(strcmp(flow.DestinationMode,{'fixed','random_route_or_neighbor'})) || ...
+            (~historicalGenerator && ~strcmp(flow.DestinationMode,'fixed'))
+        error('csr:scenario:ApplicationGenerator', ...
+            'Dynamic destinations require the explicit historical application generator.');
+    end
     csr.phy.rateDefinition(flow.RateKeyKbps);
     if ~any(strcmp(flow.Preamble,{'long','short'}))
         error('csr:scenario:Preamble', 'Flow Preamble must be long or short.');
@@ -110,16 +147,31 @@ for index = 1:numel(config.Traffic)
     validateattributes(flow.PacketCount, {'numeric'}, {'scalar','real','finite','integer','nonnegative'});
     validateattributes(flow.ApplicationPayloadBytes, {'numeric'}, ...
         {'scalar','real','finite','integer','nonnegative','<=',65535});
+    if historicalGenerator
+        times = [config.DurationSeconds,flow.StartSeconds,flow.IntervalSeconds];
+        ticks = times*1e9;
+        if any(ticks > flintmax) || any(abs(ticks-round(ticks)) > 1e-5) || round(ticks(3)) == 0
+            error('csr:scenario:ApplicationGenerator', ...
+                'Historical generator times must be exactly representable nanoseconds.');
+        end
+        if round(ticks(2)) == round(ticks(1))
+            error('csr:scenario:ApplicationGenerator', ...
+                'A first generator event at the stop time has ambiguous source ordering.');
+        end
+    end
 end
 validateattributes(config.Trace.Enabled, {'logical'}, {'scalar'});
 validateattributes(config.Trace.MaxRecords, {'numeric'}, {'scalar','real','finite','integer','nonnegative'});
 validateattributes(config.Trace.MaxPhyRecords, {'numeric'}, {'scalar','real','finite','integer','nonnegative'});
+validateattributes(config.Trace.MaxApplicationAdmissionRecords, {'numeric'}, ...
+    {'scalar','real','finite','integer','nonnegative'});
 % Normalize accepted numeric storage types before protocol arithmetic.
 config.DurationSeconds = double(config.DurationSeconds);
 config.Seed = double(config.Seed);
 config.MaxEvents = double(config.MaxEvents);
 config.Trace.MaxRecords = double(config.Trace.MaxRecords);
 config.Trace.MaxPhyRecords = double(config.Trace.MaxPhyRecords);
+config.Trace.MaxApplicationAdmissionRecords = double(config.Trace.MaxApplicationAdmissionRecords);
 config.Radio.RateKeyKbps = double(config.Radio.RateKeyKbps);
 config.Channel.PropagationSpeedMps = double(config.Channel.PropagationSpeedMps);
 config.Channel.FixedDropProbability = double(config.Channel.FixedDropProbability);

@@ -1,12 +1,17 @@
 function bytes = controlWireBytes(kind,payload,destinationCount,securityProfile)
-%CONTROLWIREBYTES Modeled production-behavioral NWK control envelope size.
+%CONTROLWIREBYTES Modeled NWK control envelope size for behavioral profiles.
 % Matches frozen csr-opnet-envelope.h, not compatibility-header serialization.
 % This is byte accounting only. It does not authenticate or encrypt controls.
+% The pinned source's historical bare profile changes ordinary DATA and ACKs;
+% Discover, key exchange, NeighborCheck, routing and SNMP keep these sizes.
 if nargin < 2 || isempty(payload), payload = struct(); end
 if nargin < 3, destinationCount = 1; end
 if nargin < 4, securityProfile = 'behavioral-production-pairwise16-size-only'; end
-if ~ischar(securityProfile) || ...
-        ~strcmp(securityProfile,'behavioral-production-pairwise16-size-only')
+profiles = {'behavioral-production-pairwise16-size-only', ...
+    'behavioral-hist-adb97c54-bare-size-only', ...
+    'behavioral-hist-dd3f38e8-bare-size-only'};
+if ~ischar(securityProfile) || ~isrow(securityProfile) || ...
+        ~any(strcmp(securityProfile,profiles))
     error('csr:nwk:InvalidSecurityProfile','Unsupported control security profile.');
 end
 validateattributes(destinationCount,{'numeric'}, ...

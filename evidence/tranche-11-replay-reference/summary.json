@@ -1,0 +1,488 @@
+{
+  "schema": "csr-tranche11-native-reference-v1",
+  "status": "completed",
+  "source_pin": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "scope": "Real MAC/HOP with raw contention draws and controlled successful addressed transport; synthetic HOP admission driver; excludes production NWK admission, real RF, half-duplex losses, PHY/ECC validation and stochastic equivalence",
+  "cases": [
+    {
+      "case": "ab",
+      "nodes": [
+        {
+          "case": "ab",
+          "node": 1,
+          "admitted": 0,
+          "delivered": 8,
+          "releases": 0,
+          "wakes": 0,
+          "blocked": 0,
+          "pending": 0,
+          "resend_queue": 0,
+          "ack_queue": 0,
+          "data_queue": 0,
+          "draws_consumed": 21,
+          "draws_unused": 107
+        },
+        {
+          "case": "ab",
+          "node": 2,
+          "admitted": 4,
+          "delivered": 0,
+          "releases": 4,
+          "wakes": 15,
+          "blocked": 52,
+          "pending": 0,
+          "resend_queue": 0,
+          "ack_queue": 0,
+          "data_queue": 0,
+          "draws_consumed": 7,
+          "draws_unused": 121
+        },
+        {
+          "case": "ab",
+          "node": 3,
+          "admitted": 4,
+          "delivered": 0,
+          "releases": 4,
+          "wakes": 20,
+          "blocked": 64,
+          "pending": 0,
+          "resend_queue": 0,
+          "ack_queue": 0,
+          "data_queue": 0,
+          "draws_consumed": 8,
+          "draws_unused": 120
+        }
+      ]
+    },
+    {
+      "case": "ba",
+      "nodes": [
+        {
+          "case": "ba",
+          "node": 1,
+          "admitted": 0,
+          "delivered": 8,
+          "releases": 0,
+          "wakes": 0,
+          "blocked": 0,
+          "pending": 0,
+          "resend_queue": 0,
+          "ack_queue": 0,
+          "data_queue": 0,
+          "draws_consumed": 21,
+          "draws_unused": 107
+        },
+        {
+          "case": "ba",
+          "node": 2,
+          "admitted": 4,
+          "delivered": 0,
+          "releases": 4,
+          "wakes": 20,
+          "blocked": 64,
+          "pending": 0,
+          "resend_queue": 0,
+          "ack_queue": 0,
+          "data_queue": 0,
+          "draws_consumed": 8,
+          "draws_unused": 120
+        },
+        {
+          "case": "ba",
+          "node": 3,
+          "admitted": 4,
+          "delivered": 0,
+          "releases": 4,
+          "wakes": 15,
+          "blocked": 52,
+          "pending": 0,
+          "resend_queue": 0,
+          "ack_queue": 0,
+          "data_queue": 0,
+          "draws_consumed": 7,
+          "draws_unused": 121
+        }
+      ]
+    },
+    {
+      "case": "slow",
+      "nodes": [
+        {
+          "case": "slow",
+          "node": 1,
+          "admitted": 0,
+          "delivered": 8,
+          "releases": 0,
+          "wakes": 0,
+          "blocked": 0,
+          "pending": 0,
+          "resend_queue": 0,
+          "ack_queue": 0,
+          "data_queue": 0,
+          "draws_consumed": 9,
+          "draws_unused": 119
+        },
+        {
+          "case": "slow",
+          "node": 2,
+          "admitted": 4,
+          "delivered": 0,
+          "releases": 4,
+          "wakes": 8,
+          "blocked": 92,
+          "pending": 0,
+          "resend_queue": 0,
+          "ack_queue": 0,
+          "data_queue": 0,
+          "draws_consumed": 8,
+          "draws_unused": 120
+        },
+        {
+          "case": "slow",
+          "node": 3,
+          "admitted": 4,
+          "delivered": 0,
+          "releases": 4,
+          "wakes": 8,
+          "blocked": 92,
+          "pending": 0,
+          "resend_queue": 0,
+          "ack_queue": 0,
+          "data_queue": 0,
+          "draws_consumed": 8,
+          "draws_unused": 120
+        }
+      ]
+    },
+    {
+      "case": "track",
+      "nodes": [
+        {
+          "case": "track",
+          "node": 1,
+          "admitted": 0,
+          "delivered": 8,
+          "releases": 0,
+          "wakes": 0,
+          "blocked": 0,
+          "pending": 0,
+          "resend_queue": 0,
+          "ack_queue": 0,
+          "data_queue": 0,
+          "draws_consumed": 21,
+          "draws_unused": 107
+        },
+        {
+          "case": "track",
+          "node": 2,
+          "admitted": 4,
+          "delivered": 0,
+          "releases": 4,
+          "wakes": 15,
+          "blocked": 53,
+          "pending": 0,
+          "resend_queue": 0,
+          "ack_queue": 0,
+          "data_queue": 0,
+          "draws_consumed": 7,
+          "draws_unused": 121
+        },
+        {
+          "case": "track",
+          "node": 3,
+          "admitted": 4,
+          "delivered": 0,
+          "releases": 4,
+          "wakes": 20,
+          "blocked": 64,
+          "pending": 0,
+          "resend_queue": 0,
+          "ack_queue": 0,
+          "data_queue": 0,
+          "draws_consumed": 8,
+          "draws_unused": 120
+        }
+      ]
+    }
+  ],
+  "matlab_execution": false,
+  "cross_simulator_parity_established": false,
+  "event_count": 1756,
+  "draw_count": 133,
+  "wall_seconds": 0.12282251400029054,
+  "self_tests": 6,
+  "disabled_seam_controls": {
+    "ack": {
+      "checkpoints": 101,
+      "passed": true,
+      "clean_and_disabled_byte_equal": true,
+      "sha256": "2991bbc93e5ba2c64d06a93cee278160cd9baf2fdc11b052ee5b0cb561fe4b73"
+    },
+    "receiver": {
+      "checkpoints": 154,
+      "passed": true,
+      "clean_and_disabled_byte_equal": true,
+      "sha256": "a3562a3f23e5603359610b150e20551f5a671298d7db529e037d842ce7206c1a"
+    }
+  },
+  "native_source_unchanged": true,
+  "native_libraries_unchanged": true,
+  "input_hashes": {
+    "cases.csv": "c4bf66202e96f255eebe6888b63f1f9c4792d2fd68dd773f6e8146bdf03630a9",
+    "draws.csv": "8fc8605dca0f762caf03d110747562d5f9c211e11e05c3300bbf253d491e0929",
+    "plan.json": "4980ccbae6a52d378ca149be0bba81a08fb81e41608886388d985f9178ce27cc"
+  },
+  "fixture_hashes": {
+    "run_tranche11_ns3_reference.py": "5bf3c8a77b093c20ae5f8f7a53935a6b6031aba1c5158bea626319d88926cf4f",
+    "build_tranche11_overlay.py": "6329f4a7ea7b359a7d978ce2252b000db49e6422f634ce421da5f252b36bd2ae",
+    "tranche11_replay.cc": "b4147218fd15c45a2b5643e362f4afca6f32ae2581a1a39e31e65623d60795ba",
+    "tranche11-replay-hooks.h": "2df5483ab8bf77fabdcc117880a7cb64dc4e2e640dddfe9d63d6a090a936a9fa"
+  },
+  "shared_libraries": {
+    "csr": "0b77bb9daae116f81b2cd242ea7bf69eda44148405e8152c2743368295c5bc3b",
+    "spectrum": "049a7ae726a51ff505646f08257b0f933416611ae0bebdede9c81ca9d049a3fc",
+    "buildings": "c730a0cef7786548f1ec4830279b3f794ecc4f8f100b9a7c9f8b1d81d994012a",
+    "propagation": "eec2410b9376d56c8101dd4027a7dea05b2d3711657dfe8c934baa7c26d7e9e0",
+    "mobility": "a04a25a24338a1c1c9da094b047dcfdfc78b03f3b4fc10a5c09183f53ab01342",
+    "antenna": "e070cb6cd960236a70f9ea1c8d8dc315fd1d15b2c9e78096f5dcfc0ded7bc0f7",
+    "network": "a4213ca04558c983f0213f19a1bfaba16ae1b55afee16c126d3f1bd921726434",
+    "stats": "4a440c64eba531f2313e5646dd53b713ab45e286d221a1b0b62e58b1a7396eed",
+    "core": "8a5300244386128287684026c0f38f73f491e867e506b5166f902528a7b43e53"
+  },
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/g++",
+        "-std=c++23",
+        "-g",
+        "-DNS3_ASSERT_ENABLE",
+        "-DNS3_BUILD_PROFILE_DEBUG",
+        "-DNS3_LOG_ENABLE",
+        "-DSTACKTRACE_LIBRARY_IS_LINKED=1",
+        "-D__LINUX__",
+        "-I/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/include",
+        "/workspace/scratch/1a5b1ad6ce1b/csr11/scripts/ns3/tranche9_ack_contract.cc",
+        "-L/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib",
+        "-Wl,-rpath,/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib",
+        "-Wl,--no-as-needed",
+        "-lns3-dev-csr-debug",
+        "-Wl,--as-needed",
+        "-lns3-dev-spectrum-debug",
+        "-lns3-dev-buildings-debug",
+        "-lns3-dev-propagation-debug",
+        "-lns3-dev-mobility-debug",
+        "-lns3-dev-antenna-debug",
+        "-lns3-dev-network-debug",
+        "-lns3-dev-stats-debug",
+        "-lns3-dev-core-debug",
+        "-lstdc++exp",
+        "-o",
+        "/workspace/scratch/1a5b1ad6ce1b/t11n/final2/ack-clean"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 10.26875069200105,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "binary_sha256": "3fa2a075ea102416fca4bfc086c5583343990dbe3ccdd445804e14736e984aba",
+      "reused_verified_binary": true
+    },
+    {
+      "argv": [
+        "/workspace/scratch/1a5b1ad6ce1b/t11n/final2/ack-clean",
+        "/workspace/scratch/1a5b1ad6ce1b/csr11/evidence/tranche-11-replay-reference/controls/ack-clean.csv"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.04817278799964697,
+      "log_sha256": "1ddef194fc064c32ead66e2cb86a463b74397d97c5e20457bde46547c8a55f17"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++",
+        "-I/workspace/scratch/1a5b1ad6ce1b/t11n/final2/overlay",
+        "-std=c++23",
+        "-g",
+        "-DNS3_ASSERT_ENABLE",
+        "-DNS3_BUILD_PROFILE_DEBUG",
+        "-DNS3_LOG_ENABLE",
+        "-DSTACKTRACE_LIBRARY_IS_LINKED=1",
+        "-D__LINUX__",
+        "-I/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/include",
+        "/workspace/scratch/1a5b1ad6ce1b/csr11/scripts/ns3/tranche9_ack_contract.cc",
+        "-L/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib",
+        "-Wl,-rpath,/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib",
+        "-Wl,--no-as-needed",
+        "-lns3-dev-csr-debug",
+        "-Wl,--as-needed",
+        "-lns3-dev-spectrum-debug",
+        "-lns3-dev-buildings-debug",
+        "-lns3-dev-propagation-debug",
+        "-lns3-dev-mobility-debug",
+        "-lns3-dev-antenna-debug",
+        "-lns3-dev-network-debug",
+        "-lns3-dev-stats-debug",
+        "-lns3-dev-core-debug",
+        "-lstdc++exp",
+        "-o",
+        "/workspace/scratch/1a5b1ad6ce1b/t11n/final2/ack-off"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 8.304573166002228,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "binary_sha256": "afda83e8b32a761a10bcb1808b628e2e0cf489440e4a5ad3f4a6d9afb2d20b88",
+      "reused_verified_binary": true
+    },
+    {
+      "argv": [
+        "/workspace/scratch/1a5b1ad6ce1b/t11n/final2/ack-off",
+        "/workspace/scratch/1a5b1ad6ce1b/csr11/evidence/tranche-11-replay-reference/controls/ack-off.csv"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.0509706519987958,
+      "log_sha256": "1ddef194fc064c32ead66e2cb86a463b74397d97c5e20457bde46547c8a55f17"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++",
+        "-std=c++23",
+        "-g",
+        "-DNS3_ASSERT_ENABLE",
+        "-DNS3_BUILD_PROFILE_DEBUG",
+        "-DNS3_LOG_ENABLE",
+        "-DSTACKTRACE_LIBRARY_IS_LINKED=1",
+        "-D__LINUX__",
+        "-I/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/include",
+        "/workspace/scratch/1a5b1ad6ce1b/csr11/scripts/ns3/tranche10_receiver_contract.cc",
+        "-L/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib",
+        "-Wl,-rpath,/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib",
+        "-Wl,--no-as-needed",
+        "-lns3-dev-csr-debug",
+        "-Wl,--as-needed",
+        "-lns3-dev-spectrum-debug",
+        "-lns3-dev-buildings-debug",
+        "-lns3-dev-propagation-debug",
+        "-lns3-dev-mobility-debug",
+        "-lns3-dev-antenna-debug",
+        "-lns3-dev-network-debug",
+        "-lns3-dev-stats-debug",
+        "-lns3-dev-core-debug",
+        "-lstdc++exp",
+        "-o",
+        "/workspace/scratch/1a5b1ad6ce1b/t11n/final2/receiver-clean"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 6.505083593998279,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "binary_sha256": "0455943c896c99d2eaba1dc966af6c80dfaa090777ad4bc2a8c522c839182270",
+      "reused_verified_binary": true
+    },
+    {
+      "argv": [
+        "/workspace/scratch/1a5b1ad6ce1b/t11n/final2/receiver-clean",
+        "/workspace/scratch/1a5b1ad6ce1b/csr11/evidence/tranche-11-replay-reference/controls/receiver-clean.csv"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.04410158499740646,
+      "log_sha256": "c33cd7ec629894f8cec39498de6299078c9a0b2f4208d779b72c2a939ea5fe14"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++",
+        "-I/workspace/scratch/1a5b1ad6ce1b/t11n/final2/overlay",
+        "-std=c++23",
+        "-g",
+        "-DNS3_ASSERT_ENABLE",
+        "-DNS3_BUILD_PROFILE_DEBUG",
+        "-DNS3_LOG_ENABLE",
+        "-DSTACKTRACE_LIBRARY_IS_LINKED=1",
+        "-D__LINUX__",
+        "-I/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/include",
+        "/workspace/scratch/1a5b1ad6ce1b/csr11/scripts/ns3/tranche10_receiver_contract.cc",
+        "-L/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib",
+        "-Wl,-rpath,/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib",
+        "-Wl,--no-as-needed",
+        "-lns3-dev-csr-debug",
+        "-Wl,--as-needed",
+        "-lns3-dev-spectrum-debug",
+        "-lns3-dev-buildings-debug",
+        "-lns3-dev-propagation-debug",
+        "-lns3-dev-mobility-debug",
+        "-lns3-dev-antenna-debug",
+        "-lns3-dev-network-debug",
+        "-lns3-dev-stats-debug",
+        "-lns3-dev-core-debug",
+        "-lstdc++exp",
+        "-o",
+        "/workspace/scratch/1a5b1ad6ce1b/t11n/final2/receiver-off"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 6.58617012799732,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "binary_sha256": "35b7d4946ef40952248b5ef5fd340517f73aec5cc459683a54215610a1ede85c",
+      "reused_verified_binary": true
+    },
+    {
+      "argv": [
+        "/workspace/scratch/1a5b1ad6ce1b/t11n/final2/receiver-off",
+        "/workspace/scratch/1a5b1ad6ce1b/csr11/evidence/tranche-11-replay-reference/controls/receiver-off.csv"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.04230053499850328,
+      "log_sha256": "c33cd7ec629894f8cec39498de6299078c9a0b2f4208d779b72c2a939ea5fe14"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++",
+        "-I/workspace/scratch/1a5b1ad6ce1b/t11n/final2/overlay",
+        "-std=c++23",
+        "-g",
+        "-DNS3_ASSERT_ENABLE",
+        "-DNS3_BUILD_PROFILE_DEBUG",
+        "-DNS3_LOG_ENABLE",
+        "-DSTACKTRACE_LIBRARY_IS_LINKED=1",
+        "-D__LINUX__",
+        "-I/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/include",
+        "/workspace/scratch/1a5b1ad6ce1b/csr11/scripts/ns3/tranche11_replay.cc",
+        "-L/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib",
+        "-Wl,-rpath,/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib",
+        "-Wl,--no-as-needed",
+        "-lns3-dev-csr-debug",
+        "-Wl,--as-needed",
+        "-lns3-dev-spectrum-debug",
+        "-lns3-dev-buildings-debug",
+        "-lns3-dev-propagation-debug",
+        "-lns3-dev-mobility-debug",
+        "-lns3-dev-antenna-debug",
+        "-lns3-dev-network-debug",
+        "-lns3-dev-stats-debug",
+        "-lns3-dev-core-debug",
+        "-lstdc++exp",
+        "-o",
+        "/workspace/scratch/1a5b1ad6ce1b/t11n/final2/replay"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 10.666687852000905,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "binary_sha256": "0cef2a3d4a57efc9ba4773546c08ddd426fc4bc185bed45ea560ef925a652202",
+      "reused_verified_binary": true
+    },
+    {
+      "argv": [
+        "/workspace/scratch/1a5b1ad6ce1b/t11n/final2/replay",
+        "--self-test"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.022976717998972163,
+      "log_sha256": "139f4e9046d5f866a94224b5943f94e597fa11c9531d52fb263ab1c461f1a691"
+    },
+    {
+      "argv": [
+        "/workspace/scratch/1a5b1ad6ce1b/t11n/final2/replay",
+        "/workspace/scratch/1a5b1ad6ce1b/csr11/scenarios/replay/cases.csv",
+        "/workspace/scratch/1a5b1ad6ce1b/csr11/scenarios/replay/draws.csv",
+        "/workspace/scratch/1a5b1ad6ce1b/csr11/evidence/tranche-11-replay-reference/raw"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.12282251400029054,
+      "log_sha256": "930000efc581140e4170fbf85aec9a8b6d5e182cb19dbf2da9989e89bf50cbcd"
+    }
+  ]
+}

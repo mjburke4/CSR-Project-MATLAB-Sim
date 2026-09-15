@@ -1,0 +1,3900 @@
+{
+  "schema": "csr-tranche8-independent-return-integrity-audit-v1",
+  "audit_kind": "Independent raw-byte and semantic acceptance audit; no project analyzer imports or simulator execution",
+  "audited_utc": "2026-09-11T13:15:44.680919+00:00",
+  "archive": "/workspace/scratch/1a5b1ad6ce1b/upload/tranche8_evidence.zip",
+  "archive_sha256": "bfc4f7f05f0800316b371df3ec316f309f14e3482ef259c3f9c7bd7eea025d77",
+  "archive_bytes": 17925128,
+  "archive_file_count": 257,
+  "expanded_bytes": 189364874,
+  "zip_crcs_verified": 257,
+  "zip_safe_paths": true,
+  "frozen_matlab_candidate_commit": "89b62e729e588f396bb919afdff522f7e9419268",
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "runtime": {
+    "Runtime": "MATLAB",
+    "Version": "25.1.0.2943329 (R2025a)",
+    "Release": "2025a",
+    "HasWirelessNetworkSimulator": false,
+    "HasWnetNode": false,
+    "HasWirelessPacket": false,
+    "DefaultBackend": "portable",
+    "WirelessAdapterImplemented": true,
+    "WirelessAdapterScope": "Optional R2026a wireless-clock candidate; runtime validation pending",
+    "NativePacketTransportIntegrated": false,
+    "ProbeScope": "Symbol discovery only; licenses and execution are not validated."
+  },
+  "started_utc": "2026-09-10T19:17:21.583Z",
+  "completed_utc": "2026-09-10T19:49:40.794Z",
+  "elapsed_wall_seconds": 1939.211,
+  "source_files_verified": 189,
+  "source_extensions": {
+    ".m": 108,
+    ".py": 28,
+    ".json": 29,
+    ".csv": 19,
+    ".md": 2,
+    ".h": 1,
+    ".cc": 2
+  },
+  "matlab_files_verified": 108,
+  "source_snapshot_sha256": "9bf7f657c08826ab1b502c7ef919b1dbca95dfa815636e69b4b088d82d4a64c7",
+  "reference_files_verified": 192,
+  "source_reference_stable": true,
+  "inventory_verification_counts": {
+    "top_inventory": 256,
+    "benchmark_inventory": 210,
+    "raw_inventory": 160,
+    "control_inventory": 28
+  },
+  "test_count": 485,
+  "test_classes": 40,
+  "test_names_exact": true,
+  "test_passed": 485,
+  "test_failed": 0,
+  "test_incomplete": 0,
+  "test_duration_seconds_sum": 191.9702483,
+  "tests": [
+    {
+      "Name": "TestApplicationObservations/emptyStateAndPassiveRadioDoNotInventTopology",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0976085"
+    },
+    {
+      "Name": "TestApplicationObservations/unqualifiedPersistentPeersAreSortedAndDoNotCountAsHeard",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0594317"
+    },
+    {
+      "Name": "TestApplicationObservations/inactiveQualifiedPeerCountsWithoutAdmittingIt",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0627834"
+    },
+    {
+      "Name": "TestApplicationObservations/rawRoutePopulationKeepsInsertionOrderAndInvalidCandidates",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0576153"
+    },
+    {
+      "Name": "TestApplicationObservations/gatewayObservationIsSelectedAndDoesNotCacheForTheCaller",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0349867"
+    },
+    {
+      "Name": "TestApplicationObservations/onlyActiveDiscoveryBlocksApplicationGeneration",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0564973"
+    },
+    {
+      "Name": "TestApplicationObservations/nsdpIncludesHopCustodyWhileNwkQueueExcludesIt",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1601161"
+    },
+    {
+      "Name": "TestApplicationObservations/populationSurvivesFreshnessExpiryWithoutUsingActiveFlag",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1213227"
+    },
+    {
+      "Name": "TestBenchmarkAggregates/usesSourceNetworkBytesAndHalfOpenBuckets",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.2866708"
+    },
+    {
+      "Name": "TestBenchmarkAggregates/delayIsGroupedByReceptionAndEmptyIsNotZero",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0311456"
+    },
+    {
+      "Name": "TestBenchmarkAggregates/noSamplesRemainBlankWhileCountsAndRatesAreZero",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0753096"
+    },
+    {
+      "Name": "TestBenchmarkAggregates/fractionalGridAndFloatingBoundarySnapMatchSource",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1619279"
+    },
+    {
+      "Name": "TestBenchmarkAggregates/stopAndAfterStopExclusionsAreDistinct",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0748052"
+    },
+    {
+      "Name": "TestBenchmarkAggregates/generatorGateAttemptsAreNotTrafficSent",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1007453"
+    },
+    {
+      "Name": "TestBenchmarkAggregates/duplicateAndUnknownApplicationIdentitiesFail",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0379745"
+    },
+    {
+      "Name": "TestBenchmarkAggregates/sourceSizeAndFinalDestinationMustMatchGeneration",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0311772"
+    },
+    {
+      "Name": "TestBenchmarkAggregates/incompleteTraceAndCounterMismatchBlockAggregation",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0292515"
+    },
+    {
+      "Name": "TestBenchmarkAggregates/invalidWindowsAndUnorderedTracesFail",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0256707"
+    },
+    {
+      "Name": "TestBenchmarkAggregates/scenarioAndSourceHashesAreRequired",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0186352"
+    },
+    {
+      "Name": "TestBenchmarkAggregates/preservesSourceSnapshotAndReferenceIdentity",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0188394"
+    },
+    {
+      "Name": "TestBenchmarkAggregates/acceptsActualShortNetworkResultWithoutMutation",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.4174434"
+    },
+    {
+      "Name": "TestBenchmarkSuite/defaultsBindCampusAndFocusedDiagnostics",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.419785"
+    },
+    {
+      "Name": "TestBenchmarkSuite/campusIsFullWorkloadOnPhysicalChannel",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.2123886"
+    },
+    {
+      "Name": "TestBenchmarkSuite/selectionPreservesCanonicalOrderAndInputHashes",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.3869691"
+    },
+    {
+      "Name": "TestBenchmarkSuite/unknownDeferredOrMutatingOptionsFailBeforeExecution",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.5329736"
+    },
+    {
+      "Name": "TestBenchmarkSuite/historicalObservationBudgetsDoNotCapAdmission",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.3334559"
+    },
+    {
+      "Name": "TestBenchmarkSuite/sourceSnapshotBindsBenchmarkInputsAndRecipes",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.2994081"
+    },
+    {
+      "Name": "TestBerTables/standardSourceGoldenSamples",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "1.3768844"
+    },
+    {
+      "Name": "TestBerTables/highRateSourceGoldenSamples",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.077438"
+    },
+    {
+      "Name": "TestBerTables/collisionSourceGoldenSamplesAcrossAllRates",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1144478"
+    },
+    {
+      "Name": "TestBerTables/interpolationClampAndSparseTailFollowSource",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1408071"
+    },
+    {
+      "Name": "TestBerTables/jsrBoundaryQuantizationMatchesSource",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1114044"
+    },
+    {
+      "Name": "TestBerTables/circularTimingQuantizationMatchesSource",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0992463"
+    },
+    {
+      "Name": "TestBerTables/fourBitIntervalsAndExplicitDispatch",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1444777"
+    },
+    {
+      "Name": "TestControlWireProfile/singleTargetControlSizesAreExplicit",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0666757"
+    },
+    {
+      "Name": "TestControlWireProfile/compatibilityDestinationListsAddNoModeledWireBytes",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0127332"
+    },
+    {
+      "Name": "TestControlWireProfile/snmpCompatibilityNodeListRetainsFixedEnvelope",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0276796"
+    },
+    {
+      "Name": "TestControlWireProfile/hopCopiesCompleteControlEnvelopeWithoutDoubleCounting",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1132348"
+    },
+    {
+      "Name": "TestControlWireProfile/dataAndAckPairwiseEnvelopeAddsFiveBytes",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0782702"
+    },
+    {
+      "Name": "TestControlWireProfile/unsupportedProfilesAndMalformedInputsFailClosed",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1554007"
+    },
+    {
+      "Name": "TestCppBerReference/modulationCurvesMatchOriginalCpp",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.2672865"
+    },
+    {
+      "Name": "TestCppBerReference/collisionTablesMatchOriginalCpp",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "1.9042357"
+    },
+    {
+      "Name": "TestCppBerReference/jsrBoundariesMatchOriginalCpp",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0461275"
+    },
+    {
+      "Name": "TestCppBerReference/circularOffsetBoundariesMatchOriginalCpp",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0650636"
+    },
+    {
+      "Name": "TestCppBerReference/rateIntervalsMatchOriginalCpp",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0471416"
+    },
+    {
+      "Name": "TestEventScheduler/sameTimeInsertionAndCancellation",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.06765"
+    },
+    {
+      "Name": "TestEventScheduler/horizonAndMonotonicClock",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0640408"
+    },
+    {
+      "Name": "TestEventScheduler/heapGrowthRetainsTimeAndFifoOrdering",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.2834991"
+    },
+    {
+      "Name": "TestEventScheduler/eventLimitPreservesPendingWork",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0319752"
+    },
+    {
+      "Name": "TestEventScheduler/callbackFailureLeavesClockAndQueueUsable",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0355494"
+    },
+    {
+      "Name": "TestEventScheduler/nestedRunIsRejected",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0246327"
+    },
+    {
+      "Name": "TestFoundation/smallNetworkAccounting",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.2057949"
+    },
+    {
+      "Name": "TestFoundation/finiteHorizonPreservesPending",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0684337"
+    },
+    {
+      "Name": "TestFoundation/allDropsRetainAccounting",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0897209"
+    },
+    {
+      "Name": "TestFoundation/repeatedSeedReproducesTrace",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1558871"
+    },
+    {
+      "Name": "TestFoundation/loggingDoesNotAffectResults",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0727739"
+    },
+    {
+      "Name": "TestFoundation/invalidEndpointRejected",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0096455"
+    },
+    {
+      "Name": "TestFoundation/singletonAndEmptyScenarioTables",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0551775"
+    },
+    {
+      "Name": "TestFoundation/serializesEachTransmitter",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0573924"
+    },
+    {
+      "Name": "TestHistoricalApplication/orderedGatesPartitionAttemptsAndCacheBeforeNsdp",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0702856"
+    },
+    {
+      "Name": "TestHistoricalApplication/gatewayCacheDoesNotBypassLaterDiscovery",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0087028"
+    },
+    {
+      "Name": "TestHistoricalApplication/admittedLimitCountsPacketsRatherThanBlockedInterrupts",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0213616"
+    },
+    {
+      "Name": "TestHistoricalApplication/dynamicGatewaySamplesLivePopulationWithoutCaching",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0095008"
+    },
+    {
+      "Name": "TestHistoricalApplication/dynamicEmptyPopulationIsDistinctFromUnknownTopology",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.006057"
+    },
+    {
+      "Name": "TestHistoricalApplication/nsdpUsesChosenDestinationRatherThanConfiguredPlaceholder",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0101589"
+    },
+    {
+      "Name": "TestHistoricalApplication/configuredGeneratorPreservesUngatedCreation",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.179014"
+    },
+    {
+      "Name": "TestHistoricalApplication/historicalInterruptsContinueAfterSuppressionAndExcludeStop",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1067534"
+    },
+    {
+      "Name": "TestHistoricalApplication/boundedAdmissionTraceRetainsCompleteAttemptCounts",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0645265"
+    },
+    {
+      "Name": "TestHistoricalApplication/explicitGeneratorRejectsAmbiguousTimingAndDynamicDefaults",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0211137"
+    },
+    {
+      "Name": "TestHistoricalEnvelope/productionDefaultRemainsPairwiseAndRequiresMatchingRadio",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.017977"
+    },
+    {
+      "Name": "TestHistoricalEnvelope/historicalProfilesAreExplicitAndRetainLifecycleOptions",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0214719"
+    },
+    {
+      "Name": "TestHistoricalEnvelope/historicalProfileRejectsPairwiseRadio",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0085016"
+    },
+    {
+      "Name": "TestHistoricalEnvelope/implicitOrMalformedBareProfileIsRejected",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0383546"
+    },
+    {
+      "Name": "TestHistoricalEnvelope/archivedDataAndCumulativeFeedbackHaveSourceWidths",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0484464"
+    },
+    {
+      "Name": "TestHistoricalEnvelope/allControlKindsRetainSourceRecordSizes",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0363846"
+    },
+    {
+      "Name": "TestHistoricalEnvelope/bareRadioDoesNotStripSecurityFromControlEnvelope",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0262865"
+    },
+    {
+      "Name": "TestHistoricalEnvelope/historicalWireSelectionDoesNotAdmitAnUnverifiedPeer",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0384107"
+    },
+    {
+      "Name": "TestHistoricalMac/selectionIsExplicitAndDefaultRemainsCurrent",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0334759"
+    },
+    {
+      "Name": "TestHistoricalMac/historicalCoarseRangeBoundariesMatchExecutable",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0101859"
+    },
+    {
+      "Name": "TestHistoricalMac/hiddenProfileRetainsAllFineRangeBoundaries",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0030655"
+    },
+    {
+      "Name": "TestHistoricalMac/campusPopulationExcludesReportedTransitPopulation",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0098482"
+    },
+    {
+      "Name": "TestHistoricalMac/supervisorReductionKeepsSourceStrictGuard",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0035672"
+    },
+    {
+      "Name": "TestHistoricalMac/operationalInclusiveReturnsOccupiedEndpoints",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0035576"
+    },
+    {
+      "Name": "TestHistoricalMac/rebuildListIncludesZeroButExcludesRangeEndpoint",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0096183"
+    },
+    {
+      "Name": "TestHistoricalMac/fineTableIgnoresReservationsAndExcludesZero",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0061178"
+    },
+    {
+      "Name": "TestHistoricalMac/fineTableDefectFailsRatherThanWrappingOrClamping",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0034776"
+    },
+    {
+      "Name": "TestHistoricalMac/moduloProbeUsesIntentionalRangeEndpointWrap",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0049363"
+    },
+    {
+      "Name": "TestHistoricalMac/moduloProbeComparesCurrentCountersDirectly",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0022875"
+    },
+    {
+      "Name": "TestHistoricalMac/moduloExhaustionFailsEvenWhenEndpointIsFree",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0030255"
+    },
+    {
+      "Name": "TestHistoricalMac/profileControlsRealMacPreparationDraw",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0769725"
+    },
+    {
+      "Name": "TestHistoricalMac/realModuloProfileReadsDecayedNeighborReservation",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0108701"
+    },
+    {
+      "Name": "TestHistoricalMac/realFineTableProfileReturnsOccupiedDraw",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0058509"
+    },
+    {
+      "Name": "TestHistoricalMac/controlledOverridePrecedesHistoricalDrawAndDefect",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0094932"
+    },
+    {
+      "Name": "TestHistoricalResearchEvidence/suppressedAttemptsAreNotFabricatedGeneratedPackets",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.4575317"
+    },
+    {
+      "Name": "TestHistoricalResearchEvidence/fullTracePartitionsAdmittedAndNsdpSuppressedAttempts",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.2787507"
+    },
+    {
+      "Name": "TestHistoricalResearchEvidence/admittedCapAllowsGeneratorToStopBeforeAllPossibleInterrupts",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1483366"
+    },
+    {
+      "Name": "TestHistoricalResearchEvidence/boundedAdmissionTraceAcceptsCompleteSeparateCounters",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.158436"
+    },
+    {
+      "Name": "TestHistoricalResearchEvidence/rejectsAdmissionEvidenceExceedingConfiguredCap",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1161759"
+    },
+    {
+      "Name": "TestHistoricalResearchEvidence/decimalStopBoundaryUsesNanosecondInterruptCount",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1088912"
+    },
+    {
+      "Name": "TestHistoricalResearchEvidence/rejectsIncompleteAttemptPartition",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0269823"
+    },
+    {
+      "Name": "TestHistoricalResearchEvidence/rejectsRelabeledReasonsEvenWhenAttemptTotalsBalance",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.030231"
+    },
+    {
+      "Name": "TestHistoricalResearchEvidence/rejectsOmissionCountThatDoesNotCoverAllAttempts",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1212894"
+    },
+    {
+      "Name": "TestHistoricalResearchEvidence/rejectsObservedAdmissionsExceedingBoundedTraceCounters",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1743381"
+    },
+    {
+      "Name": "TestHistoricalResearchEvidence/rejectsAdmittedPacketIdentityAbsentFromGenerationTrace",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1055094"
+    },
+    {
+      "Name": "TestHistoricalResearchEvidence/rejectsBlockedReasonOnAcceptedPacket",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0586233"
+    },
+    {
+      "Name": "TestHistoricalResearchEvidence/rejectsNonfiniteFlowIdentity",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1421945"
+    },
+    {
+      "Name": "TestHistoricalResearchEvidence/rejectsAttemptOutsideItsConfiguredInterruptTime",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.2171036"
+    },
+    {
+      "Name": "TestHistoricalResearchEvidence/offeredLoadCannotReplaceActualAdmittedGeneration",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.6543143"
+    },
+    {
+      "Name": "TestHistoricalScenarioImport/historicalProfileRequiresExplicitOptIn",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1704284"
+    },
+    {
+      "Name": "TestHistoricalScenarioImport/adaptiveLimitsAndPacketExclusionsArePreserved",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0850657"
+    },
+    {
+      "Name": "TestHistoricalScenarioImport/benchmarkCatalogImportsWithoutChangingCanonicalInputs",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1703293"
+    },
+    {
+      "Name": "TestHistoricalScenarioImport/redundantNodeApplicationSettingsCannotDisagreeWithFlows",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0753358"
+    },
+    {
+      "Name": "TestHistoricalScenarioImport/admittedCapDoesNotTruncateScheduledAttempts",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0976308"
+    },
+    {
+      "Name": "TestHistoricalScenarioImport/atomicProfileAndExecutableBindingFailClosed",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1266277"
+    },
+    {
+      "Name": "TestHistoricalScenarioImport/historicalFlowDirectionsAreChecked",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.14229"
+    },
+    {
+      "Name": "TestHistoricalScenarioImport/dd3fTupleRetainsDynamicGatewayFlow",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.103946"
+    },
+    {
+      "Name": "TestHistoricalScenarioImport/unsupportedTerrainAndHeterogeneousLimitsRemainExplicit",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.18199"
+    },
+    {
+      "Name": "TestHistoricalScenarioImport/historicalProvenanceRetainsExactInputAndIndependentOrigin",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0569671"
+    },
+    {
+      "Name": "TestHistoricalScenarioImport/optionShapeAndStopBoundaryAreRejected",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0826624"
+    },
+    {
+      "Name": "TestHopControls/groupsUseIndependentSequencesSharedWithData",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1155653"
+    },
+    {
+      "Name": "TestHopControls/controlsBypassSaturatedDataWindows",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.2366344"
+    },
+    {
+      "Name": "TestHopControls/tenDestinationsOccupyOneSharedResendSlot",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0432882"
+    },
+    {
+      "Name": "TestHopControls/dataCanFillSharedQueueAndBlockControl",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.031923"
+    },
+    {
+      "Name": "TestHopControls/macRejectionRollsBackGroupAndSequences",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0780067"
+    },
+    {
+      "Name": "TestHopControls/invalidTargetsHaveNoAdmissionSideEffects",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.2614805"
+    },
+    {
+      "Name": "TestHopControls/frameUsesExplicitEnvelopeAndZeroApplicationBytes",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1205392"
+    },
+    {
+      "Name": "TestHopControls/timerWaitsForActualControlTransmit",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.072649"
+    },
+    {
+      "Name": "TestHopControls/partialAckRetainsOriginalRetryDestinations",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.107515"
+    },
+    {
+      "Name": "TestHopControls/duplicatePartialAckDoesNotCancelOrRepeatResult",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0542496"
+    },
+    {
+      "Name": "TestHopControls/lastSecondaryAckCancelsOriginalPrimaryOnly",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1984992"
+    },
+    {
+      "Name": "TestHopControls/cumulativeWindowCompletesDataOnlyAndExactAckCompletesControl",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.124833"
+    },
+    {
+      "Name": "TestHopControls/groupedReceiverUsesItsOwnSequenceAndDeduplicates",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0734276"
+    },
+    {
+      "Name": "TestHopControls/routingAndNeighborDeliveryPrecedeExactAck",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.2072977"
+    },
+    {
+      "Name": "TestHopControls/keyUpdateExactAckPrecedesDelivery",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0266288"
+    },
+    {
+      "Name": "TestHopControls/snmpBypassesTransmitAllocationAndReceiveReplay",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1291268"
+    },
+    {
+      "Name": "TestHopControls/overheardAndFailedControlsDoNotTouchReceiverState",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0184549"
+    },
+    {
+      "Name": "TestHopControls/dataAndControlUseIndependentReceiveWindows",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0729969"
+    },
+    {
+      "Name": "TestHopControls/dataAckBitmapLeavesControlSequenceHole",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0553262"
+    },
+    {
+      "Name": "TestHopControls/controlsNeverConsultDataRouteOrNsdpGates",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.043687"
+    },
+    {
+      "Name": "TestHopControls/cumulativeDackCannotMoveControlIntoDataCustody",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0387778"
+    },
+    {
+      "Name": "TestHopControls/finalTimeoutReportsOnlyResidualPeersAfterDoubleGrace",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1548607"
+    },
+    {
+      "Name": "TestHopControls/retryMacRejectionReleasesWholeControlGroup",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0870408"
+    },
+    {
+      "Name": "TestHopControls/bestEffortBroadcastBypassesQueueAndDoesNotPolluteAckWindow",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0436512"
+    },
+    {
+      "Name": "TestHopControls/finalExpirationPassPrecedesOtherControlRetry",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0717555"
+    },
+    {
+      "Name": "TestHopControls/controlValidationCannotAllocateSequences",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.055647"
+    },
+    {
+      "Name": "TestHopControls/rejectedControlDoesNotAckOrConsumeReceiveSequence",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0434822"
+    },
+    {
+      "Name": "TestHopFrames/modeledSizesExcludeObservationAndSecurityMetadata",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1079615"
+    },
+    {
+      "Name": "TestHopFrames/cumulativeAckBytesPreserveHighBits",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.085464"
+    },
+    {
+      "Name": "TestHopFrames/ackEnvelopeProfilesAndSingleAck",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0539618"
+    },
+    {
+      "Name": "TestHopFrames/aggregateKeepsEveryEnvelopeAndSlowestRatePower",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0470682"
+    },
+    {
+      "Name": "TestHopFrames/allFixedPacketSizesMatchOriginalSource",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.19129"
+    },
+    {
+      "Name": "TestHopFrames/fixedControlLayoutsMatchOriginalGoldenBytes",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0246843"
+    },
+    {
+      "Name": "TestHopFrames/inheritedLayoutsPreserveNetworkDscpTrailer",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0324564"
+    },
+    {
+      "Name": "TestHopFrames/otaSpeedUsesLiteral16BitsAndPreambleLengths",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0986025"
+    },
+    {
+      "Name": "TestHopFrames/malformedFieldsDoNotSilentlyNarrow",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0652691"
+    },
+    {
+      "Name": "TestHopFrames/configurationUsesLayerDefaultsAndNormalizesIntegers",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0284852"
+    },
+    {
+      "Name": "TestHopFrames/configurationRejectsUnknownAndInvalidSettings",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0371415"
+    },
+    {
+      "Name": "TestHopLayer/timerStartsAtActualTransmit",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0384665"
+    },
+    {
+      "Name": "TestHopLayer/retryKeepsSequenceAndDscpAndWaitsForSent",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0487067"
+    },
+    {
+      "Name": "TestHopLayer/finalTimeoutHasDoubleGrace",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0404845"
+    },
+    {
+      "Name": "TestHopLayer/ackReleasesCustodyAndCancelsQueuedCopy",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0374297"
+    },
+    {
+      "Name": "TestHopLayer/ackWakeRunsOnlyAtNextTic",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0308124"
+    },
+    {
+      "Name": "TestHopLayer/thirdAckGrowsBeforeRetryStreakReset",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0579853"
+    },
+    {
+      "Name": "TestHopLayer/globalThresholdSixteenAdmitsSeventeenth",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0224422"
+    },
+    {
+      "Name": "TestHopLayer/dackReleasesNsdpAndHoldsCapacity",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0522035"
+    },
+    {
+      "Name": "TestHopLayer/lastRetryDackDoublesHold",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0105207"
+    },
+    {
+      "Name": "TestHopLayer/unknownFeedbackAndSingleDackStillCoalesceWake",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.011297"
+    },
+    {
+      "Name": "TestHopLayer/duplicateIsAckedWithoutRedelivery",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0404817"
+    },
+    {
+      "Name": "TestHopLayer/sequenceWindowWrapAndOutOfOrder",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0300512"
+    },
+    {
+      "Name": "TestHopLayer/relayCountFifteenStillAcksTheSixteenth",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0231522"
+    },
+    {
+      "Name": "TestHopLayer/relayDackUsesPreenqueueCountAndCanBeReassessed",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0267034"
+    },
+    {
+      "Name": "TestHopLayer/ackBitmapWinsOverlappingDack",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0155901"
+    },
+    {
+      "Name": "TestHopLayer/localDeliveryNeverDacks",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0172272"
+    },
+    {
+      "Name": "TestHopLayer/relayDeliveryPrecedesFeedback",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0152308"
+    },
+    {
+      "Name": "TestHopLayer/noRouteFirstReceptionSuppressedAndRetryAcked",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0148412"
+    },
+    {
+      "Name": "TestHopLayer/custodyRefusalAllowsFreshRetry",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0126081"
+    },
+    {
+      "Name": "TestHopLayer/macRejectionRollsBackAdmission",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0114717"
+    },
+    {
+      "Name": "TestHopLayer/queueBoundRefusesBeforeLosingCustody",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0126156"
+    },
+    {
+      "Name": "TestLinkDiagnosticSuite/fixedPlanContainsOnlySmallFiveSeedExperiments",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.3746269"
+    },
+    {
+      "Name": "TestLinkDiagnosticSuite/stimuliRemainIdenticalToAcceptedDiagnosticParents",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.4354084"
+    },
+    {
+      "Name": "TestLinkDiagnosticSuite/everyDerivedInputRetainsBoundParentAndRecipe",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.2909234"
+    },
+    {
+      "Name": "TestLinkDiagnosticSuite/sourceSnapshotBindsObservationalCppHeaders",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0669807"
+    },
+    {
+      "Name": "TestLinkDiagnostics/observerIsDisabledByDefault",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0297957"
+    },
+    {
+      "Name": "TestLinkDiagnostics/autonomousTrafficAndFullTracesAreNonPerturbed",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "28.2132594"
+    },
+    {
+      "Name": "TestLinkDiagnostics/feedbackLossAndRetryTracesAreNonPerturbed",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "26.4652376"
+    },
+    {
+      "Name": "TestLinkDiagnostics/emptyFeedbackIsCompleteAndExportedWithHeaders",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.2137534"
+    },
+    {
+      "Name": "TestLinkDiagnostics/duplicateExactAckKeepsEarlierSelectionAcrossAggregateOverride",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1885063"
+    },
+    {
+      "Name": "TestLinkDiagnostics/cumulativeReplacementRestartsRepeatsAndPreservesDackKind",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0649839"
+    },
+    {
+      "Name": "TestLinkDiagnostics/exactDuplicateCanRetainAnExistingCumulativeIdentity",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0475821"
+    },
+    {
+      "Name": "TestLinkDiagnostics/controlContextUsesAddressedSequenceAndExactFeedback",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.137928"
+    },
+    {
+      "Name": "TestLinkDiagnostics/omittedNewTracesFailClosureButRetainCompleteCounts",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0276874"
+    },
+    {
+      "Name": "TestLinkDiagnostics/zeroCapacityIsAnExplicitOmissionNotDisabledObservation",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0097709"
+    },
+    {
+      "Name": "TestLinkDiagnostics/uncorrelatedActualTransmissionFailsClosure",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.050859"
+    },
+    {
+      "Name": "TestLinkDiagnostics/rejectedFeedbackHasNoRetainedDecisionAndMissingInputsStayMissing",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1092918"
+    },
+    {
+      "Name": "TestLinkDiagnostics/highBitBitmapRemainsExactInCsv",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0501357"
+    },
+    {
+      "Name": "TestLinkDiagnostics/observerCannotBeSharedAcrossSimulations",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0201747"
+    },
+    {
+      "Name": "TestMacHopCustody/macDequeueAdmitsAnotherPeerBeforeFeedbackArrives",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "2.8739539"
+    },
+    {
+      "Name": "TestMacHopCustody/dackRetryCannotMoveOnwardCustodyBackToEarlierRelay",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "2.2984544"
+    },
+    {
+      "Name": "TestMacHopCustody/longFinalAttemptCanArriveAfterSenderExpiration",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.9182937"
+    },
+    {
+      "Name": "TestMacHopScenarios/reliableExchangeCompletesLinkAndApplicationCustody",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "1.2532133"
+    },
+    {
+      "Name": "TestMacHopScenarios/ackLossRetriesWithoutDuplicateApplicationDelivery",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.562092"
+    },
+    {
+      "Name": "TestMacHopScenarios/dataLossPreservesCustodyUntilRetrySucceeds",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.5904433"
+    },
+    {
+      "Name": "TestMacHopScenarios/dackDefersSenderReleaseWhileRelayCanDeliver",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.728695"
+    },
+    {
+      "Name": "TestMacHopScenarios/fixedPathCompletesTwoRealLinkTransactions",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "2.5575175"
+    },
+    {
+      "Name": "TestMacHopScenarios/simultaneousContendersRetainCompleteAccounting",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "1.0840798"
+    },
+    {
+      "Name": "TestMacHopScenarios/queuePressureHasExplicitTerminalOutcomes",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.4887831"
+    },
+    {
+      "Name": "TestMacHopScenarios/highRateDataUsesTheSameReliabilityStack",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "2.2061206"
+    },
+    {
+      "Name": "TestMacHopScenarios/permanentFeedbackLossDoesNotReclassifyDeliveredData",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.5569651"
+    },
+    {
+      "Name": "TestMacHopScenarios/repeatedSeedReproducesProtocolAndPhyWithoutGlobalRngChanges",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "1.9064622"
+    },
+    {
+      "Name": "TestMacHopScenarios/traceBoundsDoNotChangeReliabilityOutcomes",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.9992549"
+    },
+    {
+      "Name": "TestMacHopScenarios/stoppingBeforeFirstPacketCompletesRetainsPendingCustody",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0282965"
+    },
+    {
+      "Name": "TestMacLayer/queueLimitRejectsNewPriorityAndPreservesStableOrder",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0225335"
+    },
+    {
+      "Name": "TestMacLayer/fullAckQueueStillReplacesCumulativeWindow",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0203052"
+    },
+    {
+      "Name": "TestMacLayer/exactAckDeduplicatesAndMacOwnsFiveTransmissions",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0185547"
+    },
+    {
+      "Name": "TestMacLayer/canceledDataNeverReachesTransmitter",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0114067"
+    },
+    {
+      "Name": "TestMacLayer/sentCallbackUsesActualTransmitInstant",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0112885"
+    },
+    {
+      "Name": "TestMacLayer/syncAndTrackFreezeAccessCountdown",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0100667"
+    },
+    {
+      "Name": "TestMacLayer/acknowledgementIsPackedBeforePriorityData",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0132833"
+    },
+    {
+      "Name": "TestMacLayer/strictConcatBoundaryBlocksLaterHead",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0059196"
+    },
+    {
+      "Name": "TestMacLayer/oversizedConcatHeadRemainsVisibleAndPending",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0116706"
+    },
+    {
+      "Name": "TestMacLayer/sourceOversizedRoutingSectionIsPackingBlockedAtEightKbps",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0076319"
+    },
+    {
+      "Name": "TestMacLayer/multiSectionRoutingMakesProgressAtOneTwentyEightKbps",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0100328"
+    },
+    {
+      "Name": "TestMacLayer/highRateHeadsMakeProgressWithoutInventedConcatLimit",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0093479"
+    },
+    {
+      "Name": "TestMacLayer/aggregateUsesSlowestRateAndItsPower",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0076628"
+    },
+    {
+      "Name": "TestMacLayer/aggregateHasAtMostSixteenSegments",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0079959"
+    },
+    {
+      "Name": "TestMacLayer/firstContactReservationIgnoredAndKnownOneDecays",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0077003"
+    },
+    {
+      "Name": "TestMacLayer/preambleFollowsFreshnessAndOrderedAggregateWalk",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0102304"
+    },
+    {
+      "Name": "TestMacLayer/standaloneGroupedControlUsesOnlyPrimaryForPreamble",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0064711"
+    },
+    {
+      "Name": "TestMacLayer/keyRequestReplacementCancelsOnlyMatchingUnsentControl",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0066211"
+    },
+    {
+      "Name": "TestMacLayer/dutyWakeAndNoSignalSleepActuallyTransition",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0067679"
+    },
+    {
+      "Name": "TestMacLayer/idleQueueWakesAtGlobalSlotThenUsesRelativeSlots",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0098834"
+    },
+    {
+      "Name": "TestMacLayer/trackedReceiveStartsShortSearchOrImmediateAckPreparation",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0051917"
+    },
+    {
+      "Name": "TestMacLayer/slotRangeAndGuardMatchSource",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0058683"
+    },
+    {
+      "Name": "TestNeighbors/logicalAndNumericBooleansConstructAndControlAdmission",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0424535"
+    },
+    {
+      "Name": "TestNeighbors/invalidNeighborBooleansAreRejectedBeforeScheduling",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1770806"
+    },
+    {
+      "Name": "TestNeighbors/discoveryCadenceAndImmediateRestart",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0398831"
+    },
+    {
+      "Name": "TestNeighbors/shortDurationCancelsRemainingBroadcasts",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0087905"
+    },
+    {
+      "Name": "TestNeighbors/receivedDiscoverDoesNotAdmitOnKeyEnqueue",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0230259"
+    },
+    {
+      "Name": "TestNeighbors/proofWithoutBothKeysCannotAdmit",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0078777"
+    },
+    {
+      "Name": "TestNeighbors/keysAloneLeadToOverheardThenMessage",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0081836"
+    },
+    {
+      "Name": "TestNeighbors/keyRequestBackoffResetsOnNewDiscover",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0149798"
+    },
+    {
+      "Name": "TestNeighbors/rejectedKeyUpdateCanRetryWithoutFakeAck",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0053065"
+    },
+    {
+      "Name": "TestNeighbors/duplicateDiscoveryDoesNotCreateSecondResponse",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0085525"
+    },
+    {
+      "Name": "TestNeighbors/discoverySequenceWrapUsesSerialArithmetic",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0078898"
+    },
+    {
+      "Name": "TestNeighbors/failedDiscoveryCheckRetriesAfterFiveSeconds",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0101342"
+    },
+    {
+      "Name": "TestNeighbors/staleCompletionCannotReactivateFailedNeighbor",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0086407"
+    },
+    {
+      "Name": "TestNeighbors/freshnessUsesStrictTimeoutAndCoalescedChirp",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0263236"
+    },
+    {
+      "Name": "TestNeighbors/chirpVerifyRequiresPreviouslyActiveOmittedPeer",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0088127"
+    },
+    {
+      "Name": "TestNeighbors/observedFreshnessIsNotAdmission",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0044364"
+    },
+    {
+      "Name": "TestNeighbors/securityResetClearsKeysAndRejectsOldCompletion",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0061364"
+    },
+    {
+      "Name": "TestNeighbors/securityResetPreservesSourceTransientOwnership",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0318315"
+    },
+    {
+      "Name": "TestNeighbors/inactiveFailureStillInvalidatesCachedReporter",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0035272"
+    },
+    {
+      "Name": "TestNeighbors/reciprocalAdmissionUsesDeliveredControlsAndAckCallbacks",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0220005"
+    },
+    {
+      "Name": "TestNetworkConfig/partialNestedOverridesRetainDefaultsWithoutInjectingPaths",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0425523"
+    },
+    {
+      "Name": "TestNetworkConfig/acceptedIntegerStoragePreservesFractionalUnits",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0134115"
+    },
+    {
+      "Name": "TestNetworkConfig/networkDispatchUsesAutonomousStackWithNoTraffic",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0496793"
+    },
+    {
+      "Name": "TestNetworkConfig/applicationProfilesAreExactAndLegacyDscpIsZero",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.095476"
+    },
+    {
+      "Name": "TestNetworkConfig/networkSecurityProfileRequiresPairwiseEnvelope",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0290549"
+    },
+    {
+      "Name": "TestNetworkConfig/explicitPathsAndInvalidCapabilitiesAreRejected",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0531547"
+    },
+    {
+      "Name": "TestNetworkConfig/unknownNestedOptionsAndInvalidBooleansAreRejected",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0249877"
+    },
+    {
+      "Name": "TestNetworkConfig/linkEventsRequireExistingUniquePeersTimeAndBoolean",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0365627"
+    },
+    {
+      "Name": "TestNetworkConfig/discoveryEventsRequireExplicitValidRequestCoordinates",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0497838"
+    },
+    {
+      "Name": "TestNetworkConfig/controlFaultFilterIsValidatedAndOldFiltersGainWildcard",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0338702"
+    },
+    {
+      "Name": "TestNetworkConfig/operatingInfoRejectsUnusableRatesAndInvertedLimits",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0297952"
+    },
+    {
+      "Name": "TestNs3ScenarioImport/currentProfileMapsBytesAndRealPhy",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1034918"
+    },
+    {
+      "Name": "TestNs3ScenarioImport/exactSourceProvenanceAndOptions",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1919785"
+    },
+    {
+      "Name": "TestNs3ScenarioImport/nodesSortAndOrdinaryNodesCannotRelay",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0555961"
+    },
+    {
+      "Name": "TestNs3ScenarioImport/strictStopBoundaryAndPerFlowCap",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0701956"
+    },
+    {
+      "Name": "TestNs3ScenarioImport/fractionalIntervalsUseNanosecondBoundary",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.029303"
+    },
+    {
+      "Name": "TestNs3ScenarioImport/flowOrderAndCapsRemainIndependent",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.041851"
+    },
+    {
+      "Name": "TestNs3ScenarioImport/minimumPacketHasZeroApplicationPayload",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0584287"
+    },
+    {
+      "Name": "TestNs3ScenarioImport/highRateExtensionsRemainExplicit",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0407765"
+    },
+    {
+      "Name": "TestNs3ScenarioImport/profileDefaultsAndHistoricalTuplesAreRejected",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0713156"
+    },
+    {
+      "Name": "TestNs3ScenarioImport/unsupportedPopulatedFieldsAndModesFailClosed",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1351138"
+    },
+    {
+      "Name": "TestNs3ScenarioImport/varyingLinkLimitsAndHeightsFailClosed",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0909306"
+    },
+    {
+      "Name": "TestNs3ScenarioImport/rejectsDuplicateNodesAndBadEndpoints",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0714151"
+    },
+    {
+      "Name": "TestNs3ScenarioImport/invalidNumbersCannotBeSilentlyCoerced",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1749387"
+    },
+    {
+      "Name": "TestNs3ScenarioImport/optionsRejectUnknownOrUnboundedValues",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0542752"
+    },
+    {
+      "Name": "TestNs3ScenarioImport/textQuotingAndWindowsLineEndingsRetainRowShapes",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.038468"
+    },
+    {
+      "Name": "TestNs3ScenarioImport/metadataScaleDoesNotScaleMetersAgain",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0324701"
+    },
+    {
+      "Name": "TestNs3ScenarioImport/malformedCsvIsRejected",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0603779"
+    },
+    {
+      "Name": "TestNs3ScenarioImport/runAndSchemaStructureAreRequired",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0482894"
+    },
+    {
+      "Name": "TestNs3ScenarioImport/noFlowInputKeepsAnEmptyTypedTrafficArray",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0584124"
+    },
+    {
+      "Name": "TestNs3ScenarioImport/syntheticOriginIsNotAnOpnetArchiveHash",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.050678"
+    },
+    {
+      "Name": "TestNwkLayer/noRouteRetainsCustodyWithoutStartingDiscovery",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0721036"
+    },
+    {
+      "Name": "TestNwkLayer/hopCustodyReleaseDoesNotScheduleSameTimePump",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0285702"
+    },
+    {
+      "Name": "TestNwkLayer/noRouteAtQueueHeadDoesNotBlockAnotherDestination",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1234255"
+    },
+    {
+      "Name": "TestNwkLayer/hopBusyPeerDoesNotBlockOtherPeer",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1229513"
+    },
+    {
+      "Name": "TestNwkLayer/packetEnvelopeCannotDowngradeScenarioProfile",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.069628"
+    },
+    {
+      "Name": "TestNwkLayer/boundedLocalQueueReportsOneDropWithoutTakingCustody",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0274642"
+    },
+    {
+      "Name": "TestNwkLayer/localDeliveryAndDuplicateUseSameApplicationIdentity",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0452622"
+    },
+    {
+      "Name": "TestNwkLayer/inactivePeerCannotDeliverApplication",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0267901"
+    },
+    {
+      "Name": "TestNwkLayer/relayCustodyChecksRouteAndRecordsTraversal",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0560982"
+    },
+    {
+      "Name": "TestNwkLayer/configuredLeafAndRevisitedPacketRefuseTransit",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.08376"
+    },
+    {
+      "Name": "TestNwkLayer/ordinaryCapabilityAloneDoesNotDisableTransit",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0422677"
+    },
+    {
+      "Name": "TestNwkLayer/positiveDscpPacketsPushFrontWithoutNumericalPrioritySorting",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0684198"
+    },
+    {
+      "Name": "TestNwkLayer/gatewayTrafficWaitsForSelfUpdateCapability",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1269323"
+    },
+    {
+      "Name": "TestNwkLayer/submittedDataIsNotRepeatedUntilTransportReleasesIt",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1082334"
+    },
+    {
+      "Name": "TestNwkLayer/routingPartialAckRetryWaitsForLaterEventAndKeepsBytes",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.2038665"
+    },
+    {
+      "Name": "TestNwkLayer/groupedRoutingAdmissionChecksAllRecipients",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0622114"
+    },
+    {
+      "Name": "TestNwkLayer/routingBacklogPressureRestoresDirtyChanges",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0713153"
+    },
+    {
+      "Name": "TestNwkLayer/simultaneousActivationsUseIndependentForwardSnapshots",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.66511"
+    },
+    {
+      "Name": "TestNwkLayer/sameTimeRequestUsesProcessedChangesUntilClearEvent",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1695865"
+    },
+    {
+      "Name": "TestNwkLayer/requestBeforeRoutesProcessExcludesPendingChanges",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0785914"
+    },
+    {
+      "Name": "TestNwkLayer/repeatedRequestsWaitForEverySnapshotSectionAck",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.7196616"
+    },
+    {
+      "Name": "TestNwkLayer/outboundWatchdogAllowsRestartAndIgnoresOldSectionAck",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1312631"
+    },
+    {
+      "Name": "TestNwkLayer/routeRequestRetryPreservesUnrelatedReassembly",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1868976"
+    },
+    {
+      "Name": "TestNwkLayer/discoveryCompletionRefreshesLinksAndRequestsSnapshots",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1020044"
+    },
+    {
+      "Name": "TestNwkLayer/remoteActiveDiscoveryCheckAloneStartsRouteRequest",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0560086"
+    },
+    {
+      "Name": "TestNwkLayer/gatewayStartupOccursAtTenSeconds",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.031266"
+    },
+    {
+      "Name": "TestNwkLayer/completeDiscoveryAllowsExplicitRecoveryScan",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0396816"
+    },
+    {
+      "Name": "TestNwkLayer/freshMetricObservationCannotReleaseInactiveCachedTransit",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0535092"
+    },
+    {
+      "Name": "TestNwkLayer/staleInactiveReporterLosesItsCachedTransit",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1316413"
+    },
+    {
+      "Name": "TestNwkLayer/incompleteRoutingStreamDoesNotChangeLiveRoutes",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0806812"
+    },
+    {
+      "Name": "TestNwkLayer/routingPrevalidationIsPureAndRejectsMalformedRecords",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0188529"
+    },
+    {
+      "Name": "TestNwkScenarios/autonomousAdmissionBuildsAndUsesTheTwoHopRoute",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "12.4051606"
+    },
+    {
+      "Name": "TestNwkScenarios/earlyApplicationsKeepCustodyUntilDiscoveryConverges",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "3.9756407"
+    },
+    {
+      "Name": "TestNwkScenarios/queuingDataDoesNotStartDiscoveryOrFabricateARoute",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.2283288"
+    },
+    {
+      "Name": "TestNwkScenarios/lostRoutingControlRetriesAndReleasesReliableOwners",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "19.3978546"
+    },
+    {
+      "Name": "TestNwkScenarios/routeRecoveryRetainsApplicationsAcrossTheRfBlackout",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "14.7726592"
+    },
+    {
+      "Name": "TestNwkScenarios/gatewayPolicyUsesTheAdvertisedGatewayCapability",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "4.1985601"
+    },
+    {
+      "Name": "TestNwkScenarios/explicitLeafPolicyDiscardsTransitAfterProtocolReceipt",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "3.7277124"
+    },
+    {
+      "Name": "TestNwkScenarios/highRatePayloadsTraverseTheAutonomousReliabilityStack",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "9.6410722"
+    },
+    {
+      "Name": "TestNwkScenarios/fixedSeedReproducesRoutingAndCustodyWithoutGlobalRngChanges",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "7.3417139"
+    },
+    {
+      "Name": "TestNwkScenarios/exportsPreserveRuntimeRoutingAndAccountingEvidence",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "4.4713911"
+    },
+    {
+      "Name": "TestOutageRecovery/passiveRadioDoesNotCreateNwkNeighbor",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0099058"
+    },
+    {
+      "Name": "TestOutageRecovery/dataAndAckDoNotPostponeStrictFreshness",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0380533"
+    },
+    {
+      "Name": "TestOutageRecovery/overheardCheckDoesNotRenewNwkLiveness",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0216026"
+    },
+    {
+      "Name": "TestOutageRecovery/firstControlsRenewButTheirDuplicatesDoNot",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0273323"
+    },
+    {
+      "Name": "TestOutageRecovery/keyTrafficAndKeyAckDoNotRenewNwkLiveness",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0251578"
+    },
+    {
+      "Name": "TestOutageRecovery/everyFirstRoutingSectionRenewsBeforeReassembly",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.045284"
+    },
+    {
+      "Name": "TestOutageRecovery/malformedRoutingDoesNotRenewFreshness",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0177193"
+    },
+    {
+      "Name": "TestOutageRecovery/freshnessPreservesKeyOwnerBackoffsAndCallbackGeneration",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0228678"
+    },
+    {
+      "Name": "TestOutageRecovery/inFlightCheckProofCanReadmitAfterFreshnessExpiry",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0124728"
+    },
+    {
+      "Name": "TestOutageRecovery/obsoleteDiscoveryVerifyCannotRenewFreshness",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0075667"
+    },
+    {
+      "Name": "TestOutageRecovery/staleInactiveReporterStillChirpsAndReportsExactCause",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0125396"
+    },
+    {
+      "Name": "TestOutageRecovery/expiredRoutingAssemblyCannotCompleteAfterReadmission",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0211374"
+    },
+    {
+      "Name": "TestOutageRecovery/dataExhaustionRemainsTerminalWithoutNeighborPenalty",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0265789"
+    },
+    {
+      "Name": "TestPerformanceSummary/separatesApplicationRadioAndReceiverUnits",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.301445"
+    },
+    {
+      "Name": "TestPerformanceSummary/generationDenominatorsAreExplicit",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.028644"
+    },
+    {
+      "Name": "TestPerformanceSummary/keepsLatencyQuantilesAndMissingMetricsHonest",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0323805"
+    },
+    {
+      "Name": "TestPerformanceSummary/controlOwnershipDrainDoesNotMeanSchedulerQuiescence",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0617262"
+    },
+    {
+      "Name": "TestPerformanceSummary/sumsDistinctRetryFailureAndQueueCounters",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0458833"
+    },
+    {
+      "Name": "TestPerformanceSummary/lateDeliveryOverridesAnEarlierDrop",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0817842"
+    },
+    {
+      "Name": "TestPerformanceSummary/lateRelayCustodyRestoresPendingInsteadOfInventingLoss",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0834656"
+    },
+    {
+      "Name": "TestPerformanceSummary/singletonGenerationAtStopHasNoRateDenominator",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0618327"
+    },
+    {
+      "Name": "TestPerformanceSummary/noApplicationsPreserveTypedEmptyTableAndMissingLatency",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0502411"
+    },
+    {
+      "Name": "TestPerformanceSummary/futureTrafficIsVisibleAsANegativePlannedDrain",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0142989"
+    },
+    {
+      "Name": "TestPerformanceSummary/acceptsActualShortNetworkResultWithoutChangingIt",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0660065"
+    },
+    {
+      "Name": "TestPerformanceSummary/retainsStructuralFailureGate",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0129746"
+    },
+    {
+      "Name": "TestPerformanceSummary/rejectsMemberCountsThatDoNotMatchSourceAccounting",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0300272"
+    },
+    {
+      "Name": "TestPerformanceSummary/rejectsOutcomeCountersWithoutSupportingTrace",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0242268"
+    },
+    {
+      "Name": "TestPerformanceSummary/rejectsUnknownOutcomeIdentitiesAndChangedDscp",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0453519"
+    },
+    {
+      "Name": "TestPerformanceSummary/rejectsInvalidDiagnosticCounters",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0302475"
+    },
+    {
+      "Name": "TestPhyFoundation/allOperationalRatesUseSourceIntervals",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0426366"
+    },
+    {
+      "Name": "TestPhyFoundation/knownPacketDurationsAtEveryRate",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0508742"
+    },
+    {
+      "Name": "TestPhyFoundation/propagationUsesDistanceAndConfiguredSpeed",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0244111"
+    },
+    {
+      "Name": "TestPhyFoundation/certainOutcomesDoNotConsumeRandomNumbers",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0145233"
+    },
+    {
+      "Name": "TestPhyFoundation/explicitStreamsReproduceControlledLoss",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.049941"
+    },
+    {
+      "Name": "TestPhyMacBridge/decodedFramePrecedesSearchNotification",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0452922"
+    },
+    {
+      "Name": "TestPhyMacBridge/callbackMayEnterIdleAfterReceive",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0111514"
+    },
+    {
+      "Name": "TestPhyMacBridge/successfulReceiveCannotUndoMacSleep",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0113539"
+    },
+    {
+      "Name": "TestPhyMacBridge/standaloneCallbackOrderIsPreserved",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0113322"
+    },
+    {
+      "Name": "TestPhyMacBridge/syncPresenceExcludesRejectedAndExpiredPreambles",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0540327"
+    },
+    {
+      "Name": "TestPhyMacBridge/wakeAcquiresAlreadyAdmittedPreamble",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0244774"
+    },
+    {
+      "Name": "TestPhyMacBridge/rejectedTrackedReceiveWaitsOneSourceTic",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0158257"
+    },
+    {
+      "Name": "TestPhyMacBridge/rejectedFallbackCannotUndoMacSleep",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0082905"
+    },
+    {
+      "Name": "TestPhyMacBridge/aggregateSegmentsAreOpaqueToPhy",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0074599"
+    },
+    {
+      "Name": "TestPhyModel/sourceDefaultsAndInvalidProfiles",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0541629"
+    },
+    {
+      "Name": "TestPhyModel/defaultThreePathSelectsFlatEarth",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0129602"
+    },
+    {
+      "Name": "TestPhyModel/allPropagationBranchesAndDistanceScale",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0084055"
+    },
+    {
+      "Name": "TestPhyModel/passbandFractionGainAndNoiseAreIndependent",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0103071"
+    },
+    {
+      "Name": "TestPhyModel/closureIsSeparateFromPowerAndSupportsDelegate",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0047266"
+    },
+    {
+      "Name": "TestPhyModel/zeroHeightAndZeroPowerDiagnostics",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0063261"
+    },
+    {
+      "Name": "TestPhyModel/processingGainAndDifferentialModes",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0165199"
+    },
+    {
+      "Name": "TestPhyModel/differentRateCollisionStillUsesHeaderCollisionTable",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0053394"
+    },
+    {
+      "Name": "TestPhyModel/highRateJamAddsNoiseToPayloadOnly",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0066558"
+    },
+    {
+      "Name": "TestPhyModel/sourceBinomialUsesInclusiveCdfAndComplement",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0067971"
+    },
+    {
+      "Name": "TestPhyModel/intervalTruncationAndFinalActualBerRemainSourceStyle",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0140907"
+    },
+    {
+      "Name": "TestPhyModel/zeroErrorIntervalsPreserveRandomState",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0078978"
+    },
+    {
+      "Name": "TestPhyModel/eccIncludesBoundaryAndCannotRescueEarlierRejection",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0059665"
+    },
+    {
+      "Name": "TestPhyScenarios/cleanLinksDeliverAndOverhearWithoutAppDuplication",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0949253"
+    },
+    {
+      "Name": "TestPhyScenarios/weakOutOfBandAndOccludedLinksCannotDeliver",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0786173"
+    },
+    {
+      "Name": "TestPhyScenarios/bothHighRateModesDeliverWithSourceTiming",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1397528"
+    },
+    {
+      "Name": "TestPhyScenarios/overlapsReachCollisionAccountingAndKeepPacketCustody",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0737706"
+    },
+    {
+      "Name": "TestPhyScenarios/repeatedSeedReproducesInterferenceResults",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.07038"
+    },
+    {
+      "Name": "TestPhyScenarios/traceLimitsPreservePhysicalAndApplicationOutcomes",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0560459"
+    },
+    {
+      "Name": "TestPhyScenarios/horizonKeepsUnfinishedPacketPending",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0200935"
+    },
+    {
+      "Name": "TestRandomStreams/creationOrderDoesNotChangePerKeySequences",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0149031"
+    },
+    {
+      "Name": "TestRandomStreams/cachedStreamsContinueInsteadOfRestarting",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.008845"
+    },
+    {
+      "Name": "TestRandomStreams/streamsDoNotChangeGlobalRng",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0106949"
+    },
+    {
+      "Name": "TestRandomStreams/nodeAndSubsystemSeedsAreDistinctAtBounds",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0207486"
+    },
+    {
+      "Name": "TestRandomStreams/zeroSeedUsesReservedNonzeroStream",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0087164"
+    },
+    {
+      "Name": "TestResearchEvidence/finiteHorizonReportsCustodyWithoutInventingLoss",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0654359"
+    },
+    {
+      "Name": "TestResearchEvidence/rejectsUnbalancedApplications",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0398853"
+    },
+    {
+      "Name": "TestResearchEvidence/rejectsUnbalancedReceiverAccounting",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0364434"
+    },
+    {
+      "Name": "TestResearchEvidence/rejectsTraceTruncation",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0391619"
+    },
+    {
+      "Name": "TestResearchEvidence/rejectsMissingGenerationEvidence",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0535186"
+    },
+    {
+      "Name": "TestResearchEvidence/sha256PreservesHighBytesAndWindowsNewlines",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.011106"
+    },
+    {
+      "Name": "TestResearchEvidence/rejectsAccidentalLongRunAndUnknownRunnerOption",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.197257"
+    },
+    {
+      "Name": "TestResearchEvidence/inventoryUsesPathsRelativeToItsDirectory",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1335021"
+    },
+    {
+      "Name": "TestResearchEvidence/compactEvidenceInventoryKeepsMatObjectsLocal",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.6112877"
+    },
+    {
+      "Name": "TestResearchEvidence/sha256HandlesEmptyAndSingleByteFiles",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0105478"
+    },
+    {
+      "Name": "TestResearchEvidence/snapshotBindsCurrentCandidateAndAnalysisTools",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0550846"
+    },
+    {
+      "Name": "TestResearchEvidence/snapshotIgnoresGeneratedResults",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0278157"
+    },
+    {
+      "Name": "TestResearchEvidence/failedRunPreservesOriginalErrorUnderRelativeOutputRoot",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.4264305"
+    },
+    {
+      "Name": "TestResearchScenarios/allFixturesUseNativePacketPhyAndSyntheticProvenance",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.2561304"
+    },
+    {
+      "Name": "TestResearchScenarios/lineGeometryAdmitsOnlyAdjacentGeometricVisibility",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0336005"
+    },
+    {
+      "Name": "TestResearchScenarios/hiddenSourcesShareReceiverWithoutMutualVisibility",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0159946"
+    },
+    {
+      "Name": "TestResearchScenarios/meshProvidesMultipleGeometricNextHopOpportunities",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0124154"
+    },
+    {
+      "Name": "TestResearchScenarios/requestsCoverEveryNodeBeforeFirstApplication",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0996018"
+    },
+    {
+      "Name": "TestResearchScenarios/recoveryNamesItsAdministrativeBlackoutAndRediscovery",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0422384"
+    },
+    {
+      "Name": "TestResearchScenarios/leafTransitPolicyDoesNotRemoveTheRadio",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0094179"
+    },
+    {
+      "Name": "TestResearchScenarios/ordinaryAndHighRateOperatingRangesRemainSeparate",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.093268"
+    },
+    {
+      "Name": "TestResearchScenarios/legacyProfilesExplicitlyRemoveAllApplicationDscp",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0533893"
+    },
+    {
+      "Name": "TestResearchScenarios/seedAndDurationOverridesPreserveReproducibleInputs",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0516501"
+    },
+    {
+      "Name": "TestResearchScenarios/trafficEndsBeforeStopWithAnExplicitDrainWindow",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0824105"
+    },
+    {
+      "Name": "TestResearchScenarios/longWorkloadRetains6000SecondsAndFlagsExtendedRuns",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.045482"
+    },
+    {
+      "Name": "TestResearchScenarios/malformedNamesAndOptionsFailBeforeSimulation",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0809854"
+    },
+    {
+      "Name": "TestResearchSweep/defaultsEnumeratePairedCasesAndExecutionBudget",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.2828532"
+    },
+    {
+      "Name": "TestResearchSweep/offeredLoadPreservesGenerationEndpointsAndDrain",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.2133762"
+    },
+    {
+      "Name": "TestResearchSweep/offeredLoadChangesOnlyTimingCountsAndEvidenceFields",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0306964"
+    },
+    {
+      "Name": "TestResearchSweep/recoveryChangesOnlyTimeoutAndEvidenceFields",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0697092"
+    },
+    {
+      "Name": "TestResearchSweep/everyCaseRetainsPhysicalAndOrdinaryRateBoundaries",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.182613"
+    },
+    {
+      "Name": "TestResearchSweep/eachParameterUsesExactlyTheSameSeedSet",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1760313"
+    },
+    {
+      "Name": "TestResearchSweep/repeatedConstructionPreservesConfigurationAndGlobalRng",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.2055472"
+    },
+    {
+      "Name": "TestResearchSweep/explicitLongRunPreservesWorkloadAndRaisesEvidenceCaps",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0567747"
+    },
+    {
+      "Name": "TestResearchSweep/longRunIsAddedOncePerSeedAfterRequestedExperiments",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.2231947"
+    },
+    {
+      "Name": "TestResearchSweep/shortEvidenceLimitsAreUniformAcrossParameterValues",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0971917"
+    },
+    {
+      "Name": "TestResearchSweep/malformedOptionsAndUnknownFieldsAreRejected",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.041075"
+    },
+    {
+      "Name": "TestResearchSweep/malformedAndDuplicateExperimentsAreRejected",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0929776"
+    },
+    {
+      "Name": "TestResearchSweep/invalidSeedSetsAreRejectedBeforeConfigurationConstruction",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0724802"
+    },
+    {
+      "Name": "TestResearchSweep/invalidLoadChoicesAreRejected",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1500814"
+    },
+    {
+      "Name": "TestResearchSweep/invalidFreshnessChoicesAreRejected",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1105061"
+    },
+    {
+      "Name": "TestResearchSweep/oversizedCasePlansFailBeforeSimulation",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0260513"
+    },
+    {
+      "Name": "TestRoutes/localCapabilityIsAdvertisedButNeverForwarded",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1223089"
+    },
+    {
+      "Name": "TestRoutes/candidateCostAndStableTieSelectNextHop",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0834422"
+    },
+    {
+      "Name": "TestRoutes/hopCountBreaksEqualCostBeforePriorPreference",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0382861"
+    },
+    {
+      "Name": "TestRoutes/ordinaryNeighborCapabilityDeleteKeepsDirectReachability",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0425449"
+    },
+    {
+      "Name": "TestRoutes/staleDuplicateAndAmbiguousSequencesCannotResurrect",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0350843"
+    },
+    {
+      "Name": "TestRoutes/sequenceWrapAndUnknownDeleteTombstone",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0277166"
+    },
+    {
+      "Name": "TestRoutes/snapshotTailFlushPreservesSameSequenceUpdates",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0813715"
+    },
+    {
+      "Name": "TestRoutes/snapshotOmissionClearsReporterCapability",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0501513"
+    },
+    {
+      "Name": "TestRoutes/loopedUpdateInvalidatesReporterAndSelectsAlternative",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0246215"
+    },
+    {
+      "Name": "TestRoutes/malformedSelfAndPathBoundaryDoNotEnterTable",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0249983"
+    },
+    {
+      "Name": "TestRoutes/inactiveCandidateWaitsForDestinationRecomputation",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0404282"
+    },
+    {
+      "Name": "TestRoutes/failureWhileInactiveDiscardsCachedTransitAndCapability",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0433219"
+    },
+    {
+      "Name": "TestRoutes/lossRecoveryRequiresFreshTransitAndSelfCapability",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0383962"
+    },
+    {
+      "Name": "TestRoutes/linkCostChangeRecomputesRouteSelection",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0391451"
+    },
+    {
+      "Name": "TestRoutes/reverseRoutePriorityAndNeighborGate",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0351235"
+    },
+    {
+      "Name": "TestRoutes/noPathOnlyClearsMatchingReverseAndPreservesAllForwardRoutes",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0563703"
+    },
+    {
+      "Name": "TestRoutes/groupedChangesFollowDestinationCreationOrderAndInfoFirst",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0526448"
+    },
+    {
+      "Name": "TestRoutes/identicalSelectedReplacementStillPropagates",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0204438"
+    },
+    {
+      "Name": "TestRoutes/snapshotExcludesSamePassChangesAndOrdinaryRoutes",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0244891"
+    },
+    {
+      "Name": "TestRoutes/snapshotUsesSelectedCandidateInsertionPosition",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0243177"
+    },
+    {
+      "Name": "TestRoutes/gatewaySelectionFollowsSourceLastCapableDestination",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0192673"
+    },
+    {
+      "Name": "TestRoutes/sourceLinkCostGoldenBoundaries",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0854828"
+    },
+    {
+      "Name": "TestRoutes/linkCostFailurePenaltyAndBadLimits",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0527682"
+    },
+    {
+      "Name": "TestRoutingCodec/bigEndianGoldenStreamPreservesSignedAndWideFields",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.044437"
+    },
+    {
+      "Name": "TestRoutingCodec/sixteenBitHopCountCrossesSectionBoundary",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0648584"
+    },
+    {
+      "Name": "TestRoutingCodec/originalCrossBoundaryFixtureIs700Plus10Bytes",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0432988"
+    },
+    {
+      "Name": "TestRoutingCodec/conflictsAndDuplicatesCannotOverwriteAcceptedSections",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.03384"
+    },
+    {
+      "Name": "TestRoutingCodec/malformedCompletedStreamNeverReturnsPartialRecords",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0258093"
+    },
+    {
+      "Name": "TestRoutingCodec/peerAndGlobalBoundsEvictOldestIncompleteMessages",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0733345"
+    },
+    {
+      "Name": "TestRoutingCodec/maximumSequenceAndIndependentPeersRemainDistinct",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0375508"
+    },
+    {
+      "Name": "TestRoutingCodec/malformedLengthsIndicesAndTruncationAreRejected",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.123461"
+    },
+    {
+      "Name": "TestRoutingCodec/encodingRejectsNarrowingAndInconsistentPaths",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.088086"
+    },
+    {
+      "Name": "TestRoutingCodec/zeroHopPathsNormalizeToCanonicalEmptyWithoutChangingWireBytes",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0651945"
+    },
+    {
+      "Name": "TestRoutingCodec/sourceWireLimitsRemainSeparateFromRoutingPolicy",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0507718"
+    },
+    {
+      "Name": "TestSignalEngine/allPeersObservePhysicalSignalOnce",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1406606"
+    },
+    {
+      "Name": "TestSignalEngine/framePowerOverrideReachesFrontEnd",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0577904"
+    },
+    {
+      "Name": "TestSignalEngine/horizonLeavesPhysicalCompletionsPending",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0694058"
+    },
+    {
+      "Name": "TestSignalEngine/halfDuplexCannotDeliver",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.053768"
+    },
+    {
+      "Name": "TestSignalEngine/nonDestinationTrackPreventsAnotherAcquisition",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1664164"
+    },
+    {
+      "Name": "TestSignalEngine/belowThresholdPreambleDoesNotCancelOtherAcquisition",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1121919"
+    },
+    {
+      "Name": "TestSignalEngine/strongTrackCapturesLaterWeakSignal",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0900109"
+    },
+    {
+      "Name": "TestSignalEngine/mismatchedSignalDoesNotJamMatchedReceiver",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0827877"
+    },
+    {
+      "Name": "TestSignalEngine/closureExcludedFromInterference",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0603409"
+    },
+    {
+      "Name": "TestSignalEngine/differentRateNoiseRemovedAtJammerEnd",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1082312"
+    },
+    {
+      "Name": "TestSignalEngine/highRateJammerIsSignedAndIntervalLocal",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.1029436"
+    },
+    {
+      "Name": "TestSignalEngine/activeSignalLimitRejectsBeforeMutation",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0614902"
+    },
+    {
+      "Name": "TestSignalEngine/explicitIdleMustWakeBeforePreambleExpires",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0619496"
+    },
+    {
+      "Name": "TestTranche1Integration/mixedNodeStorageTypesPreserve24BitAddresses",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.2576622"
+    },
+    {
+      "Name": "TestTranche1Integration/separateSyncStreamDoesNotPerturbPhyDraws",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.0185086"
+    },
+    {
+      "Name": "TestTranche1Integration/delegatedClosureExportsMatAndDescriptiveJson",
+      "Passed": "1",
+      "Failed": "0",
+      "Incomplete": "0",
+      "DurationSeconds": "0.2195283"
+    }
+  ],
+  "plan_sha256": "ed648ee4f54ebf14e14b98d6fcecce224590727139db83f0f4d23161ddfc7a09",
+  "cases": [
+    {
+      "case_id": "two_node_admission_1200_s128",
+      "directory": "b/a128",
+      "generated": 11395,
+      "delivered": 11385,
+      "dropped": 0,
+      "pending": 10,
+      "attempts": 45000,
+      "decisions": 11399,
+      "actual_feedback": 2066,
+      "protocol_rows": 154491,
+      "runtime_seconds": 122.0134424
+    },
+    {
+      "case_id": "three_node_contention_360_s128",
+      "directory": "b/c128",
+      "generated": 954,
+      "delivered": 928,
+      "dropped": 0,
+      "pending": 26,
+      "attempts": 60000,
+      "decisions": 967,
+      "actual_feedback": 366,
+      "protocol_rows": 15358,
+      "runtime_seconds": 60.1944694
+    },
+    {
+      "case_id": "two_node_admission_1200_s129",
+      "directory": "b/a129",
+      "generated": 11358,
+      "delivered": 11354,
+      "dropped": 0,
+      "pending": 4,
+      "attempts": 45000,
+      "decisions": 11368,
+      "actual_feedback": 2081,
+      "protocol_rows": 154178,
+      "runtime_seconds": 164.9647334
+    },
+    {
+      "case_id": "three_node_contention_360_s129",
+      "directory": "b/c129",
+      "generated": 980,
+      "delivered": 948,
+      "dropped": 0,
+      "pending": 32,
+      "attempts": 60000,
+      "decisions": 994,
+      "actual_feedback": 402,
+      "protocol_rows": 15833,
+      "runtime_seconds": 71.0827826
+    },
+    {
+      "case_id": "two_node_admission_1200_s130",
+      "directory": "b/a130",
+      "generated": 11326,
+      "delivered": 11315,
+      "dropped": 0,
+      "pending": 11,
+      "attempts": 45000,
+      "decisions": 11329,
+      "actual_feedback": 2107,
+      "protocol_rows": 153942,
+      "runtime_seconds": 192.2070424
+    },
+    {
+      "case_id": "three_node_contention_360_s130",
+      "directory": "b/c130",
+      "generated": 926,
+      "delivered": 894,
+      "dropped": 0,
+      "pending": 32,
+      "attempts": 60000,
+      "decisions": 943,
+      "actual_feedback": 432,
+      "protocol_rows": 15123,
+      "runtime_seconds": 103.3378297
+    },
+    {
+      "case_id": "two_node_admission_1200_s131",
+      "directory": "b/a131",
+      "generated": 11265,
+      "delivered": 11249,
+      "dropped": 0,
+      "pending": 16,
+      "attempts": 45000,
+      "decisions": 11263,
+      "actual_feedback": 2094,
+      "protocol_rows": 153098,
+      "runtime_seconds": 196.2368988
+    },
+    {
+      "case_id": "three_node_contention_360_s131",
+      "directory": "b/c131",
+      "generated": 927,
+      "delivered": 895,
+      "dropped": 0,
+      "pending": 32,
+      "attempts": 60000,
+      "decisions": 942,
+      "actual_feedback": 410,
+      "protocol_rows": 15223,
+      "runtime_seconds": 84.7207274
+    },
+    {
+      "case_id": "two_node_admission_1200_s132",
+      "directory": "b/a132",
+      "generated": 11369,
+      "delivered": 11359,
+      "dropped": 0,
+      "pending": 10,
+      "attempts": 45000,
+      "decisions": 11373,
+      "actual_feedback": 2071,
+      "protocol_rows": 154315,
+      "runtime_seconds": 204.0436002
+    },
+    {
+      "case_id": "three_node_contention_360_s132",
+      "directory": "b/c132",
+      "generated": 949,
+      "delivered": 917,
+      "dropped": 0,
+      "pending": 32,
+      "attempts": 60000,
+      "decisions": 965,
+      "actual_feedback": 409,
+      "protocol_rows": 15477,
+      "runtime_seconds": 81.3604846
+    }
+  ],
+  "controls": [
+    {
+      "case_id": "two_node_admission_1200_s128",
+      "statistics_equal": true,
+      "config_equal": true,
+      "byte_exact_csv_files": 12
+    },
+    {
+      "case_id": "three_node_contention_360_s128",
+      "statistics_equal": true,
+      "config_equal": true,
+      "byte_exact_csv_files": 12
+    }
+  ],
+  "accepted_t7_anchors": [
+    {
+      "case_id": "two_node_admission_1200_s128",
+      "statistics_equal": true,
+      "files": [
+        {
+          "path": "trace.csv",
+          "semantic_rows": 154491,
+          "reformatted_numeric_fields": 0,
+          "byte_exact": true
+        },
+        {
+          "path": "protocol_trace.csv",
+          "semantic_rows": 154491,
+          "reformatted_numeric_fields": 0,
+          "byte_exact": true
+        },
+        {
+          "path": "phy_trace.csv",
+          "semantic_rows": 20045,
+          "reformatted_numeric_fields": 0,
+          "byte_exact": true
+        },
+        {
+          "path": "nodes.csv",
+          "semantic_rows": 2,
+          "reformatted_numeric_fields": 0,
+          "byte_exact": true
+        },
+        {
+          "path": "mac_nodes.csv",
+          "semantic_rows": 2,
+          "reformatted_numeric_fields": 0,
+          "byte_exact": true
+        },
+        {
+          "path": "hop_nodes.csv",
+          "semantic_rows": 2,
+          "reformatted_numeric_fields": 0,
+          "byte_exact": true
+        },
+        {
+          "path": "nwk_nodes.csv",
+          "semantic_rows": 2,
+          "reformatted_numeric_fields": 0,
+          "byte_exact": true
+        },
+        {
+          "path": "routes.csv",
+          "semantic_rows": 2,
+          "reformatted_numeric_fields": 0,
+          "byte_exact": true
+        },
+        {
+          "path": "neighbors.csv",
+          "semantic_rows": 2,
+          "reformatted_numeric_fields": 0,
+          "byte_exact": true
+        },
+        {
+          "path": "application_admission_statistics.csv",
+          "semantic_rows": 1,
+          "reformatted_numeric_fields": 0,
+          "byte_exact": true
+        },
+        {
+          "path": "application_admission_trace.csv",
+          "semantic_rows": 45000,
+          "reformatted_numeric_fields": 0,
+          "byte_exact": true
+        }
+      ]
+    },
+    {
+      "case_id": "three_node_contention_360_s128",
+      "statistics_equal": true,
+      "files": [
+        {
+          "path": "trace.csv",
+          "semantic_rows": 15358,
+          "reformatted_numeric_fields": 0,
+          "byte_exact": true
+        },
+        {
+          "path": "protocol_trace.csv",
+          "semantic_rows": 15358,
+          "reformatted_numeric_fields": 0,
+          "byte_exact": true
+        },
+        {
+          "path": "phy_trace.csv",
+          "semantic_rows": 3518,
+          "reformatted_numeric_fields": 0,
+          "byte_exact": true
+        },
+        {
+          "path": "nodes.csv",
+          "semantic_rows": 3,
+          "reformatted_numeric_fields": 0,
+          "byte_exact": true
+        },
+        {
+          "path": "mac_nodes.csv",
+          "semantic_rows": 3,
+          "reformatted_numeric_fields": 0,
+          "byte_exact": true
+        },
+        {
+          "path": "hop_nodes.csv",
+          "semantic_rows": 3,
+          "reformatted_numeric_fields": 0,
+          "byte_exact": true
+        },
+        {
+          "path": "nwk_nodes.csv",
+          "semantic_rows": 3,
+          "reformatted_numeric_fields": 0,
+          "byte_exact": true
+        },
+        {
+          "path": "routes.csv",
+          "semantic_rows": 6,
+          "reformatted_numeric_fields": 0,
+          "byte_exact": true
+        },
+        {
+          "path": "neighbors.csv",
+          "semantic_rows": 6,
+          "reformatted_numeric_fields": 0,
+          "byte_exact": true
+        },
+        {
+          "path": "application_admission_statistics.csv",
+          "semantic_rows": 2,
+          "reformatted_numeric_fields": 0,
+          "byte_exact": true
+        },
+        {
+          "path": "application_admission_trace.csv",
+          "semantic_rows": 60000,
+          "reformatted_numeric_fields": 0,
+          "byte_exact": true
+        }
+      ]
+    }
+  ],
+  "ns3_reference_inventory_checks": 130,
+  "ns3_gzip_roundtrips": 32,
+  "ns3_controls": [
+    {
+      "case_id": "two_node_admission_1200_s128",
+      "observer_comparisons": 2,
+      "pristine_comparisons": 2
+    },
+    {
+      "case_id": "three_node_contention_360_s128",
+      "observer_comparisons": 2,
+      "pristine_comparisons": 2
+    },
+    {
+      "case_id": "two_node_admission_1200_s129",
+      "observer_comparisons": 2,
+      "pristine_comparisons": 0
+    },
+    {
+      "case_id": "three_node_contention_360_s129",
+      "observer_comparisons": 2,
+      "pristine_comparisons": 0
+    },
+    {
+      "case_id": "two_node_admission_1200_s130",
+      "observer_comparisons": 2,
+      "pristine_comparisons": 0
+    },
+    {
+      "case_id": "three_node_contention_360_s130",
+      "observer_comparisons": 2,
+      "pristine_comparisons": 0
+    },
+    {
+      "case_id": "two_node_admission_1200_s131",
+      "observer_comparisons": 2,
+      "pristine_comparisons": 0
+    },
+    {
+      "case_id": "three_node_contention_360_s131",
+      "observer_comparisons": 2,
+      "pristine_comparisons": 0
+    },
+    {
+      "case_id": "two_node_admission_1200_s132",
+      "observer_comparisons": 2,
+      "pristine_comparisons": 0
+    },
+    {
+      "case_id": "three_node_contention_360_s132",
+      "observer_comparisons": 2,
+      "pristine_comparisons": 0
+    }
+  ],
+  "ns3_t7_anchors": [
+    {
+      "case_id": "two_node_admission_1200_s128",
+      "raw_trace_byte_exact": true,
+      "files": [
+        {
+          "path": "app-admission-diagnostics.csv",
+          "equal_except_scenario_label": true,
+          "rows": 1
+        },
+        {
+          "path": "ns3-aggregates.csv",
+          "equal_except_scenario_label": true,
+          "rows": 1500
+        }
+      ]
+    },
+    {
+      "case_id": "three_node_contention_360_s128",
+      "raw_trace_byte_exact": true,
+      "files": [
+        {
+          "path": "app-admission-diagnostics.csv",
+          "equal_except_scenario_label": true,
+          "rows": 2
+        },
+        {
+          "path": "ns3-aggregates.csv",
+          "equal_except_scenario_label": true,
+          "rows": 1500
+        }
+      ]
+    }
+  ],
+  "check_counts": {
+    "zip": 6,
+    "zip_crc": 257,
+    "top_inventory": 527,
+    "execution": 5,
+    "source": 3,
+    "source_file": 189,
+    "reference": 2,
+    "reference_file": 192,
+    "csv": 436,
+    "tests": 45,
+    "plan": 3,
+    "cases": 91,
+    "benchmark_inventory": 450,
+    "raw_inventory": 350,
+    "csv_rows": 156,
+    "application": 110,
+    "delivery_identity": 61244,
+    "admission": 50,
+    "admission_attempt": 1575000,
+    "observer": 40,
+    "feedback_identity": 12438,
+    "controls": 9,
+    "control_inventory": 62,
+    "control_csv": 24,
+    "t7_anchor": 25,
+    "t7_anchor_rows": 468300,
+    "ns3_reference": 150,
+    "ns3_gzip": 32,
+    "ns3_controls": 24,
+    "ns3_t7_anchor": 8
+  },
+  "failure_count": 0,
+  "failures": [],
+  "passed": true,
+  "limitations": [
+    "MATLAB execution is owner-supplied R2025a evidence, not a local rerun.",
+    "13 MAT objects remain on the execution laptop by declared archive policy; their contents were not inspected.",
+    "No native simulator execution, campus rerun, or numerical/statistical parity established.",
+    "T7 CSV comparison tolerates export floating-format differences; identifiers and large integer values compare exactly.",
+    "Full Config is identical for same-run observer controls. T7 anchor statistics and unchanged CSV observations compare semantically; scenario labels/provenance legitimately differ."
+  ],
+  "artifact_hash_checks": {
+    "outer": 256,
+    "nested_benchmark": 210,
+    "nested_enabled_raw": 160,
+    "nested_disabled_raw": 28,
+    "nested_total": 398,
+    "total": 654,
+    "unique_archived_artifacts_excluding_metadata": 256,
+    "metadata_exclusion": "validation_metadata.json is excluded from its own inventory; the immutable outer ZIP SHA binds it."
+  },
+  "test_scope": {
+    "portable_tests_executed": 485,
+    "portable_test_names_exact": true,
+    "native_tests_executed": 0,
+    "native_execution_requested": false,
+    "campus_benchmark_rerun": false,
+    "prior_sweep_rerun": false
+  },
+  "matlab_control_csv_byte_comparisons": 24,
+  "matlab_t7_anchor_csv_byte_matches": 22,
+  "admission_attempts_checked": 525000,
+  "feedback_selections_checked": 61543,
+  "actual_feedback_correlations_checked": 12438
+}

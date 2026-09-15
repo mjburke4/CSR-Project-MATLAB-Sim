@@ -1,0 +1,1894 @@
+{
+  "schema": "csr-tranche9-independent-service-inspection-v1",
+  "candidate_commit": "99fff0381fe9621ccd76fbdce41eac9aba5a9469",
+  "candidate_source_root": "/workspace/scratch/1a5b1ad6ce1b/t9r/src",
+  "returned_archive": "/workspace/scratch/1a5b1ad6ce1b/upload/tranche9_evidence.zip",
+  "returned_archive_sha256": "ddcede0a83b5ff906a7736f63406fc4cecb11e841795e39e93237364e0e11edf",
+  "accepted_t8_archive": "/workspace/scratch/1a5b1ad6ce1b/t9r/src/evidence/tranche-8-r2025a-accepted/tranche8_evidence.zip",
+  "accepted_t8_archive_sha256": "bfc4f7f05f0800316b371df3ec316f309f14e3482ef259c3f9c7bd7eea025d77",
+  "ns3_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "ns3_suite_sha256": "e7d8cdf5303fba9c290e83526ba65e4e4f7b7bb52add727c1b7cc8b372169331",
+  "service_window_seconds": [
+    300,
+    320
+  ],
+  "end_exclusive": true,
+  "scope": "Independent analysis of uploaded owner evidence; no simulation or test rerun and no source mutation.",
+  "cases": [
+    {
+      "storage_key": "c129",
+      "flows": [
+        {
+          "source": 2,
+          "destination": 1,
+          "t8": {
+            "admitted": 526,
+            "delivered": 510,
+            "pending": 16,
+            "dropped": 0,
+            "first_delivery_s": 302.519103999997,
+            "delivered_300_320": 152,
+            "admitted_300_320": 168,
+            "delay_sum_s": 760.9792599712239,
+            "mean_latency_s": 1.4921161960220075
+          },
+          "t9": {
+            "admitted": 526,
+            "delivered": 510,
+            "pending": 16,
+            "dropped": 0,
+            "first_delivery_s": 302.519103999997,
+            "delivered_300_320": 152,
+            "admitted_300_320": 168,
+            "delay_sum_s": 760.9792599712239,
+            "mean_latency_s": 1.4921161960220075
+          },
+          "ns3": {
+            "admitted": 369,
+            "delivered": 353,
+            "unmatched_sends": 16,
+            "first_delivery_s": 301.401104,
+            "delivered_300_320": 35,
+            "admitted_300_320": 45,
+            "delay_sum_s": 784.4755119999987,
+            "mean_latency_s": 2.222310232294614
+          },
+          "delivery_change_t9_minus_t8": 0,
+          "delivery_gap_t9_minus_ns3": 157,
+          "delivery_gap_percent_of_ns3": 44.475920679886684,
+          "early_delivery_gap_t9_minus_ns3": 117
+        },
+        {
+          "source": 3,
+          "destination": 1,
+          "t8": {
+            "admitted": 454,
+            "delivered": 438,
+            "pending": 16,
+            "dropped": 0,
+            "first_delivery_s": 301.375103999999,
+            "delivered_300_320": 108,
+            "admitted_300_320": 118,
+            "delay_sum_s": 758.275051974236,
+            "mean_latency_s": 1.731221579849854
+          },
+          "t9": {
+            "admitted": 454,
+            "delivered": 438,
+            "pending": 16,
+            "dropped": 0,
+            "first_delivery_s": 301.375103999999,
+            "delivered_300_320": 108,
+            "admitted_300_320": 118,
+            "delay_sum_s": 758.275051974236,
+            "mean_latency_s": 1.731221579849854
+          },
+          "ns3": {
+            "admitted": 485,
+            "delivered": 469,
+            "unmatched_sends": 16,
+            "first_delivery_s": 302.493104,
+            "delivered_300_320": 129,
+            "admitted_300_320": 145,
+            "delay_sum_s": 792.6843359999992,
+            "mean_latency_s": 1.6901584989339002
+          },
+          "delivery_change_t9_minus_t8": 0,
+          "delivery_gap_t9_minus_ns3": -31,
+          "delivery_gap_percent_of_ns3": -6.609808102345416,
+          "early_delivery_gap_t9_minus_ns3": -21
+        }
+      ],
+      "counts": {
+        "t8": {
+          "Generated": 980,
+          "Received": 948,
+          "Dropped": 0,
+          "Pending": 32
+        },
+        "t9": {
+          "Generated": 980,
+          "Received": 948,
+          "Dropped": 0,
+          "Pending": 32
+        },
+        "ns3": {
+          "admitted": 854,
+          "delivered": 822,
+          "unmatched_sends": 32
+        }
+      },
+      "statistics_exact_equal": true,
+      "changed_statistics": {},
+      "changed_application_records": [],
+      "service": {
+        "SchemaVersion": "csr-matlab-ack-service-diagnostics-v1",
+        "Enabled": true,
+        "MaxRecords": 100000,
+        "WindowStartSeconds": 300,
+        "WindowEndSeconds": 320,
+        "WindowBoundary": "start_inclusive_end_exclusive",
+        "ServiceEventCount": 23666,
+        "CapturedServiceRecords": 23666,
+        "OmittedServiceRecords": 0,
+        "OutOfWindowServiceEvents": 50365,
+        "CancellationSnapshotCount": 508,
+        "CancellationBeforeCount": 254,
+        "CancellationAfterCount": 254,
+        "CancellationPairErrors": 0,
+        "PendingCancellationPair": false,
+        "CancellationPairsComplete": true,
+        "Complete": true,
+        "InheritedFeedbackComplete": true,
+        "StageMeaning": "Existing protocol callbacks, completed application admissions and paired cancellation callback observations",
+        "ObservationOrder": "ObservationId is callback arrival order among all in-window service rows",
+        "DetailsMeaning": "DetailsJSON preserves callback details, the complete admission row, or the cancellation scalar snapshot and selector",
+        "StateMeaning": "State is the opaque string supplied by a MAC event or read at a cancellation callback boundary",
+        "CapacityMeaning": "HOP capacity fields copy existing admission snapshots; no additional HOP/NWK reads or intermediate release stages",
+        "CancellationMeaning": "Before/after rows surround one original MAC cancellation callback; peer/sequence/control type are selectors, not a fabricated packet identity",
+        "MissingNumericValues": "NaN denotes unavailable; boolean details are 0 or 1 when supplied",
+        "IdentityMeaning": "PacketId and AggregateId are local uint64 identities with availability flags; no cross-simulator identity equivalence",
+        "AggregateIdentityLimit": "MAC callbacks precede or retain a separate copy from simulation transmission ID assignment; their aggregate ID is unavailable",
+        "FeedbackWindowMeaning": "Only ServiceTrace is windowed; inherited T8 feedback traces cover the entire run",
+        "Passive": true,
+        "ScheduledEvents": 0,
+        "RandomDraws": 0,
+        "AdditionalStateReads": 3048,
+        "AdditionalStateReadsMeaning": "Six public MAC scalar reads per cancellation snapshot; no HOP/NWK peer or state getters"
+      },
+      "cancellation_removals": [
+        {
+          "node": 3,
+          "hop_sequence": 10,
+          "time_s": 302.573543999996,
+          "state": "Track",
+          "before": {
+            "State": "Track",
+            "PreparationActive": true,
+            "ReservationSlot": 24,
+            "ReservationCounter": 21,
+            "DataDepth": 1,
+            "AckDepth": 0,
+            "PeerId": 1,
+            "Sequence": 10,
+            "ControlType": "",
+            "RemovedCount": null
+          },
+          "after": {
+            "State": "Track",
+            "PreparationActive": true,
+            "ReservationSlot": 24,
+            "ReservationCounter": 21,
+            "DataDepth": 0,
+            "AckDepth": 0,
+            "PeerId": 1,
+            "Sequence": 10,
+            "ControlType": "",
+            "RemovedCount": 1
+          },
+          "before_observation_id": 2658,
+          "after_observation_id": 2659,
+          "next_hop_admission_time_s": 302.573544027774,
+          "next_hop_admission_observation_id": 2665,
+          "wake_delta_ns_from_csv": 27.778014555224217,
+          "next_app_admitted_s": 302.574,
+          "next_data_packet_id": "4",
+          "next_data_tx_t8_s": 302.925999999995,
+          "next_data_tx_t9_s": 302.925999999995,
+          "next_data_tx_change_s": 0.0
+        }
+      ],
+      "first_ordinary_ack": {
+        "2": {
+          "matlab_first_decision_time_s": 302.519103999997,
+          "matlab_first_decision_id": "48",
+          "ns3_first_decision_time_s": 301.401104,
+          "ns3_first_decision_id": "52",
+          "matlab_transmitted_decision_queue_s": 302.519103999997,
+          "matlab_decision_id": "48",
+          "matlab_ota_time_s": 302.548999999996,
+          "matlab_selected_rate_kbps": 128.0,
+          "matlab_power_dbm": 33.0,
+          "ns3_transmitted_decision_queue_s": 303.845104,
+          "ns3_decision_id": "54",
+          "ns3_ota_time_s": 303.849,
+          "ns3_selected_rate_kbps": 128.0,
+          "ns3_power_dbm": 33.0,
+          "matlab_admission_resume_s": 302.574,
+          "ns3_admission_resume_s": 303.874
+        },
+        "3": {
+          "matlab_first_decision_time_s": 301.375103999999,
+          "matlab_first_decision_id": "47",
+          "ns3_first_decision_time_s": 302.493104,
+          "ns3_first_decision_id": "53",
+          "matlab_transmitted_decision_queue_s": 301.375103999999,
+          "matlab_decision_id": "47",
+          "matlab_ota_time_s": 302.548999999996,
+          "matlab_selected_rate_kbps": 128.0,
+          "matlab_power_dbm": 33.0,
+          "ns3_transmitted_decision_queue_s": 302.493104,
+          "ns3_decision_id": "53",
+          "ns3_ota_time_s": 303.849,
+          "ns3_selected_rate_kbps": 128.0,
+          "ns3_power_dbm": 33.0,
+          "matlab_admission_resume_s": 302.574,
+          "ns3_admission_resume_s": 303.874
+        }
+      },
+      "ordinary_matlab_actual_radio_counts": [
+        {
+          "FrameKind": "ACK",
+          "RateKeyKbps": "128",
+          "RateBps": "133333.333333333",
+          "TxPowerDbm": "33",
+          "count": 172
+        }
+      ],
+      "ordinary_native_actual_radio_counts": [
+        {
+          "frame_type": "ACK",
+          "actual_rate_key_kbps": "128",
+          "actual_rate_bps": "133333.33333333334",
+          "actual_power_dbm": "33",
+          "count": 181
+        }
+      ],
+      "actual_feedback_changed_fields": {},
+      "actual_feedback_equal_excluding_decision_id": true,
+      "existing_raw_csvs": [
+        {
+          "path": "raw/actual_feedback.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/application_admission_statistics.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/application_admission_trace.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/hop_nodes.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/link_decisions.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/mac_nodes.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/neighbors.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/nodes.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/nwk_nodes.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/phy_trace.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/protocol_trace.csv",
+          "byte_equal": false
+        },
+        {
+          "path": "raw/research_summary.csv",
+          "byte_equal": false
+        },
+        {
+          "path": "raw/routes.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/scenario.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/trace.csv",
+          "byte_equal": false
+        }
+      ],
+      "protocol_row_count": {
+        "t8": 15833,
+        "t9": 15832
+      },
+      "protocol_equal_ignoring_mac_prepare": true,
+      "native_artifact_hashes": {
+        "ns3-trace.csv.gz": "5ce631787c7fb51735286ba34fae3a22eb2930e7c930a8061c89d65b81283af1",
+        "ns3-service.csv.gz": "4f98950d4e620776dcdab4d144bb951ed0fa0164b9bc0ad5dbba142be4ec4682",
+        "ns3-link-decisions.csv.gz": "e2b2bfc8703e7106f1265bc2bac4c044806cb8c067f9ba5e65fd2889f181ca8f"
+      }
+    },
+    {
+      "storage_key": "c128",
+      "flows": [
+        {
+          "source": 2,
+          "destination": 1,
+          "t8": {
+            "admitted": 493,
+            "delivered": 477,
+            "pending": 16,
+            "dropped": 0,
+            "first_delivery_s": 302.688103999997,
+            "delivered_300_320": 133,
+            "admitted_300_320": 149,
+            "delay_sum_s": 727.656287972611,
+            "mean_latency_s": 1.5254848804457255
+          },
+          "t9": {
+            "admitted": 493,
+            "delivered": 477,
+            "pending": 16,
+            "dropped": 0,
+            "first_delivery_s": 302.688103999997,
+            "delivered_300_320": 133,
+            "admitted_300_320": 149,
+            "delay_sum_s": 727.656287972611,
+            "mean_latency_s": 1.5254848804457255
+          },
+          "ns3": {
+            "admitted": 460,
+            "delivered": 444,
+            "unmatched_sends": 16,
+            "first_delivery_s": 301.557104,
+            "delivered_300_320": 100,
+            "admitted_300_320": 116,
+            "delay_sum_s": 754.1683560000006,
+            "mean_latency_s": 1.6985773783783797
+          },
+          "delivery_change_t9_minus_t8": 0,
+          "delivery_gap_t9_minus_ns3": 33,
+          "delivery_gap_percent_of_ns3": 7.432432432432434,
+          "early_delivery_gap_t9_minus_ns3": 33
+        },
+        {
+          "source": 3,
+          "destination": 1,
+          "t8": {
+            "admitted": 461,
+            "delivered": 451,
+            "pending": 10,
+            "dropped": 0,
+            "first_delivery_s": 301.583103999999,
+            "delivered_300_320": 121,
+            "admitted_300_320": 137,
+            "delay_sum_s": 794.8867439742927,
+            "mean_latency_s": 1.7624983236680547
+          },
+          "t9": {
+            "admitted": 461,
+            "delivered": 451,
+            "pending": 10,
+            "dropped": 0,
+            "first_delivery_s": 301.583103999999,
+            "delivered_300_320": 121,
+            "admitted_300_320": 137,
+            "delay_sum_s": 794.8867439742927,
+            "mean_latency_s": 1.7624983236680547
+          },
+          "ns3": {
+            "admitted": 486,
+            "delivered": 470,
+            "unmatched_sends": 16,
+            "first_delivery_s": 302.649104,
+            "delivered_300_320": 122,
+            "admitted_300_320": 138,
+            "delay_sum_s": 794.9204600000004,
+            "mean_latency_s": 1.6913201276595753
+          },
+          "delivery_change_t9_minus_t8": 0,
+          "delivery_gap_t9_minus_ns3": -19,
+          "delivery_gap_percent_of_ns3": -4.042553191489362,
+          "early_delivery_gap_t9_minus_ns3": -1
+        }
+      ],
+      "counts": {
+        "t8": {
+          "Generated": 954,
+          "Received": 928,
+          "Dropped": 0,
+          "Pending": 26
+        },
+        "t9": {
+          "Generated": 954,
+          "Received": 928,
+          "Dropped": 0,
+          "Pending": 26
+        },
+        "ns3": {
+          "admitted": 946,
+          "delivered": 914,
+          "unmatched_sends": 32
+        }
+      },
+      "statistics_exact_equal": true,
+      "changed_statistics": {},
+      "changed_application_records": [],
+      "service": {
+        "SchemaVersion": "csr-matlab-ack-service-diagnostics-v1",
+        "Enabled": true,
+        "MaxRecords": 100000,
+        "WindowStartSeconds": 300,
+        "WindowEndSeconds": 320,
+        "WindowBoundary": "start_inclusive_end_exclusive",
+        "ServiceEventCount": 23633,
+        "CapturedServiceRecords": 23633,
+        "OmittedServiceRecords": 0,
+        "OutOfWindowServiceEvents": 49997,
+        "CancellationSnapshotCount": 508,
+        "CancellationBeforeCount": 254,
+        "CancellationAfterCount": 254,
+        "CancellationPairErrors": 0,
+        "PendingCancellationPair": false,
+        "CancellationPairsComplete": true,
+        "Complete": true,
+        "InheritedFeedbackComplete": true,
+        "StageMeaning": "Existing protocol callbacks, completed application admissions and paired cancellation callback observations",
+        "ObservationOrder": "ObservationId is callback arrival order among all in-window service rows",
+        "DetailsMeaning": "DetailsJSON preserves callback details, the complete admission row, or the cancellation scalar snapshot and selector",
+        "StateMeaning": "State is the opaque string supplied by a MAC event or read at a cancellation callback boundary",
+        "CapacityMeaning": "HOP capacity fields copy existing admission snapshots; no additional HOP/NWK reads or intermediate release stages",
+        "CancellationMeaning": "Before/after rows surround one original MAC cancellation callback; peer/sequence/control type are selectors, not a fabricated packet identity",
+        "MissingNumericValues": "NaN denotes unavailable; boolean details are 0 or 1 when supplied",
+        "IdentityMeaning": "PacketId and AggregateId are local uint64 identities with availability flags; no cross-simulator identity equivalence",
+        "AggregateIdentityLimit": "MAC callbacks precede or retain a separate copy from simulation transmission ID assignment; their aggregate ID is unavailable",
+        "FeedbackWindowMeaning": "Only ServiceTrace is windowed; inherited T8 feedback traces cover the entire run",
+        "Passive": true,
+        "ScheduledEvents": 0,
+        "RandomDraws": 0,
+        "AdditionalStateReads": 3048,
+        "AdditionalStateReadsMeaning": "Six public MAC scalar reads per cancellation snapshot; no HOP/NWK peer or state getters"
+      },
+      "cancellation_removals": [
+        {
+          "node": 3,
+          "hop_sequence": 9,
+          "time_s": 302.807543999997,
+          "state": "Track",
+          "before": {
+            "State": "Track",
+            "PreparationActive": true,
+            "ReservationSlot": 15,
+            "ReservationCounter": 2,
+            "DataDepth": 1,
+            "AckDepth": 0,
+            "PeerId": 1,
+            "Sequence": 9,
+            "ControlType": "",
+            "RemovedCount": null
+          },
+          "after": {
+            "State": "Track",
+            "PreparationActive": true,
+            "ReservationSlot": 15,
+            "ReservationCounter": 2,
+            "DataDepth": 0,
+            "AckDepth": 0,
+            "PeerId": 1,
+            "Sequence": 9,
+            "ControlType": "",
+            "RemovedCount": 1
+          },
+          "before_observation_id": 2894,
+          "after_observation_id": 2895,
+          "next_hop_admission_time_s": 302.807544027775,
+          "next_hop_admission_observation_id": 2901,
+          "wake_delta_ns_from_csv": 27.778014555224217,
+          "next_app_admitted_s": 302.808,
+          "next_data_packet_id": "4",
+          "next_data_tx_t8_s": 302.834999999995,
+          "next_data_tx_t9_s": 302.834999999995,
+          "next_data_tx_change_s": 0.0
+        }
+      ],
+      "first_ordinary_ack": {
+        "2": {
+          "matlab_first_decision_time_s": 302.688103999997,
+          "matlab_first_decision_id": "41",
+          "ns3_first_decision_time_s": 301.557104,
+          "ns3_first_decision_id": "44",
+          "matlab_transmitted_decision_queue_s": 302.688103999997,
+          "matlab_decision_id": "41",
+          "matlab_ota_time_s": 302.782999999997,
+          "matlab_selected_rate_kbps": 128.0,
+          "matlab_power_dbm": 33.0,
+          "ns3_transmitted_decision_queue_s": 303.819104,
+          "ns3_decision_id": "46",
+          "ns3_ota_time_s": 303.966,
+          "ns3_selected_rate_kbps": 128.0,
+          "ns3_power_dbm": 33.0,
+          "matlab_admission_resume_s": 302.808,
+          "ns3_admission_resume_s": 303.992
+        },
+        "3": {
+          "matlab_first_decision_time_s": 301.583103999999,
+          "matlab_first_decision_id": "40",
+          "ns3_first_decision_time_s": 302.649104,
+          "ns3_first_decision_id": "45",
+          "matlab_transmitted_decision_queue_s": 301.583103999999,
+          "matlab_decision_id": "40",
+          "matlab_ota_time_s": 302.782999999997,
+          "matlab_selected_rate_kbps": 128.0,
+          "matlab_power_dbm": 33.0,
+          "ns3_transmitted_decision_queue_s": 302.649104,
+          "ns3_decision_id": "45",
+          "ns3_ota_time_s": 303.966,
+          "ns3_selected_rate_kbps": 128.0,
+          "ns3_power_dbm": 33.0,
+          "matlab_admission_resume_s": 302.808,
+          "ns3_admission_resume_s": 303.992
+        }
+      },
+      "ordinary_matlab_actual_radio_counts": [
+        {
+          "FrameKind": "ACK",
+          "RateKeyKbps": "128",
+          "RateBps": "133333.333333333",
+          "TxPowerDbm": "33",
+          "count": 171
+        }
+      ],
+      "ordinary_native_actual_radio_counts": [
+        {
+          "frame_type": "ACK",
+          "actual_rate_key_kbps": "128",
+          "actual_rate_bps": "133333.33333333334",
+          "actual_power_dbm": "33",
+          "count": 176
+        }
+      ],
+      "actual_feedback_changed_fields": {},
+      "actual_feedback_equal_excluding_decision_id": true,
+      "existing_raw_csvs": [
+        {
+          "path": "raw/actual_feedback.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/application_admission_statistics.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/application_admission_trace.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/hop_nodes.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/link_decisions.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/mac_nodes.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/neighbors.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/nodes.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/nwk_nodes.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/phy_trace.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/protocol_trace.csv",
+          "byte_equal": false
+        },
+        {
+          "path": "raw/research_summary.csv",
+          "byte_equal": false
+        },
+        {
+          "path": "raw/routes.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/scenario.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/trace.csv",
+          "byte_equal": false
+        }
+      ],
+      "protocol_row_count": {
+        "t8": 15358,
+        "t9": 15357
+      },
+      "protocol_equal_ignoring_mac_prepare": true,
+      "native_artifact_hashes": {
+        "ns3-trace.csv.gz": "c333e18cad89df71b5b1ce4a5ca22bef6eab66e790ea2016a65655bfc478909f",
+        "ns3-service.csv.gz": "f406c052d72b81e63dfcae69822831bd6132f173a7ca14fd88d69d67533bd630",
+        "ns3-link-decisions.csv.gz": "1e0087fd196cebc8592401e943fcafc341b12bc91bc77be000250dc129966fd8"
+      }
+    },
+    {
+      "storage_key": "c130",
+      "flows": [
+        {
+          "source": 2,
+          "destination": 1,
+          "t8": {
+            "admitted": 465,
+            "delivered": 449,
+            "pending": 16,
+            "dropped": 0,
+            "first_delivery_s": 302.714103999997,
+            "delivered_300_320": 122,
+            "admitted_300_320": 138,
+            "delay_sum_s": 806.4667359747252,
+            "mean_latency_s": 1.7961397237744436
+          },
+          "t9": {
+            "admitted": 465,
+            "delivered": 449,
+            "pending": 16,
+            "dropped": 0,
+            "first_delivery_s": 302.714103999997,
+            "delivered_300_320": 122,
+            "admitted_300_320": 138,
+            "delay_sum_s": 806.4667359747252,
+            "mean_latency_s": 1.7961397237744436
+          },
+          "ns3": {
+            "admitted": 473,
+            "delivered": 457,
+            "unmatched_sends": 16,
+            "first_delivery_s": 301.596104,
+            "delivered_300_320": 113,
+            "admitted_300_320": 123,
+            "delay_sum_s": 773.5283280000027,
+            "mean_latency_s": 1.6926221619256077
+          },
+          "delivery_change_t9_minus_t8": 0,
+          "delivery_gap_t9_minus_ns3": -8,
+          "delivery_gap_percent_of_ns3": -1.7505470459518557,
+          "early_delivery_gap_t9_minus_ns3": 9
+        },
+        {
+          "source": 3,
+          "destination": 1,
+          "t8": {
+            "admitted": 461,
+            "delivered": 445,
+            "pending": 16,
+            "dropped": 0,
+            "first_delivery_s": 301.427103999999,
+            "delivered_300_320": 93,
+            "admitted_300_320": 103,
+            "delay_sum_s": 780.911399972225,
+            "mean_latency_s": 1.7548570785892696
+          },
+          "t9": {
+            "admitted": 461,
+            "delivered": 445,
+            "pending": 16,
+            "dropped": 0,
+            "first_delivery_s": 301.427103999999,
+            "delivered_300_320": 93,
+            "admitted_300_320": 103,
+            "delay_sum_s": 780.911399972225,
+            "mean_latency_s": 1.7548570785892696
+          },
+          "ns3": {
+            "admitted": 475,
+            "delivered": 459,
+            "unmatched_sends": 16,
+            "first_delivery_s": 302.753104,
+            "delivered_300_320": 121,
+            "admitted_300_320": 131,
+            "delay_sum_s": 746.7077360000012,
+            "mean_latency_s": 1.6268142396514187
+          },
+          "delivery_change_t9_minus_t8": 0,
+          "delivery_gap_t9_minus_ns3": -14,
+          "delivery_gap_percent_of_ns3": -3.05010893246187,
+          "early_delivery_gap_t9_minus_ns3": -28
+        }
+      ],
+      "counts": {
+        "t8": {
+          "Generated": 926,
+          "Received": 894,
+          "Dropped": 0,
+          "Pending": 32
+        },
+        "t9": {
+          "Generated": 926,
+          "Received": 894,
+          "Dropped": 0,
+          "Pending": 32
+        },
+        "ns3": {
+          "admitted": 948,
+          "delivered": 916,
+          "unmatched_sends": 32
+        }
+      },
+      "statistics_exact_equal": true,
+      "changed_statistics": {},
+      "changed_application_records": [],
+      "service": {
+        "SchemaVersion": "csr-matlab-ack-service-diagnostics-v1",
+        "Enabled": true,
+        "MaxRecords": 100000,
+        "WindowStartSeconds": 300,
+        "WindowEndSeconds": 320,
+        "WindowBoundary": "start_inclusive_end_exclusive",
+        "ServiceEventCount": 23137,
+        "CapturedServiceRecords": 23137,
+        "OmittedServiceRecords": 0,
+        "OutOfWindowServiceEvents": 50215,
+        "CancellationSnapshotCount": 418,
+        "CancellationBeforeCount": 209,
+        "CancellationAfterCount": 209,
+        "CancellationPairErrors": 0,
+        "PendingCancellationPair": false,
+        "CancellationPairsComplete": true,
+        "Complete": true,
+        "InheritedFeedbackComplete": true,
+        "StageMeaning": "Existing protocol callbacks, completed application admissions and paired cancellation callback observations",
+        "ObservationOrder": "ObservationId is callback arrival order among all in-window service rows",
+        "DetailsMeaning": "DetailsJSON preserves callback details, the complete admission row, or the cancellation scalar snapshot and selector",
+        "StateMeaning": "State is the opaque string supplied by a MAC event or read at a cancellation callback boundary",
+        "CapacityMeaning": "HOP capacity fields copy existing admission snapshots; no additional HOP/NWK reads or intermediate release stages",
+        "CancellationMeaning": "Before/after rows surround one original MAC cancellation callback; peer/sequence/control type are selectors, not a fabricated packet identity",
+        "MissingNumericValues": "NaN denotes unavailable; boolean details are 0 or 1 when supplied",
+        "IdentityMeaning": "PacketId and AggregateId are local uint64 identities with availability flags; no cross-simulator identity equivalence",
+        "AggregateIdentityLimit": "MAC callbacks precede or retain a separate copy from simulation transmission ID assignment; their aggregate ID is unavailable",
+        "FeedbackWindowMeaning": "Only ServiceTrace is windowed; inherited T8 feedback traces cover the entire run",
+        "Passive": true,
+        "ScheduledEvents": 0,
+        "RandomDraws": 0,
+        "AdditionalStateReads": 2508,
+        "AdditionalStateReadsMeaning": "Six public MAC scalar reads per cancellation snapshot; no HOP/NWK peer or state getters"
+      },
+      "cancellation_removals": [
+        {
+          "node": 2,
+          "hop_sequence": 10,
+          "time_s": 303.873543999995,
+          "state": "Track",
+          "before": {
+            "State": "Track",
+            "PreparationActive": true,
+            "ReservationSlot": 21,
+            "ReservationCounter": 13,
+            "DataDepth": 1,
+            "AckDepth": 0,
+            "PeerId": 1,
+            "Sequence": 10,
+            "ControlType": "",
+            "RemovedCount": null
+          },
+          "after": {
+            "State": "Track",
+            "PreparationActive": true,
+            "ReservationSlot": 21,
+            "ReservationCounter": 13,
+            "DataDepth": 0,
+            "AckDepth": 0,
+            "PeerId": 1,
+            "Sequence": 10,
+            "ControlType": "",
+            "RemovedCount": 1
+          },
+          "before_observation_id": 3968,
+          "after_observation_id": 3969,
+          "next_hop_admission_time_s": 303.873544027773,
+          "next_hop_admission_observation_id": 3977,
+          "wake_delta_ns_from_csv": 27.778014555224217,
+          "next_app_admitted_s": 303.874,
+          "next_data_packet_id": "3",
+          "next_data_tx_t8_s": 304.043999999993,
+          "next_data_tx_t9_s": 304.043999999993,
+          "next_data_tx_change_s": 0.0
+        }
+      ],
+      "first_ordinary_ack": {
+        "2": {
+          "matlab_first_decision_time_s": 302.714103999997,
+          "matlab_first_decision_id": "50",
+          "ns3_first_decision_time_s": 301.596104,
+          "ns3_first_decision_id": "51",
+          "matlab_transmitted_decision_queue_s": 302.714103999997,
+          "matlab_decision_id": "50",
+          "matlab_ota_time_s": 303.848999999995,
+          "matlab_selected_rate_kbps": 128.0,
+          "matlab_power_dbm": 33.0,
+          "ns3_transmitted_decision_queue_s": 303.962104,
+          "ns3_decision_id": "53",
+          "ns3_ota_time_s": 305.097,
+          "ns3_selected_rate_kbps": 128.0,
+          "ns3_power_dbm": 33.0,
+          "matlab_admission_resume_s": 303.874,
+          "ns3_admission_resume_s": 305.122
+        },
+        "3": {
+          "matlab_first_decision_time_s": 301.427103999999,
+          "matlab_first_decision_id": "49",
+          "ns3_first_decision_time_s": 302.753104,
+          "ns3_first_decision_id": "52",
+          "matlab_transmitted_decision_queue_s": 303.793103999995,
+          "matlab_decision_id": "51",
+          "matlab_ota_time_s": 303.848999999995,
+          "matlab_selected_rate_kbps": 128.0,
+          "matlab_power_dbm": 33.0,
+          "ns3_transmitted_decision_queue_s": 305.054104,
+          "ns3_decision_id": "54",
+          "ns3_ota_time_s": 305.097,
+          "ns3_selected_rate_kbps": 128.0,
+          "ns3_power_dbm": 33.0,
+          "matlab_admission_resume_s": 303.874,
+          "ns3_admission_resume_s": 305.122
+        }
+      },
+      "ordinary_matlab_actual_radio_counts": [
+        {
+          "FrameKind": "ACK",
+          "RateKeyKbps": "128",
+          "RateBps": "133333.333333333",
+          "TxPowerDbm": "33",
+          "count": 192
+        }
+      ],
+      "ordinary_native_actual_radio_counts": [
+        {
+          "frame_type": "ACK",
+          "actual_rate_key_kbps": "128",
+          "actual_rate_bps": "133333.33333333334",
+          "actual_power_dbm": "33",
+          "count": 168
+        }
+      ],
+      "actual_feedback_changed_fields": {},
+      "actual_feedback_equal_excluding_decision_id": true,
+      "existing_raw_csvs": [
+        {
+          "path": "raw/actual_feedback.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/application_admission_statistics.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/application_admission_trace.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/hop_nodes.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/link_decisions.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/mac_nodes.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/neighbors.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/nodes.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/nwk_nodes.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/phy_trace.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/protocol_trace.csv",
+          "byte_equal": false
+        },
+        {
+          "path": "raw/research_summary.csv",
+          "byte_equal": false
+        },
+        {
+          "path": "raw/routes.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/scenario.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/trace.csv",
+          "byte_equal": false
+        }
+      ],
+      "protocol_row_count": {
+        "t8": 15123,
+        "t9": 15122
+      },
+      "protocol_equal_ignoring_mac_prepare": true,
+      "native_artifact_hashes": {
+        "ns3-trace.csv.gz": "757966ace5f9e7d12f858dbcc2c9d316570cb4da5a0d7661dd901759a1f9f300",
+        "ns3-service.csv.gz": "26b9e911f987dbc4146870a8b74155a0dfc385c93cc04b2fbfdbeb2c8577e4d7",
+        "ns3-link-decisions.csv.gz": "b5e31ce4005b0e0962effd851b1b2873dd613dac0464c737f1b8baf516c26c43"
+      }
+    },
+    {
+      "storage_key": "c131",
+      "flows": [
+        {
+          "source": 2,
+          "destination": 1,
+          "t8": {
+            "admitted": 458,
+            "delivered": 442,
+            "pending": 16,
+            "dropped": 0,
+            "first_delivery_s": 301.557103999999,
+            "delivered_300_320": 104,
+            "admitted_300_320": 120,
+            "delay_sum_s": 764.1606279731635,
+            "mean_latency_s": 1.7288701990343065
+          },
+          "t9": {
+            "admitted": 458,
+            "delivered": 442,
+            "pending": 16,
+            "dropped": 0,
+            "first_delivery_s": 301.557103999999,
+            "delivered_300_320": 104,
+            "admitted_300_320": 120,
+            "delay_sum_s": 764.2126279731634,
+            "mean_latency_s": 1.7289878460931298
+          },
+          "ns3": {
+            "admitted": 433,
+            "delivered": 417,
+            "unmatched_sends": 16,
+            "first_delivery_s": 302.532104,
+            "delivered_300_320": 102,
+            "admitted_300_320": 106,
+            "delay_sum_s": 783.6291280000003,
+            "mean_latency_s": 1.8792065419664274
+          },
+          "delivery_change_t9_minus_t8": 0,
+          "delivery_gap_t9_minus_ns3": 25,
+          "delivery_gap_percent_of_ns3": 5.995203836930463,
+          "early_delivery_gap_t9_minus_ns3": 2
+        },
+        {
+          "source": 3,
+          "destination": 1,
+          "t8": {
+            "admitted": 469,
+            "delivered": 453,
+            "pending": 16,
+            "dropped": 0,
+            "first_delivery_s": 302.623103999997,
+            "delivered_300_320": 107,
+            "admitted_300_320": 123,
+            "delay_sum_s": 771.1510319733782,
+            "mean_latency_s": 1.7023201588816295
+          },
+          "t9": {
+            "admitted": 469,
+            "delivered": 453,
+            "pending": 16,
+            "dropped": 0,
+            "first_delivery_s": 302.623103999997,
+            "delivered_300_320": 107,
+            "admitted_300_320": 123,
+            "delay_sum_s": 771.1510319733782,
+            "mean_latency_s": 1.7023201588816295
+          },
+          "ns3": {
+            "admitted": 470,
+            "delivered": 466,
+            "unmatched_sends": 4,
+            "first_delivery_s": 301.453104,
+            "delivered_300_320": 105,
+            "admitted_300_320": 115,
+            "delay_sum_s": 784.592484,
+            "mean_latency_s": 1.6836748583690988
+          },
+          "delivery_change_t9_minus_t8": 0,
+          "delivery_gap_t9_minus_ns3": -13,
+          "delivery_gap_percent_of_ns3": -2.7896995708154515,
+          "early_delivery_gap_t9_minus_ns3": 2
+        }
+      ],
+      "counts": {
+        "t8": {
+          "Generated": 927,
+          "Received": 895,
+          "Dropped": 0,
+          "Pending": 32
+        },
+        "t9": {
+          "Generated": 927,
+          "Received": 895,
+          "Dropped": 0,
+          "Pending": 32
+        },
+        "ns3": {
+          "admitted": 903,
+          "delivered": 883,
+          "unmatched_sends": 20
+        }
+      },
+      "statistics_exact_equal": false,
+      "changed_statistics": {
+        "LatencySumSeconds": {
+          "t8": 1535.3116599465488,
+          "t9": 1535.363659946549
+        },
+        "MeanLatencySeconds": {
+          "t8": 1.7154320222866468,
+          "t9": 1.715490122845306
+        }
+      },
+      "changed_application_records": [
+        {
+          "packet_id": "4",
+          "source": 3,
+          "received_before_s": 303.957643999993,
+          "received_after_s": 303.879643999993,
+          "latency_change_s": -0.07799999999985996
+        },
+        {
+          "packet_id": "5",
+          "source": 2,
+          "received_before_s": 304.503643999992,
+          "received_after_s": 304.555643999992,
+          "latency_change_s": 0.051999999999909896
+        },
+        {
+          "packet_id": "6",
+          "source": 3,
+          "received_before_s": 304.685643999992,
+          "received_after_s": 304.373643999992,
+          "latency_change_s": -0.3119999999994505
+        },
+        {
+          "packet_id": "8",
+          "source": 3,
+          "received_before_s": 305.036643999991,
+          "received_after_s": 305.114643999991,
+          "latency_change_s": 0.07799999999985996
+        },
+        {
+          "packet_id": "10",
+          "source": 3,
+          "received_before_s": 305.54166399999,
+          "received_after_s": 305.61966399999,
+          "latency_change_s": 0.07799999999985996
+        },
+        {
+          "packet_id": "12",
+          "source": 3,
+          "received_before_s": 305.54166399999,
+          "received_after_s": 305.61966399999,
+          "latency_change_s": 0.07799999999985996
+        },
+        {
+          "packet_id": "14",
+          "source": 3,
+          "received_before_s": 306.048663999989,
+          "received_after_s": 306.126663999989,
+          "latency_change_s": 0.07799999999985996
+        },
+        {
+          "packet_id": "16",
+          "source": 3,
+          "received_before_s": 306.048663999989,
+          "received_after_s": 306.126663999989,
+          "latency_change_s": 0.07799999999985996
+        }
+      ],
+      "service": {
+        "SchemaVersion": "csr-matlab-ack-service-diagnostics-v1",
+        "Enabled": true,
+        "MaxRecords": 100000,
+        "WindowStartSeconds": 300,
+        "WindowEndSeconds": 320,
+        "WindowBoundary": "start_inclusive_end_exclusive",
+        "ServiceEventCount": 23125,
+        "CapturedServiceRecords": 23125,
+        "OmittedServiceRecords": 0,
+        "OutOfWindowServiceEvents": 50318,
+        "CancellationSnapshotCount": 422,
+        "CancellationBeforeCount": 211,
+        "CancellationAfterCount": 211,
+        "CancellationPairErrors": 0,
+        "PendingCancellationPair": false,
+        "CancellationPairsComplete": true,
+        "Complete": true,
+        "InheritedFeedbackComplete": true,
+        "StageMeaning": "Existing protocol callbacks, completed application admissions and paired cancellation callback observations",
+        "ObservationOrder": "ObservationId is callback arrival order among all in-window service rows",
+        "DetailsMeaning": "DetailsJSON preserves callback details, the complete admission row, or the cancellation scalar snapshot and selector",
+        "StateMeaning": "State is the opaque string supplied by a MAC event or read at a cancellation callback boundary",
+        "CapacityMeaning": "HOP capacity fields copy existing admission snapshots; no additional HOP/NWK reads or intermediate release stages",
+        "CancellationMeaning": "Before/after rows surround one original MAC cancellation callback; peer/sequence/control type are selectors, not a fabricated packet identity",
+        "MissingNumericValues": "NaN denotes unavailable; boolean details are 0 or 1 when supplied",
+        "IdentityMeaning": "PacketId and AggregateId are local uint64 identities with availability flags; no cross-simulator identity equivalence",
+        "AggregateIdentityLimit": "MAC callbacks precede or retain a separate copy from simulation transmission ID assignment; their aggregate ID is unavailable",
+        "FeedbackWindowMeaning": "Only ServiceTrace is windowed; inherited T8 feedback traces cover the entire run",
+        "Passive": true,
+        "ScheduledEvents": 0,
+        "RandomDraws": 0,
+        "AdditionalStateReads": 2532,
+        "AdditionalStateReadsMeaning": "Six public MAC scalar reads per cancellation snapshot; no HOP/NWK peer or state getters"
+      },
+      "cancellation_removals": [
+        {
+          "node": 3,
+          "hop_sequence": 9,
+          "time_s": 303.821543999996,
+          "state": "Track",
+          "before": {
+            "State": "Track",
+            "PreparationActive": true,
+            "ReservationSlot": 6,
+            "ReservationCounter": 0,
+            "DataDepth": 1,
+            "AckDepth": 0,
+            "PeerId": 1,
+            "Sequence": 9,
+            "ControlType": "",
+            "RemovedCount": null
+          },
+          "after": {
+            "State": "Track",
+            "PreparationActive": true,
+            "ReservationSlot": 6,
+            "ReservationCounter": 0,
+            "DataDepth": 0,
+            "AckDepth": 0,
+            "PeerId": 1,
+            "Sequence": 9,
+            "ControlType": "",
+            "RemovedCount": 1
+          },
+          "before_observation_id": 3921,
+          "after_observation_id": 3922,
+          "next_hop_admission_time_s": 303.821544027773,
+          "next_hop_admission_observation_id": 3928,
+          "wake_delta_ns_from_csv": 27.776991373684723,
+          "next_app_admitted_s": 303.822,
+          "next_data_packet_id": "4",
+          "next_data_tx_t8_s": 303.900999999993,
+          "next_data_tx_t9_s": 303.822999999993,
+          "next_data_tx_change_s": -0.07800000000003138
+        }
+      ],
+      "first_ordinary_ack": {
+        "2": {
+          "matlab_first_decision_time_s": 301.557103999999,
+          "matlab_first_decision_id": "47",
+          "ns3_first_decision_time_s": 302.532104,
+          "ns3_first_decision_id": "52",
+          "matlab_transmitted_decision_queue_s": 303.728103999995,
+          "matlab_decision_id": "49",
+          "matlab_ota_time_s": 303.796999999996,
+          "matlab_selected_rate_kbps": 128.0,
+          "matlab_power_dbm": 33.0,
+          "ns3_transmitted_decision_queue_s": 304.729104,
+          "ns3_decision_id": "54",
+          "ns3_ota_time_s": 304.863,
+          "ns3_selected_rate_kbps": 128.0,
+          "ns3_power_dbm": 33.0,
+          "matlab_admission_resume_s": 303.822,
+          "ns3_admission_resume_s": 304.888
+        },
+        "3": {
+          "matlab_first_decision_time_s": 302.623103999997,
+          "matlab_first_decision_id": "48",
+          "ns3_first_decision_time_s": 301.453104,
+          "ns3_first_decision_id": "51",
+          "matlab_transmitted_decision_queue_s": 302.623103999997,
+          "matlab_decision_id": "48",
+          "matlab_ota_time_s": 303.796999999996,
+          "matlab_selected_rate_kbps": 128.0,
+          "matlab_power_dbm": 33.0,
+          "ns3_transmitted_decision_queue_s": 303.663104,
+          "ns3_decision_id": "53",
+          "ns3_ota_time_s": 304.863,
+          "ns3_selected_rate_kbps": 128.0,
+          "ns3_power_dbm": 33.0,
+          "matlab_admission_resume_s": 303.822,
+          "ns3_admission_resume_s": 304.888
+        }
+      },
+      "ordinary_matlab_actual_radio_counts": [
+        {
+          "FrameKind": "ACK",
+          "RateKeyKbps": "128",
+          "RateBps": "133333.333333333",
+          "TxPowerDbm": "33",
+          "count": 180
+        }
+      ],
+      "ordinary_native_actual_radio_counts": [
+        {
+          "frame_type": "ACK",
+          "actual_rate_key_kbps": "128",
+          "actual_rate_bps": "133333.33333333334",
+          "actual_power_dbm": "33",
+          "count": 181
+        }
+      ],
+      "actual_feedback_changed_fields": {
+        "DecisionId": 5
+      },
+      "actual_feedback_equal_excluding_decision_id": true,
+      "existing_raw_csvs": [
+        {
+          "path": "raw/actual_feedback.csv",
+          "byte_equal": false
+        },
+        {
+          "path": "raw/application_admission_statistics.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/application_admission_trace.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/hop_nodes.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/link_decisions.csv",
+          "byte_equal": false
+        },
+        {
+          "path": "raw/mac_nodes.csv",
+          "byte_equal": false
+        },
+        {
+          "path": "raw/neighbors.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/nodes.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/nwk_nodes.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/phy_trace.csv",
+          "byte_equal": false
+        },
+        {
+          "path": "raw/protocol_trace.csv",
+          "byte_equal": false
+        },
+        {
+          "path": "raw/research_summary.csv",
+          "byte_equal": false
+        },
+        {
+          "path": "raw/routes.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/scenario.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/trace.csv",
+          "byte_equal": false
+        }
+      ],
+      "protocol_row_count": {
+        "t8": 15223,
+        "t9": 15222
+      },
+      "protocol_equal_ignoring_mac_prepare": false,
+      "native_artifact_hashes": {
+        "ns3-trace.csv.gz": "2d785e943327c889e05a1d2115ab31a0e06a4b1663542d49ee0e9af2562ddd5d",
+        "ns3-service.csv.gz": "9e8b2f746f9f5cad8ee77dba88b9aac46fd1985b696557afad454412e64caba8",
+        "ns3-link-decisions.csv.gz": "22cb32b411af1fc6e02ece15be0cfbbb87d87449c2daacd2e3eefe32b1031349"
+      }
+    },
+    {
+      "storage_key": "c132",
+      "flows": [
+        {
+          "source": 2,
+          "destination": 1,
+          "t8": {
+            "admitted": 446,
+            "delivered": 430,
+            "pending": 16,
+            "dropped": 0,
+            "first_delivery_s": 302.467103999997,
+            "delivered_300_320": 104,
+            "admitted_300_320": 120,
+            "delay_sum_s": 786.8321799744227,
+            "mean_latency_s": 1.8298422790102855
+          },
+          "t9": {
+            "admitted": 446,
+            "delivered": 430,
+            "pending": 16,
+            "dropped": 0,
+            "first_delivery_s": 302.467103999997,
+            "delivered_300_320": 104,
+            "admitted_300_320": 120,
+            "delay_sum_s": 786.8321799744227,
+            "mean_latency_s": 1.8298422790102855
+          },
+          "ns3": {
+            "admitted": 467,
+            "delivered": 451,
+            "unmatched_sends": 16,
+            "first_delivery_s": 302.779104,
+            "delivered_300_320": 118,
+            "admitted_300_320": 134,
+            "delay_sum_s": 772.5877439999988,
+            "mean_latency_s": 1.7130548647450083
+          },
+          "delivery_change_t9_minus_t8": 0,
+          "delivery_gap_t9_minus_ns3": -21,
+          "delivery_gap_percent_of_ns3": -4.6563192904656265,
+          "early_delivery_gap_t9_minus_ns3": -14
+        },
+        {
+          "source": 3,
+          "destination": 1,
+          "t8": {
+            "admitted": 503,
+            "delivered": 487,
+            "pending": 16,
+            "dropped": 0,
+            "first_delivery_s": 301.362103999999,
+            "delivered_300_320": 129,
+            "admitted_300_320": 145,
+            "delay_sum_s": 765.6066479722296,
+            "mean_latency_s": 1.5720875728382537
+          },
+          "t9": {
+            "admitted": 503,
+            "delivered": 487,
+            "pending": 16,
+            "dropped": 0,
+            "first_delivery_s": 301.362103999999,
+            "delivered_300_320": 129,
+            "admitted_300_320": 145,
+            "delay_sum_s": 765.6066479722296,
+            "mean_latency_s": 1.5720875728382537
+          },
+          "ns3": {
+            "admitted": 485,
+            "delivered": 469,
+            "unmatched_sends": 16,
+            "first_delivery_s": 301.674104,
+            "delivered_300_320": 105,
+            "admitted_300_320": 121,
+            "delay_sum_s": 748.4232560000011,
+            "mean_latency_s": 1.595785194029853
+          },
+          "delivery_change_t9_minus_t8": 0,
+          "delivery_gap_t9_minus_ns3": 18,
+          "delivery_gap_percent_of_ns3": 3.837953091684443,
+          "early_delivery_gap_t9_minus_ns3": 24
+        }
+      ],
+      "counts": {
+        "t8": {
+          "Generated": 949,
+          "Received": 917,
+          "Dropped": 0,
+          "Pending": 32
+        },
+        "t9": {
+          "Generated": 949,
+          "Received": 917,
+          "Dropped": 0,
+          "Pending": 32
+        },
+        "ns3": {
+          "admitted": 952,
+          "delivered": 920,
+          "unmatched_sends": 32
+        }
+      },
+      "statistics_exact_equal": true,
+      "changed_statistics": {},
+      "changed_application_records": [],
+      "service": {
+        "SchemaVersion": "csr-matlab-ack-service-diagnostics-v1",
+        "Enabled": true,
+        "MaxRecords": 100000,
+        "WindowStartSeconds": 300,
+        "WindowEndSeconds": 320,
+        "WindowBoundary": "start_inclusive_end_exclusive",
+        "ServiceEventCount": 23357,
+        "CapturedServiceRecords": 23357,
+        "OmittedServiceRecords": 0,
+        "OutOfWindowServiceEvents": 50339,
+        "CancellationSnapshotCount": 466,
+        "CancellationBeforeCount": 233,
+        "CancellationAfterCount": 233,
+        "CancellationPairErrors": 0,
+        "PendingCancellationPair": false,
+        "CancellationPairsComplete": true,
+        "Complete": true,
+        "InheritedFeedbackComplete": true,
+        "StageMeaning": "Existing protocol callbacks, completed application admissions and paired cancellation callback observations",
+        "ObservationOrder": "ObservationId is callback arrival order among all in-window service rows",
+        "DetailsMeaning": "DetailsJSON preserves callback details, the complete admission row, or the cancellation scalar snapshot and selector",
+        "StateMeaning": "State is the opaque string supplied by a MAC event or read at a cancellation callback boundary",
+        "CapacityMeaning": "HOP capacity fields copy existing admission snapshots; no additional HOP/NWK reads or intermediate release stages",
+        "CancellationMeaning": "Before/after rows surround one original MAC cancellation callback; peer/sequence/control type are selectors, not a fabricated packet identity",
+        "MissingNumericValues": "NaN denotes unavailable; boolean details are 0 or 1 when supplied",
+        "IdentityMeaning": "PacketId and AggregateId are local uint64 identities with availability flags; no cross-simulator identity equivalence",
+        "AggregateIdentityLimit": "MAC callbacks precede or retain a separate copy from simulation transmission ID assignment; their aggregate ID is unavailable",
+        "FeedbackWindowMeaning": "Only ServiceTrace is windowed; inherited T8 feedback traces cover the entire run",
+        "Passive": true,
+        "ScheduledEvents": 0,
+        "RandomDraws": 0,
+        "AdditionalStateReads": 2796,
+        "AdditionalStateReadsMeaning": "Six public MAC scalar reads per cancellation snapshot; no HOP/NWK peer or state getters"
+      },
+      "cancellation_removals": [
+        {
+          "node": 2,
+          "hop_sequence": 10,
+          "time_s": 303.769543999994,
+          "state": "Track",
+          "before": {
+            "State": "Track",
+            "PreparationActive": true,
+            "ReservationSlot": 8,
+            "ReservationCounter": 6,
+            "DataDepth": 1,
+            "AckDepth": 0,
+            "PeerId": 1,
+            "Sequence": 10,
+            "ControlType": "",
+            "RemovedCount": null
+          },
+          "after": {
+            "State": "Track",
+            "PreparationActive": true,
+            "ReservationSlot": 8,
+            "ReservationCounter": 6,
+            "DataDepth": 0,
+            "AckDepth": 0,
+            "PeerId": 1,
+            "Sequence": 10,
+            "ControlType": "",
+            "RemovedCount": 1
+          },
+          "before_observation_id": 3862,
+          "after_observation_id": 3863,
+          "next_hop_admission_time_s": 303.769544027772,
+          "next_hop_admission_observation_id": 3871,
+          "wake_delta_ns_from_csv": 27.777957711805357,
+          "next_app_admitted_s": 303.77,
+          "next_data_packet_id": "3",
+          "next_data_tx_t8_s": 303.848999999993,
+          "next_data_tx_t9_s": 303.848999999993,
+          "next_data_tx_change_s": 0.0
+        }
+      ],
+      "first_ordinary_ack": {
+        "2": {
+          "matlab_first_decision_time_s": 302.467103999997,
+          "matlab_first_decision_id": "49",
+          "ns3_first_decision_time_s": 302.779104,
+          "ns3_first_decision_id": "51",
+          "matlab_transmitted_decision_queue_s": 302.467103999997,
+          "matlab_decision_id": "49",
+          "matlab_ota_time_s": 303.744999999994,
+          "matlab_selected_rate_kbps": 128.0,
+          "matlab_power_dbm": 33.0,
+          "ns3_transmitted_decision_queue_s": 302.779104,
+          "ns3_decision_id": "51",
+          "ns3_ota_time_s": 303.901,
+          "ns3_selected_rate_kbps": 128.0,
+          "ns3_power_dbm": 33.0,
+          "matlab_admission_resume_s": 303.77,
+          "ns3_admission_resume_s": 303.926
+        },
+        "3": {
+          "matlab_first_decision_time_s": 301.362103999999,
+          "matlab_first_decision_id": "48",
+          "ns3_first_decision_time_s": 301.674104,
+          "ns3_first_decision_id": "50",
+          "matlab_transmitted_decision_queue_s": 303.728103999995,
+          "matlab_decision_id": "50",
+          "matlab_ota_time_s": 303.744999999994,
+          "matlab_selected_rate_kbps": 128.0,
+          "matlab_power_dbm": 33.0,
+          "ns3_transmitted_decision_queue_s": 303.897104,
+          "ns3_decision_id": "52",
+          "ns3_ota_time_s": 303.901,
+          "ns3_selected_rate_kbps": 128.0,
+          "ns3_power_dbm": 33.0,
+          "matlab_admission_resume_s": 303.77,
+          "ns3_admission_resume_s": 303.926
+        }
+      },
+      "ordinary_matlab_actual_radio_counts": [
+        {
+          "FrameKind": "ACK",
+          "RateKeyKbps": "128",
+          "RateBps": "133333.333333333",
+          "TxPowerDbm": "33",
+          "count": 174
+        }
+      ],
+      "ordinary_native_actual_radio_counts": [
+        {
+          "frame_type": "ACK",
+          "actual_rate_key_kbps": "128",
+          "actual_rate_bps": "133333.33333333334",
+          "actual_power_dbm": "33",
+          "count": 180
+        }
+      ],
+      "actual_feedback_changed_fields": {},
+      "actual_feedback_equal_excluding_decision_id": true,
+      "existing_raw_csvs": [
+        {
+          "path": "raw/actual_feedback.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/application_admission_statistics.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/application_admission_trace.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/hop_nodes.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/link_decisions.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/mac_nodes.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/neighbors.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/nodes.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/nwk_nodes.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/phy_trace.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/protocol_trace.csv",
+          "byte_equal": false
+        },
+        {
+          "path": "raw/research_summary.csv",
+          "byte_equal": false
+        },
+        {
+          "path": "raw/routes.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/scenario.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/trace.csv",
+          "byte_equal": false
+        }
+      ],
+      "protocol_row_count": {
+        "t8": 15477,
+        "t9": 15476
+      },
+      "protocol_equal_ignoring_mac_prepare": true,
+      "native_artifact_hashes": {
+        "ns3-trace.csv.gz": "5020ab84bb091977adbaaf8a4af5672d1e2b8b7977ec168bba909685718d9a61",
+        "ns3-service.csv.gz": "7992bf377b02f314e5cb1b66607245dcc38b8ceb8801dcecf912d41152f720cd",
+        "ns3-link-decisions.csv.gz": "4bb172f4428624c078ef1ffa7864ae24b9546ea70b06a5a9b4a72eb80de0a56f"
+      }
+    },
+    {
+      "storage_key": "a129",
+      "flows": [
+        {
+          "source": 2,
+          "destination": 1,
+          "t8": {
+            "admitted": 11358,
+            "delivered": 11354,
+            "pending": 4,
+            "dropped": 0,
+            "first_delivery_s": 301.635103999999,
+            "delivered_300_320": 212,
+            "admitted_300_320": 228,
+            "delay_sum_s": 10548.10587819234,
+            "mean_latency_s": 0.9290211271967889
+          },
+          "t9": {
+            "admitted": 11358,
+            "delivered": 11354,
+            "pending": 4,
+            "dropped": 0,
+            "first_delivery_s": 301.635103999999,
+            "delivered_300_320": 212,
+            "admitted_300_320": 228,
+            "delay_sum_s": 10548.10587819234,
+            "mean_latency_s": 0.9290211271967889
+          },
+          "ns3": {
+            "admitted": 11234,
+            "delivered": 11227,
+            "unmatched_sends": 7,
+            "first_delivery_s": 301.726104,
+            "delivered_300_320": 216,
+            "admitted_300_320": 230,
+            "delay_sum_s": 10775.197447999995,
+            "mean_latency_s": 0.9597574995991801
+          },
+          "delivery_change_t9_minus_t8": 0,
+          "delivery_gap_t9_minus_ns3": 127,
+          "delivery_gap_percent_of_ns3": 1.1312015676494092,
+          "early_delivery_gap_t9_minus_ns3": -4
+        }
+      ],
+      "counts": {
+        "t8": {
+          "Generated": 11358,
+          "Received": 11354,
+          "Dropped": 0,
+          "Pending": 4
+        },
+        "t9": {
+          "Generated": 11358,
+          "Received": 11354,
+          "Dropped": 0,
+          "Pending": 4
+        },
+        "ns3": {
+          "admitted": 11234,
+          "delivered": 11227,
+          "unmatched_sends": 7
+        }
+      },
+      "statistics_exact_equal": true,
+      "changed_statistics": {},
+      "changed_application_records": [],
+      "service": {
+        "SchemaVersion": "csr-matlab-ack-service-diagnostics-v1",
+        "Enabled": true,
+        "MaxRecords": 100000,
+        "WindowStartSeconds": 300,
+        "WindowEndSeconds": 320,
+        "WindowBoundary": "start_inclusive_end_exclusive",
+        "ServiceEventCount": 3917,
+        "CapturedServiceRecords": 3917,
+        "OmittedServiceRecords": 0,
+        "OutOfWindowServiceEvents": 168954,
+        "CancellationSnapshotCount": 424,
+        "CancellationBeforeCount": 212,
+        "CancellationAfterCount": 212,
+        "CancellationPairErrors": 0,
+        "PendingCancellationPair": false,
+        "CancellationPairsComplete": true,
+        "Complete": true,
+        "InheritedFeedbackComplete": true,
+        "StageMeaning": "Existing protocol callbacks, completed application admissions and paired cancellation callback observations",
+        "ObservationOrder": "ObservationId is callback arrival order among all in-window service rows",
+        "DetailsMeaning": "DetailsJSON preserves callback details, the complete admission row, or the cancellation scalar snapshot and selector",
+        "StateMeaning": "State is the opaque string supplied by a MAC event or read at a cancellation callback boundary",
+        "CapacityMeaning": "HOP capacity fields copy existing admission snapshots; no additional HOP/NWK reads or intermediate release stages",
+        "CancellationMeaning": "Before/after rows surround one original MAC cancellation callback; peer/sequence/control type are selectors, not a fabricated packet identity",
+        "MissingNumericValues": "NaN denotes unavailable; boolean details are 0 or 1 when supplied",
+        "IdentityMeaning": "PacketId and AggregateId are local uint64 identities with availability flags; no cross-simulator identity equivalence",
+        "AggregateIdentityLimit": "MAC callbacks precede or retain a separate copy from simulation transmission ID assignment; their aggregate ID is unavailable",
+        "FeedbackWindowMeaning": "Only ServiceTrace is windowed; inherited T8 feedback traces cover the entire run",
+        "Passive": true,
+        "ScheduledEvents": 0,
+        "RandomDraws": 0,
+        "AdditionalStateReads": 2544,
+        "AdditionalStateReadsMeaning": "Six public MAC scalar reads per cancellation snapshot; no HOP/NWK peer or state getters"
+      },
+      "cancellation_removals": [],
+      "first_ordinary_ack": {
+        "2": {
+          "matlab_first_decision_time_s": 301.635103999999,
+          "matlab_first_decision_id": "15",
+          "ns3_first_decision_time_s": 301.726104,
+          "ns3_first_decision_id": "16",
+          "matlab_transmitted_decision_queue_s": 301.635103999999,
+          "matlab_decision_id": "15",
+          "matlab_ota_time_s": 301.976999999999,
+          "matlab_selected_rate_kbps": 128.0,
+          "matlab_power_dbm": 33.0,
+          "ns3_transmitted_decision_queue_s": 301.726104,
+          "ns3_decision_id": "16",
+          "ns3_ota_time_s": 302.068,
+          "ns3_selected_rate_kbps": 128.0,
+          "ns3_power_dbm": 33.0,
+          "matlab_admission_resume_s": 302.0,
+          "ns3_admission_resume_s": 302.1
+        }
+      },
+      "ordinary_matlab_actual_radio_counts": [
+        {
+          "FrameKind": "ACK",
+          "RateKeyKbps": "128",
+          "RateBps": "133333.333333333",
+          "TxPowerDbm": "33",
+          "count": 2011
+        }
+      ],
+      "ordinary_native_actual_radio_counts": [
+        {
+          "frame_type": "ACK",
+          "actual_rate_key_kbps": "128",
+          "actual_rate_bps": "133333.33333333334",
+          "actual_power_dbm": "33",
+          "count": 2002
+        }
+      ],
+      "actual_feedback_changed_fields": {},
+      "actual_feedback_equal_excluding_decision_id": true,
+      "existing_raw_csvs": [
+        {
+          "path": "raw/actual_feedback.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/application_admission_statistics.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/application_admission_trace.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/hop_nodes.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/link_decisions.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/mac_nodes.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/neighbors.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/nodes.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/nwk_nodes.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/phy_trace.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/protocol_trace.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/research_summary.csv",
+          "byte_equal": false
+        },
+        {
+          "path": "raw/routes.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/scenario.csv",
+          "byte_equal": true
+        },
+        {
+          "path": "raw/trace.csv",
+          "byte_equal": true
+        }
+      ],
+      "protocol_row_count": {
+        "t8": 154178,
+        "t9": 154178
+      },
+      "protocol_equal_ignoring_mac_prepare": true,
+      "native_artifact_hashes": {
+        "ns3-trace.csv.gz": "a97b70d7e19275d94955b982ba50aa4c2b9e581caf4f47166b89d910fcc6789e",
+        "ns3-service.csv.gz": "7dc59dc209a23391e8b0d3b2210f2c5968ed059ffe981f2ff421941cf2e66b5a",
+        "ns3-link-decisions.csv.gz": "c2a01928ee07df57b9436137ed6bf9643a372832384ba7f64796fadb9c60d61a"
+      }
+    }
+  ],
+  "contract_summary": {
+    "Schema": "csr-tranche9-ack-service-contract-v1",
+    "Passed": true,
+    "CheckpointCount": 101,
+    "ReferenceSHA256": "2991bbc93e5ba2c64d06a93cee278160cd9baf2fdc11b052ee5b0cb561fe4b73",
+    "UnmatchedCount": 0,
+    "FailedCount": 0,
+    "Scope": "Prescribed receiver states and ACK ingress; no RF delivery or RNG-stream equivalence"
+  },
+  "interpretation": [
+    "All six application admission/delivery/drop/pending totals and per-source delivery totals are unchanged; c129 source2 delivery gap remains157.",
+    "The correction demonstrably changes c131 scheduling: active counter0 can transmit the next queued DATA at the next slot,78ms earlier than T8. Eight application receive times change with net+0.052s latency sum; aggregate mean+58.100559microseconds. This is not a measured throughput improvement.",
+    "At the four other early contention cancellations, a positive counter survives the next slot. T8 reactivated preparation without redrawing that still-valid reservation; T9 avoids the redundant activation. Protocol rows match exactly after excluding mac_prepare. a129 protocol rows are unchanged.",
+    "Both simulators release capacity before the next queued HOP admission. T9 callbacks are separated by approximately27.7778ns (configuredTIC); native nanosecond resolution reports28ns. No sampled admission-release defect warrants an additional policy change.",
+    "c129 differing first DATA reception order and reservation draws precede its ACK divergence; the present correction does not align simulator random streams or certify statistical parity."
+  ],
+  "limits": [
+    "MATLAB owner run is evidence; this independent script executes no MATLAB/ns3 simulations.",
+    "Ordinary ACK rate/power equivalence is limited to these fixed direct-path cases; relay/DACK and varied link state remain unexercised.",
+    "Native unmatched sends retain their source semantics and are not reclassified as MATLAB pending or dropped.",
+    "No arbitrary numerical pass tolerance or cross-simulator local packet-ID identity is introduced."
+  ]
+}

@@ -1,0 +1,527 @@
+{
+  "artifacts": {
+    "app_admission_diagnostics": {
+      "path": "app-admission-diagnostics.csv",
+      "sha256": "03e4976c1bc0bb92687b882f714f6ce0cdf24f90c9641fabaa4b0d1fc4bf4c8e",
+      "size_bytes": 1113
+    },
+    "comparison_log": {
+      "path": "aggregate-compare.log",
+      "sha256": "ed56b5292d042fb6fa3402f478584fb7551410d456afffdba18b85b6910c1c46",
+      "size_bytes": 10171
+    },
+    "comparison_report": {
+      "path": "aggregate-report.json",
+      "sha256": "1cc0114f4742b3aa22efb1dc0794c65941c084db10d87c7afd3dc6259508517d",
+      "size_bytes": 257310
+    },
+    "normalized_aggregates": {
+      "path": "aggregate-normalized.csv",
+      "sha256": "a49c1ebd3f1944bad174c2c3636094b0232bfe9ca16a8f6ae8cdc3a42addfef2",
+      "size_bytes": 378450
+    },
+    "ns3_aggregate_log": {
+      "path": "ns3-aggregate.log",
+      "sha256": "87ca5e131f0211533950de7ceb850ff0dcf380c400ef73796498ac61a1842c59",
+      "size_bytes": 237
+    },
+    "ns3_aggregate_provenance": {
+      "path": "ns3-aggregates.provenance.json",
+      "sha256": "ce7f21c0bd452b832ddda196f39e93fe394b550584ecd8592e4d3a14feb34c91",
+      "size_bytes": 12757
+    },
+    "ns3_aggregates": {
+      "path": "ns3-aggregates.csv",
+      "sha256": "d0b37516ba57ce76fc5692ce295dc4bed65e0654e9849a9e5b087d164f8870b1",
+      "size_bytes": 330580
+    },
+    "ns3_run_log": {
+      "path": "ns3-run.log",
+      "sha256": "57a6ef05887f11f63e4b9cf177175bc4c8504dbc59e782bfd8d15b2be391e5b7",
+      "size_bytes": 340
+    },
+    "ns3_trace": {
+      "path": "ns3-trace.csv",
+      "sha256": "b5d4a7fd8da818c8581a73bef52ab8f98ced815f821745350e8f95c7c7f02722",
+      "size_bytes": 51686904
+    },
+    "opnet_aggregates": {
+      "path": "opnet-aggregates.csv",
+      "sha256": "472ae8b183281d7c70bf1252de08ecb6fb3d3b508fe549d3b13a7ac56fc5399c",
+      "size_bytes": 336401
+    },
+    "opnet_extract_log": {
+      "path": "opnet-extract.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    "opnet_extract_manifest": {
+      "path": "opnet-extract.json",
+      "sha256": "561a1a56e558246a6c16180bcf68235bb3288f9a6f517d687e3eb6605f5831ce",
+      "size_bytes": 264304
+    }
+  },
+  "configuration": {
+    "comparison_time_start_s": 60.0,
+    "comparison_time_stop_s": 6000.0,
+    "identities": {
+      "canonical_scenario": {
+        "ack_envelope_profile": "unspecified",
+        "application_profile": "legacy-send-only-no-dscp",
+        "duration_s": 6000.0,
+        "hop_security_behavior": {
+          "ack_dack": "bare",
+          "ordinary_data": "bare"
+        },
+        "hop_security_profile": "hist-adb97c54-bare",
+        "hop_security_profile_origin": "explicit",
+        "mac_profile": "hist-2014-next-tslot-modulo-probe",
+        "scenario": "blue_radio_campus-multihop",
+        "seed": 128,
+        "source_executable_sha256": "adb97c54f7566439f1404e972d3d777a3bca613e2a965bf12f03353fb009d9af",
+        "source_sha256": "999f3750c17a53199d6ed5de76ec0b4dc0680e07011a9c14e7ec3cf81920baff",
+        "topology": {
+          "flow_count": 6,
+          "flows": [
+            {
+              "destination": 1,
+              "destination_mode": "fixed",
+              "dscp": 0,
+              "packet_bytes": 200,
+              "source": 2
+            },
+            {
+              "destination": 1,
+              "destination_mode": "fixed",
+              "dscp": 0,
+              "packet_bytes": 200,
+              "source": 3
+            },
+            {
+              "destination": 1,
+              "destination_mode": "fixed",
+              "dscp": 0,
+              "packet_bytes": 200,
+              "source": 4
+            },
+            {
+              "destination": 1,
+              "destination_mode": "fixed",
+              "dscp": 0,
+              "packet_bytes": 200,
+              "source": 5
+            },
+            {
+              "destination": 1,
+              "destination_mode": "fixed",
+              "dscp": 0,
+              "packet_bytes": 200,
+              "source": 7
+            },
+            {
+              "destination": 1,
+              "destination_mode": "fixed",
+              "dscp": 0,
+              "packet_bytes": 200,
+              "source": 8
+            }
+          ],
+          "gateway_ids": [
+            1
+          ],
+          "node_count": 7,
+          "node_ids": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            7,
+            8
+          ],
+          "nodes": [
+            {
+              "name": "CSR_node_1",
+              "node_id": 1,
+              "node_type": "gateway"
+            },
+            {
+              "name": "CSR_node_2",
+              "node_id": 2,
+              "node_type": "routable"
+            },
+            {
+              "name": "CSR_node_3",
+              "node_id": 3,
+              "node_type": "routable"
+            },
+            {
+              "name": "CSR_node_4",
+              "node_id": 4,
+              "node_type": "routable"
+            },
+            {
+              "name": "CSR_node_5",
+              "node_id": 5,
+              "node_type": "routable"
+            },
+            {
+              "name": "CSR_node_7",
+              "node_id": 7,
+              "node_type": "routable"
+            },
+            {
+              "name": "CSR_node_8",
+              "node_id": 8,
+              "node_type": "routable"
+            }
+          ]
+        }
+      },
+      "opnet_execution": {
+        "duration_s": 6000.0,
+        "scenario": "blue_radio_campus-multihop",
+        "seed": 128,
+        "source_file_sha256": "b643bee5c1d0260581a0135c0add5c87441bd98f70f66388fac0bf95096c39ee",
+        "source_identity": {
+          "basis": "modeler_des_result_filename",
+          "design_run": 1,
+          "probe_definition_required": false,
+          "scenario": "blue_radio_campus-multihop"
+        }
+      }
+    },
+    "legacy_trace_size_exclusion_bits": 0,
+    "opnet_axis": {
+      "bucket_count": 100,
+      "bucket_width_s": 60.0,
+      "encoded_start_s": 0.0,
+      "first_bucket_end_s": 60.0,
+      "last_bucket_end_s": 6000.0
+    },
+    "require_zero_matched_packet_size_mismatches": true,
+    "runner": {
+      "ack_envelope_profile": "unspecified",
+      "aggregate_trace_only": true,
+      "app_admission_diagnostics_schema": "csr-app-admission-diagnostics-v1",
+      "application_profile": "legacy-send-only-no-dscp",
+      "duty_cycling": true,
+      "flow_limit": 0,
+      "gateway_discovery": true,
+      "hop_security_behavior": {
+        "ack_dack": "bare",
+        "ordinary_data": "bare"
+      },
+      "hop_security_profile": "hist-adb97c54-bare",
+      "hop_security_profile_origin": "explicit",
+      "mac_profile": "hist-2014-next-tslot-modulo-probe",
+      "opnet_aligned_duty_cycle": true,
+      "opnet_app_gating": true,
+      "quiet_model_logs": true,
+      "source_executable_sha256": "adb97c54f7566439f1404e972d3d777a3bca613e2a965bf12f03353fb009d9af",
+      "topology": {
+        "flow_count": 6,
+        "flows": [
+          {
+            "destination": 1,
+            "destination_mode": "fixed",
+            "dscp": 0,
+            "packet_bytes": 200,
+            "source": 2
+          },
+          {
+            "destination": 1,
+            "destination_mode": "fixed",
+            "dscp": 0,
+            "packet_bytes": 200,
+            "source": 3
+          },
+          {
+            "destination": 1,
+            "destination_mode": "fixed",
+            "dscp": 0,
+            "packet_bytes": 200,
+            "source": 4
+          },
+          {
+            "destination": 1,
+            "destination_mode": "fixed",
+            "dscp": 0,
+            "packet_bytes": 200,
+            "source": 5
+          },
+          {
+            "destination": 1,
+            "destination_mode": "fixed",
+            "dscp": 0,
+            "packet_bytes": 200,
+            "source": 7
+          },
+          {
+            "destination": 1,
+            "destination_mode": "fixed",
+            "dscp": 0,
+            "packet_bytes": 200,
+            "source": 8
+          }
+        ],
+        "gateway_ids": [
+          1
+        ],
+        "node_count": 7,
+        "node_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8
+        ],
+        "nodes": [
+          {
+            "name": "CSR_node_1",
+            "node_id": 1,
+            "node_type": "gateway"
+          },
+          {
+            "name": "CSR_node_2",
+            "node_id": 2,
+            "node_type": "routable"
+          },
+          {
+            "name": "CSR_node_3",
+            "node_id": 3,
+            "node_type": "routable"
+          },
+          {
+            "name": "CSR_node_4",
+            "node_id": 4,
+            "node_type": "routable"
+          },
+          {
+            "name": "CSR_node_5",
+            "node_id": 5,
+            "node_type": "routable"
+          },
+          {
+            "name": "CSR_node_7",
+            "node_id": 7,
+            "node_type": "routable"
+          },
+          {
+            "name": "CSR_node_8",
+            "node_id": 8,
+            "node_type": "routable"
+          }
+        ]
+      }
+    },
+    "scenario": "blue_radio_campus-multihop",
+    "scenario_duration_s": 6000.0,
+    "statistics": [
+      "Generator.Traffic Sent (packets/sec)",
+      "Generator.Traffic Sent (bits/sec)",
+      "Generator.Packet Size (bits)",
+      "Sink.Traffic Received (packets/sec)",
+      "Sink.Traffic Received (packets)",
+      "Sink.Traffic Received (bits/sec)",
+      "Sink.Traffic Received (bits)",
+      "Sink.End-to-End Delay (seconds)"
+    ],
+    "stop_s": 6000.0,
+    "tolerances": {
+      "absolute": 0.0,
+      "relative": 0.0,
+      "time_s": 0.0
+    }
+  },
+  "evidence_identity": {
+    "opnet_ov": {
+      "actual_sha256": "b643bee5c1d0260581a0135c0add5c87441bd98f70f66388fac0bf95096c39ee",
+      "expected_sha256": "b643bee5c1d0260581a0135c0add5c87441bd98f70f66388fac0bf95096c39ee",
+      "match": true
+    },
+    "probe_definition": {
+      "actual_sha256": "2871b54d0c531198f8ff77b1aa2a3cc81da6f05814c9ca00e64ed6a544a6470f",
+      "expected_sha256": "2871b54d0c531198f8ff77b1aa2a3cc81da6f05814c9ca00e64ed6a544a6470f",
+      "match": true
+    }
+  },
+  "evidence_scope": "historical_bucket_aggregates_not_event_parity",
+  "failure": {
+    "exit_code": 1,
+    "message": "aggregate comparator returned status 1",
+    "stage": "compare"
+  },
+  "inputs": {
+    "opnet_ov": {
+      "path": "/workspace/scratch/1a5b1ad6ce1b/tranche7/evidence/tranche-7-benchmark-inputs/originals/blue_radio_campus.project/blue_radio_campus-multihop-DES-1.ov",
+      "sha256": "b643bee5c1d0260581a0135c0add5c87441bd98f70f66388fac0bf95096c39ee",
+      "size_bytes": 14766
+    },
+    "probe_definition": {
+      "path": "/workspace/scratch/1a5b1ad6ce1b/tranche7/evidence/tranche-7-benchmark-inputs/originals/blue_radio_campus.project/blue_radio_campus-multihop.pb.m",
+      "sha256": "2871b54d0c531198f8ff77b1aa2a3cc81da6f05814c9ca00e64ed6a544a6470f",
+      "size_bytes": 11572
+    },
+    "runner": {
+      "path": "/workspace/scratch/1a5b1ad6ce1b/t7-ns3-build/csr-opnet-scenario-runner",
+      "sha256": "1dba24abff867499c695ed1e1bd4484e869370664ebff69d489c87069bc5ce75",
+      "size_bytes": 8650136
+    },
+    "scenario": {
+      "path": "/workspace/scratch/1a5b1ad6ce1b/tranche7/scenarios/benchmarks/campus_multihop_6000.csv",
+      "sha256": "90b143d93c13c6c2761bc5f2875ccc3fff98f85af6f2550370e435df2aaabcfc",
+      "size_bytes": 2408
+    }
+  },
+  "noncertifying_overrides": [],
+  "profile": "canonical",
+  "schema": "csr-opnet-aggregate-differential-run-v1",
+  "stages": {
+    "aggregate_ns3": {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-I",
+        "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/utils/aggregate-ns3-trace.py",
+        "/workspace/scratch/1a5b1ad6ce1b/t7-reference-live/campus_multihop_6000/ns3-trace.csv",
+        "/workspace/scratch/1a5b1ad6ce1b/t7-reference-live/campus_multihop_6000/ns3-aggregates.csv",
+        "--scenario",
+        "blue_radio_campus-multihop",
+        "--bucket-width",
+        "60",
+        "--stop-time",
+        "6000",
+        "--legacy-trace-size-exclusion-bits",
+        "0",
+        "--require-zero-size-mismatches",
+        "--provenance",
+        "/workspace/scratch/1a5b1ad6ce1b/t7-reference-live/campus_multihop_6000/ns3-aggregates.provenance.json"
+      ],
+      "exact_sequence_validation": {
+        "matched_by_method": {
+          "exact_sequence": 11769
+        },
+        "matched_count": 11769,
+        "matched_size_compared_count": 11769,
+        "matched_size_mismatch_count": 0,
+        "source_exact_dack_retry_duplicate_delivery_count": 0,
+        "source_exact_dack_retry_duplicate_proof_count": 0,
+        "unmatched_delivery_count": 0
+      },
+      "exit_code": 0,
+      "log": "ns3-aggregate.log"
+    },
+    "compare": {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-I",
+        "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/utils/compare-opnet-ns3-aggregates.py",
+        "/workspace/scratch/1a5b1ad6ce1b/t7-reference-live/campus_multihop_6000/opnet-aggregates.csv",
+        "/workspace/scratch/1a5b1ad6ce1b/t7-reference-live/campus_multihop_6000/ns3-aggregates.csv",
+        "--scenario",
+        "blue_radio_campus-multihop",
+        "--time-start",
+        "60",
+        "--time-stop",
+        "6000",
+        "--abs-tolerance",
+        "0",
+        "--rel-tolerance",
+        "0",
+        "--time-tolerance",
+        "0",
+        "--max-differences",
+        "200",
+        "--report",
+        "/workspace/scratch/1a5b1ad6ce1b/t7-reference-live/campus_multihop_6000/aggregate-report.json",
+        "--normalized",
+        "/workspace/scratch/1a5b1ad6ce1b/t7-reference-live/campus_multihop_6000/aggregate-normalized.csv",
+        "--statistic",
+        "Generator.Traffic Sent (packets/sec)",
+        "--statistic",
+        "Generator.Traffic Sent (bits/sec)",
+        "--statistic",
+        "Generator.Packet Size (bits)",
+        "--statistic",
+        "Sink.Traffic Received (packets/sec)",
+        "--statistic",
+        "Sink.Traffic Received (packets)",
+        "--statistic",
+        "Sink.Traffic Received (bits/sec)",
+        "--statistic",
+        "Sink.Traffic Received (bits)",
+        "--statistic",
+        "Sink.End-to-End Delay (seconds)"
+      ],
+      "exit_code": 1,
+      "log": "aggregate-compare.log"
+    },
+    "extract_opnet": {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-I",
+        "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/utils/extract-opnet-ov.py",
+        "/workspace/scratch/1a5b1ad6ce1b/tranche7/evidence/tranche-7-benchmark-inputs/originals/blue_radio_campus.project/blue_radio_campus-multihop-DES-1.ov",
+        "--json",
+        "/workspace/scratch/1a5b1ad6ce1b/t7-reference-live/campus_multihop_6000/opnet-extract.json",
+        "--csv",
+        "/workspace/scratch/1a5b1ad6ce1b/t7-reference-live/campus_multihop_6000/opnet-aggregates.csv",
+        "--strict",
+        "--probe-definition",
+        "/workspace/scratch/1a5b1ad6ce1b/tranche7/evidence/tranche-7-benchmark-inputs/originals/blue_radio_campus.project/blue_radio_campus-multihop.pb.m"
+      ],
+      "exit_code": 0,
+      "log": "opnet-extract.log"
+    },
+    "run_ns3": {
+      "application_admission_totals": {
+        "admitted": 12417,
+        "attempts": 1710000,
+        "blocked_destination": 0,
+        "blocked_discovery": 0,
+        "blocked_gateway_route": 0,
+        "blocked_nsdp": 1697583,
+        "blocked_topology": 0
+      },
+      "command": [
+        "/workspace/scratch/1a5b1ad6ce1b/t7-ns3-build/csr-opnet-scenario-runner",
+        "--scenario=/workspace/scratch/1a5b1ad6ce1b/tranche7/scenarios/benchmarks/campus_multihop_6000.csv",
+        "--trace=/workspace/scratch/1a5b1ad6ce1b/t7-reference-live/campus_multihop_6000/ns3-trace.csv",
+        "--appDiagnostics=/workspace/scratch/1a5b1ad6ce1b/t7-reference-live/campus_multihop_6000/app-admission-diagnostics.csv",
+        "--stop=6000",
+        "--flowLimit=0",
+        "--dutyCycling=1",
+        "--opnetAlignedDutyCycle=1",
+        "--gatewayDiscovery=1",
+        "--opnetAppGating=1",
+        "--aggregateTraceOnly=1",
+        "--quietModelLogs=1"
+      ],
+      "exit_code": 0,
+      "log": "ns3-run.log"
+    }
+  },
+  "status": "selected_comparison_failed",
+  "tools": {
+    "aggregator": {
+      "path": "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/utils/aggregate-ns3-trace.py",
+      "sha256": "fac6ceb6c5b7d95d41567a2f1018194b59d03366b581bdeb6415674d51985f2e",
+      "size_bytes": 50479
+    },
+    "comparator": {
+      "path": "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/utils/compare-opnet-ns3-aggregates.py",
+      "sha256": "25be381799e2426c2d571563a25b9cc252d4260fac346a4fbbc5867d611bf86d",
+      "size_bytes": 43081
+    },
+    "extractor": {
+      "path": "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/utils/extract-opnet-ov.py",
+      "sha256": "ce590420b96e211e4257827c272effff125cb1d6d2f07e29d68f0ccf9ddb834f",
+      "size_bytes": 68399
+    }
+  }
+}

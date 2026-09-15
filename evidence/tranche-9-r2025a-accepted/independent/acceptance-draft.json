@@ -1,0 +1,878 @@
+{
+  "schema": "csr-matlab-tranche-9-portable-acceptance-v1",
+  "status": "accepted_portable_reservation_correction_with_numerical_limits",
+  "reviewed_utc": "2026-09-11T18:48:40.048578+00:00",
+  "executed_matlab_code_commit": "99fff0381fe9621ccd76fbdce41eac9aba5a9469",
+  "matlab_acceptance_base_commit": "d0f3c5657f9f2dcf678f32900020caf3696bf90a",
+  "validated_tranche8_code_commit": "89b62e729e588f396bb919afdff522f7e9419268",
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "reporting_repair_commit": "419f2c18d0ab92ce9c60f9a1c9fa1f4fbf8486a1",
+  "reporting_repair_record": "tranche-9-return-repair.json",
+  "matlab_runtime": {
+    "Runtime": "MATLAB",
+    "Version": "25.1.0.2943329 (R2025a)",
+    "Release": "2025a",
+    "HasWirelessNetworkSimulator": false,
+    "HasWnetNode": false,
+    "HasWirelessPacket": false,
+    "DefaultBackend": "portable",
+    "WirelessAdapterImplemented": true,
+    "WirelessAdapterScope": "Optional R2026a wireless-clock candidate; runtime validation pending",
+    "NativePacketTransportIntegrated": false,
+    "ProbeScope": "Symbol discovery only; licenses and execution are not validated."
+  },
+  "execution_origin": "Owner-returned R2025a archive; the Python reviewer did not execute MATLAB.",
+  "matlab_executed": true,
+  "matlab_executed_in_review_workspace": false,
+  "acceptance_established": true,
+  "numerical_parity_established": false,
+  "full_protocol_parity_established": false,
+  "population_equivalence_established": false,
+  "performance_improvement_established": false,
+  "accepted_scope": "Source-confirmed preservation of MAC preparation and live reservations through queue cancellation; matched prescribed MAC/HOP contracts; six portable diagnostics with complete accounting and passive service observations.",
+  "started_utc": "2026-09-11T18:01:56.345Z",
+  "completed_utc": "2026-09-11T18:25:37.630Z",
+  "elapsed_wall_seconds": 1421.285,
+  "archive": {
+    "path": "tranche-9-r2025a-accepted/tranche9_evidence.zip",
+    "library_file_id": "libfile_1048c3e6d7748191861cdb864f1f7548",
+    "bytes": 10194267,
+    "sha256": "ddcede0a83b5ff906a7736f63406fc4cecb11e841795e39e93237364e0e11edf",
+    "files": 177,
+    "expanded_bytes": 154809567
+  },
+  "verification": {
+    "zip_crcs": 177,
+    "archived_artifact_checks": {
+      "outer_inventory": 176,
+      "nested_inventories": 262
+    },
+    "archived_artifact_checks_total": 438,
+    "source_files": 206,
+    "matlab_files": 115,
+    "reference_files": 294,
+    "tests_passed": 514,
+    "tests_failed": 0,
+    "tests_incomplete": 0,
+    "contract_cases": 6,
+    "contract_checkpoints_passed": 101,
+    "contract_maximum_difference_from_ns3": 0,
+    "completed_cases": 6,
+    "tracing_controls": 2,
+    "byte_exact_control_csv_pairs": 24,
+    "application_attempts": 345000,
+    "matlab_service_rows": 120835,
+    "service_application_attempts": 101000,
+    "service_cancellation_callback_pairs": 1373,
+    "service_queue_entries_removed": 5,
+    "matlab_feedback_selections": 16179,
+    "matlab_actual_feedback_correlations": 4100,
+    "native_reference_control_file_pairs": 12,
+    "native_reference_t8_file_pairs": 24,
+    "python_tests_passed": 254,
+    "all_passed": true
+  },
+  "diagnostic_plan_sha256": "372db92a385781d9854a096149fd419b90ae79823125b79269506bd9877e0116",
+  "source_snapshot_sha256": "657b84111d5dadf7e8099b1f28f26865b2a7c55f551e83f50d81623dbf1bf7b5",
+  "owner_metadata_sha256": "0f4fb6578cc84c736ef3295b1974add02a5e90bf5d13304fa8b099a4c55b11eb",
+  "ns3_service_reference_suite_sha256": "e7d8cdf5303fba9c290e83526ba65e4e4f7b7bb52add727c1b7cc8b372169331",
+  "per_seed_counts": [
+    {
+      "case_id": "three_node_contention_360_s129",
+      "seed": 129,
+      "matlab": {
+        "attempts": 60000,
+        "admitted": 980,
+        "delivered": 948,
+        "explicit_drops": 0,
+        "pending": 32
+      },
+      "ns3": {
+        "attempts": 60000,
+        "admitted": 854,
+        "delivered": 822,
+        "unmatched_sends": 32
+      },
+      "delivery_difference_percent": 15.328467153284672,
+      "delivery_change_from_tranche8": 0
+    },
+    {
+      "case_id": "three_node_contention_360_s128",
+      "seed": 128,
+      "matlab": {
+        "attempts": 60000,
+        "admitted": 954,
+        "delivered": 928,
+        "explicit_drops": 0,
+        "pending": 26
+      },
+      "ns3": {
+        "attempts": 60000,
+        "admitted": 946,
+        "delivered": 914,
+        "unmatched_sends": 32
+      },
+      "delivery_difference_percent": 1.5317286652078774,
+      "delivery_change_from_tranche8": 0
+    },
+    {
+      "case_id": "three_node_contention_360_s130",
+      "seed": 130,
+      "matlab": {
+        "attempts": 60000,
+        "admitted": 926,
+        "delivered": 894,
+        "explicit_drops": 0,
+        "pending": 32
+      },
+      "ns3": {
+        "attempts": 60000,
+        "admitted": 948,
+        "delivered": 916,
+        "unmatched_sends": 32
+      },
+      "delivery_difference_percent": -2.4017467248908297,
+      "delivery_change_from_tranche8": 0
+    },
+    {
+      "case_id": "three_node_contention_360_s131",
+      "seed": 131,
+      "matlab": {
+        "attempts": 60000,
+        "admitted": 927,
+        "delivered": 895,
+        "explicit_drops": 0,
+        "pending": 32
+      },
+      "ns3": {
+        "attempts": 60000,
+        "admitted": 903,
+        "delivered": 883,
+        "unmatched_sends": 20
+      },
+      "delivery_difference_percent": 1.3590033975084939,
+      "delivery_change_from_tranche8": 0
+    },
+    {
+      "case_id": "three_node_contention_360_s132",
+      "seed": 132,
+      "matlab": {
+        "attempts": 60000,
+        "admitted": 949,
+        "delivered": 917,
+        "explicit_drops": 0,
+        "pending": 32
+      },
+      "ns3": {
+        "attempts": 60000,
+        "admitted": 952,
+        "delivered": 920,
+        "unmatched_sends": 32
+      },
+      "delivery_difference_percent": -0.32608695652173914,
+      "delivery_change_from_tranche8": 0
+    },
+    {
+      "case_id": "two_node_admission_1200_s129",
+      "seed": 129,
+      "matlab": {
+        "attempts": 45000,
+        "admitted": 11358,
+        "delivered": 11354,
+        "explicit_drops": 0,
+        "pending": 4
+      },
+      "ns3": {
+        "attempts": 45000,
+        "admitted": 11234,
+        "delivered": 11227,
+        "unmatched_sends": 7
+      },
+      "delivery_difference_percent": 1.1312015676494165,
+      "delivery_change_from_tranche8": 0
+    }
+  ],
+  "contention_multiseed": {
+    "groups": [
+      {
+        "base_case_id": "three_node_contention_360",
+        "simulator": "matlab",
+        "seeds": [
+          128,
+          129,
+          130,
+          131,
+          132
+        ],
+        "pooled": {
+          "attempts": 300000,
+          "admitted": 4736,
+          "delivered": 4582,
+          "delivered_unique": 4582,
+          "duplicate_delivery_events": 0,
+          "unmatched_sends": 154,
+          "network_bytes_sent": 2803712,
+          "network_bytes_received": 2712544,
+          "delay_samples": 4582,
+          "delay_sum_s": 7716.97796773257,
+          "populated_delay_buckets": 85,
+          "bucket_latency_mean_sum_s": 156.7539062094225,
+          "duration_s": 1800.0,
+          "mean_packet_latency_s": 1.6841942312816607,
+          "mean_populated_bucket_latency_s": 1.844163602463794,
+          "explicit_drops": 0,
+          "pending": 154
+        },
+        "per_seed_delivered": {
+          "count": 5,
+          "minimum": 894,
+          "maximum": 948,
+          "mean": 916.4,
+          "sample_standard_deviation": 22.87575135378071
+        },
+        "per_seed_packet_latency": {
+          "count": 5,
+          "minimum": 1.602588936651351,
+          "maximum": 1.7755907560928177,
+          "mean": 1.6854590394137738,
+          "sample_standard_deviation": 0.06699842559174538
+        }
+      },
+      {
+        "base_case_id": "three_node_contention_360",
+        "simulator": "ns3",
+        "seeds": [
+          128,
+          129,
+          130,
+          131,
+          132
+        ],
+        "pooled": {
+          "attempts": 300000,
+          "admitted": 4603,
+          "delivered": 4455,
+          "delivered_unique": 4455,
+          "duplicate_delivery_events": 0,
+          "unmatched_sends": 148,
+          "network_bytes_sent": 2724976,
+          "network_bytes_received": 2637360,
+          "delay_samples": 4455,
+          "delay_sum_s": 7735.717340000003,
+          "populated_delay_buckets": 85,
+          "bucket_latency_mean_sum_s": 172.41255803088933,
+          "duration_s": 1800.0,
+          "mean_packet_latency_s": 1.736412421997756,
+          "mean_populated_bucket_latency_s": 2.0283830356575216,
+          "explicit_drops": null,
+          "pending": null
+        },
+        "per_seed_delivered": {
+          "count": 5,
+          "minimum": 822,
+          "maximum": 920,
+          "mean": 891.0,
+          "sample_standard_deviation": 41.291645644125154
+        },
+        "per_seed_packet_latency": {
+          "count": 5,
+          "minimum": 1.6532728260869565,
+          "maximum": 1.918685946472017,
+          "mean": 1.740493215598957,
+          "sample_standard_deviation": 0.11095246481174198
+        }
+      }
+    ],
+    "paired_by_seed": [
+      {
+        "base_case_id": "three_node_contention_360",
+        "seed": 128,
+        "admitted": {
+          "matlab": 954,
+          "ns3": 946,
+          "difference_matlab_minus_ns3": 8,
+          "relative_difference_percent": 0.8456659619450317
+        },
+        "delivered": {
+          "matlab": 928,
+          "ns3": 914,
+          "difference_matlab_minus_ns3": 14,
+          "relative_difference_percent": 1.5317286652078774
+        },
+        "mean_packet_latency_s": {
+          "matlab": 1.6406713706324183,
+          "ns3": 1.6948455317286661,
+          "difference_matlab_minus_ns3": -0.05417416109624784,
+          "relative_difference_percent": -3.1964069929719576
+        },
+        "mean_populated_bucket_latency_s": {
+          "matlab": 1.727024901329366,
+          "ns3": 1.914475426713893,
+          "difference_matlab_minus_ns3": -0.1874505253845271,
+          "relative_difference_percent": -9.791221280195646
+        }
+      },
+      {
+        "base_case_id": "three_node_contention_360",
+        "seed": 129,
+        "admitted": {
+          "matlab": 980,
+          "ns3": 854,
+          "difference_matlab_minus_ns3": 126,
+          "relative_difference_percent": 14.754098360655737
+        },
+        "delivered": {
+          "matlab": 948,
+          "ns3": 822,
+          "difference_matlab_minus_ns3": 126,
+          "relative_difference_percent": 15.328467153284672
+        },
+        "mean_packet_latency_s": {
+          "matlab": 1.602588936651351,
+          "ns3": 1.918685946472017,
+          "difference_matlab_minus_ns3": -0.3160970098206659,
+          "relative_difference_percent": -16.474661233741205
+        },
+        "mean_populated_bucket_latency_s": {
+          "matlab": 1.7125731625587293,
+          "ns3": 2.3288105943067516,
+          "difference_matlab_minus_ns3": -0.6162374317480224,
+          "relative_difference_percent": -26.461466349154342
+        }
+      },
+      {
+        "base_case_id": "three_node_contention_360",
+        "seed": 130,
+        "admitted": {
+          "matlab": 926,
+          "ns3": 948,
+          "difference_matlab_minus_ns3": -22,
+          "relative_difference_percent": -2.320675105485232
+        },
+        "delivered": {
+          "matlab": 894,
+          "ns3": 916,
+          "difference_matlab_minus_ns3": -22,
+          "relative_difference_percent": -2.4017467248908297
+        },
+        "mean_packet_latency_s": {
+          "matlab": 1.7755907560928177,
+          "ns3": 1.6596463580786067,
+          "difference_matlab_minus_ns3": 0.11594439801421097,
+          "relative_difference_percent": 6.986090587903392
+        },
+        "mean_populated_bucket_latency_s": {
+          "matlab": 1.9686539853851277,
+          "ns3": 1.8952050977679582,
+          "difference_matlab_minus_ns3": 0.0734488876171695,
+          "relative_difference_percent": 3.875511294459504
+        }
+      },
+      {
+        "base_case_id": "three_node_contention_360",
+        "seed": 131,
+        "admitted": {
+          "matlab": 927,
+          "ns3": 903,
+          "difference_matlab_minus_ns3": 24,
+          "relative_difference_percent": 2.6578073089700998
+        },
+        "delivered": {
+          "matlab": 895,
+          "ns3": 883,
+          "difference_matlab_minus_ns3": 12,
+          "relative_difference_percent": 1.3590033975084939
+        },
+        "mean_packet_latency_s": {
+          "matlab": 1.7154901228453072,
+          "ns3": 1.7760154156285395,
+          "difference_matlab_minus_ns3": -0.060525292783232265,
+          "relative_difference_percent": -3.407926094031797
+        },
+        "mean_populated_bucket_latency_s": {
+          "matlab": 1.956789386914025,
+          "ns3": 2.100856638050263,
+          "difference_matlab_minus_ns3": -0.1440672511362382,
+          "relative_difference_percent": -6.857547941488399
+        }
+      },
+      {
+        "base_case_id": "three_node_contention_360",
+        "seed": 132,
+        "admitted": {
+          "matlab": 949,
+          "ns3": 952,
+          "difference_matlab_minus_ns3": -3,
+          "relative_difference_percent": -0.31512605042016806
+        },
+        "delivered": {
+          "matlab": 917,
+          "ns3": 920,
+          "difference_matlab_minus_ns3": -3,
+          "relative_difference_percent": -0.32608695652173914
+        },
+        "mean_packet_latency_s": {
+          "matlab": 1.6929540108469745,
+          "ns3": 1.6532728260869565,
+          "difference_matlab_minus_ns3": 0.03968118476001803,
+          "relative_difference_percent": 2.4001594978087986
+        },
+        "mean_populated_bucket_latency_s": {
+          "matlab": 1.8557765761317224,
+          "ns3": 1.9025674214487418,
+          "difference_matlab_minus_ns3": -0.04679084531701938,
+          "relative_difference_percent": -2.459352808710963
+        }
+      }
+    ],
+    "scope": "Descriptive observations for seeds 128..132 only. Simulator random streams are not assumed identical.",
+    "population_equivalence_established": false,
+    "latency_convention": "Packet-weighted means pool actual delivery delay samples. Bucket means equally weight each populated receive bucket."
+  },
+  "before_after": {
+    "all_six_application_counts_equal": true,
+    "statistics_equal_cases": 5,
+    "legacy_csv_semantically_equal_pairs": 54,
+    "legacy_csv_pairs": 66,
+    "application_admission_traces_equal_cases": 6,
+    "actual_ack_rows_equal_excluding_local_decision_id_cases": 6,
+    "c131_local_data_transmission_advance_seconds": 0.078,
+    "c131_changed_delivery_latencies": 8,
+    "c131_latency_sum_increase_seconds": 0.052,
+    "c131_mean_latency_before_seconds": 1.7154320222866468,
+    "c131_mean_latency_after_seconds": 1.715490122845306
+  },
+  "seed129_source2": {
+    "matlab_delivered": 510,
+    "ns3_delivered": 353,
+    "delivery_gap": 157,
+    "delivery_difference_percent": 44.475920679886684,
+    "early_window_s": [
+      300,
+      320
+    ],
+    "window_end_exclusive": true,
+    "matlab_early_delivered": 152,
+    "ns3_early_delivered": 35,
+    "early_gap": 117,
+    "matlab_first_data_delivery_s": 302.519104,
+    "ns3_first_data_delivery_s": 301.401104,
+    "matlab_first_ordinary_ack_tx_s": 302.549,
+    "ns3_first_ordinary_ack_tx_s": 303.849,
+    "matlab_next_application_admission_s": 302.574,
+    "ns3_next_application_admission_s": 303.874,
+    "gap_changed_from_tranche8": false
+  },
+  "interpretation": [
+    "All six application admission/delivery/drop/pending totals and per-source delivery totals are unchanged; c129 source2 delivery gap remains157.",
+    "The correction demonstrably changes c131 scheduling: active counter0 can transmit the next queued DATA at the next slot,78ms earlier than T8. Eight application receive times change with net+0.052s latency sum; aggregate mean+58.100559microseconds. This is not a measured throughput improvement.",
+    "At the four other early contention cancellations, a positive counter survives the next slot. T8 reactivated preparation without redrawing that still-valid reservation; T9 avoids the redundant activation. Protocol rows match exactly after excluding mac_prepare. a129 protocol rows are unchanged.",
+    "Both simulators release capacity before the next queued HOP admission. T9 callbacks are separated by approximately27.7778ns (configuredTIC); native nanosecond resolution reports28ns. No sampled admission-release defect warrants an additional policy change.",
+    "c129 differing first DATA reception order and reservation draws precede its ACK divergence; the present correction does not align simulator random streams or certify statistical parity."
+  ],
+  "next_milestone": "One 6000-second campus benchmark on the accepted correction with retained regression checks and frozen T7/ns3/archived OPNET comparison. Further seed129 policy work requires matched initial-contention, receiver-occupancy and reservation evidence.",
+  "limits": [
+    "MATLAB runtime is owner-returned evidence; this Python reviewer does not execute MATLAB.",
+    "No campus, retained scenario/sweep, native-backend or OPNET run is part of this gate.",
+    "Five contention seeds and one admission control are descriptive, with no statistical equivalence claim.",
+    "Pending MATLAB work and unclassified ns-3 unmatched sends remain explicit.",
+    "Early service traces cover the half-open 300 <= t < 320 second window; counts are not full-run service counts.",
+    "Matching deterministic subsystem contracts do not prove full-network protocol parity.",
+    "Feedback replacement means DATA-to-first-ACK intervals need not be residence times of one unchanged ACK.",
+    "The reporting repair fixes Boolean representations and an installation-path-only comparison without changing owner evidence, MATLAB behavior, or numerical tolerances.",
+    "PHY/ECC, ACK rate/power policy and previous outage/retry limits remain unchanged.",
+    "The original csr9.zip remains the exact executed package; post-return metadata and Python repair are not that original full source snapshot."
+  ],
+  "remote_publication_performed": false,
+  "matlab_rerun_required_for_acceptance": false,
+  "acceptance_update_verification": {
+    "frozen_source_files": 206,
+    "unchanged_source_files": 202,
+    "intentionally_changed_files": [
+      "evidence/source-baseline.json",
+      "scripts/analyze_tranche9_return.py",
+      "scripts/tests/test_tranche9_return.py",
+      "scripts/tranche9_metrics.py"
+    ],
+    "matlab_source_files_unchanged": 115,
+    "selected_owner_files_byte_exact": 31,
+    "independent_structural_and_repair_gate_passed": true
+  },
+  "artifacts": [
+    {
+      "path": "tranche-9-r2025a-accepted/independent/independent-review.md",
+      "bytes": 5247,
+      "sha256": "2c0432cf3a96b6328fa41f690d84b1c279a648554fd4f0a44d428217fbe80134"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/independent/independent_qa.py",
+      "bytes": 23156,
+      "sha256": "f3d67e02c1195d03489b3e156e01129718aec0041a4cf7feabdbb4e687fa0622"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/independent/receipt.json",
+      "bytes": 5933,
+      "sha256": "7861e76fe5975861f2e42d88e92bd3d60ce4eb96e83992406d9ca9ab55e09062"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/independent/repair-receipt.json",
+      "bytes": 7143,
+      "sha256": "02e2038edf98cab2d838e5ef3bac1ac0d02091d73643b5278dc8d89b663f98eb"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/independent/repair_gate.py",
+      "bytes": 5259,
+      "sha256": "b7caf719309f83d4a20fc418a0adab5bd0937f3028712e70cbd8759350133364"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/repair/initial-failure.json",
+      "bytes": 431,
+      "sha256": "33159de239523730508b4ed2abb0aca2cbe2ea46e5383f298213817d00f3e5fa"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/repair/path-failure.json",
+      "bytes": 446,
+      "sha256": "d767f56318a12cd8c2e99cd094d9316c140512f95ea80e56405dee0963f428b6"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/repair/python-result.json",
+      "bytes": 231,
+      "sha256": "047bf0d723fb2624356bc06fcab9da65d8c1d26f88073f3f7eaaf52f4cfcdb91"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/repair/python-tests.log",
+      "bytes": 40239,
+      "sha256": "6431b759dc85e1f7e87fd7027b3ec9e7be9ebb9732a1beb836c803b61f1625f3"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/repair/reporting-repair.patch",
+      "bytes": 12095,
+      "sha256": "399c3f1e573bad5aa9bb9d78d71e7e4b3489589e740fddca2ad93fe8fd88322c"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/repair/review-result.json",
+      "bytes": 406,
+      "sha256": "88bbd899e1ba0badd29e3ec3cdff80a5f22e1cd810c592a24e0ee3ee6ca181af"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/repair/review.log",
+      "bytes": 120,
+      "sha256": "999875205f34f5f84fee3290dfcd7eb43b54eca0f440a506f45f4701dfc3b4b1"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/review/a129/bucket_comparison.csv",
+      "bytes": 122336,
+      "sha256": "447286b54f8f02578b127d716decac0233db49a627b4cb7f285ab18c790df3b6"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/review/a129/comparison-input.json",
+      "bytes": 2661,
+      "sha256": "b41a6404e2c0ddf4bea3c6864de32eb2761bda7d3df7dd5f0a55446149594f1a"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/review/a129/comparison.json",
+      "bytes": 20172,
+      "sha256": "74c1471ed977961f32305617d3097a8a822da44da06bb4fb4757e41e2bd7b357"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/review/a129/series_comparison.csv",
+      "bytes": 2386,
+      "sha256": "2dffcdf37c43e357f72ff4782449cd315e64ce955399551b76bfa9d48f7ece3b"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/review/c128/bucket_comparison.csv",
+      "bytes": 103813,
+      "sha256": "898f1f65d44065d68eac9034617a7e8350becb1cd7d8ffbe2d67bdf10989e3ac"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/review/c128/comparison-input.json",
+      "bytes": 2672,
+      "sha256": "d8723f75f875f890cea8d32557bfb980239ffd62a1989b420b4b5258bfc71887"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/review/c128/comparison.json",
+      "bytes": 25467,
+      "sha256": "60bcc042efef9370fb6342f29ffc223180a29cb16b3a60b74554130c577338f9"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/review/c128/series_comparison.csv",
+      "bytes": 2403,
+      "sha256": "747473c947cc5a91319ec4bd8e5deffdd7bd53fd220459eeae24a7345bfddd28"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/review/c129/bucket_comparison.csv",
+      "bytes": 104077,
+      "sha256": "d3f17fb2156792ed2a2b82508771a8ca76aee5687897c18469fdb916104ef697"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/review/c129/comparison-input.json",
+      "bytes": 2672,
+      "sha256": "e030de6a967e82534bec09dc735bcde96a95fdfea332ecce1490b3254e6b3f48"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/review/c129/comparison.json",
+      "bytes": 25506,
+      "sha256": "b1aaeb59313d8a18a708c343bc60f87dd53ca0797f434e4d2a7b9b72d0b5428d"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/review/c129/series_comparison.csv",
+      "bytes": 2442,
+      "sha256": "b4570e4f698cb2faa670fec4f3fc914c846971a40b7c8df6486557656a71ff53"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/review/c130/bucket_comparison.csv",
+      "bytes": 103956,
+      "sha256": "4b901e1747db0c026a8401bd4728af9861784be87605f09e3694b96bca68c74e"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/review/c130/comparison-input.json",
+      "bytes": 2672,
+      "sha256": "f3660cb640ecf6a7b60a73101f05b71459dda5027c683fbe2b4d47909d7f8f1e"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/review/c130/comparison.json",
+      "bytes": 25533,
+      "sha256": "4131f1284b0832fe6b70360ae8a2e88c285f9dd6f276f724da6211865b2073ec"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/review/c130/series_comparison.csv",
+      "bytes": 2469,
+      "sha256": "d739077b794ce19550d71e0dd84838fcdfbbef846c2e8f6692bdd170af6e9be1"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/review/c131/bucket_comparison.csv",
+      "bytes": 103643,
+      "sha256": "d58ee9cdc4aebd042e1f211f03b96ee44cb12bf35eb823e1557bf575aba2243d"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/review/c131/comparison-input.json",
+      "bytes": 2672,
+      "sha256": "86cc628b392ef1db6f56c92d955f20ea57c84b68e524c3bf48d1d90f4dde1608"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/review/c131/comparison.json",
+      "bytes": 25503,
+      "sha256": "43124de382b15eba0a3fbf28f5180fc70b7486894d891405b395f9776b13a763"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/review/c131/series_comparison.csv",
+      "bytes": 2439,
+      "sha256": "c9cdb055275ed2ed829e6833d6bc7c3e10a3f68ca0af1a0a7165794d0de82462"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/review/c132/bucket_comparison.csv",
+      "bytes": 103582,
+      "sha256": "8df1a001751ca76598f80967d8bf2a3d90695769eb6e9703688293ef470dfc3d"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/review/c132/comparison-input.json",
+      "bytes": 2672,
+      "sha256": "93854f841c748c47e4dbd0588cd28ee1a18ec2c425f138abc3b52ae7036048dc"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/review/c132/comparison.json",
+      "bytes": 25543,
+      "sha256": "fe0efa4577c739296f6a54de7f0cccbec8d0e8c6aa2c3c8c8a2cfe64c53a59a2"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/review/c132/series_comparison.csv",
+      "bytes": 2479,
+      "sha256": "c0787734463f1dd68055c2f49f6607c3f6a30d3a2bcb1de6161b38c9b61a5f98"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/review/per_seed_metrics.csv",
+      "bytes": 3250,
+      "sha256": "6319ae696bee284ff04bdfd7db6cd57b3baed3963b2e7cb26b65666862fd829f"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/review/review.json",
+      "bytes": 128348,
+      "sha256": "531fce8cc48666d0976333a7f48329ab882022df7291e98ab51123b9abaa1ab0"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/b/a129/benchmark_manifest.json",
+      "bytes": 39559,
+      "sha256": "fc9ecbc9a05f906450ddb34451a3832f53ce639ad544de0e7a3507c083999a59"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/b/a129/raw/case_manifest.json",
+      "bytes": 34886,
+      "sha256": "96e7fc42f76119a06d7e11ffba4731893d52c5825a94ee9c105d6721a647f2f8"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/b/a129/raw/summary.json",
+      "bytes": 15936,
+      "sha256": "9d1a54f91b42b697d002be55845e467c60f36854a7f9ea766785b13f26faefa1"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/b/c128/benchmark_manifest.json",
+      "bytes": 39546,
+      "sha256": "e436350157a3478f8c30ab722888002ec85bfc0e18739cc8083b5d183b73fc03"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/b/c128/raw/case_manifest.json",
+      "bytes": 34866,
+      "sha256": "8420c1510d7a86528054cde904168ac0a3e2f8ef418ffd4c92a5c4ae1845c2a2"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/b/c128/raw/summary.json",
+      "bytes": 17670,
+      "sha256": "f0a59efab9d60979351a67fc398fdca13addfa28cbb632bd32a60972cd8e3a3d"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/b/c129/benchmark_manifest.json",
+      "bytes": 39546,
+      "sha256": "9d689f267592511c35d0b62d1c81858f5f66c0b9eabcdddeb4e1cf31f7051c1e"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/b/c129/raw/case_manifest.json",
+      "bytes": 34866,
+      "sha256": "4968e79996b56e235a66512bb73e7c763c03f907bf1cd65da6f8aa275ddec228"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/b/c129/raw/summary.json",
+      "bytes": 17668,
+      "sha256": "ae6cf54e515aa82a8ba3de8a025572a8f880c49ab08d13a0a5d354e919e32831"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/b/c130/benchmark_manifest.json",
+      "bytes": 39546,
+      "sha256": "54073234de41e35f8f59b1af4868dfb4cc4615ebfaec8ccfd8291bd615319532"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/b/c130/raw/case_manifest.json",
+      "bytes": 34866,
+      "sha256": "60f78a9b553dac2417528594da0310160fc00eb6eb4fec7662601d5d6340455e"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/b/c130/raw/summary.json",
+      "bytes": 17601,
+      "sha256": "2a8ac32a86434b7deed65c36bbea40d66430d7c15f08c88917c295db6deb797d"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/b/c131/benchmark_manifest.json",
+      "bytes": 39546,
+      "sha256": "4f39f0460356a7d39bf049fb4f48bc31a06d9f9d02b504cd78d1c194347da915"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/b/c131/raw/case_manifest.json",
+      "bytes": 34866,
+      "sha256": "5e687aeb4f6d942bb14d1516d2da2d6a7192640ee208196a26e7664730d69dea"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/b/c131/raw/summary.json",
+      "bytes": 17654,
+      "sha256": "e2f1bb22fc881a8935a0367a0eb42bb7c26100fcedc6d32d3438f6b0d85d0e17"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/b/c132/benchmark_manifest.json",
+      "bytes": 39546,
+      "sha256": "04f8ef87ece1ffda6184c390333a7aa4046ff52d5bf2b0c2f7b006e94a80a93d"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/b/c132/raw/case_manifest.json",
+      "bytes": 34866,
+      "sha256": "4bf579fc54f8611f653409669f5de79845e7c537baea6d308ebfc1c173455abb"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/b/c132/raw/summary.json",
+      "bytes": 17654,
+      "sha256": "ed88988cc8f876b6b255912d2c712c408adbe50d9f5d42c939cce57b1968c415"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/benchmark_summary.csv",
+      "bytes": 2670,
+      "sha256": "de4cdc08c1efd5d7e2f81557533953bab6c3da4f590299aba5a154c9692b417c"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/c/a129/raw/case_manifest.json",
+      "bytes": 34342,
+      "sha256": "337e4533b4ab0bc1748602374009e2cf4305f727f2f622ff01692dbcc664f454"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/c/a129/raw/summary.json",
+      "bytes": 12278,
+      "sha256": "748da94c7cddb983fed2b85e116a6513bdad548e8f68fec033e7a12a013a36c3"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/c/c129/raw/case_manifest.json",
+      "bytes": 34322,
+      "sha256": "97247dc0ccd9056d17fd1a71d3056aabe8d34e519724638ffd875253489ade3f"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/c/c129/raw/summary.json",
+      "bytes": 14013,
+      "sha256": "56c4e26399a8bc83828aa7db8e67b99a7567bd1d001346bc7bba5e921aeac6f2"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/contracts/checkpoints.csv",
+      "bytes": 5390,
+      "sha256": "7bc48e4d60da71337873d083d0b70a5a15cb7cd72946e4882104ddb40646ab95"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/contracts/summary.json",
+      "bytes": 330,
+      "sha256": "8a09d75de054ffc94fccf31e0df371369aea894a5e2001bb55ae210c7358267f"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/diagnostic_plan.json",
+      "bytes": 8474,
+      "sha256": "372db92a385781d9854a096149fd419b90ae79823125b79269506bd9877e0116"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/nonperturbation.json",
+      "bytes": 7525,
+      "sha256": "997e8368afd00255c8b95f9ed15928b2e39a3d81447d27fe5fc37c091d71d2f1"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/source_snapshot.json",
+      "bytes": 28916,
+      "sha256": "657b84111d5dadf7e8099b1f28f26865b2a7c55f551e83f50d81623dbf1bf7b5"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/tests/test_results.csv",
+      "bytes": 40862,
+      "sha256": "da295349b10e0c4b68f5280596f3ede6ea5a9895422df52566cb8e7a8f9c90e6"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/validation.log",
+      "bytes": 4945,
+      "sha256": "8347188f360279e1e6ff063e5cfd2e005032b98da25eb98a062ef0a83535b708"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected/validation_metadata.json",
+      "bytes": 219211,
+      "sha256": "0f4fb6578cc84c736ef3295b1974add02a5e90bf5d13304fa8b099a4c55b11eb"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/selected-files.json",
+      "bytes": 7302,
+      "sha256": "82de43cd786643d35f98c9185c966bdf7d1fd0d29d3c529cc23af5dc8f61cef4"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/service/flows.csv",
+      "bytes": 1233,
+      "sha256": "5c2f7d45c5a1411a0fc61e816d1e0d1a1757a99fcdd93d41d07d8b9cb1d31f92"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/service/inspect_return.py",
+      "bytes": 16439,
+      "sha256": "4ba16b080614e65f62cc03ed506b85bd6009fbe8801c4e30f667df328ae632d4"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/service/inspection.json",
+      "bytes": 67522,
+      "sha256": "aeaf90b3de5b74ce149699ac38f0742ae9321edc1227c0d5622890ab8324ba1c"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/service/report.md",
+      "bytes": 7738,
+      "sha256": "dedceeeb292f87cb2b9eec4c1c73090616ac0bc880e6ad377ac262caba4c6250"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/tranche9_evidence.zip",
+      "bytes": 10194267,
+      "sha256": "ddcede0a83b5ff906a7736f63406fc4cecb11e841795e39e93237364e0e11edf"
+    }
+  ]
+}

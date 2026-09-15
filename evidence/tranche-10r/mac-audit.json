@@ -1,0 +1,100 @@
+{
+  "schema": "csr-tranche10-owner-mac-timer-audit-v1",
+  "status": "no-direct-mac-or-receiver-spin-found",
+  "execution_scope": "Read-only MATLAB source inspection and Python IEEE-754 arithmetic probe; no MATLAB or Octave execution.",
+  "source_files": {
+    "+csr/+mac/Layer.m": "d2e1b9e08c7e3d3ea60c88b61f3480f881e53c5963f48ae09822c4f04170e67b",
+    "+csr/+phy/SignalEngine.m": "65d84b1e97eb1a6ffb9977cb41bc314a80362dfd70c01780b698068fb51e0b29",
+    "+csr/+sim/EventScheduler.m": "22a937be4cc18d5e2e5b2956f87273b65dfcdf7a37ee0f0487dfe2a6f647f9b3",
+    "+csr/+scenario/researchNetwork.m": "903f78913a0e7c0d06e9adeeafe30af8b82703dd2cbd1c40705ef6a6644a372a",
+    "+csr/+hop/Layer.m": "a56cd54fcd8bd863958b1addfc861f16f434ab79e4993fb182936a8b2b454f67",
+    "+csr/+nwk/Layer.m": "7ef09931c83c55697ce96b400ee1d90459a44af4c0527b396829d62ab9125300",
+    "+csr/+nwk/Neighbors.m": "530819c30d9715572763013580050a1957c72ed14930557e0ab9a349e9e0a868",
+    "+csr/+nwk/Routes.m": "6c12979d4215ae286d5efd2be65bce51fd1f8fb54876cdc32041bbb413eb5cc0"
+  },
+  "idle_rts_arithmetic_probe": {
+    "tested": 207693,
+    "time_range_seconds": [
+      0,
+      900
+    ],
+    "failures": []
+  },
+  "integral_mac_tick": {
+    "period_seconds": 0.013,
+    "period_nanoseconds": 13000000,
+    "minimum_adjacent_tick_gap_observed_seconds": 0.012999999999919964,
+    "maximum_ns_at_900_seconds": 900000000000,
+    "double_exact_integer_limit": 9007199254740992,
+    "nanosecond_branch_requires_next_time_strictly_future": true
+  },
+  "six_node_continuous_tick_estimate": 415380,
+  "accepted_t7_same_case": {
+    "PhysicalTransmissions": 1183,
+    "Generated": 15,
+    "Received": 15,
+    "Dropped": 0,
+    "Pending": 0,
+    "RouteChanges": 85,
+    "RuntimeSeconds": 59.8014808,
+    "PendingEvents": 6
+  },
+  "owner_failure": {
+    "case": "research_mesh_6_seed_128",
+    "duration_seconds": 900,
+    "max_events": 2000000,
+    "simulation_now_available": false,
+    "next_callback_available": false,
+    "cause_established": false
+  },
+  "recommended_action": "Retain MaxEvents and current MAC/PHY policies. Add passive event-limit Now/next-callback/repeated-time details and isolate the failed mesh case. Investigate unchanged relative-age expiry predicates elsewhere that changed slot phases may expose.",
+  "followup": {
+    "status": "source-level-livelock-demonstrated-in-neighbor-admission",
+    "runtime_scope": "Python IEEE-754 evaluation of exact delivered expressions; MATLAB public-API reproduction recipes audited but not executed.",
+    "file": "+csr/+nwk/Neighbors.m",
+    "cycle": [
+      "scheduleRetry:367",
+      "retry:370-372",
+      "evaluate:271",
+      "deadline branch:283/295/308"
+    ],
+    "counterexamples": [
+      {
+        "backoff": "key-request",
+        "test_line": 280,
+        "rearm_line": 283,
+        "when": 11.013,
+        "delay": 5,
+        "deadline": 16.012999999999998,
+        "elapsed": 4.999999999999998,
+        "remaining": 0.0,
+        "identical_callback_iterations": 20
+      },
+      {
+        "backoff": "key-send",
+        "test_line": 291,
+        "rearm_line": 295,
+        "when": 11.013,
+        "delay": 5,
+        "deadline": 16.012999999999998,
+        "elapsed": 4.999999999999998,
+        "remaining": 0.0,
+        "identical_callback_iterations": 20
+      },
+      {
+        "backoff": "overheard",
+        "test_line": 302,
+        "rearm_line": 308,
+        "when": 11.013,
+        "delay": 10,
+        "deadline": 21.012999999999998,
+        "elapsed": 9.999999999999998,
+        "remaining": 0.0,
+        "identical_callback_iterations": 20
+      }
+    ],
+    "owner_failure_causal_link_confirmed": false,
+    "minimal_fix_candidate": "Use the same absolute deadline for due tests and retry scheduling in all three evaluate branches, preserving backoff state transitions.",
+    "hop_nwk_other_findings": "No other same-time/tiny-time feedback cycle demonstrated. HOP resend callbacks use +TIC and do not rearm if not due; DACK compares stored absolute expiry; NWK control/backlog deferrals use positive eight-second delays; Routes has no scheduler."
+  }
+}

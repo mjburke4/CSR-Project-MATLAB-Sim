@@ -1,7 +1,10 @@
 function config = importNs3(path,options)
-%IMPORTNS3 Import the supported current-profile csr-opnet-scenario-v1 subset.
+%IMPORTNS3 Import an audited csr-opnet-scenario-v1 configuration.
 % FlowLimit is an explicit positive per-flow cap (default 3). The matching
 % ns-3 run must disable application gating and stochastic SYNC thresholds.
+% HistoricalBenchmark=true explicitly enables the archived profile tuple,
+% source application gates and stochastic SYNC. Its FlowLimit defaults to 0
+% (unlimited admitted packets); PacketCount then counts generator interrupts.
 % Unsupported behavior is rejected; SharedScenario records the exact input.
 if nargin < 2, options = struct(); end
 if isstring(path) && isscalar(path), path = char(path); end
@@ -9,15 +12,21 @@ if ~ischar(path) || ~isrow(path) || isempty(path) || ~isfile(path)
     error('csr:scenario:ImportPath','An existing canonical CSV path is required.');
 end
 if ~isstruct(options) || ~isscalar(options) || ...
-        ~isempty(setdiff(fieldnames(options),{'FlowLimit','Backend'}))
-    error('csr:scenario:ImportOptions','Options must contain only FlowLimit and Backend.');
+        ~isempty(setdiff(fieldnames(options),{'FlowLimit','Backend','HistoricalBenchmark'}))
+    error('csr:scenario:ImportOptions','Options must contain only FlowLimit, Backend and HistoricalBenchmark.');
 end
-if ~isfield(options,'FlowLimit'), options.FlowLimit = 3; end
+if ~isfield(options,'HistoricalBenchmark'), options.HistoricalBenchmark = false; end
+if ~islogical(options.HistoricalBenchmark) || ~isscalar(options.HistoricalBenchmark)
+    error('csr:scenario:ImportOptions','HistoricalBenchmark must be a scalar logical.');
+end
+historical = options.HistoricalBenchmark;
+if ~isfield(options,'FlowLimit'), options.FlowLimit = 3*double(~historical); end
 if ~isnumeric(options.FlowLimit) || ~isscalar(options.FlowLimit) || ...
         ~isreal(options.FlowLimit) || ~isfinite(options.FlowLimit) || ...
-        options.FlowLimit < 1 || options.FlowLimit > flintmax || ...
+        options.FlowLimit < double(~historical) || options.FlowLimit > flintmax || ...
         fix(options.FlowLimit) ~= options.FlowLimit
-    error('csr:scenario:ImportOptions','FlowLimit must be a positive exactly representable integer.');
+    error('csr:scenario:ImportOptions', ...
+        'FlowLimit must be a positive integer, or zero for an explicitly historical benchmark.');
 end
 if ~isfield(options,'Backend'), options.Backend = 'portable'; end
 if isstring(options.Backend) && isscalar(options.Backend)
@@ -41,6 +50,7 @@ runFields = [common,{'scenario','source_sha256','duration_s','seed','tmm', ...
 nodeFields = [common,{'node_id','name','node_type','x_m','y_m','height_m', ...
     'min_speed_kbps','max_speed_kbps','min_power_dbm','max_power_dbm', ...
     'link_margin_db','ecc_threshold','rx_frequency_hz','tx_frequency_hz'}];
+if historical, nodeFields = [nodeFields,{'interarrival_s','packet_bytes','start_s'}]; end
 flowFields = [common,{'flow_src','flow_dst','flow_start_s','flow_interval_s', ...
     'flow_packet_bytes','flow_dscp','flow_destination_mode'}];
 for index = 1:size(rows,1)
@@ -73,12 +83,9 @@ if isempty(run) || isempty(nodes)
 end
 name = field(headers,run,'scenario');
 if isempty(name), error('csr:scenario:ImportRows','The run must have a scenario name.'); end
-profile(headers,run,'application_profile','current-send-only',false);
-profile(headers,run,'mac_profile','current-fine-free-slot',false);
-profile(headers,run,'hop_security_profile','production-pairwise16',false);
-profile(headers,run,'ack_envelope_profile','production-pairwise16',true);
-if ~isempty(field(headers,run,'source_executable_sha256'))
-    error('csr:scenario:ImportUnsupported','Archived executable security profiles are unsupported.');
+[appProfile,macProfile,hopProfile,nwkProfile] = profiles(headers,run,historical);
+if ~historical && ~isempty(field(headers,run,'source_executable_sha256'))
+    error('csr:scenario:ImportUnsupported','Archived executable profiles require HistoricalBenchmark=true.');
 end
 if number(headers,run,'tmm',0,1,true) ~= 0
     error('csr:scenario:ImportUnsupported','TMM terrain is unsupported.');
@@ -95,6 +102,9 @@ elseif ~isempty(sourceDigest) && isempty(regexp(sourceDigest,'^[0-9a-f]{64}$','o
     error('csr:scenario:ImportRows', ...
         'source_sha256 must be empty, a lowercase SHA-256 digest, or synthetic-shared-scenario-v1.');
 end
+if historical && isempty(regexp(sourceDigest,'^[0-9a-f]{64}$','once'))
+    error('csr:scenario:ImportProfile','Historical profiles require the original source SHA-256 digest.');
+end
 scale = 1;
 if ~isempty(field(headers,run,'coordinate_scale_m_per_unit'))
     scale = number(headers,run,'coordinate_scale_m_per_unit',realmin,flintmax,false);
@@ -106,13 +116,37 @@ seed = number(headers,run,'seed',1,4294944442,true);
 config = csr.scenario.routedNetwork('autonomous');
 config.Name = name; config.DurationSeconds = duration; config.Seed = seed;
 config.Backend = options.Backend;
+config.ApplicationProfile = appProfile;
+if historical
+    config.ApplicationGenerator = 'historical-opnet-gated';
+    config.ApplicationFlowLimit = options.FlowLimit;
+    config.Mac.SlotProfile = macProfile;
+    config.Nwk.SecurityProfile = nwkProfile;
+    config.Radio.EnvelopeProfile = 'bare';
+end
 config.Nodes = repmat(config.Nodes(1),1,size(nodes,1));
 nodeNames = cell(1,size(nodes,1));
-limits = zeros(size(nodes,1),4);
+nodeTraffic = repmat(struct('NodeId',0,'Present',false,'IntervalSeconds',NaN, ...
+    'ConfiguredPacketBytes',NaN,'StartSeconds',NaN),1,size(nodes,1));
+limits = zeros(size(nodes,1),6);
 for index = 1:size(nodes,1)
     row = nodes(index,:);
     node = config.Nodes(index);
     node.Id = number(headers,row,'node_id',0,2^24-2,true);
+    nodeTraffic(index).NodeId = node.Id;
+    if historical
+        present = ~cellfun(@isempty,{field(headers,row,'interarrival_s'), ...
+            field(headers,row,'packet_bytes'),field(headers,row,'start_s')});
+        if any(present) && ~all(present)
+            error('csr:scenario:ImportRows','Archived node application metadata must contain all three fields.');
+        end
+        if all(present)
+            nodeTraffic(index).Present = true;
+            nodeTraffic(index).IntervalSeconds = number(headers,row,'interarrival_s',realmin,flintmax,false);
+            nodeTraffic(index).ConfiguredPacketBytes = number(headers,row,'packet_bytes',15,65550,true);
+            nodeTraffic(index).StartSeconds = number(headers,row,'start_s',0,flintmax,false);
+        end
+    end
     nodeNames{index} = field(headers,row,'name');
     if isempty(nodeNames{index}), error('csr:scenario:ImportNode','Every node needs a name.'); end
     kind = field(headers,row,'node_type');
@@ -126,25 +160,29 @@ for index = 1:size(nodes,1)
     node.PositionMeters = [x,y,height];
     minRate = number(headers,row,'min_speed_kbps',1,1000,true);
     maxRate = number(headers,row,'max_speed_kbps',1,1000,true);
-    if minRate ~= maxRate || ~ismember(minRate,[8,16,32,64,128,500,1000])
-        error('csr:scenario:ImportUnsupported','Shared scenarios require a fixed supported rate per node.');
+    if minRate > maxRate || ~all(ismember([minRate,maxRate],[8,16,32,64,128,500,1000])) || ...
+            (~historical && minRate ~= maxRate)
+        error('csr:scenario:ImportUnsupported', ...
+            'Rate limits must use supported ordered rates; ranges require HistoricalBenchmark=true.');
     end
     minPower = number(headers,row,'min_power_dbm',-3276.8,3276.7,false);
     maxPower = number(headers,row,'max_power_dbm',-3276.8,3276.7,false);
     margin = number(headers,row,'link_margin_db',0,3276.7,false);
-    if minPower ~= maxPower || abs(10*minPower-round(10*minPower)) > 1e-9 || ...
+    if minPower > maxPower || (~historical && minPower ~= maxPower) || ...
+            abs(10*minPower-round(10*minPower)) > 1e-9 || ...
+            abs(10*maxPower-round(10*maxPower)) > 1e-9 || ...
             abs(10*margin-round(10*margin)) > 1e-9
         error('csr:scenario:ImportUnsupported', ...
-            'Use fixed power and power/margin representable in tenths of a dB.');
+            'Use ordered power limits and power/margin representable in tenths of a dB.');
     end
-    limits(index,:) = [minRate,minPower,margin,height];
+    limits(index,:) = [minRate,maxRate,minPower,maxPower,margin,height];
     radio = csr.phy.RadioProfile.defaults();
-    radio.TxPowerDbm = minPower;
+    radio.TxPowerDbm = maxPower;
     radio.TxBaseFrequencyHz = number(headers,row,'tx_frequency_hz',realmin,flintmax,false);
     radio.RxBaseFrequencyHz = number(headers,row,'rx_frequency_hz',realmin,flintmax,false);
     radio.TxHeightMeters = height; radio.RxHeightMeters = height;
     radio.EccThreshold = number(headers,row,'ecc_threshold',0,1,false);
-    radio.StochasticSyncThreshold = false;
+    radio.StochasticSyncThreshold = historical;
     node.RadioProfile = radio;
     config.Nodes(index) = node;
 end
@@ -154,18 +192,20 @@ if numel(unique([config.Nodes.Id])) ~= numel(config.Nodes) || ...
 end
 if any(any(limits ~= limits(1,:)))
     error('csr:scenario:ImportUnsupported', ...
-        'Shared scenarios require uniform fixed rate, power, margin and antenna height.');
+        'Supported scenarios require uniform rate limits, power limits, margin and antenna height.');
 end
 % The reference sorts nodes by ID before constructing devices and RNG streams.
 [~,order] = sort([config.Nodes.Id]);
 config.Nodes = config.Nodes(order); nodeNames = nodeNames(order);
+nodeTraffic = nodeTraffic(order);
 config.Radio.RateKeyKbps = limits(1,1);
-config.Nwk.AdaptiveLinkControl = false;
+config.Nwk.AdaptiveLinkControl = historical;
 info = config.Nwk.Routing.LocalInfo;
-info.MinSpeedKbps = limits(1,1); info.MaxSpeedKbps = limits(1,1);
-info.MinPowerDbmX10 = round(10*limits(1,2)); info.MaxPowerDbmX10 = info.MinPowerDbmX10;
-info.LinkMarginDbX10 = round(10*limits(1,3));
+info.MinSpeedKbps = limits(1,1); info.MaxSpeedKbps = limits(1,2);
+info.MinPowerDbmX10 = round(10*limits(1,3)); info.MaxPowerDbmX10 = round(10*limits(1,4));
+info.LinkMarginDbX10 = round(10*limits(1,5));
 config.Nwk.Routing.LocalInfo = info;
+if historical, config.Traffic.DestinationMode = 'fixed'; end
 config.Traffic = repmat(config.Traffic,1,size(flows,1));
 configuredBytes = zeros(1,size(flows,1));
 for index = 1:size(flows,1)
@@ -176,8 +216,10 @@ for index = 1:size(flows,1)
         error('csr:scenario:ImportFlow','Flows need distinct existing endpoints.');
     end
     mode = field(headers,row,'flow_destination_mode');
-    if ~isempty(mode) && ~strcmp(mode,'fixed')
-        error('csr:scenario:ImportUnsupported','Only fixed-destination flows are supported.');
+    if isempty(mode), mode = 'fixed'; end
+    if ~strcmp(mode,'fixed') && ...
+            ~(historical && strcmp(mode,'random_route_or_neighbor'))
+        error('csr:scenario:ImportUnsupported','Unsupported flow destination mode.');
     end
     start = number(headers,row,'flow_start_s',0,flintmax,false);
     interval = number(headers,row,'flow_interval_s',realmin,flintmax,false);
@@ -191,32 +233,100 @@ for index = 1:size(flows,1)
     end
     count = 0;
     if startTick < stopTick
-        count = min(options.FlowLimit,floor((stopTick-1-startTick)/intervalTick)+1);
+        count = floor((stopTick-1-startTick)/intervalTick)+1;
+        if ~historical, count = min(options.FlowLimit,count); end
     end
     bytes = number(headers,row,'flow_packet_bytes',15,65550,true);
+    if historical
+        sourceTraffic = nodeTraffic([nodeTraffic.NodeId] == source);
+        if sourceTraffic.Present && ...
+                ~isequal([start,interval,bytes], ...
+                [sourceTraffic.StartSeconds,sourceTraffic.IntervalSeconds,sourceTraffic.ConfiguredPacketBytes])
+            error('csr:scenario:ImportFlow','Flow settings disagree with their archived source-node application settings.');
+        end
+    end
     flow = config.Traffic(index);
     flow.SourceId = source; flow.DestinationId = destination;
     flow.StartSeconds = start; flow.IntervalSeconds = interval; flow.PacketCount = count;
     flow.ApplicationPayloadBytes = bytes-15;
     flow.Dscp = number(headers,row,'flow_dscp',0,7,true);
     flow.AckRequired = true;
+    if historical, flow.DestinationMode = mode; end
     config.Traffic(index) = flow; configuredBytes(index) = bytes;
 end
-runOptions = struct('opnetAppGating',false,'stochasticSyncThreshold',false, ...
+if historical, validateHistoricalFlows(config); end
+runOptions = struct('opnetAppGating',historical,'stochasticSyncThreshold',historical, ...
     'dutyCycling',true,'opnetAlignedDutyCycle',true,'gatewayDiscovery',true);
 canonicalPath = csr.validation.Artifacts.canonicalPath(path);
 config.SharedScenario = struct('Schema','csr-opnet-scenario-v1', ...
     'SourcePath',canonicalPath,'SourceSHA256',digest, ...
     'SourceCommit','486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b', ...
-    'FlowLimit',options.FlowLimit,'ApplicationProfile','current-send-only', ...
-    'MacProfile','current-fine-free-slot','HopSecurityProfile','production-pairwise16', ...
+    'FlowLimit',options.FlowLimit,'ApplicationProfile',appProfile, ...
+    'MacProfile',macProfile,'HopSecurityProfile',hopProfile, ...
     'RunOptions',runOptions,'OriginalSourceSHA256',sourceDigest,'OriginalSourceLabel',sourceLabel, ...
     'CoordinateScaleMetersPerUnit',scale,'CoordinatesAlreadyMeters',true, ...
     'NodeNames',{nodeNames},'ConfiguredFlowPacketBytes',configuredBytes, ...
     'ApplicationPayloadExclusionBytes',15,'BrAppExclusionBytes',8,'NwkHeaderBytes',7, ...
     'HighRateExtension',limits(1,1) >= 500,'TimeResolutionNanoseconds',1, ...
     'Scope','Fixed-flow current-profile comparison input; no full network parity claim.');
+if historical
+    config.SharedScenario.HistoricalBenchmark = true;
+    config.SharedScenario.SourceExecutableSHA256 = field(headers,run,'source_executable_sha256');
+    config.SharedScenario.OriginalNodeApplicationSettings = nodeTraffic;
+    config.SharedScenario.Scope = ['Archived source-bound application/MAC/envelope configuration; ' ...
+        'gated generation and adaptive link control; no numerical or cryptographic parity claim.'];
+end
 config = csr.scenario.validate(config);
+end
+
+function [application,mac,hop,nwk] = profiles(headers,run,historical)
+application = field(headers,run,'application_profile');
+mac = field(headers,run,'mac_profile'); hop = field(headers,run,'hop_security_profile');
+nwk = 'behavioral-production-pairwise16-size-only';
+if ~historical
+    profile(headers,run,'application_profile','current-send-only',false);
+    profile(headers,run,'mac_profile','current-fine-free-slot',false);
+    profile(headers,run,'hop_security_profile','production-pairwise16',false);
+    profile(headers,run,'ack_envelope_profile','production-pairwise16',true);
+    return
+end
+tuples = {
+    'legacy-send-only-no-dscp','hist-2014-next-tslot-modulo-probe','hist-adb97c54-bare', ...
+    'adb97c54f7566439f1404e972d3d777a3bca613e2a965bf12f03353fb009d9af';
+    'legacy-send-to-from-no-dscp','hist-2015-fine-one-based-table-no-avoid','hist-dd3f38e8-bare', ...
+    'dd3f38e8d33700b61f9e360a737ba34e56cb75b2570eb2960a02de381ed0fff0'};
+matched = find(strcmp(application,tuples(:,1)) & strcmp(mac,tuples(:,2)) & strcmp(hop,tuples(:,3)),1);
+if isempty(matched)
+    error('csr:scenario:ImportProfile','Historical application, MAC and HOP profiles must select an audited atomic tuple.');
+end
+profile(headers,run,'ack_envelope_profile',hop,true);
+profile(headers,run,'source_executable_sha256',tuples{matched,4},false);
+nwk = ['behavioral-' hop '-size-only'];
+end
+
+function validateHistoricalFlows(config)
+gateways = [config.Nodes([config.Nodes.Capability] == 2).Id];
+if numel(gateways) ~= 1
+    error('csr:scenario:ImportProfile','Historical application profiles require exactly one gateway.');
+end
+dynamic = 0;
+for flow = config.Traffic
+    if flow.Dscp ~= 0
+        error('csr:scenario:ImportProfile','Historical application profiles require zero DSCP.');
+    end
+    if strcmp(flow.DestinationMode,'random_route_or_neighbor')
+        dynamic = dynamic+1;
+        if flow.SourceId ~= gateways
+            error('csr:scenario:ImportProfile','A dynamic historical flow must originate at the gateway.');
+        end
+    elseif flow.SourceId == gateways || flow.DestinationId ~= gateways
+        error('csr:scenario:ImportProfile','Fixed historical flows must originate outside and terminate at the gateway.');
+    end
+end
+expected = double(strcmp(config.ApplicationProfile,'legacy-send-to-from-no-dscp'));
+if dynamic ~= expected
+    error('csr:scenario:ImportProfile','Historical profile has the wrong gateway-origin dynamic flow count.');
+end
 end
 
 function value = field(headers,row,name)

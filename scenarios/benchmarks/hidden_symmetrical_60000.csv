@@ -1,0 +1,12 @@
+record,schema,scenario,source_sha256,duration_s,seed,tmm,coordinate_scale_m_per_unit,reservation_control_start_s,application_profile,mac_profile,hop_security_profile,ack_envelope_profile,source_executable_sha256,node_id,forced_reservation_slot,name,node_type,x_m,y_m,height_m,min_speed_kbps,max_speed_kbps,min_power_dbm,max_power_dbm,link_margin_db,ecc_threshold,rx_frequency_hz,tx_frequency_hz,interarrival_s,packet_bytes,start_s,flow_src,flow_dst,flow_destination_mode,flow_start_s,flow_interval_s,flow_packet_bytes,flow_dscp
+run,csr-opnet-scenario-v1,blue_radio_campus-hidden_nodes_symmetrical,246b5a05aae56d3e32780b08e00950b5b6f02ecbe91470b8a898dc5ba63d1ebc,60000.0,128,0,1000.0,,legacy-send-to-from-no-dscp,hist-2015-fine-one-based-table-no-avoid,hist-dd3f38e8-bare,,dd3f38e8d33700b61f9e360a737ba34e56cb75b2570eb2960a02de381ed0fff0,,,,,,,,,,,,,,,,,,,,,,,,,
+node,csr-opnet-scenario-v1,,,,,,,,,,,,,1,,CSR_node_1,gateway,0.0,0.0,100.0,8,128,-36.0,33.0,12.0,0.1,400000000.0,400000000.0,0.002,600,300.0,,,,,,,
+node,csr-opnet-scenario-v1,,,,,,,,,,,,,2,,CSR_node_2,ordinary,-3500.0,-500.0,1.0,8,128,-36.0,33.0,12.0,0.1,400000000.0,400000000.0,0.002,600,300.0,,,,,,,
+node,csr-opnet-scenario-v1,,,,,,,,,,,,,3,,CSR_node_3,ordinary,-3500.0,500.0,1.0,8,128,-36.0,33.0,12.0,0.1,400000000.0,400000000.0,0.002,600,300.0,,,,,,,
+node,csr-opnet-scenario-v1,,,,,,,,,,,,,4,,CSR_node_4,ordinary,3500.0,500.0,1.0,8,128,-36.0,33.0,12.0,0.1,400000000.0,400000000.0,0.002,600,300.0,,,,,,,
+node,csr-opnet-scenario-v1,,,,,,,,,,,,,5,,CSR_node_5,ordinary,3500.0,-500.0,1.0,8,128,-36.0,33.0,12.0,0.1,400000000.0,400000000.0,0.002,600,300.0,,,,,,,
+flow,csr-opnet-scenario-v1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,2,1,fixed,300.0,0.002,600,0
+flow,csr-opnet-scenario-v1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,3,1,fixed,300.0,0.002,600,0
+flow,csr-opnet-scenario-v1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,4,1,fixed,300.0,0.002,600,0
+flow,csr-opnet-scenario-v1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,5,1,fixed,300.0,0.002,600,0
+flow,csr-opnet-scenario-v1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,1,random_route_or_neighbor,300.0,0.002,600,0

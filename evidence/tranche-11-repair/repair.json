@@ -1,0 +1,68 @@
+{
+  "Schema": "csr-tranche11-harness-repair-v1",
+  "Status": "repair_prepared_owner_rerun_pending",
+  "OriginalCandidateSHA256": "21db9b8367055364faaf027a569a36aae76b7010abeb662f609b79ae7772be24",
+  "RepairedCandidateSHA256": "6e06098a3d3f32568940685da181ae70c90749a5cde17a86ff33d9a8da668efe",
+  "FailedEvidenceSHA256": "0d5ef15fc3cc8b1ea00b84252ec6fc41bb5701425f231039afcc9a0e50c33282",
+  "OwnerMATLABVersion": "25.1.0.2943329 (R2025a)",
+  "OwnerRunDisposition": "All four cases aborted before first ACK transmission; no MATLAB tests executed.",
+  "VerifiedMatchingPartialEvents": 662,
+  "VerifiedMatchingPartialDraws": 20,
+  "MatchingEventPrefixes": {
+    "ab": 146,
+    "ba": 146,
+    "slow": 218,
+    "track": 152
+  },
+  "TimingToleranceNanoseconds": 1,
+  "Cause": "HOP leaves ACK TxPowerDbm empty for the radio adapter. The new replay forwarded it directly to MAC; MAC scalar cellfun failed on the empty value.",
+  "Repair": "Default only empty frame.TxPowerDbm to pinned plan.power_dbm at fixture enqueue, as the existing production simulation adapters already do.",
+  "AdditionalChanges": "Retain per-case exception stacks and require actual gateway ACK transmissions plus scalar 128 kbps / +33 dBm radio observations in the existing completion test.",
+  "ChangedCode": [
+    {
+      "path": "+csr/+validation/replayContract.m",
+      "before_sha256": "6574f3c0fe65771d049a81ebdce5eca39ad603d15c2d096a3d6a5a6aad778d0c",
+      "after_sha256": "b63fc14f5f2de4294511fa599ddb526f1aacd969d4f3cd32bc2e016c126a2e3f"
+    },
+    {
+      "path": "tests/TestReplayContract.m",
+      "before_sha256": "499520214ebdd4908bfc9eda260ebdc54829917645c49ccee9da8e0d2777c899",
+      "after_sha256": "b68c66c43ba2687a1ec1e8cfba7bd2d07c8151a8e64651ba926dfa14e994970e"
+    }
+  ],
+  "BaselineSourceFilesUnchanged": 225,
+  "BaselineMatlabFilesUnchanged": 124,
+  "NativeReferenceUnchanged": true,
+  "SelectedMatlabTests": 52,
+  "RepairMATLABExecuted": false,
+  "RepairStaticFilesPassed": 2,
+  "AcceptanceEstablished": false,
+  "NumericalParityEstablished": false,
+  "StaticCheck": "Implementation specialist ran MISS_HIT on both changed MATLAB files; both passed. This is not MATLAB runtime execution.",
+  "Reviews": [
+    {
+      "path": "evidence/tranche-11-repair/failed.zip",
+      "sha256": "0d5ef15fc3cc8b1ea00b84252ec6fc41bb5701425f231039afcc9a0e50c33282"
+    },
+    {
+      "path": "evidence/tranche-11-repair/fix-review.json",
+      "sha256": "d03db4bc48a55600078e4c3d74d4f973da0ec11bd73daa296020d12e463dce84"
+    },
+    {
+      "path": "evidence/tranche-11-repair/original-candidate.json",
+      "sha256": "21db9b8367055364faaf027a569a36aae76b7010abeb662f609b79ae7772be24"
+    },
+    {
+      "path": "evidence/tranche-11-repair/partial-audit.json",
+      "sha256": "419d3a9135cdc65c1daa9bef73cfa40f015658777e3e643c8f8e0795d1b90afb"
+    },
+    {
+      "path": "evidence/tranche-11-repair/partial-audit.md",
+      "sha256": "32779a981e879d14957bc6f6f0e11ac1d2d8d7c6535b88a96f4459d6a700e17b"
+    },
+    {
+      "path": "evidence/tranche-11-repair/strict-gate.json",
+      "sha256": "ac920d5e52646861203be520bdabb15b27fdd1a93737f621acb626866039c812"
+    }
+  ]
+}

@@ -90,6 +90,31 @@ classdef TestEventScheduler < matlab.unittest.TestCase
             testCase.verifyEqual(scheduler.Now, 3);
         end
 
+        function eventLimitReportsAdvancingClockAndCallbacks(testCase)
+            scheduler = csr.sim.EventScheduler(1);
+            scheduler.scheduleAt(1.25, @first);
+            scheduler.scheduleAt(2.5, @second);
+            caught = [];
+            try
+                scheduler.run(3);
+            catch exception
+                caught = exception;
+            end
+            testCase.assertClass(caught, 'MException');
+            testCase.verifyEqual(caught.identifier, 'csr:sim:EventLimitExceeded');
+            testCase.verifySubstring(caught.message, 'Now=1.25 s; next=2.5 s;');
+            testCase.verifySubstring(caught.message, func2str(@first));
+            testCase.verifySubstring(caught.message, func2str(@second));
+            testCase.verifyEqual(scheduler.Now, 1.25);
+            testCase.verifyEqual(scheduler.PendingCount, 1);
+            testCase.verifyEqual(scheduler.run(3), 1);
+
+            function first()
+            end
+            function second()
+            end
+        end
+
         function nestedRunIsRejected(testCase)
             scheduler = csr.sim.EventScheduler();
             scheduler.scheduleAt(1, @() scheduler.run(2));

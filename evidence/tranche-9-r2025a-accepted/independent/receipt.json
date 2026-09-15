@@ -1,0 +1,167 @@
+{
+  "schema": "csr-tranche9-independent-owner-return-qa-v1",
+  "candidate_commit": "99fff0381fe9621ccd76fbdce41eac9aba5a9469",
+  "archive_sha256": "ddcede0a83b5ff906a7736f63406fc4cecb11e841795e39e93237364e0e11edf",
+  "archive_bytes": 10194267,
+  "simulation_executed_by_reviewer": false,
+  "archive_members": 177,
+  "expanded_bytes": 154809567,
+  "crc_and_safe_membership_passed": true,
+  "owner_runtime": {
+    "Runtime": "MATLAB",
+    "Version": "25.1.0.2943329 (R2025a)",
+    "Release": "2025a",
+    "HasWirelessNetworkSimulator": false,
+    "HasWnetNode": false,
+    "HasWirelessPacket": false,
+    "DefaultBackend": "portable",
+    "WirelessAdapterImplemented": true,
+    "WirelessAdapterScope": "Optional R2026a wireless-clock candidate; runtime validation pending",
+    "NativePacketTransportIntegrated": false,
+    "ProbeScope": "Symbol discovery only; licenses and execution are not validated."
+  },
+  "started_utc": "2026-09-11T18:01:56.345Z",
+  "completed_utc": "2026-09-11T18:25:37.630Z",
+  "elapsed_seconds": 1421.285,
+  "committed_source_files_verified": 206,
+  "committed_matlab_files_verified": 115,
+  "committed_reference_files_verified": 294,
+  "outer_artifact_checks": 176,
+  "nested_artifact_checks": 262,
+  "total_declared_artifact_hash_and_size_checks": 438,
+  "local_mat_artifacts_not_in_upload": 9,
+  "test_count": 514,
+  "passed_tests": 514,
+  "failed_tests": 0,
+  "incomplete_tests": 0,
+  "summed_test_duration_seconds": 358.2665686,
+  "contract_checkpoints_passed": 101,
+  "contract_cases": {
+    "mac_ack_wait": 14,
+    "mac_ack_sync": 17,
+    "mac_ack_track": 17,
+    "mac_cancel_then_ack": 18,
+    "mac_control_cancel_then_ack": 18,
+    "hop_release_order": 17
+  },
+  "contract_max_abs_difference_from_native": 0,
+  "controls_passed": 2,
+  "byte_exact_control_csv_pairs": 24,
+  "service_cases": [
+    {
+      "key": "c129",
+      "rows": 23666,
+      "joined_protocol_callbacks": 3158,
+      "joined_admission_attempts": 20000,
+      "cancellation_pairs": 254,
+      "positive_cancellations": 1,
+      "removed_entries": 1,
+      "counts": {
+        "Generated": 980,
+        "Received": 948,
+        "Dropped": 0,
+        "Pending": 32
+      }
+    },
+    {
+      "key": "c128",
+      "rows": 23633,
+      "joined_protocol_callbacks": 3125,
+      "joined_admission_attempts": 20000,
+      "cancellation_pairs": 254,
+      "positive_cancellations": 1,
+      "removed_entries": 1,
+      "counts": {
+        "Generated": 954,
+        "Received": 928,
+        "Dropped": 0,
+        "Pending": 26
+      }
+    },
+    {
+      "key": "c130",
+      "rows": 23137,
+      "joined_protocol_callbacks": 2719,
+      "joined_admission_attempts": 20000,
+      "cancellation_pairs": 209,
+      "positive_cancellations": 1,
+      "removed_entries": 1,
+      "counts": {
+        "Generated": 926,
+        "Received": 894,
+        "Dropped": 0,
+        "Pending": 32
+      }
+    },
+    {
+      "key": "c131",
+      "rows": 23125,
+      "joined_protocol_callbacks": 2703,
+      "joined_admission_attempts": 20000,
+      "cancellation_pairs": 211,
+      "positive_cancellations": 1,
+      "removed_entries": 1,
+      "counts": {
+        "Generated": 927,
+        "Received": 895,
+        "Dropped": 0,
+        "Pending": 32
+      }
+    },
+    {
+      "key": "c132",
+      "rows": 23357,
+      "joined_protocol_callbacks": 2891,
+      "joined_admission_attempts": 20000,
+      "cancellation_pairs": 233,
+      "positive_cancellations": 1,
+      "removed_entries": 1,
+      "counts": {
+        "Generated": 949,
+        "Received": 917,
+        "Dropped": 0,
+        "Pending": 32
+      }
+    },
+    {
+      "key": "a129",
+      "rows": 3917,
+      "joined_protocol_callbacks": 2493,
+      "joined_admission_attempts": 1000,
+      "cancellation_pairs": 212,
+      "positive_cancellations": 0,
+      "removed_entries": 0,
+      "counts": {
+        "Generated": 11358,
+        "Received": 11354,
+        "Dropped": 0,
+        "Pending": 4
+      }
+    }
+  ],
+  "service_rows_independently_reconciled": 120835,
+  "admission_logical_json_fields_checked": {
+    "Accepted": 101000,
+    "DiscoveryActive": 101000,
+    "TopologyKnown": 101000,
+    "GatewayCached": 101000,
+    "RouteCheckPerformed": 101000,
+    "RouteAvailable": 101000
+  },
+  "parser_issue": {
+    "file": "scripts/tranche9_metrics.py",
+    "function": "verify_matlab_rows",
+    "problem": "Frozen reviewer sends logical admission DetailsJSON fields to finite(), which intentionally rejects Python bool; CSV renders those logical values as 0/1.",
+    "independent_result": "All six explicit logical fields agree with original admission CSV across every in-window attempt. This is a reporting-only representation defect; retain raw MATLAB evidence and repair the reviewer with narrow logical-field handling."
+  },
+  "limitations": [
+    "Owner archive records portable MATLAB R2025a execution; this reviewer did not execute MATLAB, ns-3, or OPNET.",
+    "MAT objects remain on owner laptop and are unavailable for independent rereading.",
+    "Source and reference stability during execution are recorded by the owner runner; current returned snapshots bind exactly to committed candidate bytes.",
+    "No native MATLAB R2026a validation or campus benchmark rerun is present.",
+    "Matched deterministic MAC/HOP checkpoints establish only their specified conditions; full radio, timing, random-stream, and statistical parity are not established.",
+    "Final portable acceptance should incorporate a successful repaired full Python reviewer and quantitative comparison; parser failure alone does not require rerunning unchanged MATLAB sources."
+  ],
+  "status": "independent_portable_structural_checks_passed",
+  "recommendation": "Accept portable owner execution once the narrow reporting-only parser repair passes its regressions and full return review; no MATLAB structural blocker found. Do not claim parity or performance improvement from structural success."
+}

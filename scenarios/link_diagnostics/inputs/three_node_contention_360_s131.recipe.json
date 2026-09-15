@@ -1,0 +1,12 @@
+{
+  "schema": "csr-link-diagnostic-derivation-v1",
+  "base_case_id": "three_node_contention_360",
+  "parent_scenario": "scenarios/benchmarks/three_node_contention_360.csv",
+  "parent_scenario_sha256": "1f4f8e626559a1f613c27233d5a113a2f5a460b4d5f5e6bbd2b5d4358b4fac8f",
+  "overrides": {
+    "scenario": "tranche8-three-node-contention-s131",
+    "seed": 131
+  },
+  "csv_derivation": "Copy parent fields; replace only the run row scenario, seed, and source_sha256 (with this recipe SHA-256). Preserve node and flow rows exactly, including empty run-only fields. All geometry, profiles, traffic, timing, radio and PHY fields are retained.",
+  "purpose": "Synthetic multiseed diagnostic; no archived OPNET counterpart claimed."
+}

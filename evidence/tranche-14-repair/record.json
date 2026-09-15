@@ -1,0 +1,37 @@
+{
+  "Schema": "csr-tranche-14-repair-provenance-v1",
+  "Revision": "r1",
+  "Status": "logger_repaired_matlab_rerun_pending",
+  "CreatedUTC": "2026-09-15T12:58:36.136405+00:00",
+  "OriginalCandidateSHA256": "38d3e5cbbf30528a5a5a99a39b04d45490f22663486e3ebdafbfaeb95f4003d1",
+  "FailedOwnerEvidenceSHA256": "bb1e3cc388c2cb3681f22032d4b16d264db7c8914af872b8c6d35004e8fb34c8",
+  "OriginalPackageInventorySHA256": "47e93e1670bd89d054af2435c4599777b84c8ac69ff3613d12559ab3f27ed1c1",
+  "UpdateBaseRecipe": "Complete csr13.zip installation with issued t14up.zip applied; all resulting original file bytes independently verified.",
+  "UpdateBaseArchiveSHA256": "58927369d49317bdcf90ba53c2127a6bbd43743fe0671de61c7878dbeeaf4de1",
+  "UpdateBaseOverlaySHA256": "a3f0523fb1a1b3ee4a3d25ae97df74865e65ffb6c7f1700250e4867d8823b3fc",
+  "StandaloneOriginalFullArchiveUsed": false,
+  "ChangedMatlabFiles": [
+    {
+      "path": "+csr/+validation/ackEdgeContract.m",
+      "original_sha256": "f299b3c5fc09f62fdbe31044a0ea9e811b1ff26841524fbccd84dcea18e8952b",
+      "sha256": "87cff2b6c64b8a62d55b1b2ad97a5ce53be887dd8c3d89aa7c8e453213de0e94"
+    },
+    {
+      "path": "tests/TestAckEdgeContract.m",
+      "original_sha256": "3ebd0d5a38cae3dcf55e8a9889aa3be7383fa3e09684809d20f7ad77fca05fd7",
+      "sha256": "8ec230f95b7c2b6a2f801ed79594dccef2b3e4120adfbbaa3589f445c46a1bd2"
+    }
+  ],
+  "SourceFilesUnchangedFromValidatedT13": 271,
+  "MatlabFilesUnchangedFromValidatedT13": 138,
+  "OriginalReferenceFilesUnchanged": 283,
+  "ExpectedTestNamesUnchanged": true,
+  "TestCount": 106,
+  "StructuralChecks": 222,
+  "NativeRerunForRepair": false,
+  "NativeReferenceManifestSHA256": "5e0aa0bad502538a8a3b57f37390461fb0a2b58313c21d658e82d832046e827f",
+  "MATLABExecutedForRepair": false,
+  "AcceptanceEstablished": false,
+  "NumericalParityEstablished": false,
+  "Scope": "DATA-only application identity in the new observer plus ACK-schema and nonempty-case regression assertions. No production protocol, transport timing, PHY/ECC, native or shared-input modification."
+}

@@ -1,0 +1,51 @@
+{
+  "schema": "csr-tranche14-r2-table-shape-repair-v1",
+  "MATLABExecuted": false,
+  "ObservedFailure": "MATLAB:table:vertcat:VertcatMethodFailed at case 2; character widths differ for tie_early and tie_late",
+  "Cause": "struct2table inferred character matrices for uniform-width text, conflicting across cases and incorrectly exposing individual characters under linear indexing",
+  "Correction": "Explicit scalar table schemas normalize every text field in six diagnostic tables to an N-by-1 string array before validation/aggregation/export; numeric/logical/uint64 scalar types remain explicit",
+  "IndependentNewTestClass": "tests/TestEdgeRecords.m",
+  "IndependentNewTestCount": 3,
+  "TotalFocusedTestCount": 109,
+  "OriginalFocusedTestCount": 106,
+  "StructuralCheckpointCount": 222,
+  "StaticLint": {
+    "Tool": "MISS_HIT",
+    "Files": 5,
+    "Passed": true,
+    "Command": "PYTHONPATH=t14n/lint-tools python -m miss_hit.mh_lint --brief csr14s/+csr/+validation/ackEdgeContract.m csr14s/+csr/+validation/TraceScheduler.m csr14s/+csr/+validation/edgeRecordTable.m csr14s/tests/TestAckEdgeContract.m csr14s/tests/TestEdgeRecords.m"
+  },
+  "PartialEvidence": "edge/c1 through c6 save six CSV tables and result.json before cross-case concatenation; caught per-case runtime errors print immediately",
+  "ChangedFiles": [
+    {
+      "Path": "+csr/+validation/ackEdgeContract.m",
+      "PreviousSHA256": "87cff2b6c64b8a62d55b1b2ad97a5ce53be887dd8c3d89aa7c8e453213de0e94",
+      "SHA256": "d53d70d23ad42fa92d2d6ba5bef046c8f7f34f609a0d1e072d02a27ca470bb32"
+    },
+    {
+      "Path": "+csr/+validation/TraceScheduler.m",
+      "PreviousSHA256": "462f0e5a3fe872d17d2d5d48711c6f2b9f9a2b1abbfcfc598ec792a3175cc3d2",
+      "SHA256": "a538c067be72df309b0cec6190bdf7c35c2e948f0a87085e75df6816c70eafec"
+    },
+    {
+      "Path": "+csr/+validation/edgeRecordTable.m",
+      "PreviousSHA256": null,
+      "SHA256": "7667f185627a3aa1bb301b0cd70a1f7b9fe65caa3b07ab95e62dd6030b44075d"
+    },
+    {
+      "Path": "tests/TestAckEdgeContract.m",
+      "PreviousSHA256": "8ec230f95b7c2b6a2f801ed79594dccef2b3e4120adfbbaa3589f445c46a1bd2",
+      "SHA256": "d13181b351c919a7e6f594230b9b0602902741ee257937be24dad0de67c33e89"
+    },
+    {
+      "Path": "tests/TestEdgeRecords.m",
+      "PreviousSHA256": null,
+      "SHA256": "57ee6cdbf28fc99dddc6bfdf2878a9ca5692cf10ed86741e33d6febfa5c3aba0"
+    }
+  ],
+  "BaselineEdits": false,
+  "ReplayStreamsEdited": false,
+  "EventSchedulerEdited": false,
+  "ProductionEdited": false,
+  "Review": "Independent review requested; final decision recorded separately by root/reviewer"
+}

@@ -29,6 +29,10 @@ classdef Layer < handle
         Neighbors
         Started = false
         SlotEvent = uint64(0)
+        SlotEpochNanoseconds = 0
+        SlotPeriodNanoseconds = 0
+        SlotTickIndex = 0
+        SlotUsesNanoseconds = false
         HoldoffEvent = uint64(0)
         IdleRtsEvent = uint64(0)
         FinishEvent = uint64(0)
@@ -45,6 +49,7 @@ classdef Layer < handle
                 'AckTransmissions', 5, 'MaxConcatSegments', 16, ...
                 'SlotSeconds', 0.013, 'HoldoffSeconds', 0.3, ...
                 'ActiveNodes', 1, 'ReportedActiveNodes', 1, ...
+                'SlotProfile', 'current-fine-free-slot', ...
                 'SlotReduction', 0, 'ReservationSlotOverride', -1, ...
                 'DutyCycleEnabled', true, 'WakeCycleSeconds', 0.988, ...
                 'SearchSeconds', 0.0078, 'BootSeconds', 0.0011, ...
@@ -80,6 +85,7 @@ classdef Layer < handle
                     obj.Config.(names{index}) = supplied.(names{index});
                 end
             end
+            obj.Config.SlotProfile = csr.mac.SlotSelection.normalizeProfile(obj.Config.SlotProfile);
             obj.Callbacks = callbacks;
             if ~isfield(callbacks, 'Transmit') || ~isa(callbacks.Transmit, 'function_handle')
                 error('csr:mac:MissingTransmit', 'MAC needs a Transmit callback.');
@@ -175,7 +181,9 @@ classdef Layer < handle
             end
             obj.DataQueue = obj.DataQueue(keep);
             obj.Counters.Canceled = obj.Counters.Canceled + removed;
-            if obj.PendingCount == 0, obj.PreparationActive = false; end
+            % Source CancelAcknowledgedFrames removes queued copies without
+            % clearing PREP_TX or its live reservation. An ACK arriving before
+            % the next shared slot may still use that prepared opportunity.
         end
 
         function removed = cancelControl(obj,peerId,controlType)
@@ -194,7 +202,8 @@ classdef Layer < handle
                 end
             end
             obj.DataQueue=obj.DataQueue(keep); obj.Counters.Canceled=obj.Counters.Canceled+removed;
-            if obj.PendingCount==0, obj.PreparationActive=false; end
+            % Immediate-tag replacement has the same source reservation
+            % ownership as DATA cancellation; queue emptiness is not Idle.
         end
 
         function receive(obj, frame, decision)
@@ -252,6 +261,11 @@ classdef Layer < handle
             output.State = obj.State;
             output.ReservationCounter = obj.ReservationCounter;
             output.ReservationSlot = obj.ReservationSlot;
+            output.SlotProfile = obj.Config.SlotProfile;
+            output.ActiveNodesForSlotting = csr.mac.SlotSelection.activeNodes( ...
+                obj.Config.SlotProfile,obj.Config.ActiveNodes,obj.Config.ReportedActiveNodes);
+            output.SlotRange = csr.mac.SlotSelection.slotRange(obj.Config.SlotProfile, ...
+                output.ActiveNodesForSlotting,obj.Config.SlotReduction);
         end
     end
     methods (Access = private)
@@ -269,9 +283,45 @@ classdef Layer < handle
 
         function startSearchTiming(obj)
             if obj.SlotEvent == 0
-                obj.SlotEvent = obj.after(obj.Config.SlotSeconds, @() obj.slotTick());
+                obj.SlotEvent = obj.scheduleSlotTick(true);
             end
             obj.startHoldoff();
+        end
+
+        function id = scheduleSlotTick(obj, resetEpoch)
+            period = obj.Config.SlotSeconds;
+            if resetEpoch
+                periodNs = round(period * 1e9);
+                epochNs = round(obj.Scheduler.Now * 1e9);
+                % Native TSLOT uses integer nanoseconds. Anchor the MAC
+                % clock once per Search epoch so repeated double addition
+                % cannot reorder a nominally simultaneous receiver event.
+                % Only this MAC clock rounds its epoch (at most 0.5 ns).
+                % Custom sub-nanosecond periods retain the continuous path.
+                obj.SlotUsesNanoseconds = isfinite(periodNs) && ...
+                    periodNs >= 1 && periodNs <= flintmax && ...
+                    period == periodNs / 1e9 && isfinite(epochNs) && ...
+                    epochNs >= 0 && epochNs <= flintmax;
+                obj.SlotEpochNanoseconds = epochNs;
+                obj.SlotPeriodNanoseconds = periodNs;
+                obj.SlotTickIndex = 0;
+            end
+            if obj.SlotUsesNanoseconds
+                nextIndex = obj.SlotTickIndex + 1;
+                nextNs = obj.SlotEpochNanoseconds + ...
+                    nextIndex * obj.SlotPeriodNanoseconds;
+                nextTime = nextNs / 1e9;
+                if isfinite(nextNs) && nextNs <= flintmax && ...
+                        nextTime > obj.Scheduler.Now
+                    obj.SlotTickIndex = nextIndex;
+                    id = obj.Scheduler.scheduleAt(nextTime, @() obj.slotTick());
+                    return
+                end
+                % Preserve the previous continuous scheduler outside the
+                % exact integer horizon; do not quantize the global clock.
+                obj.SlotUsesNanoseconds = false;
+            end
+            id = obj.after(period, @() obj.slotTick());
         end
 
         function startHoldoff(obj)
@@ -290,7 +340,12 @@ classdef Layer < handle
             if obj.IdleRtsEvent ~= 0 || obj.PendingCount == 0, return; end
             now = obj.Scheduler.Now;
             period = obj.Config.SlotSeconds;
-            nextSlot = (floor(now / period) + 1) * period;
+            nextIndex = floor(now / period) + 1;
+            nextSlot = nextIndex * period;
+            % A computed boundary such as 15*0.013 can divide just below
+            % its integer index. Native integer-time RTS always advances
+            % to a strictly future boundary; never enqueue RTS at Now.
+            if nextSlot <= now, nextSlot = (nextIndex + 1) * period; end
             if obj.Config.DutyCycleEnabled
                 cycle = obj.Config.WakeCycleSeconds;
                 nextWake = (floor(now / cycle) + 1) * cycle;
@@ -328,7 +383,7 @@ classdef Layer < handle
 
         function slotTick(obj)
             % Re-arm first: a simultaneous transmission end cannot move phase.
-            obj.SlotEvent = obj.after(obj.Config.SlotSeconds, @() obj.slotTick());
+            obj.SlotEvent = obj.scheduleSlotTick(false);
             obj.pollReceiver();
             if ~strcmp(obj.State, 'Search'), return; end
             if ~obj.hasSync()
@@ -374,8 +429,30 @@ classdef Layer < handle
                 slot = obj.Config.ReservationSlotOverride;
                 return;
             end
-            active = max(obj.Config.ActiveNodes, obj.Config.ReportedActiveNodes);
-            range = csr.mac.Layer.slotRange(active, obj.Config.SlotReduction);
+            active = csr.mac.SlotSelection.activeNodes(obj.Config.SlotProfile, ...
+                obj.Config.ActiveNodes,obj.Config.ReportedActiveNodes);
+            range = csr.mac.SlotSelection.slotRange(obj.Config.SlotProfile, ...
+                active,obj.Config.SlotReduction);
+            if ~strcmp(obj.Config.SlotProfile,'current-fine-free-slot')
+                counters = zeros(1,obj.Neighbors.Count);
+                peers = keys(obj.Neighbors);
+                for index = 1:numel(peers)
+                    neighbor = obj.Neighbors(peers{index});
+                    counters(index) = neighbor.ReservationCounter;
+                end
+                switch obj.Config.SlotProfile
+                    case 'hist-2015-fine-one-based-table-no-avoid'
+                        initial = randi(obj.Stream,range);
+                    case 'hist-2014-zero-based-rebuild-list'
+                        initial = randi(obj.Stream,[0 range-1]);
+                    otherwise
+                        initial = randi(obj.Stream,[0 range]);
+                end
+                slot = csr.mac.SlotSelection.historicalSlot( ...
+                    obj.Config.SlotProfile,range,counters,initial);
+                return
+            end
+            % Preserve the default source ordinal walk and RNG consumption.
             occupied = false(1, 256);
             peers = keys(obj.Neighbors);
             for index = 1:numel(peers)

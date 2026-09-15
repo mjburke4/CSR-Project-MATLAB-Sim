@@ -1,0 +1,71 @@
+{
+  "schema": "csr-matlab-tranche-9-candidate-v1",
+  "status": "ready_for_owner_portable_execution",
+  "created_utc": "2026-09-11T14:41:37.082111+00:00",
+  "branch": "agent/tranche-9-ack-service",
+  "matlab_base_commit": "d0f3c5657f9f2dcf678f32900020caf3696bf90a",
+  "accepted_tranche8_matlab_commit": "89b62e729e588f396bb919afdff522f7e9419268",
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "ns3_source_tree": "b611b233fb369569b98f0914ece24d029ccc2f42",
+  "matlab_executed": false,
+  "octave_executed": false,
+  "portable_acceptance_established": false,
+  "numerical_parity_established": false,
+  "performance_improvement_established": false,
+  "remote_publication_performed": false,
+  "phy_ecc_changed": false,
+  "ack_radio_policy_changed": false,
+  "change": "Preserve MAC preparation and live reservation after DATA/control queue cancellation; add bounded passive service observations and deterministic contracts.",
+  "runtime_target": "Owner MATLAB R2025a portable; R2026a/native remains a separate gate.",
+  "plan": {
+    "path": "scenarios/ack_service/plan.json",
+    "sha256": "372db92a385781d9854a096149fd419b90ae79823125b79269506bd9877e0116",
+    "cases": 6,
+    "observer_off_controls": 2,
+    "window_s": [
+      300,
+      320
+    ],
+    "end_exclusive": true,
+    "canonical_stimuli_changed": false
+  },
+  "prepared_matlab_test_methods": 514,
+  "matlab_source_files": 115,
+  "source_snapshot_files": 206,
+  "python_tests_passed": 244,
+  "native_contract": {
+    "path": "evidence/tranche-9-contract-reference/manifest.json",
+    "sha256": "d5aef54b32db07ec503468764af7b5ec12bf67f90ce95e990d6b0741d4723f8a",
+    "cases": 6,
+    "checkpoints_passed": 101,
+    "checkpoint_sha256": "2991bbc93e5ba2c64d06a93cee278160cd9baf2fdc11b052ee5b0cb561fe4b73",
+    "native_mutation_failed_checkpoints": 12,
+    "scope": "Prescribed receiver conditions and feedback; not RF equivalence or MATLAB execution."
+  },
+  "native_service_reference": {
+    "path": "evidence/tranche-9-ns3-reference/manifest.json",
+    "sha256": "e7d8cdf5303fba9c290e83526ba65e4e4f7b7bb52add727c1b7cc8b372169331",
+    "build_sha256": "58aa3e8c32388eb56907495a2549bdd7eb0db1ad7d91dc6b75683eb96aba9783",
+    "cases": 6,
+    "observations": 182429,
+    "on_off_pairs": 12,
+    "accepted_t8_artifact_pairs": 24,
+    "full_engine_rebuild_performed": false
+  },
+  "local_checks": "evidence/tranche-9-local-checks.json",
+  "independent_review": "docs/tranche-9-review.md",
+  "handoff": "docs/tranche-9-handoff.md",
+  "owner_run_instructions": "docs/tranche-9-validation.md",
+  "command": "report = run_tranche9_validation;",
+  "return_archive": "tranche9_evidence.zip",
+  "package_name": "csr9.zip",
+  "result_root": "results/t9",
+  "deferred": [
+    "Owner portable execution and before/after performance comparison",
+    "Campus6000 rerun after smaller gate",
+    "Existing outage/retry limitations",
+    "Relay/DACK and missing link-state range",
+    "R2026a/native adapters"
+  ],
+  "metadata_assembled_after_code_tests": true
+}

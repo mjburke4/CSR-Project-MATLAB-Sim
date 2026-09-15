@@ -1,0 +1,468 @@
+--- a/csr-common.h
++++ b/csr-common.h
+@@ -847,3 +847,7 @@
+   PREAMBLE_SHORT,
+   PREAMBLE_LONG
+ };
++
++#include "tranche8-link-observer.h"
++
++#include "tranche9-service-observer.h"
+--- a/csr-differential-trace.h
++++ b/csr-differential-trace.h
+@@ -122,6 +122,8 @@
+ inline uint64_t g_csrDifferentialTraceIndex = 0;
+ inline bool g_csrDifferentialAggregateOnly = false;
+ inline bool g_csrDifferentialAdmissionTraceEnabled = false;
++inline bool Tranche9ServiceActive ();
++inline void Tranche9ObserveDifferential (const CsrDifferentialTraceEvent &event);
+ 
+ /** Limit trace output to events consumed by the aggregate-series builder. */
+ inline void
+@@ -256,6 +258,7 @@
+ inline void
+ WriteDifferentialTrace (const CsrDifferentialTraceEvent &event)
+ {
++  Tranche9ObserveDifferential (event);
+   if (!g_csrDifferentialTrace.is_open ())
+     {
+       return;
+@@ -356,6 +359,10 @@
+ {
+   if (!g_csrDifferentialAdmissionTraceEnabled)
+     {
++      Tranche9ObserveDifferential (event);
++    }
++  if (!g_csrDifferentialAdmissionTraceEnabled)
++    {
+       return;
+     }
+   NS_ABORT_MSG_IF (
+--- a/csr-hop-layer.h
++++ b/csr-hop-layer.h
+@@ -1286,6 +1286,20 @@
+         CsrOpnetPacketModel::GetFixedSizeBytes (
+           CsrOpnetPacketFormat::Ack) +
+         (header.HasAckWindow () ? LEGACY_ACK_WINDOW_OVERHEAD : 0));
++
++      // Passive Tranche 8 observer: read the already-selected header and peer inputs.
++      if (g_tranche8FeedbackStream.is_open ())
++        {
++          const auto observedPeer = m_neighbors.find (header.GetDst ());
++          const bool observedKnown = observedPeer != m_neighbors.end ();
++          const double unavailable = std::numeric_limits<double>::quiet_NaN ();
++          Tranche8ObserveFeedbackSelection (
++            bareFrame, header, observedKnown,
++            observedKnown ? observedPeer->second.s0PowerDbm : unavailable,
++            observedKnown ? observedPeer->second.lastPathlossDb : unavailable,
++            observedKnown ? observedPeer->second.numFailures : unavailable,
++            m_minSpeed, m_maxSpeed, m_minPower, m_maxPower, m_linkMargin);
++        }
+       return bareFrame;
+     }
+ 
+@@ -1312,6 +1326,20 @@
+         CsrOpnetPacketFormat::Ack) +
+       (header.HasAckWindow () ? LEGACY_ACK_WINDOW_OVERHEAD : 0) +
+       LEGACY_ACK_HOP_SECURITY_OVERHEAD);
++
++      // Passive Tranche 8 observer: read the already-selected header and peer inputs.
++      if (g_tranche8FeedbackStream.is_open ())
++        {
++          const auto observedPeer = m_neighbors.find (header.GetDst ());
++          const bool observedKnown = observedPeer != m_neighbors.end ();
++          const double unavailable = std::numeric_limits<double>::quiet_NaN ();
++          Tranche8ObserveFeedbackSelection (
++            protectedFrame, header, observedKnown,
++            observedKnown ? observedPeer->second.s0PowerDbm : unavailable,
++            observedKnown ? observedPeer->second.lastPathlossDb : unavailable,
++            observedKnown ? observedPeer->second.numFailures : unavailable,
++            m_minSpeed, m_maxSpeed, m_minPower, m_maxPower, m_linkMargin);
++        }
+   return protectedFrame;
+ }
+ 
+@@ -1731,7 +1759,7 @@
+           resendEntry->networkDestination = networkHeader.GetDst ();
+         }
+ 
+-      if (IsDifferentialAdmissionTraceEnabled ())
++      if ((IsDifferentialAdmissionTraceEnabled () || Tranche9ServiceActive ()))
+         {
+           const DataAdmissionSnapshot admissionAfter =
+             GetDataAdmissionSnapshot (dst);
+@@ -3452,7 +3480,7 @@
+     networkMetadataValid && networkHeader.GetDst () == m_nodeId;
+ 
+   const bool traceFeedback =
+-    IsDifferentialAdmissionTraceEnabled () ||
++    (IsDifferentialAdmissionTraceEnabled () || Tranche9ServiceActive ()) ||
+     IsDifferentialTraceAggregateOnly ();
+   CsrNetHeader feedbackNetworkHeader;
+   const bool feedbackNetworkMetadataValid =
+@@ -3596,6 +3624,7 @@
+       ackHdr.SetDackBitmap (rxState.dackBitmap);
+ 
+       ackPkt = ProtectAckFrame (ackHdr);
++      Tranche8ObserveFeedbackContext (ackPkt, hdr);
+     }
+ 
+   // The operational br_hop local-delivery path calls send_ack() before its
+@@ -3975,7 +4004,7 @@
+       return;
+     }
+ 
+-  if (IsDifferentialAdmissionTraceEnabled () &&
++  if ((IsDifferentialAdmissionTraceEnabled () || Tranche9ServiceActive ()) &&
+       entry->flowControlTracked &&
+       completionNetworkMetadataValid)
+     {
+@@ -4097,7 +4126,7 @@
+                         << std::endl;
+             }
+ 
+-          if (IsDifferentialAdmissionTraceEnabled () &&
++          if ((IsDifferentialAdmissionTraceEnabled () || Tranche9ServiceActive ()) &&
+               it->networkFlowMetadataValid)
+             {
+               const DataAdmissionSnapshot capacityAfter =
+@@ -4279,7 +4308,7 @@
+         }
+     }
+ 
+-  if (IsDifferentialAdmissionTraceEnabled () &&
++  if ((IsDifferentialAdmissionTraceEnabled () || Tranche9ServiceActive ()) &&
+       completionNetworkMetadataValid)
+     {
+       const DataAdmissionSnapshot completionAfter =
+@@ -4661,7 +4690,7 @@
+                 }
+             }
+ 
+-          if (IsDifferentialAdmissionTraceEnabled () &&
++          if ((IsDifferentialAdmissionTraceEnabled () || Tranche9ServiceActive ()) &&
+               e.flowControlTracked &&
+               e.networkFlowMetadataValid)
+             {
+--- a/csr-mac-core.h
++++ b/csr-mac-core.h
+@@ -157,6 +157,10 @@
+                    "receiver transition cannot enter the Tx state");
+     if (!m_txInProgress && m_state != state)
+       {
++  Tranche9MacSnapshot ("mac_receive_state_before", m_nodeId, 0, StateName (m_state),
++    m_txPreparationActive, m_txHoldoffOver, m_syncPresent,
++    m_ackQueue.size (), m_queue.size (), m_txInProgress,
++    m_scheduledTxSlot, m_txCountdownCounter, nullptr, nullptr, std::string ("to=") + StateName (state));
+         State previous = m_state;
+         m_state = state;
+ 
+@@ -203,12 +207,23 @@
+         event.node = CsrTraceInteger (m_nodeId);
+         event.detail = StateName (state);
+         WriteDifferentialTrace (event);
++  Tranche9MacSnapshot ("mac_receive_state_after", m_nodeId, 0, StateName (m_state),
++    m_txPreparationActive, m_txHoldoffOver, m_syncPresent,
++    m_ackQueue.size (), m_queue.size (), m_txInProgress,
++    m_scheduledTxSlot, m_txCountdownCounter, nullptr, nullptr, "");
+       }
+   }
+ 
+   /** Update the legacy SYNC_PRES input used by slot processing. */
+   void SetSyncPresent (bool present)
+   {
++    if (m_syncPresent != present)
++    {
++  Tranche9MacSnapshot ("mac_sync_change_before", m_nodeId, 0, StateName (m_state),
++    m_txPreparationActive, m_txHoldoffOver, m_syncPresent,
++    m_ackQueue.size (), m_queue.size (), m_txInProgress,
++    m_scheduledTxSlot, m_txCountdownCounter, nullptr, nullptr, std::string ("new_sync=") + (present ? "1" : "0"));
++    }
+     m_syncPresent = present;
+   }
+ 
+@@ -1124,6 +1139,11 @@
+                          &CsrMacCore::SlotTick,
+                          this);
+ 
++  Tranche9MacSnapshot ("mac_slot_tick", m_nodeId, 0, StateName (m_state),
++    m_txPreparationActive, m_txHoldoffOver, m_syncPresent,
++    m_ackQueue.size (), m_queue.size (), m_txInProgress,
++    m_scheduledTxSlot, m_txCountdownCounter, nullptr, nullptr, "");
++
+   // OPNET tslot_tasks() advances reservation counters only in Search_st and
+   // only while no SYNC preamble is present.  Idle, Track, Tx, and Search with
+   // SYNC all keep the 13-ms timer running without changing the counters.
+--- a/csr-net-device.h
++++ b/csr-net-device.h
+@@ -727,6 +727,7 @@
+   uint16_t sequence = hdrOnTx.GetSeq ();
+   uint64_t signalId = (static_cast<uint64_t> (m_id) << 32)
+                     | (++m_nextTxSignalId & 0xffffffffULL);
++  Tranche8ObserveFeedbackTransmission (frameCopies, rateKbps, txPowerDbm, signalId);
+ 
+   CsrDifferentialTraceEvent txEvent;
+   txEvent.event = "tx_start";
+@@ -2164,10 +2165,18 @@
+         {
+           if (entry.dest == dest)
+             {
++  Tranche9MacSnapshot ("ack_queue_replace_before", m_nodeId, dest, StateName (m_state),
++    m_txPreparationActive, m_txHoldoffOver, m_syncPresent,
++    m_ackQueue.size (), m_queue.size (), m_txInProgress,
++    m_scheduledTxSlot, m_txCountdownCounter, frame, entry.frame, std::string ("prior_tx_count=") + CsrTraceInteger (entry.txCount));
+               entry.frame = frame;
+               entry.seq = seq;
+               entry.hasWindow = true;
+               entry.txCount = 0;
++  Tranche9MacSnapshot ("ack_queue_replace_after", m_nodeId, dest, StateName (m_state),
++    m_txPreparationActive, m_txHoldoffOver, m_syncPresent,
++    m_ackQueue.size (), m_queue.size (), m_txInProgress,
++    m_scheduledTxSlot, m_txCountdownCounter, frame, nullptr, "");
+ 
+               std::cout << "[MAC " << m_nodeId
+                         << "] Update cumulative ACK queue entry"
+@@ -2188,6 +2197,10 @@
+         {
+           if (entry.dest == dest && entry.seq == seq)
+             {
++  Tranche9MacSnapshot ("ack_queue_exact_duplicate", m_nodeId, dest, StateName (m_state),
++    m_txPreparationActive, m_txHoldoffOver, m_syncPresent,
++    m_ackQueue.size (), m_queue.size (), m_txInProgress,
++    m_scheduledTxSlot, m_txCountdownCounter, frame, entry.frame, "");
+               std::cout << "[MAC " << m_nodeId
+                         << "] Ignore duplicate exact ACK"
+                         << " dest=" << dest
+@@ -2200,6 +2213,10 @@
+ 
+   if (m_ackQueue.size () >= ACK_QUEUE_SIZE)
+     {
++  Tranche9MacSnapshot ("ack_queue_reject", m_nodeId, dest, StateName (m_state),
++    m_txPreparationActive, m_txHoldoffOver, m_syncPresent,
++    m_ackQueue.size (), m_queue.size (), m_txInProgress,
++    m_scheduledTxSlot, m_txCountdownCounter, frame, nullptr, "");
+       std::cout << "[MAC " << m_nodeId
+                 << "] Drop ACK: OPNET ACK queue limit reached"
+                 << " dest=" << dest
+@@ -2221,6 +2238,10 @@
+   entry.hasWindow = header.HasAckWindow ();
+   entry.txCount = 0;
+   m_ackQueue.push_back (entry);
++  Tranche9MacSnapshot ("ack_queue_enqueue_after", m_nodeId, dest, StateName (m_state),
++    m_txPreparationActive, m_txHoldoffOver, m_syncPresent,
++    m_ackQueue.size (), m_queue.size (), m_txInProgress,
++    m_scheduledTxSlot, m_txCountdownCounter, frame, nullptr, "");
+   WriteDifferentialStatisticSample (
+     m_nodeId,
+     CSR_STAT_MAC_ACK_QUEUE_SIZE,
+@@ -2311,6 +2332,10 @@
+ {
+   // DACK is also terminal at MAC: HOP moves that packet to its delayed DACK
+   // list, so another queued over-the-air copy must not be transmitted.
++  Tranche9MacSnapshot ("mac_cancel_begin", m_nodeId, neighbor, StateName (m_state),
++    m_txPreparationActive, m_txHoldoffOver, m_syncPresent,
++    m_ackQueue.size (), m_queue.size (), m_txInProgress,
++    m_scheduledTxSlot, m_txCountdownCounter, nullptr, nullptr, std::string ("base_sequence=") + CsrTraceInteger (baseSeq));
+   uint64_t completedBitmap = ackBitmap | dackBitmap;
+   uint32_t removed = 0;
+ 
+@@ -2353,7 +2378,15 @@
+                     << " windowIndex=" << age
+                     << std::endl;
+ 
++  Tranche9MacSnapshot ("mac_cancel_frame_before", m_nodeId, neighbor, StateName (m_state),
++    m_txPreparationActive, m_txHoldoffOver, m_syncPresent,
++    m_ackQueue.size (), m_queue.size (), m_txInProgress,
++    m_scheduledTxSlot, m_txCountdownCounter, it->frame, nullptr, "");
+           it = m_queue.erase (it);
++  Tranche9MacSnapshot ("mac_cancel_frame_after", m_nodeId, neighbor, StateName (m_state),
++    m_txPreparationActive, m_txHoldoffOver, m_syncPresent,
++    m_ackQueue.size (), m_queue.size (), m_txInProgress,
++    m_scheduledTxSlot, m_txCountdownCounter, nullptr, nullptr, "");
+           removed++;
+           continue;
+         }
+@@ -2361,6 +2394,10 @@
+       ++it;
+     }
+ 
++  Tranche9MacSnapshot ("mac_cancel_end", m_nodeId, neighbor, StateName (m_state),
++    m_txPreparationActive, m_txHoldoffOver, m_syncPresent,
++    m_ackQueue.size (), m_queue.size (), m_txInProgress,
++    m_scheduledTxSlot, m_txCountdownCounter, nullptr, nullptr, std::string ("removed=") + CsrTraceInteger (removed));
+   return removed;
+ }
+ 
+@@ -2401,6 +2438,10 @@
+ void
+ CsrMacCore::MaybeScheduleNextTx ()
+ {
++  Tranche9MacSnapshot ("mac_schedule_request", m_nodeId, 0, StateName (m_state),
++    m_txPreparationActive, m_txHoldoffOver, m_syncPresent,
++    m_ackQueue.size (), m_queue.size (), m_txInProgress,
++    m_scheduledTxSlot, m_txCountdownCounter, nullptr, nullptr, "");
+   if (m_dev == nullptr)
+     {
+       return;
+@@ -2481,6 +2522,10 @@
+ 
+   if (deferToWake)
+     {
++  Tranche9MacSnapshot ("mac_idle_rts_defer", m_nodeId, 0, StateName (m_state),
++    m_txPreparationActive, m_txHoldoffOver, m_syncPresent,
++    m_ackQueue.size (), m_queue.size (), m_txInProgress,
++    m_scheduledTxSlot, m_txCountdownCounter, nullptr, nullptr, "");
+       m_dev->SchedulePendingTxWake ();
+       return;
+     }
+@@ -2489,6 +2534,10 @@
+             << "] Idle queue schedules RTS TSLOT at "
+             << nextSlot.GetSeconds ()
+             << std::endl;
++  Tranche9MacSnapshot ("mac_idle_rts_schedule", m_nodeId, 0, StateName (m_state),
++    m_txPreparationActive, m_txHoldoffOver, m_syncPresent,
++    m_ackQueue.size (), m_queue.size (), m_txInProgress,
++    m_scheduledTxSlot, m_txCountdownCounter, nullptr, nullptr, std::string ("due_s=") + CsrTraceDouble (nextSlot.GetSeconds ()));
+   m_idleRtsEvent = Simulator::Schedule (
+     nextSlot - Simulator::Now (),
+     &CsrMacCore::IdleRts,
+@@ -2512,6 +2561,10 @@
+ void
+ CsrMacCore::StartTxHoldoff ()
+ {
++  Tranche9MacSnapshot ("mac_holdoff_schedule_before", m_nodeId, 0, StateName (m_state),
++    m_txPreparationActive, m_txHoldoffOver, m_syncPresent,
++    m_ackQueue.size (), m_queue.size (), m_txInProgress,
++    m_scheduledTxSlot, m_txCountdownCounter, nullptr, nullptr, std::string ("delay_s=") + CsrTraceDouble (TS_HOLDOFF_SECONDS));
+   if (m_txHoldoffEvent.IsPending ())
+     {
+       Simulator::Cancel (m_txHoldoffEvent);
+@@ -2542,6 +2595,10 @@
+         m_txCountdownCounter);
+     }
+   WriteDifferentialTrace (event);
++  Tranche9MacSnapshot ("mac_holdoff_expired", m_nodeId, 0, StateName (m_state),
++    m_txPreparationActive, m_txHoldoffOver, m_syncPresent,
++    m_ackQueue.size (), m_queue.size (), m_txInProgress,
++    m_scheduledTxSlot, m_txCountdownCounter, nullptr, nullptr, "");
+ 
+   std::cout << "[MAC " << m_nodeId
+             << "] OPNET 300-ms transmit holdoff complete"
+@@ -2628,6 +2685,10 @@
+     ? (m_txHoldoffOver ? "controlled_ready" : "controlled_wait")
+     : (selectedNewSlot ? "new" : "reuse");
+   WriteDifferentialTrace (event);
++  Tranche9MacSnapshot ("mac_prepare_after", m_nodeId, 0, StateName (m_state),
++    m_txPreparationActive, m_txHoldoffOver, m_syncPresent,
++    m_ackQueue.size (), m_queue.size (), m_txInProgress,
++    m_scheduledTxSlot, m_txCountdownCounter, nullptr, nullptr, event.reason);
+ }
+ 
+ void
+--- a/csr-nwk-layer.h
++++ b/csr-nwk-layer.h
+@@ -1358,7 +1358,7 @@
+                   << e.count
+                   << std::endl;
+ 
+-        if (IsDifferentialAdmissionTraceEnabled ())
++        if ((IsDifferentialAdmissionTraceEnabled () || Tranche9ServiceActive ()))
+           {
+             CsrDifferentialTraceEvent releaseEvent;
+             releaseEvent.event = "nwk_nsdp_release";
+@@ -2404,7 +2404,7 @@
+       {
+         if (!m_hop->CanAcceptDataGlobally ())
+           {
+-            if (IsDifferentialAdmissionTraceEnabled ())
++            if ((IsDifferentialAdmissionTraceEnabled () || Tranche9ServiceActive ()))
+               {
+                 const auto snapshot =
+                   m_hop->GetDataAdmissionSnapshot (CSR_BROADCAST_ID);
+@@ -2446,7 +2446,7 @@
+                             &selectedRoute,
+                             &usedReverseRoute))
+           {
+-            if (IsDifferentialAdmissionTraceEnabled ())
++            if ((IsDifferentialAdmissionTraceEnabled () || Tranche9ServiceActive ()))
+               {
+                 const auto snapshot =
+                   m_hop->GetDataAdmissionSnapshot (CSR_BROADCAST_ID);
+@@ -2483,14 +2483,14 @@
+ 
+         const bool canSendToHop = m_hop->CanSendToHop (hopDest);
+         CsrHopLayer::DataAdmissionSnapshot admissionSnapshot;
+-        if (IsDifferentialAdmissionTraceEnabled ())
++        if ((IsDifferentialAdmissionTraceEnabled () || Tranche9ServiceActive ()))
+           {
+             admissionSnapshot =
+               m_hop->GetDataAdmissionSnapshot (hopDest);
+           }
+         if (!canSendToHop)
+           {
+-            if (IsDifferentialAdmissionTraceEnabled ())
++            if ((IsDifferentialAdmissionTraceEnabled () || Tranche9ServiceActive ()))
+               {
+                 CsrDifferentialTraceEvent admissionEvent;
+                 admissionEvent.event = "nwk_admission";
+@@ -2530,7 +2530,7 @@
+             continue;
+           }
+ 
+-        if (IsDifferentialAdmissionTraceEnabled ())
++        if ((IsDifferentialAdmissionTraceEnabled () || Tranche9ServiceActive ()))
+           {
+             CsrDifferentialTraceEvent admissionEvent;
+             admissionEvent.event = "nwk_admission";
+--- a/csr-opnet-scenario-runner.cc
++++ b/csr-opnet-scenario-runner.cc
+@@ -817,7 +817,7 @@
+     ? state->gatewayNodeId
+     : flow.destination;
+   std::string admissionReason = "admitted";
+-  const bool traceAdmission = IsDifferentialAdmissionTraceEnabled ();
++  const bool traceAdmission = IsDifferentialAdmissionTraceEnabled () || Tranche9ServiceActive ();
+   const bool discoveryActive = traceAdmission
+     ? network->IsDiscoveryActive ()
+     : false;
+@@ -1049,6 +1049,10 @@
+   std::string scenarioPath;
+   std::string tracePath = "csr-differential-ns3.csv";
+   std::string appDiagnosticsPath;
++  std::string feedbackDiagnosticsPath;
++  std::string serviceDiagnosticsPath;
++  double serviceStart = 300.0, serviceStop = 320.0;
++  uint64_t serviceLimit = 100000;
+   double stopSeconds = 0.0;
+   bool dutyCycling = true;
+   bool opnetAlignedDutyCycle = true;
+@@ -1096,6 +1100,11 @@
+     "deterministic compatibility mode",
+     stochasticSyncThreshold);
+   command.AddValue ("flowLimit", "Maximum packets per flow (0 is unlimited)", flowLimit);
++  command.AddValue ("feedbackDiagnostics", "Passive ACK/DACK observer CSV", feedbackDiagnosticsPath);
++  command.AddValue ("serviceDiagnostics", "Passive ACK service CSV", serviceDiagnosticsPath);
++  command.AddValue ("serviceStart", "Inclusive service window start", serviceStart);
++  command.AddValue ("serviceStop", "Exclusive service window stop", serviceStop);
++  command.AddValue ("serviceLimit", "Service observer record ceiling", serviceLimit);
+   command.Parse (argc, argv);
+ 
+   NS_ABORT_MSG_IF (scenarioPath.empty (), "--scenario is required");
+@@ -1114,6 +1123,8 @@
+   SetDifferentialTraceAggregateOnly (aggregateTraceOnly);
+   SetDifferentialAdmissionTraceEnabled (admissionTrace);
+   OpenDifferentialTraceCsv (tracePath);
++  Tranche8OpenFeedbackCsv (feedbackDiagnosticsPath);
++  Tranche9OpenServiceCsv (serviceDiagnosticsPath, serviceStart, serviceStop, serviceLimit);
+ 
+   NullStreamBuffer nullStreamBuffer;
+   std::streambuf *originalCoutBuffer = nullptr;
+@@ -1236,6 +1247,8 @@
+   WriteApplicationDiagnostics (appDiagnosticsPath, scenario, flowStates);
+   Simulator::Destroy ();
+   CloseDifferentialTraceCsv ();
++  Tranche8CloseFeedbackCsv ();
++  Tranche9CloseServiceCsv ();
+   if (originalCoutBuffer != nullptr)
+     {
+       std::cout.rdbuf (originalCoutBuffer);

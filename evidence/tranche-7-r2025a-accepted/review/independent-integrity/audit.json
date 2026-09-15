@@ -1,0 +1,247 @@
+{
+  "schema": "csr-tranche7-independent-return-audit-v1",
+  "reviewed_utc": "2026-09-10T16:08:43.721942+00:00",
+  "candidate_commit": "28ed878f5673e308047cbea7878b933697d932f3",
+  "archive": {
+    "name": "tranche7_evidence.zip",
+    "bytes": 23627006,
+    "sha256": "ea39b86ef68f91a551e4e22d176e2e96dc5305f33673741eee0adc6039599655"
+  },
+  "audit_method": "Independent Python standard-library checks against immutable Git blobs; production review script not imported or executed.",
+  "matlab_executed_locally": false,
+  "matlab_execution_evidence": "Owner-returned MATLAB evidence archive",
+  "numerical_parity_established": false,
+  "status": "passed",
+  "errors": [],
+  "archive_file_count": 692,
+  "expanded_bytes": 238662707,
+  "outer_artifact_hash_checks": 691,
+  "checks": {
+    "declared_artifact_hash_checks": 2750,
+    "source_hash_checks_in_nested_bindings": 6510,
+    "legacy_dot_m_hash_checks": 107
+  },
+  "bound_source_files": 155,
+  "matlab_code_files": 103,
+  "pinned_reference_files": 50,
+  "legacy_dot_m_note": "The legacy 107 .m bindings contain 103 MATLAB code files and four archived OPNET input files with .m suffixes.",
+  "source_snapshot_sha256": "b2139677d30438b0e9479566a7508ea29465aeb94a0ff532f9d1a1ace4ac14d6",
+  "runtime": {
+    "Runtime": "MATLAB",
+    "Version": "25.1.0.2943329 (R2025a)",
+    "Release": "2025a",
+    "HasWirelessNetworkSimulator": false,
+    "HasWnetNode": false,
+    "HasWirelessPacket": false,
+    "DefaultBackend": "portable",
+    "WirelessAdapterImplemented": true,
+    "WirelessAdapterScope": "Optional R2026a wireless-clock candidate; runtime validation pending",
+    "NativePacketTransportIntegrated": false,
+    "ProbeScope": "Symbol discovery only; licenses and execution are not validated."
+  },
+  "started_utc": "2026-09-10T14:25:45.905Z",
+  "completed_utc": "2026-09-10T15:53:49.092Z",
+  "elapsed_seconds": 5283.187,
+  "test_count": 467,
+  "test_passed": 467,
+  "nested_validation_records": [
+    {
+      "path": "regression/run_20260910_142546_493_tp03e07df4_9a8f_486f_96c8_4e2bcbba114d/regression/run_20260910_142546_976_tpc41b99e6_6ccb_40e9_b855_8cc0b40d425f/regression/run_20260910_142547_252_tpd17bb41a_a358_4788_a1a4_587b96550f48/regression/validation_metadata.json",
+      "schema": "legacy-tranche3",
+      "test_count": 467,
+      "status": "completed"
+    },
+    {
+      "path": "regression/run_20260910_142546_493_tp03e07df4_9a8f_486f_96c8_4e2bcbba114d/regression/run_20260910_142546_976_tpc41b99e6_6ccb_40e9_b855_8cc0b40d425f/regression/run_20260910_142547_252_tpd17bb41a_a358_4788_a1a4_587b96550f48/validation_metadata.json",
+      "schema": "csr-matlab-tranche-4-validation-v1",
+      "test_count": 467,
+      "status": "completed"
+    },
+    {
+      "path": "regression/run_20260910_142546_493_tp03e07df4_9a8f_486f_96c8_4e2bcbba114d/regression/run_20260910_142546_976_tpc41b99e6_6ccb_40e9_b855_8cc0b40d425f/validation_metadata.json",
+      "schema": "csr-matlab-tranche-5-validation-v1",
+      "test_count": 467,
+      "status": "completed"
+    },
+    {
+      "path": "regression/run_20260910_142546_493_tp03e07df4_9a8f_486f_96c8_4e2bcbba114d/validation_metadata.json",
+      "schema": "csr-matlab-tranche-6-validation-v1",
+      "test_count": 467,
+      "status": "completed"
+    },
+    {
+      "path": "validation_metadata.json",
+      "schema": "csr-matlab-tranche-7-validation-v1",
+      "test_count": 467,
+      "status": "completed"
+    }
+  ],
+  "retained_sweeps": 18,
+  "retained_fixed_cases": 28,
+  "previous_tranche6_application_outcomes": {
+    "archive_sha256": "5c8ec2997ae8c248625240c3fd084aaaca85d5221ec7a347a0aaad2dabeb1e17",
+    "cases": 18,
+    "compared_columns": [
+      "CaseId",
+      "Generated",
+      "Received",
+      "Dropped",
+      "Pending"
+    ],
+    "equal": true,
+    "retained_raw_summary_count": 47,
+    "all_common_raw_statistics_equal": true,
+    "raw_statistic_differences": [],
+    "added_statistics_with_zero_values": {
+      "OmittedApplicationAdmissionRecords": 37
+    }
+  },
+  "local_artifacts_excluded_by_declared_policy": {
+    "total": 54,
+    "extensions": {
+      ".mat": 51,
+      ".zip": 3
+    }
+  },
+  "cases": [
+    {
+      "case_id": "campus_multihop_6000",
+      "generated": 12382,
+      "delivered": 11727,
+      "dropped": 401,
+      "pending": 254,
+      "physical_pending": 6,
+      "runtime_seconds": 4297.4518743,
+      "all_flows_made_progress": true,
+      "protocol_trace_rows": 621668,
+      "phy_trace_rows": 777895,
+      "admission_trace_rows": 100000,
+      "admission_trace_omitted": 1610000,
+      "flows": [
+        {
+          "source_id": 2,
+          "attempts": 285000,
+          "admitted": 506,
+          "delivered": 395,
+          "dropped": 68,
+          "pending": 43,
+          "blocked_nsdp": 284494
+        },
+        {
+          "source_id": 3,
+          "attempts": 285000,
+          "admitted": 8608,
+          "delivered": 8593,
+          "dropped": 1,
+          "pending": 14,
+          "blocked_nsdp": 276392
+        },
+        {
+          "source_id": 4,
+          "attempts": 285000,
+          "admitted": 566,
+          "delivered": 454,
+          "dropped": 80,
+          "pending": 32,
+          "blocked_nsdp": 284434
+        },
+        {
+          "source_id": 5,
+          "attempts": 285000,
+          "admitted": 1309,
+          "delivered": 1285,
+          "dropped": 9,
+          "pending": 15,
+          "blocked_nsdp": 283691
+        },
+        {
+          "source_id": 7,
+          "attempts": 285000,
+          "admitted": 832,
+          "delivered": 617,
+          "dropped": 126,
+          "pending": 89,
+          "blocked_nsdp": 284168
+        },
+        {
+          "source_id": 8,
+          "attempts": 285000,
+          "admitted": 561,
+          "delivered": 383,
+          "dropped": 117,
+          "pending": 61,
+          "blocked_nsdp": 284439
+        }
+      ]
+    },
+    {
+      "case_id": "two_node_admission_1200",
+      "generated": 11395,
+      "delivered": 11385,
+      "dropped": 0,
+      "pending": 10,
+      "physical_pending": 0,
+      "runtime_seconds": 170.4601186,
+      "all_flows_made_progress": true,
+      "protocol_trace_rows": 154491,
+      "phy_trace_rows": 20045,
+      "admission_trace_rows": 45000,
+      "admission_trace_omitted": 0,
+      "flows": [
+        {
+          "source_id": 2,
+          "attempts": 45000,
+          "admitted": 11395,
+          "delivered": 11385,
+          "dropped": 0,
+          "pending": 10,
+          "blocked_nsdp": 33605
+        }
+      ]
+    },
+    {
+      "case_id": "three_node_contention_360",
+      "generated": 954,
+      "delivered": 928,
+      "dropped": 0,
+      "pending": 26,
+      "physical_pending": 2,
+      "runtime_seconds": 40.2510512,
+      "all_flows_made_progress": true,
+      "protocol_trace_rows": 15358,
+      "phy_trace_rows": 3518,
+      "admission_trace_rows": 60000,
+      "admission_trace_omitted": 0,
+      "flows": [
+        {
+          "source_id": 2,
+          "attempts": 30000,
+          "admitted": 493,
+          "delivered": 477,
+          "dropped": 0,
+          "pending": 16,
+          "blocked_nsdp": 29507
+        },
+        {
+          "source_id": 3,
+          "attempts": 30000,
+          "admitted": 461,
+          "delivered": 451,
+          "dropped": 0,
+          "pending": 10,
+          "blocked_nsdp": 29539
+        }
+      ]
+    }
+  ],
+  "acceptance_recommendation": "Accept bounded portable R2025a benchmark execution, reproducibility and structural accounting milestone; retain numerical/protocol differences and finite-stop limitations.",
+  "qualifications": [
+    "Only seed 128 for the three benchmarks; no statistical-equivalence claim.",
+    "Archived OPNET output is available only for campus and was not rerun.",
+    "All cases retain finite-stop application and HOP/NWK custody work; pending is not a terminal loss.",
+    "Campus admission diagnostic trace stores only 100000 of 1710000 attempts; all per-flow counters and application/protocol/PHY records are retained.",
+    "MAT objects and three nested ZIPs remain excluded by the declared execution-machine archive policy.",
+    "No R2026a/native execution occurred; optional adapter capability probes do not establish native integration.",
+    "Numerical agreement and full protocol equivalence are not established by these checks."
+  ]
+}
