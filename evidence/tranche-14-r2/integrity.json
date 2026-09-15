@@ -1,0 +1,121 @@
+{
+  "schema": "csr-tranche14-second-failed-owner-integrity-v1",
+  "status": "failed_run_integrity_verified_not_accepted",
+  "evidence_integrity_verified": true,
+  "focused_structural_gate_completed": false,
+  "acceptance_established": false,
+  "numerical_parity_established": false,
+  "matlab_executed_by_reviewer": false,
+  "evidence": {
+    "path": "t14(1).zip",
+    "sha256": "b91453bd508bccd5cb10ca12b10e75ff006dd3bbf7f7bfc1386017487d09db2f",
+    "bytes": 63087,
+    "regular_members": 5,
+    "inventoried_artifacts": 4,
+    "metadata_sha256": "2a43741a7b533c400ac611b421ca7df0337a321d691a4d9852f13425caa3b7ee",
+    "members": [
+      "metadata.json",
+      "references.json",
+      "run.log",
+      "source.json",
+      "tests.csv"
+    ]
+  },
+  "candidate_sha256": "94bde01e85eac80af05b0e9aa81132b4b7b0fee7907fc3420d28ae8b49eb9609",
+  "runtime": {
+    "Runtime": "MATLAB",
+    "Version": "25.1.0.2943329 (R2025a)",
+    "Release": "2025a",
+    "HasWirelessNetworkSimulator": false,
+    "HasWnetNode": false,
+    "HasWirelessPacket": false,
+    "DefaultBackend": "portable",
+    "WirelessAdapterImplemented": true,
+    "WirelessAdapterScope": "Optional R2026a wireless-clock candidate; runtime validation pending",
+    "NativePacketTransportIntegrated": false,
+    "ProbeScope": "Symbol discovery only; licenses and execution are not validated."
+  },
+  "owner_elapsed_seconds": 86.654,
+  "source": {
+    "count": 283,
+    "sha256": "385c19e5a82875cb3a93258b6c96e76ce475e8bca6e017629dcd8e739f8476ec",
+    "matlab_files": 142,
+    "stable_before_after": true
+  },
+  "references": {
+    "count": 299,
+    "sha256": "b6864ce3a10a41fd19da80a4eb6b368a0fd16b2736422b743e8d5f94de001f93",
+    "stable_before_after": true
+  },
+  "baseline": {
+    "tranche13": {
+      "source_files": 271,
+      "matlab_files": 138,
+      "unchanged": true,
+      "snapshot_sha256": "205a86d0ae163b7a9fbeb13c2d003900af23df26c1e3be6cb0016505d4d55fc3"
+    },
+    "accepted_core": {
+      "source_files": 225,
+      "matlab_files": 124,
+      "unchanged": true,
+      "snapshot_sha256": "9be444b0fb1ffbfe818cab86502a287b19e3da83467d210ef426ec3b19e183da"
+    }
+  },
+  "tests": {
+    "count": 106,
+    "passed": 88,
+    "failed": 18,
+    "incomplete": 18,
+    "incomplete_is_subset_of_failed": true,
+    "retained_passed": 88,
+    "retained_count": 88,
+    "new_class_passed": 0,
+    "new_class_failed": 18,
+    "new_class_incomplete": 18,
+    "new_class_setup_failed": true,
+    "failed_names": [
+      "TestAckEdgeContract/sixCasesCompleteWithIndependentStructuralChecks",
+      "TestAckEdgeContract/actualSourceMacSelectsAckThenDataInTheEightyNineByteAggregate",
+      "TestAckEdgeContract/primingBuildsTheRealReceiveWindowBeforeTheFirstOpportunity",
+      "TestAckEdgeContract/sharedIntegerCasesTransmitTheExpectedFirstCumulativeBitmap",
+      "TestAckEdgeContract/OneNanosecondPerturbationsKeepDistinctActualTimes",
+      "TestAckEdgeContract/lateArmingUsesTheActualCachedAggregateAndLaterInsertionId",
+      "TestAckEdgeContract/continuousAirtimeExposesTheMeasuredOneUlpResidual",
+      "TestAckEdgeContract/localNanosecondTransportChangesOnlyTheDeclaredFixtureCase",
+      "TestAckEdgeContract/gatewayNwkDeliversEveryPrescribedIdentityExactlyOnce",
+      "TestAckEdgeContract/updatedAckEventuallyTransmitsAndAllQueuesDrain",
+      "TestAckEdgeContract/callbackTimesAndIdsReferToActualSchedulerExecutions",
+      "TestAckEdgeContract/tracingPreservesFifoNestedEventsAndBinary64Times",
+      "TestAckEdgeContract/tracingPreservesCancellationAndRestoresIdentityAfterFailure",
+      "TestAckEdgeContract/prescribedRawDrawsKeepExactSupportAndUsage",
+      "TestAckEdgeContract/integerIdentifiersAndBitmapsRoundTripWithoutDoubleConversion",
+      "TestAckEdgeContract/fullPrecisionDecimalAndHexExportsRetainTheActualBinary64Value",
+      "TestAckEdgeContract/exactComparisonsSeparateLocalIdsAndFullPrecisionResiduals",
+      "TestAckEdgeContract/completeEvidenceIncludesReferenceBindingsAndDiagnosticResults"
+    ],
+    "retained_duration_seconds": 68.9599108
+  },
+  "diagnostic": {
+    "complete_case_results_available": false,
+    "edge_artifacts_available": false,
+    "reported_cases": 0,
+    "reported_events": 0,
+    "reported_checkpoints": 0,
+    "reported_unmatched_count": 0,
+    "boundary_error_identifier": "MATLAB:table:vertcat:VertcatMethodFailed",
+    "boundary_error_message": "An error occurred when concatenating the table variable 'case' using vertcat.",
+    "fixture_failure_line": 24,
+    "console_case_labels_per_invocation": [
+      "tie_early",
+      "tie_late"
+    ],
+    "console_invocations": 2,
+    "interpretation": "The diagnostic and class setup both abort while concatenating per-case tables. No edge evidence was exported. Reaching the second console label does not establish that the first case passed. Zero reported differences is an unpopulated counter, not a parity result."
+  },
+  "normal_gate_rejections": {
+    "run_identity": "Return is not a completed T14 diagnostic",
+    "test_success": "MATLAB test failed or incomplete",
+    "full_review": "Return is not a completed T14 diagnostic"
+  },
+  "audit_source_sha256": "f9528dd9128f38295757175dcd044374c5ab6ced2b3d1af5523268c2da2575ae"
+}

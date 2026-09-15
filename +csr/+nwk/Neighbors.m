@@ -68,7 +68,7 @@ classdef Neighbors < handle
             end
             obj.Peers(peer)=entry;
         end
-        function receiveControl(obj,kind,peer,payload)
+        function receiveControl(obj,kind,peer,payload,metrics)
             validPeer(peer); peer=double(peer);
             if peer==obj.NodeId, return; end
             if nargin<4, payload=struct(); end
@@ -77,7 +77,14 @@ classdef Neighbors < handle
                 return
             end
             before=obj.ensure(peer); wasActive=before.Active && ~before.Stale;
-            obj.observe(peer,before.Metrics);
+            if nargin<5, metrics=before.Metrics; end
+            % KeyRequest/KeyUpdate operate the HOP key lifecycle. Source
+            % ProcessHello is reached by Discover and first NeighborCheck,
+            % not by key traffic or its ACK. Only those controls renew NWK
+            % freshness here; first routing sections are observed by Layer.
+            if any(strcmp(kind,{'DISCOVER','NEIGHBOR_CHECK'}))
+                obj.observe(peer,metrics);
+            end
             switch kind
                 case 'DISCOVER'
                     entry=obj.Peers(peer);
@@ -266,14 +273,19 @@ classdef Neighbors < handle
             entry=obj.Peers(peer);
             if entry.Stale || entry.Active, return; end
             now=obj.Scheduler.Now;
+            % Compare with the same absolute deadline used to schedule a
+            % retry. With double seconds, (when+delay)-when can be slightly
+            % less than delay at that very deadline, otherwise rearming an
+            % endless same-time retry. Native ns-3 Time has integer ticks.
             if ~entry.ReceivedKey
+                deadline=entry.KeyRequestWhen+entry.KeyRequestDelay;
                 if receivedDiscovery
                     entry.KeyRequestDelay=obj.Config.AdmissionRetrySeconds;
                     entry.KeySendDelay=obj.Config.AdmissionRetrySeconds;
-                elseif ~entry.KeyRequestValid || now-entry.KeyRequestWhen>=entry.KeyRequestDelay
+                elseif ~entry.KeyRequestValid || now>=deadline
                     entry.KeyRequestDelay=2*entry.KeyRequestDelay;
                 else
-                    obj.scheduleRetry(peer,entry.KeyRequestWhen+entry.KeyRequestDelay-now); return
+                    obj.scheduleRetryAt(peer,deadline); return
                 end
                 entry.KeyRequestValid=true; entry.KeyRequestWhen=now; obj.Peers(peer)=entry;
                 obj.Counters.KeyRequests=obj.Counters.KeyRequests+1;
@@ -281,24 +293,26 @@ classdef Neighbors < handle
                 obj.scheduleRetry(peer,entry.KeyRequestDelay); return
             end
             if ~entry.SentKey
-                if ~entry.KeySendActive && (~entry.KeySendValid || now-entry.KeySendWhen>=entry.KeySendDelay)
+                deadline=entry.KeySendWhen+entry.KeySendDelay;
+                if ~entry.KeySendActive && (~entry.KeySendValid || now>=deadline)
                     if entry.KeySendValid, entry.KeySendDelay=2*entry.KeySendDelay; end
                     obj.Peers(peer)=entry; obj.sendKeyUpdate(peer);
                 elseif ~entry.KeySendActive
-                    obj.scheduleRetry(peer,entry.KeySendWhen+entry.KeySendDelay-now);
+                    obj.scheduleRetryAt(peer,deadline);
                 end
                 return
             end
             if entry.PendingDiscoveryCheck
                 obj.pendingDiscoveryCheck(peer,entry.Generation); return
             end
-            if ~entry.CheckActive && (~entry.OverheardValid || now-entry.OverheardWhen>=entry.OverheardDelay)
+            deadline=entry.OverheardWhen+entry.OverheardDelay;
+            if ~entry.CheckActive && (~entry.OverheardValid || now>=deadline)
                 entry.OverheardValid=true; entry.OverheardWhen=now;
                 entry.OverheardDelay=2*entry.OverheardDelay; obj.Peers(peer)=entry;
                 obj.sendCheck(peer,'overheard',uint32(0));
                 obj.scheduleRetry(peer,entry.OverheardDelay);
             elseif ~entry.CheckActive
-                obj.scheduleRetry(peer,max(0,entry.OverheardWhen+entry.OverheardDelay-now));
+                obj.scheduleRetryAt(peer,deadline);
             end
         end
         function sendKeyUpdate(obj,peer)
@@ -352,10 +366,15 @@ classdef Neighbors < handle
             obj.event('neighbor_active',peer,struct('Reason',reason));
         end
         function scheduleRetry(obj,peer,delay)
+            obj.scheduleRetryAt(peer,obj.Scheduler.Now+delay);
+        end
+        function scheduleRetryAt(obj,peer,deadline)
             entry=obj.Peers(peer);
-            if entry.Active || entry.Stale, return; end
+            % Source allows a retry event for a stale inactive peer; the
+            % callback's evaluate gate then waits for fresh admission input.
+            if entry.Active, return; end
             obj.Scheduler.cancel(entry.RetryEvent); generation=entry.Generation;
-            entry.RetryEvent=obj.Scheduler.scheduleAt(obj.Scheduler.Now+delay, ...
+            entry.RetryEvent=obj.Scheduler.scheduleAt(deadline, ...
                 @()obj.retry(peer,generation)); obj.Peers(peer)=entry;
         end
         function retry(obj,peer,generation)
@@ -367,8 +386,17 @@ classdef Neighbors < handle
                 entry=obj.Peers(peer);
                 if ~entry.Stale && entry.LastHeardSeconds>=0 && ...
                         obj.Scheduler.Now-entry.LastHeardSeconds>obj.Config.FreshnessTimeoutSeconds
-                    obj.failNeighbor(peer); entry=obj.Peers(peer); entry.Stale=true;
+                    % A quiet-neighbor expiry is not a failed transmission.
+                    % Preserve failure penalties, key ownership/backoffs and
+                    % pending admission callbacks, as source freshness does.
+                    entry.Active=false; entry.Stale=true;
+                    entry.CheckActive=false; entry.DiscoveryCheckActive=false;
                     obj.Peers(peer)=entry;
+                    obj.changed(peer,false); obj.scheduleChirp();
+                    obj.event('neighbor_inactive',peer,struct('Reason','freshness_timeout', ...
+                        'LastHeardSeconds',entry.LastHeardSeconds, ...
+                        'AgeSeconds',obj.Scheduler.Now-entry.LastHeardSeconds, ...
+                        'TimeoutSeconds',obj.Config.FreshnessTimeoutSeconds));
                 end
             end
             obj.Scheduler.scheduleAt(obj.Scheduler.Now+obj.Config.FreshnessPeriodSeconds, ...

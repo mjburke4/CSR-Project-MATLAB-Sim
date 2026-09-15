@@ -1,0 +1,87 @@
+{
+  "schema": "csr-tranche9-return-reporting-repair-v1",
+  "status": "verified_python_only",
+  "reviewed_utc": "2026-09-11T18:43:33.783359+00:00",
+  "executed_matlab_code_commit": "99fff0381fe9621ccd76fbdce41eac9aba5a9469",
+  "uploaded_archive_sha256": "ddcede0a83b5ff906a7736f63406fc4cecb11e841795e39e93237364e0e11edf",
+  "problems": [
+    {
+      "observed_error": "Accepted: Boolean is not numeric",
+      "cause": "MATLAB jsonencode writes six admission logical fields as JSON booleans while writetable writes CSV 1/0. The Python reviewer applied the strict numeric parser to logical fields.",
+      "correction": "Compare only the six declared logical fields as Boolean or strict numeric 0/1; retain strict numeric parsing elsewhere."
+    },
+    {
+      "observed_error": "T9 changed accepted T8 experiment configuration",
+      "cause": "The original equality check included the installation path changing from csr8 to csr9. All other configuration fields matched.",
+      "correction": "Verify the planned input path suffix and source hash; permit only its installation prefix to differ, preserving both original paths in the comparison record."
+    }
+  ],
+  "changes": [
+    {
+      "path": "scripts/analyze_tranche9_return.py",
+      "before_sha256": "a34e325dd5d3fdfbc542e92178f265cb9d3ce9143533e663e6e27a47feb1617e",
+      "after_sha256": "6109657455f1235faa0bb7da9eca3b8b2fe7adf3d362ec94c4e03f02a0fac00a"
+    },
+    {
+      "path": "scripts/tranche9_metrics.py",
+      "before_sha256": "12a8d6ace916b6fb275a4d6d8d98e4bafe7ab1f410f21de05662efabe372ea37",
+      "after_sha256": "4a3cb0b1df8a2cbf5b3e11b721ac68d23cbd163e36cec592cc10bb7ed9f8c9cc"
+    },
+    {
+      "path": "scripts/tests/test_tranche9_return.py",
+      "before_sha256": "c8477cb0473df09c89adcd8959ac1e63ff5aca9674bce93264fe536e8c1f9213",
+      "after_sha256": "01a12596c66dc5d2f636334961d08f3d9fed33337e79d8caadcbb68da50d0137"
+    }
+  ],
+  "python_tests": {
+    "passed": 254,
+    "failed": 0,
+    "new_regressions": 10,
+    "log": "tranche-9-r2025a-accepted/repair/python-tests.log"
+  },
+  "real_archive_review_passed": true,
+  "review_source": "Frozen executed candidate; not the post-return reviewer repair tree",
+  "matlab_files_unchanged": 115,
+  "matlab_rerun_required": false,
+  "matlab_executed_in_review": false,
+  "owner_archive_modified": false,
+  "numerical_tolerance_added": false,
+  "remote_actions_performed": false,
+  "artifacts": [
+    {
+      "path": "tranche-9-r2025a-accepted/repair/initial-failure.json",
+      "bytes": 431,
+      "sha256": "33159de239523730508b4ed2abb0aca2cbe2ea46e5383f298213817d00f3e5fa"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/repair/path-failure.json",
+      "bytes": 446,
+      "sha256": "d767f56318a12cd8c2e99cd094d9316c140512f95ea80e56405dee0963f428b6"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/repair/python-result.json",
+      "bytes": 231,
+      "sha256": "047bf0d723fb2624356bc06fcab9da65d8c1d26f88073f3f7eaaf52f4cfcdb91"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/repair/python-tests.log",
+      "bytes": 40239,
+      "sha256": "6431b759dc85e1f7e87fd7027b3ec9e7be9ebb9732a1beb836c803b61f1625f3"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/repair/reporting-repair.patch",
+      "bytes": 12095,
+      "sha256": "399c3f1e573bad5aa9bb9d78d71e7e4b3489589e740fddca2ad93fe8fd88322c"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/repair/review-result.json",
+      "bytes": 406,
+      "sha256": "88bbd899e1ba0badd29e3ec3cdff80a5f22e1cd810c592a24e0ee3ee6ca181af"
+    },
+    {
+      "path": "tranche-9-r2025a-accepted/repair/review.log",
+      "bytes": 120,
+      "sha256": "999875205f34f5f84fee3290dfcd7eb43b54eca0f440a506f45f4701dfc3b4b1"
+    }
+  ]
+}

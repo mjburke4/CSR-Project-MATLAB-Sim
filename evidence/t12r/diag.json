@@ -1,0 +1,72 @@
+{
+  "Schema": "csr-tranche12-return-diagnosis-v1",
+  "ReviewType": "Independent source and returned-evidence review; no MATLAB runtime execution",
+  "InputArchiveSHA256": "3a6033f609c24a1cf8a2b5c4183402d8b7b9937e7528104ebb7e81f3b9ea5bd9",
+  "OriginalRelaySourceSHA256": "9f41fd2a5147c93dd0deb5ba3bb503c6653c47749f5c3480d6f167df1e92c8bc",
+  "OriginalTreeModified": false,
+  "StructuralGatePassed": false,
+  "Relay": {
+    "CasesCompleted": 0,
+    "CaseCount": 4,
+    "EventCount": 244,
+    "DrawCount": 10,
+    "FailedCheckpoints": 63,
+    "NativeUnmatchedCount": 2649,
+    "DeliveryCount": 0
+  },
+  "RootCause": {
+    "File": "+csr/+validation/relayContract.m",
+    "Lines": [
+      103,
+      104
+    ],
+    "ObservedLine": 103,
+    "Callback": "NsdpCount",
+    "Identifier": "MATLAB:structRefFromNonStruct",
+    "Explanation": "Anonymous functions capture the networks cell array while the current node entry is empty, before csr.nwk.Layer is assigned. The later assignment is not visible through that captured cell value. All four cases abort on the first HOP DATA receive, before feedback and delivery. RouteAvailable captures the same incomplete cell and is a latent second failure immediately after NsdpCount for relay traffic."
+  },
+  "CallbackAudit": [
+    {
+      "Callback": "NsdpCount",
+      "Status": "Observed defective premature cell capture",
+      "Repair": "@(a)networkNsdpCount(node,a), with a nested function reading networks{node} at invocation"
+    },
+    {
+      "Callback": "RouteAvailable",
+      "Status": "Same latent defective premature cell capture",
+      "Repair": "@(a)networkRouteAvailable(node,a), with a nested function reading networks{node} at invocation"
+    },
+    {
+      "Callback": "CanSendData",
+      "Status": "Safe in this construction order: own HOP handle exists before anonymous function is created, and is not replaced",
+      "Repair": "Use a nested canSendData(node,p) wrapper for consistent live lookup and to remove remaining direct layer-cell capture"
+    },
+    {
+      "Callback": "MAC Transmit/Sent/Event; HOP EnqueueMac/CancelMac/Deliver/NsdpRelease/Wake/Terminal; NWK SendData/Delivered/CustodyAccepted/Dropped",
+      "Status": "Already dispatch through nested functions, with node identifier captured per registration; live layer access occurs inside nested functions"
+    },
+    {
+      "Callback": "ReplayStreams clock",
+      "Status": "Captures existing scheduler handle; Now reflects live state"
+    },
+    {
+      "Callback": "Delayed transport ingress",
+      "Status": "Captures immutable envelope for each scheduled transmission intentionally; nested ingress uses current layers"
+    },
+    {
+      "Callback": "Clock-boundary fixture",
+      "Status": "Uses an existing MAC handle and nested scheduler callbacks; no equivalent incomplete layer-cell capture found"
+    }
+  ],
+  "MinimalRepair": "Three callback wrappers in relayContract only; keep production MATLAB, native references, scenario plan, metrics, thresholds and tolerance unchanged.",
+  "RegressionRationale": "The existing 12 TestRelayContract integration tests exercise actual HOP receive, live NSDP state, relay route lookup, 120 application deliveries and 180 release callbacks; nine fail in the provided R2025a return. They already provide meaningful regression coverage for both broken callbacks. No implementation-mirroring static test or synthetic owner return is needed. The same 72-test MATLAB runner must be executed on the repaired candidate.",
+  "Clock": {
+    "Passed": true,
+    "CheckpointCount": 72,
+    "FailedCount": 0,
+    "UnmatchedCount": 3,
+    "ExpectedContinuousResidual": true
+  },
+  "Interpretation": "The 2649 relay differences are from structurally aborted trajectories and are not valid evidence of relay numerical parity. The independent clock component completes and preserves the expected continuous-clock residual.",
+  "ApprovalRecommendation": "Accept the bounded fixture repair for owner rerun; do not accept T12 structural completion until real MATLAB evidence is returned."
+}

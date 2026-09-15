@@ -1,0 +1,46 @@
+--- pinned/csr-mac-core.h
++++ overlay/csr-mac-core.h
+@@ -1,4 +1,5 @@
+ #pragma once
++#include "tranche11-replay-hooks.h"
+ #include "csr-common.h"
+ #include <algorithm>
+ 
+@@ -1001,7 +1002,10 @@
+         // collision with a neighbor's current next_tslot counter, advances by
+         // one modulo R.  The modulo-R off-by-one is intentional: after a
+         // collision slot R cannot be revisited.
+-        int chosenSlot = rng->GetInteger (0, slotRange);
++        // TRANCHE11 TEST SEAM: only the raw integer, before native probing.
++        int chosenSlot = csr_t11::rawDraw
++          ? csr_t11::rawDraw (m_nodeId, 0, slotRange)
++          : rng->GetInteger (0, slotRange);
+         uint32_t probes = 0;
+         for (;;)
+           {
+@@ -1019,6 +1023,8 @@
+                           << "] PickTxSlot chose " << chosenSlot
+                           << " using historical next_tslot modulo probe"
+                           << std::endl;
++                if (csr_t11::resolvedDraw)
++                  csr_t11::resolvedDraw (m_nodeId, chosenSlot, probes);
+                 return chosenSlot;
+               }
+ 
+--- pinned/csr-net-device.h
++++ overlay/csr-net-device.h
+@@ -752,6 +752,14 @@
+   // local half-duplex radio for the complete OTA duration.
+   m_mac.NotifyPhyTxStart (Seconds (duration));
+ 
++  // TRANCHE11 TEST SEAM: actual airtime and TX state, prescribed delivery.
++  if (csr_t11::transport)
++    {
++      csr_t11::transport (m_id, frameCopies, Seconds (duration), rateKbps,
++                          txPowerDbm, static_cast<int> (preamble), slot);
++      return Seconds (duration);
++    }
++
+   for (const auto &peer : m_peers)
+     {
+       if (peer == nullptr || peer->GetId () == txId)

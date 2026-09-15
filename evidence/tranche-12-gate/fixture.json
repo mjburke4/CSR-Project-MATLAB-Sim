@@ -1,0 +1,121 @@
+{
+  "schema": "csr-tranche12-independent-fixture-review-v1",
+  "status": "passed",
+  "native_reference_manifest_sha256": "1e2cedbd73d5a377d99d373d8a1c77d466b4b96bc7861e919c972e0397633206",
+  "plan_sha256": "0fce57f9ca952914b19c3e1fc69479255ad5bd5733a0756849b705680793c9b4",
+  "artifact_hashes_verified": 41,
+  "returned_t11_source_bindings_unchanged": 241,
+  "returned_t11_matlab_files_unchanged": 130,
+  "pinned_native_source_files_unchanged": 23,
+  "native_shared_libraries_unchanged": 9,
+  "native_control_checkpoints": 255,
+  "native_self_tests": 6,
+  "native_events": 2344,
+  "native_draws": 332,
+  "native_applications_delivered": 120,
+  "native_hop_release_callbacks": 180,
+  "cases": [
+    {
+      "case": "relay",
+      "events": 514,
+      "applications": 20,
+      "data_transmissions": 40,
+      "releases": 40,
+      "dack_holds_at_16s": 0,
+      "dack_expiries": 0,
+      "all_final_data_and_capacity_drained": true
+    },
+    {
+      "case": "local",
+      "events": 385,
+      "applications": 20,
+      "data_transmissions": 20,
+      "releases": 20,
+      "dack_holds_at_16s": 0,
+      "dack_expiries": 0,
+      "all_final_data_and_capacity_drained": true
+    },
+    {
+      "case": "mix",
+      "events": 736,
+      "applications": 40,
+      "data_transmissions": 60,
+      "releases": 60,
+      "dack_holds_at_16s": 4,
+      "dack_expiries": 4,
+      "all_final_data_and_capacity_drained": true
+    },
+    {
+      "case": "sw",
+      "events": 709,
+      "applications": 40,
+      "data_transmissions": 60,
+      "releases": 60,
+      "dack_holds_at_16s": 1,
+      "dack_expiries": 1,
+      "all_final_data_and_capacity_drained": true
+    }
+  ],
+  "actual_native_dack_expiry_events": [
+    {
+      "case": "mix",
+      "node": 4,
+      "peer": 5,
+      "sequence": 19,
+      "time_ns": 21801601056
+    },
+    {
+      "case": "mix",
+      "node": 4,
+      "peer": 5,
+      "sequence": 18,
+      "time_ns": 21801601056
+    },
+    {
+      "case": "mix",
+      "node": 4,
+      "peer": 5,
+      "sequence": 17,
+      "time_ns": 21801601056
+    },
+    {
+      "case": "mix",
+      "node": 4,
+      "peer": 5,
+      "sequence": 20,
+      "time_ns": 21999481056
+    },
+    {
+      "case": "sw",
+      "node": 4,
+      "peer": 5,
+      "sequence": 19,
+      "time_ns": 21920081056
+    }
+  ],
+  "reviewed_files": {
+    "scripts/ns3/tranche12_relay.cc": "1d24ed116848ca194d5e2c84af1b6bcf3a82a1d30536433e4ae29958e6a5b01d",
+    "scripts/ns3/tranche12-relay-hooks.h": "1afc69572ac9682bf9880552fa87f6e7ec6a422e78b1d513a0301ddb3495eaf6",
+    "scripts/build_tranche12_overlay.py": "15951b797f4c4ecc1e5b63f660f2184ceba2f9102e152334d0f9a6c6ce2ca039",
+    "scripts/run_tranche12_ns3_reference.py": "ce5ac2c5d7d39e25818fd9a83dd4bf96acf73253fa46e77e04fb06a03ee1161c",
+    "+csr/+validation/relayContract.m": "9f41fd2a5147c93dd0deb5ba3bb503c6653c47749f5c3480d6f167df1e92c8bc",
+    "tests/TestRelayContract.m": "e58a5a79b8f076ced6df45d124670a89afce8e61f26eb62011210333acf9e491",
+    "docs/tranche-12-spec.md": "457c351015bbc332401d7aa9edbe84b4b4ce40784bbb802e4e9e74e1fdf41fe6"
+  },
+  "matlab_execution": false,
+  "cross_simulator_parity_established": false,
+  "scope_findings": [
+    "Finite synthetic offer driver queries actual NWK pair state; real NWK queue, custody, handoff and HOP wake remain in use. Full ApplicationGenerator is excluded.",
+    "Native NWK source is unchanged; only raw MAC integer, addressed transport, and read-only actual DACK getter exist in isolated overlay.",
+    "Preconditioned selected next hops match. Native static route metric versus MATLAB serialized UPDATE metric is not a route-state parity claim; fixed radio and one eligible next hop isolate service.",
+    "Bootstrap routing control transport is disabled explicitly, with retained MATLAB owners disclosed separately.",
+    "Actual native DACK-expiry traces independently support capacity zero at24s, not merely forced zero snapshots.",
+    "Known native NWK one-TIC28ns versus MATLAB same-time scheduling remains a measured potential trajectory residual; no timing quantization or source edit hides it."
+  ],
+  "review_fixes": [
+    {
+      "issue": "Unused MATLAB node-index array positions2/3 were initialized-1 but all-zero final-state test includes them.",
+      "resolution": "Earlier draft issue is absent in the final reviewed source: unused array positions initialize zero; active-node failure sentinels remain minus one. Final source checked directly."
+    }
+  ]
+}

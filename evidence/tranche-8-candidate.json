@@ -1,0 +1,67 @@
+{
+  "schema": "csr-matlab-tranche-8-candidate-v1",
+  "status": "input_schema_repaired_for_owner_runtime_validation",
+  "branch": "agent/tranche-8-link-diagnostics",
+  "matlab_base_commit": "68e18181d90b27e5cfaa11f4537595c2e6640809",
+  "accepted_tranche7_matlab_code_commit": "28ed878f5673e308047cbea7878b933697d932f3",
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "ns3_source_recheck": {
+    "path": "evidence/tranche-8-source-recheck.json",
+    "sha256": "a6603b0698901617199401f2ed1e03e40c6c4bcb527109ca82c5f3e41e0c0da6"
+  },
+  "diagnostic_plan": {
+    "path": "scenarios/link_diagnostics/plan.json",
+    "sha256": "ed648ee4f54ebf14e14b98d6fcecce224590727139db83f0f4d23161ddfc7a09",
+    "seeds": [
+      128,
+      129,
+      130,
+      131,
+      132
+    ],
+    "case_count": 10,
+    "matlab_observer_control_count": 2
+  },
+  "objective": "Measure small-fixture seed variation and inspect existing feedback choices versus actual OTA rate/power, without changing protocol policy.",
+  "matlab_executed": false,
+  "octave_executed": false,
+  "numerical_parity_established": false,
+  "tranche_8_accepted": false,
+  "runtime_command": "report = run_tranche8_validation;",
+  "return_archive": "tranche8_evidence.zip",
+  "protected_scope": "PHY/ECC, HOP/MAC/NWK policy and default traffic/radio configuration unchanged. Accepted T7 artifacts remain untouched.",
+  "local_checks": "evidence/tranche-8-repair-checks.json",
+  "ns3_reference": "evidence/tranche-8-ns3-reference/manifest.json",
+  "next_gate": "Actual owner MATLAB runtime; verify returned ten cases, tests, observer controls, complete traces, seed128T7anchor and paired ns3 comparisons.",
+  "remote_publication_performed": false,
+  "ns3_reference_sha256": "5ea5a39c7751c856e710d2eaa09b5d71d4a23c543bafa894c605052f1ded9d5a",
+  "ns3_execution_completed": true,
+  "ns3_completed_case_count": 10,
+  "independent_review": "docs/tranche-8-repair-review.md",
+  "handoff": "docs/tranche-8-handoff.md",
+  "short_path_layout": {
+    "package": "csr8.zip",
+    "enclosing_directory": false,
+    "default_results": "results/t8",
+    "run_directory_characters": 23,
+    "case_directory_examples": [
+      "b/a128",
+      "b/c128"
+    ],
+    "control_directory_examples": [
+      "c/a128",
+      "c/c128"
+    ]
+  },
+  "supersedes_candidate": {
+    "commit": "010793b402cc63c1bd434328d80d0b6b53c39ebf",
+    "package_sha256": "bbf1aab5645cbacfa31cba7975b15adf5426634e165ec9457540ce4b976b5932",
+    "reason": "Owner MATLAB rejected nonrun scenario fields during initial import. No diagnostic simulation started."
+  },
+  "input_repair": "evidence/tranche-8-input-repair.json",
+  "input_repair_ns3_comparison": "evidence/tranche-8-input-repair-ns3.json",
+  "original_candidate_local_checks": "evidence/tranche-8-local-checks.json",
+  "all_matlab_source_unchanged_from_initial_candidate": true,
+  "input_repair_sha256": "7641c5ebcf00d28e2cdb1f428efa70b93bd5aece35b6a46bf773651369bc60b3",
+  "input_repair_ns3_comparison_sha256": "884a72c870cd2df27fc0a17392fafb1a938a75f1afbed8b5c2c96c2578544b5c"
+}

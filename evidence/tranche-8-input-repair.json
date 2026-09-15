@@ -1,0 +1,349 @@
+{
+  "schema": "csr-tranche8-input-repair-v1",
+  "repaired_utc": "2026-09-10T19:01:20.521127+00:00",
+  "original_candidate_commit": "010793b402cc63c1bd434328d80d0b6b53c39ebf",
+  "owner_reported_failure": {
+    "identifier": "csr:scenario:ImportUnsupported",
+    "message": "Populated field scenario is unsupported on a node row.",
+    "importer_line": 77,
+    "call_chain": [
+      "run_tranche8_validation:9",
+      "csr.scenario.linkDiagnosticSuite:52",
+      "csr.scenario.importNs3:77"
+    ],
+    "stage": "Factory initialization before test execution or diagnostic output creation",
+    "owner_matlab_startup_attempt_reported": true,
+    "diagnostic_simulations_executed_in_failed_attempt": false
+  },
+  "cause": "Derivation populated scenario on all rows; the MATLAB schema allows it only on run rows. The Python derivation verifier mirrored the same incorrect assumption.",
+  "repair": "Regenerate all ten inputs from accepted parents with run-row-only overrides; keep strict importer and simulator source unchanged.",
+  "old_plan_sha256": "c6cbc575ccf2978a8f81280fded838357287c4b667d94625a66e6a830168cf97",
+  "new_plan_sha256": "ed648ee4f54ebf14e14b98d6fcecce224590727139db83f0f4d23161ddfc7a09",
+  "case_count": 10,
+  "corrected_nonrun_scenario_cells": 40,
+  "cases": [
+    {
+      "case_id": "two_node_admission_1200_s128",
+      "scenario_file": "scenarios/link_diagnostics/inputs/two_node_admission_1200_s128.csv",
+      "old_scenario_sha256": "9e5f32ca023d0b6873ea78628411378da7407aab9d3eca0a489ffff1dbc328c0",
+      "new_scenario_sha256": "f145c4614a81809e3fd24a9651e7ecf5f4ab4011b1c61588f6a21d0799e9a27f",
+      "recipe_file": "scenarios/link_diagnostics/inputs/two_node_admission_1200_s128.recipe.json",
+      "old_recipe_sha256": "b07b0f657ab5eaba98e6fc019e4d073feaa380142bc3c1b2b9cb7190b3724b27",
+      "new_recipe_sha256": "038e011fc57a44647183bf6ac0cb2f3ba2f93724670a78f7b721382110f9953c",
+      "corrected_nonrun_rows": [
+        {
+          "row": 3,
+          "record": "node",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 4,
+          "record": "node",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 5,
+          "record": "flow",
+          "cleared_field": "scenario"
+        }
+      ],
+      "nonrun_rows_byte_fields_equal_parent": true
+    },
+    {
+      "case_id": "three_node_contention_360_s128",
+      "scenario_file": "scenarios/link_diagnostics/inputs/three_node_contention_360_s128.csv",
+      "old_scenario_sha256": "fba2e2f67ae604e2325eeb217527a2621b24ad8628f1a3bd9384dfc00901463e",
+      "new_scenario_sha256": "c366b61b26986949f506b3d2e831a8335c34565fac37db7dddcc2f2a026f21cf",
+      "recipe_file": "scenarios/link_diagnostics/inputs/three_node_contention_360_s128.recipe.json",
+      "old_recipe_sha256": "64f108c1e4b9786a10bd6f2adf3e42e2e42c92e61b60e1581c361c1522782d35",
+      "new_recipe_sha256": "7d108a62b4d6419360e3f96d0492187300aee25f0b04bbb58044dc0f831e490a",
+      "corrected_nonrun_rows": [
+        {
+          "row": 3,
+          "record": "node",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 4,
+          "record": "node",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 5,
+          "record": "node",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 6,
+          "record": "flow",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 7,
+          "record": "flow",
+          "cleared_field": "scenario"
+        }
+      ],
+      "nonrun_rows_byte_fields_equal_parent": true
+    },
+    {
+      "case_id": "two_node_admission_1200_s129",
+      "scenario_file": "scenarios/link_diagnostics/inputs/two_node_admission_1200_s129.csv",
+      "old_scenario_sha256": "807d113c5e986dde8aabe0b1f0dfab57242383eb9785d7ccda9da278459c7cce",
+      "new_scenario_sha256": "bdb8301b90cc472f564aaf565d1909a4f2aba1f7e4fc097fedc8eb90d07ddf23",
+      "recipe_file": "scenarios/link_diagnostics/inputs/two_node_admission_1200_s129.recipe.json",
+      "old_recipe_sha256": "a879b0be63ef61bf30503ac9ce7f693a6cac5b204f4f97489d3f05312435af05",
+      "new_recipe_sha256": "2638b793aa0d43e14dd1bab2e0c39901b34ebe9131342f9a6d820414e594afd3",
+      "corrected_nonrun_rows": [
+        {
+          "row": 3,
+          "record": "node",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 4,
+          "record": "node",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 5,
+          "record": "flow",
+          "cleared_field": "scenario"
+        }
+      ],
+      "nonrun_rows_byte_fields_equal_parent": true
+    },
+    {
+      "case_id": "three_node_contention_360_s129",
+      "scenario_file": "scenarios/link_diagnostics/inputs/three_node_contention_360_s129.csv",
+      "old_scenario_sha256": "5111f7f5fe3fa1ed689a41969e443d7706ebffcf1e6a9c33423494236a7fcb47",
+      "new_scenario_sha256": "a185b80a843b8fad03602765d0dbf02c0671e7eb4c7e49f281bfa8a6cdb0bb74",
+      "recipe_file": "scenarios/link_diagnostics/inputs/three_node_contention_360_s129.recipe.json",
+      "old_recipe_sha256": "4847af649af5bbd28850f3f5f22094573387e0ae3873cc93a7ec3cb873a42003",
+      "new_recipe_sha256": "01d45f230768f6eb1209ab4bd99a5cdcd7d0d60e753bdeb7cefb6eb7888d01e4",
+      "corrected_nonrun_rows": [
+        {
+          "row": 3,
+          "record": "node",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 4,
+          "record": "node",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 5,
+          "record": "node",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 6,
+          "record": "flow",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 7,
+          "record": "flow",
+          "cleared_field": "scenario"
+        }
+      ],
+      "nonrun_rows_byte_fields_equal_parent": true
+    },
+    {
+      "case_id": "two_node_admission_1200_s130",
+      "scenario_file": "scenarios/link_diagnostics/inputs/two_node_admission_1200_s130.csv",
+      "old_scenario_sha256": "ad4b83665707a29d64a3c07eb597f512519eedbde4fc39239fcc096de9e5bcb0",
+      "new_scenario_sha256": "012a2660d61450e9665d58f8085bf0a28e15d7dec36aa239a4034cb3cdd0c394",
+      "recipe_file": "scenarios/link_diagnostics/inputs/two_node_admission_1200_s130.recipe.json",
+      "old_recipe_sha256": "95294b5013280aa7031f876cd1c3515badfa7dfe1ba7cd4deb7b43460a790206",
+      "new_recipe_sha256": "8b3d082a13fb5392f5a5487460ebd369911220d60ec80034e4c33ee6b89b4b36",
+      "corrected_nonrun_rows": [
+        {
+          "row": 3,
+          "record": "node",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 4,
+          "record": "node",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 5,
+          "record": "flow",
+          "cleared_field": "scenario"
+        }
+      ],
+      "nonrun_rows_byte_fields_equal_parent": true
+    },
+    {
+      "case_id": "three_node_contention_360_s130",
+      "scenario_file": "scenarios/link_diagnostics/inputs/three_node_contention_360_s130.csv",
+      "old_scenario_sha256": "6de2ebd77b81d7da392b42509f353057ec66a79a8ef8b2c7f161c70daef2349d",
+      "new_scenario_sha256": "f42e38b3f7f8bceea1396d4bc24bc84481df69769a51e785da6bea0be96b39c7",
+      "recipe_file": "scenarios/link_diagnostics/inputs/three_node_contention_360_s130.recipe.json",
+      "old_recipe_sha256": "694cbbfe722c7282938acb07b9e0d375ec1021bc58fa0d6e66f0422639bd5b6d",
+      "new_recipe_sha256": "5840a7707fb6e219a066634832e2f1771c9e490bf48eba686983da271d6a5234",
+      "corrected_nonrun_rows": [
+        {
+          "row": 3,
+          "record": "node",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 4,
+          "record": "node",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 5,
+          "record": "node",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 6,
+          "record": "flow",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 7,
+          "record": "flow",
+          "cleared_field": "scenario"
+        }
+      ],
+      "nonrun_rows_byte_fields_equal_parent": true
+    },
+    {
+      "case_id": "two_node_admission_1200_s131",
+      "scenario_file": "scenarios/link_diagnostics/inputs/two_node_admission_1200_s131.csv",
+      "old_scenario_sha256": "7d24f0f8dd7a0cbbe05465d8ea623a4f16a8c770826ee729ff194119f864ad94",
+      "new_scenario_sha256": "9e049b07d52edcc6d7f77182a9e7a2fe9bf915681834415dc0d477764ec0b515",
+      "recipe_file": "scenarios/link_diagnostics/inputs/two_node_admission_1200_s131.recipe.json",
+      "old_recipe_sha256": "db033bad1ac396c46b0490b26230a9216271e7c351fd656ba06c64e89b65d78b",
+      "new_recipe_sha256": "9a8bcd1fb88ee138a2c9aed1d20f2d5c46f74f77a9605e37678f55b2e52818be",
+      "corrected_nonrun_rows": [
+        {
+          "row": 3,
+          "record": "node",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 4,
+          "record": "node",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 5,
+          "record": "flow",
+          "cleared_field": "scenario"
+        }
+      ],
+      "nonrun_rows_byte_fields_equal_parent": true
+    },
+    {
+      "case_id": "three_node_contention_360_s131",
+      "scenario_file": "scenarios/link_diagnostics/inputs/three_node_contention_360_s131.csv",
+      "old_scenario_sha256": "9ac5b33e1e6b55926b6e773354c041d66e737809cef40e7133facf5aa03782c6",
+      "new_scenario_sha256": "6b8f42890bbd8ce52b077a9bee56b512c69d74f983f1a9c49324a0b5e960782b",
+      "recipe_file": "scenarios/link_diagnostics/inputs/three_node_contention_360_s131.recipe.json",
+      "old_recipe_sha256": "fbb939f833760516069b98f3693e15117165136591b8976f87439458dea08dd5",
+      "new_recipe_sha256": "244a51b3147bcd9d6aed0a0cc3f04b468c27acc78642fbd4dce00f0ea61bb91d",
+      "corrected_nonrun_rows": [
+        {
+          "row": 3,
+          "record": "node",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 4,
+          "record": "node",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 5,
+          "record": "node",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 6,
+          "record": "flow",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 7,
+          "record": "flow",
+          "cleared_field": "scenario"
+        }
+      ],
+      "nonrun_rows_byte_fields_equal_parent": true
+    },
+    {
+      "case_id": "two_node_admission_1200_s132",
+      "scenario_file": "scenarios/link_diagnostics/inputs/two_node_admission_1200_s132.csv",
+      "old_scenario_sha256": "932931d62233645ef30d4322291b22de04f9dc4d503e2a67770a174514b494ad",
+      "new_scenario_sha256": "06e7f0e70d581ccec7f5ec0f9fda69385410ba20bc364af29af316672ef7057b",
+      "recipe_file": "scenarios/link_diagnostics/inputs/two_node_admission_1200_s132.recipe.json",
+      "old_recipe_sha256": "0801c5737e62f26fa54e1b0387c9ba199b4c280f16a1176bfbff00bb83fad6f7",
+      "new_recipe_sha256": "9ef566d31f6920dcdf02ac40a026cf86ea005de9c02c249b373be37e8b6737e2",
+      "corrected_nonrun_rows": [
+        {
+          "row": 3,
+          "record": "node",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 4,
+          "record": "node",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 5,
+          "record": "flow",
+          "cleared_field": "scenario"
+        }
+      ],
+      "nonrun_rows_byte_fields_equal_parent": true
+    },
+    {
+      "case_id": "three_node_contention_360_s132",
+      "scenario_file": "scenarios/link_diagnostics/inputs/three_node_contention_360_s132.csv",
+      "old_scenario_sha256": "39d43d5e80d3873a7ac83c7f8873d43a3e5362beab7e77aba1726f965bba4b9b",
+      "new_scenario_sha256": "00f57ba9d84c2311984c6367937e1f7440269be72c2319f3cc2b12010a8bf333",
+      "recipe_file": "scenarios/link_diagnostics/inputs/three_node_contention_360_s132.recipe.json",
+      "old_recipe_sha256": "23e425e0a58529f760d625c1b4673588a04e379c726afe8ae0def3b8e2de7109",
+      "new_recipe_sha256": "e1ce2399748e5eb1a7fa252af9577e54107c406538bc3b15d9223289675660a1",
+      "corrected_nonrun_rows": [
+        {
+          "row": 3,
+          "record": "node",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 4,
+          "record": "node",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 5,
+          "record": "node",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 6,
+          "record": "flow",
+          "cleared_field": "scenario"
+        },
+        {
+          "row": 7,
+          "record": "flow",
+          "cleared_field": "scenario"
+        }
+      ],
+      "nonrun_rows_byte_fields_equal_parent": true
+    }
+  ],
+  "next_gate": "Owner MATLAB execution of the repaired complete package and returned evidence review.",
+  "ns3_rerun_comparison": "evidence/tranche-8-input-repair-ns3.json",
+  "ns3_simulation_and_feedback_outputs_unchanged": true
+}

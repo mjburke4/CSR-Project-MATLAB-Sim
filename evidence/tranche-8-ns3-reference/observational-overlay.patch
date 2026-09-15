@@ -1,0 +1,104 @@
+--- a/csr-common.h
++++ b/csr-common.h
+@@ -847,3 +847,5 @@
+   PREAMBLE_SHORT,
+   PREAMBLE_LONG
+ };
++
++#include "tranche8-link-observer.h"
+--- a/csr-hop-layer.h
++++ b/csr-hop-layer.h
+@@ -1286,6 +1286,20 @@
+         CsrOpnetPacketModel::GetFixedSizeBytes (
+           CsrOpnetPacketFormat::Ack) +
+         (header.HasAckWindow () ? LEGACY_ACK_WINDOW_OVERHEAD : 0));
++
++      // Passive Tranche 8 observer: read the already-selected header and peer inputs.
++      if (g_tranche8FeedbackStream.is_open ())
++        {
++          const auto observedPeer = m_neighbors.find (header.GetDst ());
++          const bool observedKnown = observedPeer != m_neighbors.end ();
++          const double unavailable = std::numeric_limits<double>::quiet_NaN ();
++          Tranche8ObserveFeedbackSelection (
++            bareFrame, header, observedKnown,
++            observedKnown ? observedPeer->second.s0PowerDbm : unavailable,
++            observedKnown ? observedPeer->second.lastPathlossDb : unavailable,
++            observedKnown ? observedPeer->second.numFailures : unavailable,
++            m_minSpeed, m_maxSpeed, m_minPower, m_maxPower, m_linkMargin);
++        }
+       return bareFrame;
+     }
+ 
+@@ -1312,6 +1326,20 @@
+         CsrOpnetPacketFormat::Ack) +
+       (header.HasAckWindow () ? LEGACY_ACK_WINDOW_OVERHEAD : 0) +
+       LEGACY_ACK_HOP_SECURITY_OVERHEAD);
++
++      // Passive Tranche 8 observer: read the already-selected header and peer inputs.
++      if (g_tranche8FeedbackStream.is_open ())
++        {
++          const auto observedPeer = m_neighbors.find (header.GetDst ());
++          const bool observedKnown = observedPeer != m_neighbors.end ();
++          const double unavailable = std::numeric_limits<double>::quiet_NaN ();
++          Tranche8ObserveFeedbackSelection (
++            protectedFrame, header, observedKnown,
++            observedKnown ? observedPeer->second.s0PowerDbm : unavailable,
++            observedKnown ? observedPeer->second.lastPathlossDb : unavailable,
++            observedKnown ? observedPeer->second.numFailures : unavailable,
++            m_minSpeed, m_maxSpeed, m_minPower, m_maxPower, m_linkMargin);
++        }
+   return protectedFrame;
+ }
+ 
+@@ -3596,6 +3624,7 @@
+       ackHdr.SetDackBitmap (rxState.dackBitmap);
+ 
+       ackPkt = ProtectAckFrame (ackHdr);
++      Tranche8ObserveFeedbackContext (ackPkt, hdr);
+     }
+ 
+   // The operational br_hop local-delivery path calls send_ack() before its
+--- a/csr-net-device.h
++++ b/csr-net-device.h
+@@ -727,6 +727,7 @@
+   uint16_t sequence = hdrOnTx.GetSeq ();
+   uint64_t signalId = (static_cast<uint64_t> (m_id) << 32)
+                     | (++m_nextTxSignalId & 0xffffffffULL);
++  Tranche8ObserveFeedbackTransmission (frameCopies, rateKbps, txPowerDbm, signalId);
+ 
+   CsrDifferentialTraceEvent txEvent;
+   txEvent.event = "tx_start";
+--- a/csr-opnet-scenario-runner.cc
++++ b/csr-opnet-scenario-runner.cc
+@@ -1049,6 +1049,7 @@
+   std::string scenarioPath;
+   std::string tracePath = "csr-differential-ns3.csv";
+   std::string appDiagnosticsPath;
++  std::string feedbackDiagnosticsPath;
+   double stopSeconds = 0.0;
+   bool dutyCycling = true;
+   bool opnetAlignedDutyCycle = true;
+@@ -1096,6 +1097,7 @@
+     "deterministic compatibility mode",
+     stochasticSyncThreshold);
+   command.AddValue ("flowLimit", "Maximum packets per flow (0 is unlimited)", flowLimit);
++  command.AddValue ("feedbackDiagnostics", "Passive ACK/DACK observer CSV", feedbackDiagnosticsPath);
+   command.Parse (argc, argv);
+ 
+   NS_ABORT_MSG_IF (scenarioPath.empty (), "--scenario is required");
+@@ -1114,6 +1116,7 @@
+   SetDifferentialTraceAggregateOnly (aggregateTraceOnly);
+   SetDifferentialAdmissionTraceEnabled (admissionTrace);
+   OpenDifferentialTraceCsv (tracePath);
++  Tranche8OpenFeedbackCsv (feedbackDiagnosticsPath);
+ 
+   NullStreamBuffer nullStreamBuffer;
+   std::streambuf *originalCoutBuffer = nullptr;
+@@ -1236,6 +1239,7 @@
+   WriteApplicationDiagnostics (appDiagnosticsPath, scenario, flowStates);
+   Simulator::Destroy ();
+   CloseDifferentialTraceCsv ();
++  Tranche8CloseFeedbackCsv ();
+   if (originalCoutBuffer != nullptr)
+     {
+       std::cout.rdbuf (originalCoutBuffer);

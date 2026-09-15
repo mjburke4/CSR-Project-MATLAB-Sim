@@ -1,0 +1,90 @@
+{
+  "schema": "csr-matlab-tranche-10-candidate-v1",
+  "status": "ready_for_owner_portable_execution",
+  "created_utc": "2026-09-11T19:53:14.585343+00:00",
+  "branch": "agent/tranche-10-contention-campus",
+  "matlab_base_commit": "386f669f369f90b18d1d553db85b017b0ca8c77c",
+  "accepted_tranche9_matlab_commit": "99fff0381fe9621ccd76fbdce41eac9aba5a9469",
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "ns3_source_tree": "b611b233fb369569b98f0914ece24d029ccc2f42",
+  "source_recheck": {
+    "path": "evidence/tranche-10-source-recheck.json",
+    "sha256": "9a99a116ac9eb70f87e0396db821080990ae7b58125f6796101b1dc5cea2289b"
+  },
+  "matlab_executed": false,
+  "octave_executed": false,
+  "portable_acceptance_established": false,
+  "numerical_parity_established": false,
+  "performance_improvement_established": false,
+  "remote_publication_performed": false,
+  "phy_ecc_changed": false,
+  "ack_radio_policy_changed": false,
+  "rng_policy_changed": false,
+  "change": "Strict-future idle RTS guard and bounded integer-nanosecond MAC slot epochs; matched MAC/receiver contracts and flat retained/diagnostic/campus validation.",
+  "runtime_target": "Owner MATLAB R2025a portable; R2026a/native remains a separate gate.",
+  "plan": {
+    "path": "scenarios/contention_timing/plan.json",
+    "sha256": "36552f985869e0894572c7d78a78c0dc7389fcb3d1d9526d8a93cf092b072023",
+    "portable_tests_prepared": 544,
+    "retained_cases": 29,
+    "sweep_cases": 18,
+    "diagnostic_cases": 6,
+    "observer_off_controls": 2,
+    "campus_cases": 1,
+    "campus_simulated_seconds": 6000,
+    "canonical_stimuli_changed": false
+  },
+  "prepared_matlab_test_methods": 544,
+  "matlab_source_files": 123,
+  "source_snapshot_files": 223,
+  "python_tests_passed": 303,
+  "native_mac_contract": {
+    "path": "evidence/tranche-10-contract-reference/manifest.json",
+    "sha256": "fc69ae2ed1399c0bb2bb8f0af774fd6dd9c3d83cb70faba0d7686d7ef5ed02c1",
+    "cases": 15,
+    "checkpoints_passed": 279,
+    "checkpoint_sha256": "2f27b671229782b5fe64f3bb5c8730a10a3be648ef4345e28bd8a1cbb2ff088a"
+  },
+  "native_receiver_contract": {
+    "path": "evidence/tranche-10-receiver-reference/manifest.json",
+    "sha256": "174762d34299aef0e9383c19bc9275c32535abfd21213d370c0677a84408ac07",
+    "cases": 4,
+    "checkpoints_passed": 154,
+    "checkpoint_sha256": "a3562a3f23e5603359610b150e20551f5a671298d7db529e037d842ce7206c1a"
+  },
+  "retained_ack_contract": {
+    "path": "evidence/tranche-9-contract-reference/manifest.json",
+    "sha256": "d5aef54b32db07ec503468764af7b5ec12bf67f90ce95e990d6b0741d4723f8a",
+    "cases": 6,
+    "checkpoints_passed": 101,
+    "checkpoint_sha256": "2991bbc93e5ba2c64d06a93cee278160cd9baf2fdc11b052ee5b0cb561fe4b73"
+  },
+  "fresh_native_build": {
+    "path": "evidence/tranche-10-native-build.json",
+    "sha256": "fb2eea7c6969d371968e44ffcd24e2edf58f6ed900df22f1ce648c100835141c"
+  },
+  "fresh_engine_compatibility": {
+    "path": "evidence/tranche-10-native-compatibility.json",
+    "sha256": "8a3a827598eb1d6d52a31d3452373194ca8389e30165f654cdc33c182eb448b4"
+  },
+  "reference_files": 332,
+  "local_checks": "evidence/tranche-10-local-checks.json",
+  "independent_review": "docs/tranche-10-review.md",
+  "handoff": "docs/tranche-10-handoff.md",
+  "owner_run_instructions": "docs/tranche-10-validation.md",
+  "command": "report = run_tranche10_validation;",
+  "return_archive": "tranche10_evidence.zip",
+  "package_name": "csr10.zip",
+  "result_root": "results/t10",
+  "expected_wall_time": "Approximately 90\u2013120 minutes, inferred from earlier owner small-gate and campus timings; Tranche 10 runtime has not been measured.",
+  "deferred": [
+    "Owner portable execution and measured numerical impact",
+    "Different initial slot draws and RNG streams",
+    "Other idle RTS, periodic-wake and holdoff event ties on double clocks",
+    "Periodic wake inside an existing awake window",
+    "Existing outage/retry limits",
+    "Unexercised relay/DACK link states",
+    "R2026a/native packet transport"
+  ],
+  "metadata_assembled_after_code_tests": true
+}

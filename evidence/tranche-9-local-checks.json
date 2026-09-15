@@ -1,0 +1,112 @@
+{
+  "schema": "csr-matlab-tranche-9-local-checks-v1",
+  "completed_utc": "2026-09-11T14:43:31.736618+00:00",
+  "branch": "agent/tranche-9-ack-service",
+  "matlab_base_commit": "d0f3c5657f9f2dcf678f32900020caf3696bf90a",
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "matlab_executed": false,
+  "octave_executed": false,
+  "tranche_9_accepted": false,
+  "numerical_parity_established": false,
+  "performance_improvement_established": false,
+  "python": {
+    "tests": 244,
+    "passed": 244,
+    "failed": 0,
+    "command": "python3 -m unittest discover -s scripts/tests -v",
+    "exit_code": 0,
+    "duration_seconds": 6.145353481000711,
+    "source_stable": true,
+    "python_version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "log_sha256": "f1c2f9a4dd61c1be2e7d3fddb8ae05865c20b36f4825e926cd07480eb0d9534d",
+    "log": "tranche-9-local-checks/python-tests.log"
+  },
+  "matlab_static": {
+    "tool": "MISS_HIT 0.9.44",
+    "language_target": "MATLAB 2022a",
+    "files": 115,
+    "passed": true,
+    "log": "tranche-9-local-checks/matlab-static-lint.log",
+    "execution_equivalence": false
+  },
+  "prepared_portable_test_methods": 514,
+  "new_portable_test_methods": 29,
+  "source_snapshot_files": 206,
+  "source_snapshot": "tranche-9-local-checks/source-snapshot.json",
+  "post_test_metadata_added": [
+    "evidence/tranche-9-candidate.json"
+  ],
+  "tested_code_and_stimuli_unchanged": true,
+  "protected_baseline": "tranche-9-local-checks/protected-baseline.json",
+  "reference_preflight": "tranche-9-local-checks/reference-preflight.json",
+  "path_budget": "tranche-9-local-checks/path-budget.json",
+  "independent_review": "../docs/tranche-9-review.md",
+  "independent_review_sha256": "2cafd4ed281a0acc0ff4b740a69ed4c23842378e7ce0ffcd98bc07f402f277c2",
+  "native_contract_checkpoints_passed": 101,
+  "native_contract_cases": 6,
+  "native_mutation_rejected_checkpoints": 12,
+  "native_service_cases": 6,
+  "native_service_rows": 182429,
+  "native_observer_control_file_pairs": 12,
+  "native_t8_anchor_file_pairs": 24,
+  "full_ns3_rebuild_performed": false,
+  "remaining_gate": "Owner MATLAB R2025a portable execution; all tests, contracts, six cases and two controls, followed by returned source/reference/accounting and measured before-after review.",
+  "artifacts": [
+    {
+      "path": "tranche-9-local-checks/matlab-static-lint.log",
+      "bytes": 67,
+      "sha256": "c00aa554316f0cf751a6b52c6b5bf53937f65427f59288615e79115ee287d47f"
+    },
+    {
+      "path": "tranche-9-local-checks/path-budget.json",
+      "bytes": 670,
+      "sha256": "e2e6bf82d4940577a839620575c33fc63267a98ce413fa0e15f4f3e2ab8ffd33"
+    },
+    {
+      "path": "tranche-9-local-checks/prepared-test-membership.json",
+      "bytes": 35784,
+      "sha256": "a8dce66b8cdabd8b6cb9fa2a74b8df4e6ca84210b101769856d39e92c07a4779"
+    },
+    {
+      "path": "tranche-9-local-checks/protected-baseline.json",
+      "bytes": 231390,
+      "sha256": "c8459a40ca117eef1495510f72295bbbb6e5c5fed6034bd580fb1bd4a6c3ca33"
+    },
+    {
+      "path": "tranche-9-local-checks/python-result.json",
+      "bytes": 313,
+      "sha256": "3152834fa4b33ac2e590b6fca60b0bcf9a808116634842cb8e9e87efca96370e"
+    },
+    {
+      "path": "tranche-9-local-checks/python-tests.log",
+      "bytes": 38760,
+      "sha256": "f1c2f9a4dd61c1be2e7d3fddb8ae05865c20b36f4825e926cd07480eb0d9534d"
+    },
+    {
+      "path": "tranche-9-local-checks/reference-preflight.json",
+      "bytes": 613,
+      "sha256": "298e74496ff54b3df69ad46fd5e64805a7da06c1749a59aa76af7872e5f45eb2"
+    },
+    {
+      "path": "tranche-9-local-checks/source-snapshot.json",
+      "bytes": 32893,
+      "sha256": "6ad41d742cbd72358124038abb5ba33e5f48ec8dae6ac578d2fc91a7799de174"
+    },
+    {
+      "path": "tranche-9-local-checks/diff-check.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "git_diff_check": {
+    "staged": true,
+    "passed": true,
+    "crlf_allowed": true,
+    "excluded_paths": [
+      "evidence/tranche-9-ns3-reference/observational-overlay.patch",
+      "evidence/tranche-9-mutation/mutation.patch"
+    ],
+    "exclusion_reason": "Immutable unified-diff evidence retains required blank context lines; implementation files pass the whitespace gate.",
+    "log": "tranche-9-local-checks/diff-check.log"
+  }
+}

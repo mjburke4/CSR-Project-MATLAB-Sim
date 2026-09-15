@@ -1,0 +1,143 @@
+{
+  "schema": "csr-tranche6-outage-stimulus-v1",
+  "name": "recovery_freshness_s180_seed130",
+  "freshness_seconds": 180,
+  "seed": 130,
+  "matlab_fixture": "csr.scenario.researchNetwork('route_recovery')",
+  "matlab_sweep": "csr.scenario.researchSweep recovery_freshness",
+  "duration_seconds": 900,
+  "freshness_period_seconds": 5,
+  "nodes": [
+    {
+      "id": 1,
+      "position_meters": [
+        0,
+        0,
+        1
+      ],
+      "capability": 2,
+      "transit_enabled": true
+    },
+    {
+      "id": 2,
+      "position_meters": [
+        3800,
+        0,
+        1
+      ],
+      "capability": 1,
+      "transit_enabled": true
+    },
+    {
+      "id": 3,
+      "position_meters": [
+        7600,
+        0,
+        1
+      ],
+      "capability": 1,
+      "transit_enabled": true
+    }
+  ],
+  "manual_discovery": [
+    {
+      "time_seconds": 10,
+      "node": 1,
+      "duration_seconds": 30
+    },
+    {
+      "time_seconds": 45,
+      "node": 2,
+      "duration_seconds": 30
+    },
+    {
+      "time_seconds": 80,
+      "node": 3,
+      "duration_seconds": 30
+    },
+    {
+      "time_seconds": 315,
+      "node": 1,
+      "duration_seconds": 30
+    },
+    {
+      "time_seconds": 320,
+      "node": 2,
+      "duration_seconds": 30
+    },
+    {
+      "time_seconds": 325,
+      "node": 3,
+      "duration_seconds": 30
+    },
+    {
+      "time_seconds": 576,
+      "node": 1,
+      "duration_seconds": 30
+    },
+    {
+      "time_seconds": 581,
+      "node": 2,
+      "duration_seconds": 30
+    },
+    {
+      "time_seconds": 586,
+      "node": 3,
+      "duration_seconds": 30
+    }
+  ],
+  "blackout": {
+    "disabled_node": 2,
+    "start_seconds": 405,
+    "end_seconds": 540,
+    "interval": "[start,end)",
+    "eligibility": "Drop when decoded source OR receiver is disabled node",
+    "gate_location": "after physical decode and MAC bookkeeping; before HOP"
+  },
+  "application": {
+    "source": 3,
+    "destination": 1,
+    "times_seconds": [
+      450,
+      486,
+      522,
+      558,
+      594
+    ],
+    "payload_bytes": 64,
+    "dscp": 0,
+    "ack_required": true,
+    "application_route_or_discovery_gating": false
+  },
+  "radio": {
+    "min_rate_kbps": 8,
+    "max_rate_kbps": 128,
+    "min_power_dbm": 0,
+    "max_power_dbm": 30,
+    "link_margin_db": 10,
+    "frequency_hz": 400000000,
+    "bandwidth_hz": 1000000,
+    "antenna_height_meters": 1,
+    "stochastic_sync_threshold": true,
+    "phy": "unmodified CSR OPNET three-path and BER/ECC engine",
+    "custom_phy_error_model": false,
+    "duty_cycle": "source OPNET-aligned, phase zero, first wake 0.988 s",
+    "hop_wire_profile": "production-pairwise16"
+  },
+  "rng": {
+    "ns3_run": 1,
+    "device_streams": [
+      0,
+      2,
+      4
+    ],
+    "matlab_random_draw_equality_claimed": false
+  },
+  "coupling_differences": [
+    "The ns-3 hook runs after successful physical decoding and MAC last-heard, pathloss and reservation updates, before HOP/NWK receipt. MATLAB gates before its MAC bookkeeping; blackout MAC side effects therefore differ.",
+    "ns-3 uses its actual production pairwise16/group cryptographic state; MATLAB uses behavioral production security and size-only envelopes.",
+    "The same seed identities do not create common random draws across ns-3 and MATLAB; random engines, stream assignment and event order differ.",
+    "Native ns-3 behavior is retained for freshness, admission and retry/custody. Results describe the pinned implementation and are not a numerical-parity gate."
+  ],
+  "numerical_parity_certified": false
+}

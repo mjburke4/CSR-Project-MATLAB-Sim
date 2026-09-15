@@ -1,0 +1,132 @@
+{
+  "schema": "csr-tranche10-mac-arithmetic-counterfactual-v1",
+  "scope": "Python binary-double arithmetic and stable event-heap replay of documented MAC timer operations; no MATLAB, Octave, native execution or full CSR/RF simulation.",
+  "script_sha256": "2f11fb80542104f86427dfaa7ada0256eecd417d7ebed3e53e5ae8b1d2da30ee",
+  "boundary_cases": {
+    "15": {
+      "now_seconds": 0.19499999999999998,
+      "old_rts_seconds": 0.19499999999999998,
+      "corrected_rts_seconds": 0.208,
+      "native_rts_seconds": 0.208
+    },
+    "30": {
+      "now_seconds": 0.38999999999999996,
+      "old_rts_seconds": 0.38999999999999996,
+      "corrected_rts_seconds": 0.40299999999999997,
+      "native_rts_seconds": 0.403
+    },
+    "51": {
+      "now_seconds": 0.6629999999999999,
+      "old_rts_seconds": 0.6629999999999999,
+      "corrected_rts_seconds": 0.6759999999999999,
+      "native_rts_seconds": 0.676
+    },
+    "60": {
+      "now_seconds": 0.7799999999999999,
+      "old_rts_seconds": 0.7799999999999999,
+      "corrected_rts_seconds": 0.7929999999999999,
+      "native_rts_seconds": 0.793
+    }
+  },
+  "fifo_cases": {
+    "early": {
+      "old_double_rearm": {
+        "transmit_seconds": 0.41600000000000026,
+        "counter_during_track": 1,
+        "boundary_events": [
+          {
+            "time_seconds": 0.312,
+            "event_id": 3,
+            "event": "track",
+            "counter": 1,
+            "state": "track"
+          },
+          {
+            "time_seconds": 0.31200000000000017,
+            "event_id": 28,
+            "event": "tick",
+            "counter": 1,
+            "state": "track"
+          }
+        ]
+      },
+      "integer_nanosecond_grid": {
+        "transmit_seconds": 0.416,
+        "counter_during_track": 1,
+        "boundary_events": [
+          {
+            "time_seconds": 0.312,
+            "event_id": 3,
+            "event": "track",
+            "counter": 1,
+            "state": "track"
+          },
+          {
+            "time_seconds": 0.312,
+            "event_id": 28,
+            "event": "tick",
+            "counter": 1,
+            "state": "track"
+          }
+        ]
+      }
+    },
+    "late": {
+      "old_double_rearm": {
+        "transmit_seconds": 0.41600000000000026,
+        "counter_during_track": 1,
+        "boundary_events": [
+          {
+            "time_seconds": 0.311,
+            "event_id": 3,
+            "event": "insert_track",
+            "counter": 1,
+            "state": "search"
+          },
+          {
+            "time_seconds": 0.312,
+            "event_id": 29,
+            "event": "track",
+            "counter": 1,
+            "state": "track"
+          },
+          {
+            "time_seconds": 0.31200000000000017,
+            "event_id": 28,
+            "event": "tick",
+            "counter": 1,
+            "state": "track"
+          }
+        ]
+      },
+      "integer_nanosecond_grid": {
+        "transmit_seconds": 0.403,
+        "counter_during_track": 0,
+        "boundary_events": [
+          {
+            "time_seconds": 0.311,
+            "event_id": 3,
+            "event": "insert_track",
+            "counter": 1,
+            "state": "search"
+          },
+          {
+            "time_seconds": 0.312,
+            "event_id": 28,
+            "event": "tick",
+            "counter": 0,
+            "state": "search"
+          },
+          {
+            "time_seconds": 0.312,
+            "event_id": 29,
+            "event": "track",
+            "counter": 0,
+            "state": "track"
+          }
+        ]
+      }
+    }
+  },
+  "status": "passed"
+}

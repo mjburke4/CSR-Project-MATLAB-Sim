@@ -1,0 +1,1633 @@
+{
+  "schema": "csr-matlab-tranche-6-portable-acceptance-v1",
+  "reviewed_date_utc": "2026-09-10",
+  "status": "accepted_bounded_portable_freshness_correction_with_measured_recovery_regression",
+  "accepted_scope": "Portable R2025a NWK qualifying-liveness and expiry-state correction, retained regression gate, and complete application accounting.",
+  "bounded_source_fidelity_accepted": true,
+  "outage_performance_acceptance": "qualified/deferred",
+  "performance_improvement_established": false,
+  "autonomous_recovery_established": false,
+  "structural_outcome_gate_passed": true,
+  "validated_matlab_code_commit": "21c0a3f024c9efffdbd11c8059f1540a67c19b1a",
+  "merged_tranche5_base_commit": "243ed8610df807e47d3b0be36d4ce2eae0527898",
+  "accepted_tranche5_matlab_baseline": "536b288d765a7b18007ff7898eaf3f2e173d9e58",
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "ns3_source_tree": "b611b233fb369569b98f0914ece24d029ccc2f42",
+  "branch": "agent/tranche-6-outage-recovery",
+  "owner_matlab_execution_completed": true,
+  "matlab_executed_in_review_workspace": false,
+  "matlab_changed_during_return_review": false,
+  "review_tools_changed": false,
+  "matlab_source_files_unchanged_from_validated_candidate": 90,
+  "validated_candidate_manifest": {
+    "path": "evidence/tranche-6-candidate.json",
+    "sha256": "3b98880508300f1a65d58d03c0f4865ee913266c6f36626c1f67d44a1bb59d0b",
+    "preserved_unchanged": true,
+    "status_boundary": "This is the historical candidate preparation record; this acceptance file records the subsequent owner execution."
+  },
+  "runtime": {
+    "runtime": "MATLAB",
+    "release": "2025a",
+    "version": "25.1.0.2943329 (R2025a)",
+    "backend": "portable",
+    "started_utc": "2026-09-10T11:43:32.984Z",
+    "completed_utc": "2026-09-10T11:56:48.742Z",
+    "native_executed": false,
+    "checks": [
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/hidden_node_seed_128/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/leaf_no_transit_seed_128/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/line_4_seed_128/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/mesh_6_seed_128/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/route_recovery_seed_128/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/two_node_seed_128/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/shared/high_rate_1000/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/shared/high_rate_500/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/shared/line_3_8/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/shared/two_node_128/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/shared/two_node_8/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/validation_metadata.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x1_seed128/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x1_seed129/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x1_seed130/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x2_seed128/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x2_seed129/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x2_seed130/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x4_seed128/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x4_seed129/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x4_seed130/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s180_seed128/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s180_seed129/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s180_seed130/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s300_seed128/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s300_seed129/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s300_seed130/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s60_seed128/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s60_seed129/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s60_seed130/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "passed": true
+      },
+      {
+        "metadata": "validation_metadata.json",
+        "passed": true
+      }
+    ]
+  },
+  "execution_duration_seconds": 795.758,
+  "tests": {
+    "path": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/regression/regression/tests/test_results.csv",
+    "sha256": "3d3060bdc5e556a5ef8830bf8d1174d8bbb08d02cd8238d9d8a7d5d86307f655",
+    "count": 380,
+    "passed": 380,
+    "failed": 0,
+    "incomplete": 0,
+    "outage_recovery_tests": [
+      {
+        "Name": "TestOutageRecovery/passiveRadioDoesNotCreateNwkNeighbor",
+        "Passed": "1",
+        "Failed": "0",
+        "Incomplete": "0",
+        "DurationSeconds": "0.0123823"
+      },
+      {
+        "Name": "TestOutageRecovery/dataAndAckDoNotPostponeStrictFreshness",
+        "Passed": "1",
+        "Failed": "0",
+        "Incomplete": "0",
+        "DurationSeconds": "0.0397389"
+      },
+      {
+        "Name": "TestOutageRecovery/overheardCheckDoesNotRenewNwkLiveness",
+        "Passed": "1",
+        "Failed": "0",
+        "Incomplete": "0",
+        "DurationSeconds": "0.0300983"
+      },
+      {
+        "Name": "TestOutageRecovery/firstControlsRenewButTheirDuplicatesDoNot",
+        "Passed": "1",
+        "Failed": "0",
+        "Incomplete": "0",
+        "DurationSeconds": "0.0266643"
+      },
+      {
+        "Name": "TestOutageRecovery/keyTrafficAndKeyAckDoNotRenewNwkLiveness",
+        "Passed": "1",
+        "Failed": "0",
+        "Incomplete": "0",
+        "DurationSeconds": "0.0227926"
+      },
+      {
+        "Name": "TestOutageRecovery/everyFirstRoutingSectionRenewsBeforeReassembly",
+        "Passed": "1",
+        "Failed": "0",
+        "Incomplete": "0",
+        "DurationSeconds": "0.0493561"
+      },
+      {
+        "Name": "TestOutageRecovery/malformedRoutingDoesNotRenewFreshness",
+        "Passed": "1",
+        "Failed": "0",
+        "Incomplete": "0",
+        "DurationSeconds": "0.0171379"
+      },
+      {
+        "Name": "TestOutageRecovery/freshnessPreservesKeyOwnerBackoffsAndCallbackGeneration",
+        "Passed": "1",
+        "Failed": "0",
+        "Incomplete": "0",
+        "DurationSeconds": "0.0255257"
+      },
+      {
+        "Name": "TestOutageRecovery/inFlightCheckProofCanReadmitAfterFreshnessExpiry",
+        "Passed": "1",
+        "Failed": "0",
+        "Incomplete": "0",
+        "DurationSeconds": "0.0149896"
+      },
+      {
+        "Name": "TestOutageRecovery/obsoleteDiscoveryVerifyCannotRenewFreshness",
+        "Passed": "1",
+        "Failed": "0",
+        "Incomplete": "0",
+        "DurationSeconds": "0.0075726"
+      },
+      {
+        "Name": "TestOutageRecovery/staleInactiveReporterStillChirpsAndReportsExactCause",
+        "Passed": "1",
+        "Failed": "0",
+        "Incomplete": "0",
+        "DurationSeconds": "0.0121294"
+      },
+      {
+        "Name": "TestOutageRecovery/expiredRoutingAssemblyCannotCompleteAfterReadmission",
+        "Passed": "1",
+        "Failed": "0",
+        "Incomplete": "0",
+        "DurationSeconds": "0.0205624"
+      },
+      {
+        "Name": "TestOutageRecovery/dataExhaustionRemainsTerminalWithoutNeighborPenalty",
+        "Passed": "1",
+        "Failed": "0",
+        "Incomplete": "0",
+        "DurationSeconds": "0.0366729"
+      }
+    ],
+    "summed_test_duration_seconds": 183.5144429
+  },
+  "cases": {
+    "sweep_count": 18,
+    "sweep_ids": [
+      "offered_load_x1_seed128",
+      "offered_load_x1_seed129",
+      "offered_load_x1_seed130",
+      "offered_load_x2_seed128",
+      "offered_load_x2_seed129",
+      "offered_load_x2_seed130",
+      "offered_load_x4_seed128",
+      "offered_load_x4_seed129",
+      "offered_load_x4_seed130",
+      "recovery_freshness_s180_seed128",
+      "recovery_freshness_s180_seed129",
+      "recovery_freshness_s180_seed130",
+      "recovery_freshness_s300_seed128",
+      "recovery_freshness_s300_seed129",
+      "recovery_freshness_s300_seed130",
+      "recovery_freshness_s60_seed128",
+      "recovery_freshness_s60_seed129",
+      "recovery_freshness_s60_seed130"
+    ],
+    "regression_count": 28,
+    "regression_groups": [
+      {
+        "path": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/scenario_summary.csv",
+        "count": 11,
+        "scenarios": [
+          "two_node_8",
+          "two_node_128",
+          "line_3_8",
+          "high_rate_500",
+          "high_rate_1000",
+          "research_two_node",
+          "research_line_4",
+          "research_hidden_node",
+          "research_mesh_6",
+          "research_route_recovery",
+          "research_leaf_no_transit"
+        ]
+      },
+      {
+        "path": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/regression/scenario_summary.csv",
+        "count": 8,
+        "scenarios": [
+          "autonomous",
+          "no_route_custody",
+          "control_loss",
+          "route_recovery",
+          "gateway",
+          "leaf_no_transit",
+          "high_rate_500",
+          "high_rate_1000"
+        ]
+      },
+      {
+        "path": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/regression/regression/scenario_summary.csv",
+        "count": 9,
+        "scenarios": [
+          "reliable",
+          "ack_loss",
+          "data_loss",
+          "dack",
+          "collision",
+          "relay",
+          "queue_pressure",
+          "high_rate_500",
+          "high_rate_1000"
+        ]
+      }
+    ],
+    "application_accounting_cases_passed": 46,
+    "application_accounting_cases_total": 46,
+    "all_sweeps_structural_checks_passed": true,
+    "sweeps_reporting_DataDrained_true": 15,
+    "stop_time_control_residual_cases": [
+      {
+        "case": "recovery_freshness_s300_seed128",
+        "DataDrained": false,
+        "application_and_DATA_custody_pending": {
+          "Pending": 0,
+          "HopPendingData": 0,
+          "DackHoldCount": 0,
+          "NwkPendingCustody": 0,
+          "WaitingForRoute": 0
+        },
+        "resend_queue_depth": 1,
+        "control_pending": 1,
+        "control_pending_targets": 1,
+        "trace_stop_time_control_admissions": [
+          {
+            "TimeSeconds": "900",
+            "Event": "hop_control_admit",
+            "NodeId": "2",
+            "PeerId": "3",
+            "PacketId": "47",
+            "ApplicationBytes": "0",
+            "Reason": "",
+            "FrameKind": "CONTROL",
+            "Sequence": "19",
+            "Dscp": "7",
+            "QueueDepth": "0",
+            "ControlType": "ROUTING",
+            "HopCount": "0"
+          },
+          {
+            "TimeSeconds": "900",
+            "Event": "hop_control_admit",
+            "NodeId": "1",
+            "PeerId": "16777215",
+            "PacketId": "32",
+            "ApplicationBytes": "0",
+            "Reason": "",
+            "FrameKind": "CONTROL",
+            "Sequence": "10",
+            "Dscp": "7",
+            "QueueDepth": "0",
+            "ControlType": "DISCOVER",
+            "HopCount": "0"
+          },
+          {
+            "TimeSeconds": "900",
+            "Event": "hop_control_admit",
+            "NodeId": "2",
+            "PeerId": "16777215",
+            "PacketId": "48",
+            "ApplicationBytes": "0",
+            "Reason": "",
+            "FrameKind": "CONTROL",
+            "Sequence": "13",
+            "Dscp": "7",
+            "QueueDepth": "0",
+            "ControlType": "DISCOVER",
+            "HopCount": "0"
+          }
+        ]
+      },
+      {
+        "case": "recovery_freshness_s300_seed129",
+        "DataDrained": false,
+        "application_and_DATA_custody_pending": {
+          "Pending": 0,
+          "HopPendingData": 0,
+          "DackHoldCount": 0,
+          "NwkPendingCustody": 0,
+          "WaitingForRoute": 0
+        },
+        "resend_queue_depth": 1,
+        "control_pending": 1,
+        "control_pending_targets": 1,
+        "trace_stop_time_control_admissions": [
+          {
+            "TimeSeconds": "900",
+            "Event": "hop_control_admit",
+            "NodeId": "2",
+            "PeerId": "3",
+            "PacketId": "47",
+            "ApplicationBytes": "0",
+            "Reason": "",
+            "FrameKind": "CONTROL",
+            "Sequence": "19",
+            "Dscp": "7",
+            "QueueDepth": "0",
+            "ControlType": "ROUTING",
+            "HopCount": "0"
+          },
+          {
+            "TimeSeconds": "900",
+            "Event": "hop_control_admit",
+            "NodeId": "1",
+            "PeerId": "16777215",
+            "PacketId": "32",
+            "ApplicationBytes": "0",
+            "Reason": "",
+            "FrameKind": "CONTROL",
+            "Sequence": "10",
+            "Dscp": "7",
+            "QueueDepth": "0",
+            "ControlType": "DISCOVER",
+            "HopCount": "0"
+          },
+          {
+            "TimeSeconds": "900",
+            "Event": "hop_control_admit",
+            "NodeId": "2",
+            "PeerId": "16777215",
+            "PacketId": "48",
+            "ApplicationBytes": "0",
+            "Reason": "",
+            "FrameKind": "CONTROL",
+            "Sequence": "13",
+            "Dscp": "7",
+            "QueueDepth": "0",
+            "ControlType": "DISCOVER",
+            "HopCount": "0"
+          }
+        ]
+      },
+      {
+        "case": "recovery_freshness_s300_seed130",
+        "DataDrained": false,
+        "application_and_DATA_custody_pending": {
+          "Pending": 0,
+          "HopPendingData": 0,
+          "DackHoldCount": 0,
+          "NwkPendingCustody": 0,
+          "WaitingForRoute": 0
+        },
+        "resend_queue_depth": 1,
+        "control_pending": 1,
+        "control_pending_targets": 1,
+        "trace_stop_time_control_admissions": [
+          {
+            "TimeSeconds": "900",
+            "Event": "hop_control_admit",
+            "NodeId": "2",
+            "PeerId": "3",
+            "PacketId": "47",
+            "ApplicationBytes": "0",
+            "Reason": "",
+            "FrameKind": "CONTROL",
+            "Sequence": "19",
+            "Dscp": "7",
+            "QueueDepth": "0",
+            "ControlType": "ROUTING",
+            "HopCount": "0"
+          },
+          {
+            "TimeSeconds": "900",
+            "Event": "hop_control_admit",
+            "NodeId": "1",
+            "PeerId": "16777215",
+            "PacketId": "32",
+            "ApplicationBytes": "0",
+            "Reason": "",
+            "FrameKind": "CONTROL",
+            "Sequence": "10",
+            "Dscp": "7",
+            "QueueDepth": "0",
+            "ControlType": "DISCOVER",
+            "HopCount": "0"
+          },
+          {
+            "TimeSeconds": "900",
+            "Event": "hop_control_admit",
+            "NodeId": "2",
+            "PeerId": "16777215",
+            "PacketId": "48",
+            "ApplicationBytes": "0",
+            "Reason": "",
+            "FrameKind": "CONTROL",
+            "Sequence": "13",
+            "Dscp": "7",
+            "QueueDepth": "0",
+            "ControlType": "DISCOVER",
+            "HopCount": "0"
+          }
+        ]
+      }
+    ]
+  },
+  "source_file_count": 127,
+  "matlab_source_file_count": 90,
+  "runtime_source_snapshot_count": 35,
+  "source_hash_assertions_verified": 4408,
+  "source_verified_against_git_and_delivered_zip": true,
+  "protected_source_files_unchanged_from_accepted_t5": 12,
+  "inventories": {
+    "checks": [
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/hidden_node_seed_128/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/leaf_no_transit_seed_128/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/line_4_seed_128/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/mesh_6_seed_128/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/route_recovery_seed_128/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/two_node_seed_128/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/shared/high_rate_1000/case_manifest.json",
+        "field": "files",
+        "count": 12,
+        "passed": 12,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/shared/high_rate_500/case_manifest.json",
+        "field": "files",
+        "count": 12,
+        "passed": 12,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/shared/line_3_8/case_manifest.json",
+        "field": "files",
+        "count": 12,
+        "passed": 12,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/shared/two_node_128/case_manifest.json",
+        "field": "files",
+        "count": 12,
+        "passed": 12,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/shared/two_node_8/case_manifest.json",
+        "field": "files",
+        "count": 12,
+        "passed": 12,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/validation_metadata.json",
+        "field": "Artifacts",
+        "count": 291,
+        "passed": 291,
+        "membership_passed": true,
+        "intentional_exclusions": [
+          "validation.log"
+        ],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x1_seed128/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x1_seed129/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x1_seed130/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x2_seed128/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x2_seed129/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x2_seed130/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x4_seed128/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x4_seed129/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x4_seed130/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s180_seed128/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s180_seed129/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s180_seed130/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s300_seed128/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s300_seed129/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s300_seed130/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s60_seed128/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s60_seed129/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s60_seed130/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "field": "Artifacts",
+        "count": 550,
+        "passed": 550,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "validation_metadata.json",
+        "field": "Artifacts",
+        "count": 551,
+        "passed": 551,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      }
+    ],
+    "total_assertions": 1716,
+    "unique_archived_artifacts_checked": 551,
+    "csv_row_count_assertions": 295,
+    "metadata_links": [
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/validation_metadata.json",
+        "case": "shared/two_node_8",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/validation_metadata.json",
+        "case": "shared/two_node_128",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/validation_metadata.json",
+        "case": "shared/line_3_8",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/validation_metadata.json",
+        "case": "shared/high_rate_500",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/validation_metadata.json",
+        "case": "shared/high_rate_1000",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/validation_metadata.json",
+        "case": "research/two_node_seed_128",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/validation_metadata.json",
+        "case": "research/line_4_seed_128",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/validation_metadata.json",
+        "case": "research/hidden_node_seed_128",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/validation_metadata.json",
+        "case": "research/mesh_6_seed_128",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/validation_metadata.json",
+        "case": "research/route_recovery_seed_128",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/validation_metadata.json",
+        "case": "research/leaf_no_transit_seed_128",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/offered_load_x1_seed128",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/offered_load_x1_seed129",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/offered_load_x1_seed130",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/offered_load_x2_seed128",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/offered_load_x2_seed129",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/offered_load_x2_seed130",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/offered_load_x4_seed128",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/offered_load_x4_seed129",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/offered_load_x4_seed130",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/recovery_freshness_s60_seed128",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/recovery_freshness_s60_seed129",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/recovery_freshness_s60_seed130",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/recovery_freshness_s180_seed128",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/recovery_freshness_s180_seed129",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/recovery_freshness_s180_seed130",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/recovery_freshness_s300_seed128",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/recovery_freshness_s300_seed129",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/recovery_freshness_s300_seed130",
+        "passed": true
+      },
+      {
+        "metadata": "validation_metadata.json",
+        "field": "RegressionMetadataSHA256",
+        "passed": true
+      }
+    ],
+    "excluded_local_mat_count": 48,
+    "excluded_local_mat_bytes": 5505488
+  },
+  "uploaded_archive": {
+    "filename": "tranche6_evidence.zip",
+    "bytes": 3893666,
+    "sha256": "5c8ec2997ae8c248625240c3fd084aaaca85d5221ec7a347a0aaad2dabeb1e17",
+    "members": 552,
+    "files": 552,
+    "crc_passed": true,
+    "duplicate_members": [],
+    "unsafe_paths": [],
+    "extraction_identical": true,
+    "path": "evidence/tranche-6-r2025a-accepted/tranche6_evidence.zip",
+    "metadata_sha256": "1f9dd282f8d653ce2abb13b6bf7b6e3d1ff058911adbe3562007b6d3dd483926"
+  },
+  "delivered_candidate_archive": {
+    "filename": "CSR-MATLAB-Tranche6-21c0a3f.zip",
+    "bytes": 8044264,
+    "sha256": "3989bc81c35f41413479146cff018b6d33f54ead0e47d4ae5f7d5f7860fd5386",
+    "files": 435
+  },
+  "accepted_tranche5_archive_sha256": "824cf0f5cb6a735ee896ebc5431be5c72f69d9d95135c8e03311238bd0ca75c1",
+  "shared_comparisons": [
+    {
+      "case": "two_node_8",
+      "status": "application_match",
+      "applications": 3,
+      "matlab_manifest_sha256": "d3b870e42282ee2bb4d763669e485fef30f4dd7745b87d2d373752cc085e7acf",
+      "ns3_manifest_sha256": "c6e929997e1e6ea84f874c579845886b62b80da531ec8fc3c4608c6bdfde58bf",
+      "report": "evidence/tranche-6-r2025a-accepted/shared-comparison/two_node_8/comparison.json",
+      "report_sha256": "86cac5bcae51d52af0e6d9b3aa5f1583ce3d9b97b97e49ebef7d9942bd346b31"
+    },
+    {
+      "case": "two_node_128",
+      "status": "application_match",
+      "applications": 3,
+      "matlab_manifest_sha256": "cb06ee588fd9cd50e9f6a8aa082c66689573393bbb5e8fbe06cbb1ea179afd4e",
+      "ns3_manifest_sha256": "5456096b2b3f568ccc98b762ccb6f85125cf42dbc6c26c0d034a282039c6db96",
+      "report": "evidence/tranche-6-r2025a-accepted/shared-comparison/two_node_128/comparison.json",
+      "report_sha256": "293118157458d7ce16e8c283f9ddabd14cb706e49012889a3d9e3f5979a87034"
+    },
+    {
+      "case": "line_3_8",
+      "status": "application_match",
+      "applications": 3,
+      "matlab_manifest_sha256": "28ed2b5ecdd4fffbd9e9102488d9bba091b5932a1f39b5503bfb1d449556f49e",
+      "ns3_manifest_sha256": "216b4800f26cae8fefc964b5037e754088adc26def0cedb60b42248cbcd4b5de",
+      "report": "evidence/tranche-6-r2025a-accepted/shared-comparison/line_3_8/comparison.json",
+      "report_sha256": "b80224f521f5a86ff871582090a0b2a74465be1e149a9571579e8ca326fc6322"
+    },
+    {
+      "case": "high_rate_500",
+      "status": "application_match",
+      "applications": 3,
+      "matlab_manifest_sha256": "bcbf9b3a34bd50c26581c5cb7d664c0e852cecf55289e4c56f61a7b28f3a7d76",
+      "ns3_manifest_sha256": "2fd1c34a14f5c78cb34c5205dc36c4065a12646d012090160ef832d684f746a7",
+      "report": "evidence/tranche-6-r2025a-accepted/shared-comparison/high_rate_500/comparison.json",
+      "report_sha256": "0fed131481d80fef4b42bacae72ce52685c44d96d8b44cb378b934e9e5d816a5"
+    },
+    {
+      "case": "high_rate_1000",
+      "status": "application_match",
+      "applications": 3,
+      "matlab_manifest_sha256": "67e5075f37ed8a12bd427e3971217c8193301b2c5bf01c3b64db74cacca79edf",
+      "ns3_manifest_sha256": "e3eb0e6281b25455286d3111f40320967436f1a49964793a01b70118e956897d",
+      "report": "evidence/tranche-6-r2025a-accepted/shared-comparison/high_rate_1000/comparison.json",
+      "report_sha256": "85656a58c4a2addf5b7b9ab933efd3651eb7f99b697667c69bb732982c10e18d"
+    }
+  ],
+  "shared_reference_reused": true,
+  "shared_reference_copy_check": {
+    "files_compared": 28,
+    "differences": 0,
+    "canonical_path": "evidence/tranche-4-ns3-reference"
+  },
+  "new_ns3_execution_during_return_review": false,
+  "candidate_source_contract": {
+    "checks_passed": 45,
+    "checks_total": 45,
+    "cases": 11,
+    "path": "evidence/tranche-6-source-contract"
+  },
+  "candidate_python_tests": {
+    "passed": 98,
+    "total": 98,
+    "when": "Before candidate handoff; recorded in evidence/tranche-6-local-checks.json. No reporting-tool repair was needed for this return."
+  },
+  "outcomes": {
+    "T5": {
+      "Generated": 357,
+      "Received": 336,
+      "Dropped": 21,
+      "Pending": 0,
+      "NwkPendingCustody": 0,
+      "HopPendingData": 0,
+      "duplicate_application_delivery_events": 0,
+      "duplicate_application_observations": 0,
+      "duplicate_data_observations": 0,
+      "unconfirmed_hop_transfers": 0,
+      "unretained_hop_acks": 0,
+      "late_deliveries": 0,
+      "late_custody_recoveries": 0,
+      "network_enqueues": 384,
+      "network_custody_releases": 384,
+      "NwkPendingControlMessages": 6,
+      "ControlPending": 3
+    },
+    "T6": {
+      "Generated": 357,
+      "Received": 334,
+      "Dropped": 23,
+      "Pending": 0,
+      "NwkPendingCustody": 0,
+      "HopPendingData": 0,
+      "duplicate_application_delivery_events": 0,
+      "duplicate_application_observations": 0,
+      "duplicate_data_observations": 1,
+      "unconfirmed_hop_transfers": 0,
+      "unretained_hop_acks": 0,
+      "late_deliveries": 0,
+      "late_custody_recoveries": 0,
+      "network_enqueues": 382,
+      "network_custody_releases": 382,
+      "NwkPendingControlMessages": 9,
+      "ControlPending": 3
+    }
+  },
+  "groups": [
+    {
+      "experiment": "offered_load",
+      "value": 1,
+      "cases": 3,
+      "T5": {
+        "Generated": 48,
+        "Received": 48,
+        "Dropped": 0,
+        "Pending": 0,
+        "PhysicalTransmissions": 731,
+        "ControlMemberTransmissions": 1027,
+        "HopDataRetransmissions": 21,
+        "HopControlRetransmissions": 11,
+        "HopControlFailures": 1,
+        "ControlFailures": 1,
+        "ControlResidualRetries": 0,
+        "NeighborActivations": 12,
+        "NeighborDeactivations": 0,
+        "RouteChanges": 43,
+        "NwkPendingCustody": 0,
+        "HopPendingData": 0,
+        "NwkPendingControlMessages": 0,
+        "ControlPending": 0,
+        "ControlPendingTargets": 0,
+        "ResendQueueDepth": 0,
+        "WaitingForRoute": 0,
+        "WaitingForHop": 0,
+        "MaxLatencySeconds": 2.90149266666776,
+        "pre_blackout_deactivations": 0,
+        "blackout_deactivations": 0,
+        "after_restore_deactivations": 0
+      },
+      "T6": {
+        "Generated": 48,
+        "Received": 48,
+        "Dropped": 0,
+        "Pending": 0,
+        "PhysicalTransmissions": 731,
+        "ControlMemberTransmissions": 1027,
+        "HopDataRetransmissions": 21,
+        "HopControlRetransmissions": 11,
+        "HopControlFailures": 1,
+        "ControlFailures": 1,
+        "ControlResidualRetries": 0,
+        "NeighborActivations": 12,
+        "NeighborDeactivations": 0,
+        "RouteChanges": 43,
+        "NwkPendingCustody": 0,
+        "HopPendingData": 0,
+        "NwkPendingControlMessages": 0,
+        "ControlPending": 0,
+        "ControlPendingTargets": 0,
+        "ResendQueueDepth": 0,
+        "WaitingForRoute": 0,
+        "WaitingForHop": 0,
+        "MaxLatencySeconds": 2.90149266666776,
+        "pre_blackout_deactivations": 0,
+        "blackout_deactivations": 0,
+        "after_restore_deactivations": 0
+      },
+      "both_delivered_applications": 48,
+      "both_delivered_mean_latency_delta_seconds": 0.0
+    },
+    {
+      "experiment": "offered_load",
+      "value": 2,
+      "cases": 3,
+      "T5": {
+        "Generated": 90,
+        "Received": 90,
+        "Dropped": 0,
+        "Pending": 0,
+        "PhysicalTransmissions": 964,
+        "ControlMemberTransmissions": 1233,
+        "HopDataRetransmissions": 39,
+        "HopControlRetransmissions": 11,
+        "HopControlFailures": 1,
+        "ControlFailures": 1,
+        "ControlResidualRetries": 0,
+        "NeighborActivations": 12,
+        "NeighborDeactivations": 0,
+        "RouteChanges": 43,
+        "NwkPendingCustody": 0,
+        "HopPendingData": 0,
+        "NwkPendingControlMessages": 0,
+        "ControlPending": 0,
+        "ControlPendingTargets": 0,
+        "ResendQueueDepth": 0,
+        "WaitingForRoute": 0,
+        "WaitingForHop": 0,
+        "MaxLatencySeconds": 4.62549266662143,
+        "pre_blackout_deactivations": 0,
+        "blackout_deactivations": 0,
+        "after_restore_deactivations": 0
+      },
+      "T6": {
+        "Generated": 90,
+        "Received": 90,
+        "Dropped": 0,
+        "Pending": 0,
+        "PhysicalTransmissions": 964,
+        "ControlMemberTransmissions": 1233,
+        "HopDataRetransmissions": 39,
+        "HopControlRetransmissions": 11,
+        "HopControlFailures": 1,
+        "ControlFailures": 1,
+        "ControlResidualRetries": 0,
+        "NeighborActivations": 12,
+        "NeighborDeactivations": 0,
+        "RouteChanges": 43,
+        "NwkPendingCustody": 0,
+        "HopPendingData": 0,
+        "NwkPendingControlMessages": 0,
+        "ControlPending": 0,
+        "ControlPendingTargets": 0,
+        "ResendQueueDepth": 0,
+        "WaitingForRoute": 0,
+        "WaitingForHop": 0,
+        "MaxLatencySeconds": 4.62549266662143,
+        "pre_blackout_deactivations": 0,
+        "blackout_deactivations": 0,
+        "after_restore_deactivations": 0
+      },
+      "both_delivered_applications": 90,
+      "both_delivered_mean_latency_delta_seconds": 0.0
+    },
+    {
+      "experiment": "offered_load",
+      "value": 4,
+      "cases": 3,
+      "T5": {
+        "Generated": 174,
+        "Received": 171,
+        "Dropped": 3,
+        "Pending": 0,
+        "PhysicalTransmissions": 1121,
+        "ControlMemberTransmissions": 1362,
+        "HopDataRetransmissions": 90,
+        "HopControlRetransmissions": 11,
+        "HopControlFailures": 1,
+        "ControlFailures": 1,
+        "ControlResidualRetries": 0,
+        "NeighborActivations": 12,
+        "NeighborDeactivations": 0,
+        "RouteChanges": 43,
+        "NwkPendingCustody": 0,
+        "HopPendingData": 0,
+        "NwkPendingControlMessages": 0,
+        "ControlPending": 0,
+        "ControlPendingTargets": 0,
+        "ResendQueueDepth": 0,
+        "WaitingForRoute": 0,
+        "WaitingForHop": 0,
+        "MaxLatencySeconds": 4.9814926666686,
+        "pre_blackout_deactivations": 0,
+        "blackout_deactivations": 0,
+        "after_restore_deactivations": 0
+      },
+      "T6": {
+        "Generated": 174,
+        "Received": 171,
+        "Dropped": 3,
+        "Pending": 0,
+        "PhysicalTransmissions": 1121,
+        "ControlMemberTransmissions": 1362,
+        "HopDataRetransmissions": 90,
+        "HopControlRetransmissions": 11,
+        "HopControlFailures": 1,
+        "ControlFailures": 1,
+        "ControlResidualRetries": 0,
+        "NeighborActivations": 12,
+        "NeighborDeactivations": 0,
+        "RouteChanges": 43,
+        "NwkPendingCustody": 0,
+        "HopPendingData": 0,
+        "NwkPendingControlMessages": 0,
+        "ControlPending": 0,
+        "ControlPendingTargets": 0,
+        "ResendQueueDepth": 0,
+        "WaitingForRoute": 0,
+        "WaitingForHop": 0,
+        "MaxLatencySeconds": 4.9814926666686,
+        "pre_blackout_deactivations": 0,
+        "blackout_deactivations": 0,
+        "after_restore_deactivations": 0
+      },
+      "both_delivered_applications": 171,
+      "both_delivered_mean_latency_delta_seconds": 0.0
+    },
+    {
+      "experiment": "recovery_freshness",
+      "value": 60,
+      "cases": 3,
+      "T5": {
+        "Generated": 15,
+        "Received": 15,
+        "Dropped": 0,
+        "Pending": 0,
+        "PhysicalTransmissions": 2131,
+        "ControlMemberTransmissions": 3977,
+        "HopDataRetransmissions": 10,
+        "HopControlRetransmissions": 127,
+        "HopControlFailures": 5,
+        "ControlFailures": 1,
+        "ControlResidualRetries": 4,
+        "NeighborActivations": 90,
+        "NeighborDeactivations": 78,
+        "RouteChanges": 323,
+        "NwkPendingCustody": 0,
+        "HopPendingData": 0,
+        "NwkPendingControlMessages": 0,
+        "ControlPending": 0,
+        "ControlPendingTargets": 0,
+        "ResendQueueDepth": 0,
+        "WaitingForRoute": 0,
+        "WaitingForHop": 0,
+        "MaxLatencySeconds": 135.940412666693,
+        "pre_blackout_deactivations": 30,
+        "blackout_deactivations": 12,
+        "after_restore_deactivations": 36
+      },
+      "T6": {
+        "Generated": 15,
+        "Received": 13,
+        "Dropped": 2,
+        "Pending": 0,
+        "PhysicalTransmissions": 2145,
+        "ControlMemberTransmissions": 4044,
+        "HopDataRetransmissions": 13,
+        "HopControlRetransmissions": 151,
+        "HopControlFailures": 19,
+        "ControlFailures": 7,
+        "ControlResidualRetries": 12,
+        "NeighborActivations": 94,
+        "NeighborDeactivations": 82,
+        "RouteChanges": 353,
+        "NwkPendingCustody": 0,
+        "HopPendingData": 0,
+        "NwkPendingControlMessages": 0,
+        "ControlPending": 0,
+        "ControlPendingTargets": 0,
+        "ResendQueueDepth": 0,
+        "WaitingForRoute": 0,
+        "WaitingForHop": 0,
+        "MaxLatencySeconds": 138.9006126667,
+        "pre_blackout_deactivations": 33,
+        "blackout_deactivations": 12,
+        "after_restore_deactivations": 37
+      },
+      "both_delivered_applications": 13,
+      "both_delivered_mean_latency_delta_seconds": 1.2017061538492275,
+      "ns3_generated": 15,
+      "ns3_delivered": 14
+    },
+    {
+      "experiment": "recovery_freshness",
+      "value": 180,
+      "cases": 3,
+      "T5": {
+        "Generated": 15,
+        "Received": 6,
+        "Dropped": 9,
+        "Pending": 0,
+        "PhysicalTransmissions": 1305,
+        "ControlMemberTransmissions": 2147,
+        "HopDataRetransmissions": 23,
+        "HopControlRetransmissions": 54,
+        "HopControlFailures": 3,
+        "ControlFailures": 0,
+        "ControlResidualRetries": 0,
+        "NeighborActivations": 35,
+        "NeighborDeactivations": 23,
+        "RouteChanges": 137,
+        "NwkPendingCustody": 0,
+        "HopPendingData": 0,
+        "NwkPendingControlMessages": 0,
+        "ControlPending": 0,
+        "ControlPendingTargets": 0,
+        "ResendQueueDepth": 0,
+        "WaitingForRoute": 0,
+        "WaitingForHop": 0,
+        "MaxLatencySeconds": 29.6011126666971,
+        "pre_blackout_deactivations": 5,
+        "blackout_deactivations": 12,
+        "after_restore_deactivations": 6
+      },
+      "T6": {
+        "Generated": 15,
+        "Received": 6,
+        "Dropped": 9,
+        "Pending": 0,
+        "PhysicalTransmissions": 1325,
+        "ControlMemberTransmissions": 2255,
+        "HopDataRetransmissions": 22,
+        "HopControlRetransmissions": 71,
+        "HopControlFailures": 3,
+        "ControlFailures": 0,
+        "ControlResidualRetries": 0,
+        "NeighborActivations": 37,
+        "NeighborDeactivations": 25,
+        "RouteChanges": 151,
+        "NwkPendingCustody": 0,
+        "HopPendingData": 0,
+        "NwkPendingControlMessages": 0,
+        "ControlPending": 0,
+        "ControlPendingTargets": 0,
+        "ResendQueueDepth": 0,
+        "WaitingForRoute": 0,
+        "WaitingForHop": 0,
+        "MaxLatencySeconds": 31.7884126667028,
+        "pre_blackout_deactivations": 6,
+        "blackout_deactivations": 12,
+        "after_restore_deactivations": 7
+      },
+      "both_delivered_applications": 6,
+      "both_delivered_mean_latency_delta_seconds": 0.2544300000006871,
+      "ns3_generated": 15,
+      "ns3_delivered": 6
+    },
+    {
+      "experiment": "recovery_freshness",
+      "value": 300,
+      "cases": 3,
+      "T5": {
+        "Generated": 15,
+        "Received": 6,
+        "Dropped": 9,
+        "Pending": 0,
+        "PhysicalTransmissions": 987,
+        "ControlMemberTransmissions": 1479,
+        "HopDataRetransmissions": 21,
+        "HopControlRetransmissions": 21,
+        "HopControlFailures": 0,
+        "ControlFailures": 0,
+        "ControlResidualRetries": 0,
+        "NeighborActivations": 12,
+        "NeighborDeactivations": 3,
+        "RouteChanges": 53,
+        "NwkPendingCustody": 0,
+        "HopPendingData": 0,
+        "NwkPendingControlMessages": 6,
+        "ControlPending": 3,
+        "ControlPendingTargets": 3,
+        "ResendQueueDepth": 3,
+        "WaitingForRoute": 0,
+        "WaitingForHop": 0,
+        "MaxLatencySeconds": 3.02387266667074,
+        "pre_blackout_deactivations": 0,
+        "blackout_deactivations": 0,
+        "after_restore_deactivations": 3
+      },
+      "T6": {
+        "Generated": 15,
+        "Received": 6,
+        "Dropped": 9,
+        "Pending": 0,
+        "PhysicalTransmissions": 987,
+        "ControlMemberTransmissions": 1479,
+        "HopDataRetransmissions": 21,
+        "HopControlRetransmissions": 21,
+        "HopControlFailures": 0,
+        "ControlFailures": 0,
+        "ControlResidualRetries": 0,
+        "NeighborActivations": 12,
+        "NeighborDeactivations": 6,
+        "RouteChanges": 59,
+        "NwkPendingCustody": 0,
+        "HopPendingData": 0,
+        "NwkPendingControlMessages": 9,
+        "ControlPending": 3,
+        "ControlPendingTargets": 3,
+        "ResendQueueDepth": 3,
+        "WaitingForRoute": 0,
+        "WaitingForHop": 0,
+        "MaxLatencySeconds": 3.02387266667074,
+        "pre_blackout_deactivations": 0,
+        "blackout_deactivations": 0,
+        "after_restore_deactivations": 6
+      },
+      "both_delivered_applications": 6,
+      "both_delivered_mean_latency_delta_seconds": 0.0,
+      "ns3_generated": 15,
+      "ns3_delivered": 6
+    }
+  ],
+  "changed_application_outcomes": [
+    {
+      "case": "recovery_freshness_s60_seed128",
+      "packet_id": 1,
+      "generated_seconds": 450.0,
+      "before_outcome": "delivered",
+      "after_outcome": "dropped",
+      "before_last_event_seconds": 585.940412666693,
+      "after_last_event_seconds": 458.727000027769,
+      "before_first_submit_seconds": 582.676892666684,
+      "after_first_submit_seconds": 450.0
+    },
+    {
+      "case": "recovery_freshness_s60_seed130",
+      "packet_id": 1,
+      "generated_seconds": 450.0,
+      "before_outcome": "delivered",
+      "after_outcome": "dropped",
+      "before_last_event_seconds": 584.199212666688,
+      "after_last_event_seconds": 458.831000027769,
+      "before_first_submit_seconds": 582.707492666684,
+      "after_first_submit_seconds": 450.0
+    }
+  ],
+  "all_case_configurations_and_application_identities_identical": true,
+  "ns3_outage_delivered_by_freshness": {
+    "60": {
+      "delivered": 14,
+      "generated": 15
+    },
+    "180": {
+      "delivered": 6,
+      "generated": 15
+    },
+    "300": {
+      "delivered": 6,
+      "generated": 15
+    }
+  },
+  "ns3_global_drop_pending_classification": "unknown; local no-ACK completions and final queue observations do not prove global terminal ownership",
+  "stop_boundary_control_work": {
+    "cases": [
+      "recovery_freshness_s300_seed128",
+      "recovery_freshness_s300_seed129",
+      "recovery_freshness_s300_seed130"
+    ],
+    "time_seconds": 900,
+    "per_case_nwk_control_messages": 3,
+    "per_case_hop_control_owner_targets": 1,
+    "per_case_shared_resend_depth": 1,
+    "per_case_pending_applications": 0,
+    "data_drained_flag_preserved": false,
+    "subsequent_control_drain_observed": false
+  },
+  "numerical_parity_established": false,
+  "full_protocol_parity_established": false,
+  "native_executed": false,
+  "long_run_6000_executed": false,
+  "remote_publication_performed": false,
+  "scope_limitations": [
+    "Three matched seeds are case identifiers and are not identical random draws after changed event ordering; this is not a statistically established population-level performance change.",
+    "Recovery uses explicit discovery at 576/581/586 seconds after restoration at 540 seconds. It does not measure autonomous convergence.",
+    "Blackout is an administrative receive-completion exclusion for relay 2 during [405,540); radios and timers continue. The underlying PHY runs, but this is not a physical fade experiment.",
+    "ns-3 applies the receive gate after MAC bookkeeping while MATLAB gates before MAC bookkeeping, and their security representations differ.",
+    "ns-3 reports exact local no-ACK completions and empty observed queues; exact global dropped/pending categories remain unknown. Do not substitute local HOP failures for global application loss.",
+    "The 900-second snapshot does not prove that stop-boundary controls subsequently drain; current MATLAB MAC feedback queue depth is not exported.",
+    "Conditional latency statistics only include applications delivered in both runs. Excluding two newly dropped slow applications makes raw delivered-only averages misleading.",
+    "48 MAT result/test objects were intentionally omitted by the declared archive policy and were not inspected.",
+    "All 90 MATLAB source files and the validation-time candidate manifest remain unchanged; this review adds documentation and evidence only.",
+    "Hashes bind supplied artifacts to candidate code; they are not independent attestation of runtime execution.",
+    "Shared 500/1000 kbps comparisons are separately labeled extensions; application equality does not establish full protocol timing."
+  ],
+  "next_engineering_target": "Address the route-selection-to-DATA-retry boundary as an explicit behavioral decision: log packet custody owner, selected route/next-hop validity, expiry deadline and failure callback; validate healthy-link false expiry, blackout retry-before-expiry, post-restore rediscovery and bounded custody without duplicates. Preserve source-compatible DATA behavior as the baseline; any recovery retention or outage-trigger policy must be identified as a deliberate extension and validated separately, rather than achieved by tuning freshness to this seed set.",
+  "remaining_gates": [
+    "Outage resilience without manual rediscovery and any explicitly labeled retry/custody policy extension",
+    "R2026a portable and optional native execution",
+    "Optional 6000-second workload",
+    "Observed drain of controls created at the finite stop",
+    "Full protocol timing and native packet transport"
+  ],
+  "review_references": [
+    "docs/tranche-6-portable-acceptance.md",
+    "docs/tranche-6-return-integrity-review.md",
+    "docs/tranche-6-return-outcomes-review.md"
+  ],
+  "preserved_files": {
+    "evidence/tranche-6-r2025a-accepted/analysis/group_statistics.csv": "76fae48763583513da1883d96a6a3dc206f5b219d9ac2faa16cac3b9ac615b34",
+    "evidence/tranche-6-r2025a-accepted/analysis/seed_observations.csv": "df3f2e4d3787ea7cdce3f476b59fd61b061850fb98f557ba8c914d533a5cbf0d",
+    "evidence/tranche-6-r2025a-accepted/analysis/sweep_analysis.json": "23b8118e285964b0fc6487a781d2ae304abad2cbc5d0b5e74aa3b317124ba7e0",
+    "evidence/tranche-6-r2025a-accepted/archive-selection.json": "95480e45eaab33bf03da5b96734330c005225768138578b9daec4a1e9f57e592",
+    "evidence/tranche-6-r2025a-accepted/performance_summary.csv": "fdb00c68ffe4e4fcb37f99bdb762587220be6ae2b804fa71a406d8df46a6eef4",
+    "evidence/tranche-6-r2025a-accepted/regression_metadata.json": "e38d68f02be365072fbc4c504e7664088d902f3b7b5824cb2bd6c5a35487fe82",
+    "evidence/tranche-6-r2025a-accepted/review/README.md": "a39125691013233130a02d21866a235e16cfef584040777813f2981fb30d4da0",
+    "evidence/tranche-6-r2025a-accepted/review/integrity-audit-snapshot.py": "0158d15c4ff04450f6bd99993c0fad7afbbcd829ebc8262c1c926697dfc4808d",
+    "evidence/tranche-6-r2025a-accepted/scenario_summary.csv": "2cf926781b243da58edfdb452b6558af0e198997617ca5c86aad43c77b105b8f",
+    "evidence/tranche-6-r2025a-accepted/shared-comparison/high_rate_1000/applications.csv": "91e6f3d93b5849b1849364688cff345cb280ef6660769988cf8e4ad0f522bc47",
+    "evidence/tranche-6-r2025a-accepted/shared-comparison/high_rate_1000/comparison.json": "85656a58c4a2addf5b7b9ab933efd3651eb7f99b697667c69bb732982c10e18d",
+    "evidence/tranche-6-r2025a-accepted/shared-comparison/high_rate_1000/flows.csv": "dcafbfe96a2cc761e760d201ceccf91d1401492ca7de311fef051861b516f668",
+    "evidence/tranche-6-r2025a-accepted/shared-comparison/high_rate_500/applications.csv": "11fe18e71568bed6d4a5ab272f6e3c7ac824954ceba16e2d607a9583cb3e359a",
+    "evidence/tranche-6-r2025a-accepted/shared-comparison/high_rate_500/comparison.json": "0fed131481d80fef4b42bacae72ce52685c44d96d8b44cb378b934e9e5d816a5",
+    "evidence/tranche-6-r2025a-accepted/shared-comparison/high_rate_500/flows.csv": "b254f483d6a4d2726c901ee054e4718f520efe1aabc5f5646d6acb2d46f22cd8",
+    "evidence/tranche-6-r2025a-accepted/shared-comparison/line_3_8/applications.csv": "a6a21b207e55444a5e7dc075b8c537b85566aae1ef59b5c4eaccfcf973b734d6",
+    "evidence/tranche-6-r2025a-accepted/shared-comparison/line_3_8/comparison.json": "b80224f521f5a86ff871582090a0b2a74465be1e149a9571579e8ca326fc6322",
+    "evidence/tranche-6-r2025a-accepted/shared-comparison/line_3_8/flows.csv": "fc3a2c03ba99a0180b303f3a06b76a7586488ad63c00119067f3513a1a18d7f0",
+    "evidence/tranche-6-r2025a-accepted/shared-comparison/two_node_128/applications.csv": "2a8f269517abb9069dc25f4cb268ca6a4eebf57dd43b458efde074b2ae4571e1",
+    "evidence/tranche-6-r2025a-accepted/shared-comparison/two_node_128/comparison.json": "293118157458d7ce16e8c283f9ddabd14cb706e49012889a3d9e3f5979a87034",
+    "evidence/tranche-6-r2025a-accepted/shared-comparison/two_node_128/flows.csv": "d40b46045424b9065d0a2c471c5acddd7f68a555bd5ce5efaac32fea977eda57",
+    "evidence/tranche-6-r2025a-accepted/shared-comparison/two_node_8/applications.csv": "75c7bb90b109f9ca4b81a59b21acc4d2475d2d5832dee37dbfbb9dd3a3eeca15",
+    "evidence/tranche-6-r2025a-accepted/shared-comparison/two_node_8/comparison.json": "86cac5bcae51d52af0e6d9b3aa5f1583ce3d9b97b97e49ebef7d9942bd346b31",
+    "evidence/tranche-6-r2025a-accepted/shared-comparison/two_node_8/flows.csv": "26ba3cea134c898c6cc088f9fb3dbf8fac2dbcc378bf2ee958aea685cf1920f6",
+    "evidence/tranche-6-r2025a-accepted/sweep_cases.csv": "ae706ff37af54a7729dd96d2348dd586d66dce3745310bef39e395c1369acd23",
+    "evidence/tranche-6-r2025a-accepted/sweep_plan.json": "2967816680a4d23f316f8595e9f132a8899a5c6519426ceaba92f3139559aa52",
+    "evidence/tranche-6-r2025a-accepted/test_results.csv": "3d3060bdc5e556a5ef8830bf8d1174d8bbb08d02cd8238d9d8a7d5d86307f655",
+    "evidence/tranche-6-r2025a-accepted/tranche2_scenario_summary.csv": "9190338b319f516afa4417641c4765b47f73197364d5716ed2a38b1a69e8046d",
+    "evidence/tranche-6-r2025a-accepted/tranche3_metadata.json": "29d056c384bbd0aaa92a5af54d08388518306f78c34f0907abbd2a58e7f591c6",
+    "evidence/tranche-6-r2025a-accepted/tranche3_scenario_summary.csv": "ef0b90538ef228cedc212b4752704a6a12053e77ec93865a9a9c564a32762b0e",
+    "evidence/tranche-6-r2025a-accepted/tranche4_metadata.json": "76492cb4c353439d63c24362cdb944b94aef9b5c169384187a474bf8abe9fa85",
+    "evidence/tranche-6-r2025a-accepted/tranche4_scenario_summary.csv": "e5c8479b9344530ade60a869294de21ee6c9a68fac4412f2be044e643aa44750",
+    "evidence/tranche-6-r2025a-accepted/tranche5-comparison/application_comparison.csv": "174cb08ecc2546908565944cb41adf02410b9e36ee7b5123a27f15b405a726a8",
+    "evidence/tranche-6-r2025a-accepted/tranche5-comparison/case_comparison.csv": "a50c3d62bbe2d3e9100788f850eb5ada491e2260fe34ccab6830e268c4093611",
+    "evidence/tranche-6-r2025a-accepted/tranche5-comparison/comparison.json": "89224d736da3d23e475488dc2f97d10ce04c398b172e15b1f3a3509841eee347",
+    "evidence/tranche-6-r2025a-accepted/tranche6_evidence.zip": "5c8ec2997ae8c248625240c3fd084aaaca85d5221ec7a347a0aaad2dabeb1e17",
+    "evidence/tranche-6-r2025a-accepted/validation.log": "26cb08296c770531cdf2f778e4a831c911aa303b35e9b89ccbe6524d76c0e53e",
+    "evidence/tranche-6-r2025a-accepted/validation_metadata.json": "1f9dd282f8d653ce2abb13b6bf7b6e3d1ff058911adbe3562007b6d3dd483926"
+  },
+  "independent_review_evidence": {
+    "evidence/tranche-6-return-integrity.json": "52a920c5c6ea63df04a8b3b01c8bb6dd287f0a15402e2176c7cd575bc249689c",
+    "evidence/tranche-6-return-outcomes-review.json": "07c7b6e9bd6a6464e89b6e75be6757c693aeaf2fd888888e92d74d2c7627900a"
+  },
+  "review_tool_sha256": {
+    "scripts/analyze_tranche6_return.py": "a08f3cfdb765d1c271e92452e48afca3e4fb57bb4c86cff2346a28657703a692",
+    "scripts/analyze_research_sweep.py": "f11af9be9db91a6f1cb507c713d7b9d7ade46694bc435d54d39422783242f0bb",
+    "scripts/compare_matlab_ns3.py": "4675d71c12ddc9875bca3afa8a7a20fb26f81ed7300d3c7ce82626ff43342ce8"
+  }
+}

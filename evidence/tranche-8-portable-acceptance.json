@@ -1,0 +1,968 @@
+{
+  "schema": "csr-matlab-tranche-8-portable-acceptance-v1",
+  "status": "accepted_portable_diagnostics_with_numerical_limits",
+  "reviewed_utc": "2026-09-11T13:19:23.196705+00:00",
+  "executed_matlab_code_commit": "89b62e729e588f396bb919afdff522f7e9419268",
+  "original_candidate_commit": "010793b402cc63c1bd434328d80d0b6b53c39ebf",
+  "matlab_acceptance_base_commit": "68e18181d90b27e5cfaa11f4537595c2e6640809",
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "matlab_runtime": {
+    "Runtime": "MATLAB",
+    "Version": "25.1.0.2943329 (R2025a)",
+    "Release": "2025a",
+    "HasWirelessNetworkSimulator": false,
+    "HasWnetNode": false,
+    "HasWirelessPacket": false,
+    "DefaultBackend": "portable",
+    "WirelessAdapterImplemented": true,
+    "WirelessAdapterScope": "Optional R2026a wireless-clock candidate; runtime validation pending",
+    "NativePacketTransportIntegrated": false,
+    "ProbeScope": "Symbol discovery only; licenses and execution are not validated."
+  },
+  "execution_origin": "Owner-returned R2025a archive; no MATLAB run performed by the Python review",
+  "matlab_executed": true,
+  "acceptance_established": true,
+  "numerical_parity_established": false,
+  "full_protocol_parity_established": false,
+  "population_equivalence_established": false,
+  "accepted_scope": "Portable diagnostic capability and complete ten-case multiseed evidence with passive feedback observations, source/reference integrity, all portable unit tests, two observer controls, and T7 seed-128 reproduction.",
+  "started_utc": "2026-09-10T19:17:21.583Z",
+  "completed_utc": "2026-09-10T19:49:40.794Z",
+  "elapsed_wall_seconds": 1939.211,
+  "archive": {
+    "path": "tranche-8-r2025a-accepted/tranche8_evidence.zip",
+    "library_file_id": "libfile_acd208e1a33c8191b3cde9e519472b22",
+    "bytes": 17925128,
+    "sha256": "bfc4f7f05f0800316b371df3ec316f309f14e3482ef259c3f9c7bd7eea025d77",
+    "files": 257,
+    "expanded_bytes": 189364874
+  },
+  "verification": {
+    "zip_crcs": 257,
+    "archived_artifact_checks": {
+      "top_inventory": 256,
+      "benchmark_inventory": 210,
+      "raw_inventory": 160,
+      "control_inventory": 28
+    },
+    "archived_artifact_checks_total": 654,
+    "source_files": 189,
+    "matlab_files": 108,
+    "reference_files": 192,
+    "tests_passed": 485,
+    "tests_failed": 0,
+    "tests_incomplete": 0,
+    "native_executed": false,
+    "completed_cases": 10,
+    "flow_seed_combinations": 15,
+    "application_attempts": 525000,
+    "matlab_feedback_selections": 61543,
+    "matlab_actual_feedback_correlations": 12438,
+    "tracing_controls": 2,
+    "byte_exact_control_csv_pairs": 24,
+    "t7_anchors": 2,
+    "byte_exact_t7_csv_pairs": 22,
+    "t7_csv_rows": 468300,
+    "ns3_reference_inventory_checks": 130,
+    "ns3_gzip_roundtrips": 32,
+    "all_passed": true
+  },
+  "diagnostic_plan_sha256": "ed648ee4f54ebf14e14b98d6fcecce224590727139db83f0f4d23161ddfc7a09",
+  "source_snapshot_sha256": "9bf7f657c08826ab1b502c7ef919b1dbca95dfa815636e69b4b088d82d4a64c7",
+  "ns3_reference_suite_sha256": "5ea5a39c7751c856e710d2eaa09b5d71d4a23c543bafa894c605052f1ded9d5a",
+  "per_seed_counts": [
+    {
+      "case_id": "two_node_admission_1200_s128",
+      "seed": 128,
+      "matlab": {
+        "attempts": 45000,
+        "admitted": 11395,
+        "delivered": 11385,
+        "explicit_drops": 0,
+        "pending": 10
+      },
+      "ns3": {
+        "attempts": 45000,
+        "admitted": 11380,
+        "delivered": 11364,
+        "unmatched_sends": 16
+      },
+      "delivery_difference_percent": 0.18479408658922392
+    },
+    {
+      "case_id": "three_node_contention_360_s128",
+      "seed": 128,
+      "matlab": {
+        "attempts": 60000,
+        "admitted": 954,
+        "delivered": 928,
+        "explicit_drops": 0,
+        "pending": 26
+      },
+      "ns3": {
+        "attempts": 60000,
+        "admitted": 946,
+        "delivered": 914,
+        "unmatched_sends": 32
+      },
+      "delivery_difference_percent": 1.5317286652078765
+    },
+    {
+      "case_id": "two_node_admission_1200_s129",
+      "seed": 129,
+      "matlab": {
+        "attempts": 45000,
+        "admitted": 11358,
+        "delivered": 11354,
+        "explicit_drops": 0,
+        "pending": 4
+      },
+      "ns3": {
+        "attempts": 45000,
+        "admitted": 11234,
+        "delivered": 11227,
+        "unmatched_sends": 7
+      },
+      "delivery_difference_percent": 1.1312015676494092
+    },
+    {
+      "case_id": "three_node_contention_360_s129",
+      "seed": 129,
+      "matlab": {
+        "attempts": 60000,
+        "admitted": 980,
+        "delivered": 948,
+        "explicit_drops": 0,
+        "pending": 32
+      },
+      "ns3": {
+        "attempts": 60000,
+        "admitted": 854,
+        "delivered": 822,
+        "unmatched_sends": 32
+      },
+      "delivery_difference_percent": 15.328467153284663
+    },
+    {
+      "case_id": "two_node_admission_1200_s130",
+      "seed": 130,
+      "matlab": {
+        "attempts": 45000,
+        "admitted": 11326,
+        "delivered": 11315,
+        "explicit_drops": 0,
+        "pending": 11
+      },
+      "ns3": {
+        "attempts": 45000,
+        "admitted": 11412,
+        "delivered": 11396,
+        "unmatched_sends": 16
+      },
+      "delivery_difference_percent": -0.7107757107757129
+    },
+    {
+      "case_id": "three_node_contention_360_s130",
+      "seed": 130,
+      "matlab": {
+        "attempts": 60000,
+        "admitted": 926,
+        "delivered": 894,
+        "explicit_drops": 0,
+        "pending": 32
+      },
+      "ns3": {
+        "attempts": 60000,
+        "admitted": 948,
+        "delivered": 916,
+        "unmatched_sends": 32
+      },
+      "delivery_difference_percent": -2.4017467248908297
+    },
+    {
+      "case_id": "two_node_admission_1200_s131",
+      "seed": 131,
+      "matlab": {
+        "attempts": 45000,
+        "admitted": 11265,
+        "delivered": 11249,
+        "explicit_drops": 0,
+        "pending": 16
+      },
+      "ns3": {
+        "attempts": 45000,
+        "admitted": 11334,
+        "delivered": 11330,
+        "unmatched_sends": 4
+      },
+      "delivery_difference_percent": -0.7149161518093528
+    },
+    {
+      "case_id": "three_node_contention_360_s131",
+      "seed": 131,
+      "matlab": {
+        "attempts": 60000,
+        "admitted": 927,
+        "delivered": 895,
+        "explicit_drops": 0,
+        "pending": 32
+      },
+      "ns3": {
+        "attempts": 60000,
+        "admitted": 903,
+        "delivered": 883,
+        "unmatched_sends": 20
+      },
+      "delivery_difference_percent": 1.3590033975084959
+    },
+    {
+      "case_id": "two_node_admission_1200_s132",
+      "seed": 132,
+      "matlab": {
+        "attempts": 45000,
+        "admitted": 11369,
+        "delivered": 11359,
+        "explicit_drops": 0,
+        "pending": 10
+      },
+      "ns3": {
+        "attempts": 45000,
+        "admitted": 11383,
+        "delivered": 11375,
+        "unmatched_sends": 8
+      },
+      "delivery_difference_percent": -0.1406593406593437
+    },
+    {
+      "case_id": "three_node_contention_360_s132",
+      "seed": 132,
+      "matlab": {
+        "attempts": 60000,
+        "admitted": 949,
+        "delivered": 917,
+        "explicit_drops": 0,
+        "pending": 32
+      },
+      "ns3": {
+        "attempts": 60000,
+        "admitted": 952,
+        "delivered": 920,
+        "unmatched_sends": 32
+      },
+      "delivery_difference_percent": -0.3260869565217428
+    }
+  ],
+  "five_seed_summary": [
+    {
+      "base_case_id": "two_node_admission_1200",
+      "matlab": {
+        "base_case_id": "two_node_admission_1200",
+        "simulator": "matlab",
+        "seeds": [
+          128,
+          129,
+          130,
+          131,
+          132
+        ],
+        "pooled": {
+          "attempts": 225000,
+          "admitted": 56713,
+          "delivered": 56662,
+          "delivered_unique": 56662,
+          "duplicate_delivery_events": 0,
+          "unmatched_sends": 51,
+          "network_bytes_sent": 33574096,
+          "network_bytes_received": 33543904,
+          "delay_samples": 56662,
+          "delay_sum_s": 53144.877119098244,
+          "populated_delay_buckets": 375,
+          "bucket_latency_mean_sum_s": 354.3508756597035,
+          "duration_s": 6000.0,
+          "mean_packet_latency_s": 0.9379280138205189,
+          "mean_populated_bucket_latency_s": 0.944935668425876,
+          "explicit_drops": 0,
+          "pending": 51
+        },
+        "per_seed_delivered": {
+          "count": 5,
+          "minimum": 11249,
+          "maximum": 11385,
+          "mean": 11332.4,
+          "sample_standard_deviation": 52.91313636517873
+        },
+        "per_seed_packet_latency": {
+          "count": 5,
+          "minimum": 0.9290211271967853,
+          "maximum": 0.9458659268426848,
+          "mean": 0.9379471008023733,
+          "sample_standard_deviation": 0.007502197994572119
+        }
+      },
+      "ns3": {
+        "base_case_id": "two_node_admission_1200",
+        "simulator": "ns3",
+        "seeds": [
+          128,
+          129,
+          130,
+          131,
+          132
+        ],
+        "pooled": {
+          "attempts": 225000,
+          "admitted": 56743,
+          "delivered": 56692,
+          "delivered_unique": 56692,
+          "duplicate_delivery_events": 0,
+          "unmatched_sends": 51,
+          "network_bytes_sent": 33591856,
+          "network_bytes_received": 33561664,
+          "delay_samples": 56692,
+          "delay_sum_s": 53347.52362799999,
+          "populated_delay_buckets": 375,
+          "bucket_latency_mean_sum_s": 354.82913739902483,
+          "duration_s": 6000.0,
+          "mean_packet_latency_s": 0.94100620242715,
+          "mean_populated_bucket_latency_s": 0.9462110330640662,
+          "explicit_drops": null,
+          "pending": null
+        },
+        "per_seed_delivered": {
+          "count": 5,
+          "minimum": 11227,
+          "maximum": 11396,
+          "mean": 11338.4,
+          "sample_standard_deviation": 66.69557706474995
+        },
+        "per_seed_packet_latency": {
+          "count": 5,
+          "minimum": 0.9297350435164843,
+          "maximum": 0.9597574995991801,
+          "mean": 0.9410497372200977,
+          "sample_standard_deviation": 0.011648791631768006
+        }
+      },
+      "delivery_difference_percent": -0.05291751922670285,
+      "packet_weighted_latency_difference_percent": -0.3271167181142398,
+      "populated_bucket_mean_latency_difference_percent": -0.13478648986582353
+    },
+    {
+      "base_case_id": "three_node_contention_360",
+      "matlab": {
+        "base_case_id": "three_node_contention_360",
+        "simulator": "matlab",
+        "seeds": [
+          128,
+          129,
+          130,
+          131,
+          132
+        ],
+        "pooled": {
+          "attempts": 300000,
+          "admitted": 4736,
+          "delivered": 4582,
+          "delivered_unique": 4582,
+          "duplicate_delivery_events": 0,
+          "unmatched_sends": 154,
+          "network_bytes_sent": 2803712,
+          "network_bytes_received": 2712544,
+          "delay_samples": 4582,
+          "delay_sum_s": 7716.92596773257,
+          "populated_delay_buckets": 85,
+          "bucket_latency_mean_sum_s": 156.76112843164472,
+          "duration_s": 1800.0,
+          "mean_packet_latency_s": 1.684182882525659,
+          "mean_populated_bucket_latency_s": 1.8442485697840556,
+          "explicit_drops": 0,
+          "pending": 154
+        },
+        "per_seed_delivered": {
+          "count": 5,
+          "minimum": 894,
+          "maximum": 948,
+          "mean": 916.4,
+          "sample_standard_deviation": 22.87575135378071
+        },
+        "per_seed_packet_latency": {
+          "count": 5,
+          "minimum": 1.602588936651351,
+          "maximum": 1.7755907560928177,
+          "mean": 1.685447419302042,
+          "sample_standard_deviation": 0.06699191962875346
+        }
+      },
+      "ns3": {
+        "base_case_id": "three_node_contention_360",
+        "simulator": "ns3",
+        "seeds": [
+          128,
+          129,
+          130,
+          131,
+          132
+        ],
+        "pooled": {
+          "attempts": 300000,
+          "admitted": 4603,
+          "delivered": 4455,
+          "delivered_unique": 4455,
+          "duplicate_delivery_events": 0,
+          "unmatched_sends": 148,
+          "network_bytes_sent": 2724976,
+          "network_bytes_received": 2637360,
+          "delay_samples": 4455,
+          "delay_sum_s": 7735.717340000003,
+          "populated_delay_buckets": 85,
+          "bucket_latency_mean_sum_s": 172.41255803088933,
+          "duration_s": 1800.0,
+          "mean_packet_latency_s": 1.736412421997756,
+          "mean_populated_bucket_latency_s": 2.0283830356575216,
+          "explicit_drops": null,
+          "pending": null
+        },
+        "per_seed_delivered": {
+          "count": 5,
+          "minimum": 822,
+          "maximum": 920,
+          "mean": 891.0,
+          "sample_standard_deviation": 41.291645644125154
+        },
+        "per_seed_packet_latency": {
+          "count": 5,
+          "minimum": 1.6532728260869565,
+          "maximum": 1.918685946472017,
+          "mean": 1.740493215598957,
+          "sample_standard_deviation": 0.11095246481174198
+        }
+      },
+      "delivery_difference_percent": 2.8507295173961777,
+      "packet_weighted_latency_difference_percent": -3.0078994373932466,
+      "populated_bucket_mean_latency_difference_percent": -9.077894196338365
+    }
+  ],
+  "largest_delivery_residual": {
+    "case_id": "three_node_contention_360_s129",
+    "flow_source": 2,
+    "flow_destination": 1,
+    "matlab_admitted": 526,
+    "matlab_delivered": 510,
+    "matlab_pending": 16,
+    "ns3_admitted": 369,
+    "ns3_delivered": 353,
+    "ns3_unmatched": 16,
+    "difference": 157,
+    "relative_difference_percent": 44.475920679886684,
+    "difference_accumulated_300_to_320_seconds": 117,
+    "interpretation": "Gap is already present in admission counts; early feedback service/admission-release timing merits investigation. Cause not established."
+  },
+  "ack_findings": {
+    "ordinary_data_selected_and_actual_rate_key_kbps": 128,
+    "ordinary_data_selected_and_actual_power_dbm": 33,
+    "ordinary_data_radio_overrides_matlab": 0,
+    "ordinary_data_radio_overrides_ns3": 0,
+    "dack_observed": false,
+    "exact_control_rate_overrides_matlab": 29,
+    "exact_control_rate_overrides_ns3": 139,
+    "all_rate_overrides_before_application_start_300s": true,
+    "control_selection_rate_distribution_differs": true,
+    "radio_policy_change_supported": false,
+    "peer_s0_and_hop_failure_states_fully_exercised": false
+  },
+  "implementation_changes_in_acceptance": false,
+  "phy_ecc_changed": false,
+  "remote_publication_performed": false,
+  "not_executed_in_this_runner": [
+    "6000-second campus benchmark",
+    "retained 18-case sweep",
+    "retained 28-scenario harness",
+    "OPNET",
+    "R2026a/native adapters"
+  ],
+  "next_target": "Early contention seed129: DATA reception, ACK scheduling, and admission-capacity release. Preserve PHY/ECC and radio policy; isolate schedule/random-stream effects before choosing a behavioral correction.",
+  "report": "../docs/tranche-8-portable-acceptance.md",
+  "review": "tranche-8-r2025a-accepted/review/review.json",
+  "independent_integrity_audit": "tranche-8-r2025a-accepted/independent/integrity-audit.json",
+  "independent_outcomes": "tranche-8-r2025a-accepted/independent/outcome-findings.json",
+  "selected_files": "tranche-8-r2025a-accepted/selected-files.json",
+  "artifacts": [
+    {
+      "path": "tranche-8-r2025a-accepted/independent/contention-s129-timing.json",
+      "bytes": 27584,
+      "sha256": "ecaa9b63371c8f8585289aafeacf7123c4c341a80bd64820a158ea5d83cb00e5"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/independent/integrity-audit.json",
+      "bytes": 109086,
+      "sha256": "53b38432279f6cfda73e988eabcd07388bf1883770c2a115e33ea2fdbd087166"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/independent/integrity-audit.log",
+      "bytes": 4204,
+      "sha256": "6984b0abb9dd0214c73116862373ecaebf61db9217f69fe596428f82edfb89fb"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/independent/integrity-audit.py",
+      "bytes": 31453,
+      "sha256": "c61c34952d09359ec45733587e8f020f475e56506a66cf7e67a800526fbae095"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/independent/outcome-audit.log",
+      "bytes": 63755,
+      "sha256": "895106aa2d45bf72cbef8127ec1ac8ad68f1f1ab37a6980d98fa1e0156bf57cf"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/independent/outcome-audit.py",
+      "bytes": 18890,
+      "sha256": "95babce37bfd7823675fa52a9b3167496465417712230fb3466184c433182d7c"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/independent/outcome-findings.json",
+      "bytes": 142438,
+      "sha256": "59a4542abcc01b4de03a0a0683e350d9d5c0276f2356e43261e7dee1f45f7f4e"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/independent/outcome-findings.md",
+      "bytes": 7016,
+      "sha256": "66ec8bb72295b4c8ade7dba9ad76c7d18a2b8038f7643d86fd2dc33ce4e22ee1"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/a128/bucket_comparison.csv",
+      "bytes": 121606,
+      "sha256": "3f2acc5c66c84ac7cc43e330c8d9890f33bffe33d258c1dad0e78d3fbf1fb7eb"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/a128/comparison-input.json",
+      "bytes": 2665,
+      "sha256": "3ea8a32c2b8d807fbe72f8472eb708c563d97eef7ba9a786c2bec538f39c0137"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/a128/comparison.json",
+      "bytes": 20184,
+      "sha256": "16cd4770a47c68eaadc1813fcb04d5ea388ecc10f9e4ef747d7e126f24ecd663"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/a128/series_comparison.csv",
+      "bytes": 2383,
+      "sha256": "7c080c3958c5626e12a060ddcdbfe45be6162f1621fd54a823145afa04caf6ab"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/a129/bucket_comparison.csv",
+      "bytes": 122336,
+      "sha256": "447286b54f8f02578b127d716decac0233db49a627b4cb7f285ab18c790df3b6"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/a129/comparison-input.json",
+      "bytes": 2665,
+      "sha256": "85b544566cfbacc27543a6b27b2ac15dddcdd7dd5ab579be92aa44065394725e"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/a129/comparison.json",
+      "bytes": 20186,
+      "sha256": "1d1895336eb46f0723936937955c899e9a0caee1032406e624ee55e95660066b"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/a129/series_comparison.csv",
+      "bytes": 2386,
+      "sha256": "2dffcdf37c43e357f72ff4782449cd315e64ce955399551b76bfa9d48f7ece3b"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/a130/bucket_comparison.csv",
+      "bytes": 121523,
+      "sha256": "cbedf11d09c529a5b248dfb0e436f3df776cb5636b4c30fc60e327d8124cf18b"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/a130/comparison-input.json",
+      "bytes": 2665,
+      "sha256": "ecf55dba8bb404c0286b863fcc8e284166adfdff04bb5b894ed33aa69371bbc4"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/a130/comparison.json",
+      "bytes": 20223,
+      "sha256": "5448d97cf75b09fb19c684ae4190f09da6947f845d03dcfba4902f8be8780090"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/a130/series_comparison.csv",
+      "bytes": 2422,
+      "sha256": "302537e2423f8327b4c635aaceed48dac5ed8bb4933a45710d1a0733d0a13855"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/a131/bucket_comparison.csv",
+      "bytes": 121956,
+      "sha256": "71f383b3b3282f53d87ef5ac604d8820f42a8dc189dc7c39286036ff19599906"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/a131/comparison-input.json",
+      "bytes": 2665,
+      "sha256": "972ab022537bf5924d5f18c494cb05893ff916112326acab1fa5eaa6f7e33fe4"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/a131/comparison.json",
+      "bytes": 20163,
+      "sha256": "d11fdc706f45c0c570fc5944289bce1b9d579063c7d24d9298f74fc2bae2dfaf"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/a131/series_comparison.csv",
+      "bytes": 2362,
+      "sha256": "fad0ca67f1a6cfb0626ba4d12828a0180d08c328c354fff5f27ad88e6e8fb910"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/a132/bucket_comparison.csv",
+      "bytes": 122278,
+      "sha256": "2f8e774f60fef8d38bb3a7719ed851b25db777aace9e7bfd8d7487f8bb49133f"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/a132/comparison-input.json",
+      "bytes": 2665,
+      "sha256": "2b0839f6d2f4a1da17950ac85e6ac3c22297ee9e033a0014f01c978c50c96802"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/a132/comparison.json",
+      "bytes": 20268,
+      "sha256": "4b93ca3219a1ed57ec202a4c52d6803ccc77ecb4fa8ba6152000a4323b41f582"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/a132/series_comparison.csv",
+      "bytes": 2467,
+      "sha256": "7b457d85539387b9f486d7cf6bd46e9bbdd8d1939e4a139add938eb3ec9b3cdc"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/c128/bucket_comparison.csv",
+      "bytes": 103813,
+      "sha256": "898f1f65d44065d68eac9034617a7e8350becb1cd7d8ffbe2d67bdf10989e3ac"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/c128/comparison-input.json",
+      "bytes": 2676,
+      "sha256": "b939bdc98189c05c4781552e0ff0b16f49559db5d1d7b422560dfb53921a3589"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/c128/comparison.json",
+      "bytes": 25481,
+      "sha256": "3ece9276eea9fbe6974d5bd87ece12e08e8b52ad1efdfc70737af557b53aee23"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/c128/series_comparison.csv",
+      "bytes": 2403,
+      "sha256": "747473c947cc5a91319ec4bd8e5deffdd7bd53fd220459eeae24a7345bfddd28"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/c129/bucket_comparison.csv",
+      "bytes": 104077,
+      "sha256": "d3f17fb2156792ed2a2b82508771a8ca76aee5687897c18469fdb916104ef697"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/c129/comparison-input.json",
+      "bytes": 2676,
+      "sha256": "3f1a3bbd8d772fda556d191baf20e37c405409b186c5384ba059e8bf0701218f"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/c129/comparison.json",
+      "bytes": 25520,
+      "sha256": "971b607ae03b745eb1f75f4672efb5eefb2a0be9b69c10790126d9bb45008fa3"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/c129/series_comparison.csv",
+      "bytes": 2442,
+      "sha256": "b4570e4f698cb2faa670fec4f3fc914c846971a40b7c8df6486557656a71ff53"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/c130/bucket_comparison.csv",
+      "bytes": 103956,
+      "sha256": "4b901e1747db0c026a8401bd4728af9861784be87605f09e3694b96bca68c74e"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/c130/comparison-input.json",
+      "bytes": 2676,
+      "sha256": "4d0eeeafe332db3a76909a37c1b6b384e61ecf6d2cac34758b9be5ee9fb27c61"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/c130/comparison.json",
+      "bytes": 25547,
+      "sha256": "f530f9a0cd4cba16dfbf3893012027d0469a1545290c2cbba232e7a9aaa51e10"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/c130/series_comparison.csv",
+      "bytes": 2469,
+      "sha256": "d739077b794ce19550d71e0dd84838fcdfbbef846c2e8f6692bdd170af6e9be1"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/c131/bucket_comparison.csv",
+      "bytes": 103645,
+      "sha256": "009959d3c3077cd91444c45a11f4ff0fd1c2133e0f317b56b3a5fc1d26d98aaa"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/c131/comparison-input.json",
+      "bytes": 2676,
+      "sha256": "b9169be4e276d1f66b91497f94e786c7eee4c33de188404f838b5128c1655617"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/c131/comparison.json",
+      "bytes": 25513,
+      "sha256": "f786140df84e090864aabd13c2ef3960bfe51669fd5df7be06224045d05d2637"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/c131/series_comparison.csv",
+      "bytes": 2435,
+      "sha256": "c08e7c2a504b2be6f3714dd7fdc743d8832a68801c483b31c6e676241d60d319"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/c132/bucket_comparison.csv",
+      "bytes": 103582,
+      "sha256": "8df1a001751ca76598f80967d8bf2a3d90695769eb6e9703688293ef470dfc3d"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/c132/comparison-input.json",
+      "bytes": 2676,
+      "sha256": "32ebcafda787e9ae88bb9c8662de0ed48bc6ed01b66190ff94186d85ce560273"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/c132/comparison.json",
+      "bytes": 25557,
+      "sha256": "2d1f4fdc33e836c268cd499681e7f1abf3f6b797ba9b7b76afb0baceeb1e9a77"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/c132/series_comparison.csv",
+      "bytes": 2479,
+      "sha256": "c0787734463f1dd68055c2f49f6607c3f6a30d3a2bcb1de6161b38c9b61a5f98"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/per_seed_metrics.csv",
+      "bytes": 5172,
+      "sha256": "2c60761b3d56c51e09c3cf4ba0657cfb9ed3d96e5d356dd779dc5a56d56874b7"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/review/review.json",
+      "bytes": 138440,
+      "sha256": "be77b0d6e18deb1956c35484467aef11ba269a3cd16a5d7ec85147fd34fb063e"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/a128/benchmark_manifest.json",
+      "bytes": 34562,
+      "sha256": "52685511e5e1e8b4bf92f8d71bfedd226b7bf820ed42689bb91f808d3c1a4406"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/a128/raw/case_manifest.json",
+      "bytes": 32199,
+      "sha256": "33795134dff6f8845798a7de39fb8cbbe6b80cb9822c7d4a9d60fb3285848a7b"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/a128/raw/summary.json",
+      "bytes": 13720,
+      "sha256": "bb532b8cad0377282f907b53c4a4d40e12baabadc347be96d5d0d4b9fa1a2415"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/a129/benchmark_manifest.json",
+      "bytes": 34560,
+      "sha256": "274ddd477ef04096dd2192f2821ea1868be4cced3db697ec8a8cf300a9b6be04"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/a129/raw/case_manifest.json",
+      "bytes": 32197,
+      "sha256": "39bae164c01cb899b5ab3eb29b2c6a04c1e169e27180a8a842e68376c98c0ccb"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/a129/raw/summary.json",
+      "bytes": 13718,
+      "sha256": "ae7f7f0223c0fe751f2eeabe86b4788362d70bc1eb2aa4459332d4e6b3f9453e"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/a130/benchmark_manifest.json",
+      "bytes": 34561,
+      "sha256": "1fc95affc2da89722ae808111237d0e349b75c868c935f809757fcae7120898e"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/a130/raw/case_manifest.json",
+      "bytes": 32198,
+      "sha256": "c63a8591d1bf1e58ea48d49f6144f13f4231275eaf8dd1142590e09363f6feae"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/a130/raw/summary.json",
+      "bytes": 13749,
+      "sha256": "70d40b1f7b656df06ea3017ae0c7e0c615c69d130195db88b917b11ad7c3aaf2"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/a131/benchmark_manifest.json",
+      "bytes": 34562,
+      "sha256": "7c43ede6cd48ce3f0cbf581b90ea1ba3242b728e68710d68dfa14764edbd5041"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/a131/raw/case_manifest.json",
+      "bytes": 32199,
+      "sha256": "d7aa0c4fa6db391bccbe0b96c66884aa7afce17a9833dec3bd792875cb79d293"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/a131/raw/summary.json",
+      "bytes": 13747,
+      "sha256": "692fc77351104614981cadbe596fe5ac220673bd6108f5140382bcbca419b473"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/a132/benchmark_manifest.json",
+      "bytes": 34561,
+      "sha256": "2fd69aae2cde74ae5b1dc48193836cfe2b3821202fdbc407749c0612ce82221c"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/a132/raw/case_manifest.json",
+      "bytes": 32198,
+      "sha256": "319634197dd1370cb01bd8c356f000c705dc9f02a2cf83b01244193f803c2ef4"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/a132/raw/summary.json",
+      "bytes": 13719,
+      "sha256": "319c6edde88183d6288c8211c4570ca7e0b12e5a6fe3f182f7fc45cb3cecf960"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/c128/benchmark_manifest.json",
+      "bytes": 34542,
+      "sha256": "83307c13fdbdf5b23f8689ab14603088e90ee1d37552d224030f11f303ff7305"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/c128/raw/case_manifest.json",
+      "bytes": 32173,
+      "sha256": "abbde1a4f9800f50b2c12d5407d9c4adf8b0f430766665d7a5e4389fbd687f96"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/c128/raw/summary.json",
+      "bytes": 15452,
+      "sha256": "1740807c63d925d6afde859d0622bef52c6f2e9816ae1d6c3b3cba6fbb1971bd"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/c129/benchmark_manifest.json",
+      "bytes": 34542,
+      "sha256": "1e68ab8b8f7b52a4f1a339d7495e8ef32b8a1242117cd872a1c705d7ab3aea7b"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/c129/raw/case_manifest.json",
+      "bytes": 32173,
+      "sha256": "625124dd5857ff3a4728d0f9881472fe43cfd97377d10a6981274107a18e5630"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/c129/raw/summary.json",
+      "bytes": 15450,
+      "sha256": "ad7b78182ec210ac31b4a442bacdcc63c36f383fae858329991b201346116c65"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/c130/benchmark_manifest.json",
+      "bytes": 34542,
+      "sha256": "6a78777955ad177136df8a98333c86ec0933415f2425b879413fb31e4744344c"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/c130/raw/case_manifest.json",
+      "bytes": 32173,
+      "sha256": "fd0279f08f86cef6edb99f510156b0ae3d01af0836557e6558fc1ea1926a4d54"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/c130/raw/summary.json",
+      "bytes": 15384,
+      "sha256": "41eb9430e9a1f8bb0ec712993beb78b2201cf015a3856b0cbb690793bf59ba14"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/c131/benchmark_manifest.json",
+      "bytes": 34542,
+      "sha256": "e5ea1bcf2c699064d79d1bf8c695a0bc769d1ef23eb156071cf3755c2f2a8c3b"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/c131/raw/case_manifest.json",
+      "bytes": 32173,
+      "sha256": "c2648b218725ffa7113d2510e00772006ce36c9296920d888422f0f0cce93969"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/c131/raw/summary.json",
+      "bytes": 15436,
+      "sha256": "c8aa35b5ff1347e5681c00e64bb1b4bd4769b2c1ad5efb5f0e97e6db8460c207"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/c132/benchmark_manifest.json",
+      "bytes": 34542,
+      "sha256": "d194fb5a9621b5173313b66b0915ddb016ac2107e0da009df7650237f4d05ede"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/c132/raw/case_manifest.json",
+      "bytes": 32173,
+      "sha256": "35c1b68e1639d96dfd97db0a411c4eeeb39a6bb7b632727515c288fd69e47157"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/b/c132/raw/summary.json",
+      "bytes": 15435,
+      "sha256": "c326f244986b6690030600e56d4e69a60384733c025872855f9218068e40e55e"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/benchmark_summary.csv",
+      "bytes": 4063,
+      "sha256": "ef8e33b9afbddbef67d3bf6c42b5fe806bcb175dcc3ff705f9315b1ceabcea6d"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/c/a128/raw/case_manifest.json",
+      "bytes": 31837,
+      "sha256": "b2be9c1b8f9f80cd13bdf3cd0423731c20ea2a15e20a92d4ac877a2b93a2f451"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/c/a128/raw/summary.json",
+      "bytes": 12280,
+      "sha256": "b7531a9af7ff8b6f6118cc36d1344e8e17443ebc2d9e822e581cd30b3293efba"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/c/c128/raw/case_manifest.json",
+      "bytes": 31817,
+      "sha256": "22a7f412e89b586334225eb203a1981557b7212ba6a0362a9681199dd006faf0"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/c/c128/raw/summary.json",
+      "bytes": 14015,
+      "sha256": "7f9ed24d68a01e3d628b44eaf6f99d36988d6d0353edad3836e14b59131b1f58"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/diagnostic_plan.json",
+      "bytes": 11739,
+      "sha256": "ed648ee4f54ebf14e14b98d6fcecce224590727139db83f0f4d23161ddfc7a09"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/nonperturbation.json",
+      "bytes": 7529,
+      "sha256": "f86a3ca8a0a6b3bd3ea838ed2553e94b57aa2e103c8253183f9d65bc84cef2e7"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/source_snapshot.json",
+      "bytes": 26547,
+      "sha256": "9bf7f657c08826ab1b502c7ef919b1dbca95dfa815636e69b4b088d82d4a64c7"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/tests/test_results.csv",
+      "bytes": 38334,
+      "sha256": "bce60990673e9c7f54a7f9a9efb50fba5e452385b88a8c5bd5aaa90b7b808a87"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/validation.log",
+      "bytes": 5155,
+      "sha256": "be6fc89dce86ad5707f35b1133cf5ae080497bc0ba3db080d2e98e9be56dd37a"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected/validation_metadata.json",
+      "bytes": 188937,
+      "sha256": "815eaf4864c7db275131aac05bf9a121c629ee368ede115841604a8b5e444b1d"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/selected-files.json",
+      "bytes": 9671,
+      "sha256": "b8d0aacd71992acf33f471fbfcfaeaf9f9ad02f88789111a2c94815d6138c6e8"
+    },
+    {
+      "path": "tranche-8-r2025a-accepted/tranche8_evidence.zip",
+      "bytes": 17925128,
+      "sha256": "bfc4f7f05f0800316b371df3ec316f309f14e3482ef259c3f9c7bd7eea025d77"
+    }
+  ],
+  "acceptance_update_verification": {
+    "frozen_source_files": 189,
+    "unchanged_source_files": 188,
+    "intentionally_updated_metadata": [
+      "evidence/source-baseline.json"
+    ],
+    "matlab_source_files_unchanged": 108,
+    "preserved_evidence_artifacts": 93,
+    "selected_owner_files_byte_exact": 41,
+    "independent_disposition_review_passed": true,
+    "matlab_rerun_required": false
+  }
+}

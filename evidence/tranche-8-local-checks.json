@@ -1,0 +1,98 @@
+{
+  "schema": "csr-matlab-tranche-8-local-checks-v1",
+  "completed_utc": "2026-09-10T16:53:55.396932+00:00",
+  "branch": "agent/tranche-8-link-diagnostics",
+  "matlab_base_commit": "68e18181d90b27e5cfaa11f4537595c2e6640809",
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "matlab_executed": false,
+  "octave_executed": false,
+  "tranche_8_accepted": false,
+  "numerical_parity_established": false,
+  "python": {
+    "version": "3.12.14",
+    "command": "python3 -m unittest discover -s scripts/tests -v",
+    "tests": 200,
+    "passed": 200,
+    "failed": 0,
+    "duration_seconds": 5.116,
+    "log": "tranche-8-local-checks/python-tests.log"
+  },
+  "matlab_static": {
+    "tool": "MISS_HIT 0.9.44",
+    "language_target": "MATLAB 2022a",
+    "files": 108,
+    "passed": true,
+    "log": "tranche-8-local-checks/matlab-static-lint.log",
+    "execution_equivalence": false
+  },
+  "prepared_portable_test_methods": 485,
+  "new_portable_test_methods": 18,
+  "source_snapshot_files": 189,
+  "source_snapshot": "tranche-8-local-checks/source-snapshot.json",
+  "protected_baseline": "tranche-8-local-checks/protected-baseline.json",
+  "reference_preflight": "tranche-8-local-checks/reference-preflight.json",
+  "path_budget": "tranche-8-local-checks/path-budget.json",
+  "independent_review": "../docs/tranche-8-review.md",
+  "artifacts": [
+    {
+      "path": "tranche-8-local-checks/diff-check.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tranche-8-local-checks/matlab-static-lint.log",
+      "bytes": 67,
+      "sha256": "b7c3c717e966ccc03edda0006cce2da865994af3dbc57c367148b0b0581f1584"
+    },
+    {
+      "path": "tranche-8-local-checks/path-budget.json",
+      "bytes": 882,
+      "sha256": "64eee007d5551f3a4829ef416dfaebde86c2c84968462709858c06bbd980e4a1"
+    },
+    {
+      "path": "tranche-8-local-checks/prepared-test-membership.json",
+      "bytes": 33568,
+      "sha256": "537dda7cd56ec0eb9e234b2c51dc44523c03cd73658718bb2b22616db979c3ba"
+    },
+    {
+      "path": "tranche-8-local-checks/protected-baseline.json",
+      "bytes": 4358,
+      "sha256": "3881cbdd60b13c8459091da736f1241dd97e95a14a5312b6d837e634c3bc5183"
+    },
+    {
+      "path": "tranche-8-local-checks/python-tests.log",
+      "bytes": 31894,
+      "sha256": "d4600a2f5a58d8b3cfc4c50f9230f8c7e2dc2180d6fb0c7de147c302cff85050"
+    },
+    {
+      "path": "tranche-8-local-checks/reference-preflight.json",
+      "bytes": 529,
+      "sha256": "f498fd0a17aad396c9ee5a6aef9017294a361148df74fb7078f9fb90fe03668c"
+    },
+    {
+      "path": "tranche-8-local-checks/source-snapshot.json",
+      "bytes": 26547,
+      "sha256": "2676981ace2b1f9dfcaedc0c53f364683e1b5e2fe26afd1a95d80c3572d07550"
+    }
+  ],
+  "remaining_gate": "Owner MATLAB execution of this candidate; returned source/reference/test/control/anchor verification and paired seed review.",
+  "git_diff_check": {
+    "staged": true,
+    "passed": true,
+    "log": "tranche-8-local-checks/diff-check.log",
+    "crlf_allowed": true,
+    "excluded_paths": [
+      "evidence/tranche-8-ns3-reference/observational-overlay.patch"
+    ],
+    "exclusion_reason": "Seven single-space blank context lines are required unified-diff syntax in immutable hash-bound reference evidence. Source files pass the whitespace check.",
+    "preserved_patch_context_lines": [
+      31,
+      52,
+      55,
+      59,
+      68,
+      87,
+      94
+    ]
+  }
+}

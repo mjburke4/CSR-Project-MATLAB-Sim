@@ -1,0 +1,439 @@
+{
+  "schema": "csr-tranche12-independent-owner-residual-v1",
+  "owner_zip_sha256": "266a47c167e9b2d50d47abcd77a349b8f474334c9e9742d7abc8cca22547633d",
+  "candidate_sha256": "ebf493fc8d34dc7c7819f14e266bf19b99f0f94441a79da38a801cd7f52292c4",
+  "native_manifest_sha256": "1e2cedbd73d5a377d99d373d8a1c77d466b4b96bc7861e919c972e0397633206",
+  "owner_table_sha256": {
+    "events.csv": "80c2a3f437b859f396c8b7f9ce4a98e58d97373044546280c761cd035aac9f92",
+    "draws.csv": "2ec7ec1a9208636d770a8c972f75988f98e232617c2473e0f07391275d23972c",
+    "usage.csv": "d1eaf36a127409d67599f1b9d1aef62788e8ec2e9909f3d9ef0b25d4e4b5c3ea"
+  },
+  "native_table_sha256": {
+    "events.csv": "7e16fa6b7b48c5b2ba967eff9af3a2367d7064695e962e98a8778e45958dd955",
+    "draws.csv": "dfdb23a61d83caffe42c5798506f432c687422d3e726e1f94ccff5a229546408",
+    "usage.csv": "d1eaf36a127409d67599f1b9d1aef62788e8ec2e9909f3d9ef0b25d4e4b5c3ea"
+  },
+  "analysis_script_sha256": "648ec6ef6c40c071a7fa5318462176c024e800474b32669adf0d2a68946fed83",
+  "comparison_method": "Exact ordinal row pairing after equal row count and column schema checks; no time adjustment, tolerance, state normalization, or outcome fitting.",
+  "comparisons": {
+    "events.csv": {
+      "rows": 2344,
+      "different_rows": 1566,
+      "field_difference_counts": {
+        "time_ns": 1566,
+        "resend_queue": 5,
+        "dack_holds": 5
+      },
+      "per_case_field_difference_counts": {
+        "relay": {
+          "time_ns": 366
+        },
+        "local": {
+          "time_ns": 235
+        },
+        "mix": {
+          "time_ns": 496,
+          "resend_queue": 4,
+          "dack_holds": 4
+        },
+        "sw": {
+          "time_ns": 469,
+          "resend_queue": 1,
+          "dack_holds": 1
+        }
+      },
+      "time_deltas_matlab_minus_native_ns": {
+        "-28": 1566,
+        "0": 778
+      },
+      "first_difference_by_field": {
+        "time_ns": {
+          "table_row": 37,
+          "case": "relay",
+          "event": "tx_start",
+          "case_order": "37",
+          "difference": {
+            "matlab": "351000000",
+            "native": "351000028"
+          }
+        },
+        "resend_queue": {
+          "table_row": 1379,
+          "case": "mix",
+          "event": "release",
+          "case_order": "480",
+          "difference": {
+            "matlab": "4",
+            "native": "5"
+          }
+        },
+        "dack_holds": {
+          "table_row": 1379,
+          "case": "mix",
+          "event": "release",
+          "case_order": "480",
+          "difference": {
+            "matlab": "1",
+            "native": "0"
+          }
+        }
+      },
+      "non_time_differences": [
+        {
+          "table_row": 1379,
+          "case": "mix",
+          "event": "release",
+          "case_order": "480",
+          "time_ns_matlab": "1801601000",
+          "fields": {
+            "time_ns": {
+              "matlab": "1801601000",
+              "native": "1801601028"
+            },
+            "resend_queue": {
+              "matlab": "4",
+              "native": "5"
+            },
+            "dack_holds": {
+              "matlab": "1",
+              "native": "0"
+            }
+          }
+        },
+        {
+          "table_row": 1380,
+          "case": "mix",
+          "event": "release",
+          "case_order": "481",
+          "time_ns_matlab": "1801601000",
+          "fields": {
+            "time_ns": {
+              "matlab": "1801601000",
+              "native": "1801601028"
+            },
+            "resend_queue": {
+              "matlab": "3",
+              "native": "4"
+            },
+            "dack_holds": {
+              "matlab": "2",
+              "native": "1"
+            }
+          }
+        },
+        {
+          "table_row": 1381,
+          "case": "mix",
+          "event": "release",
+          "case_order": "482",
+          "time_ns_matlab": "1801601000",
+          "fields": {
+            "time_ns": {
+              "matlab": "1801601000",
+              "native": "1801601028"
+            },
+            "resend_queue": {
+              "matlab": "2",
+              "native": "3"
+            },
+            "dack_holds": {
+              "matlab": "3",
+              "native": "2"
+            }
+          }
+        },
+        {
+          "table_row": 1429,
+          "case": "mix",
+          "event": "release",
+          "case_order": "530",
+          "time_ns_matlab": "1999481000",
+          "fields": {
+            "time_ns": {
+              "matlab": "1999481000",
+              "native": "1999481028"
+            },
+            "resend_queue": {
+              "matlab": "0",
+              "native": "1"
+            },
+            "dack_holds": {
+              "matlab": "4",
+              "native": "3"
+            }
+          }
+        },
+        {
+          "table_row": 2208,
+          "case": "sw",
+          "event": "release",
+          "case_order": "573",
+          "time_ns_matlab": "1920081000",
+          "fields": {
+            "time_ns": {
+              "matlab": "1920081000",
+              "native": "1920081028"
+            },
+            "resend_queue": {
+              "matlab": "4",
+              "native": "5"
+            },
+            "dack_holds": {
+              "matlab": "1",
+              "native": "0"
+            }
+          }
+        }
+      ]
+    },
+    "draws.csv": {
+      "rows": 332,
+      "different_rows": 332,
+      "field_difference_counts": {
+        "time_ns": 332
+      },
+      "per_case_field_difference_counts": {
+        "relay": {
+          "time_ns": 83
+        },
+        "local": {
+          "time_ns": 69
+        },
+        "mix": {
+          "time_ns": 96
+        },
+        "sw": {
+          "time_ns": 84
+        }
+      },
+      "time_deltas_matlab_minus_native_ns": {
+        "-28": 332
+      },
+      "first_difference_by_field": {
+        "time_ns": {
+          "table_row": 1,
+          "case": "relay",
+          "event": null,
+          "case_order": null,
+          "difference": {
+            "matlab": "13000000",
+            "native": "13000028"
+          }
+        }
+      },
+      "non_time_differences": []
+    },
+    "usage.csv": {
+      "rows": 12,
+      "different_rows": 0,
+      "field_difference_counts": {},
+      "per_case_field_difference_counts": {
+        "relay": {},
+        "local": {},
+        "mix": {},
+        "sw": {}
+      },
+      "time_deltas_matlab_minus_native_ns": {},
+      "first_difference_by_field": {},
+      "non_time_differences": []
+    }
+  },
+  "event_counts": {
+    "offer": 377,
+    "admit": 120,
+    "blocked": 257,
+    "tx_start": 422,
+    "ingress_before": 422,
+    "ingress_after": 422,
+    "release": 180,
+    "deliver": 120,
+    "checkpoint": 12,
+    "final": 12
+  },
+  "matlab_flows": [
+    {
+      "case": "relay",
+      "source": 4,
+      "delivered": 20,
+      "mean_delay_ns": 1605560000.0,
+      "max_delay_ns": 2079982000,
+      "last_delivery_ns": 2556462000
+    },
+    {
+      "case": "local",
+      "source": 5,
+      "delivered": 20,
+      "mean_delay_ns": 1436699000.0,
+      "max_delay_ns": 1964021000,
+      "last_delivery_ns": 2453501000
+    },
+    {
+      "case": "mix",
+      "source": 5,
+      "delivered": 20,
+      "mean_delay_ns": 1308375000.0,
+      "max_delay_ns": 1719481000,
+      "last_delivery_ns": 2427001000
+    },
+    {
+      "case": "mix",
+      "source": 4,
+      "delivered": 20,
+      "mean_delay_ns": 2104876000.0,
+      "max_delay_ns": 2334021000,
+      "last_delivery_ns": 2634021000
+    },
+    {
+      "case": "sw",
+      "source": 5,
+      "delivered": 20,
+      "mean_delay_ns": 1131864000.0,
+      "max_delay_ns": 1433481000,
+      "last_delivery_ns": 2063001000
+    },
+    {
+      "case": "sw",
+      "source": 4,
+      "delivered": 20,
+      "mean_delay_ns": 1720479000.0,
+      "max_delay_ns": 1923001000,
+      "last_delivery_ns": 2142481000
+    }
+  ],
+  "native_flows": [
+    {
+      "case": "relay",
+      "source": 4,
+      "delivered": 20,
+      "mean_delay_ns": 1605560028.0,
+      "max_delay_ns": 2079982028,
+      "last_delivery_ns": 2556462028
+    },
+    {
+      "case": "local",
+      "source": 5,
+      "delivered": 20,
+      "mean_delay_ns": 1436699028.0,
+      "max_delay_ns": 1964021028,
+      "last_delivery_ns": 2453501028
+    },
+    {
+      "case": "mix",
+      "source": 5,
+      "delivered": 20,
+      "mean_delay_ns": 1308375028.0,
+      "max_delay_ns": 1719481028,
+      "last_delivery_ns": 2427001028
+    },
+    {
+      "case": "mix",
+      "source": 4,
+      "delivered": 20,
+      "mean_delay_ns": 2104876028.0,
+      "max_delay_ns": 2334021028,
+      "last_delivery_ns": 2634021028
+    },
+    {
+      "case": "sw",
+      "source": 5,
+      "delivered": 20,
+      "mean_delay_ns": 1131864028.0,
+      "max_delay_ns": 1433481028,
+      "last_delivery_ns": 2063001028
+    },
+    {
+      "case": "sw",
+      "source": 4,
+      "delivered": 20,
+      "mean_delay_ns": 1720479028.0,
+      "max_delay_ns": 1923001028,
+      "last_delivery_ns": 2142481028
+    }
+  ],
+  "service": {
+    "admitted": 120,
+    "delivered_unique": 120,
+    "release_callbacks": 180,
+    "drops_from_owner_summary": 0,
+    "all_event_identity_order_and_ack_dack_bitmaps_exact": true,
+    "all_422_post_ingress_non_time_states_exact": true,
+    "fixed_transmit_rate_power_pairs": [
+      [
+        128,
+        33
+      ]
+    ],
+    "rate_power_scope": "128 rate key and +33 dBm are prescribed fixed settings; this does not validate adaptive rate/power decisions.",
+    "all_raw_draw_values_ranges_resolved_slots_purposes_ordinal_node_case_exact": true,
+    "usage_rows_exact": 12,
+    "all_checkpoint_and_final_rows_exact": 24,
+    "dack_holds_at_16s": {
+      "relay": 0,
+      "local": 0,
+      "mix": 4,
+      "sw": 1
+    },
+    "dack_holds_at_24s": {
+      "relay": 0,
+      "local": 0,
+      "mix": 0,
+      "sw": 0
+    },
+    "dack_expiry_observability": "Owner relay CSV does not emit DACK-expiry rows. It proves 16-second and 24-second states, not exact expiration timestamps. The source schedules 20-second holds plus TIC; precise owner expiration times would need added observation."
+  },
+  "source_bindings": [
+    {
+      "path": "t12n/build/overlay/ns3/csr-common.h",
+      "sha256": "f1e0a962862ef1cc5a6994f24988858a2bea70385ce02b1264285de194fe6ae1",
+      "finding": "CsrOpnetTic: Seconds(1/36e6), quantized to 28 ns at native nanosecond resolution"
+    },
+    {
+      "path": "t12n/build/overlay/ns3/csr-nwk-layer.h",
+      "sha256": "bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc",
+      "finding": "ScheduleCheckNwkQueue: schedules CheckNwkQueue after CsrOpnetTic"
+    },
+    {
+      "path": "csr12r/+csr/+nwk/Layer.m",
+      "sha256": "7ef09931c83c55697ce96b400ee1d90459a44af4c0527b396829d62ab9125300",
+      "finding": "wake: schedules pump at Scheduler.Now"
+    },
+    {
+      "path": "t12n/build/overlay/ns3/csr-hop-layer.h",
+      "sha256": "4c50ef9ec03ce30264b658b1674bf58c0ae22c52a8715f7b0e246f91cea47ba1",
+      "finding": "HandleDack: NotifyNsdpFromEntry precedes m_dackList insertion and resend removal"
+    },
+    {
+      "path": "csr12r/+csr/+hop/Layer.m",
+      "sha256": "a56cd54fcd8bd863958b1addfc861f16f434ab79e4993fb182936a8b2b454f67",
+      "finding": "complete DACK branch: hold insertion and removeResend precede releaseNsdp"
+    },
+    {
+      "path": "csr12r/scripts/ns3/tranche12_relay.cc",
+      "sha256": "1d24ed116848ca194d5e2c84af1b6bcf3a82a1d30536433e4ae29958e6a5b01d",
+      "finding": "Node::Release decrements actual NWK NSDP then observes Event(release)"
+    },
+    {
+      "path": "csr12r/+csr/+validation/relayContract.m",
+      "sha256": "b33136349b7ae851927a802461551a5b8fcecb1456a4b42d2467fe0d978aee1e",
+      "finding": "release calls real releaseFromHop then observes release"
+    }
+  ],
+  "interpretation": {
+    "timing": "All differences in relay time are exactly MATLAB earlier by 28 ns. Native first NWK queue wake waits one legacy TIC; MATLAB wake schedules now. Source and measured first-draw offset support the interpretation that this seeds the persistent service-clock epoch offset. No counterfactual runtime change was executed to prove sole causality.",
+    "dack": "Five release-callback snapshots differ because DACK resend-to-hold migration is before the callback in MATLAB and after it in native. MATLAB has one fewer resend and one more DACK hold at those snapshots. Real NWK custody and NSDP release agree, HOP total pending agrees, and states agree when ingress returns.",
+    "scope": "Controlled successful addressed transport, fixed routes and fixed radio settings. Does not establish campus RF, collisions, half-duplex, adaptive link control, route convergence, or stochastic population parity.",
+    "completion": "The observed repaired run supports focused structural/service milestone completion with explicit residuals. Strict trace equality remains false. These small observed differences do not alone justify changing the validated production baseline."
+  },
+  "recommended_next_milestone": {
+    "title": "Bounded relay DATA/ACK-loss and capacity recovery",
+    "design": [
+      "Retain 4 -> 5 -> 1 and matched draw tapes as control.",
+      "Selectively lose one DATA frame, one ACK, then a short burst at known semantic boundaries.",
+      "Keep local and relayed offers active across resend and DACK hold expiry to prove capacity becomes reusable under demand.",
+      "Observe custody conservation, duplicates, retries, NSDP release, DACK migration, expiry and terminal drops with exact before/after boundaries.",
+      "Add closely spaced same-time/one-TIC offers around release as a sensitivity case before any timing repair.",
+      "Defer the long campus run until the bounded loss cases establish the release/retry chain."
+    ],
+    "no_production_change_in_this_review": true
+  }
+}

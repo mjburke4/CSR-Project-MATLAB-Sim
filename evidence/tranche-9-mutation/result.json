@@ -1,0 +1,122 @@
+{
+  "schema": "csr-tranche9-cancellation-mutation-check-v1",
+  "pinned_source_changed": false,
+  "matlab_executed": false,
+  "mutation": "Add accepted T8 queue-empty PREP_TX reset to both ns3 cancellation methods in scratch overlay only",
+  "compile_exit": 0,
+  "run_exit": 1,
+  "rows": 101,
+  "failed_checkpoints": [
+    {
+      "case": "mac_cancel_then_ack",
+      "checkpoint": "canceled",
+      "time_seconds": "0.315",
+      "field": "preparation",
+      "actual": "0",
+      "expected": "1",
+      "pass": "0"
+    },
+    {
+      "case": "mac_cancel_then_ack",
+      "checkpoint": "new_ack",
+      "time_seconds": "0.32",
+      "field": "preparation",
+      "actual": "0",
+      "expected": "1",
+      "pass": "0"
+    },
+    {
+      "case": "mac_cancel_then_ack",
+      "checkpoint": "after_tx",
+      "time_seconds": "0.325001",
+      "field": "transmissions",
+      "actual": "0",
+      "expected": "1",
+      "pass": "0"
+    },
+    {
+      "case": "mac_cancel_then_ack",
+      "checkpoint": "after_tx",
+      "time_seconds": "0.325001",
+      "field": "advertised_slot",
+      "actual": "-1",
+      "expected": "1",
+      "pass": "0"
+    },
+    {
+      "case": "mac_cancel_then_ack",
+      "checkpoint": "after_tx",
+      "time_seconds": "0.325001",
+      "field": "rate_key_kbps",
+      "actual": "0",
+      "expected": "128",
+      "pass": "0"
+    },
+    {
+      "case": "mac_cancel_then_ack",
+      "checkpoint": "after_tx",
+      "time_seconds": "0.325001",
+      "field": "power_dbm",
+      "actual": "0",
+      "expected": "33",
+      "pass": "0"
+    },
+    {
+      "case": "mac_control_cancel_then_ack",
+      "checkpoint": "canceled",
+      "time_seconds": "0.315",
+      "field": "preparation",
+      "actual": "0",
+      "expected": "1",
+      "pass": "0"
+    },
+    {
+      "case": "mac_control_cancel_then_ack",
+      "checkpoint": "new_ack",
+      "time_seconds": "0.32",
+      "field": "preparation",
+      "actual": "0",
+      "expected": "1",
+      "pass": "0"
+    },
+    {
+      "case": "mac_control_cancel_then_ack",
+      "checkpoint": "after_tx",
+      "time_seconds": "0.325001",
+      "field": "transmissions",
+      "actual": "0",
+      "expected": "1",
+      "pass": "0"
+    },
+    {
+      "case": "mac_control_cancel_then_ack",
+      "checkpoint": "after_tx",
+      "time_seconds": "0.325001",
+      "field": "advertised_slot",
+      "actual": "-1",
+      "expected": "1",
+      "pass": "0"
+    },
+    {
+      "case": "mac_control_cancel_then_ack",
+      "checkpoint": "after_tx",
+      "time_seconds": "0.325001",
+      "field": "rate_key_kbps",
+      "actual": "0",
+      "expected": "128",
+      "pass": "0"
+    },
+    {
+      "case": "mac_control_cancel_then_ack",
+      "checkpoint": "after_tx",
+      "time_seconds": "0.325001",
+      "field": "power_dbm",
+      "actual": "0",
+      "expected": "33",
+      "pass": "0"
+    }
+  ],
+  "source_header_sha256": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+  "mutated_header_sha256": "f2bcb6575b0e9c3a62752a2cd04a22f64354aa06ca8b270fb701173b5b2592e4",
+  "contract_source_sha256": "83b8477859d176823b150329a1bacbf6f321f0eda533b69b159962f5e18c2068"
+}

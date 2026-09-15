@@ -1,0 +1,1460 @@
+{
+  "schema": "csr-matlab-research-sweep-analysis-v1",
+  "status": "descriptive_summary_completed",
+  "evidence_integrity_verified": true,
+  "validation_metadata_sha256": "e38d68f02be365072fbc4c504e7664088d902f3b7b5824cb2bd6c5a35487fe82",
+  "source_files_stable": true,
+  "source_file_count": 127,
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "case_count": 18,
+  "seeds": [
+    128,
+    129,
+    130
+  ],
+  "tests": {
+    "status": "passed",
+    "requested": true,
+    "executed": true,
+    "TestCount": 380,
+    "PassedTests": 380,
+    "FailedTests": 0,
+    "IncompleteTests": 0
+  },
+  "native_status": "not_run",
+  "groups": [
+    {
+      "Experiment": "offered_load",
+      "Parameter": "LoadMultiplier",
+      "Value": 1.0,
+      "Seeds": [
+        128,
+        129,
+        130
+      ],
+      "metrics": {
+        "DeliveryRatio": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 1.0,
+          "SampleStd": 0.0,
+          "Min": 1.0,
+          "Max": 1.0
+        },
+        "LatencyP95Seconds": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 2.78882600000105,
+          "SampleStd": 0.11056370712554474,
+          "Min": 2.68049266666767,
+          "Max": 2.90149266666776
+        },
+        "MaxLatencySeconds": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 2.78882600000105,
+          "SampleStd": 0.11056370712554474,
+          "Min": 2.68049266666767,
+          "Max": 2.90149266666776
+        },
+        "Generated": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 16,
+          "SampleStd": 0.0,
+          "Min": 16,
+          "Max": 16
+        },
+        "Received": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 16,
+          "SampleStd": 0.0,
+          "Min": 16,
+          "Max": 16
+        },
+        "Dropped": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "Pending": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "PhysicalTransmissions": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 243.66666666666666,
+          "SampleStd": 25.967928938083094,
+          "Min": 221,
+          "Max": 272
+        },
+        "HopDataRetransmissions": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 7,
+          "SampleStd": 1.0,
+          "Min": 6,
+          "Max": 8
+        },
+        "HopControlRetransmissions": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 3.6666666666666665,
+          "SampleStd": 3.0550504633038935,
+          "Min": 1,
+          "Max": 7
+        },
+        "ControlFailures": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0.3333333333333333,
+          "SampleStd": 0.5773502691896257,
+          "Min": 0,
+          "Max": 1
+        },
+        "HopControlFailures": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0.3333333333333333,
+          "SampleStd": 0.5773502691896257,
+          "Min": 0,
+          "Max": 1
+        },
+        "NeighborDeactivations": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "RouteChanges": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 14.333333333333334,
+          "SampleStd": 0.5773502691896257,
+          "Min": 14,
+          "Max": 15
+        },
+        "ControlPending": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "ControlPendingTargets": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "NwkPendingControlMessages": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "HopPendingData": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "NwkPendingCustody": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "ResendQueueDepth": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "DackHoldCount": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "PhysicalPending": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "DataDrained": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 1,
+          "SampleStd": 0.0,
+          "Min": 1,
+          "Max": 1
+        },
+        "ControlsDrained": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 1,
+          "SampleStd": 0.0,
+          "Min": 1,
+          "Max": 1
+        },
+        "OwnershipDrained": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 1,
+          "SampleStd": 0.0,
+          "Min": 1,
+          "Max": 1
+        }
+      }
+    },
+    {
+      "Experiment": "offered_load",
+      "Parameter": "LoadMultiplier",
+      "Value": 2.0,
+      "Seeds": [
+        128,
+        129,
+        130
+      ],
+      "metrics": {
+        "DeliveryRatio": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 1.0,
+          "SampleStd": 0.0,
+          "Min": 1.0,
+          "Max": 1.0
+        },
+        "LatencyP95Seconds": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 2.6071593333032768,
+          "SampleStd": 0.09377810688933445,
+          "Min": 2.50149266665733,
+          "Max": 2.68049266666767
+        },
+        "MaxLatencySeconds": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 3.43715933331897,
+          "SampleStd": 1.0307882097105616,
+          "Min": 2.78449266666772,
+          "Max": 4.62549266662143
+        },
+        "Generated": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 30,
+          "SampleStd": 0.0,
+          "Min": 30,
+          "Max": 30
+        },
+        "Received": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 30,
+          "SampleStd": 0.0,
+          "Min": 30,
+          "Max": 30
+        },
+        "Dropped": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "Pending": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "PhysicalTransmissions": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 321.3333333333333,
+          "SampleStd": 25.92939130279254,
+          "Min": 303,
+          "Max": 351
+        },
+        "HopDataRetransmissions": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 13,
+          "SampleStd": 1.0,
+          "Min": 12,
+          "Max": 14
+        },
+        "HopControlRetransmissions": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 3.6666666666666665,
+          "SampleStd": 3.0550504633038935,
+          "Min": 1,
+          "Max": 7
+        },
+        "ControlFailures": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0.3333333333333333,
+          "SampleStd": 0.5773502691896257,
+          "Min": 0,
+          "Max": 1
+        },
+        "HopControlFailures": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0.3333333333333333,
+          "SampleStd": 0.5773502691896257,
+          "Min": 0,
+          "Max": 1
+        },
+        "NeighborDeactivations": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "RouteChanges": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 14.333333333333334,
+          "SampleStd": 0.5773502691896257,
+          "Min": 14,
+          "Max": 15
+        },
+        "ControlPending": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "ControlPendingTargets": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "NwkPendingControlMessages": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "HopPendingData": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "NwkPendingCustody": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "ResendQueueDepth": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "DackHoldCount": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "PhysicalPending": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "DataDrained": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 1,
+          "SampleStd": 0.0,
+          "Min": 1,
+          "Max": 1
+        },
+        "ControlsDrained": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 1,
+          "SampleStd": 0.0,
+          "Min": 1,
+          "Max": 1
+        },
+        "OwnershipDrained": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 1,
+          "SampleStd": 0.0,
+          "Min": 1,
+          "Max": 1
+        }
+      }
+    },
+    {
+      "Experiment": "offered_load",
+      "Parameter": "LoadMultiplier",
+      "Value": 4.0,
+      "Seeds": [
+        128,
+        129,
+        130
+      ],
+      "metrics": {
+        "DeliveryRatio": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0.982758620689655,
+          "SampleStd": 0.017241379310344973,
+          "Min": 0.96551724137931,
+          "Max": 1.0
+        },
+        "LatencyP95Seconds": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 3.97984599999486,
+          "SampleStd": 1.1919615486005621,
+          "Min": 2.60451266665729,
+          "Max": 4.71351266666557
+        },
+        "MaxLatencySeconds": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 4.8475059999703936,
+          "SampleStd": 0.11638436380967564,
+          "Min": 4.77151266663736,
+          "Max": 4.9814926666686
+        },
+        "Generated": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 58,
+          "SampleStd": 0.0,
+          "Min": 58,
+          "Max": 58
+        },
+        "Received": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 57,
+          "SampleStd": 1.0,
+          "Min": 56,
+          "Max": 58
+        },
+        "Dropped": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 1,
+          "SampleStd": 1.0,
+          "Min": 0,
+          "Max": 2
+        },
+        "Pending": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "PhysicalTransmissions": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 373.6666666666667,
+          "SampleStd": 23.544284515213736,
+          "Min": 351,
+          "Max": 398
+        },
+        "HopDataRetransmissions": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 30,
+          "SampleStd": 2.6457513110645907,
+          "Min": 27,
+          "Max": 32
+        },
+        "HopControlRetransmissions": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 3.6666666666666665,
+          "SampleStd": 3.0550504633038935,
+          "Min": 1,
+          "Max": 7
+        },
+        "ControlFailures": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0.3333333333333333,
+          "SampleStd": 0.5773502691896257,
+          "Min": 0,
+          "Max": 1
+        },
+        "HopControlFailures": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0.3333333333333333,
+          "SampleStd": 0.5773502691896257,
+          "Min": 0,
+          "Max": 1
+        },
+        "NeighborDeactivations": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "RouteChanges": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 14.333333333333334,
+          "SampleStd": 0.5773502691896257,
+          "Min": 14,
+          "Max": 15
+        },
+        "ControlPending": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "ControlPendingTargets": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "NwkPendingControlMessages": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "HopPendingData": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "NwkPendingCustody": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "ResendQueueDepth": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "DackHoldCount": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "PhysicalPending": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "DataDrained": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 1,
+          "SampleStd": 0.0,
+          "Min": 1,
+          "Max": 1
+        },
+        "ControlsDrained": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 1,
+          "SampleStd": 0.0,
+          "Min": 1,
+          "Max": 1
+        },
+        "OwnershipDrained": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 1,
+          "SampleStd": 0.0,
+          "Min": 1,
+          "Max": 1
+        }
+      }
+    },
+    {
+      "Experiment": "recovery_freshness",
+      "Parameter": "FreshnessTimeoutSeconds",
+      "Value": 60.0,
+      "Seeds": [
+        128,
+        129,
+        130
+      ],
+      "metrics": {
+        "DeliveryRatio": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0.8666666666666667,
+          "SampleStd": 0.11547005383792512,
+          "Min": 0.8,
+          "Max": 1.0
+        },
+        "LatencyP95Seconds": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 113.09649266669547,
+          "SampleStd": 22.469934570696964,
+          "Min": 97.8474126666874,
+          "Max": 138.9006126667
+        },
+        "MaxLatencySeconds": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 113.09649266669547,
+          "SampleStd": 22.469934570696964,
+          "Min": 97.8474126666874,
+          "Max": 138.9006126667
+        },
+        "Generated": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 5,
+          "SampleStd": 0.0,
+          "Min": 5,
+          "Max": 5
+        },
+        "Received": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 4.333333333333333,
+          "SampleStd": 0.5773502691896257,
+          "Min": 4,
+          "Max": 5
+        },
+        "Dropped": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0.6666666666666666,
+          "SampleStd": 0.5773502691896257,
+          "Min": 0,
+          "Max": 1
+        },
+        "Pending": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "PhysicalTransmissions": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 715,
+          "SampleStd": 6.244997998398398,
+          "Min": 710,
+          "Max": 722
+        },
+        "HopDataRetransmissions": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 4.333333333333333,
+          "SampleStd": 1.5275252316519468,
+          "Min": 3,
+          "Max": 6
+        },
+        "HopControlRetransmissions": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 50.333333333333336,
+          "SampleStd": 8.082903768654761,
+          "Min": 43,
+          "Max": 59
+        },
+        "ControlFailures": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 2.3333333333333335,
+          "SampleStd": 1.5275252316519468,
+          "Min": 1,
+          "Max": 4
+        },
+        "HopControlFailures": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 6.333333333333333,
+          "SampleStd": 5.131601439446884,
+          "Min": 2,
+          "Max": 12
+        },
+        "NeighborDeactivations": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 27.333333333333332,
+          "SampleStd": 0.5773502691896257,
+          "Min": 27,
+          "Max": 28
+        },
+        "RouteChanges": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 117.66666666666667,
+          "SampleStd": 5.686240703077327,
+          "Min": 113,
+          "Max": 124
+        },
+        "ControlPending": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "ControlPendingTargets": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "NwkPendingControlMessages": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "HopPendingData": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "NwkPendingCustody": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "ResendQueueDepth": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "DackHoldCount": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "PhysicalPending": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "DataDrained": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 1,
+          "SampleStd": 0.0,
+          "Min": 1,
+          "Max": 1
+        },
+        "ControlsDrained": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 1,
+          "SampleStd": 0.0,
+          "Min": 1,
+          "Max": 1
+        },
+        "OwnershipDrained": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 1,
+          "SampleStd": 0.0,
+          "Min": 1,
+          "Max": 1
+        }
+      }
+    },
+    {
+      "Experiment": "recovery_freshness",
+      "Parameter": "FreshnessTimeoutSeconds",
+      "Value": 180.0,
+      "Seeds": [
+        128,
+        129,
+        130
+      ],
+      "metrics": {
+        "DeliveryRatio": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0.4,
+          "SampleStd": 0.0,
+          "Min": 0.4,
+          "Max": 0.4
+        },
+        "LatencyP95Seconds": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 29.5494526666969,
+          "SampleStd": 2.8492890742854735,
+          "Min": 26.3422126666885,
+          "Max": 31.7884126667028
+        },
+        "MaxLatencySeconds": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 29.5494526666969,
+          "SampleStd": 2.8492890742854735,
+          "Min": 26.3422126666885,
+          "Max": 31.7884126667028
+        },
+        "Generated": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 5,
+          "SampleStd": 0.0,
+          "Min": 5,
+          "Max": 5
+        },
+        "Received": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 2,
+          "SampleStd": 0.0,
+          "Min": 2,
+          "Max": 2
+        },
+        "Dropped": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 3,
+          "SampleStd": 0.0,
+          "Min": 3,
+          "Max": 3
+        },
+        "Pending": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "PhysicalTransmissions": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 441.6666666666667,
+          "SampleStd": 11.372481406154654,
+          "Min": 429,
+          "Max": 451
+        },
+        "HopDataRetransmissions": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 7.333333333333333,
+          "SampleStd": 1.5275252316519468,
+          "Min": 6,
+          "Max": 9
+        },
+        "HopControlRetransmissions": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 23.666666666666668,
+          "SampleStd": 2.0816659994661326,
+          "Min": 22,
+          "Max": 26
+        },
+        "ControlFailures": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "HopControlFailures": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 1,
+          "SampleStd": 0.0,
+          "Min": 1,
+          "Max": 1
+        },
+        "NeighborDeactivations": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 8.333333333333334,
+          "SampleStd": 0.5773502691896257,
+          "Min": 8,
+          "Max": 9
+        },
+        "RouteChanges": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 50.333333333333336,
+          "SampleStd": 1.5275252316519468,
+          "Min": 49,
+          "Max": 52
+        },
+        "ControlPending": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "ControlPendingTargets": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "NwkPendingControlMessages": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "HopPendingData": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "NwkPendingCustody": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "ResendQueueDepth": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "DackHoldCount": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "PhysicalPending": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "DataDrained": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 1,
+          "SampleStd": 0.0,
+          "Min": 1,
+          "Max": 1
+        },
+        "ControlsDrained": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 1,
+          "SampleStd": 0.0,
+          "Min": 1,
+          "Max": 1
+        },
+        "OwnershipDrained": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 1,
+          "SampleStd": 0.0,
+          "Min": 1,
+          "Max": 1
+        }
+      }
+    },
+    {
+      "Experiment": "recovery_freshness",
+      "Parameter": "FreshnessTimeoutSeconds",
+      "Value": 300.0,
+      "Seeds": [
+        128,
+        129,
+        130
+      ],
+      "metrics": {
+        "DeliveryRatio": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0.4,
+          "SampleStd": 0.0,
+          "Min": 0.4,
+          "Max": 0.4
+        },
+        "LatencyP95Seconds": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 2.9415393333371935,
+          "SampleStd": 0.07392112914019648,
+          "Min": 2.88087266667037,
+          "Max": 3.02387266667074
+        },
+        "MaxLatencySeconds": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 2.9415393333371935,
+          "SampleStd": 0.07392112914019648,
+          "Min": 2.88087266667037,
+          "Max": 3.02387266667074
+        },
+        "Generated": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 5,
+          "SampleStd": 0.0,
+          "Min": 5,
+          "Max": 5
+        },
+        "Received": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 2,
+          "SampleStd": 0.0,
+          "Min": 2,
+          "Max": 2
+        },
+        "Dropped": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 3,
+          "SampleStd": 0.0,
+          "Min": 3,
+          "Max": 3
+        },
+        "Pending": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "PhysicalTransmissions": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 329,
+          "SampleStd": 9.16515138991168,
+          "Min": 321,
+          "Max": 339
+        },
+        "HopDataRetransmissions": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 7,
+          "SampleStd": 0.0,
+          "Min": 7,
+          "Max": 7
+        },
+        "HopControlRetransmissions": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 7,
+          "SampleStd": 2.6457513110645907,
+          "Min": 5,
+          "Max": 10
+        },
+        "ControlFailures": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "HopControlFailures": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "NeighborDeactivations": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 2,
+          "SampleStd": 0.0,
+          "Min": 2,
+          "Max": 2
+        },
+        "RouteChanges": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 19.666666666666668,
+          "SampleStd": 0.5773502691896257,
+          "Min": 19,
+          "Max": 20
+        },
+        "ControlPending": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 1,
+          "SampleStd": 0.0,
+          "Min": 1,
+          "Max": 1
+        },
+        "ControlPendingTargets": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 1,
+          "SampleStd": 0.0,
+          "Min": 1,
+          "Max": 1
+        },
+        "NwkPendingControlMessages": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 3,
+          "SampleStd": 0.0,
+          "Min": 3,
+          "Max": 3
+        },
+        "HopPendingData": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "NwkPendingCustody": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "ResendQueueDepth": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 1,
+          "SampleStd": 0.0,
+          "Min": 1,
+          "Max": 1
+        },
+        "DackHoldCount": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "PhysicalPending": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "DataDrained": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "ControlsDrained": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        },
+        "OwnershipDrained": {
+          "SeedCount": 3,
+          "FiniteCount": 3,
+          "MissingCount": 0,
+          "Mean": 0,
+          "SampleStd": 0.0,
+          "Min": 0,
+          "Max": 0
+        }
+      }
+    }
+  ],
+  "matlab_acceptance_established": false,
+  "cross_simulator_equivalence_established": false,
+  "limitations": [
+    "Descriptive statistics across equally weighted seed observations; no confidence interval or equivalence claim.",
+    "A group latency mean is the mean of per-run latency metrics, not a pooled packet quantile.",
+    "Missing/nonfinite observations are null, excluded from finite statistics, and counted explicitly.",
+    "Sample standard deviation uses n-1 and is null for fewer than two finite observations.",
+    "Repeated seed identities do not guarantee paired random draws after event ordering changes.",
+    "Control draining covers exported HOP/NWK ownership; current MAC feedback queue depth is unavailable.",
+    "Hashes verify internal artifact consistency, not independent proof of runtime execution."
+  ]
+}

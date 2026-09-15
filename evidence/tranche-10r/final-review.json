@@ -1,0 +1,69 @@
+{
+  "schema": "csr-tranche10-mesh-repair-independent-review-v1",
+  "status": "ready-for-owner-matlab-diagnostic-execution",
+  "blocking_findings": [],
+  "scope": "Independent read-only source, API, arithmetic and regression-test review.",
+  "matlab_executed": false,
+  "octave_executed": false,
+  "full_acceptance_established": false,
+  "owner_failure_causal_link_confirmed": false,
+  "original_archive_commit": "87d0d69ed7f23496f711816bb0f048548366ac7c",
+  "original_archive_sha256": "18a72bd452c08e15f3c3eef65dfe899214a91940dc54b88ce5944918495522f7",
+  "reviewed_files": [
+    {
+      "path": "+csr/+nwk/Neighbors.m",
+      "sha256": "65cb269a9b7e3cade654aad4b262bc6d7ebdf103743fa2581d8694bc6e45aed7"
+    },
+    {
+      "path": "+csr/+sim/EventScheduler.m",
+      "sha256": "0e1887cf9d1195a20ab8e4a24c7ff182a2e72303abfec67d34a61eaa1fa9585e"
+    },
+    {
+      "path": "tests/TestNeighbors.m",
+      "sha256": "75fe7378590f9e8f8b133c8c6ee50d6f35b13010a3d1bc2835a11e8361736052"
+    },
+    {
+      "path": "tests/TestEventScheduler.m",
+      "sha256": "5276cace17dc168beda48029c37a4458f64af3c8c4dbce30b90b3d5922112223"
+    },
+    {
+      "path": "run_tranche10_mesh.m",
+      "sha256": "28f73894e999215861285438a7264482b24967aa9c267dd4198366fc9944df5c"
+    }
+  ],
+  "tests": {
+    "TestNeighbors": 25,
+    "TestEventScheduler": 7,
+    "focused_total": 32,
+    "new_neighbor_tests": 5,
+    "new_scheduler_tests": 1,
+    "executed_by_reviewer": false
+  },
+  "protected_sources": {
+    "+csr/+mac/": {
+      "files_checked": 2,
+      "changed_files": []
+    },
+    "+csr/+phy/": {
+      "files_checked": 7,
+      "changed_files": []
+    },
+    "+csr/+hop/": {
+      "files_checked": 3,
+      "changed_files": []
+    }
+  },
+  "verified_behavior_scope": [
+    "All three absolute admission deadlines matched to their scheduling expressions.",
+    "No radio, PHY/ECC, HOP or MAC changes.",
+    "EventScheduler failure diagnostic leaves pending work and clock behavior unchanged.",
+    "Original mesh seed128 duration900 MaxEvents2000000 retained.",
+    "Focused runner creates diagnostic-only evidence and attempts packaging before rethrowing failure."
+  ],
+  "handoff_notes": [
+    "Fresh MATLAB session advised to avoid already-loaded class definitions.",
+    "Owner must execute 32 focused tests and unchanged mesh; full Tranche10 gate remains separate.",
+    "No event-budget increase or numerical parity claim."
+  ],
+  "report": "final-review.md"
+}

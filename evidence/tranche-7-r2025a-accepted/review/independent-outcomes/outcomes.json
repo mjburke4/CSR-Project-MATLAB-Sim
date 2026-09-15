@@ -1,0 +1,596 @@
+{
+  "schema": "csr-tranche7-independent-outcomes-v1",
+  "uploaded_zip_sha256": "ea39b86ef68f91a551e4e22d176e2e96dc5305f33673741eee0adc6039599655",
+  "candidate_commit": "28ed878f5673e308047cbea7878b933697d932f3",
+  "scope": "Independent raw application identity/count/bucket reconstruction; retained outcome comparison; separately rerun strict shared application comparators. No local MATLAB execution.",
+  "cases": [
+    {
+      "case_id": "campus_multihop_6000",
+      "duration_s": 6000,
+      "bucket_width_s": 60,
+      "matlab_counts": {
+        "generated": 12382,
+        "received": 11727,
+        "dropped": 401,
+        "pending": 254
+      },
+      "ns3_counts": {
+        "admitted": 12417,
+        "delivered": 11769,
+        "unmatched_sends_not_classified_as_loss": 648
+      },
+      "matlab_flows": [
+        {
+          "source": 2,
+          "admitted": 506,
+          "delivered": 395,
+          "mean_packet_latency_s": 445.78536803392035,
+          "dropped": 68,
+          "pending": 43,
+          "admitted_relative_to_ns3_percent": -7.495429616087751,
+          "delivered_relative_to_ns3_percent": -3.658536585365854
+        },
+        {
+          "source": 3,
+          "admitted": 8608,
+          "delivered": 8593,
+          "mean_packet_latency_s": 10.189931590953798,
+          "dropped": 1,
+          "pending": 14,
+          "admitted_relative_to_ns3_percent": 0.6665887030756636,
+          "delivered_relative_to_ns3_percent": 0.6795547744581136
+        },
+        {
+          "source": 4,
+          "admitted": 566,
+          "delivered": 454,
+          "mean_packet_latency_s": 253.2403837608147,
+          "dropped": 80,
+          "pending": 32,
+          "admitted_relative_to_ns3_percent": 13.654618473895582,
+          "delivered_relative_to_ns3_percent": 8.353221957040573
+        },
+        {
+          "source": 5,
+          "admitted": 1309,
+          "delivered": 1285,
+          "mean_packet_latency_s": 68.33825387614925,
+          "dropped": 9,
+          "pending": 15,
+          "admitted_relative_to_ns3_percent": -6.299212598425197,
+          "delivered_relative_to_ns3_percent": -6.135865595325055
+        },
+        {
+          "source": 7,
+          "admitted": 832,
+          "delivered": 617,
+          "mean_packet_latency_s": 799.4138726612474,
+          "dropped": 126,
+          "pending": 89,
+          "admitted_relative_to_ns3_percent": 3.61145703611457,
+          "delivered_relative_to_ns3_percent": 7.491289198606272
+        },
+        {
+          "source": 8,
+          "admitted": 561,
+          "delivered": 383,
+          "mean_packet_latency_s": 677.5661322225724,
+          "dropped": 117,
+          "pending": 61,
+          "admitted_relative_to_ns3_percent": -9.66183574879227,
+          "delivered_relative_to_ns3_percent": -17.0995670995671
+        }
+      ],
+      "ns3_flows": [
+        {
+          "source": 2,
+          "admitted": 547,
+          "delivered": 410,
+          "mean_packet_latency_s": 456.845567183561,
+          "unmatched_sends_not_classified_as_loss": 137
+        },
+        {
+          "source": 3,
+          "admitted": 8551,
+          "delivered": 8535,
+          "mean_packet_latency_s": 10.44845909750381,
+          "unmatched_sends_not_classified_as_loss": 16
+        },
+        {
+          "source": 4,
+          "admitted": 498,
+          "delivered": 419,
+          "mean_packet_latency_s": 269.68891848456803,
+          "unmatched_sends_not_classified_as_loss": 79
+        },
+        {
+          "source": 5,
+          "admitted": 1397,
+          "delivered": 1369,
+          "mean_packet_latency_s": 67.30344765283712,
+          "unmatched_sends_not_classified_as_loss": 28
+        },
+        {
+          "source": 7,
+          "admitted": 803,
+          "delivered": 574,
+          "mean_packet_latency_s": 777.8483145703206,
+          "unmatched_sends_not_classified_as_loss": 229
+        },
+        {
+          "source": 8,
+          "admitted": 621,
+          "delivered": 462,
+          "mean_packet_latency_s": 645.3700600037489,
+          "unmatched_sends_not_classified_as_loss": 159
+        }
+      ],
+      "raw_aggregate_points_reconstructed": {
+        "matlab": 800,
+        "ns3": 800
+      },
+      "matlab_runtime_seconds": 4297.4518743,
+      "matlab_admission_attempts": 1710000,
+      "matlab_nsdp_blocked_attempts": 1697618,
+      "matlab_packet_weighted_mean_latency_s": 103.96344172132353,
+      "ns3_packet_weighted_mean_latency_s": 104.19477083093882,
+      "matlab_vs_ns3_series": {
+        "Generator.Traffic Sent (packets/sec)": {
+          "matlab_observed_bucket_mean": 2.0636666666666668,
+          "ns3_observed_bucket_mean": 2.0695,
+          "relative_difference_percent": -0.28187162760731366,
+          "maximum_absolute_bucket_difference": 0.5833333333333335,
+          "maximum_difference_bucket_end_s": 4020,
+          "maximum_bucket_signed_matlab_minus_ns3": 0.5833333333333335
+        },
+        "Generator.Traffic Sent (bits/sec)": {
+          "matlab_observed_bucket_mean": 3169.792,
+          "ns3_observed_bucket_mean": 3178.752,
+          "relative_difference_percent": -0.2818716276073137,
+          "maximum_absolute_bucket_difference": 896.0,
+          "maximum_difference_bucket_end_s": 4020,
+          "maximum_bucket_signed_matlab_minus_ns3": 896.0
+        },
+        "Generator.Packet Size (bits)": {
+          "matlab_observed_bucket_mean": 1536.0,
+          "ns3_observed_bucket_mean": 1536.0,
+          "relative_difference_percent": 0.0,
+          "maximum_absolute_bucket_difference": 0.0,
+          "maximum_difference_bucket_end_s": 360,
+          "maximum_bucket_signed_matlab_minus_ns3": 0.0
+        },
+        "Sink.Traffic Received (packets/sec)": {
+          "matlab_observed_bucket_mean": 1.9545,
+          "ns3_observed_bucket_mean": 1.9615,
+          "relative_difference_percent": -0.3568697425439774,
+          "maximum_absolute_bucket_difference": 0.3999999999999999,
+          "maximum_difference_bucket_end_s": 3540,
+          "maximum_bucket_signed_matlab_minus_ns3": 0.3999999999999999
+        },
+        "Sink.Traffic Received (packets)": {
+          "matlab_observed_bucket_mean": 117.27,
+          "ns3_observed_bucket_mean": 117.69,
+          "relative_difference_percent": -0.3568697425439729,
+          "maximum_absolute_bucket_difference": 24.0,
+          "maximum_difference_bucket_end_s": 3540,
+          "maximum_bucket_signed_matlab_minus_ns3": 24.0
+        },
+        "Sink.Traffic Received (bits/sec)": {
+          "matlab_observed_bucket_mean": 3002.112,
+          "ns3_observed_bucket_mean": 3012.864,
+          "relative_difference_percent": -0.35686974254396986,
+          "maximum_absolute_bucket_difference": 614.3999999999996,
+          "maximum_difference_bucket_end_s": 3540,
+          "maximum_bucket_signed_matlab_minus_ns3": 614.3999999999996
+        },
+        "Sink.Traffic Received (bits)": {
+          "matlab_observed_bucket_mean": 180126.72,
+          "ns3_observed_bucket_mean": 180771.84,
+          "relative_difference_percent": -0.35686974254396886,
+          "maximum_absolute_bucket_difference": 36864.0,
+          "maximum_difference_bucket_end_s": 3540,
+          "maximum_bucket_signed_matlab_minus_ns3": 36864.0
+        },
+        "Sink.End-to-End Delay (seconds)": {
+          "matlab_observed_bucket_mean": 102.94187968857777,
+          "ns3_observed_bucket_mean": 103.18100582955141,
+          "relative_difference_percent": -0.23175403171457756,
+          "maximum_absolute_bucket_difference": 140.46792412368225,
+          "maximum_difference_bucket_end_s": 1980,
+          "maximum_bucket_signed_matlab_minus_ns3": -140.46792412368225
+        }
+      },
+      "matlab_physical_drop_reasons": {
+        "closure": 170184,
+        "ecc": 3,
+        "half_duplex": 17924,
+        "not_acquired": 11806,
+        "receiver_state": 101,
+        "sync_threshold": 11380
+      },
+      "matlab_application_drop_reasons": {
+        "retry_exhausted": 401
+      },
+      "archived_opnet": {
+        "derived_sent_total_from_100_equal_width_rate_buckets": 12072.0,
+        "derived_received_total_from_100_equal_width_rate_buckets": 11410.0,
+        "received_total_from_95_observed_count_buckets": 11410.0,
+        "sent_mean_rate_packets_per_second": 2.012,
+        "received_mean_rate_packets_per_second": 1.9016666666666666,
+        "populated_bucket_mean_delay_s": 112.74800745492433,
+        "missing_bucket_counts": {
+          "Sink.End-to-End Delay (seconds)": 5,
+          "Sink.Traffic Received (packets)": 5,
+          "Sink.Traffic Received (bits)": 5,
+          "Generator.Packet Size (bits)": 5
+        },
+        "matlab_received_rate_relative_percent": 2.7782646801051687,
+        "matlab_populated_bucket_delay_relative_percent": -8.697384537165295
+      }
+    },
+    {
+      "case_id": "two_node_admission_1200",
+      "duration_s": 1200,
+      "bucket_width_s": 12,
+      "matlab_counts": {
+        "generated": 11395,
+        "received": 11385,
+        "dropped": 0,
+        "pending": 10
+      },
+      "ns3_counts": {
+        "admitted": 11380,
+        "delivered": 11364,
+        "unmatched_sends_not_classified_as_loss": 16
+      },
+      "matlab_flows": [
+        {
+          "source": 2,
+          "admitted": 11395,
+          "delivered": 11385,
+          "mean_packet_latency_s": 0.937722125800504,
+          "dropped": 0,
+          "pending": 10,
+          "admitted_relative_to_ns3_percent": 0.13181019332161686,
+          "delivered_relative_to_ns3_percent": 0.18479408658922913
+        }
+      ],
+      "ns3_flows": [
+        {
+          "source": 2,
+          "admitted": 11380,
+          "delivered": 11364,
+          "mean_packet_latency_s": 0.942769619500175,
+          "unmatched_sends_not_classified_as_loss": 16
+        }
+      ],
+      "raw_aggregate_points_reconstructed": {
+        "matlab": 800,
+        "ns3": 800
+      },
+      "matlab_runtime_seconds": 170.4601186,
+      "matlab_admission_attempts": 45000,
+      "matlab_nsdp_blocked_attempts": 33605,
+      "matlab_packet_weighted_mean_latency_s": 0.937722125800504,
+      "ns3_packet_weighted_mean_latency_s": 0.942769619500175,
+      "matlab_vs_ns3_series": {
+        "Generator.Traffic Sent (packets/sec)": {
+          "matlab_observed_bucket_mean": 9.495833333333334,
+          "ns3_observed_bucket_mean": 9.483333333333333,
+          "relative_difference_percent": 0.13181019332162813,
+          "maximum_absolute_bucket_difference": 2.666666666666666,
+          "maximum_difference_bucket_end_s": 840,
+          "maximum_bucket_signed_matlab_minus_ns3": 2.666666666666666
+        },
+        "Generator.Traffic Sent (bits/sec)": {
+          "matlab_observed_bucket_mean": 44972.26666666667,
+          "ns3_observed_bucket_mean": 44913.066666666666,
+          "relative_difference_percent": 0.1318101933216266,
+          "maximum_absolute_bucket_difference": 12629.333333333336,
+          "maximum_difference_bucket_end_s": 840,
+          "maximum_bucket_signed_matlab_minus_ns3": 12629.333333333336
+        },
+        "Generator.Packet Size (bits)": {
+          "matlab_observed_bucket_mean": 4736.0,
+          "ns3_observed_bucket_mean": 4736.0,
+          "relative_difference_percent": 0.0,
+          "maximum_absolute_bucket_difference": 0.0,
+          "maximum_difference_bucket_end_s": 312,
+          "maximum_bucket_signed_matlab_minus_ns3": 0.0
+        },
+        "Sink.Traffic Received (packets/sec)": {
+          "matlab_observed_bucket_mean": 9.4875,
+          "ns3_observed_bucket_mean": 9.47,
+          "relative_difference_percent": 0.18479408658922988,
+          "maximum_absolute_bucket_difference": 2.083333333333334,
+          "maximum_difference_bucket_end_s": 1200,
+          "maximum_bucket_signed_matlab_minus_ns3": 2.083333333333334
+        },
+        "Sink.Traffic Received (packets)": {
+          "matlab_observed_bucket_mean": 113.85,
+          "ns3_observed_bucket_mean": 113.64,
+          "relative_difference_percent": 0.18479408658922364,
+          "maximum_absolute_bucket_difference": 25.0,
+          "maximum_difference_bucket_end_s": 1200,
+          "maximum_bucket_signed_matlab_minus_ns3": 25.0
+        },
+        "Sink.Traffic Received (bits/sec)": {
+          "matlab_observed_bucket_mean": 44932.8,
+          "ns3_observed_bucket_mean": 44849.92,
+          "relative_difference_percent": 0.18479408658923954,
+          "maximum_absolute_bucket_difference": 9866.666666666664,
+          "maximum_difference_bucket_end_s": 1200,
+          "maximum_bucket_signed_matlab_minus_ns3": 9866.666666666664
+        },
+        "Sink.Traffic Received (bits)": {
+          "matlab_observed_bucket_mean": 539193.6,
+          "ns3_observed_bucket_mean": 538199.04,
+          "relative_difference_percent": 0.1847940865892179,
+          "maximum_absolute_bucket_difference": 118400.0,
+          "maximum_difference_bucket_end_s": 1200,
+          "maximum_bucket_signed_matlab_minus_ns3": 118400.0
+        },
+        "Sink.End-to-End Delay (seconds)": {
+          "matlab_observed_bucket_mean": 0.9425894600591692,
+          "ns3_observed_bucket_mean": 0.9475108270258241,
+          "relative_difference_percent": -0.5193995494597947,
+          "maximum_absolute_bucket_difference": 0.28784666654954427,
+          "maximum_difference_bucket_end_s": 372,
+          "maximum_bucket_signed_matlab_minus_ns3": 0.28784666654954427
+        }
+      },
+      "matlab_physical_drop_reasons": {},
+      "matlab_application_drop_reasons": {}
+    },
+    {
+      "case_id": "three_node_contention_360",
+      "duration_s": 360,
+      "bucket_width_s": 3.6,
+      "matlab_counts": {
+        "generated": 954,
+        "received": 928,
+        "dropped": 0,
+        "pending": 26
+      },
+      "ns3_counts": {
+        "admitted": 946,
+        "delivered": 914,
+        "unmatched_sends_not_classified_as_loss": 32
+      },
+      "matlab_flows": [
+        {
+          "source": 2,
+          "admitted": 493,
+          "delivered": 477,
+          "mean_packet_latency_s": 1.5254848804457097,
+          "dropped": 0,
+          "pending": 16,
+          "admitted_relative_to_ns3_percent": 7.173913043478261,
+          "delivered_relative_to_ns3_percent": 7.4324324324324325
+        },
+        {
+          "source": 3,
+          "admitted": 461,
+          "delivered": 451,
+          "mean_packet_latency_s": 1.762498323668028,
+          "dropped": 0,
+          "pending": 10,
+          "admitted_relative_to_ns3_percent": -5.1440329218107,
+          "delivered_relative_to_ns3_percent": -4.042553191489362
+        }
+      ],
+      "ns3_flows": [
+        {
+          "source": 2,
+          "admitted": 460,
+          "delivered": 444,
+          "mean_packet_latency_s": 1.6985773783783795,
+          "unmatched_sends_not_classified_as_loss": 16
+        },
+        {
+          "source": 3,
+          "admitted": 486,
+          "delivered": 470,
+          "mean_packet_latency_s": 1.6913201276595753,
+          "unmatched_sends_not_classified_as_loss": 16
+        }
+      ],
+      "raw_aggregate_points_reconstructed": {
+        "matlab": 800,
+        "ns3": 800
+      },
+      "matlab_runtime_seconds": 40.2510512,
+      "matlab_admission_attempts": 60000,
+      "matlab_nsdp_blocked_attempts": 59046,
+      "matlab_packet_weighted_mean_latency_s": 1.6406713706324183,
+      "ns3_packet_weighted_mean_latency_s": 1.6948455317286661,
+      "matlab_vs_ns3_series": {
+        "Generator.Traffic Sent (packets/sec)": {
+          "matlab_observed_bucket_mean": 2.65,
+          "ns3_observed_bucket_mean": 2.6277777777777778,
+          "relative_difference_percent": 0.8456659619450287,
+          "maximum_absolute_bucket_difference": 7.777777777777779,
+          "maximum_difference_bucket_end_s": 338.40000000000003,
+          "maximum_bucket_signed_matlab_minus_ns3": 7.777777777777779
+        },
+        "Generator.Traffic Sent (bits/sec)": {
+          "matlab_observed_bucket_mean": 12550.4,
+          "ns3_observed_bucket_mean": 12445.155555555555,
+          "relative_difference_percent": 0.8456659619450324,
+          "maximum_absolute_bucket_difference": 36835.55555555556,
+          "maximum_difference_bucket_end_s": 338.40000000000003,
+          "maximum_bucket_signed_matlab_minus_ns3": 36835.55555555556
+        },
+        "Generator.Packet Size (bits)": {
+          "matlab_observed_bucket_mean": 4736.0,
+          "ns3_observed_bucket_mean": 4736.0,
+          "relative_difference_percent": 0.0,
+          "maximum_absolute_bucket_difference": 0.0,
+          "maximum_difference_bucket_end_s": 302.40000000000003,
+          "maximum_bucket_signed_matlab_minus_ns3": 0.0
+        },
+        "Sink.Traffic Received (packets/sec)": {
+          "matlab_observed_bucket_mean": 2.577777777777778,
+          "ns3_observed_bucket_mean": 2.5388888888888888,
+          "relative_difference_percent": 1.5317286652078896,
+          "maximum_absolute_bucket_difference": 5.277777777777779,
+          "maximum_difference_bucket_end_s": 309.6,
+          "maximum_bucket_signed_matlab_minus_ns3": 5.277777777777779
+        },
+        "Sink.Traffic Received (packets)": {
+          "matlab_observed_bucket_mean": 9.28,
+          "ns3_observed_bucket_mean": 9.14,
+          "relative_difference_percent": 1.531728665207864,
+          "maximum_absolute_bucket_difference": 19.0,
+          "maximum_difference_bucket_end_s": 309.6,
+          "maximum_bucket_signed_matlab_minus_ns3": 19.0
+        },
+        "Sink.Traffic Received (bits/sec)": {
+          "matlab_observed_bucket_mean": 12208.355555555556,
+          "ns3_observed_bucket_mean": 12024.177777777777,
+          "relative_difference_percent": 1.5317286652078863,
+          "maximum_absolute_bucket_difference": 24995.555555555562,
+          "maximum_difference_bucket_end_s": 309.6,
+          "maximum_bucket_signed_matlab_minus_ns3": 24995.555555555562
+        },
+        "Sink.Traffic Received (bits)": {
+          "matlab_observed_bucket_mean": 43950.08,
+          "ns3_observed_bucket_mean": 43287.04,
+          "relative_difference_percent": 1.5317286652078794,
+          "maximum_absolute_bucket_difference": 89984.0,
+          "maximum_difference_bucket_end_s": 309.6,
+          "maximum_bucket_signed_matlab_minus_ns3": 89984.0
+        },
+        "Sink.End-to-End Delay (seconds)": {
+          "matlab_observed_bucket_mean": 1.727024901329366,
+          "ns3_observed_bucket_mean": 1.914475426713893,
+          "relative_difference_percent": -9.791221280195646,
+          "maximum_absolute_bucket_difference": 2.4697189830648405,
+          "maximum_difference_bucket_end_s": 309.6,
+          "maximum_bucket_signed_matlab_minus_ns3": -2.4697189830648405
+        }
+      },
+      "matlab_physical_drop_reasons": {
+        "ecc": 1,
+        "half_duplex": 4,
+        "not_acquired": 2
+      },
+      "matlab_application_drop_reasons": {}
+    }
+  ],
+  "retained_t6_comparisons": [
+    {
+      "accepted_file": "tranche2_scenario_summary.csv",
+      "returned_member": "regression/run_20260910_142546_493_tp03e07df4_9a8f_486f_96c8_4e2bcbba114d/regression/run_20260910_142546_976_tpc41b99e6_6ccb_40e9_b855_8cc0b40d425f/regression/run_20260910_142547_252_tpd17bb41a_a358_4788_a1a4_587b96550f48/regression/regression/scenario_summary.csv",
+      "rows": 9,
+      "non_runtime_cells_exactly_equal": 180,
+      "excluded_columns": [
+        "RuntimeSeconds"
+      ]
+    },
+    {
+      "accepted_file": "tranche3_scenario_summary.csv",
+      "returned_member": "regression/run_20260910_142546_493_tp03e07df4_9a8f_486f_96c8_4e2bcbba114d/regression/run_20260910_142546_976_tpc41b99e6_6ccb_40e9_b855_8cc0b40d425f/regression/run_20260910_142547_252_tpd17bb41a_a358_4788_a1a4_587b96550f48/regression/scenario_summary.csv",
+      "rows": 8,
+      "non_runtime_cells_exactly_equal": 352,
+      "excluded_columns": [
+        "RuntimeSeconds"
+      ]
+    },
+    {
+      "accepted_file": "tranche4_scenario_summary.csv",
+      "returned_member": "regression/run_20260910_142546_493_tp03e07df4_9a8f_486f_96c8_4e2bcbba114d/regression/run_20260910_142546_976_tpc41b99e6_6ccb_40e9_b855_8cc0b40d425f/regression/run_20260910_142547_252_tpd17bb41a_a358_4788_a1a4_587b96550f48/scenario_summary.csv",
+      "rows": 11,
+      "non_runtime_cells_exactly_equal": 363,
+      "excluded_columns": [
+        "RuntimeSeconds"
+      ]
+    },
+    {
+      "accepted_file": "scenario_summary.csv",
+      "returned_member": "regression/run_20260910_142546_493_tp03e07df4_9a8f_486f_96c8_4e2bcbba114d/regression/run_20260910_142546_976_tpc41b99e6_6ccb_40e9_b855_8cc0b40d425f/scenario_summary.csv",
+      "rows": 18,
+      "non_runtime_cells_exactly_equal": 666,
+      "excluded_columns": [
+        "RuntimeSeconds"
+      ]
+    }
+  ],
+  "recorded_run": {
+    "StartedUTC": "2026-09-10T14:25:45.905Z",
+    "CompletedUTC": "2026-09-10T15:53:49.092Z",
+    "TestCount": 467,
+    "PassedTests": 467,
+    "FailedTests": 0,
+    "IncompleteTests": 0,
+    "elapsed_wall_seconds": 5283.187
+  },
+  "retained_t6_performance_comparison": {
+    "rows": 18,
+    "non_runtime_cells_exactly_equal": 1566,
+    "excluded_columns": [
+      "RuntimeSeconds"
+    ]
+  },
+  "strict_shared_gate": [
+    {
+      "case_id": "two_node_8",
+      "exit_code": 0,
+      "status": "application_match",
+      "application_equal": true,
+      "matlab_count": 3,
+      "ns3_count": 3,
+      "matlab_manifest_sha256": "01c80c4c1ede658229c4ea8a1ad5be5df71986ee85f3644d3cd95de4345917bb",
+      "ns3_manifest_sha256": "c6e929997e1e6ea84f874c579845886b62b80da531ec8fc3c4608c6bdfde58bf"
+    },
+    {
+      "case_id": "two_node_128",
+      "exit_code": 0,
+      "status": "application_match",
+      "application_equal": true,
+      "matlab_count": 3,
+      "ns3_count": 3,
+      "matlab_manifest_sha256": "42bbe35d13ea680ad7940f2bd45d98ae9dda6bdf47ed94f7ee44b55cc327d54b",
+      "ns3_manifest_sha256": "5456096b2b3f568ccc98b762ccb6f85125cf42dbc6c26c0d034a282039c6db96"
+    },
+    {
+      "case_id": "line_3_8",
+      "exit_code": 0,
+      "status": "application_match",
+      "application_equal": true,
+      "matlab_count": 3,
+      "ns3_count": 3,
+      "matlab_manifest_sha256": "dd7d458ecfcda56cf168bccdfc693f34ce16a5a914caec69b2581c4a20aa7f21",
+      "ns3_manifest_sha256": "216b4800f26cae8fefc964b5037e754088adc26def0cedb60b42248cbcd4b5de"
+    },
+    {
+      "case_id": "high_rate_500",
+      "exit_code": 0,
+      "status": "application_match",
+      "application_equal": true,
+      "matlab_count": 3,
+      "ns3_count": 3,
+      "matlab_manifest_sha256": "29c95b563e589a59f51db864a638d218bed236a16cc3c3df0dc1396752a0b453",
+      "ns3_manifest_sha256": "2fd1c34a14f5c78cb34c5205dc36c4065a12646d012090160ef832d684f746a7"
+    },
+    {
+      "case_id": "high_rate_1000",
+      "exit_code": 0,
+      "status": "application_match",
+      "application_equal": true,
+      "matlab_count": 3,
+      "ns3_count": 3,
+      "matlab_manifest_sha256": "73369528fd15e3b16cce6cd0093351c7a2b858dba05cb5378baa274448b58315",
+      "ns3_manifest_sha256": "e3eb0e6281b25455286d3111f40320967436f1a49964793a01b70118e956897d"
+    }
+  ],
+  "limitations": [
+    "One seed (128) per benchmark; no across-seed uncertainty estimate or numerical tolerance acceptance.",
+    "Exact application identity matching is internal to each simulator; IDs are not equated across runtimes.",
+    "NS-3 unmatched sends are not sufficient to distinguish terminal loss from finite-stop pending work.",
+    "OPNET is archived aggregate evidence only; no new OPNET runtime or packet-level trace.",
+    "Mean of populated bucket delay means differs from the packet-weighted global mean.",
+    "OPNET has five missing initial packet-count/bit-count buckets, whereas MATLAB/ns-3 report zero counts; compare full-window rates or equal-support paired means.",
+    "Physical receiver-observation losses are not application loss counts and do not establish a causal explanation for aggregate residuals."
+  ]
+}

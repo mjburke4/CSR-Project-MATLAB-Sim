@@ -1,0 +1,83 @@
+{
+  "status": "pass",
+  "blockers": [],
+  "evidence_sha256": "066c180f31c44412b617e1cc0f6197711ac50daaac9cbbbcbefbc6a59f1916f8",
+  "candidate_sha256": "df3ad517708fccc9e4c85d8e38c3492b97aff8d2d5236b3f05249da3cd15b900",
+  "archive_members": 855,
+  "archive_uncompressed_bytes": 350084975,
+  "crc_passed": true,
+  "closed_inventory_verified": 854,
+  "inventory_exclusion": [
+    "validation_metadata.json"
+  ],
+  "source_hashes_verified": 225,
+  "matlab_source_hashes_verified": 124,
+  "reference_hashes_sizes_verified": 332,
+  "source_and_reference_start_end_stable": true,
+  "test_count": 550,
+  "source_test_classes": 46,
+  "all_test_names_match_source": true,
+  "contracts": {
+    "mac": {
+      "checkpoints": 279,
+      "cases": 15,
+      "max_numeric_difference_to_native": 0.0
+    },
+    "rx": {
+      "checkpoints": 154,
+      "cases": 4,
+      "max_numeric_difference_to_native": 0.0
+    },
+    "ack": {
+      "checkpoints": 101,
+      "cases": 6,
+      "max_numeric_difference_to_native": 0.0
+    }
+  },
+  "total_checkpoints": 534,
+  "nested_manifests_checked": 63,
+  "nested_file_bindings_checked": 858,
+  "phases": {
+    "retained": 29,
+    "sweeps": 18,
+    "diagnostics": 6,
+    "controls": 2,
+    "campus": 1
+  },
+  "observer_controls": [
+    {
+      "case": "three_node_contention_360_s129",
+      "independent_byte_equal_files": 12,
+      "statistics_equal": true,
+      "config_equal": true
+    },
+    {
+      "case": "two_node_admission_1200_s129",
+      "independent_byte_equal_files": 12,
+      "statistics_equal": true,
+      "config_equal": true
+    }
+  ],
+  "summaries_with_conservation_and_no_protocol_phy_omissions": 56,
+  "elapsed_seconds": 6437.17,
+  "campus": {
+    "duration_seconds": 6000,
+    "seed": 128,
+    "generated": 12484,
+    "received": 11825,
+    "dropped": 402,
+    "pending_at_finite_stop": 257,
+    "runtime_seconds": 4382.6944776,
+    "admission_attempts": 1710000,
+    "admission_admitted": 12484,
+    "admission_retained_trace_rows": 100000,
+    "admission_omitted_trace_rows": 1610000.0,
+    "aggregate_admission_counts_complete": true
+  },
+  "limitations": [
+    "Read-only review of returned MATLAB R2025a portable evidence; no MATLAB or ns-3 runtime executed by this auditor.",
+    "Finite-stop application backlog is retained explicitly; structural acceptance does not require queues to drain.",
+    "Campus admission trace is bounded to 100,000 rows; aggregate admission counts remain complete.",
+    "No numerical parity claim follows solely from structural checks."
+  ]
+}

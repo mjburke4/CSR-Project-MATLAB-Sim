@@ -1,0 +1,39 @@
+{
+  "schema": "csr-tranche14-diagnostic-observer-repair-review-v1",
+  "status": "static_review_passed_matlab_runtime_pending",
+  "cause": "Frames.base provides App=struct() on ACK, so field existence alone does not establish SourceId/Id. observe dereferenced ACK application identity and aborted each real MAC transmit callback.",
+  "change": "Export application identity only for DATA kind; ACK and NONE retain zero defaults. Keep strict DATA accesses so malformed DATA is not silently treated as ACK.",
+  "regression": "Existing actual aggregate test verifies real acknowledgment constructor Kind=ACK and fieldless scalar App, all six boundaries, DATA app source 5/id 3, and zero ACK identities across aggregate_tx, ack_tx and feedback_ingress. The gateway identity and ACK-drain tests now assert all six expected boundary cases before iterating, preventing vacuous passes when the fixture aborts before producing a boundary.",
+  "focused_matlab_tests": 18,
+  "runner_matlab_tests": 106,
+  "structural_checks": 222,
+  "matlab_executed": false,
+  "static_lint": {
+    "tool": "MISS_HIT",
+    "files": 2,
+    "exit_code": 0,
+    "result": "everything seems fine"
+  },
+  "source_timing_modified": false,
+  "native_reference_modified": false,
+  "audit": [
+    "selectedMembers reads b.App only after short-circuit strcmp(b.Kind,DATA).",
+    "deliver(app,peer) receives a valid NWK Delivered application; synthetic observed delivery frame explicitly has Kind DATA and App app.",
+    "prime and DATA ingress use Frames.data, which validates scalar application and required SourceId/Id fields.",
+    "ACK source/gateway TX and feedback ingress use Frames.acknowledgment, whose App remains fieldless.",
+    "settled observes struct() and retains NONE kind and zero identifiers.",
+    "Sequence, bitmaps, source/destination and MAC queue/counter fields follow Frames.base and existing MAC schema."
+  ],
+  "files": [
+    {
+      "path": "+csr/+validation/ackEdgeContract.m",
+      "original_sha256": "f299b3c5fc09f62fdbe31044a0ea9e811b1ff26841524fbccd84dcea18e8952b",
+      "repaired_sha256": "87cff2b6c64b8a62d55b1b2ad97a5ce53be887dd8c3d89aa7c8e453213de0e94"
+    },
+    {
+      "path": "tests/TestAckEdgeContract.m",
+      "original_sha256": "3ebd0d5a38cae3dcf55e8a9889aa3be7383fa3e09684809d20f7ad77fca05fd7",
+      "repaired_sha256": "8ec230f95b7c2b6a2f801ed79594dccef2b3e4120adfbbaa3589f445c46a1bd2"
+    }
+  ]
+}

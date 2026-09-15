@@ -1,0 +1,430 @@
+{
+  "schema": "csr-tranche9-ack-service-reference-case-v1",
+  "case_id": "two_node_admission_1200_s129",
+  "storage_key": "a129",
+  "case": {
+    "case_id": "two_node_admission_1200_s129",
+    "base_case_id": "two_node_admission_1200",
+    "scenario": "tranche8-two-node-admission-s129",
+    "scenario_file": "scenarios/link_diagnostics/inputs/two_node_admission_1200_s129.csv",
+    "scenario_sha256": "bdb8301b90cc472f564aaf565d1909a4f2aba1f7e4fc097fedc8eb90d07ddf23",
+    "recipe_file": "scenarios/link_diagnostics/inputs/two_node_admission_1200_s129.recipe.json",
+    "recipe_sha256": "2638b793aa0d43e14dd1bab2e0c39901b34ebe9131342f9a6d820414e594afd3",
+    "profile_id": "hist-adb97c54-bare",
+    "duration_s": 1200,
+    "seed": 129,
+    "bucket_width_s": 12,
+    "flow_limit": 0,
+    "source_kind": "synthetic_multiseed_diagnostic",
+    "opnet_available": false,
+    "reference_directory": "evidence/tranche-8-ns3-reference/two_node_admission_1200_s129",
+    "trace_limits": {
+      "protocol": 1500000,
+      "phy": 1500000,
+      "admission": 100000,
+      "link_decisions": 100000,
+      "feedback_transmissions": 100000
+    },
+    "storage_key": "a129",
+    "service_reference_directory": "evidence/tranche-9-ns3-reference/a129"
+  },
+  "status": "completed",
+  "started_utc": "2026-09-11T19:40:14.936370+00:00",
+  "runner_sha256": "0c855e84e70c2d85450adaf5ccba13d5f6f949e6e8704a0b7d9bff1a2e17629c",
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "full_ns3_rebuild_performed": false,
+  "matlab_executed": false,
+  "opnet_executed": false,
+  "stages": {
+    "run_ns3": {
+      "command": [
+        "/workspace/scratch/1a5b1ad6ce1b/t10/compat-bin/t9",
+        "--scenario=/workspace/scratch/1a5b1ad6ce1b/csr10/scenarios/link_diagnostics/inputs/two_node_admission_1200_s129.csv",
+        "--trace=/workspace/scratch/1a5b1ad6ce1b/t10/compat/a129/ns3-trace.csv",
+        "--appDiagnostics=/workspace/scratch/1a5b1ad6ce1b/t10/compat/a129/app-admission-diagnostics.csv",
+        "--stop=1200",
+        "--flowLimit=0",
+        "--dutyCycling=1",
+        "--opnetAlignedDutyCycle=1",
+        "--gatewayDiscovery=1",
+        "--opnetAppGating=1",
+        "--aggregateTraceOnly=1",
+        "--quietModelLogs=1",
+        "--feedbackDiagnostics=/workspace/scratch/1a5b1ad6ce1b/t10/compat/a129/ns3-link-decisions.csv",
+        "--serviceDiagnostics=/workspace/scratch/1a5b1ad6ce1b/t10/compat/a129/ns3-service.csv",
+        "--serviceStart=300",
+        "--serviceStop=320",
+        "--serviceLimit=100000"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 3.223950904000958,
+      "log": "ns3-run.log"
+    },
+    "off-run_ns3": {
+      "command": [
+        "/workspace/scratch/1a5b1ad6ce1b/t10/compat-bin/t9",
+        "--scenario=/workspace/scratch/1a5b1ad6ce1b/csr10/scenarios/link_diagnostics/inputs/two_node_admission_1200_s129.csv",
+        "--trace=/workspace/scratch/1a5b1ad6ce1b/t10/compat/a129/off-ns3-trace.csv",
+        "--appDiagnostics=/workspace/scratch/1a5b1ad6ce1b/t10/compat/a129/off-app-admission-diagnostics.csv",
+        "--stop=1200",
+        "--flowLimit=0",
+        "--dutyCycling=1",
+        "--opnetAlignedDutyCycle=1",
+        "--gatewayDiscovery=1",
+        "--opnetAppGating=1",
+        "--aggregateTraceOnly=1",
+        "--quietModelLogs=1"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 2.8751226750027854,
+      "log": "off-ns3-run.log"
+    },
+    "aggregate_ns3": {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-I",
+        "/workspace/scratch/1a5b1ad6ce1b/t10/ns/utils/aggregate-ns3-trace.py",
+        "/workspace/scratch/1a5b1ad6ce1b/t10/compat/a129/ns3-trace.csv",
+        "/workspace/scratch/1a5b1ad6ce1b/t10/compat/a129/ns3-aggregates.csv",
+        "--scenario",
+        "tranche8-two-node-admission-s129",
+        "--bucket-width",
+        "12",
+        "--stop-time",
+        "1200",
+        "--legacy-trace-size-exclusion-bits",
+        "0",
+        "--require-zero-size-mismatches",
+        "--provenance",
+        "/workspace/scratch/1a5b1ad6ce1b/t10/compat/a129/ns3-aggregates.provenance.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.2708108339975297,
+      "log": "ns3-aggregate.log"
+    }
+  },
+  "compressed_artifacts": [
+    {
+      "original_name": "ns3-trace.csv",
+      "original_sha256": "e073e021d8fd0e89fd34044f93b7dfaf8d23e41626a1727984c60fb61cca9578",
+      "original_bytes": 16940941,
+      "path": "ns3-trace.csv.gz",
+      "sha256": "a97b70d7e19275d94955b982ba50aa4c2b9e581caf4f47166b89d910fcc6789e",
+      "bytes": 1143961
+    },
+    {
+      "original_name": "ns3-link-decisions.csv",
+      "original_sha256": "97a429c37f45351bb140570fa1526cb9ae200f4358569f2c5e705efa588dc7c4",
+      "original_bytes": 5317963,
+      "path": "ns3-link-decisions.csv.gz",
+      "sha256": "c2a01928ee07df57b9436137ed6bf9643a372832384ba7f64796fadb9c60d61a",
+      "bytes": 183691
+    },
+    {
+      "original_name": "ns3-service.csv",
+      "original_sha256": "13b4c85abcd288781372eefce1fdac146daa81100d1ac4ff24e3f1345b993fcb",
+      "original_bytes": 1898970,
+      "path": "ns3-service.csv.gz",
+      "sha256": "7dc59dc209a23391e8b0d3b2210f2c5968ed059ffe981f2ff421941cf2e66b5a",
+      "bytes": 144688
+    }
+  ],
+  "control_compressed_artifacts": [
+    {
+      "original_name": "off-ns3-trace.csv",
+      "original_sha256": "e073e021d8fd0e89fd34044f93b7dfaf8d23e41626a1727984c60fb61cca9578",
+      "original_bytes": 16940941,
+      "path": "off-ns3-trace.csv.gz",
+      "sha256": "a97b70d7e19275d94955b982ba50aa4c2b9e581caf4f47166b89d910fcc6789e",
+      "bytes": 1143961
+    }
+  ],
+  "nonperturbation": {
+    "status": "passed",
+    "compared_files": [
+      {
+        "name": "ns3-trace.csv",
+        "first_path": "ns3-trace.csv",
+        "second_path": "off-ns3-trace.csv",
+        "first_sha256": "e073e021d8fd0e89fd34044f93b7dfaf8d23e41626a1727984c60fb61cca9578",
+        "second_sha256": "e073e021d8fd0e89fd34044f93b7dfaf8d23e41626a1727984c60fb61cca9578",
+        "equal": true
+      },
+      {
+        "name": "app-admission-diagnostics.csv",
+        "first_path": "app-admission-diagnostics.csv",
+        "second_path": "off-app-admission-diagnostics.csv",
+        "first_sha256": "c41f2feaf81be49c1cd41fbbd000029b3d262f84dda9e3105554d0e0c2e41133",
+        "second_sha256": "c41f2feaf81be49c1cd41fbbd000029b3d262f84dda9e3105554d0e0c2e41133",
+        "equal": true
+      }
+    ]
+  },
+  "application_admission_totals": {
+    "attempts": 45000,
+    "admitted": 11234,
+    "blocked_discovery": 0,
+    "blocked_topology": 0,
+    "blocked_gateway_route": 0,
+    "blocked_destination": 0,
+    "blocked_nsdp": 33766
+  },
+  "exact_sequence_validation": {
+    "matched_count": 11227,
+    "matched_by_method": {
+      "exact_sequence": 11227
+    },
+    "source_exact_dack_retry_duplicate_proof_count": 0,
+    "source_exact_dack_retry_duplicate_delivery_count": 0,
+    "unmatched_delivery_count": 0,
+    "matched_size_compared_count": 11227,
+    "matched_size_mismatch_count": 0
+  },
+  "normalized_sidecars": [
+    {
+      "schema": "csr-benchmark-source-provenance-v1",
+      "source": "ns3",
+      "scenario": "tranche8-two-node-admission-s129",
+      "scenario_sha256": "bdb8301b90cc472f564aaf565d1909a4f2aba1f7e4fc097fedc8eb90d07ddf23",
+      "profile_id": "hist-adb97c54-bare",
+      "source_file_sha256": "e073e021d8fd0e89fd34044f93b7dfaf8d23e41626a1727984c60fb61cca9578",
+      "source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+      "window": {
+        "start_time_s": 0,
+        "stop_time_s": 1200,
+        "bucket_width_s": 12,
+        "bucket_count": 100,
+        "start_endpoint": "inclusive",
+        "stop_endpoint": "exclusive"
+      },
+      "output": {
+        "path": "ns3-aggregates.csv",
+        "sha256": "674ebf57ba5b0b7804183b5ec2b985f46ece938ce815b203abc4942b766fd2bd"
+      },
+      "upstream_provenance": {
+        "path": "ns3-aggregates.provenance.json",
+        "sha256": "a817bb5a5716cf85ba7c2248c40e6a66d837161cb0c4080b0fd55f9aa3fbb3d2",
+        "bytes": 14676
+      },
+      "excluded_extra_statistics": [
+        "ECC.Traffic Dropped (packets/sec)",
+        "HOP.Resend Queue Size (packets)",
+        "MAC.ACK Queue Size (packets)",
+        "MAC.Tx Queue Size (packets)",
+        "MAC.Tx Queuing Delay (sec)",
+        "NWK.Network Queue Size (packets)",
+        "NWK.Network Queuing Delay (sec)"
+      ],
+      "opnet_runtime_executed": false,
+      "matlab_runtime_executed": false,
+      "source_kind": "synthetic_multiseed_diagnostic"
+    }
+  ],
+  "accepted_t8_anchor": {
+    "status": "passed",
+    "reference_directory": "evidence/tranche-8-ns3-reference/two_node_admission_1200_s129",
+    "compared_files": [
+      {
+        "name": "ns3-trace.csv",
+        "reference_path": "evidence/tranche-8-ns3-reference/two_node_admission_1200_s129/ns3-trace.csv.gz",
+        "reference_sha256": "a97b70d7e19275d94955b982ba50aa4c2b9e581caf4f47166b89d910fcc6789e",
+        "original_sha256": "e073e021d8fd0e89fd34044f93b7dfaf8d23e41626a1727984c60fb61cca9578",
+        "current_sha256": "e073e021d8fd0e89fd34044f93b7dfaf8d23e41626a1727984c60fb61cca9578",
+        "bytes": 16940941,
+        "equal": true
+      },
+      {
+        "name": "app-admission-diagnostics.csv",
+        "reference_path": "evidence/tranche-8-ns3-reference/two_node_admission_1200_s129/app-admission-diagnostics.csv",
+        "reference_sha256": "c41f2feaf81be49c1cd41fbbd000029b3d262f84dda9e3105554d0e0c2e41133",
+        "original_sha256": "c41f2feaf81be49c1cd41fbbd000029b3d262f84dda9e3105554d0e0c2e41133",
+        "current_sha256": "c41f2feaf81be49c1cd41fbbd000029b3d262f84dda9e3105554d0e0c2e41133",
+        "bytes": 376,
+        "equal": true
+      },
+      {
+        "name": "ns3-aggregates.csv",
+        "reference_path": "evidence/tranche-8-ns3-reference/two_node_admission_1200_s129/ns3-aggregates.csv",
+        "reference_sha256": "674ebf57ba5b0b7804183b5ec2b985f46ece938ce815b203abc4942b766fd2bd",
+        "original_sha256": "674ebf57ba5b0b7804183b5ec2b985f46ece938ce815b203abc4942b766fd2bd",
+        "current_sha256": "674ebf57ba5b0b7804183b5ec2b985f46ece938ce815b203abc4942b766fd2bd",
+        "bytes": 331338,
+        "equal": true
+      },
+      {
+        "name": "ns3-link-decisions.csv",
+        "reference_path": "evidence/tranche-8-ns3-reference/two_node_admission_1200_s129/ns3-link-decisions.csv.gz",
+        "reference_sha256": "c2a01928ee07df57b9436137ed6bf9643a372832384ba7f64796fadb9c60d61a",
+        "original_sha256": "97a429c37f45351bb140570fa1526cb9ae200f4358569f2c5e705efa588dc7c4",
+        "current_sha256": "97a429c37f45351bb140570fa1526cb9ae200f4358569f2c5e705efa588dc7c4",
+        "bytes": 5317963,
+        "equal": true
+      }
+    ]
+  },
+  "feedback_diagnostics": {
+    "schema": "csr-ns3-feedback-observation-summary-v1",
+    "status": "passed",
+    "rows": 24546,
+    "selection_count": 11242,
+    "ordinary_data_context_count": 11227,
+    "ota_feedback_member_count": 2077,
+    "ota_aggregates_containing_feedback": 2042,
+    "all_ota_members_linked_to_selection": true,
+    "distinct_decisions_transmitted": 1404,
+    "actual_vs_selected_rate_change_count": 1,
+    "actual_vs_selected_power_change_count": 0,
+    "selection_distribution": [
+      {
+        "frame_type": "ACK",
+        "rate_key_kbps": 128,
+        "power_dbm": 33.0,
+        "count": 11242
+      }
+    ],
+    "ota_member_distribution": [
+      {
+        "frame_type": "ACK",
+        "rate_key_kbps": 8,
+        "power_dbm": 33.0,
+        "count": 1
+      },
+      {
+        "frame_type": "ACK",
+        "rate_key_kbps": 128,
+        "power_dbm": 33.0,
+        "count": 2076
+      }
+    ],
+    "incoming_vs_selected_rate_difference_count": 0,
+    "incoming_vs_selected_power_difference_count": 0,
+    "scope": "Selection is feedback construction after ApplyLinkControl, not successful MAC admission; OTA rows count actual members including repeats. Control-exact incoming context is unavailable."
+  },
+  "service_diagnostics": {
+    "schema": "csr-ns3-ack-service-summary-v1",
+    "status": "passed",
+    "rows": 12035,
+    "window_s": [
+      300,
+      320
+    ],
+    "stop_endpoint": "exclusive",
+    "max_records": 100000,
+    "omitted_records": 0,
+    "event_counts": {
+      "ack_queue_enqueue_after": 2,
+      "ack_queue_replace_after": 214,
+      "ack_queue_replace_before": 214,
+      "app_admission": 1000,
+      "app_send": 230,
+      "hop_admission": 230,
+      "hop_completion": 216,
+      "hop_feedback": 216,
+      "mac_cancel_begin": 44,
+      "mac_cancel_end": 44,
+      "mac_holdoff_expired": 2,
+      "mac_holdoff_schedule_before": 3,
+      "mac_idle_rts_schedule": 1,
+      "mac_prepare_after": 88,
+      "mac_receive_state_after": 176,
+      "mac_receive_state_before": 176,
+      "mac_schedule_request": 446,
+      "mac_slot_tick": 2973,
+      "mac_state": 348,
+      "mac_sync_change_before": 172,
+      "nwk_admission": 770,
+      "nwk_delivery": 216,
+      "nwk_enqueue": 230,
+      "nwk_forward": 230,
+      "nwk_nsdp_release": 216,
+      "reservation_advertise": 86,
+      "reservation_holdoff": 2,
+      "reservation_prepare": 88,
+      "reservation_tick": 1429,
+      "rx_accept": 86,
+      "statistic_sample": 1801,
+      "tx_start": 86
+    },
+    "first_s": 300.0,
+    "last_s": 319.995,
+    "queue_replacement_events": 214,
+    "cancelled_frames": 0,
+    "native_event_names_preserved": true,
+    "sequence_semantics": "Native sequence is event-specific: application identity for app/NWK/admission/completion records; HOP sequence for PHY/OTA records. MAC queue snapshots carry app-tag identity when present and explicit hop_sequence in detail. These are not interchangeable.",
+    "scope": "Native trace events plus read-only MAC decision snapshots; blank fields are unavailable, not zero. Native HOP completion is observed before resend-entry erase with declared post-operation counts."
+  },
+  "completed_utc": "2026-09-11T19:40:24.505896+00:00",
+  "files": [
+    {
+      "path": "app-admission-diagnostics.csv",
+      "sha256": "c41f2feaf81be49c1cd41fbbd000029b3d262f84dda9e3105554d0e0c2e41133",
+      "bytes": 376
+    },
+    {
+      "path": "feedback-summary.json",
+      "sha256": "8779e29bf592fb56dbea8201c81817f6a8af1bf2b375f0f86cbb01841e7f6d7b",
+      "bytes": 1134
+    },
+    {
+      "path": "ns3-aggregate.log",
+      "sha256": "d0a048c12ab075b17923c2ec880d5f8a03b24fb1c2e3234e4206d2eadd88fb95",
+      "bytes": 191
+    },
+    {
+      "path": "ns3-aggregates.csv",
+      "sha256": "674ebf57ba5b0b7804183b5ec2b985f46ece938ce815b203abc4942b766fd2bd",
+      "bytes": 331338
+    },
+    {
+      "path": "ns3-aggregates.provenance.json",
+      "sha256": "a817bb5a5716cf85ba7c2248c40e6a66d837161cb0c4080b0fd55f9aa3fbb3d2",
+      "bytes": 14676
+    },
+    {
+      "path": "ns3-benchmark.provenance.json",
+      "sha256": "1bbc0d4f10d0e9de78b24f17b1882485766326b7fcbd255bd4bdac83eebbf593",
+      "bytes": 1326
+    },
+    {
+      "path": "ns3-link-decisions.csv.gz",
+      "sha256": "c2a01928ee07df57b9436137ed6bf9643a372832384ba7f64796fadb9c60d61a",
+      "bytes": 183691
+    },
+    {
+      "path": "ns3-run.log",
+      "sha256": "bbab0f335a099142ae06c7f90515e43b0dd621da090d9460d4b05750107f1050",
+      "bytes": 323
+    },
+    {
+      "path": "ns3-service.csv.gz",
+      "sha256": "7dc59dc209a23391e8b0d3b2210f2c5968ed059ffe981f2ff421941cf2e66b5a",
+      "bytes": 144688
+    },
+    {
+      "path": "ns3-trace.csv.gz",
+      "sha256": "a97b70d7e19275d94955b982ba50aa4c2b9e581caf4f47166b89d910fcc6789e",
+      "bytes": 1143961
+    },
+    {
+      "path": "off-app-admission-diagnostics.csv",
+      "sha256": "c41f2feaf81be49c1cd41fbbd000029b3d262f84dda9e3105554d0e0c2e41133",
+      "bytes": 376
+    },
+    {
+      "path": "off-ns3-run.log",
+      "sha256": "ab9e5797adf2166eea5f018e9d2975ab7e986dabf72d84d1f27afed34b5cca58",
+      "bytes": 327
+    },
+    {
+      "path": "off-ns3-trace.csv.gz",
+      "sha256": "a97b70d7e19275d94955b982ba50aa4c2b9e581caf4f47166b89d910fcc6789e",
+      "bytes": 1143961
+    },
+    {
+      "path": "service-summary.json",
+      "sha256": "f16348bfd0bc7e43f955edbf1d8b262cad69cbfce8ffcba07f0255dc405be404",
+      "bytes": 1794
+    }
+  ]
+}

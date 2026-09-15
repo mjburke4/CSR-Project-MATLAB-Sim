@@ -1,0 +1,100 @@
+{
+  "schema": "csr-tranche11-independent-fixture-review-v1",
+  "status": "passed_for_matlab_handoff",
+  "matlab_executed": false,
+  "cross_simulator_match_established": false,
+  "open_blockers": [],
+  "native_reference": {
+    "events": 1756,
+    "draws": 133,
+    "usage_rows": 12,
+    "closed_artifact_inventory": true,
+    "files_verified": 37,
+    "manifest_sha256": "98bc1123da593ab0a3b3cc53785614630b8a26b598f0bd0cfd2722512281a1f0",
+    "disabled_seam_checkpoints_byte_equal": 255,
+    "raw_input_guard_self_tests": 6,
+    "cases": [
+      {
+        "case": "ab",
+        "events": 423,
+        "distinct_delivered_apps": 8,
+        "releases": 8,
+        "final_pending": 0
+      },
+      {
+        "case": "ba",
+        "events": 423,
+        "distinct_delivered_apps": 8,
+        "releases": 8,
+        "final_pending": 0
+      },
+      {
+        "case": "slow",
+        "events": 483,
+        "distinct_delivered_apps": 8,
+        "releases": 8,
+        "final_pending": 0
+      },
+      {
+        "case": "track",
+        "events": 427,
+        "distinct_delivered_apps": 8,
+        "releases": 8,
+        "final_pending": 0
+      }
+    ]
+  },
+  "baseline": {
+    "files_verified": 225,
+    "matlab_files_verified": 124,
+    "mismatches": []
+  },
+  "resolved_findings": [
+    {
+      "id": "usage_schema",
+      "issue": "Native usage lacked supplied; mismatched MATLAB and gate schema.",
+      "resolution": "Canonical native usage now case,node,supplied,consumed,unused with supplied128."
+    },
+    {
+      "id": "reported_active_state",
+      "issue": "Native initial reported-active count was default1 while declared3.",
+      "resolution": "Native calls NoteReportedActiveNodes(3); final reference is bound to corrected fixture."
+    },
+    {
+      "id": "aggregate_ingress_boundary",
+      "issue": "MATLAB initially posted per-segment callbacks and repeated MAC observation; native posted one aggregate callback and one MAC observation per recipient.",
+      "resolution": "MATLAB now matches native aggregate callback and once-per-recipient observation."
+    }
+  ],
+  "reviewed_semantics": [
+    "No gateway timer prewarm during known-neighbor initialization",
+    "Raw draw replacement precedes unchanged occupancy probing; no forced reservation override",
+    "MATLAB production sources unchanged; replay only via test-specific randi method dispatch",
+    "Source-computed actual airtime and MAC TX state preserved; controlled transport explicitly bypasses RF and half-duplex losses",
+    "Real HOP creates feedback and receives actual transmitted frames; sent notification ownership preserved",
+    "TX snapshots before queue dequeue/sent notification; ingress wrapper and release/wake boundaries aligned",
+    "Full per-case node ordinal draw and event trajectories compared, with row count differences treated as mismatch",
+    "Track interval inhibits gateway transmission; actual reservation timing outcome remains diagnostic",
+    "Synthetic driver checks actual HOP admission; full NWK/campus/adaptive-radio parity outside claim"
+  ],
+  "limitations": [
+    "MATLAB runtime execution is required on owner machine; static review is not acceptance evidence.",
+    "A passing controlled fixture does not establish RF, full NWK application admission, statistical or campus numerical parity.",
+    "The fixed Track interval tests preparation and occupied-slot timing but ends before first ordinary ACK TX; it is not a full ACK-ready holdover experiment."
+  ],
+  "reviewed_file_hashes": {
+    "+csr/+validation/ReplayStreams.m": "5807dc79cb413a826d029f3f9875e13eba9855fde255a39d6a6b6422a782c566",
+    "+csr/+validation/ReplayStream.m": "3e47217e1cf1f49c4bef58fb71c336c388dccd6863865d3debe52ec46307951f",
+    "+csr/+validation/replayContract.m": "6574f3c0fe65771d049a81ebdce5eca39ad603d15c2d096a3d6a5a6aad778d0c",
+    "tests/TestReplayStreams.m": "cd3fe22573361a740a403ccf82b6232d98f524806f689238dc27023fc3209b5c",
+    "tests/TestReplayContract.m": "499520214ebdd4908bfc9eda260ebdc54829917645c49ccee9da8e0d2777c899",
+    "scripts/ns3/tranche11_replay.cc": "b4147218fd15c45a2b5643e362f4afca6f32ae2581a1a39e31e65623d60795ba",
+    "scripts/ns3/tranche11-replay-hooks.h": "2df5483ab8bf77fabdcc117880a7cb64dc4e2e640dddfe9d63d6a090a936a9fa",
+    "scripts/build_tranche11_overlay.py": "6329f4a7ea7b359a7d978ce2252b000db49e6422f634ce421da5f252b36bd2ae",
+    "scripts/run_tranche11_ns3_reference.py": "5bf3c8a77b093c20ae5f8f7a53935a6b6031aba1c5158bea626319d88926cf4f",
+    "scripts/analyze_tranche11_return.py": "6cb10666ce41add78436cc81587052cdf01ddecaca3397c274f9d46d1502b718",
+    "scenarios/replay/plan.json": "4980ccbae6a52d378ca149be0bba81a08fb81e41608886388d985f9178ce27cc",
+    "scenarios/replay/cases.csv": "c4bf66202e96f255eebe6888b63f1f9c4792d2fd68dd773f6e8146bdf03630a9",
+    "scenarios/replay/draws.csv": "8fc8605dca0f762caf03d110747562d5f9c211e11e05c3300bbf253d491e0929"
+  }
+}

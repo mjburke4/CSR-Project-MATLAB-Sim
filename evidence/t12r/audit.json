@@ -1,0 +1,344 @@
+{
+  "schema": "csr-tranche12-original-return-independent-review-v1",
+  "disposition": "rejected_structural_relay_fixture_failure; clock_diagnostic_valid",
+  "owner_archive_sha256": "3a6033f609c24a1cf8a2b5c4183402d8b7b9937e7528104ebb7e81f3b9ea5bd9",
+  "immutable_package_sha256": "3bee81b079d77269cb533673820fd5ee5df099452acf99dff86e60d6f2ded6bc",
+  "candidate_sha256": "65a6fe4edd6d925ec596fad6c0ec257be483d623616aa7f41bbd9805a6548703",
+  "source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "runtime": {
+    "Runtime": "MATLAB",
+    "Version": "25.1.0.2943329 (R2025a)",
+    "Release": "2025a",
+    "HasWirelessNetworkSimulator": false,
+    "HasWnetNode": false,
+    "HasWirelessPacket": false,
+    "DefaultBackend": "portable",
+    "WirelessAdapterImplemented": true,
+    "WirelessAdapterScope": "Optional R2026a wireless-clock candidate; runtime validation pending",
+    "NativePacketTransportIntegrated": false,
+    "ProbeScope": "Symbol discovery only; licenses and execution are not validated."
+  },
+  "started_utc": "2026-09-14T18:52:13.212Z",
+  "completed_utc": "2026-09-14T18:53:11.574Z",
+  "integrity": {
+    "archive_crc_passed": true,
+    "closed_archive_members": 14,
+    "artifact_hashes_verified": 13,
+    "candidate_source_files_verified": 259,
+    "reference_files_verified": 130,
+    "source_and_reference_pre_post_identical": true,
+    "source_and_reference_closed_against_immutable_package": true,
+    "native_manifest_files_verified": {
+      "relay": 41,
+      "clock": 5
+    },
+    "baselines": {
+      "tranche11": {
+        "source_files": 241,
+        "matlab_files": 130,
+        "all_unchanged": true
+      },
+      "tranche10_core": {
+        "source_files": 225,
+        "matlab_files": 124,
+        "all_unchanged": true
+      }
+    }
+  },
+  "tests": {
+    "total": 72,
+    "passed": 63,
+    "failed": 9,
+    "incomplete": 1,
+    "incomplete_included_in_failed": true,
+    "by_class": {
+      "TestRelayContract": {
+        "total": 12,
+        "passed": 3,
+        "failed": 9,
+        "incomplete": 1
+      },
+      "TestClockBoundaryContract": {
+        "total": 8,
+        "passed": 8,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestReplayStreams": {
+        "total": 13,
+        "passed": 13,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestReplayContract": {
+        "total": 8,
+        "passed": 8,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestContentionContract": {
+        "total": 19,
+        "passed": 19,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestAckServiceContract": {
+        "total": 7,
+        "passed": 7,
+        "failed": 0,
+        "incomplete": 0
+      },
+      "TestRandomStreams": {
+        "total": 5,
+        "passed": 5,
+        "failed": 0,
+        "incomplete": 0
+      }
+    },
+    "failed_names": [
+      "TestRelayContract/everyBoundedRelayCaseCompletes",
+      "TestRelayContract/allApplicationsArriveExactlyOnceAtGateway",
+      "TestRelayContract/relayPreservesSourceIdentityAcrossBothHops",
+      "TestRelayContract/mixedRelayServesBothOriginalAndTransitTraffic",
+      "TestRelayContract/applicationAdmissionHonorsRealPairCapacity",
+      "TestRelayContract/networkCustodyAccountsForBothOriginalSources",
+      "TestRelayContract/dackHeldCapacityIsVisibleThenDrains",
+      "TestRelayContract/feedbackUsesFixedRadioAndActualHopBitmaps",
+      "TestRelayContract/evidenceRetainsFailuresAndScopeWithoutInventingParity"
+    ]
+  },
+  "clock": {
+    "cases": 6,
+    "matlab_tests_passed": 8,
+    "checks_passed": 72,
+    "checks_failed": 0,
+    "five_shared_integer_cases_exact": true,
+    "continuous_difference_rows": 3,
+    "continuous_difference_fields": 4,
+    "differences": [
+      {
+        "case": "continuous",
+        "phase": "ingress_before",
+        "field": "local_counter",
+        "matlab": 15,
+        "native": 16
+      },
+      {
+        "case": "continuous",
+        "phase": "ingress_before",
+        "field": "neighbor_counter",
+        "matlab": 15,
+        "native": 16
+      },
+      {
+        "case": "continuous",
+        "phase": "ingress_after",
+        "field": "local_counter",
+        "matlab": 15,
+        "native": 16
+      },
+      {
+        "case": "continuous",
+        "phase": "settled",
+        "field": "neighbor_counter",
+        "matlab": 16,
+        "native": 15
+      }
+    ],
+    "case_details": [
+      {
+        "case": "tie_early",
+        "arrival_seconds_hex": "4000178dd616f86a",
+        "tick_seconds_hex": "4000178dd616f86a",
+        "arrival_minus_tick_seconds": 0.0,
+        "counter_pairs": [
+          [
+            16,
+            16
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            15,
+            15
+          ]
+        ],
+        "native_exact": true,
+        "checks_passed": 12
+      },
+      {
+        "case": "tie_late",
+        "arrival_seconds_hex": "4000178dd616f86a",
+        "tick_seconds_hex": "4000178dd616f86a",
+        "arrival_minus_tick_seconds": 0.0,
+        "counter_pairs": [
+          [
+            15,
+            15
+          ],
+          [
+            15,
+            16
+          ],
+          [
+            15,
+            16
+          ]
+        ],
+        "native_exact": true,
+        "checks_passed": 12
+      },
+      {
+        "case": "before",
+        "arrival_seconds_hex": "4000178dd5f49c52",
+        "tick_seconds_hex": "4000178dd616f86a",
+        "arrival_minus_tick_seconds": -1.000000082740371e-09,
+        "counter_pairs": [
+          [
+            16,
+            16
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            15,
+            15
+          ]
+        ],
+        "native_exact": true,
+        "checks_passed": 12
+      },
+      {
+        "case": "after",
+        "arrival_seconds_hex": "4000178dd6395482",
+        "tick_seconds_hex": "4000178dd616f86a",
+        "arrival_minus_tick_seconds": 1.000000082740371e-09,
+        "counter_pairs": [
+          [
+            15,
+            15
+          ],
+          [
+            15,
+            16
+          ],
+          [
+            15,
+            16
+          ]
+        ],
+        "native_exact": true,
+        "checks_passed": 12
+      },
+      {
+        "case": "continuous",
+        "arrival_seconds_hex": "4000178dd616f86b",
+        "tick_seconds_hex": "4000178dd616f86a",
+        "arrival_minus_tick_seconds": 4.440892098500626e-16,
+        "counter_pairs": [
+          [
+            15,
+            15
+          ],
+          [
+            15,
+            16
+          ],
+          [
+            15,
+            16
+          ]
+        ],
+        "native_exact": false,
+        "checks_passed": 12
+      },
+      {
+        "case": "quantized",
+        "arrival_seconds_hex": "4000178dd616f86a",
+        "tick_seconds_hex": "4000178dd616f86a",
+        "arrival_minus_tick_seconds": 0.0,
+        "counter_pairs": [
+          [
+            16,
+            16
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            15,
+            15
+          ]
+        ],
+        "native_exact": true,
+        "checks_passed": 12
+      }
+    ],
+    "global_clock_changed": false
+  },
+  "relay": {
+    "completed": false,
+    "passed": false,
+    "cases_aborted": 4,
+    "partial_event_count": 244,
+    "partial_draw_count": 10,
+    "failed_check_count": 63,
+    "case_failures": [
+      {
+        "case": "relay",
+        "identifier": "MATLAB:structRefFromNonStruct",
+        "message": "Dot indexing is not supported for variables of this type.",
+        "first_stack_frame": {
+          "name": "@(a)networks{node}.nsdpCount(a)",
+          "line": 103
+        },
+        "admitted": 16,
+        "delivered": 0
+      },
+      {
+        "case": "local",
+        "identifier": "MATLAB:structRefFromNonStruct",
+        "message": "Dot indexing is not supported for variables of this type.",
+        "first_stack_frame": {
+          "name": "@(a)networks{node}.nsdpCount(a)",
+          "line": 103
+        },
+        "admitted": 16,
+        "delivered": 0
+      },
+      {
+        "case": "mix",
+        "identifier": "MATLAB:structRefFromNonStruct",
+        "message": "Dot indexing is not supported for variables of this type.",
+        "first_stack_frame": {
+          "name": "@(a)networks{node}.nsdpCount(a)",
+          "line": 103
+        },
+        "admitted": 32,
+        "delivered": 0
+      },
+      {
+        "case": "sw",
+        "identifier": "MATLAB:structRefFromNonStruct",
+        "message": "Dot indexing is not supported for variables of this type.",
+        "first_stack_frame": {
+          "name": "@(a)networks{node}.nsdpCount(a)",
+          "line": 103
+        },
+        "admitted": 32,
+        "delivered": 0
+      }
+    ],
+    "reported_unmatched_count": 2649,
+    "unmatched_count_is_accepted_parity_measure": false,
+    "note": "All cases abort in the NSDP diagnostic callback before first delivery. No delivery percentage or relay service parity conclusion is valid."
+  },
+  "acceptance_established": false,
+  "numerical_parity_established": false,
+  "method": "Independent Python standard-library parsing, SHA256 and closed-set checks against the immutable delivered csr12.zip. Did not execute MATLAB or ns-3; inspected actual owner-returned R2025a execution. No project acceptance-checker code imported."
+}

@@ -1,0 +1,126 @@
+{
+  "schema": "csr-tranche8-ns3-reference-recovery-v1",
+  "status": "final_reexecution_integrity_verified",
+  "attempts": [
+    {
+      "directory": "/workspace/scratch/1a5b1ad6ce1b/t8-ns3-live-01",
+      "disposition": "quarantined_not_promoted",
+      "recorded_status": "failed",
+      "recorded_error": "Standalone ns-3 runner compilation failed",
+      "manifest_sha256": "e1a65aaff0c8a023fc7a2b32dc759635e2e5da7484d725e0d222dcdaaf36bfbe",
+      "postrun_file_inventory_mismatches": []
+    },
+    {
+      "directory": "/workspace/scratch/1a5b1ad6ce1b/t8-ns3-live-02",
+      "disposition": "quarantined_not_promoted",
+      "recorded_status": "completed",
+      "recorded_error": null,
+      "manifest_sha256": "964dbbdc8f024941cf27f5e3b9a34a0e675777e6036b70cdff88ccb87a944b9d",
+      "postrun_file_inventory_mismatches": [
+        {
+          "path": "two_node_admission_1200_s129/ns3-trace.csv.gz",
+          "expected_bytes": 1143961,
+          "actual_bytes": 778678,
+          "expected_sha256": "a97b70d7e19275d94955b982ba50aa4c2b9e581caf4f47166b89d910fcc6789e",
+          "actual_sha256": "2aebe1d751f1c75705c606d90bd49c27734990c7a5efd7b324b06257733e4b94"
+        },
+        {
+          "path": "three_node_contention_360_s128/observer-off-ns3-run.log",
+          "expected_bytes": 368,
+          "actual_bytes": 0,
+          "expected_sha256": "b461341394583f34d51e7f5eb53f5ea0bfc1fbcb5fd8f868b1a6da097ea4cc7b",
+          "actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "two_node_admission_1200_s130/ns3-trace.csv.gz",
+          "expected_bytes": 1162847,
+          "actual_bytes": 620360,
+          "expected_sha256": "d9630355775772341d80924199fa41c5f2ad383f588f2150e645c485a43db3b8",
+          "actual_sha256": "59edafe5651a56d89296dc9c9500b7f0fc2cdf1e3f67a2c8e075282b04b4b088"
+        },
+        {
+          "path": "three_node_contention_360_s129/ns3-aggregate.log",
+          "expected_bytes": 251,
+          "actual_bytes": 0,
+          "expected_sha256": "a9fb37789814752fb7bab9c1902fcebb942e883262379df4e73d7756b48913fa",
+          "actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "two_node_admission_1200_s131/observer-off-ns3-trace.csv.gz",
+          "expected_bytes": 1154983,
+          "actual_bytes": 242063,
+          "expected_sha256": "1821753a225a515b7cad2f2bf08d656ebccff497c507c2e677631fe1716cd878",
+          "actual_sha256": "6d64db86762459d8be5efae00235fa08b060c4244403bf684db36973be8cfdfb"
+        },
+        {
+          "path": "two_node_admission_1200_s132/ns3-trace.csv.gz",
+          "expected_bytes": 1159804,
+          "actual_bytes": 862462,
+          "expected_sha256": "999bc15f35a28290afaad93018a95de56bd7e750c0cd30bc6a553ee61477ce6f",
+          "actual_sha256": "f6cf6dd07561659c48e235c9b8f189c8b6d6ac64f86ae1e09d44b8fb761f74b1"
+        }
+      ]
+    },
+    {
+      "directory": "/workspace/scratch/1a5b1ad6ce1b/t8-ns3-live-03",
+      "disposition": "quarantined_not_promoted",
+      "recorded_status": "failed",
+      "recorded_error": "Observer altered simulation output: ns3-trace.csv",
+      "manifest_sha256": "4ed401768001b255feb681b85e2d81107d1339a22a3a861fb08c1766a1ad27b0",
+      "postrun_file_inventory_mismatches": [
+        {
+          "path": "two_node_admission_1200_s128/ns3-trace.csv.gz",
+          "expected_bytes": 1159937,
+          "actual_bytes": 1130595,
+          "expected_sha256": "e96afd49a84cb86ccc5fe05bfaecae097bec26d1bc39e7b4354afadda77905af",
+          "actual_sha256": "99302f3885345d651d101c984d309d28b8b2e0643ba0d8353f6e6566728f484e"
+        },
+        {
+          "path": "two_node_admission_1200_s130/ns3-trace.csv.gz",
+          "expected_bytes": 1162847,
+          "actual_bytes": 809418,
+          "expected_sha256": "d9630355775772341d80924199fa41c5f2ad383f588f2150e645c485a43db3b8",
+          "actual_sha256": "d7695a5e2eef47d12a67e9e5aff83d1f0f98a6025b86ade10115b16e6707ff41"
+        },
+        {
+          "path": "three_node_contention_360_s129/observer-off-ns3-run.log",
+          "expected_bytes": 368,
+          "actual_bytes": 0,
+          "expected_sha256": "8d46b010455ee2c8b005ee9db1b8ec4c0bd55e4dfaf5fd50b915deba492c0ef7",
+          "actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ],
+  "additional_live02_control_failure": {
+    "case_id": "two_node_admission_1200_s128",
+    "artifact": "pristine-ns3-trace.csv.gz",
+    "earlier_compared_original_sha256": "1c350bb58552425b2a3eb90340c54f4cd0d39602466c3d85eaae291e19202c3e",
+    "compressed_original_sha256": "de8e8682b01a512534e8078cfcedbb3f56f99ebfd01ef9d9fe4033c827316a78",
+    "earlier_full_bytes": 17163989,
+    "compressed_original_bytes": 13757823
+  },
+  "cause": "Not established. Preliminary closed traces/logs failed recorded integrity checks; no simulator-behavior change is inferred from corrupted evidence. Independent review found no subprocess ownership/compression stream leak, no disk pressure, no overlapping ns3 processes.",
+  "repairs": [
+    "Corrected observer-only physical-rate forward declaration after initial compile failure.",
+    "Separated control gzip descriptors from comparison input gzip descriptors.",
+    "Added exact closed-compressed-artifact binding to earlier observer comparisons and final full file inventory verification.",
+    "Executed the complete suite again in a unique temporary directory and marked closed process outputs read-only, then copied and independently reverified final artifacts."
+  ],
+  "final_reference_directory": "evidence/tranche-8-ns3-reference",
+  "final_reference_suite_sha256": "8b4263474c7da9103885de21f913b290811deb30788e6ca81c8a4962b3492188",
+  "final_cases_completed": 10,
+  "final_observer_on_off_case_pairs_verified": 10,
+  "final_pristine_case_controls_verified": 2,
+  "final_tranche7_seed128_anchors_verified": 2,
+  "final_files_verified": 130,
+  "final_full_gzip_roundtrips_verified": 32,
+  "source_or_phy_behavior_changed": false,
+  "matlab_executed": false,
+  "local_python_tests": {
+    "passed": 14,
+    "failed": 0,
+    "log": "evidence/tranche-8-ns3-local-checks.log",
+    "sha256": "4d1681cb8c88aee1dd90793391792c6bde999a8618a3f1643f52fae78eaa6049"
+  }
+}

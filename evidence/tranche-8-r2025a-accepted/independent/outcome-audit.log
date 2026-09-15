@@ -1,0 +1,2128 @@
+{
+  "sha256": "bfc4f7f05f0800316b371df3ec316f309f14e3482ef259c3f9c7bd7eea025d77",
+  "groups": [
+    {
+      "base_case_id": "three_node_contention_360",
+      "seeds": [
+        128,
+        129,
+        130,
+        131,
+        132
+      ],
+      "simulators": {
+        "matlab": {
+          "delivered": {
+            "values": [
+              928,
+              948,
+              894,
+              895,
+              917
+            ],
+            "mean": 916.4,
+            "minimum": 894,
+            "maximum": 948,
+            "sample_sd": 22.87575135378071,
+            "sample_cv_percent": 2.4962626968333383
+          },
+          "admitted": {
+            "values": [
+              954,
+              980,
+              926,
+              927,
+              949
+            ],
+            "mean": 947.2,
+            "minimum": 926,
+            "maximum": 980,
+            "sample_sd": 22.264321233758732,
+            "sample_cv_percent": 2.350540670793785
+          },
+          "pooled_admitted": 4736,
+          "pooled_delivered": 4582,
+          "explicit_drops": 0,
+          "pending": 154,
+          "pooled_packet_weighted_latency_s": 1.684182882525659,
+          "per_seed_packet_weighted_latency_s": {
+            "values": [
+              1.6406713706324183,
+              1.602588936651351,
+              1.7755907560928177,
+              1.7154320222866477,
+              1.6929540108469745
+            ],
+            "mean": 1.685447419302042,
+            "minimum": 1.602588936651351,
+            "maximum": 1.7755907560928177,
+            "sample_sd": 0.06699191962875346,
+            "sample_cv_percent": 3.974726168348544
+          }
+        },
+        "ns3": {
+          "delivered": {
+            "values": [
+              914,
+              822,
+              916,
+              883,
+              920
+            ],
+            "mean": 891.0,
+            "minimum": 822,
+            "maximum": 920,
+            "sample_sd": 41.291645644125154,
+            "sample_cv_percent": 4.634303663762644
+          },
+          "admitted": {
+            "values": [
+              946,
+              854,
+              948,
+              903,
+              952
+            ],
+            "mean": 920.6,
+            "minimum": 854,
+            "maximum": 952,
+            "sample_sd": 42.21137287509138,
+            "sample_cv_percent": 4.58520235445268
+          },
+          "pooled_admitted": 4603,
+          "pooled_delivered": 4455,
+          "explicit_drops": null,
+          "pending": null,
+          "pooled_packet_weighted_latency_s": 1.736412421997756,
+          "per_seed_packet_weighted_latency_s": {
+            "values": [
+              1.6948455317286661,
+              1.918685946472017,
+              1.6596463580786067,
+              1.7760154156285395,
+              1.6532728260869565
+            ],
+            "mean": 1.740493215598957,
+            "minimum": 1.6532728260869565,
+            "maximum": 1.918685946472017,
+            "sample_sd": 0.11095246481174198,
+            "sample_cv_percent": 6.374771462327122
+          }
+        }
+      },
+      "paired_delivered_difference": {
+        "values": [
+          14,
+          126,
+          -22,
+          12,
+          -3
+        ],
+        "mean": 25.4,
+        "minimum": -22,
+        "maximum": 126,
+        "sample_sd": 58.058591095547605
+      },
+      "paired_delivered_relative_difference_percent": {
+        "values": [
+          1.5317286652078774,
+          15.328467153284672,
+          -2.4017467248908297,
+          1.3590033975084939,
+          -0.32608695652173914
+        ],
+        "mean": 3.098273106917695,
+        "minimum": -2.4017467248908297,
+        "maximum": 15.328467153284672,
+        "sample_sd": 7.01842623057471
+      },
+      "pooled_delivered_relative_difference_percent": 2.850729517396184,
+      "pooled_latency_relative_difference_percent": -3.0078994373932413
+    },
+    {
+      "base_case_id": "two_node_admission_1200",
+      "seeds": [
+        128,
+        129,
+        130,
+        131,
+        132
+      ],
+      "simulators": {
+        "matlab": {
+          "delivered": {
+            "values": [
+              11385,
+              11354,
+              11315,
+              11249,
+              11359
+            ],
+            "mean": 11332.4,
+            "minimum": 11249,
+            "maximum": 11385,
+            "sample_sd": 52.91313636517873,
+            "sample_cv_percent": 0.4669190671453419
+          },
+          "admitted": {
+            "values": [
+              11395,
+              11358,
+              11326,
+              11265,
+              11369
+            ],
+            "mean": 11342.6,
+            "minimum": 11265,
+            "maximum": 11395,
+            "sample_sd": 49.942967472908535,
+            "sample_cv_percent": 0.4403132215974162
+          },
+          "pooled_admitted": 56713,
+          "pooled_delivered": 56662,
+          "explicit_drops": 0,
+          "pending": 51,
+          "pooled_packet_weighted_latency_s": 0.9379280138205189,
+          "per_seed_packet_weighted_latency_s": {
+            "values": [
+              0.9377221258005038,
+              0.9290211271967853,
+              0.9458659268426848,
+              0.9449639984208706,
+              0.9321623257510218
+            ],
+            "mean": 0.9379471008023733,
+            "minimum": 0.9290211271967853,
+            "maximum": 0.9458659268426848,
+            "sample_sd": 0.007502197994572119,
+            "sample_cv_percent": 0.7998529968432454
+          }
+        },
+        "ns3": {
+          "delivered": {
+            "values": [
+              11364,
+              11227,
+              11396,
+              11330,
+              11375
+            ],
+            "mean": 11338.4,
+            "minimum": 11227,
+            "maximum": 11396,
+            "sample_sd": 66.69557706474995,
+            "sample_cv_percent": 0.5882274136099446
+          },
+          "admitted": {
+            "values": [
+              11380,
+              11234,
+              11412,
+              11334,
+              11383
+            ],
+            "mean": 11348.6,
+            "minimum": 11234,
+            "maximum": 11412,
+            "sample_sd": 69.88418991445776,
+            "sample_cv_percent": 0.6157956921070243
+          },
+          "pooled_admitted": 56743,
+          "pooled_delivered": 56692,
+          "explicit_drops": null,
+          "pending": null,
+          "pooled_packet_weighted_latency_s": 0.94100620242715,
+          "per_seed_packet_weighted_latency_s": {
+            "values": [
+              0.942769619500175,
+              0.9597574995991801,
+              0.9396786805896803,
+              0.9333078428949692,
+              0.9297350435164843
+            ],
+            "mean": 0.9410497372200977,
+            "minimum": 0.9297350435164843,
+            "maximum": 0.9597574995991801,
+            "sample_sd": 0.011648791631768006,
+            "sample_cv_percent": 1.237850792688073
+          }
+        }
+      },
+      "paired_delivered_difference": {
+        "values": [
+          21,
+          127,
+          -81,
+          -81,
+          -16
+        ],
+        "mean": -6.0,
+        "minimum": -81,
+        "maximum": 127,
+        "sample_sd": 86.2670273047588
+      },
+      "paired_delivered_relative_difference_percent": {
+        "values": [
+          0.18479408658922913,
+          1.1312015676494165,
+          -0.7107757107757108,
+          -0.7149161518093556,
+          -0.14065934065934066
+        ],
+        "mean": -0.05007110980115229,
+        "minimum": -0.7149161518093556,
+        "maximum": 1.1312015676494165,
+        "sample_sd": 0.7644152219456034
+      },
+      "pooled_delivered_relative_difference_percent": -0.05291751922669865,
+      "pooled_latency_relative_difference_percent": -0.327116718114238
+    }
+  ],
+  "feedback": [
+    {
+      "case_id": "two_node_admission_1200_s128",
+      "matlab": {
+        "selection_count": 11399,
+        "actual_feedback_members": 2066,
+        "distinct_decisions_transmitted": 1397,
+        "forms": [
+          {
+            "form": "ordinary_data_window",
+            "selection_count": 11385,
+            "actual_feedback_members": 1996,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 11385
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 1996
+              }
+            ],
+            "rate_override_count": 0,
+            "power_override_count": 0,
+            "first_override_time_s": null,
+            "last_override_time_s": null,
+            "first_selection_time_s": 301.492103999999,
+            "last_selection_time_s": 1199.98574399987
+          },
+          {
+            "form": "exact_sequence_control",
+            "selection_count": 14,
+            "actual_feedback_members": 70,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 5
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 9
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 25
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 45
+              }
+            ],
+            "rate_override_count": 0,
+            "power_override_count": 0,
+            "first_override_time_s": null,
+            "last_override_time_s": null,
+            "first_selection_time_s": 11.853344,
+            "last_selection_time_s": 40.9872640000007
+          }
+        ],
+        "queue_dispositions": {
+          "enqueued": 18,
+          "replaced": 11381
+        },
+        "queue_dispositions_by_form": {
+          "ordinary_data_window": {
+            "enqueued": 4,
+            "replaced": 11381
+          },
+          "exact_sequence_control": {
+            "enqueued": 14
+          }
+        },
+        "incoming_vs_selected_rate_differences": 0,
+        "incoming_vs_selected_power_differences": 0,
+        "control_types": {
+          "KEY_UPDATE": 2,
+          "NEIGHBOR_CHECK": 3,
+          "ROUTING": 9
+        },
+        "all_actual_members_correlated_independently": true,
+        "selected_decisions_without_observed_transmission": 10002,
+        "maximum_actual_repeats_per_decision": 5
+      },
+      "ns3": {
+        "selection_count": 11379,
+        "actual_feedback_members": 2054,
+        "distinct_decisions_transmitted": 1414,
+        "forms": [
+          {
+            "form": "ordinary_data_window",
+            "selection_count": 11364,
+            "actual_feedback_members": 1979,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 11364
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 1979
+              }
+            ],
+            "rate_override_count": 0,
+            "power_override_count": 0,
+            "first_override_time_s": null,
+            "last_override_time_s": null,
+            "first_selection_time_s": 301.557104,
+            "last_selection_time_s": 1199.543744
+          },
+          {
+            "form": "exact_sequence_control",
+            "selection_count": 15,
+            "actual_feedback_members": 75,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 15
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 1
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 74
+              }
+            ],
+            "rate_override_count": 1,
+            "power_override_count": 0,
+            "first_override_time_s": 25.545,
+            "last_override_time_s": 25.545,
+            "first_selection_time_s": 11.736344,
+            "last_selection_time_s": 40.702024
+          }
+        ],
+        "ordinary_data_context_count": 11364,
+        "incoming_vs_selected_rate_differences": 0,
+        "incoming_vs_selected_power_differences": 0,
+        "selection_input_values": {
+          "peer_s0_dbm": [
+            -103.0
+          ],
+          "path_loss_db": [
+            123.16724984190499
+          ],
+          "hop_failure_count": [
+            0.0
+          ]
+        },
+        "queue_admission_not_observed": true
+      }
+    },
+    {
+      "case_id": "three_node_contention_360_s128",
+      "matlab": {
+        "selection_count": 967,
+        "actual_feedback_members": 366,
+        "distinct_decisions_transmitted": 159,
+        "forms": [
+          {
+            "form": "ordinary_data_window",
+            "selection_count": 928,
+            "actual_feedback_members": 171,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 928
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 171
+              }
+            ],
+            "rate_override_count": 0,
+            "power_override_count": 0,
+            "first_override_time_s": null,
+            "last_override_time_s": null,
+            "first_selection_time_s": 301.583103999999,
+            "last_selection_time_s": 359.678743999894
+          },
+          {
+            "form": "exact_sequence_control",
+            "selection_count": 39,
+            "actual_feedback_members": 195,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 17
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 22
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 88
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 107
+              }
+            ],
+            "rate_override_count": 3,
+            "power_override_count": 0,
+            "first_override_time_s": 15.041,
+            "last_override_time_s": 15.041,
+            "first_selection_time_s": 11.870064,
+            "last_selection_time_s": 43.5526080000004
+          }
+        ],
+        "queue_dispositions": {
+          "enqueued": 42,
+          "replaced": 925
+        },
+        "queue_dispositions_by_form": {
+          "ordinary_data_window": {
+            "enqueued": 3,
+            "replaced": 925
+          },
+          "exact_sequence_control": {
+            "enqueued": 39
+          }
+        },
+        "incoming_vs_selected_rate_differences": 0,
+        "incoming_vs_selected_power_differences": 0,
+        "control_types": {
+          "KEY_UPDATE": 6,
+          "NEIGHBOR_CHECK": 7,
+          "ROUTING": 26
+        },
+        "all_actual_members_correlated_independently": true,
+        "selected_decisions_without_observed_transmission": 808,
+        "maximum_actual_repeats_per_decision": 5
+      },
+      "ns3": {
+        "selection_count": 958,
+        "actual_feedback_members": 391,
+        "distinct_decisions_transmitted": 163,
+        "forms": [
+          {
+            "form": "ordinary_data_window",
+            "selection_count": 915,
+            "actual_feedback_members": 176,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 915
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 176
+              }
+            ],
+            "rate_override_count": 0,
+            "power_override_count": 0,
+            "first_override_time_s": null,
+            "last_override_time_s": null,
+            "first_selection_time_s": 301.557104,
+            "last_selection_time_s": 359.847744
+          },
+          {
+            "form": "exact_sequence_control",
+            "selection_count": 43,
+            "actual_feedback_members": 215,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 10
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 33
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 69
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 146
+              }
+            ],
+            "rate_override_count": 19,
+            "power_override_count": 0,
+            "first_override_time_s": 15.158,
+            "last_override_time_s": 42.367,
+            "first_selection_time_s": 12.000064,
+            "last_selection_time_s": 41.571248
+          }
+        ],
+        "ordinary_data_context_count": 915,
+        "incoming_vs_selected_rate_differences": 0,
+        "incoming_vs_selected_power_differences": 0,
+        "selection_input_values": {
+          "peer_s0_dbm": [
+            -103.0
+          ],
+          "path_loss_db": [
+            123.16724984190499,
+            135.20844966846423
+          ],
+          "hop_failure_count": [
+            0.0
+          ]
+        },
+        "queue_admission_not_observed": true
+      }
+    },
+    {
+      "case_id": "two_node_admission_1200_s129",
+      "matlab": {
+        "selection_count": 11368,
+        "actual_feedback_members": 2081,
+        "distinct_decisions_transmitted": 1378,
+        "forms": [
+          {
+            "form": "ordinary_data_window",
+            "selection_count": 11354,
+            "actual_feedback_members": 2011,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 11354
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 2011
+              }
+            ],
+            "rate_override_count": 0,
+            "power_override_count": 0,
+            "first_override_time_s": null,
+            "last_override_time_s": null,
+            "first_selection_time_s": 301.635103999999,
+            "last_selection_time_s": 1199.89474399987
+          },
+          {
+            "form": "exact_sequence_control",
+            "selection_count": 14,
+            "actual_feedback_members": 70,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 5
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 9
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 25
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 45
+              }
+            ],
+            "rate_override_count": 0,
+            "power_override_count": 0,
+            "first_override_time_s": null,
+            "last_override_time_s": null,
+            "first_selection_time_s": 11.788344,
+            "last_selection_time_s": 40.9482640000007
+          }
+        ],
+        "queue_dispositions": {
+          "enqueued": 19,
+          "replaced": 11349
+        },
+        "queue_dispositions_by_form": {
+          "ordinary_data_window": {
+            "enqueued": 5,
+            "replaced": 11349
+          },
+          "exact_sequence_control": {
+            "enqueued": 14
+          }
+        },
+        "incoming_vs_selected_rate_differences": 0,
+        "incoming_vs_selected_power_differences": 0,
+        "control_types": {
+          "KEY_UPDATE": 2,
+          "NEIGHBOR_CHECK": 3,
+          "ROUTING": 9
+        },
+        "all_actual_members_correlated_independently": true,
+        "selected_decisions_without_observed_transmission": 9990,
+        "maximum_actual_repeats_per_decision": 5
+      },
+      "ns3": {
+        "selection_count": 11242,
+        "actual_feedback_members": 2077,
+        "distinct_decisions_transmitted": 1404,
+        "forms": [
+          {
+            "form": "ordinary_data_window",
+            "selection_count": 11227,
+            "actual_feedback_members": 2002,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 11227
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 2002
+              }
+            ],
+            "rate_override_count": 0,
+            "power_override_count": 0,
+            "first_override_time_s": null,
+            "last_override_time_s": null,
+            "first_selection_time_s": 301.726104,
+            "last_selection_time_s": 1199.803744
+          },
+          {
+            "form": "exact_sequence_control",
+            "selection_count": 15,
+            "actual_feedback_members": 75,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 15
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 1
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 74
+              }
+            ],
+            "rate_override_count": 1,
+            "power_override_count": 0,
+            "first_override_time_s": 25.61,
+            "last_override_time_s": 25.61,
+            "first_selection_time_s": 11.866344,
+            "last_selection_time_s": 40.611024
+          }
+        ],
+        "ordinary_data_context_count": 11227,
+        "incoming_vs_selected_rate_differences": 0,
+        "incoming_vs_selected_power_differences": 0,
+        "selection_input_values": {
+          "peer_s0_dbm": [
+            -103.0
+          ],
+          "path_loss_db": [
+            123.16724984190499
+          ],
+          "hop_failure_count": [
+            0.0
+          ]
+        },
+        "queue_admission_not_observed": true
+      }
+    },
+    {
+      "case_id": "three_node_contention_360_s129",
+      "matlab": {
+        "selection_count": 994,
+        "actual_feedback_members": 402,
+        "distinct_decisions_transmitted": 170,
+        "forms": [
+          {
+            "form": "ordinary_data_window",
+            "selection_count": 948,
+            "actual_feedback_members": 172,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 948
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 172
+              }
+            ],
+            "rate_override_count": 0,
+            "power_override_count": 0,
+            "first_override_time_s": null,
+            "last_override_time_s": null,
+            "first_selection_time_s": 301.375103999999,
+            "last_selection_time_s": 359.600743999894
+          },
+          {
+            "form": "exact_sequence_control",
+            "selection_count": 46,
+            "actual_feedback_members": 230,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 26
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 20
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 145
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 85
+              }
+            ],
+            "rate_override_count": 15,
+            "power_override_count": 0,
+            "first_override_time_s": 15.067,
+            "last_override_time_s": 17.6540000000002,
+            "first_selection_time_s": 11.788344,
+            "last_selection_time_s": 57.2492479999984
+          }
+        ],
+        "queue_dispositions": {
+          "enqueued": 48,
+          "replaced": 946
+        },
+        "queue_dispositions_by_form": {
+          "ordinary_data_window": {
+            "enqueued": 2,
+            "replaced": 946
+          },
+          "exact_sequence_control": {
+            "enqueued": 46
+          }
+        },
+        "incoming_vs_selected_rate_differences": 0,
+        "incoming_vs_selected_power_differences": 0,
+        "control_types": {
+          "KEY_UPDATE": 6,
+          "NEIGHBOR_CHECK": 9,
+          "ROUTING": 31
+        },
+        "all_actual_members_correlated_independently": true,
+        "selected_decisions_without_observed_transmission": 824,
+        "maximum_actual_repeats_per_decision": 5
+      },
+      "ns3": {
+        "selection_count": 874,
+        "actual_feedback_members": 436,
+        "distinct_decisions_transmitted": 166,
+        "forms": [
+          {
+            "form": "ordinary_data_window",
+            "selection_count": 823,
+            "actual_feedback_members": 181,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 823
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 181
+              }
+            ],
+            "rate_override_count": 0,
+            "power_override_count": 0,
+            "first_override_time_s": null,
+            "last_override_time_s": null,
+            "first_selection_time_s": 301.401104,
+            "last_selection_time_s": 359.587744
+          },
+          {
+            "form": "exact_sequence_control",
+            "selection_count": 51,
+            "actual_feedback_members": 255,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 14
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 37
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 100
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 155
+              }
+            ],
+            "rate_override_count": 30,
+            "power_override_count": 0,
+            "first_override_time_s": 15.34,
+            "last_override_time_s": 57.811,
+            "first_selection_time_s": 12.286064,
+            "last_selection_time_s": 56.890108
+          }
+        ],
+        "ordinary_data_context_count": 823,
+        "incoming_vs_selected_rate_differences": 0,
+        "incoming_vs_selected_power_differences": 0,
+        "selection_input_values": {
+          "peer_s0_dbm": [
+            -103.0
+          ],
+          "path_loss_db": [
+            123.16724984190499,
+            135.20844966846423
+          ],
+          "hop_failure_count": [
+            0.0
+          ]
+        },
+        "queue_admission_not_observed": true
+      }
+    },
+    {
+      "case_id": "two_node_admission_1200_s130",
+      "matlab": {
+        "selection_count": 11329,
+        "actual_feedback_members": 2107,
+        "distinct_decisions_transmitted": 1400,
+        "forms": [
+          {
+            "form": "ordinary_data_window",
+            "selection_count": 11315,
+            "actual_feedback_members": 2037,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 11315
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 2037
+              }
+            ],
+            "rate_override_count": 0,
+            "power_override_count": 0,
+            "first_override_time_s": null,
+            "last_override_time_s": null,
+            "first_selection_time_s": 301.570103999999,
+            "last_selection_time_s": 1199.89474399987
+          },
+          {
+            "form": "exact_sequence_control",
+            "selection_count": 14,
+            "actual_feedback_members": 70,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 5
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 9
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 25
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 45
+              }
+            ],
+            "rate_override_count": 0,
+            "power_override_count": 0,
+            "first_override_time_s": null,
+            "last_override_time_s": null,
+            "first_selection_time_s": 11.944344,
+            "last_selection_time_s": 40.9352640000007
+          }
+        ],
+        "queue_dispositions": {
+          "enqueued": 20,
+          "replaced": 11309
+        },
+        "queue_dispositions_by_form": {
+          "ordinary_data_window": {
+            "enqueued": 6,
+            "replaced": 11309
+          },
+          "exact_sequence_control": {
+            "enqueued": 14
+          }
+        },
+        "incoming_vs_selected_rate_differences": 0,
+        "incoming_vs_selected_power_differences": 0,
+        "control_types": {
+          "KEY_UPDATE": 2,
+          "NEIGHBOR_CHECK": 3,
+          "ROUTING": 9
+        },
+        "all_actual_members_correlated_independently": true,
+        "selected_decisions_without_observed_transmission": 9929,
+        "maximum_actual_repeats_per_decision": 5
+      },
+      "ns3": {
+        "selection_count": 11411,
+        "actual_feedback_members": 2093,
+        "distinct_decisions_transmitted": 1418,
+        "forms": [
+          {
+            "form": "ordinary_data_window",
+            "selection_count": 11396,
+            "actual_feedback_members": 2018,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 11396
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 2018
+              }
+            ],
+            "rate_override_count": 0,
+            "power_override_count": 0,
+            "first_override_time_s": null,
+            "last_override_time_s": null,
+            "first_selection_time_s": 301.557104,
+            "last_selection_time_s": 1199.504744
+          },
+          {
+            "form": "exact_sequence_control",
+            "selection_count": 15,
+            "actual_feedback_members": 75,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 15
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 1
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 74
+              }
+            ],
+            "rate_override_count": 1,
+            "power_override_count": 0,
+            "first_override_time_s": 25.727,
+            "last_override_time_s": 25.727,
+            "first_selection_time_s": 11.996344,
+            "last_selection_time_s": 40.819024
+          }
+        ],
+        "ordinary_data_context_count": 11396,
+        "incoming_vs_selected_rate_differences": 0,
+        "incoming_vs_selected_power_differences": 0,
+        "selection_input_values": {
+          "peer_s0_dbm": [
+            -103.0
+          ],
+          "path_loss_db": [
+            123.16724984190499
+          ],
+          "hop_failure_count": [
+            0.0
+          ]
+        },
+        "queue_admission_not_observed": true
+      }
+    },
+    {
+      "case_id": "three_node_contention_360_s130",
+      "matlab": {
+        "selection_count": 943,
+        "actual_feedback_members": 432,
+        "distinct_decisions_transmitted": 177,
+        "forms": [
+          {
+            "form": "ordinary_data_window",
+            "selection_count": 895,
+            "actual_feedback_members": 192,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 895
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 192
+              }
+            ],
+            "rate_override_count": 0,
+            "power_override_count": 0,
+            "first_override_time_s": null,
+            "last_override_time_s": null,
+            "first_selection_time_s": 301.427103999999,
+            "last_selection_time_s": 359.899743999894
+          },
+          {
+            "form": "exact_sequence_control",
+            "selection_count": 48,
+            "actual_feedback_members": 240,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 25
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 23
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 126
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 114
+              }
+            ],
+            "rate_override_count": 1,
+            "power_override_count": 0,
+            "first_override_time_s": 15.028,
+            "last_override_time_s": 15.028,
+            "first_selection_time_s": 11.961064,
+            "last_selection_time_s": 57.1322479999984
+          }
+        ],
+        "queue_dispositions": {
+          "enqueued": 50,
+          "replaced": 893
+        },
+        "queue_dispositions_by_form": {
+          "ordinary_data_window": {
+            "enqueued": 2,
+            "replaced": 893
+          },
+          "exact_sequence_control": {
+            "enqueued": 48
+          }
+        },
+        "incoming_vs_selected_rate_differences": 0,
+        "incoming_vs_selected_power_differences": 0,
+        "control_types": {
+          "KEY_UPDATE": 6,
+          "NEIGHBOR_CHECK": 9,
+          "ROUTING": 33
+        },
+        "all_actual_members_correlated_independently": true,
+        "selected_decisions_without_observed_transmission": 766,
+        "maximum_actual_repeats_per_decision": 5
+      },
+      "ns3": {
+        "selection_count": 968,
+        "actual_feedback_members": 418,
+        "distinct_decisions_transmitted": 171,
+        "forms": [
+          {
+            "form": "ordinary_data_window",
+            "selection_count": 918,
+            "actual_feedback_members": 168,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 918
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 168
+              }
+            ],
+            "rate_override_count": 0,
+            "power_override_count": 0,
+            "first_override_time_s": null,
+            "last_override_time_s": null,
+            "first_selection_time_s": 301.596104,
+            "last_selection_time_s": 359.743744
+          },
+          {
+            "form": "exact_sequence_control",
+            "selection_count": 50,
+            "actual_feedback_members": 250,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 14
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 36
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 94
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 156
+              }
+            ],
+            "rate_override_count": 24,
+            "power_override_count": 0,
+            "first_override_time_s": 25.441,
+            "last_override_time_s": 57.798,
+            "first_selection_time_s": 11.762344,
+            "last_selection_time_s": 57.366248
+          }
+        ],
+        "ordinary_data_context_count": 918,
+        "incoming_vs_selected_rate_differences": 0,
+        "incoming_vs_selected_power_differences": 0,
+        "selection_input_values": {
+          "peer_s0_dbm": [
+            -103.0
+          ],
+          "path_loss_db": [
+            123.16724984190499,
+            135.20844966846423
+          ],
+          "hop_failure_count": [
+            0.0
+          ]
+        },
+        "queue_admission_not_observed": true
+      }
+    },
+    {
+      "case_id": "two_node_admission_1200_s131",
+      "matlab": {
+        "selection_count": 11263,
+        "actual_feedback_members": 2094,
+        "distinct_decisions_transmitted": 1373,
+        "forms": [
+          {
+            "form": "ordinary_data_window",
+            "selection_count": 11249,
+            "actual_feedback_members": 2024,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 11249
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 2024
+              }
+            ],
+            "rate_override_count": 0,
+            "power_override_count": 0,
+            "first_override_time_s": null,
+            "last_override_time_s": null,
+            "first_selection_time_s": 301.609103999999,
+            "last_selection_time_s": 1199.59574399987
+          },
+          {
+            "form": "exact_sequence_control",
+            "selection_count": 14,
+            "actual_feedback_members": 70,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 5
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 9
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 25
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 45
+              }
+            ],
+            "rate_override_count": 0,
+            "power_override_count": 0,
+            "first_override_time_s": null,
+            "last_override_time_s": null,
+            "first_selection_time_s": 12.022344,
+            "last_selection_time_s": 41.1952640000007
+          }
+        ],
+        "queue_dispositions": {
+          "enqueued": 22,
+          "replaced": 11241
+        },
+        "queue_dispositions_by_form": {
+          "ordinary_data_window": {
+            "enqueued": 8,
+            "replaced": 11241
+          },
+          "exact_sequence_control": {
+            "enqueued": 14
+          }
+        },
+        "incoming_vs_selected_rate_differences": 0,
+        "incoming_vs_selected_power_differences": 0,
+        "control_types": {
+          "KEY_UPDATE": 2,
+          "NEIGHBOR_CHECK": 3,
+          "ROUTING": 9
+        },
+        "all_actual_members_correlated_independently": true,
+        "selected_decisions_without_observed_transmission": 9890,
+        "maximum_actual_repeats_per_decision": 5
+      },
+      "ns3": {
+        "selection_count": 11345,
+        "actual_feedback_members": 2035,
+        "distinct_decisions_transmitted": 1385,
+        "forms": [
+          {
+            "form": "ordinary_data_window",
+            "selection_count": 11330,
+            "actual_feedback_members": 1960,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 11330
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 1960
+              }
+            ],
+            "rate_override_count": 0,
+            "power_override_count": 0,
+            "first_override_time_s": null,
+            "last_override_time_s": null,
+            "first_selection_time_s": 301.674104,
+            "last_selection_time_s": 1199.959744
+          },
+          {
+            "form": "exact_sequence_control",
+            "selection_count": 15,
+            "actual_feedback_members": 75,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 15
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 1
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 74
+              }
+            ],
+            "rate_override_count": 1,
+            "power_override_count": 0,
+            "first_override_time_s": 25.311,
+            "last_override_time_s": 25.311,
+            "first_selection_time_s": 11.710344,
+            "last_selection_time_s": 40.585024
+          }
+        ],
+        "ordinary_data_context_count": 11330,
+        "incoming_vs_selected_rate_differences": 0,
+        "incoming_vs_selected_power_differences": 0,
+        "selection_input_values": {
+          "peer_s0_dbm": [
+            -103.0
+          ],
+          "path_loss_db": [
+            123.16724984190499
+          ],
+          "hop_failure_count": [
+            0.0
+          ]
+        },
+        "queue_admission_not_observed": true
+      }
+    },
+    {
+      "case_id": "three_node_contention_360_s131",
+      "matlab": {
+        "selection_count": 942,
+        "actual_feedback_members": 410,
+        "distinct_decisions_transmitted": 163,
+        "forms": [
+          {
+            "form": "ordinary_data_window",
+            "selection_count": 896,
+            "actual_feedback_members": 180,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 896
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 180
+              }
+            ],
+            "rate_override_count": 0,
+            "power_override_count": 0,
+            "first_override_time_s": null,
+            "last_override_time_s": null,
+            "first_selection_time_s": 301.557103999999,
+            "last_selection_time_s": 359.860743999894
+          },
+          {
+            "form": "exact_sequence_control",
+            "selection_count": 46,
+            "actual_feedback_members": 230,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 33
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 13
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 175
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 55
+              }
+            ],
+            "rate_override_count": 10,
+            "power_override_count": 0,
+            "first_override_time_s": 15.249,
+            "last_override_time_s": 17.8880000000002,
+            "first_selection_time_s": 11.892344,
+            "last_selection_time_s": 57.2102479999984
+          }
+        ],
+        "queue_dispositions": {
+          "enqueued": 48,
+          "replaced": 894
+        },
+        "queue_dispositions_by_form": {
+          "ordinary_data_window": {
+            "enqueued": 2,
+            "replaced": 894
+          },
+          "exact_sequence_control": {
+            "enqueued": 46
+          }
+        },
+        "incoming_vs_selected_rate_differences": 0,
+        "incoming_vs_selected_power_differences": 0,
+        "control_types": {
+          "KEY_UPDATE": 6,
+          "NEIGHBOR_CHECK": 9,
+          "ROUTING": 31
+        },
+        "all_actual_members_correlated_independently": true,
+        "selected_decisions_without_observed_transmission": 779,
+        "maximum_actual_repeats_per_decision": 5
+      },
+      "ns3": {
+        "selection_count": 935,
+        "actual_feedback_members": 431,
+        "distinct_decisions_transmitted": 171,
+        "forms": [
+          {
+            "form": "ordinary_data_window",
+            "selection_count": 885,
+            "actual_feedback_members": 181,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 885
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 181
+              }
+            ],
+            "rate_override_count": 0,
+            "power_override_count": 0,
+            "first_override_time_s": null,
+            "last_override_time_s": null,
+            "first_selection_time_s": 301.453104,
+            "last_selection_time_s": 359.899744
+          },
+          {
+            "form": "exact_sequence_control",
+            "selection_count": 50,
+            "actual_feedback_members": 250,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 14
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 36
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 100
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 150
+              }
+            ],
+            "rate_override_count": 30,
+            "power_override_count": 0,
+            "first_override_time_s": 15.21,
+            "last_override_time_s": 58.682,
+            "first_selection_time_s": 11.935064,
+            "last_selection_time_s": 57.548248
+          }
+        ],
+        "ordinary_data_context_count": 885,
+        "incoming_vs_selected_rate_differences": 0,
+        "incoming_vs_selected_power_differences": 0,
+        "selection_input_values": {
+          "peer_s0_dbm": [
+            -103.0
+          ],
+          "path_loss_db": [
+            123.16724984190499,
+            135.20844966846423
+          ],
+          "hop_failure_count": [
+            0.0
+          ]
+        },
+        "queue_admission_not_observed": true
+      }
+    },
+    {
+      "case_id": "two_node_admission_1200_s132",
+      "matlab": {
+        "selection_count": 11373,
+        "actual_feedback_members": 2071,
+        "distinct_decisions_transmitted": 1373,
+        "forms": [
+          {
+            "form": "ordinary_data_window",
+            "selection_count": 11359,
+            "actual_feedback_members": 2001,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 11359
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 2001
+              }
+            ],
+            "rate_override_count": 0,
+            "power_override_count": 0,
+            "first_override_time_s": null,
+            "last_override_time_s": null,
+            "first_selection_time_s": 301.596103999999,
+            "last_selection_time_s": 1199.97274399987
+          },
+          {
+            "form": "exact_sequence_control",
+            "selection_count": 14,
+            "actual_feedback_members": 70,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 5
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 9
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 25
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 45
+              }
+            ],
+            "rate_override_count": 0,
+            "power_override_count": 0,
+            "first_override_time_s": null,
+            "last_override_time_s": null,
+            "first_selection_time_s": 12.035344,
+            "last_selection_time_s": 40.3762640000008
+          }
+        ],
+        "queue_dispositions": {
+          "enqueued": 19,
+          "replaced": 11354
+        },
+        "queue_dispositions_by_form": {
+          "ordinary_data_window": {
+            "enqueued": 5,
+            "replaced": 11354
+          },
+          "exact_sequence_control": {
+            "enqueued": 14
+          }
+        },
+        "incoming_vs_selected_rate_differences": 0,
+        "incoming_vs_selected_power_differences": 0,
+        "control_types": {
+          "KEY_UPDATE": 2,
+          "NEIGHBOR_CHECK": 3,
+          "ROUTING": 9
+        },
+        "all_actual_members_correlated_independently": true,
+        "selected_decisions_without_observed_transmission": 10000,
+        "maximum_actual_repeats_per_decision": 5
+      },
+      "ns3": {
+        "selection_count": 11390,
+        "actual_feedback_members": 2100,
+        "distinct_decisions_transmitted": 1372,
+        "forms": [
+          {
+            "form": "ordinary_data_window",
+            "selection_count": 11375,
+            "actual_feedback_members": 2025,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 11375
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 2025
+              }
+            ],
+            "rate_override_count": 0,
+            "power_override_count": 0,
+            "first_override_time_s": null,
+            "last_override_time_s": null,
+            "first_selection_time_s": 301.635104,
+            "last_selection_time_s": 1199.829744
+          },
+          {
+            "form": "exact_sequence_control",
+            "selection_count": 15,
+            "actual_feedback_members": 75,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 15
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 1
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 74
+              }
+            ],
+            "rate_override_count": 1,
+            "power_override_count": 0,
+            "first_override_time_s": 25.805,
+            "last_override_time_s": 25.805,
+            "first_selection_time_s": 11.905344,
+            "last_selection_time_s": 40.962024
+          }
+        ],
+        "ordinary_data_context_count": 11375,
+        "incoming_vs_selected_rate_differences": 0,
+        "incoming_vs_selected_power_differences": 0,
+        "selection_input_values": {
+          "peer_s0_dbm": [
+            -103.0
+          ],
+          "path_loss_db": [
+            123.16724984190499
+          ],
+          "hop_failure_count": [
+            0.0
+          ]
+        },
+        "queue_admission_not_observed": true
+      }
+    },
+    {
+      "case_id": "three_node_contention_360_s132",
+      "matlab": {
+        "selection_count": 965,
+        "actual_feedback_members": 409,
+        "distinct_decisions_transmitted": 170,
+        "forms": [
+          {
+            "form": "ordinary_data_window",
+            "selection_count": 918,
+            "actual_feedback_members": 174,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 918
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 174
+              }
+            ],
+            "rate_override_count": 0,
+            "power_override_count": 0,
+            "first_override_time_s": null,
+            "last_override_time_s": null,
+            "first_selection_time_s": 301.362103999999,
+            "last_selection_time_s": 359.743743999894
+          },
+          {
+            "form": "exact_sequence_control",
+            "selection_count": 47,
+            "actual_feedback_members": 235,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 25
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 22
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 125
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 110
+              }
+            ],
+            "rate_override_count": 0,
+            "power_override_count": 0,
+            "first_override_time_s": null,
+            "last_override_time_s": null,
+            "first_selection_time_s": 11.697344,
+            "last_selection_time_s": 56.9372479999984
+          }
+        ],
+        "queue_dispositions": {
+          "enqueued": 49,
+          "replaced": 916
+        },
+        "queue_dispositions_by_form": {
+          "ordinary_data_window": {
+            "enqueued": 2,
+            "replaced": 916
+          },
+          "exact_sequence_control": {
+            "enqueued": 47
+          }
+        },
+        "incoming_vs_selected_rate_differences": 0,
+        "incoming_vs_selected_power_differences": 0,
+        "control_types": {
+          "KEY_UPDATE": 6,
+          "NEIGHBOR_CHECK": 9,
+          "ROUTING": 32
+        },
+        "all_actual_members_correlated_independently": true,
+        "selected_decisions_without_observed_transmission": 795,
+        "maximum_actual_repeats_per_decision": 5
+      },
+      "ns3": {
+        "selection_count": 970,
+        "actual_feedback_members": 425,
+        "distinct_decisions_transmitted": 170,
+        "forms": [
+          {
+            "form": "ordinary_data_window",
+            "selection_count": 921,
+            "actual_feedback_members": 180,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 921
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 180
+              }
+            ],
+            "rate_override_count": 0,
+            "power_override_count": 0,
+            "first_override_time_s": null,
+            "last_override_time_s": null,
+            "first_selection_time_s": 301.674104,
+            "last_selection_time_s": 359.769744
+          },
+          {
+            "form": "exact_sequence_control",
+            "selection_count": 49,
+            "actual_feedback_members": 245,
+            "selected_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 14
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 35
+              }
+            ],
+            "actual_distribution": [
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 8.0,
+                "power_dbm": 33.0,
+                "count": 101
+              },
+              {
+                "kind": "ACK",
+                "rate_key_kbps": 128.0,
+                "power_dbm": 33.0,
+                "count": 144
+              }
+            ],
+            "rate_override_count": 31,
+            "power_override_count": 0,
+            "first_override_time_s": 25.298,
+            "last_override_time_s": 58.578,
+            "first_selection_time_s": 12.000064,
+            "last_selection_time_s": 57.189108
+          }
+        ],
+        "ordinary_data_context_count": 921,
+        "incoming_vs_selected_rate_differences": 0,
+        "incoming_vs_selected_power_differences": 0,
+        "selection_input_values": {
+          "peer_s0_dbm": [
+            -103.0
+          ],
+          "path_loss_db": [
+            123.16724984190499,
+            135.20844966846423
+          ],
+          "hop_failure_count": [
+            0.0
+          ]
+        },
+        "queue_admission_not_observed": true
+      }
+    }
+  ]
+}

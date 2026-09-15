@@ -1,0 +1,118 @@
+{
+  "Schema": "csr-tranche14-r2-preflight-v1",
+  "Status": "passed",
+  "CreatedUTC": "2026-09-15T13:22:25.749980+00:00",
+  "MATLABExecuted": false,
+  "CandidateSHA256": "4bb51710031ead9d8d7c6b718fb41fd9224156b46076111e4e9c161aebbcc69f",
+  "SourceFiles": 285,
+  "MatlabSourceFiles": 144,
+  "ReferenceFiles": 317,
+  "MatlabTestCount": 109,
+  "Previous106TestNamesRetained": true,
+  "IndependentMatlabPreflightTestsAdded": 3,
+  "PythonEvidenceTestsPassed": 37,
+  "MatlabStaticFilesPassed": 6,
+  "BaselineSourceFilesUnchanged": 271,
+  "BaselineMatlabFilesUnchanged": 138,
+  "ChangedSourceBindings": {
+    "+csr/+validation/TraceScheduler.m": "a538c067be72df309b0cec6190bdf7c35c2e948f0a87085e75df6816c70eafec",
+    "+csr/+validation/ackEdgeContract.m": "d53d70d23ad42fa92d2d6ba5bef046c8f7f34f609a0d1e072d02a27ca470bb32",
+    "+csr/+validation/edgeRecordTable.m": "7667f185627a3aa1bb301b0cd70a1f7b9fe65caa3b07ab95e62dd6030b44075d",
+    "evidence/tranche-14-candidate.json": "4bb51710031ead9d8d7c6b718fb41fd9224156b46076111e4e9c161aebbcc69f",
+    "run_tranche14_validation.m": "143c02834b9daa6b214cc78d8feb61f4b8e0f30bec6e6ac0d216b544198fc7ff",
+    "tests/TestAckEdgeContract.m": "d13181b351c919a7e6f594230b9b0602902741ee257937be24dad0de67c33e89",
+    "tests/TestEdgeRecords.m": "57ee6cdbf28fc99dddc6bfdf2878a9ca5692cf10ed86741e33d6febfa5c3aba0"
+  },
+  "PreviousReferenceFilesUnchanged": 299,
+  "NativeReferenceProof": {
+    "source_pin": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+    "engine_pin": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+    "fresh_engine_build": true,
+    "historical_library_identity_claimed": false,
+    "artifact_count": 67,
+    "control_checks": 327,
+    "native_self_tests": 14,
+    "case_count": 6,
+    "event_count": 202,
+    "checkpoint_count": 222,
+    "delivered": 18,
+    "draws": {
+      "consumed": 74,
+      "supplied": 1152,
+      "unused": 1078
+    },
+    "cases": [
+      {
+        "case": "tie_early",
+        "delivered": 3,
+        "first_ack_sequence": 3,
+        "first_ack_bits": "7",
+        "gateway_ack_transmissions": 5,
+        "source_ack_transmissions": 5,
+        "source_data_transmissions": 1,
+        "data_precedes_first_ack": true,
+        "final_queues_clear": true
+      },
+      {
+        "case": "tie_late",
+        "delivered": 3,
+        "first_ack_sequence": 2,
+        "first_ack_bits": "3",
+        "gateway_ack_transmissions": 6,
+        "source_ack_transmissions": 5,
+        "source_data_transmissions": 1,
+        "data_precedes_first_ack": false,
+        "final_queues_clear": true
+      },
+      {
+        "case": "before",
+        "delivered": 3,
+        "first_ack_sequence": 3,
+        "first_ack_bits": "7",
+        "gateway_ack_transmissions": 5,
+        "source_ack_transmissions": 5,
+        "source_data_transmissions": 1,
+        "data_precedes_first_ack": true,
+        "final_queues_clear": true
+      },
+      {
+        "case": "after",
+        "delivered": 3,
+        "first_ack_sequence": 2,
+        "first_ack_bits": "3",
+        "gateway_ack_transmissions": 6,
+        "source_ack_transmissions": 5,
+        "source_data_transmissions": 1,
+        "data_precedes_first_ack": false,
+        "final_queues_clear": true
+      },
+      {
+        "case": "continuous",
+        "delivered": 3,
+        "first_ack_sequence": 3,
+        "first_ack_bits": "7",
+        "gateway_ack_transmissions": 5,
+        "source_ack_transmissions": 5,
+        "source_data_transmissions": 1,
+        "data_precedes_first_ack": true,
+        "final_queues_clear": true
+      },
+      {
+        "case": "quantized",
+        "delivered": 3,
+        "first_ack_sequence": 3,
+        "first_ack_bits": "7",
+        "gateway_ack_transmissions": 5,
+        "source_ack_transmissions": 5,
+        "source_data_transmissions": 1,
+        "data_precedes_first_ack": true,
+        "final_queues_clear": true
+      }
+    ]
+  },
+  "NativeRerunForRepair": false,
+  "FailedOwnerReturnAccepted": false,
+  "ReviewSHA256": "4d33727216497cf6601f567a18f71a41a8fcdfe11bdc73680c3a5782fb46c99e",
+  "TestLogSHA256": "b3f4505aec0a3efc82f08ce87b72ae58c7616bc7c92b313d55502b7593ed4fdc",
+  "LintLogSHA256": "91e68645f132f8c48dc33a7f6b9947bd3a7c0686ca5a49417d52cdf96da1a67e"
+}

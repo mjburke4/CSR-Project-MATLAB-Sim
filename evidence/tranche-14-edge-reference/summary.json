@@ -1,0 +1,541 @@
+{
+  "schema": "csr-tranche14-edge-native-v1",
+  "status": "passed",
+  "generated_utc": "2026-09-15T12:32:29.424437+00:00",
+  "source_pin": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "engine_pin": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+  "case_count": 6,
+  "event_count": 202,
+  "checkpoint_count": 222,
+  "draw_count": 74,
+  "boundary_count": 6,
+  "failed_count": 0,
+  "cases": [
+    {
+      "case": "tie_early",
+      "events": 33,
+      "checks": 37,
+      "draws": 12,
+      "delivered": 3,
+      "gateway_ack_transmissions": 5,
+      "first_ack_sequence": 3,
+      "first_ack_bits": "7",
+      "last_ack_bits": "7",
+      "ingress_event_id": "60",
+      "structural_passed": true
+    },
+    {
+      "case": "tie_late",
+      "events": 35,
+      "checks": 37,
+      "draws": 13,
+      "delivered": 3,
+      "gateway_ack_transmissions": 6,
+      "first_ack_sequence": 2,
+      "first_ack_bits": "3",
+      "last_ack_bits": "7",
+      "ingress_event_id": "64",
+      "structural_passed": true
+    },
+    {
+      "case": "before",
+      "events": 33,
+      "checks": 37,
+      "draws": 12,
+      "delivered": 3,
+      "gateway_ack_transmissions": 5,
+      "first_ack_sequence": 3,
+      "first_ack_bits": "7",
+      "last_ack_bits": "7",
+      "ingress_event_id": "60",
+      "structural_passed": true
+    },
+    {
+      "case": "after",
+      "events": 35,
+      "checks": 37,
+      "draws": 13,
+      "delivered": 3,
+      "gateway_ack_transmissions": 6,
+      "first_ack_sequence": 2,
+      "first_ack_bits": "3",
+      "last_ack_bits": "7",
+      "ingress_event_id": "60",
+      "structural_passed": true
+    },
+    {
+      "case": "continuous",
+      "events": 33,
+      "checks": 37,
+      "draws": 12,
+      "delivered": 3,
+      "gateway_ack_transmissions": 5,
+      "first_ack_sequence": 3,
+      "first_ack_bits": "7",
+      "last_ack_bits": "7",
+      "ingress_event_id": "60",
+      "structural_passed": true
+    },
+    {
+      "case": "quantized",
+      "events": 33,
+      "checks": 37,
+      "draws": 12,
+      "delivered": 3,
+      "gateway_ack_transmissions": 5,
+      "first_ack_sequence": 3,
+      "first_ack_bits": "7",
+      "last_ack_bits": "7",
+      "ingress_event_id": "60",
+      "structural_passed": true
+    }
+  ],
+  "controls": {
+    "ack": {
+      "checks": 101,
+      "passed": true,
+      "clean_and_disabled_byte_equal": true,
+      "sha256": "2991bbc93e5ba2c64d06a93cee278160cd9baf2fdc11b052ee5b0cb561fe4b73"
+    },
+    "receiver": {
+      "checks": 154,
+      "passed": true,
+      "clean_and_disabled_byte_equal": true,
+      "sha256": "a3562a3f23e5603359610b150e20551f5a671298d7db529e037d842ce7206c1a"
+    },
+    "clock": {
+      "checks": 72,
+      "passed": true,
+      "clean_and_disabled_byte_equal": true,
+      "sha256": "718591f9e6c13d114d9ca24167a68b07d1740afaf0fd560a239e559b525efec7"
+    }
+  },
+  "self_tests": {
+    "checks": 14,
+    "failed": 0
+  },
+  "native_build_manifest": "evidence/tranche-14-native-build.json",
+  "native_build_manifest_sha256": "b9209a063e57902dbda3fdcc81b3f26a6247e2ccec7799dd7ed5671f5690da9b",
+  "shared_libraries": {
+    "csr": "3030ea9ca68897f99eff16cae599800094249f12e08c5da30b9eae182111ca7c",
+    "spectrum": "41345a338691d05a656af6a3e026d2d600c7753ddb59986a76900278c1e6269c",
+    "buildings": "d9d823f913a8127a6b6fad615412ec099f7a27cec5fc5c227dc38e070268e8d9",
+    "propagation": "40edfd881607ee44f654021039c6880e0918ce53c90fe9a1d1bdcae1ce0220e0",
+    "mobility": "515d19fae3de40d2af3778715ca2a44daf0bea16906db63527930e03a1959c31",
+    "antenna": "676dccc599d0bf8e269e3a48e2bacabb2507188541b9d0f1f3cfe7bfe29949d4",
+    "network": "717dfeec241c8444bc952fd91e1469890449d4dae361f14fe2e88ac6350aae36",
+    "stats": "ee5a1d30fdddbd994b26c45f4ee95e48d151e8c52f2a10735dfabf915f4945af",
+    "core": "f445dbcf2a7e1d13e67bdc7d65305a2152f637bd2562e5cd1dcadb28c2c22eaf"
+  },
+  "model_sources": {
+    "csr-hop-security.cc": "2b390e6496c98e87a771ed10613e69ecd702922a0b9f54e8058170653271cc6a",
+    "csr-opnet-packet-model.h": "59eb4ccd19d109f623fb8ea4d9ad23b2d936f081268261c100231c26cb2dccc6",
+    "csr-differential-trace.h": "78b443af6e91e927c398450ef71245e815ba4bd02ad9369a06fd95f98e2dff84",
+    "csr-opnet-ber-tables.h": "8034348552990ce6a0aa0fd673a319299762fbd75c402de59a64ac160eb7cfb5",
+    "csr-module.cc": "34b32e33586f4adaddd47c41d1795c8f81205c00b8f4981355cad8674c23ad8e",
+    "csr-opnet-packet-model.cc": "16af5d39e7f12c17e1f27a49f80c1ea313618bce87d3c5b75b07bc38cebf2056",
+    "csr-legacy-crypto.h": "ce2e76387addc44e63601b8638d066b484dbd13f301bc09882bd21959a118306",
+    "csr-hello-header.cc": "e6a1a9e95312d089404873fd7d9d4c87bf024d754af224064328106d5c886a4f",
+    "csr-opnet-envelope.h": "e67b526126907f43f2ee4199552c583ac9c2a0f927cf942fe76aa328900e001a",
+    "csr-phy-model.h": "d690b4c572491a9ea8c48735b1726770938b118dcbcd931e92920e602cae18fc",
+    "csr-arl-routing-message.cc": "046d7b1c91d4339f7cb67cda7066532ae4659b8e324b1bd482b6aba0a5562c3f",
+    "csr-net-device.h": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+    "csr-common.h": "f1e0a962862ef1cc5a6994f24988858a2bea70385ce02b1264285de194fe6ae1",
+    "csr-hop-security.h": "9bca9c9a6e4ae04a20a3309ac8a8787589ac4ad65785cbf57fbe20c5e8e37d5e",
+    "csr-nwk-layer.h": "bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc",
+    "csr-legacy-crypto.cc": "c3f32f583813dead77c42d51736f73fb300a59b33f9fa75da4fc939c7e6553e0",
+    "csr-opnet-ber-tables-data.inc": "d10a9ba3ded2301598b79d6bf28a6ea318da34b5ce79709ba2a06a0b8fce95b8",
+    "csr-hello-header.h": "741ccff278e1694ea40c4c6c5b1cb14a3a6034864d0328c6a2e04420935fb7d4",
+    "csr-hop-layer.h": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+    "csr-wire-format.h": "eb9097e1588c8e235a06cec5f0b28c13a22a3f3c88c6b8581e4186d69fc94c2f",
+    "csr-arl-routing-message.h": "0eddd945d264965c90bcea60d73b14cab2159bc0664e0e526d38e50b0d363a8c",
+    "csr-opnet-ber-tables.cc": "0af0b66c23ea95bbf74f32099ab0562a8a781e1b1048f5eb0b45faea83b73cf6",
+    "csr-mac-core.h": "64a71ad280ba14ab2b00d5d2b9dac708fabea939dfa385ad62dd73e5e40203e9"
+  },
+  "fixture_sources": {
+    "scripts/run_tranche14_ns3_reference.py": "eeb1384a5661a332dac024adda512b53f4e95414bdfc4e4245fb587f1295566e",
+    "scripts/run_tranche4_ns3_reference.py": "03d877451d011fd05c7aae7f6b9f407978b7747ffd0ecb3f58ba9d09130eaa3f",
+    "scripts/build_tranche12_overlay.py": "15951b797f4c4ecc1e5b63f660f2184ceba2f9102e152334d0f9a6c6ce2ca039",
+    "scripts/ns3/tranche14_edge.cc": "8e86e443f02ca0d1952cbae98e3a89f9592ec49e3494f2c476b03ad886f5bad0",
+    "scripts/ns3/tranche12-relay-hooks.h": "1afc69572ac9682bf9880552fa87f6e7ec6a422e78b1d513a0301ddb3495eaf6",
+    "scripts/ns3/tranche9_ack_contract.cc": "83b8477859d176823b150329a1bacbf6f321f0eda533b69b159962f5e18c2068",
+    "scripts/ns3/tranche10_receiver_contract.cc": "293e74599336d6b2cb2ba1315620ca3484e611afd4788009d1b1aa61e9e69a1e",
+    "scripts/ns3/tranche12_clock.cc": "5ef454de4917393ca4adbe620dbeb2e1043c728242a2d4bc42720e7b90900a8c"
+  },
+  "input_bindings": {
+    "scenarios/edge/cases.csv": "df29719730e7022f7bb8e912e0863c2109bae300fb75021d4eb8d8bb2a13262f",
+    "scenarios/edge/draws.csv": "5aff5bb3467c36370cc0c2617724022f69fc87d1601fee65f34fb06bef0efeb8",
+    "scenarios/edge/plan.json": "7e7ec33e946cb1fb315b0990813a2102d18c64b6f966b46cee021f8f273b61b9"
+  },
+  "overlay": {
+    "schema": "csr-tranche12-overlay-v1",
+    "scope": "Pinned NWK/MAC/HOP with test-only raw draw and controlled transport seams; no RF claim",
+    "unchanged_native_rng_construction": true,
+    "unchanged_native_occupancy_probe": true,
+    "disabled_hooks_execute_original_paths": true,
+    "dack_getter_reads_actual_hold_list_without_mutation": true,
+    "original_files": {
+      "csr-arl-routing-message.cc": "046d7b1c91d4339f7cb67cda7066532ae4659b8e324b1bd482b6aba0a5562c3f",
+      "csr-arl-routing-message.h": "0eddd945d264965c90bcea60d73b14cab2159bc0664e0e526d38e50b0d363a8c",
+      "csr-common.h": "f1e0a962862ef1cc5a6994f24988858a2bea70385ce02b1264285de194fe6ae1",
+      "csr-differential-trace.h": "78b443af6e91e927c398450ef71245e815ba4bd02ad9369a06fd95f98e2dff84",
+      "csr-hello-header.cc": "e6a1a9e95312d089404873fd7d9d4c87bf024d754af224064328106d5c886a4f",
+      "csr-hello-header.h": "741ccff278e1694ea40c4c6c5b1cb14a3a6034864d0328c6a2e04420935fb7d4",
+      "csr-hop-layer.h": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+      "csr-hop-security.cc": "2b390e6496c98e87a771ed10613e69ecd702922a0b9f54e8058170653271cc6a",
+      "csr-hop-security.h": "9bca9c9a6e4ae04a20a3309ac8a8787589ac4ad65785cbf57fbe20c5e8e37d5e",
+      "csr-legacy-crypto.cc": "c3f32f583813dead77c42d51736f73fb300a59b33f9fa75da4fc939c7e6553e0",
+      "csr-legacy-crypto.h": "ce2e76387addc44e63601b8638d066b484dbd13f301bc09882bd21959a118306",
+      "csr-mac-core.h": "64a71ad280ba14ab2b00d5d2b9dac708fabea939dfa385ad62dd73e5e40203e9",
+      "csr-module.cc": "34b32e33586f4adaddd47c41d1795c8f81205c00b8f4981355cad8674c23ad8e",
+      "csr-net-device.h": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+      "csr-nwk-layer.h": "bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc",
+      "csr-opnet-ber-tables-data.inc": "d10a9ba3ded2301598b79d6bf28a6ea318da34b5ce79709ba2a06a0b8fce95b8",
+      "csr-opnet-ber-tables.cc": "0af0b66c23ea95bbf74f32099ab0562a8a781e1b1048f5eb0b45faea83b73cf6",
+      "csr-opnet-ber-tables.h": "8034348552990ce6a0aa0fd673a319299762fbd75c402de59a64ac160eb7cfb5",
+      "csr-opnet-envelope.h": "e67b526126907f43f2ee4199552c583ac9c2a0f927cf942fe76aa328900e001a",
+      "csr-opnet-packet-model.cc": "16af5d39e7f12c17e1f27a49f80c1ea313618bce87d3c5b75b07bc38cebf2056",
+      "csr-opnet-packet-model.h": "59eb4ccd19d109f623fb8ea4d9ad23b2d936f081268261c100231c26cb2dccc6",
+      "csr-phy-model.h": "d690b4c572491a9ea8c48735b1726770938b118dcbcd931e92920e602cae18fc",
+      "csr-wire-format.h": "eb9097e1588c8e235a06cec5f0b28c13a22a3f3c88c6b8581e4186d69fc94c2f"
+    },
+    "modified_files": {
+      "csr-hop-layer.h": {
+        "original_sha256": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+        "overlay_sha256": "4c50ef9ec03ce30264b658b1674bf58c0ae22c52a8715f7b0e246f91cea47ba1"
+      },
+      "csr-mac-core.h": {
+        "original_sha256": "64a71ad280ba14ab2b00d5d2b9dac708fabea939dfa385ad62dd73e5e40203e9",
+        "overlay_sha256": "c7650b5d7039ec88adb79d6376e97708f97e4caa57acb04ca9e9a7cd74f935d5"
+      },
+      "csr-net-device.h": {
+        "original_sha256": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+        "overlay_sha256": "77bc1ff7c8d3fd87653fc1f4281eda8c0f1d4f5c87bb2be6c6ca36cdc26e0d92"
+      }
+    },
+    "hooks_sha256": "1afc69572ac9682bf9880552fa87f6e7ec6a422e78b1d513a0301ddb3495eaf6",
+    "patch_sha256": "4a3b088e11e4bc0944dc5c3ca37475617363dc3d5741a6111d3aa06417bf6f8b",
+    "recipe_sha256": "15951b797f4c4ecc1e5b63f660f2184ceba2f9102e152334d0f9a6c6ce2ca039"
+  },
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/g++",
+        "-std=c++23",
+        "-g",
+        "-DNS3_ASSERT_ENABLE",
+        "-DNS3_BUILD_PROFILE_DEBUG",
+        "-DNS3_LOG_ENABLE",
+        "-DSTACKTRACE_LIBRARY_IS_LINKED=1",
+        "-D__LINUX__",
+        "-I/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/include",
+        "/workspace/scratch/1a5b1ad6ce1b/csr14/scripts/ns3/tranche9_ack_contract.cc",
+        "-L/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/lib",
+        "-Wl,-rpath,/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/lib",
+        "-Wl,--no-as-needed",
+        "-lns3-dev-csr-debug",
+        "-lns3-dev-spectrum-debug",
+        "-lns3-dev-buildings-debug",
+        "-lns3-dev-propagation-debug",
+        "-lns3-dev-mobility-debug",
+        "-lns3-dev-antenna-debug",
+        "-lns3-dev-network-debug",
+        "-lns3-dev-stats-debug",
+        "-lns3-dev-core-debug",
+        "-lstdc++exp",
+        "-o",
+        "/workspace/scratch/1a5b1ad6ce1b/t14n/native/final/ack-clean"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 7.517479078000179,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "binary_sha256": "294f8be959dc014f07b6d423951e439e1f9674c70021fb8e2b50d2dbaaf3156b"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++",
+        "-I/workspace/scratch/1a5b1ad6ce1b/t14n/native/final/overlay",
+        "-std=c++23",
+        "-g",
+        "-DNS3_ASSERT_ENABLE",
+        "-DNS3_BUILD_PROFILE_DEBUG",
+        "-DNS3_LOG_ENABLE",
+        "-DSTACKTRACE_LIBRARY_IS_LINKED=1",
+        "-D__LINUX__",
+        "-I/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/include",
+        "/workspace/scratch/1a5b1ad6ce1b/csr14/scripts/ns3/tranche9_ack_contract.cc",
+        "-L/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/lib",
+        "-Wl,-rpath,/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/lib",
+        "-Wl,--no-as-needed",
+        "-lns3-dev-csr-debug",
+        "-lns3-dev-spectrum-debug",
+        "-lns3-dev-buildings-debug",
+        "-lns3-dev-propagation-debug",
+        "-lns3-dev-mobility-debug",
+        "-lns3-dev-antenna-debug",
+        "-lns3-dev-network-debug",
+        "-lns3-dev-stats-debug",
+        "-lns3-dev-core-debug",
+        "-lstdc++exp",
+        "-o",
+        "/workspace/scratch/1a5b1ad6ce1b/t14n/native/final/ack-off"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 7.765376207999907,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "binary_sha256": "3fd28dd0343615d8febb2e0c5e58059d56be1ea0a99a6d7af4eef6af581cf930"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++",
+        "-std=c++23",
+        "-g",
+        "-DNS3_ASSERT_ENABLE",
+        "-DNS3_BUILD_PROFILE_DEBUG",
+        "-DNS3_LOG_ENABLE",
+        "-DSTACKTRACE_LIBRARY_IS_LINKED=1",
+        "-D__LINUX__",
+        "-I/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/include",
+        "/workspace/scratch/1a5b1ad6ce1b/csr14/scripts/ns3/tranche10_receiver_contract.cc",
+        "-L/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/lib",
+        "-Wl,-rpath,/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/lib",
+        "-Wl,--no-as-needed",
+        "-lns3-dev-csr-debug",
+        "-lns3-dev-spectrum-debug",
+        "-lns3-dev-buildings-debug",
+        "-lns3-dev-propagation-debug",
+        "-lns3-dev-mobility-debug",
+        "-lns3-dev-antenna-debug",
+        "-lns3-dev-network-debug",
+        "-lns3-dev-stats-debug",
+        "-lns3-dev-core-debug",
+        "-lstdc++exp",
+        "-o",
+        "/workspace/scratch/1a5b1ad6ce1b/t14n/native/final/receiver-clean"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 5.200677198999983,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "binary_sha256": "65415ae5ecaaf83e116b8dbeaa6603d9873eb844507eefda52bd6cfda7dfb792"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++",
+        "-I/workspace/scratch/1a5b1ad6ce1b/t14n/native/final/overlay",
+        "-std=c++23",
+        "-g",
+        "-DNS3_ASSERT_ENABLE",
+        "-DNS3_BUILD_PROFILE_DEBUG",
+        "-DNS3_LOG_ENABLE",
+        "-DSTACKTRACE_LIBRARY_IS_LINKED=1",
+        "-D__LINUX__",
+        "-I/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/include",
+        "/workspace/scratch/1a5b1ad6ce1b/csr14/scripts/ns3/tranche10_receiver_contract.cc",
+        "-L/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/lib",
+        "-Wl,-rpath,/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/lib",
+        "-Wl,--no-as-needed",
+        "-lns3-dev-csr-debug",
+        "-lns3-dev-spectrum-debug",
+        "-lns3-dev-buildings-debug",
+        "-lns3-dev-propagation-debug",
+        "-lns3-dev-mobility-debug",
+        "-lns3-dev-antenna-debug",
+        "-lns3-dev-network-debug",
+        "-lns3-dev-stats-debug",
+        "-lns3-dev-core-debug",
+        "-lstdc++exp",
+        "-o",
+        "/workspace/scratch/1a5b1ad6ce1b/t14n/native/final/receiver-off"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 5.351132816000245,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "binary_sha256": "79e3c178a6ebc7f46708b27e96c497a74fd01a891efa8d190ecec158b5069695"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++",
+        "-std=c++23",
+        "-g",
+        "-DNS3_ASSERT_ENABLE",
+        "-DNS3_BUILD_PROFILE_DEBUG",
+        "-DNS3_LOG_ENABLE",
+        "-DSTACKTRACE_LIBRARY_IS_LINKED=1",
+        "-D__LINUX__",
+        "-I/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/include",
+        "/workspace/scratch/1a5b1ad6ce1b/csr14/scripts/ns3/tranche12_clock.cc",
+        "-L/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/lib",
+        "-Wl,-rpath,/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/lib",
+        "-Wl,--no-as-needed",
+        "-lns3-dev-csr-debug",
+        "-lns3-dev-spectrum-debug",
+        "-lns3-dev-buildings-debug",
+        "-lns3-dev-propagation-debug",
+        "-lns3-dev-mobility-debug",
+        "-lns3-dev-antenna-debug",
+        "-lns3-dev-network-debug",
+        "-lns3-dev-stats-debug",
+        "-lns3-dev-core-debug",
+        "-lstdc++exp",
+        "-o",
+        "/workspace/scratch/1a5b1ad6ce1b/t14n/native/final/clock-clean"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 5.098580527999729,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "binary_sha256": "2b4e1647e0a2253f69330c2d9cdea913c616854ba960c4701f2c1e6055177431"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++",
+        "-I/workspace/scratch/1a5b1ad6ce1b/t14n/native/final/overlay",
+        "-std=c++23",
+        "-g",
+        "-DNS3_ASSERT_ENABLE",
+        "-DNS3_BUILD_PROFILE_DEBUG",
+        "-DNS3_LOG_ENABLE",
+        "-DSTACKTRACE_LIBRARY_IS_LINKED=1",
+        "-D__LINUX__",
+        "-I/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/include",
+        "/workspace/scratch/1a5b1ad6ce1b/csr14/scripts/ns3/tranche12_clock.cc",
+        "-L/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/lib",
+        "-Wl,-rpath,/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/lib",
+        "-Wl,--no-as-needed",
+        "-lns3-dev-csr-debug",
+        "-lns3-dev-spectrum-debug",
+        "-lns3-dev-buildings-debug",
+        "-lns3-dev-propagation-debug",
+        "-lns3-dev-mobility-debug",
+        "-lns3-dev-antenna-debug",
+        "-lns3-dev-network-debug",
+        "-lns3-dev-stats-debug",
+        "-lns3-dev-core-debug",
+        "-lstdc++exp",
+        "-o",
+        "/workspace/scratch/1a5b1ad6ce1b/t14n/native/final/clock-off"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 5.151439843999469,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "binary_sha256": "2e390e1bda77e9b9ff27a3961a4ee625c03874170cd3456d4c7fa6340b37d3d4"
+    },
+    {
+      "argv": [
+        "/usr/bin/g++",
+        "-I/workspace/scratch/1a5b1ad6ce1b/t14n/native/final/overlay",
+        "-std=c++23",
+        "-g",
+        "-DNS3_ASSERT_ENABLE",
+        "-DNS3_BUILD_PROFILE_DEBUG",
+        "-DNS3_LOG_ENABLE",
+        "-DSTACKTRACE_LIBRARY_IS_LINKED=1",
+        "-D__LINUX__",
+        "-I/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/include",
+        "/workspace/scratch/1a5b1ad6ce1b/csr14/scripts/ns3/tranche14_edge.cc",
+        "-L/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/lib",
+        "-Wl,-rpath,/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/lib",
+        "-Wl,--no-as-needed",
+        "-lns3-dev-csr-debug",
+        "-lns3-dev-spectrum-debug",
+        "-lns3-dev-buildings-debug",
+        "-lns3-dev-propagation-debug",
+        "-lns3-dev-mobility-debug",
+        "-lns3-dev-antenna-debug",
+        "-lns3-dev-network-debug",
+        "-lns3-dev-stats-debug",
+        "-lns3-dev-core-debug",
+        "-lstdc++exp",
+        "-o",
+        "/workspace/scratch/1a5b1ad6ce1b/t14n/native/final/edge"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 13.640379457000563,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "binary_sha256": "e268c2141dd9ef47e674a83ee8fa2ebd946435e02512e90b627c863c19be0060"
+    },
+    {
+      "argv": [
+        "/workspace/scratch/1a5b1ad6ce1b/t14n/native/final/ack-clean",
+        "/workspace/scratch/1a5b1ad6ce1b/csr14/evidence/tranche-14-edge-reference/controls/ack-clean.csv"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.040313280999725976,
+      "log_sha256": "1ddef194fc064c32ead66e2cb86a463b74397d97c5e20457bde46547c8a55f17"
+    },
+    {
+      "argv": [
+        "/workspace/scratch/1a5b1ad6ce1b/t14n/native/final/ack-off",
+        "/workspace/scratch/1a5b1ad6ce1b/csr14/evidence/tranche-14-edge-reference/controls/ack-off.csv"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.04100914900027419,
+      "log_sha256": "1ddef194fc064c32ead66e2cb86a463b74397d97c5e20457bde46547c8a55f17"
+    },
+    {
+      "argv": [
+        "/workspace/scratch/1a5b1ad6ce1b/t14n/native/final/receiver-clean",
+        "/workspace/scratch/1a5b1ad6ce1b/csr14/evidence/tranche-14-edge-reference/controls/receiver-clean.csv"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.04060580500026845,
+      "log_sha256": "c33cd7ec629894f8cec39498de6299078c9a0b2f4208d779b72c2a939ea5fe14"
+    },
+    {
+      "argv": [
+        "/workspace/scratch/1a5b1ad6ce1b/t14n/native/final/receiver-off",
+        "/workspace/scratch/1a5b1ad6ce1b/csr14/evidence/tranche-14-edge-reference/controls/receiver-off.csv"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.034820079000382975,
+      "log_sha256": "c33cd7ec629894f8cec39498de6299078c9a0b2f4208d779b72c2a939ea5fe14"
+    },
+    {
+      "argv": [
+        "/workspace/scratch/1a5b1ad6ce1b/t14n/native/final/clock-clean",
+        "/workspace/scratch/1a5b1ad6ce1b/csr14/evidence/tranche-14-edge-reference/controls/clock-clean"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.03786988100000599,
+      "log_sha256": "8d874a6dc56f7f5d4e0498aac768098aaaaad3b1c2d3d9b991f075ef523eb160"
+    },
+    {
+      "argv": [
+        "/workspace/scratch/1a5b1ad6ce1b/t14n/native/final/clock-off",
+        "/workspace/scratch/1a5b1ad6ce1b/csr14/evidence/tranche-14-edge-reference/controls/clock-off"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.0405579399994167,
+      "log_sha256": "8d874a6dc56f7f5d4e0498aac768098aaaaad3b1c2d3d9b991f075ef523eb160"
+    },
+    {
+      "argv": [
+        "/workspace/scratch/1a5b1ad6ce1b/t14n/native/final/edge",
+        "--self-test"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.03350912200039602,
+      "log_sha256": "d1afa2fd4968e54d292d3313c3c5423dc0ae002399e19ec739c187b85750e953"
+    },
+    {
+      "argv": [
+        "/workspace/scratch/1a5b1ad6ce1b/t14n/native/final/edge",
+        "/workspace/scratch/1a5b1ad6ce1b/csr14/scenarios/edge/cases.csv",
+        "/workspace/scratch/1a5b1ad6ce1b/csr14/scenarios/edge/draws.csv",
+        "/workspace/scratch/1a5b1ad6ce1b/csr14/evidence/tranche-14-edge-reference/raw"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.07062760600001639,
+      "log_sha256": "7fabbd63213ec251f312f38263e3a245c5ab213a59164b651927ce41942b5f1c"
+    }
+  ],
+  "native_executed": true,
+  "matlab_executed": false,
+  "production_source_unchanged": true,
+  "engine_source_unchanged": true,
+  "global_scheduler_changed": false,
+  "native_current_callback_ids": "zero means unavailable; boundary ingress_event_id is actual EventId.GetUid",
+  "native_time_resolution": "integer nanoseconds",
+  "scope": "Receiver ACK-service boundary diagnostic: reconstructed queued mixed ACK/DATA inputs, real source MAC packing/airtime, real gateway MAC/HOP/NWK receive-window update, delivery and ACK transmission. Controlled successful transport; no RF collision/half-duplex, source HOP custody, application-admission, routing reconvergence, global timing, PHY/ECC or full-network numerical-parity claim.",
+  "numerical_parity_established": false,
+  "full_network_acceptance_established": false
+}

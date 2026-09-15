@@ -1,0 +1,28 @@
+{
+  "Schema": "csr-tranche12-fixture-repair-review-v1",
+  "IndependentReviewer": "t12r_diag",
+  "ReviewScope": "Exact diff, callback construction semantics, unchanged MATLAB baseline and reference/plan byte comparison",
+  "ApprovedForOwnerRerun": true,
+  "MatlabExecutionPerformed": false,
+  "StructuralAcceptanceEstablished": false,
+  "OriginalRelaySHA256": "9f41fd2a5147c93dd0deb5ba3bb503c6653c47749f5c3480d6f167df1e92c8bc",
+  "RepairedRelaySHA256": "b33136349b7ae851927a802461551a5b8fcecb1456a4b42d2467fe0d978aee1e",
+  "MatlabFilesCompared": 139,
+  "ChangedMatlabFiles": [
+    "+csr/+validation/relayContract.m"
+  ],
+  "MissingMatlabFiles": [],
+  "ChangedScenarioOrNativeReferenceFiles": [],
+  "Checks": {
+    "OnlyRelayMatlabChanged": true,
+    "NativeReferencesAndPlansUnchanged": true,
+    "NoAnonymousLayerCellDereferences": true,
+    "NsdpCallbackUsesNestedLookup": true,
+    "RouteCallbackUsesNestedLookup": true,
+    "CanSendCallbackUsesNestedLookup": true,
+    "TestsUnchanged": true
+  },
+  "Semantics": "The HOP callbacks now capture only the node identifier and invoke nested functions sharing the current runCase workspace. Those functions resolve the live networks cell after construction. The NWK CanSendData wrapper similarly resolves the live hops cell. HOP/NWK constructors do not synchronously invoke these callbacks; event processing begins after all three nodes have constructed layers. No ownership, scheduling, capacity or protocol behavior is altered.",
+  "RegressionAdequacy": "Keep all 72 existing tests. The returned archive already proves the relay integration suite detects the original defect. Relay paths invoke both NsdpCount and RouteAvailable through real HOP.receiveData and assert complete real custody/delivery/release behavior. New implementation-mirroring tests are unnecessary.",
+  "Limitations": "Source review and exact comparisons do not substitute for owner MATLAB execution. Future service/parity residuals after unblocking this constructor defect remain unobserved until rerun."
+}

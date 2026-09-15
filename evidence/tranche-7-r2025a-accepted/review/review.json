@@ -1,0 +1,293 @@
+{
+  "schema": "csr-matlab-tranche-7-return-review-v1",
+  "status": "structural_review_completed",
+  "evidence_integrity_verified": true,
+  "default_structural_gate_completed": true,
+  "diagnostic_only": false,
+  "matlab_runtime": {
+    "Runtime": "MATLAB",
+    "Version": "25.1.0.2943329 (R2025a)",
+    "Release": "2025a",
+    "HasWirelessNetworkSimulator": false,
+    "HasWnetNode": false,
+    "HasWirelessPacket": false,
+    "DefaultBackend": "portable",
+    "WirelessAdapterImplemented": true,
+    "WirelessAdapterScope": "Optional R2026a wireless-clock candidate; runtime validation pending",
+    "NativePacketTransportIntegrated": false,
+    "ProbeScope": "Symbol discovery only; licenses and execution are not validated."
+  },
+  "metadata_sha256": "c365405c2753a3c709d11a4f4444d99a60512c8bcd1b78b23de0df0c7545d001",
+  "source_snapshot_sha256": "b2139677d30438b0e9479566a7508ea29465aeb94a0ff532f9d1a1ace4ac14d6",
+  "source_files_verified": 155,
+  "reference_files_verified": 50,
+  "regression": {
+    "status": "passed",
+    "tests": 467,
+    "sweeps": 18,
+    "retained_cases": 28
+  },
+  "cases": [
+    {
+      "case_id": "campus_multihop_6000",
+      "counts": {
+        "Generated": 12382,
+        "Received": 11727,
+        "Dropped": 401,
+        "Pending": 254
+      },
+      "admission": {
+        "attempts": 1710000,
+        "admitted": 12382,
+        "blocked": 1697618,
+        "trace_records": 100000,
+        "omitted_trace_records": 1610000,
+        "flows": [
+          {
+            "flow_index": 1,
+            "source": 2,
+            "configured_destination": 1,
+            "attempts": 285000,
+            "admitted": 506,
+            "delivered": 395,
+            "made_progress": true
+          },
+          {
+            "flow_index": 2,
+            "source": 3,
+            "configured_destination": 1,
+            "attempts": 285000,
+            "admitted": 8608,
+            "delivered": 8593,
+            "made_progress": true
+          },
+          {
+            "flow_index": 3,
+            "source": 4,
+            "configured_destination": 1,
+            "attempts": 285000,
+            "admitted": 566,
+            "delivered": 454,
+            "made_progress": true
+          },
+          {
+            "flow_index": 4,
+            "source": 5,
+            "configured_destination": 1,
+            "attempts": 285000,
+            "admitted": 1309,
+            "delivered": 1285,
+            "made_progress": true
+          },
+          {
+            "flow_index": 5,
+            "source": 7,
+            "configured_destination": 1,
+            "attempts": 285000,
+            "admitted": 832,
+            "delivered": 617,
+            "made_progress": true
+          },
+          {
+            "flow_index": 6,
+            "source": 8,
+            "configured_destination": 1,
+            "attempts": 285000,
+            "admitted": 561,
+            "delivered": 383,
+            "made_progress": true
+          }
+        ],
+        "all_flows_made_progress": true
+      },
+      "data_drained": false,
+      "controls_drained": true,
+      "ns3_flows": [
+        {
+          "flow_index": 1,
+          "source": 2,
+          "configured_destination": 1,
+          "attempts": 285000,
+          "admitted": 547,
+          "delivered": 410,
+          "made_progress": true
+        },
+        {
+          "flow_index": 2,
+          "source": 3,
+          "configured_destination": 1,
+          "attempts": 285000,
+          "admitted": 8551,
+          "delivered": 8535,
+          "made_progress": true
+        },
+        {
+          "flow_index": 3,
+          "source": 4,
+          "configured_destination": 1,
+          "attempts": 285000,
+          "admitted": 498,
+          "delivered": 419,
+          "made_progress": true
+        },
+        {
+          "flow_index": 4,
+          "source": 5,
+          "configured_destination": 1,
+          "attempts": 285000,
+          "admitted": 1397,
+          "delivered": 1369,
+          "made_progress": true
+        },
+        {
+          "flow_index": 5,
+          "source": 7,
+          "configured_destination": 1,
+          "attempts": 285000,
+          "admitted": 803,
+          "delivered": 574,
+          "made_progress": true
+        },
+        {
+          "flow_index": 6,
+          "source": 8,
+          "configured_destination": 1,
+          "attempts": 285000,
+          "admitted": 621,
+          "delivered": 462,
+          "made_progress": true
+        }
+      ],
+      "ns3_all_flows_made_progress": true
+    },
+    {
+      "case_id": "two_node_admission_1200",
+      "counts": {
+        "Generated": 11395,
+        "Received": 11385,
+        "Dropped": 0,
+        "Pending": 10
+      },
+      "admission": {
+        "attempts": 45000,
+        "admitted": 11395,
+        "blocked": 33605,
+        "trace_records": 45000,
+        "omitted_trace_records": 0,
+        "flows": [
+          {
+            "flow_index": 1,
+            "source": 2,
+            "configured_destination": 1,
+            "attempts": 45000,
+            "admitted": 11395,
+            "delivered": 11385,
+            "made_progress": true
+          }
+        ],
+        "all_flows_made_progress": true
+      },
+      "data_drained": false,
+      "controls_drained": true,
+      "ns3_flows": [
+        {
+          "flow_index": 1,
+          "source": 2,
+          "configured_destination": 1,
+          "attempts": 45000,
+          "admitted": 11380,
+          "delivered": 11364,
+          "made_progress": true
+        }
+      ],
+      "ns3_all_flows_made_progress": true
+    },
+    {
+      "case_id": "three_node_contention_360",
+      "counts": {
+        "Generated": 954,
+        "Received": 928,
+        "Dropped": 0,
+        "Pending": 26
+      },
+      "admission": {
+        "attempts": 60000,
+        "admitted": 954,
+        "blocked": 59046,
+        "trace_records": 60000,
+        "omitted_trace_records": 0,
+        "flows": [
+          {
+            "flow_index": 1,
+            "source": 2,
+            "configured_destination": 1,
+            "attempts": 30000,
+            "admitted": 493,
+            "delivered": 477,
+            "made_progress": true
+          },
+          {
+            "flow_index": 2,
+            "source": 3,
+            "configured_destination": 1,
+            "attempts": 30000,
+            "admitted": 461,
+            "delivered": 451,
+            "made_progress": true
+          }
+        ],
+        "all_flows_made_progress": true
+      },
+      "data_drained": false,
+      "controls_drained": true,
+      "ns3_flows": [
+        {
+          "flow_index": 1,
+          "source": 2,
+          "configured_destination": 1,
+          "attempts": 30000,
+          "admitted": 460,
+          "delivered": 444,
+          "made_progress": true
+        },
+        {
+          "flow_index": 2,
+          "source": 3,
+          "configured_destination": 1,
+          "attempts": 30000,
+          "admitted": 486,
+          "delivered": 470,
+          "made_progress": true
+        }
+      ],
+      "ns3_all_flows_made_progress": true
+    }
+  ],
+  "all_flows_made_progress": true,
+  "acceptance_established": false,
+  "numerical_parity_established": false,
+  "limitations": [
+    "Hashes bind candidate inputs and returned records, not independent proof of MATLAB execution.",
+    "Numerical and no-sample differences require engineering review; delivery alone is not acceptance.",
+    "Admission counters remain complete when their separately bounded trace omits records.",
+    "Finite-stop pending applications and controls are reported rather than silently drained."
+  ],
+  "comparisons": [
+    {
+      "case_id": "campus_multihop_6000",
+      "report": "campus_multihop_6000/comparison.json",
+      "structural_gate_passed": true
+    },
+    {
+      "case_id": "two_node_admission_1200",
+      "report": "two_node_admission_1200/comparison.json",
+      "structural_gate_passed": true
+    },
+    {
+      "case_id": "three_node_contention_360",
+      "report": "three_node_contention_360/comparison.json",
+      "structural_gate_passed": true
+    }
+  ],
+  "uploaded_zip_sha256": "ea39b86ef68f91a551e4e22d176e2e96dc5305f33673741eee0adc6039599655"
+}

@@ -1,0 +1,280 @@
+classdef TestAckEdgeContract < matlab.unittest.TestCase
+    % Bounded real MATLAB behavior and scheduler-observation regressions.
+    properties (Access = private)
+        Contract
+        Directory
+    end
+    methods (TestClassSetup)
+        function runOnce(test)
+            test.Directory = tempname; mkdir(test.Directory);
+            test.addTeardown(@()rmdir(test.Directory,'s'));
+            test.Contract = csr.validation.ackEdgeContract(test.Directory);
+        end
+    end
+    methods (Test)
+        function sixCasesCompleteWithIndependentStructuralChecks(test)
+            test.verifyTrue(test.Contract.DiagnosticCompleted);
+            test.verifyTrue(test.Contract.Passed);
+            test.verifyEqual(test.Contract.CaseCount,6);
+            test.verifyEqual(test.Contract.CheckpointCount,222);
+            test.verifyEqual(test.Contract.FailedCount,0);
+            for result=reshape(test.Contract.CaseResults,1,[])
+                test.verifyTrue(result.Completed); test.verifyTrue(result.Passed);
+                test.verifyEmpty(result.ErrorIdentifier); test.verifyEmpty(result.ErrorStack);
+                test.verifyEqual(result.CheckpointCount,37);
+            end
+        end
+        function actualSourceMacSelectsAckThenDataInTheEightyNineByteAggregate(test)
+            % The real ACK constructor retains a fieldless App structure.
+            % Observing this valid frame must not dereference DATA identity.
+            ackFrame = csr.hop.Frames.acknowledgment(5,4,uint16(4),uint64(15),uint64(0), ...
+                struct('EnvelopeProfile','bare','RateKeyKbps',128,'TxPowerDbm',33));
+            test.verifyEqual(ackFrame.Kind,'ACK');
+            test.assertTrue(isfield(ackFrame,'App'));
+            test.assertTrue(isstruct(ackFrame.App) && isscalar(ackFrame.App));
+            test.verifyEmpty(fieldnames(ackFrame.App));
+            rows = test.Contract.Events; b = test.Contract.Boundary;
+            test.assertEqual(height(b),6);
+            test.verifyEqual(b.wire_payload_bytes,89*ones(6,1));
+            test.verifyEqual(b.segment_count,2*ones(6,1));
+            test.verifyEqual(b.tx_time_ns,3120000000*ones(6,1));
+            test.verifyEqual(b.duration_ns,24960000*ones(6,1));
+            for name=reshape(string(b.('case')),1,[])
+                tx = rows(string(rows.('case'))==name & string(rows.phase)=="aggregate_tx",:);
+                test.assertEqual(height(tx),6);
+                test.verifyEqual(string(tx.kind(1:2)),["ACK";"DATA"]);
+                test.verifyEqual(tx.node(1:2),[5;5]); test.verifyEqual(tx.peer(1:2),[4;1]);
+                test.verifyEqual(tx.hop_seq(1:2),[4;3]);
+                test.verifyEqual(tx.ack_bits(1:2),uint64([15;0]));
+                test.verifyEqual(tx.app_source(1:2),[0;5]);
+                test.verifyEqual(tx.app_id(1:2),uint64([0;3]));
+                test.verifyEqual(sum(string(tx.kind)=="DATA"),1);
+                ack = rows(string(rows.('case'))==name & string(rows.kind)=="ACK",:);
+                test.assertGreaterThan(height(ack),0);
+                test.verifyEqual(sort(unique(string(ack.phase))), ...
+                    sort(["aggregate_tx";"ack_tx";"feedback_ingress"]));
+                test.verifyEqual(ack.app_source,zeros(height(ack),1));
+                test.verifyEqual(ack.app_id,zeros(height(ack),1,'uint64'));
+            end
+        end
+        function primingBuildsTheRealReceiveWindowBeforeTheFirstOpportunity(test)
+            rows = test.Contract.Events;
+            for name=reshape(string(test.Contract.Boundary.('case')),1,[])
+                before = rows(string(rows.('case'))==name & string(rows.phase)=="prime_before",:);
+                after = rows(string(rows.('case'))==name & string(rows.phase)=="prime_after",:);
+                test.verifyEqual(before.app_id,uint64([1;2]));
+                test.verifyEqual(after.app_id,uint64([1;2]));
+                test.verifyEqual(before.ack_queue,[0;1]); test.verifyEqual(after.ack_queue,[1;1]);
+                test.verifyEqual(before.time_ns,2832961000*ones(2,1));
+                test.verifyGreaterThan(after.order,before.order);
+            end
+        end
+        function sharedIntegerCasesTransmitTheExpectedFirstCumulativeBitmap(test)
+            for name=["tie_early","before","quantized","tie_late","after"]
+                rows = test.Contract.Events;
+                ack = rows(string(rows.('case'))==name & string(rows.phase)=="ack_tx",:);
+                test.assertGreaterThan(height(ack),0);
+                expected = uint64(7); sequence = 3;
+                if any(name==["tie_late","after"]), expected = uint64(3); sequence = 2; end
+                test.verifyEqual(ack.ack_bits(1),expected);
+                test.verifyEqual(ack.hop_seq(1),sequence);
+                test.verifyEqual(ack.time_ns(1),3144961000);
+            end
+        end
+        function OneNanosecondPerturbationsKeepDistinctActualTimes(test)
+            rows = test.Contract.Boundary;
+            before = rows(string(rows.('case'))=="before",:);
+            after = rows(string(rows.('case'))=="after",:);
+            test.verifyEqual(before.arrival_time_ns,before.tick_time_ns-1);
+            test.verifyEqual(after.arrival_time_ns,after.tick_time_ns+1);
+            test.verifyLessThan(hex2num(char(before.arrival_seconds_hex)),hex2num(char(before.tick_seconds_hex)));
+            test.verifyGreaterThan(hex2num(char(after.arrival_seconds_hex)),hex2num(char(after.tick_seconds_hex)));
+        end
+        function lateArmingUsesTheActualCachedAggregateAndLaterInsertionId(test)
+            for name=["tie_early","tie_late"]
+                b = test.Contract.Boundary(string(test.Contract.Boundary.('case'))==name,:);
+                test.verifyEqual(string(b.arrival_seconds_hex),string(b.tick_seconds_hex));
+                result = test.Contract.CaseResults(strcmp({test.Contract.CaseResults.Case},char(name)));
+                test.verifyEqual(result.IngressEventId,b.ingress_event_id);
+                if name=="tie_early"
+                    test.verifyLessThan(result.IngressEventId,result.FirstAckEventId);
+                    test.verifyEqual(b.arm_time_ns,3120000000);
+                else
+                    test.verifyGreaterThan(result.IngressEventId,result.FirstAckEventId);
+                    test.verifyEqual(b.arm_time_ns,3144960998);
+                end
+            end
+        end
+        function continuousAirtimeExposesTheMeasuredOneUlpResidual(test)
+            b = test.Contract.Boundary(string(test.Contract.Boundary.('case'))=="continuous",:);
+            arrival = hex2num(char(b.arrival_seconds_hex)); tick = hex2num(char(b.tick_seconds_hex));
+            duration = csr.phy.airtime(89,128,'short');
+            test.verifyEqual(arrival,hex2num(char(b.tx_seconds_hex))+duration+1e-6);
+            test.verifyEqual(arrival-tick,eps(tick));
+            test.verifyEqual(b.arrival_time_ns,b.tick_time_ns);
+            test.verifyNotEqual(string(b.arrival_seconds_hex),string(b.tick_seconds_hex));
+            test.verifyTrue(test.Contract.ExpectedContinuousResidual);
+        end
+        function localNanosecondTransportChangesOnlyTheDeclaredFixtureCase(test)
+            b = test.Contract.Boundary(string(test.Contract.Boundary.('case'))=="quantized",:);
+            test.verifyEqual(string(b.transport_mode),"local_ns");
+            test.verifyEqual(string(b.arrival_seconds_hex),string(b.tick_seconds_hex));
+            test.verifyEqual(hex2num(char(b.arrival_minus_tick_seconds_hex)),0);
+            test.verifyEqual(b.arrival_time_ns,b.tx_time_ns+b.duration_ns+1000);
+            test.verifyFalse(test.Contract.GlobalClockChanged);
+            test.verifyEqual(test.Contract.TimeToleranceNanoseconds,0);
+        end
+        function gatewayNwkDeliversEveryPrescribedIdentityExactlyOnce(test)
+            test.assertEqual(height(test.Contract.Boundary),6);
+            test.assertEqual(string(test.Contract.Boundary.('case')), ...
+                ["tie_early";"tie_late";"before";"after";"continuous";"quantized"]);
+            rows = test.Contract.Events;
+            for name=reshape(string(test.Contract.Boundary.('case')),1,[])
+                delivered = rows(string(rows.('case'))==name & string(rows.phase)=="deliver",:);
+                test.verifyEqual(delivered.app_id,uint64((1:3)'));
+                test.verifyEqual(delivered.app_source,5*ones(3,1));
+                test.verifyEqual(delivered.node,ones(3,1)); test.verifyEqual(delivered.peer,5*ones(3,1));
+                test.verifyEqual(delivered.hop_seq,zeros(3,1));
+                ingress = rows(string(rows.('case'))==name & string(rows.phase)=="ingress_before",:);
+                test.verifyEqual(height(ingress),1); test.verifyEqual(ingress.app_id,uint64(3));
+            end
+        end
+        function updatedAckEventuallyTransmitsAndAllQueuesDrain(test)
+            test.assertEqual(height(test.Contract.Boundary),6);
+            test.assertEqual(string(test.Contract.Boundary.('case')), ...
+                ["tie_early";"tie_late";"before";"after";"continuous";"quantized"]);
+            rows = test.Contract.Events;
+            for name=reshape(string(test.Contract.Boundary.('case')),1,[])
+                ack = rows(string(rows.('case'))==name & string(rows.phase)=="ack_tx",:);
+                test.verifyEqual(ack.ack_bits(end),uint64(7)); test.verifyEqual(ack.hop_seq(end),3);
+                test.verifyEqual(sum(ack.ack_bits==uint64(7)),5);
+                test.verifyTrue(height(ack)==5 || height(ack)==6);
+                feedback = rows(string(rows.('case'))==name & string(rows.phase)=="feedback_ingress",:);
+                test.verifyEqual(height(feedback),5+height(ack));
+                final = rows(string(rows.('case'))==name & string(rows.phase)=="settled",:);
+                test.verifyEqual(final.node,[1;4;5]); test.verifyEqual(final.time_ns,4e9*ones(3,1));
+                test.verifyEqual(final.ack_queue,zeros(3,1)); test.verifyEqual(final.data_queue,zeros(3,1));
+            end
+        end
+        function callbackTimesAndIdsReferToActualSchedulerExecutions(test)
+            rows = test.Contract.Events; schedule = test.Contract.Scheduler;
+            for n=1:height(rows)
+                selected = string(schedule.('case'))==string(rows.('case')(n)) & ...
+                    string(schedule.operation)=="execute" & schedule.event_id==rows.scheduler_id(n);
+                test.verifyEqual(sum(selected),1);
+                test.verifyEqual(string(schedule.observed_hex(selected)),string(rows.time_seconds_hex(n)));
+            end
+            for n=1:height(test.Contract.Boundary)
+                b = test.Contract.Boundary(n,:);
+                ingress = rows(string(rows.('case'))==string(b.('case')) & ...
+                    string(rows.phase)=="ingress_before",:);
+                test.verifyEqual(ingress.scheduler_id,b.ingress_event_id);
+                test.verifyEqual(string(ingress.time_seconds_hex),string(b.arrival_seconds_hex));
+            end
+        end
+        function tracingPreservesFifoNestedEventsAndBinary64Times(test)
+            plain = csr.sim.EventScheduler(); trace = csr.validation.TraceScheduler('transparent');
+            plainRows = []; traceRows = []; plainIds = uint64([]); traceIds = uint64([]);
+            edge = 3.144961; after = edge+eps(edge);
+            for mode=1:2
+                selected = plain; if mode==2, selected = trace; end
+                a = selected.scheduleAt(edge,@()record(mode,1));
+                b = selected.scheduleAt(edge,@()record(mode,2));
+                c = selected.scheduleAt(after,@()record(mode,4));
+                if mode==1, plainIds = [a b c]; else, traceIds = [a b c]; end
+                selected.run(after);
+            end
+            test.verifyEqual(traceRows,plainRows); test.verifyEqual(traceIds,plainIds);
+            test.verifyEqual(traceRows(:,1),[1;2;3;4]);
+            test.verifyEqual(traceRows(:,2),[edge;edge;edge;after]);
+            test.verifyEqual(trace.CurrentEventId,uint64(0));
+            function record(mode,label)
+                schedulerLocal = plain; if mode==2, schedulerLocal = trace; end
+                if mode==1, plainRows(end+1,:) = [label schedulerLocal.Now];
+                else, traceRows(end+1,:) = [label schedulerLocal.Now]; end
+                if label==1, schedulerLocal.scheduleAt(schedulerLocal.Now,@()record(mode,3)); end
+            end
+        end
+        function tracingPreservesCancellationAndRestoresIdentityAfterFailure(test)
+            schedulerLocal = csr.validation.TraceScheduler('cancel'); executed = false;
+            canceled = schedulerLocal.scheduleAt(1,@mark); test.verifyTrue(schedulerLocal.cancel(canceled));
+            test.verifyFalse(schedulerLocal.cancel(canceled));
+            schedulerLocal.scheduleAt(2,@()error('csr:test:TraceFailure','intentional observer regression'));
+            test.verifyError(@()schedulerLocal.run(2),'csr:test:TraceFailure');
+            test.verifyFalse(executed); test.verifyEqual(schedulerLocal.CurrentEventId,uint64(0));
+            test.verifyError(@()schedulerLocal.scheduleAt(3,42),'csr:sim:InvalidCallback');
+            rows = schedulerLocal.records();
+            test.verifyFalse(any(rows.event_id(string(rows.operation)=="execute")==canceled));
+            test.verifyEqual(sum(string(rows.operation)=="schedule"),2);
+            function mark(), executed = true; end
+        end
+        function prescribedRawDrawsKeepExactSupportAndUsage(test)
+            draws = test.Contract.Draws; usage = test.Contract.Usage;
+            test.verifyEqual(height(usage),18); test.verifyEqual(usage.supplied,64*ones(18,1));
+            test.verifyEqual(usage.supplied,usage.consumed+usage.unused);
+            test.verifyEqual(sum(usage.consumed),height(draws));
+            test.verifyEqual(draws.min,zeros(height(draws),1));
+            test.verifyEqual(draws.max,31*ones(height(draws),1));
+            test.verifyEqual(draws.draw,zeros(height(draws),1));
+            test.verifyGreaterThanOrEqual(draws.resolved,zeros(height(draws),1));
+            test.verifyLessThanOrEqual(draws.resolved,31*ones(height(draws),1));
+            test.verifyTrue(all(ismember(string(draws.purpose),["prepare","advertise"])));
+            test.verifyEqual(usage.consumed(usage.node==4),zeros(6,1));
+        end
+        function integerIdentifiersAndBitmapsRoundTripWithoutDoubleConversion(test)
+            for file=["events","boundary","scheduler"]
+                actual = test.Contract.Events; fields = {'scheduler_id','app_id','ack_bits','dack_bits'};
+                if file=="boundary", actual = test.Contract.Boundary; fields = {'ingress_event_id'}; end
+                if file=="scheduler", actual = test.Contract.Scheduler; fields = {'event_id','parent_id'}; end
+                path = fullfile(test.Directory,file+".csv");
+                options = detectImportOptions(path,'VariableNamingRule','preserve');
+                options = setvartype(options,fields,'string'); exported = readtable(path,options);
+                for field=fields
+                    test.verifyClass(actual.(field{1}),'uint64');
+                    test.verifyEqual(exported.(field{1}),string(actual.(field{1})));
+                end
+            end
+        end
+        function fullPrecisionDecimalAndHexExportsRetainTheActualBinary64Value(test)
+            for file=["events","boundary"]
+                path = fullfile(test.Directory,file+".csv");
+                options = detectImportOptions(path,'VariableNamingRule','preserve');
+                names = options.VariableNames;
+                fields = names(endsWith(names,'_dec') | endsWith(names,'_hex'));
+                options = setvartype(options,fields,'string'); rows = readtable(path,options);
+                for name=names(endsWith(names,'_hex'))
+                    hexName = name{1}; decName = [hexName(1:end-4) '_dec'];
+                    for n=1:height(rows)
+                        test.verifyEqual(num2hex(str2double(rows.(decName)(n))),char(rows.(hexName)(n)));
+                    end
+                end
+            end
+        end
+        function exactComparisonsSeparateLocalIdsAndFullPrecisionResiduals(test)
+            contract = test.Contract;
+            test.verifyTrue(contract.FullPrecisionCompared); test.verifyTrue(contract.DecimalRoundTripRequired);
+            test.verifyFalse(any(ismember(contract.EventComparison.ComparedFields, ...
+                {'time_seconds_dec','time_seconds_hex','scheduler_id'})));
+            test.verifyTrue(ismember('time_ns',contract.EventComparison.ComparedFields));
+            test.verifyTrue(ismember('arrival_seconds_hex',contract.BoundaryComparison.ComparedFields));
+            test.verifyFalse(ismember('ingress_event_id',contract.BoundaryComparison.ComparedFields));
+            test.verifyTrue(ismember('time_seconds_hex',contract.FullPrecisionComparison.ComparedFields));
+            test.verifyEqual(contract.MatchesNative,contract.UnmatchedCount==0);
+        end
+        function completeEvidenceIncludesReferenceBindingsAndDiagnosticResults(test)
+            for file={'events.csv','boundary.csv','check.csv','draws.csv','usage.csv','scheduler.csv','summary.json'}
+                test.verifyTrue(isfile(fullfile(test.Directory,file{1})));
+            end
+            summary = jsondecode(fileread(fullfile(test.Directory,'summary.json')));
+            test.verifyEqual(summary.EventCount,height(test.Contract.Events));
+            test.verifyEqual(summary.SchedulerRowCount,height(test.Contract.Scheduler));
+            test.verifyEqual(summary.CheckpointCount,height(test.Contract.Checkpoints));
+            test.verifyEqual(numel(summary.InputBindings),3); test.verifyEqual(numel(summary.ReferenceBindings),4);
+            for name={'EventComparison','BoundaryComparison','FullPrecisionComparison','DrawComparison','UsageComparison'}
+                comparison = summary.(name{1});
+                test.verifyTrue(comparison.ReferencePresent); test.verifyTrue(comparison.SchemaMatches);
+                test.verifyEqual(numel(comparison.Cases),6);
+            end
+        end
+    end
+end

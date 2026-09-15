@@ -1,0 +1,555 @@
+{
+  "schema": "csr-tranche11-native-control-build-v1",
+  "status": "passed",
+  "generated_utc": "2026-09-14T17:29:22.635634+00:00",
+  "source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "source_tree": "b611b233fb369569b98f0914ece24d029ccc2f42",
+  "engine_commit": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+  "engine_tree": "f30343185fb057e3a9cdd54f496cca0cef49ae23",
+  "source_repository": "https://github.com/mjburke4/CSR-Project-NS3-part2.git",
+  "engine_repository": "https://github.com/nsnam/ns-3-dev-git.git",
+  "engine_rebuilt": true,
+  "reused_historical_libraries": false,
+  "historical_libraries_byte_identity_claimed": false,
+  "csr_tracked_sources_unchanged": true,
+  "engine_tracked_sources_unchanged": true,
+  "module_files_verified": 24,
+  "source_path": "/workspace/scratch/1a5b1ad6ce1b/t11n/ns",
+  "build_path": "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build",
+  "build_profile": "Debug",
+  "cpp_standard": 23,
+  "assertions": true,
+  "logging": true,
+  "enabled_modules": [
+    "csr",
+    "spectrum",
+    "buildings",
+    "propagation",
+    "mobility",
+    "antenna",
+    "network",
+    "stats",
+    "core"
+  ],
+  "toolchain": {
+    "compiler": {
+      "command": [
+        "/usr/bin/g++",
+        "--version"
+      ],
+      "executable": "/usr/bin/x86_64-linux-gnu-g++-13",
+      "sha256": "52f1ddb33fe78b9441e0f42e9cd22c571f1101938e046c8a26582494e041cc73",
+      "version": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE."
+    },
+    "linker": {
+      "command": [
+        "/usr/bin/ld",
+        "--version"
+      ],
+      "executable": "/usr/bin/x86_64-linux-gnu-ld.bfd",
+      "sha256": "5b674ea1d7017c2929f3c52c43487478bb240ecdd7197a25cce3813a70329a5c",
+      "version": "GNU ld (GNU Binutils for Ubuntu) 2.42\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis program is free software; you may redistribute it under the terms of\nthe GNU General Public License version 3 or (at your option) a later version.\nThis program has absolutely no warranty."
+    },
+    "cmake": {
+      "command": [
+        "/workspace/scratch/1a5b1ad6ce1b/t11n/tools/bin/cmake",
+        "--version"
+      ],
+      "executable": "/workspace/scratch/1a5b1ad6ce1b/t11n/tools/bin/cmake",
+      "sha256": "335e68330939166b59973b7f9130afee827964c933a3745be6e1d957bc468686",
+      "version": "cmake version 3.31.10\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake)."
+    },
+    "ninja": {
+      "command": [
+        "/workspace/scratch/1a5b1ad6ce1b/t11n/tools/bin/ninja",
+        "--version"
+      ],
+      "executable": "/workspace/scratch/1a5b1ad6ce1b/t11n/tools/bin/ninja",
+      "sha256": "696f9628a79d9ce50314cf9556d7cd1a1d1ec52b8fd52828f6f9db1719565b67",
+      "version": "1.13.0.git.kitware.jobserver-pipe-1"
+    },
+    "python": {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "--version"
+      ],
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+      "sha256": "fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7",
+      "version": "Python 3.12.14"
+    }
+  },
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "fetch_records": {
+    "ns": [
+      {
+        "command": [
+          "git",
+          "init",
+          "/workspace/scratch/1a5b1ad6ce1b/t11n/ns"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 0.0056165410023822915
+      },
+      {
+        "command": [
+          "git",
+          "-C",
+          "/workspace/scratch/1a5b1ad6ce1b/t11n/ns",
+          "remote",
+          "add",
+          "origin",
+          "https://github.com/mjburke4/CSR-Project-NS3-part2.git"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 0.003594584999518702
+      },
+      {
+        "command": [
+          "git",
+          "-C",
+          "/workspace/scratch/1a5b1ad6ce1b/t11n/ns",
+          "fetch",
+          "--depth=1",
+          "origin",
+          "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 7.525392703999387
+      },
+      {
+        "command": [
+          "git",
+          "-C",
+          "/workspace/scratch/1a5b1ad6ce1b/t11n/ns",
+          "checkout",
+          "--detach",
+          "FETCH_HEAD"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 0.068416479996813
+      }
+    ],
+    "engine": [
+      {
+        "command": [
+          "git",
+          "init",
+          "/workspace/scratch/1a5b1ad6ce1b/t11n/engine"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 0.005665004999173107
+      },
+      {
+        "command": [
+          "git",
+          "-C",
+          "/workspace/scratch/1a5b1ad6ce1b/t11n/engine",
+          "remote",
+          "add",
+          "origin",
+          "https://github.com/nsnam/ns-3-dev-git.git"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 0.0032619599987810943
+      },
+      {
+        "command": [
+          "git",
+          "-C",
+          "/workspace/scratch/1a5b1ad6ce1b/t11n/engine",
+          "fetch",
+          "--depth=1",
+          "origin",
+          "6b5cd24ea80713ce16d88575869aedd6f432bdae"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 11.11980088600103
+      },
+      {
+        "command": [
+          "git",
+          "-C",
+          "/workspace/scratch/1a5b1ad6ce1b/t11n/engine",
+          "checkout",
+          "--detach",
+          "FETCH_HEAD"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 1.4178376160016342
+      }
+    ]
+  },
+  "configure_record": {
+    "command": [
+      "/workspace/scratch/1a5b1ad6ce1b/t11n/tools/bin/cmake",
+      "-S",
+      "/workspace/scratch/1a5b1ad6ce1b/t11n/engine",
+      "-B",
+      "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/cmake-cache",
+      "-G",
+      "Ninja",
+      "-DCMAKE_MAKE_PROGRAM=/workspace/scratch/1a5b1ad6ce1b/t11n/tools/bin/ninja",
+      "-DCMAKE_BUILD_TYPE=Debug",
+      "-DCMAKE_CXX_STANDARD=23",
+      "-DCMAKE_CXX_COMPILER=/usr/bin/g++",
+      "-DNS3_ASSERT=ON",
+      "-DNS3_LOG=ON",
+      "-DNS3_WARNINGS_AS_ERRORS=OFF",
+      "-DNS3_EXAMPLES=OFF",
+      "-DNS3_TESTS=OFF",
+      "-DNS3_PYTHON_BINDINGS=OFF",
+      "-DNS3_ENABLED_MODULES=csr;spectrum;buildings;propagation;mobility;antenna;network;stats;core"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 4.4924963270023,
+    "output_captured_after_process_closed": true,
+    "log_sha256": "35e4c873d79b8a8be49f2663bd8990fa53ca851d15c529d483c7e4385a92531c"
+  },
+  "initial_build_record": {
+    "command": [
+      "/workspace/scratch/1a5b1ad6ce1b/t11n/tools/bin/cmake",
+      "--build",
+      "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/cmake-cache",
+      "--parallel",
+      "4",
+      "--target",
+      "csr",
+      "spectrum",
+      "buildings",
+      "propagation",
+      "mobility",
+      "antenna",
+      "network",
+      "stats",
+      "core"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 115.09197003499867,
+    "output_captured_after_process_closed": true,
+    "log_sha256": "3c1e45407caeaab8a42b1bcf347ac6bcd58d7d33556427ca1a2dfab73065a686",
+    "retained_stdout_complete": false
+  },
+  "build_record": {
+    "command": [
+      "/workspace/scratch/1a5b1ad6ce1b/t11n/tools/bin/cmake",
+      "--build",
+      "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/cmake-cache",
+      "--parallel",
+      "4",
+      "--target",
+      "csr",
+      "spectrum",
+      "buildings",
+      "propagation",
+      "mobility",
+      "antenna",
+      "network",
+      "stats",
+      "core"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 97.56031503600025,
+    "log": "smoke/pending.log",
+    "log_sha256": "32c09ca6c7f9e8100af9733c093cb341fde8943e1cb8cf3d9e4a170f5a3ba638",
+    "output_captured_after_process_closed": true,
+    "nothing_pending_claimed": false,
+    "reason": "The first build succeeded but retained only a stdout prefix. This follow-up build completed with stdout captured after process exit; the ACK smoke was then repeated against these libraries."
+  },
+  "libraries": [
+    {
+      "path": "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib/libns3-dev-csr-debug.so",
+      "sha256": "0b77bb9daae116f81b2cd242ea7bf69eda44148405e8152c2743368295c5bc3b",
+      "bytes": 3001240
+    },
+    {
+      "path": "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib/libns3-dev-spectrum-debug.so",
+      "sha256": "049a7ae726a51ff505646f08257b0f933416611ae0bebdede9c81ca9d049a3fc",
+      "bytes": 14762352
+    },
+    {
+      "path": "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib/libns3-dev-buildings-debug.so",
+      "sha256": "c730a0cef7786548f1ec4830279b3f794ecc4f8f100b9a7c9f8b1d81d994012a",
+      "bytes": 4698712
+    },
+    {
+      "path": "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib/libns3-dev-propagation-debug.so",
+      "sha256": "eec2410b9376d56c8101dd4027a7dea05b2d3711657dfe8c934baa7c26d7e9e0",
+      "bytes": 5068408
+    },
+    {
+      "path": "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib/libns3-dev-mobility-debug.so",
+      "sha256": "a04a25a24338a1c1c9da094b047dcfdfc78b03f3b4fc10a5c09183f53ab01342",
+      "bytes": 7195856
+    },
+    {
+      "path": "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib/libns3-dev-antenna-debug.so",
+      "sha256": "e070cb6cd960236a70f9ea1c8d8dc315fd1d15b2c9e78096f5dcfc0ded7bc0f7",
+      "bytes": 1721312
+    },
+    {
+      "path": "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib/libns3-dev-network-debug.so",
+      "sha256": "a4213ca04558c983f0213f19a1bfaba16ae1b55afee16c126d3f1bd921726434",
+      "bytes": 17945544
+    },
+    {
+      "path": "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib/libns3-dev-stats-debug.so",
+      "sha256": "4a440c64eba531f2313e5646dd53b713ab45e286d221a1b0b62e58b1a7396eed",
+      "bytes": 8091464
+    },
+    {
+      "path": "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib/libns3-dev-core-debug.so",
+      "sha256": "8a5300244386128287684026c0f38f73f491e867e506b5166f902528a7b43e53",
+      "bytes": 17178888
+    }
+  ],
+  "cmake_cache_sha256": "526188cb58c3884fce952cacc78269fd213763045f78e507f450153d60a46027",
+  "smoke_contract": {
+    "source": "/workspace/scratch/1a5b1ad6ce1b/csr11/scripts/ns3/tranche9_ack_contract.cc",
+    "source_sha256": "83b8477859d176823b150329a1bacbf6f321f0eda533b69b159962f5e18c2068",
+    "compile": {
+      "command": [
+        "/usr/bin/g++",
+        "-std=c++23",
+        "-g",
+        "-DNS3_ASSERT_ENABLE",
+        "-DNS3_BUILD_PROFILE_DEBUG",
+        "-DNS3_LOG_ENABLE",
+        "-DSTACKTRACE_LIBRARY_IS_LINKED=1",
+        "-D__LINUX__",
+        "-I/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/include",
+        "/workspace/scratch/1a5b1ad6ce1b/csr11/scripts/ns3/tranche9_ack_contract.cc",
+        "-L/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib",
+        "-Wl,-rpath,/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib",
+        "-Wl,--no-as-needed",
+        "-lns3-dev-csr-debug",
+        "-Wl,--as-needed",
+        "-lns3-dev-spectrum-debug",
+        "-lns3-dev-buildings-debug",
+        "-lns3-dev-propagation-debug",
+        "-lns3-dev-mobility-debug",
+        "-lns3-dev-antenna-debug",
+        "-lns3-dev-network-debug",
+        "-lns3-dev-stats-debug",
+        "-lns3-dev-core-debug",
+        "-lstdc++exp",
+        "-o",
+        "/workspace/scratch/1a5b1ad6ce1b/t11n/smoke/ack-contract"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 8.884262280997063,
+      "log": "smoke/compile.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "output_captured_after_process_closed": true
+    },
+    "run": {
+      "command": [
+        "/workspace/scratch/1a5b1ad6ce1b/t11n/smoke/ack-contract",
+        "/workspace/scratch/1a5b1ad6ce1b/t11n/smoke/checkpoints.csv"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.05343427100160625,
+      "log": "smoke/run.log",
+      "log_sha256": "1ddef194fc064c32ead66e2cb86a463b74397d97c5e20457bde46547c8a55f17",
+      "output_captured_after_process_closed": true
+    },
+    "checkpoint_count": 101,
+    "case_count": 6,
+    "checkpoint_sha256": "2991bbc93e5ba2c64d06a93cee278160cd9baf2fdc11b052ee5b0cb561fe4b73",
+    "historical_reference_sha256": "2991bbc93e5ba2c64d06a93cee278160cd9baf2fdc11b052ee5b0cb561fe4b73",
+    "historical_reference_bytes_equal": true,
+    "binary_sha256": "3fa2a075ea102416fca4bfc086c5583343990dbe3ccdd445804e14736e984aba",
+    "inputs_unchanged": true
+  },
+  "matlab_executed": false,
+  "full_engine_test_suite_executed": false,
+  "historical_benchmarks_rerun": false,
+  "scope": "Fresh unmodified nine-module native control build plus unchanged six-case ACK contract. Separate T11 fixture instrumentation and test execution are not included in this record.",
+  "input_sha256": {
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/ns/csr-opnet-scenario-runner.cc": "08cf347ba60153c7cddd48b2cc633f589d29484efeeb28cd3df4786e80ac9841",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/ns/model/csr-arl-routing-message.cc": "046d7b1c91d4339f7cb67cda7066532ae4659b8e324b1bd482b6aba0a5562c3f",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/ns/model/csr-arl-routing-message.h": "0eddd945d264965c90bcea60d73b14cab2159bc0664e0e526d38e50b0d363a8c",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/ns/model/csr-common.h": "f1e0a962862ef1cc5a6994f24988858a2bea70385ce02b1264285de194fe6ae1",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/ns/model/csr-differential-trace.h": "78b443af6e91e927c398450ef71245e815ba4bd02ad9369a06fd95f98e2dff84",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/ns/model/csr-hello-header.cc": "e6a1a9e95312d089404873fd7d9d4c87bf024d754af224064328106d5c886a4f",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/ns/model/csr-hello-header.h": "741ccff278e1694ea40c4c6c5b1cb14a3a6034864d0328c6a2e04420935fb7d4",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/ns/model/csr-hop-layer.h": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/ns/model/csr-hop-security.cc": "2b390e6496c98e87a771ed10613e69ecd702922a0b9f54e8058170653271cc6a",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/ns/model/csr-hop-security.h": "9bca9c9a6e4ae04a20a3309ac8a8787589ac4ad65785cbf57fbe20c5e8e37d5e",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/ns/model/csr-legacy-crypto.cc": "c3f32f583813dead77c42d51736f73fb300a59b33f9fa75da4fc939c7e6553e0",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/ns/model/csr-legacy-crypto.h": "ce2e76387addc44e63601b8638d066b484dbd13f301bc09882bd21959a118306",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/ns/model/csr-mac-core.h": "64a71ad280ba14ab2b00d5d2b9dac708fabea939dfa385ad62dd73e5e40203e9",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/ns/model/csr-module.cc": "34b32e33586f4adaddd47c41d1795c8f81205c00b8f4981355cad8674c23ad8e",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/ns/model/csr-net-device.h": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/ns/model/csr-nwk-layer.h": "bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/ns/model/csr-opnet-ber-tables-data.inc": "d10a9ba3ded2301598b79d6bf28a6ea318da34b5ce79709ba2a06a0b8fce95b8",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/ns/model/csr-opnet-ber-tables.cc": "0af0b66c23ea95bbf74f32099ab0562a8a781e1b1048f5eb0b45faea83b73cf6",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/ns/model/csr-opnet-ber-tables.h": "8034348552990ce6a0aa0fd673a319299762fbd75c402de59a64ac160eb7cfb5",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/ns/model/csr-opnet-envelope.h": "e67b526126907f43f2ee4199552c583ac9c2a0f927cf942fe76aa328900e001a",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/ns/model/csr-opnet-packet-model.cc": "16af5d39e7f12c17e1f27a49f80c1ea313618bce87d3c5b75b07bc38cebf2056",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/ns/model/csr-opnet-packet-model.h": "59eb4ccd19d109f623fb8ea4d9ad23b2d936f081268261c100231c26cb2dccc6",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/ns/model/csr-phy-model.h": "d690b4c572491a9ea8c48735b1726770938b118dcbcd931e92920e602cae18fc",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/ns/model/csr-wire-format.h": "eb9097e1588c8e235a06cec5f0b28c13a22a3f3c88c6b8581e4186d69fc94c2f",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/include/ns3/csr-arl-routing-message.h": "9ca0bd9544a944f6c1cae394edd0eff8f57fc8376d914466548933bba5547cf4",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/include/ns3/csr-common.h": "3d3e502ac0323e7e7b439bd777e8f1157b20c4c74a88f4e6ce08274825e9b668",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/include/ns3/csr-differential-trace.h": "fff80be82b0fe99e36a49e603d282af77bfa09185c2f717e0f0aefda5a70b0d9",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/include/ns3/csr-hello-header.h": "35e88c7c0ebe7d7df53ec749581591f483d38fa47e4e0e9cd95df6d5caa9e08f",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/include/ns3/csr-hop-layer.h": "fb7fe3136feff9fd8ee9342fc49bb745c594c2ebb62acdc3b995344723b50a2c",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/include/ns3/csr-hop-security.h": "e8a7cb12d7536552f9905d6a3169b0ab4e381ae42f727316688bf8678923b4a4",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/include/ns3/csr-legacy-crypto.h": "f921f8e60acadd42d15d6d3027cf9604325228c03c91ad4dd599c4417c79e848",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/include/ns3/csr-mac-core.h": "9e82792c76220f0a9e58ea0402cae3292c43f10bf898da54e2b6c331db9de685",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/include/ns3/csr-module.h": "5848540c59ca2f2bd8c910d4fa6321d908ee678853e0e8ce4402bcf21b25ce32",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/include/ns3/csr-net-device.h": "5e62229d9f7dc7295c3f10e87a259c15ddcad012392da9ce2fbbfa11de96851f",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/include/ns3/csr-nwk-layer.h": "15dc44492b3697dc2eee0c3f786bde046917001a5d364241b534fa8bee366d24",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/include/ns3/csr-opnet-ber-tables.h": "f1687e0902fd67614005e2c00edce0f6a1bd3acc388a0f3f7b1dcb184bbd26f6",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/include/ns3/csr-opnet-envelope.h": "7ec97c1002603b46a312d45cd781cf67bf1ae4b5d2d2403b8a5ca7febca1a856",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/include/ns3/csr-opnet-packet-model.h": "7b266ee277ca283b752a85e4e5feb27bf9d73522e393a2efb073f21fa28d1a4f",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/include/ns3/csr-phy-model.h": "fb09294c0bd9d70e09411001c086140d13435ae012345cf2f37e4801033dbfb9",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/include/ns3/csr-wire-format.h": "1d85080cb28d1c7b024043e8d7c4277009d9b42eeaefb6cca80cf1b4c01def34",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/contrib/csr/model/csr-arl-routing-message.h": "0eddd945d264965c90bcea60d73b14cab2159bc0664e0e526d38e50b0d363a8c",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/contrib/csr/model/csr-common.h": "f1e0a962862ef1cc5a6994f24988858a2bea70385ce02b1264285de194fe6ae1",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/contrib/csr/model/csr-differential-trace.h": "78b443af6e91e927c398450ef71245e815ba4bd02ad9369a06fd95f98e2dff84",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/contrib/csr/model/csr-hello-header.h": "741ccff278e1694ea40c4c6c5b1cb14a3a6034864d0328c6a2e04420935fb7d4",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/contrib/csr/model/csr-hop-layer.h": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/contrib/csr/model/csr-hop-security.h": "9bca9c9a6e4ae04a20a3309ac8a8787589ac4ad65785cbf57fbe20c5e8e37d5e",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/contrib/csr/model/csr-legacy-crypto.h": "ce2e76387addc44e63601b8638d066b484dbd13f301bc09882bd21959a118306",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/contrib/csr/model/csr-mac-core.h": "64a71ad280ba14ab2b00d5d2b9dac708fabea939dfa385ad62dd73e5e40203e9",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/contrib/csr/model/csr-net-device.h": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/contrib/csr/model/csr-nwk-layer.h": "bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/contrib/csr/model/csr-opnet-ber-tables.h": "8034348552990ce6a0aa0fd673a319299762fbd75c402de59a64ac160eb7cfb5",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/contrib/csr/model/csr-opnet-envelope.h": "e67b526126907f43f2ee4199552c583ac9c2a0f927cf942fe76aa328900e001a",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/contrib/csr/model/csr-opnet-packet-model.h": "59eb4ccd19d109f623fb8ea4d9ad23b2d936f081268261c100231c26cb2dccc6",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/contrib/csr/model/csr-phy-model.h": "d690b4c572491a9ea8c48735b1726770938b118dcbcd931e92920e602cae18fc",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/contrib/csr/model/csr-wire-format.h": "eb9097e1588c8e235a06cec5f0b28c13a22a3f3c88c6b8581e4186d69fc94c2f",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib/libns3-dev-csr-debug.so": "0b77bb9daae116f81b2cd242ea7bf69eda44148405e8152c2743368295c5bc3b",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib/libns3-dev-spectrum-debug.so": "049a7ae726a51ff505646f08257b0f933416611ae0bebdede9c81ca9d049a3fc",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib/libns3-dev-buildings-debug.so": "c730a0cef7786548f1ec4830279b3f794ecc4f8f100b9a7c9f8b1d81d994012a",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib/libns3-dev-propagation-debug.so": "eec2410b9376d56c8101dd4027a7dea05b2d3711657dfe8c934baa7c26d7e9e0",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib/libns3-dev-mobility-debug.so": "a04a25a24338a1c1c9da094b047dcfdfc78b03f3b4fc10a5c09183f53ab01342",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib/libns3-dev-antenna-debug.so": "e070cb6cd960236a70f9ea1c8d8dc315fd1d15b2c9e78096f5dcfc0ded7bc0f7",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib/libns3-dev-network-debug.so": "a4213ca04558c983f0213f19a1bfaba16ae1b55afee16c126d3f1bd921726434",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib/libns3-dev-stats-debug.so": "4a440c64eba531f2313e5646dd53b713ab45e286d221a1b0b62e58b1a7396eed",
+    "/workspace/scratch/1a5b1ad6ce1b/t11n/engine/build/lib/libns3-dev-core-debug.so": "8a5300244386128287684026c0f38f73f491e867e506b5166f902528a7b43e53"
+  },
+  "artifacts": [
+    {
+      "path": "build.py",
+      "sha256": "f593473f5c19eb095e3bcf466b2c81fb91bfa25514208224d798fc9ab0da1093",
+      "bytes": 2063
+    },
+    {
+      "path": "fetch.py",
+      "sha256": "82a04e228fda318bc75d12ba0726b1c20018d9f02b5e4826749118b8b5df71fc",
+      "bytes": 1122
+    },
+    {
+      "path": "verify.py",
+      "sha256": "9386ee1e68cb7ed1c454303d561768fb8cccca4899215edc74b089a3d9be7dfa",
+      "bytes": 8526
+    },
+    {
+      "path": "README.md",
+      "sha256": "68aab26271369c102502df5ecb8b6945d435e98efc4438135b8eb3e5e99384ef",
+      "bytes": 1813
+    },
+    {
+      "path": "build.json",
+      "sha256": "f515ec2d987b26e95f10297791bfb2221e8ed29de7956391a37503200d1007ff",
+      "bytes": 528
+    },
+    {
+      "path": "configure.json",
+      "sha256": "bb2a98fd20cee12648a32a73cf631e5b8c59ebe619721cb652057742dbded363",
+      "bytes": 873
+    },
+    {
+      "path": "engine-fetch.json",
+      "sha256": "5cb67f03f4b878b4f8947d059c0084ae1ebc91beaeab596dd9c4e750909c2407",
+      "bytes": 949
+    },
+    {
+      "path": "module-copy.json",
+      "sha256": "528f1cab4ae76f4bf27c3a510d3402a01f73e09a03757c01e8194c59d8e30b0b",
+      "bytes": 3912
+    },
+    {
+      "path": "ns-fetch.json",
+      "sha256": "f3ef59669370ff5fc0f097b217b9f5e4a4475d39bbec35ada2f2e3404c199076",
+      "bytes": 944
+    },
+    {
+      "path": "build.log",
+      "sha256": "3c1e45407caeaab8a42b1bcf347ac6bcd58d7d33556427ca1a2dfab73065a686",
+      "bytes": 4362
+    },
+    {
+      "path": "configure.log",
+      "sha256": "35e4c873d79b8a8be49f2663bd8990fa53ca851d15c529d483c7e4385a92531c",
+      "bytes": 4965
+    },
+    {
+      "path": "engine-fetch.log",
+      "sha256": "531d9f96ba59aa26658a07eb5273d12ff1f15c439cc6d556540a705c73074cb7",
+      "bytes": 864
+    },
+    {
+      "path": "ns-fetch.log",
+      "sha256": "18f8609f9360c32c27625b1ff257046cd3ca9eab04b09106a9c6d25960b44107",
+      "bytes": 869
+    },
+    {
+      "path": "tool-install.log",
+      "sha256": "10281b231520269560781777759306a66417e377354848c17769f13e75633315",
+      "bytes": 1051
+    },
+    {
+      "path": "smoke/ack-contract",
+      "sha256": "3fa2a075ea102416fca4bfc086c5583343990dbe3ccdd445804e14736e984aba",
+      "bytes": 3964096
+    },
+    {
+      "path": "smoke/checkpoints.csv",
+      "sha256": "2991bbc93e5ba2c64d06a93cee278160cd9baf2fdc11b052ee5b0cb561fe4b73",
+      "bytes": 5288
+    },
+    {
+      "path": "smoke/compile.json",
+      "sha256": "7f10b2361fee29754d1bce31f7b2ee4f77bc6c8ce819d531b6eeb6b4be3df48e",
+      "bytes": 1136
+    },
+    {
+      "path": "smoke/compile.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "smoke/linked-libraries.json",
+      "sha256": "bb95cf797b53e95e2cc8eb32983be8e0b53e4b302df69e064240e04c1d3ae62b",
+      "bytes": 328
+    },
+    {
+      "path": "smoke/linked-libraries.log",
+      "sha256": "9501bee4351cd07a32ca60870f56c8f6a0dc9bf41b320bf4932e1102b0e5caad",
+      "bytes": 1587
+    },
+    {
+      "path": "smoke/pending.json",
+      "sha256": "e7ec82e20f44335dbce820de6acf32351d8532d972068cd7e99797d815e27e90",
+      "bytes": 557
+    },
+    {
+      "path": "smoke/pending.log",
+      "sha256": "32c09ca6c7f9e8100af9733c093cb341fde8943e1cb8cf3d9e4a170f5a3ba638",
+      "bytes": 21957
+    },
+    {
+      "path": "smoke/run.json",
+      "sha256": "799fada3a33e9d78881062f73bebb3ca2e03bf937b7d17693150e5f56c7f8c70",
+      "bytes": 369
+    },
+    {
+      "path": "smoke/run.log",
+      "sha256": "1ddef194fc064c32ead66e2cb86a463b74397d97c5e20457bde46547c8a55f17",
+      "bytes": 9271
+    }
+  ]
+}

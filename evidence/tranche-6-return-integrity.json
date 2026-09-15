@@ -1,0 +1,1301 @@
+{
+  "schema": "csr-tranche6-independent-integrity-review-v1",
+  "candidate_commit": "21c0a3f024c9efffdbd11c8059f1540a67c19b1a",
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "review_mode": "Read-only audit of uploaded ZIP and extraction against git candidate and handoff ZIP; no MATLAB execution.",
+  "failures": [],
+  "limitations": [
+    "The 48 unique MAT result/test objects are intentionally excluded by the declared archive policy; their recorded hashes and sizes agree across nested inventories, but their bytes cannot be independently checked from this ZIP.",
+    "The execution host has no available git HEAD metadata. Candidate identity is independently established by comparing all 127 source-snapshot hashes, including all 90 MATLAB files, against git commit 21c0a3f and the delivered candidate ZIP.",
+    "Nested metadata retains Tranche 3/4/5 schema labels and historical base commits because those regression runners are reused; every checked source snapshot matches the Tranche 6 candidate. These labels do not indicate older code execution.",
+    "The nested Tranche 4 inventory deliberately omits its own live validation.log per the candidate runner. Its closed final bytes are independently covered by both enclosing Tranche 5 and Tranche 6 inventories.",
+    "The sweep plan retains planned-not-executed because it is the immutable pre-execution plan; separate case manifests, summaries, and outer metadata establish completed execution.",
+    "Three 300-second freshness cases report DataDrained=false because that conservative field includes the shared resend queue. Each has zero pending applications, HOP DATA, DACK hold, NWK custody, and route wait, with one pending reliable CONTROL owner. Trace inspection shows ROUTING 2->3 and DISCOVER controls admitted at exactly the 900-second stop. This is a finite-stop control-residual boundary, not an archive-integrity failure.",
+    "Native wireless simulator execution and long-run cases were not requested. This is portable R2025a evidence; no new MATLAB or ns-3 execution was performed by this integrity review.",
+    "This integrity review verifies provenance and supplied accounting. The main reviewer owns measured Tranche 5/6 outcome analysis and the five MATLAB/ns-3 shared application comparisons."
+  ],
+  "git_head_at_review": "21c0a3f024c9efffdbd11c8059f1540a67c19b1a",
+  "git_worktree_clean_at_review": true,
+  "archive": {
+    "filename": "tranche6_evidence.zip",
+    "bytes": 3893666,
+    "sha256": "5c8ec2997ae8c248625240c3fd084aaaca85d5221ec7a347a0aaad2dabeb1e17",
+    "members": 552,
+    "files": 552,
+    "crc_passed": true,
+    "duplicate_members": [],
+    "unsafe_paths": [],
+    "extraction_identical": true
+  },
+  "candidate_archive": {
+    "filename": "CSR-MATLAB-Tranche6-21c0a3f.zip",
+    "bytes": 8044264,
+    "sha256": "3989bc81c35f41413479146cff018b6d33f54ead0e47d4ae5f7d5f7860fd5386",
+    "files": 435
+  },
+  "source": {
+    "unique_source_files": 127,
+    "unique_matlab_files": 90,
+    "git_membership_passed": true,
+    "candidate_archive_identical_to_git_at_all_source_paths": true,
+    "snapshot_checks": [
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/regression/validation_metadata.json",
+        "field": "MatlabSourceFiles",
+        "count": 90,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/hidden_node_seed_128/case_manifest.json",
+        "field": "source_files",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/leaf_no_transit_seed_128/case_manifest.json",
+        "field": "source_files",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/line_4_seed_128/case_manifest.json",
+        "field": "source_files",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/mesh_6_seed_128/case_manifest.json",
+        "field": "source_files",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/route_recovery_seed_128/case_manifest.json",
+        "field": "source_files",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/two_node_seed_128/case_manifest.json",
+        "field": "source_files",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/shared/high_rate_1000/case_manifest.json",
+        "field": "source_files",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/shared/high_rate_500/case_manifest.json",
+        "field": "source_files",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/shared/line_3_8/case_manifest.json",
+        "field": "source_files",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/shared/two_node_128/case_manifest.json",
+        "field": "source_files",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/shared/two_node_8/case_manifest.json",
+        "field": "source_files",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/validation_metadata.json",
+        "field": "SourceFiles",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x1_seed128/case_manifest.json",
+        "field": "source_files",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x1_seed129/case_manifest.json",
+        "field": "source_files",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x1_seed130/case_manifest.json",
+        "field": "source_files",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x2_seed128/case_manifest.json",
+        "field": "source_files",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x2_seed129/case_manifest.json",
+        "field": "source_files",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x2_seed130/case_manifest.json",
+        "field": "source_files",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x4_seed128/case_manifest.json",
+        "field": "source_files",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x4_seed129/case_manifest.json",
+        "field": "source_files",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x4_seed130/case_manifest.json",
+        "field": "source_files",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s180_seed128/case_manifest.json",
+        "field": "source_files",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s180_seed129/case_manifest.json",
+        "field": "source_files",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s180_seed130/case_manifest.json",
+        "field": "source_files",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s300_seed128/case_manifest.json",
+        "field": "source_files",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s300_seed129/case_manifest.json",
+        "field": "source_files",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s300_seed130/case_manifest.json",
+        "field": "source_files",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s60_seed128/case_manifest.json",
+        "field": "source_files",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s60_seed129/case_manifest.json",
+        "field": "source_files",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s60_seed130/case_manifest.json",
+        "field": "source_files",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "field": "SourceFiles",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "field": "SourceFilesFinal",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "validation_metadata.json",
+        "field": "SourceFiles",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      },
+      {
+        "metadata": "validation_metadata.json",
+        "field": "SourceFilesFinal",
+        "count": 127,
+        "membership_passed": true,
+        "hashes_passed": true
+      }
+    ],
+    "total_hash_assertions": 4408
+  },
+  "inventories": {
+    "checks": [
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/hidden_node_seed_128/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/leaf_no_transit_seed_128/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/line_4_seed_128/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/mesh_6_seed_128/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/route_recovery_seed_128/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/two_node_seed_128/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/shared/high_rate_1000/case_manifest.json",
+        "field": "files",
+        "count": 12,
+        "passed": 12,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/shared/high_rate_500/case_manifest.json",
+        "field": "files",
+        "count": 12,
+        "passed": 12,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/shared/line_3_8/case_manifest.json",
+        "field": "files",
+        "count": 12,
+        "passed": 12,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/shared/two_node_128/case_manifest.json",
+        "field": "files",
+        "count": 12,
+        "passed": 12,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/shared/two_node_8/case_manifest.json",
+        "field": "files",
+        "count": 12,
+        "passed": 12,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/validation_metadata.json",
+        "field": "Artifacts",
+        "count": 291,
+        "passed": 291,
+        "membership_passed": true,
+        "intentional_exclusions": [
+          "validation.log"
+        ],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x1_seed128/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x1_seed129/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x1_seed130/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x2_seed128/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x2_seed129/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x2_seed130/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x4_seed128/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x4_seed129/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x4_seed130/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s180_seed128/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s180_seed129/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s180_seed130/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s300_seed128/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s300_seed129/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s300_seed130/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s60_seed128/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s60_seed129/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s60_seed130/case_manifest.json",
+        "field": "files",
+        "count": 11,
+        "passed": 11,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "field": "Artifacts",
+        "count": 550,
+        "passed": 550,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      },
+      {
+        "metadata": "validation_metadata.json",
+        "field": "Artifacts",
+        "count": 551,
+        "passed": 551,
+        "membership_passed": true,
+        "intentional_exclusions": [],
+        "failures": []
+      }
+    ],
+    "total_assertions": 1716,
+    "unique_archived_artifacts_checked": 551,
+    "csv_row_count_assertions": 295,
+    "metadata_links": [
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/validation_metadata.json",
+        "case": "shared/two_node_8",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/validation_metadata.json",
+        "case": "shared/two_node_128",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/validation_metadata.json",
+        "case": "shared/line_3_8",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/validation_metadata.json",
+        "case": "shared/high_rate_500",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/validation_metadata.json",
+        "case": "shared/high_rate_1000",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/validation_metadata.json",
+        "case": "research/two_node_seed_128",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/validation_metadata.json",
+        "case": "research/line_4_seed_128",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/validation_metadata.json",
+        "case": "research/hidden_node_seed_128",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/validation_metadata.json",
+        "case": "research/mesh_6_seed_128",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/validation_metadata.json",
+        "case": "research/route_recovery_seed_128",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/validation_metadata.json",
+        "case": "research/leaf_no_transit_seed_128",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/offered_load_x1_seed128",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/offered_load_x1_seed129",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/offered_load_x1_seed130",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/offered_load_x2_seed128",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/offered_load_x2_seed129",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/offered_load_x2_seed130",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/offered_load_x4_seed128",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/offered_load_x4_seed129",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/offered_load_x4_seed130",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/recovery_freshness_s60_seed128",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/recovery_freshness_s60_seed129",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/recovery_freshness_s60_seed130",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/recovery_freshness_s180_seed128",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/recovery_freshness_s180_seed129",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/recovery_freshness_s180_seed130",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/recovery_freshness_s300_seed128",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/recovery_freshness_s300_seed129",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "case": "sweep/recovery_freshness_s300_seed130",
+        "passed": true
+      },
+      {
+        "metadata": "validation_metadata.json",
+        "field": "RegressionMetadataSHA256",
+        "passed": true
+      }
+    ],
+    "excluded_local_mat_count": 48,
+    "excluded_local_mat_bytes": 5505488
+  },
+  "runtime": {
+    "runtime": "MATLAB",
+    "release": "2025a",
+    "version": "25.1.0.2943329 (R2025a)",
+    "backend": "portable",
+    "started_utc": "2026-09-10T11:43:32.984Z",
+    "completed_utc": "2026-09-10T11:56:48.742Z",
+    "native_executed": false,
+    "checks": [
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/hidden_node_seed_128/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/leaf_no_transit_seed_128/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/line_4_seed_128/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/mesh_6_seed_128/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/route_recovery_seed_128/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/research/two_node_seed_128/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/shared/high_rate_1000/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/shared/high_rate_500/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/shared/line_3_8/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/shared/two_node_128/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/shared/two_node_8/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/validation_metadata.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x1_seed128/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x1_seed129/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x1_seed130/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x2_seed128/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x2_seed129/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x2_seed130/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x4_seed128/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x4_seed129/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/offered_load_x4_seed130/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s180_seed128/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s180_seed129/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s180_seed130/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s300_seed128/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s300_seed129/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s300_seed130/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s60_seed128/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s60_seed129/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/sweep/recovery_freshness_s60_seed130/case_manifest.json",
+        "passed": true
+      },
+      {
+        "metadata": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation_metadata.json",
+        "passed": true
+      },
+      {
+        "metadata": "validation_metadata.json",
+        "passed": true
+      }
+    ]
+  },
+  "tests": {
+    "path": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/regression/regression/tests/test_results.csv",
+    "sha256": "3d3060bdc5e556a5ef8830bf8d1174d8bbb08d02cd8238d9d8a7d5d86307f655",
+    "count": 380,
+    "passed": 380,
+    "failed": 0,
+    "incomplete": 0,
+    "outage_recovery_tests": [
+      {
+        "Name": "TestOutageRecovery/passiveRadioDoesNotCreateNwkNeighbor",
+        "Passed": "1",
+        "Failed": "0",
+        "Incomplete": "0",
+        "DurationSeconds": "0.0123823"
+      },
+      {
+        "Name": "TestOutageRecovery/dataAndAckDoNotPostponeStrictFreshness",
+        "Passed": "1",
+        "Failed": "0",
+        "Incomplete": "0",
+        "DurationSeconds": "0.0397389"
+      },
+      {
+        "Name": "TestOutageRecovery/overheardCheckDoesNotRenewNwkLiveness",
+        "Passed": "1",
+        "Failed": "0",
+        "Incomplete": "0",
+        "DurationSeconds": "0.0300983"
+      },
+      {
+        "Name": "TestOutageRecovery/firstControlsRenewButTheirDuplicatesDoNot",
+        "Passed": "1",
+        "Failed": "0",
+        "Incomplete": "0",
+        "DurationSeconds": "0.0266643"
+      },
+      {
+        "Name": "TestOutageRecovery/keyTrafficAndKeyAckDoNotRenewNwkLiveness",
+        "Passed": "1",
+        "Failed": "0",
+        "Incomplete": "0",
+        "DurationSeconds": "0.0227926"
+      },
+      {
+        "Name": "TestOutageRecovery/everyFirstRoutingSectionRenewsBeforeReassembly",
+        "Passed": "1",
+        "Failed": "0",
+        "Incomplete": "0",
+        "DurationSeconds": "0.0493561"
+      },
+      {
+        "Name": "TestOutageRecovery/malformedRoutingDoesNotRenewFreshness",
+        "Passed": "1",
+        "Failed": "0",
+        "Incomplete": "0",
+        "DurationSeconds": "0.0171379"
+      },
+      {
+        "Name": "TestOutageRecovery/freshnessPreservesKeyOwnerBackoffsAndCallbackGeneration",
+        "Passed": "1",
+        "Failed": "0",
+        "Incomplete": "0",
+        "DurationSeconds": "0.0255257"
+      },
+      {
+        "Name": "TestOutageRecovery/inFlightCheckProofCanReadmitAfterFreshnessExpiry",
+        "Passed": "1",
+        "Failed": "0",
+        "Incomplete": "0",
+        "DurationSeconds": "0.0149896"
+      },
+      {
+        "Name": "TestOutageRecovery/obsoleteDiscoveryVerifyCannotRenewFreshness",
+        "Passed": "1",
+        "Failed": "0",
+        "Incomplete": "0",
+        "DurationSeconds": "0.0075726"
+      },
+      {
+        "Name": "TestOutageRecovery/staleInactiveReporterStillChirpsAndReportsExactCause",
+        "Passed": "1",
+        "Failed": "0",
+        "Incomplete": "0",
+        "DurationSeconds": "0.0121294"
+      },
+      {
+        "Name": "TestOutageRecovery/expiredRoutingAssemblyCannotCompleteAfterReadmission",
+        "Passed": "1",
+        "Failed": "0",
+        "Incomplete": "0",
+        "DurationSeconds": "0.0205624"
+      },
+      {
+        "Name": "TestOutageRecovery/dataExhaustionRemainsTerminalWithoutNeighborPenalty",
+        "Passed": "1",
+        "Failed": "0",
+        "Incomplete": "0",
+        "DurationSeconds": "0.0366729"
+      }
+    ],
+    "summed_test_duration_seconds": 183.5144429
+  },
+  "cases": {
+    "sweep_count": 18,
+    "sweep_ids": [
+      "offered_load_x1_seed128",
+      "offered_load_x1_seed129",
+      "offered_load_x1_seed130",
+      "offered_load_x2_seed128",
+      "offered_load_x2_seed129",
+      "offered_load_x2_seed130",
+      "offered_load_x4_seed128",
+      "offered_load_x4_seed129",
+      "offered_load_x4_seed130",
+      "recovery_freshness_s180_seed128",
+      "recovery_freshness_s180_seed129",
+      "recovery_freshness_s180_seed130",
+      "recovery_freshness_s300_seed128",
+      "recovery_freshness_s300_seed129",
+      "recovery_freshness_s300_seed130",
+      "recovery_freshness_s60_seed128",
+      "recovery_freshness_s60_seed129",
+      "recovery_freshness_s60_seed130"
+    ],
+    "regression_count": 28,
+    "regression_groups": [
+      {
+        "path": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/scenario_summary.csv",
+        "count": 11,
+        "scenarios": [
+          "two_node_8",
+          "two_node_128",
+          "line_3_8",
+          "high_rate_500",
+          "high_rate_1000",
+          "research_two_node",
+          "research_line_4",
+          "research_hidden_node",
+          "research_mesh_6",
+          "research_route_recovery",
+          "research_leaf_no_transit"
+        ]
+      },
+      {
+        "path": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/regression/scenario_summary.csv",
+        "count": 8,
+        "scenarios": [
+          "autonomous",
+          "no_route_custody",
+          "control_loss",
+          "route_recovery",
+          "gateway",
+          "leaf_no_transit",
+          "high_rate_500",
+          "high_rate_1000"
+        ]
+      },
+      {
+        "path": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/regression/regression/scenario_summary.csv",
+        "count": 9,
+        "scenarios": [
+          "reliable",
+          "ack_loss",
+          "data_loss",
+          "dack",
+          "collision",
+          "relay",
+          "queue_pressure",
+          "high_rate_500",
+          "high_rate_1000"
+        ]
+      }
+    ],
+    "application_accounting_cases_passed": 46,
+    "application_accounting_cases_total": 46,
+    "all_sweeps_structural_checks_passed": true,
+    "sweeps_reporting_DataDrained_true": 15,
+    "stop_time_control_residual_cases": [
+      {
+        "case": "recovery_freshness_s300_seed128",
+        "DataDrained": false,
+        "application_and_DATA_custody_pending": {
+          "Pending": 0,
+          "HopPendingData": 0,
+          "DackHoldCount": 0,
+          "NwkPendingCustody": 0,
+          "WaitingForRoute": 0
+        },
+        "resend_queue_depth": 1,
+        "control_pending": 1,
+        "control_pending_targets": 1,
+        "trace_stop_time_control_admissions": [
+          {
+            "TimeSeconds": "900",
+            "Event": "hop_control_admit",
+            "NodeId": "2",
+            "PeerId": "3",
+            "PacketId": "47",
+            "ApplicationBytes": "0",
+            "Reason": "",
+            "FrameKind": "CONTROL",
+            "Sequence": "19",
+            "Dscp": "7",
+            "QueueDepth": "0",
+            "ControlType": "ROUTING",
+            "HopCount": "0"
+          },
+          {
+            "TimeSeconds": "900",
+            "Event": "hop_control_admit",
+            "NodeId": "1",
+            "PeerId": "16777215",
+            "PacketId": "32",
+            "ApplicationBytes": "0",
+            "Reason": "",
+            "FrameKind": "CONTROL",
+            "Sequence": "10",
+            "Dscp": "7",
+            "QueueDepth": "0",
+            "ControlType": "DISCOVER",
+            "HopCount": "0"
+          },
+          {
+            "TimeSeconds": "900",
+            "Event": "hop_control_admit",
+            "NodeId": "2",
+            "PeerId": "16777215",
+            "PacketId": "48",
+            "ApplicationBytes": "0",
+            "Reason": "",
+            "FrameKind": "CONTROL",
+            "Sequence": "13",
+            "Dscp": "7",
+            "QueueDepth": "0",
+            "ControlType": "DISCOVER",
+            "HopCount": "0"
+          }
+        ]
+      },
+      {
+        "case": "recovery_freshness_s300_seed129",
+        "DataDrained": false,
+        "application_and_DATA_custody_pending": {
+          "Pending": 0,
+          "HopPendingData": 0,
+          "DackHoldCount": 0,
+          "NwkPendingCustody": 0,
+          "WaitingForRoute": 0
+        },
+        "resend_queue_depth": 1,
+        "control_pending": 1,
+        "control_pending_targets": 1,
+        "trace_stop_time_control_admissions": [
+          {
+            "TimeSeconds": "900",
+            "Event": "hop_control_admit",
+            "NodeId": "2",
+            "PeerId": "3",
+            "PacketId": "47",
+            "ApplicationBytes": "0",
+            "Reason": "",
+            "FrameKind": "CONTROL",
+            "Sequence": "19",
+            "Dscp": "7",
+            "QueueDepth": "0",
+            "ControlType": "ROUTING",
+            "HopCount": "0"
+          },
+          {
+            "TimeSeconds": "900",
+            "Event": "hop_control_admit",
+            "NodeId": "1",
+            "PeerId": "16777215",
+            "PacketId": "32",
+            "ApplicationBytes": "0",
+            "Reason": "",
+            "FrameKind": "CONTROL",
+            "Sequence": "10",
+            "Dscp": "7",
+            "QueueDepth": "0",
+            "ControlType": "DISCOVER",
+            "HopCount": "0"
+          },
+          {
+            "TimeSeconds": "900",
+            "Event": "hop_control_admit",
+            "NodeId": "2",
+            "PeerId": "16777215",
+            "PacketId": "48",
+            "ApplicationBytes": "0",
+            "Reason": "",
+            "FrameKind": "CONTROL",
+            "Sequence": "13",
+            "Dscp": "7",
+            "QueueDepth": "0",
+            "ControlType": "DISCOVER",
+            "HopCount": "0"
+          }
+        ]
+      },
+      {
+        "case": "recovery_freshness_s300_seed130",
+        "DataDrained": false,
+        "application_and_DATA_custody_pending": {
+          "Pending": 0,
+          "HopPendingData": 0,
+          "DackHoldCount": 0,
+          "NwkPendingCustody": 0,
+          "WaitingForRoute": 0
+        },
+        "resend_queue_depth": 1,
+        "control_pending": 1,
+        "control_pending_targets": 1,
+        "trace_stop_time_control_admissions": [
+          {
+            "TimeSeconds": "900",
+            "Event": "hop_control_admit",
+            "NodeId": "2",
+            "PeerId": "3",
+            "PacketId": "47",
+            "ApplicationBytes": "0",
+            "Reason": "",
+            "FrameKind": "CONTROL",
+            "Sequence": "19",
+            "Dscp": "7",
+            "QueueDepth": "0",
+            "ControlType": "ROUTING",
+            "HopCount": "0"
+          },
+          {
+            "TimeSeconds": "900",
+            "Event": "hop_control_admit",
+            "NodeId": "1",
+            "PeerId": "16777215",
+            "PacketId": "32",
+            "ApplicationBytes": "0",
+            "Reason": "",
+            "FrameKind": "CONTROL",
+            "Sequence": "10",
+            "Dscp": "7",
+            "QueueDepth": "0",
+            "ControlType": "DISCOVER",
+            "HopCount": "0"
+          },
+          {
+            "TimeSeconds": "900",
+            "Event": "hop_control_admit",
+            "NodeId": "2",
+            "PeerId": "16777215",
+            "PacketId": "48",
+            "ApplicationBytes": "0",
+            "Reason": "",
+            "FrameKind": "CONTROL",
+            "Sequence": "13",
+            "Dscp": "7",
+            "QueueDepth": "0",
+            "ControlType": "DISCOVER",
+            "HopCount": "0"
+          }
+        ]
+      }
+    ]
+  },
+  "shared_comparisons": {
+    "execution_owner": "Main reviewer; this independent reviewer inspected generated CLI results without rerunning the comparator.",
+    "cli_results_path": "/workspace/scratch/1a5b1ad6ce1b/t6-shared-comparison/cli-results.json",
+    "cli_results_sha256": "75ce3bd83b3eec9dfa710e38550efa0619dd556a9d653adaa2095e572070eec0",
+    "count": 5,
+    "passed": 5,
+    "results": [
+      {
+        "case": "two_node_8",
+        "exit_code": 0,
+        "output": "application_match: MATLAB 3 applications; ns-3 3 applications; full protocol parity is not asserted\n"
+      },
+      {
+        "case": "two_node_128",
+        "exit_code": 0,
+        "output": "application_match: MATLAB 3 applications; ns-3 3 applications; full protocol parity is not asserted\n"
+      },
+      {
+        "case": "line_3_8",
+        "exit_code": 0,
+        "output": "application_match: MATLAB 3 applications; ns-3 3 applications; full protocol parity is not asserted\n"
+      },
+      {
+        "case": "high_rate_500",
+        "exit_code": 0,
+        "output": "application_match: MATLAB 3 applications; ns-3 3 applications; full protocol parity is not asserted\n"
+      },
+      {
+        "case": "high_rate_1000",
+        "exit_code": 0,
+        "output": "application_match: MATLAB 3 applications; ns-3 3 applications; full protocol parity is not asserted\n"
+      }
+    ],
+    "scope": "Five shared application-level comparisons; full protocol numerical parity is not asserted."
+  },
+  "logs": [
+    {
+      "path": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/regression/regression/tests/validation.log",
+      "bytes": 3850,
+      "sha256": "fcbc3f1f1f296aeaac4dccd3913b00b71ed6da75c54a92b5c4992bfff6815fd9"
+    },
+    {
+      "path": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/regression/validation.log",
+      "bytes": 10717,
+      "sha256": "8e41f01761cac71b7af13f1f5da932ec7b60fa59ca773c573b0a10d741b2c27e"
+    },
+    {
+      "path": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/regression/run_20260910_114337_795_tp8c79b66f_2992_4ba3_9477_56c4259512c0/validation.log",
+      "bytes": 514,
+      "sha256": "32d56f5db26b64958f6a07c4df52c30d63491dc1801c700aa0cdf908537e9500"
+    },
+    {
+      "path": "regression/run_20260910_114336_941_tp40363c26_6cb3_46bc_abff_75f6ae762257/validation.log",
+      "bytes": 1242,
+      "sha256": "26cb08296c770531cdf2f778e4a831c911aa303b35e9b89ccbe6524d76c0e53e"
+    }
+  ],
+  "status": "passed"
+}

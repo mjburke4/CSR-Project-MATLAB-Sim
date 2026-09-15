@@ -5,6 +5,7 @@ function config = validateConfig(config)
 config.Mac = merge(config,'Mac',csr.mac.Layer.defaults());
 config.Hop = merge(config,'Hop',csr.hop.Layer.defaults());
 mac = config.Mac;
+mac.SlotProfile = csr.mac.SlotSelection.normalizeProfile(mac.SlotProfile);
 integerPositive = {'DataQueueLimit','AckQueueLimit','AckTransmissions','MaxConcatSegments'};
 integerZero = {'ActiveNodes','ReportedActiveNodes','SlotReduction'};
 positive = {'SlotSeconds','WakeCycleSeconds','SearchSeconds'};

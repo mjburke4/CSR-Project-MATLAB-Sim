@@ -1,0 +1,157 @@
+{
+  "schema": "csr-tranche-11-residual-review-v1",
+  "status": "focused_behavior_complete_clock_tie_residual_retained",
+  "reviewer": "independent residual analysis agent",
+  "matlab_executed_by_reviewer": false,
+  "source_modified": false,
+  "evidence_sha256": "ef989210fc9e5c1e85573a097bee6f9b4cdac9a5cbda79069d99a6a98f804e6a",
+  "observed": {
+    "event_rows": 1756,
+    "exact_complete_event_rows": 1754,
+    "differing_event_rows": 2,
+    "recorded_timestamp_differences": 0,
+    "draw_rows": 133,
+    "draw_rows_exact": true,
+    "cases_completed": 4,
+    "applications_admitted": 32,
+    "applications_delivered": 32,
+    "capacity_releases": 32,
+    "structural_checkpoints_passed": 56,
+    "pending_at_stop": 0,
+    "focused_matlab_tests_passed": 52,
+    "strict_replay_match": false
+  },
+  "residuals": [
+    {
+      "row": 1283,
+      "case": "slow",
+      "order": 437,
+      "time_ns": 2011501000,
+      "event": "ingress_before",
+      "node": 1,
+      "peer": 3,
+      "app_id": 4,
+      "fields": [
+        "counter"
+      ],
+      "matlab": {
+        "counter": "15"
+      },
+      "ns3": {
+        "counter": "16"
+      }
+    },
+    {
+      "row": 1284,
+      "case": "slow",
+      "order": 438,
+      "time_ns": 2011501000,
+      "event": "ingress_after",
+      "node": 1,
+      "peer": 3,
+      "app_id": 4,
+      "fields": [
+        "counter"
+      ],
+      "matlab": {
+        "counter": "15"
+      },
+      "ns3": {
+        "counter": "16"
+      }
+    }
+  ],
+  "cause": {
+    "assessment": "High-confidence source and IEEE-754 reconstruction; raw MATLAB scheduler double values were not exported and no instrumented MATLAB rerun was performed.",
+    "native": "At native integer time 2.011501 s, controlled ingress was queued by TX at 1.989 s, before the gateway tick was rearmed at 1.998501 s. Equal-time native events use insertion UID, so ingress sees counter 16 before the tick decrements to 15.",
+    "matlab": "MAC ticks use integer-nanosecond epoch arithmetic, while replay ingress uses sequential binary64 additions Now + airtime + propagation. The reconstructed ingress is one binary64 ULP later than the tick, so the tick decrements to 15 before both ingress observations.",
+    "airtime_seconds_binary64": "0.022500000000000003",
+    "tick_seconds_binary64": "2.011501",
+    "ingress_seconds_binary64": "2.0115010000000004",
+    "tick_binary64_hex": "0x1.0178dd616f86ap+1",
+    "ingress_binary64_hex": "0x1.0178dd616f86bp+1",
+    "difference_seconds": 4.440892098500626e-16,
+    "difference_in_ulps": 1.0,
+    "native_tick_event_index": 290,
+    "native_tick_counter": 15,
+    "limitation": "Returned observations round seconds to integer nanoseconds, which hides the sub-nanosecond arrival offset. The exported timestamps are exactly equal at that precision."
+  },
+  "behavioral_significance": {
+    "observed_unaffected": [
+      "all 133 contention draws and resolved slots",
+      "all logged event ordering and integer-nanosecond timestamps",
+      "all DATA and ACK transmission observations",
+      "admission and blocking outcomes",
+      "all 32 application delivery totals and capacity release chains",
+      "zero pending applications at stop"
+    ],
+    "next_gateway_ack_time_ns": 2219501000,
+    "next_release_time_ns": 2244042000,
+    "next_wake_time_ns": 2244042028,
+    "not_purely_cosmetic": "The same tick also decrements neighbor reservations. Reversing ingress and tick can leave the newly advertised neighbor counter one slot apart, an internal field not exported here. No downstream observable divergence occurs in these four cases, but other workloads may be sensitive.",
+    "scope": "Controlled successful addressed transport, fixed rate and power, raw contention replay, real MAC/HOP with synthetic admission driver; does not establish campus, production NWK, RF/half-duplex, PHY/ECC, or stochastic parity."
+  },
+  "recommendation": {
+    "current_return": "Retain this return as a completed focused structural/behavioral diagnostic with two explicitly open clock-order residuals; do not assert strict trace parity or full acceptance.",
+    "next_milestone": "Short controlled 4 -> 5 -> 1 relay/local contention benchmark using actual production NWK admission and custody, tagged by original application source.",
+    "steps": [
+      "Include an exact tie and +/-1 ns ingress/tick microcase to determine whether the next fixture should explicitly quantize its controlled link delivery to native integer ns. Keep the continuous scheduler and existing production baseline unchanged until source-backed evidence justifies a change.",
+      "Compare relay-only 4 -> 5 -> 1, local-only 5 -> 1, and mixed traffic with identical workload and shared raw draws; record node-5 queue choice, ACK service, per-neighbor HOP outstanding, custody, admission/release, and delivered original-source counts.",
+      "After deterministic chains agree, use a small fixed multi-seed set with real transport/receiver behavior, then decide whether a 6000-second campus rerun is informative."
+    ],
+    "reason": "T10 campus delivery redistribution between nodes 4 and 5 motivates this path. T11 supports the bounded DATA/ACK/release mechanics under matched draws, but does not prove that local and relayed traffic share service correctly.",
+    "production_changes_recommended_now": false
+  },
+  "bindings": [
+    {
+      "path": "+csr/+validation/replayContract.m",
+      "bytes": 18296,
+      "sha256": "b63fc14f5f2de4294511fa599ddb526f1aacd969d4f3cd32bc2e016c126a2e3f"
+    },
+    {
+      "path": "+csr/+mac/Layer.m",
+      "bytes": 32241,
+      "sha256": "d2e1b9e08c7e3d3ea60c88b61f3480f881e53c5963f48ae09822c4f04170e67b"
+    },
+    {
+      "path": "+csr/+sim/EventScheduler.m",
+      "bytes": 7709,
+      "sha256": "0e1887cf9d1195a20ab8e4a24c7ff182a2e72303abfec67d34a61eaa1fa9585e"
+    },
+    {
+      "path": "+csr/+phy/airtime.m",
+      "bytes": 1636,
+      "sha256": "0ec28519e924ae409b1ad698bdfb5c4f96589985a84916d7e8bc955ce0145020"
+    },
+    {
+      "path": "+csr/+phy/rateDefinition.m",
+      "bytes": 1643,
+      "sha256": "549749f819ba436646d29ca76fe08524683c23d27f05268173743399b93bcf3f"
+    },
+    {
+      "path": "scripts/ns3/tranche11_replay.cc",
+      "bytes": 13973,
+      "sha256": "b4147218fd15c45a2b5643e362f4afca6f32ae2581a1a39e31e65623d60795ba"
+    },
+    {
+      "path": "scenarios/replay/plan.json",
+      "bytes": 3625,
+      "sha256": "4980ccbae6a52d378ca149be0bba81a08fb81e41608886388d985f9178ce27cc"
+    },
+    {
+      "path": "evidence/tranche-11-replay-reference/events.csv",
+      "bytes": 125490,
+      "sha256": "1c44e619887354e46eb0fe5cf66d7a50b554c7334be959de04a7f2b1f7c3abf0"
+    },
+    {
+      "path": "evidence/tranche-11-replay-reference/raw/slow/native.csv",
+      "bytes": 46542,
+      "sha256": "2ed0e34c88f5d1999d07920322a53bcd330cb48b2ddd62f44f77df69ae176b42"
+    },
+    {
+      "path": "docs/tranche-10-portable-acceptance.md",
+      "bytes": 9337,
+      "sha256": "63d75137c674966bafd84bc8147f8c0d08014e2a4abe6182f74d9910a7eec49e"
+    }
+  ]
+}

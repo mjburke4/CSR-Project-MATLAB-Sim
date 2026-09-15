@@ -1,0 +1,132 @@
+{
+  "schema": "csr-tranche7-benchmark-reference-suite-v1",
+  "status": "completed",
+  "started_utc": "2026-09-10T13:37:26.509581+00:00",
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "matlab_executed": false,
+  "opnet_executed": false,
+  "full_ns3_rebuild_performed": false,
+  "cases": [
+    {
+      "case_id": "campus_multihop_6000",
+      "status": "completed",
+      "manifest": "campus_multihop_6000/manifest.json",
+      "manifest_sha256": "309f1343eb86c8d5ceb167546c351be7d753ba721930d6e677a4fd3d4e6faaa6",
+      "application_admission_totals": {
+        "attempts": 1710000,
+        "admitted": 12417,
+        "blocked_discovery": 0,
+        "blocked_topology": 0,
+        "blocked_gateway_route": 0,
+        "blocked_destination": 0,
+        "blocked_nsdp": 1697583
+      },
+      "exact_sequence_validation": {
+        "matched_count": 11769,
+        "matched_by_method": {
+          "exact_sequence": 11769
+        },
+        "source_exact_dack_retry_duplicate_proof_count": 0,
+        "source_exact_dack_retry_duplicate_delivery_count": 0,
+        "unmatched_delivery_count": 0,
+        "matched_size_compared_count": 11769,
+        "matched_size_mismatch_count": 0
+      }
+    },
+    {
+      "case_id": "two_node_admission_1200",
+      "status": "completed",
+      "manifest": "two_node_admission_1200/manifest.json",
+      "manifest_sha256": "9163e5c27b5e6db38d3955841a68b807028cf1d3f54ec477c17908045abe7bf4",
+      "application_admission_totals": {
+        "attempts": 45000,
+        "admitted": 11380,
+        "blocked_discovery": 0,
+        "blocked_topology": 0,
+        "blocked_gateway_route": 0,
+        "blocked_destination": 0,
+        "blocked_nsdp": 33620
+      },
+      "exact_sequence_validation": {
+        "matched_count": 11364,
+        "matched_by_method": {
+          "exact_sequence": 11364
+        },
+        "source_exact_dack_retry_duplicate_proof_count": 0,
+        "source_exact_dack_retry_duplicate_delivery_count": 0,
+        "unmatched_delivery_count": 0,
+        "matched_size_compared_count": 11364,
+        "matched_size_mismatch_count": 0
+      }
+    },
+    {
+      "case_id": "three_node_contention_360",
+      "status": "completed",
+      "manifest": "three_node_contention_360/manifest.json",
+      "manifest_sha256": "c107d38e7eccfd2a3b68fc74e8dfd63a8b9574981944e3a9f9fb3bf5227c1dfd",
+      "application_admission_totals": {
+        "attempts": 60000,
+        "admitted": 946,
+        "blocked_discovery": 0,
+        "blocked_topology": 0,
+        "blocked_gateway_route": 0,
+        "blocked_destination": 0,
+        "blocked_nsdp": 59054
+      },
+      "exact_sequence_validation": {
+        "matched_count": 914,
+        "matched_by_method": {
+          "exact_sequence": 914
+        },
+        "source_exact_dack_retry_duplicate_proof_count": 0,
+        "source_exact_dack_retry_duplicate_delivery_count": 0,
+        "unmatched_delivery_count": 0,
+        "matched_size_compared_count": 914,
+        "matched_size_mismatch_count": 0
+      }
+    }
+  ],
+  "source_files_stable": true,
+  "input_files_stable": true,
+  "build_manifest_sha256": "0d827a3df8e52e0b39f72b6d34372d17d2338040784438cbc9c0be96edb09028",
+  "completed_utc": "2026-09-10T13:38:23.643569+00:00",
+  "files": [
+    {
+      "path": "build.json",
+      "sha256": "0d827a3df8e52e0b39f72b6d34372d17d2338040784438cbc9c0be96edb09028",
+      "bytes": 15421
+    },
+    {
+      "path": "campus_multihop_6000-workflow.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "compile.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "input-verification.json",
+      "sha256": "0831da0a71a705a055f5ed0268df753b81885addf65bdbae23cb11c570dd57b2",
+      "bytes": 1863
+    },
+    {
+      "path": "integrity-recovery.json",
+      "sha256": "155449abf5f429582f2222080f0c793617a618c9c7f01a369c74d0b9e138b731",
+      "bytes": 1726
+    },
+    {
+      "path": "build-path-recovery.json",
+      "sha256": "836193fdda8ffa7e15e2595d57826ba9455458076c13a8ef42228bb4f9a1bf27",
+      "bytes": 7814
+    }
+  ],
+  "post_execution_packaging": {
+    "producer_manifest_sha256": "af0c34e5a88ba67e12f63794adffbd571b02fe2efd01c3a48846dee2a981aebf",
+    "integrity_recovery": "integrity-recovery.json",
+    "build_path_recovery": "build-path-recovery.json",
+    "all_declared_files_verified_after_repair": true,
+    "full_trace_gzip_roundtrip_verified": true
+  }
+}

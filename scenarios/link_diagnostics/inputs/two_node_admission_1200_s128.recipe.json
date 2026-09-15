@@ -1,0 +1,12 @@
+{
+  "schema": "csr-link-diagnostic-derivation-v1",
+  "base_case_id": "two_node_admission_1200",
+  "parent_scenario": "scenarios/benchmarks/two_node_admission_1200.csv",
+  "parent_scenario_sha256": "65ac85ca17e699a1b3220937b10c22ffd9e52ddd76f7b51717fb6ddd599b33e1",
+  "overrides": {
+    "scenario": "tranche8-two-node-admission-s128",
+    "seed": 128
+  },
+  "csv_derivation": "Copy parent fields; replace only the run row scenario, seed, and source_sha256 (with this recipe SHA-256). Preserve node and flow rows exactly, including empty run-only fields. All geometry, profiles, traffic, timing, radio and PHY fields are retained.",
+  "purpose": "Synthetic multiseed diagnostic; no archived OPNET counterpart claimed."
+}

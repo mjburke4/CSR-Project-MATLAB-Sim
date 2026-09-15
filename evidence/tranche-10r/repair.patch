@@ -1,0 +1,296 @@
+--- a/+csr/+nwk/Neighbors.m
++++ b/+csr/+nwk/Neighbors.m
+@@ -273,14 +273,19 @@
+             entry=obj.Peers(peer);
+             if entry.Stale || entry.Active, return; end
+             now=obj.Scheduler.Now;
++            % Compare with the same absolute deadline used to schedule a
++            % retry. With double seconds, (when+delay)-when can be slightly
++            % less than delay at that very deadline, otherwise rearming an
++            % endless same-time retry. Native ns-3 Time has integer ticks.
+             if ~entry.ReceivedKey
++                deadline=entry.KeyRequestWhen+entry.KeyRequestDelay;
+                 if receivedDiscovery
+                     entry.KeyRequestDelay=obj.Config.AdmissionRetrySeconds;
+                     entry.KeySendDelay=obj.Config.AdmissionRetrySeconds;
+-                elseif ~entry.KeyRequestValid || now-entry.KeyRequestWhen>=entry.KeyRequestDelay
++                elseif ~entry.KeyRequestValid || now>=deadline
+                     entry.KeyRequestDelay=2*entry.KeyRequestDelay;
+                 else
+-                    obj.scheduleRetry(peer,entry.KeyRequestWhen+entry.KeyRequestDelay-now); return
++                    obj.scheduleRetryAt(peer,deadline); return
+                 end
+                 entry.KeyRequestValid=true; entry.KeyRequestWhen=now; obj.Peers(peer)=entry;
+                 obj.Counters.KeyRequests=obj.Counters.KeyRequests+1;
+@@ -288,24 +293,26 @@
+                 obj.scheduleRetry(peer,entry.KeyRequestDelay); return
+             end
+             if ~entry.SentKey
+-                if ~entry.KeySendActive && (~entry.KeySendValid || now-entry.KeySendWhen>=entry.KeySendDelay)
++                deadline=entry.KeySendWhen+entry.KeySendDelay;
++                if ~entry.KeySendActive && (~entry.KeySendValid || now>=deadline)
+                     if entry.KeySendValid, entry.KeySendDelay=2*entry.KeySendDelay; end
+                     obj.Peers(peer)=entry; obj.sendKeyUpdate(peer);
+                 elseif ~entry.KeySendActive
+-                    obj.scheduleRetry(peer,entry.KeySendWhen+entry.KeySendDelay-now);
++                    obj.scheduleRetryAt(peer,deadline);
+                 end
+                 return
+             end
+             if entry.PendingDiscoveryCheck
+                 obj.pendingDiscoveryCheck(peer,entry.Generation); return
+             end
+-            if ~entry.CheckActive && (~entry.OverheardValid || now-entry.OverheardWhen>=entry.OverheardDelay)
++            deadline=entry.OverheardWhen+entry.OverheardDelay;
++            if ~entry.CheckActive && (~entry.OverheardValid || now>=deadline)
+                 entry.OverheardValid=true; entry.OverheardWhen=now;
+                 entry.OverheardDelay=2*entry.OverheardDelay; obj.Peers(peer)=entry;
+                 obj.sendCheck(peer,'overheard',uint32(0));
+                 obj.scheduleRetry(peer,entry.OverheardDelay);
+             elseif ~entry.CheckActive
+-                obj.scheduleRetry(peer,max(0,entry.OverheardWhen+entry.OverheardDelay-now));
++                obj.scheduleRetryAt(peer,deadline);
+             end
+         end
+         function sendKeyUpdate(obj,peer)
+@@ -359,12 +366,15 @@
+             obj.event('neighbor_active',peer,struct('Reason',reason));
+         end
+         function scheduleRetry(obj,peer,delay)
++            obj.scheduleRetryAt(peer,obj.Scheduler.Now+delay);
++        end
++        function scheduleRetryAt(obj,peer,deadline)
+             entry=obj.Peers(peer);
+             % Source allows a retry event for a stale inactive peer; the
+             % callback's evaluate gate then waits for fresh admission input.
+             if entry.Active, return; end
+             obj.Scheduler.cancel(entry.RetryEvent); generation=entry.Generation;
+-            entry.RetryEvent=obj.Scheduler.scheduleAt(obj.Scheduler.Now+delay, ...
++            entry.RetryEvent=obj.Scheduler.scheduleAt(deadline, ...
+                 @()obj.retry(peer,generation)); obj.Peers(peer)=entry;
+         end
+         function retry(obj,peer,generation)
+--- a/+csr/+sim/EventScheduler.m
++++ b/+csr/+sim/EventScheduler.m
+@@ -135,7 +135,10 @@
+                 if executed >= obj.MaxEvents
+                     error('csr:sim:EventLimitExceeded', ...
+                         ['Exceeded MaxEvents (%g) in one run call. ' ...
+-                        'Check for zero-time rescheduling loops.'], obj.MaxEvents);
++                        'Now=%.17g s; next=%.17g s; last callback: %s; ' ...
++                        'next callback: %s. Check for rescheduling loops ' ...
++                        'or excessive workload.'], obj.MaxEvents, obj.Now, ...
++                        obj.Times(1), func2str(callback), func2str(obj.Callbacks{1}));
+                 end
+ 
+                 time = obj.Times(1);
+--- a/README.md
++++ b/README.md
+@@ -4,6 +4,16 @@
+ `486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b` (2026-09-07, PR #50).
+ 
+ ## Tranche 10 candidate: MAC timing and campus6000
++
++**2026-09-14 retry repair:** the owner run passed all 534 contract checkpoints
++and 26 retained cases, then exhausted the event limit in the six-node mesh.
++`csr10r.zip` repairs a demonstrated floating-point loop in neighbor admission
++retries. Extract into `C:\csr10r`, start a fresh MATLAB session, and run
++`report = run_tranche10_mesh;` from that folder first. Upload the printed
++`mesh.zip` for review. See [repair notes](docs/tranche-10r-repair.md).
++MATLAB execution of the repair and full Tranche 10 acceptance remain pending.
++
++The original Tranche 10 candidate and full-gate instructions follow.
+ 
+ Two source-confirmed MAC timer corrections are prepared: idle RTS now uses a
+ strictly future slot boundary, and recurring slot ticks use a bounded integer
+--- a/docs/parity-ledger.csv
++++ b/docs/parity-ledger.csv
+@@ -104,3 +104,4 @@
+ T10_receiver_wake_acquisition,No_new_OPNET_execution,Real_source_BER_ECC_fixed_TX_1200m_stochastic_SYNC_disabled,Unresolved,Native154of154_checkpoints_four_preamble_wake_cases,No_new_receiver_defect_established_matched_MATLAB_contract_pending,10
+ T10_campus_regression_milestone,Archived_T7_OPNET_aggregates_reused,Pinned_T7_campus6000_seed128_reference,Unresolved,Default_runner_prepared_allportabletests_29retained_18sweeps_6diagnostics_2controls_campus,Owner_execution_pending_no_numerical_improvement_or_population_equivalence_claim,10
+ T10_initial_contention_RNG,Not_claimed,Seed129_nodes2_3_first_slots3_7,Unresolved,Accepted_T9_MATLAB_first_slots9_1_precede_first_TX_and_ACK_gap,Matching_seed_numbers_do_not_align_streams_timer_fixes_do_not_establish_gap_closure,10
++T10r_admission_retry_deadline,No_new_OPNET_execution,Native_Time_retry_deadlines_and_exponential_backoff,Unresolved,Three_MATLAB_elapsed_vs_deadline_loops_demonstrated_with_binary64_arithmetic_and_public_API_regressions_prepared,Compare_and_schedule_identical_absolute_deadlines_owner_mesh_and_full_gate_pending,10r
+--- a/evidence/source-baseline.json
++++ b/evidence/source-baseline.json
+@@ -18,12 +18,12 @@
+     "ns3": true
+   },
+   "ns3_engine_commit": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+-  "matlab_tranche_status": "Tranche 10 candidate: strict-future idle RTS and integer-nanosecond MAC slot epochs; native contracts passed, portable owner execution and numerical impact pending. Tranche 9 remains the accepted runtime baseline.",
++  "matlab_tranche_status": "Tranche 10r retry repair candidate after owner Tranche 10 mesh event-limit failure. Owner log reports 534 contract checkpoints and 26 retained cases completed; repaired MATLAB execution and full acceptance pending. Tranche 9 remains accepted.",
+   "matlab_tranche_4_publication_evidence": "tranche-4-publication.json",
+   "matlab_tranche_3_initial_runtime_evidence": "tranche-3-r2025a-initial-run.json",
+   "matlab_tranche_3_latest_runtime_evidence": "tranche-3-portable-acceptance.json",
+   "matlab_accepted_tranche_3_code_commit": "ff7859af3900f1ab8c25263dbd2b5bc580e8488d",
+-  "matlab_candidate_evidence": "tranche-10-candidate.json",
++  "matlab_candidate_evidence": "tranche-10r-candidate.json",
+   "matlab_tranche_3_publication_evidence": "tranche-3-publication.json",
+   "matlab_acceptance_evidence": "tranche-9-portable-acceptance.json",
+   "matlab_accepted_tranche_4_code_commit": "6fdf23835dec2f702ef0d7012776bbc30790b307",
+@@ -81,5 +81,8 @@
+   "matlab_tranche_10_numerical_parity_established": false,
+   "matlab_tranche_10_performance_improvement_established": false,
+   "matlab_tranche_10_source_recheck": "tranche-10-source-recheck.json",
+-  "matlab_tranche_10_native_build": "tranche-10-native-build.json"
++  "matlab_tranche_10_native_build": "tranche-10-native-build.json",
++  "matlab_tranche_10r_owner_log": "tranche-10r/owner-log.md",
++  "matlab_tranche_10r_source_recheck": "tranche-10r/source-recheck.json",
++  "matlab_tranche_10r_matlab_executed": false
+ }
+--- a/tests/TestEventScheduler.m
++++ b/tests/TestEventScheduler.m
+@@ -90,6 +90,31 @@
+             testCase.verifyEqual(scheduler.Now, 3);
+         end
+ 
++        function eventLimitReportsAdvancingClockAndCallbacks(testCase)
++            scheduler = csr.sim.EventScheduler(1);
++            scheduler.scheduleAt(1.25, @first);
++            scheduler.scheduleAt(2.5, @second);
++            caught = [];
++            try
++                scheduler.run(3);
++            catch exception
++                caught = exception;
++            end
++            testCase.assertClass(caught, 'MException');
++            testCase.verifyEqual(caught.identifier, 'csr:sim:EventLimitExceeded');
++            testCase.verifySubstring(caught.message, 'Now=1.25 s; next=2.5 s;');
++            testCase.verifySubstring(caught.message, func2str(@first));
++            testCase.verifySubstring(caught.message, func2str(@second));
++            testCase.verifyEqual(scheduler.Now, 1.25);
++            testCase.verifyEqual(scheduler.PendingCount, 1);
++            testCase.verifyEqual(scheduler.run(3), 1);
++
++            function first()
++            end
++            function second()
++            end
++        end
++
+         function nestedRunIsRejected(testCase)
+             scheduler = csr.sim.EventScheduler();
+             scheduler.scheduleAt(1, @() scheduler.run(2));
+--- a/tests/TestNeighbors.m
++++ b/tests/TestNeighbors.m
+@@ -88,6 +88,107 @@
+             h.Neighbors.receiveControl('DISCOVER',2,discover(1));
+             h.Clock.run(19); sent=h.Sent('KEY_REQUEST'); test.verifyEqual([sent.Time],[0 5 14 19]);
+             state=h.Neighbors.snapshot(); test.verifyEqual(state.Peers.KeyRequestDelay,10);
++        end
++        function fractionalDiscoverKeyRequestRetriesAtItsScheduledDeadline(test)
++            % A received DISCOVER at a real fractional time used to exhaust
++            % this small cap by rearming the retry at the same instant.
++            for delay=[5 0.1 0.2]
++                h=neighborHarness(struct('AdmissionRetrySeconds',delay),16);
++                started=11.013; deadline=started+delay;
++                test.assertLessThan(deadline-started,delay);
++                h.Clock.run(started);
++                h.Neighbors.receiveControl('DISCOVER',2,discover(1));
++                test.verifyEqual(h.Clock.nextTime(),deadline);
++                h.Clock.run(deadline-1e-9);
++                test.verifyNumElements(h.Sent('KEY_REQUEST'),1);
++                h.Clock.run(deadline);
++                sent=h.Sent('KEY_REQUEST'); test.assertNumElements(sent,2);
++                test.verifyEqual([sent.Time],[started deadline]);
++                test.verifyFalse(any([sent.Reliable]));
++                test.verifyFalse(h.Neighbors.isActive(2));
++                state=h.Neighbors.snapshot();
++                test.verifyEqual(state.Peers.KeyRequestDelay,2*delay);
++                test.verifyEqual(h.Clock.PendingCount,1);
++                test.verifyEqual(h.Clock.nextTime(),deadline+2*delay);
++            end
++        end
++        function fractionalRejectedKeyUpdateRetriesAtItsScheduledDeadline(test)
++            for delay=[5 0.1]
++                h=neighborHarness(struct('AdmissionRetrySeconds',delay),16);
++                started=11.013; deadline=started+delay;
++                h.Clock.run(started); h.SetAccept(false);
++                h.Neighbors.receiveControl('KEY_UPDATE',2,struct());
++                h.Clock.run(deadline-1e-9);
++                test.verifyNumElements(h.Sent('KEY_UPDATE'),1);
++                h.Clock.run(deadline);
++                sent=h.Sent('KEY_UPDATE'); test.assertNumElements(sent,2);
++                test.verifyEqual([sent.Time],[started deadline]);
++                test.verifyTrue(all([sent.Reliable]));
++                state=h.Neighbors.snapshot();
++                test.verifyTrue(state.Peers.ReceivedKey);
++                test.verifyFalse(state.Peers.SentKey || state.Peers.KeySendActive);
++                test.verifyFalse(h.Neighbors.isActive(2));
++                test.verifyEqual(state.Peers.KeySendDelay,2*delay);
++                test.verifyEqual(h.Clock.PendingCount,1);
++                test.verifyEqual(h.Clock.nextTime(),deadline+2*delay);
++            end
++        end
++        function fractionalInFlightKeyUpdateKeepsCompletionOwnership(test)
++            h=neighborHarness(struct(),16); started=11.013;
++            h.Clock.run(started);
++            h.Neighbors.receiveControl('KEY_UPDATE',2,struct());
++            % Reaching the deadline does not synthesize a failed transport
++            % completion or enqueue a duplicate while the first is active.
++            h.Clock.run(started+10);
++            sent=h.Sent('KEY_UPDATE'); test.assertNumElements(sent,1);
++            state=h.Neighbors.snapshot();
++            test.verifyTrue(state.Peers.KeySendActive);
++            test.verifyFalse(state.Peers.SentKey);
++            h.Neighbors.controlCompleted('KEY_UPDATE',2,sent.Payload,false);
++            sent=h.Sent('KEY_UPDATE'); test.assertNumElements(sent,2);
++            test.verifyEqual(sent(2).Time,started+10);
++            state=h.Neighbors.snapshot();
++            test.verifyTrue(state.Peers.KeySendActive);
++            test.verifyFalse(state.Peers.SentKey);
++        end
++        function fractionalOverheardRetryAdvancesWithoutAdmittingPeer(test)
++            for delay=[5 0.1]
++                h=neighborHarness(struct('AdmissionRetrySeconds',delay),16);
++                started=11.013; deadline=started+2*delay;
++                test.assertLessThan(deadline-started,2*delay);
++                h.Clock.run(started);
++                h.Neighbors.receiveControl('KEY_UPDATE',2,struct());
++                keys=h.Sent('KEY_UPDATE');
++                h.Neighbors.controlCompleted('KEY_UPDATE',2,keys.Payload,true);
++                checks=h.Sent('NEIGHBOR_CHECK'); test.assertNumElements(checks,1);
++                test.verifyEqual(checks.Payload.Subtype,'overheard');
++                h.Neighbors.controlCompleted('NEIGHBOR_CHECK',2,checks.Payload,false);
++                h.Clock.run(deadline-1e-9);
++                test.verifyNumElements(h.Sent('NEIGHBOR_CHECK'),1);
++                h.Clock.run(deadline);
++                checks=h.Sent('NEIGHBOR_CHECK'); test.assertNumElements(checks,2);
++                test.verifyEqual([checks.Time],[started deadline]);
++                test.verifyEqual(checks(2).Payload.Subtype,'overheard');
++                test.verifyFalse(h.Neighbors.isActive(2));
++                state=h.Neighbors.snapshot();
++                test.verifyEqual(state.Peers.OverheardDelay,4*delay);
++                test.verifyEqual(h.Clock.PendingCount,1);
++                test.verifyEqual(h.Clock.nextTime(),deadline+4*delay);
++            end
++        end
++        function fractionalFailedDiscoveryCheckRetainsSequenceAndCadence(test)
++            h=neighborHarness(struct(),16); started=11.013; deadline=started+5;
++            h.Clock.run(started); admitKeys(h,2,9);
++            checks=h.Sent('NEIGHBOR_CHECK'); test.assertNumElements(checks,1);
++            h.Neighbors.controlCompleted('NEIGHBOR_CHECK',2,checks.Payload,false);
++            h.Clock.run(deadline-1e-9);
++            test.verifyNumElements(h.Sent('NEIGHBOR_CHECK'),1);
++            h.Clock.run(deadline);
++            checks=h.Sent('NEIGHBOR_CHECK'); test.assertNumElements(checks,2);
++            test.verifyEqual([checks.Time],[started deadline]);
++            test.verifyEqual(checks(2).Payload.Subtype,'discovery');
++            test.verifyEqual(checks(2).Payload.Sequence,uint32(9));
++            test.verifyFalse(h.Neighbors.isActive(2));
+         end
+         function rejectedKeyUpdateCanRetryWithoutFakeAck(test)
+             h=neighborHarness(); h.SetAccept(false);
+@@ -219,9 +320,10 @@
+     end
+ end
+ 
+-function h = neighborHarness(options)
++function h = neighborHarness(options,maxEvents)
+ if nargin<1, options=struct(); end
+-scheduler=csr.sim.EventScheduler();
++if nargin<2, maxEvents=1000000; end
++scheduler=csr.sim.EventScheduler(maxEvents);
+ sent=repmat(struct('Time',0,'Kind','','Peers',[],'Payload',struct(),'Reliable',false),0,1);
+ changes=repmat(struct('Peer',0,'Active',false),0,1); done=0; accept=true;
+ callbacks=struct('SendControl',@send,'NeighborChanged',@changed,'DiscoveryFinished',@finished);

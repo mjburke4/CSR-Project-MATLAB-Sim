@@ -1,0 +1,83 @@
+{
+  "schema": "csr-matlab-tranche-8-repair-checks-v1",
+  "completed_utc": "2026-09-10T19:06:30.341842+00:00",
+  "original_candidate_commit": "010793b402cc63c1bd434328d80d0b6b53c39ebf",
+  "matlab_executed_here": false,
+  "octave_executed_here": false,
+  "owner_initialization_failure_reported": true,
+  "tranche_8_accepted": false,
+  "numerical_parity_established": false,
+  "python": {
+    "command": "python3 -m unittest discover -s scripts/tests -v",
+    "version": "3.12.14",
+    "tests": 203,
+    "passed": 203,
+    "failed": 0,
+    "duration_seconds": 5.637,
+    "log": "tranche-8-repair-checks/python-tests.log"
+  },
+  "matlab_static": {
+    "rerun": false,
+    "reused_from_candidate": "010793b402cc63c1bd434328d80d0b6b53c39ebf",
+    "tool": "MISS_HIT 0.9.44",
+    "language_target": "MATLAB 2022a",
+    "source_files": 108,
+    "all_source_files_byte_exact": true,
+    "original_log": "tranche-8-local-checks/matlab-static-lint.log",
+    "original_log_sha256": "b7c3c717e966ccc03edda0006cce2da865994af3dbc57c367148b0b0581f1584",
+    "reason": "Every MATLAB source byte is unchanged; the repaired CSV field contract is verified separately. Static lint is not MATLAB execution."
+  },
+  "prepared_portable_test_methods": 485,
+  "source_snapshot_files": 189,
+  "source_snapshot": "tranche-8-repair-checks/source-snapshot.json",
+  "importer_contract": {
+    "method": "Independent Python test reads actual MATLAB historical field declarations; every populated CSV field checked without derivation verifier.",
+    "cases": 10,
+    "rows": 50,
+    "run_rows": 10,
+    "node_rows": 25,
+    "flow_rows": 15,
+    "original_invalid_cells": 40,
+    "corrected_invalid_cells": 0,
+    "rehashed_nonrun_regressions": [
+      "node",
+      "flow"
+    ],
+    "matlab_execution_claimed": false
+  },
+  "ns3_reference_suite_sha256": "5ea5a39c7751c856e710d2eaa09b5d71d4a23c543bafa894c605052f1ded9d5a",
+  "ns3_rerun_comparison": "tranche-8-input-repair-ns3.json",
+  "ns3_rerun_comparison_sha256": "884a72c870cd2df27fc0a17392fafb1a938a75f1afbed8b5c2c96c2578544b5c",
+  "preservation": "tranche-8-repair-checks/preservation.json",
+  "independent_review": "../docs/tranche-8-repair-review.md",
+  "artifacts": [
+    {
+      "path": "tranche-8-repair-checks/diff-check.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tranche-8-repair-checks/preservation.json",
+      "bytes": 21842,
+      "sha256": "22724e6d6a41455bf1395de122d1b8f03d6114f8ae25a41ed2d643c8519992b0"
+    },
+    {
+      "path": "tranche-8-repair-checks/python-tests.log",
+      "bytes": 32319,
+      "sha256": "d0c67ecb203f0d5757eb740ef1858df33c6b78060e693627182a9411c09bdb67"
+    },
+    {
+      "path": "tranche-8-repair-checks/source-snapshot.json",
+      "bytes": 26547,
+      "sha256": "9bf7f657c08826ab1b502c7ef919b1dbca95dfa815636e69b4b088d82d4a64c7"
+    }
+  ],
+  "remaining_gate": "Owner MATLAB execution of corrected full package and verification of tests, ten cases, two controls and T7 anchors.",
+  "git_diff_check": {
+    "staged": true,
+    "passed": true,
+    "exclusions": [],
+    "log": "tranche-8-repair-checks/diff-check.log",
+    "crlf_allowed": true
+  }
+}

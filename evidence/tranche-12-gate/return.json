@@ -1,0 +1,68 @@
+{
+  "schema": "csr-tranche12-return-gate-preflight-v1",
+  "status": "passed",
+  "generated_utc": "2026-09-14T18:37:01.147617+00:00",
+  "candidate_sha256": "65a6fe4edd6d925ec596fad6c0ec257be483d623616aa7f41bbd9805a6548703",
+  "candidate_source_count": 259,
+  "candidate_reference_count": 130,
+  "selected_matlab_tests": 72,
+  "matlab_executed": false,
+  "synthetic_owner_archive_created": false,
+  "scope": "Independent native reference and immutable baseline verification, exact future MATLAB test identity, and mutation tests only; no owner-return review or acceptance is claimed.",
+  "python_mutation_tests": {
+    "count": 34,
+    "passed": 34,
+    "failed": 0,
+    "exit_code": 0,
+    "log_sha256": "303cc903187b47e55e7a3702857c60eeb99c2de24e878eef51facf7c1b225560"
+  },
+  "baseline": {
+    "tranche11": {
+      "source_files": 241,
+      "matlab_files": 130,
+      "unchanged": true,
+      "snapshot_sha256": "9093dea75f92205dbd782b8ce5691e7bf75cdf0181d055cd234755515624cf26"
+    },
+    "accepted_core": {
+      "source_files": 225,
+      "matlab_files": 124,
+      "unchanged": true,
+      "snapshot_sha256": "9be444b0fb1ffbfe818cab86502a287b19e3da83467d210ef426ec3b19e183da"
+    }
+  },
+  "relay": {
+    "source_pin": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+    "engine_pin": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+    "controlled_transport": true,
+    "instrumented_native_fixture": true,
+    "event_count": 2344,
+    "draw_count": 332,
+    "disabled_seam_checkpoints": 255,
+    "self_tests": 6,
+    "artifact_count": 41,
+    "checkpoint_count": 164
+  },
+  "clock": {
+    "source_pin": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+    "engine_pin": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+    "production_mac_unmodified": true,
+    "case_count": 6,
+    "event_count": 18,
+    "checkpoint_count": 72,
+    "artifact_count": 5
+  },
+  "relay_plan_sha256": "0fce57f9ca952914b19c3e1fc69479255ad5bd5733a0756849b705680793c9b4",
+  "clock_plan_sha256": "e80317c0415b2df114524b157cb148507f234d59e7c283f57bb5debff7542054",
+  "relay_manifest_sha256": "1e2cedbd73d5a377d99d373d8a1c77d466b4b96bc7861e919c972e0397633206",
+  "clock_manifest_sha256": "2c7402f22bc6120243940ab7ab468385fd8b222ba456d3ff4b47fe7e4bcff935",
+  "source_bindings": {
+    "scripts/analyze_tranche12_return.py": "99ad4f65a1aa33d54377b99641ba8d11ff1787e70db71afa07043523e458f648",
+    "scripts/tests/test_tranche12_return.py": "a4d4d5cf908076bba07496de7a83c8d4dd9e8baa1631ded9f76c8cf68c0e37fe",
+    "run_tranche12_validation.m": "0116a40e0885525150d41abdb45279d8e81d619002acd1fece55be9188b49f5e",
+    "+csr/+validation/relayContract.m": "9f41fd2a5147c93dd0deb5ba3bb503c6653c47749f5c3480d6f167df1e92c8bc",
+    "+csr/+validation/clockBoundaryContract.m": "015ecb4eb6995c32449be5333b39aa2fb816bdbd9abef043a08738d212e64181",
+    "tests/TestRelayContract.m": "e58a5a79b8f076ced6df45d124670a89afce8e61f26eb62011210333acf9e491",
+    "tests/TestClockBoundaryContract.m": "e897d4a7c64b2db0b316d066bb46a03d4e631a7988f331148371366b005708f9"
+  },
+  "binary64_validation": "Independent fixed IEEE754 endpoint regression uses tick 4000178dd616f86a and continuous ingress 4000178dd616f86b. The 128 rate key resolves to four payload bits per 30 microseconds; 128000 bps substitution is rejected."
+}

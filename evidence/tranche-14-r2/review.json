@@ -1,0 +1,116 @@
+{
+  "Schema": "csr-tranche14-r2-independent-code-review-v1",
+  "ReviewedUTC": "2026-09-15T13:15:36.477603+00:00",
+  "Reviewer": "/root/t14s_review",
+  "Disposition": "ready_for_owner_matlab_execution",
+  "ReviewScope": "R2 implementation only; root prepares candidate, package inventory and publication provenance after this review.",
+  "OwnerArchive": {
+    "Path": "upload/t14(1).zip",
+    "SHA256": "b91453bd508bccd5cb10ca12b10e75ff006dd3bbf7f7bfc1386017487d09db2f",
+    "CRCValid": true,
+    "SourceBindingsMatchedToR1": 283,
+    "ReferenceBindingsMatchedToR1": 299,
+    "PassedTests": 88,
+    "FailedTests": 18,
+    "IncompleteTests": 18,
+    "BoundaryCompleted": false
+  },
+  "RootCause": "R1 uses struct2table on text-bearing records; MATLAB inferred multi-column character arrays, so tie_early and tie_late case columns have incompatible widths at cross-case vertcat. Equal-width hexadecimal text also exposed unsafe linear character indexing in precision and scheduler checks.",
+  "ReviewedRemedy": [
+    "New edgeRecordTable defines each text field as one string scalar per row and preserves numeric, logical and uint64 types, including zero-row schemas.",
+    "Events, boundary, checks, draws, usage and scheduler outputs normalize before in-case validation, cross-case aggregation, row indexing or export. Validated ReplayStreams is unchanged.",
+    "Comparison imports explicitly type all text columns and uint64-valued identity/bitmap columns as strings, avoiding numeric conversion for exact fields.",
+    "A separate three-test class executes before the six-case fixture. It is independent of TestAckEdgeContract class setup and its results remain in the final test session.",
+    "Partial per-case exports use c1 through c6 before aggregation; caught case failures print their cause. Incomplete diagnostics no longer print an apparent zero-difference comparison.",
+    "Final runner checks the exact preflight test identities before simulation; the helper fills local typed vectors before assigning table columns, preserving the reviewed scalar schema."
+  ],
+  "IndependentRegressionReview": {
+    "StandaloneTests": 3,
+    "ClassSetupIndependent": true,
+    "Coverage": [
+      "Zero, single and multiple structure-record rows",
+      "Differing-length case names across all six cases",
+      "Whole fixed-width hex fields through row indexing and CSV export",
+      "uint64 maximum and adjacent value through CSV export and string readback",
+      "Actual TraceScheduler records including zero-row output, execution and empty cancellation callback",
+      "Actual ReplayStreams empty, single and multiple draw tables plus usage through the T14 adapter",
+      "All six fixture output schemas asserted as N-by-1 string columns"
+    ],
+    "TestsExecutedHere": false
+  },
+  "StaticValidation": {
+    "Tool": "MISS_HIT",
+    "FilesParsed": 6,
+    "ExitCode": 0,
+    "Output": "MISS_HIT Lint Summary: 6 file(s) analysed, everything seems fine",
+    "FinalChangedFilesReparsed": 2,
+    "FinalReparseExitCode": 0
+  },
+  "Preservation": {
+    "T13SourceFilesUnchanged": 271,
+    "T13MatlabFilesUnchanged": 138,
+    "R1ReferenceFilesUnchanged": 299,
+    "NativeAndInputBindings": [
+      {
+        "Path": "scripts/ns3/tranche14_edge.cc",
+        "SHA256": "8e86e443f02ca0d1952cbae98e3a89f9592ec49e3494f2c476b03ad886f5bad0"
+      },
+      {
+        "Path": "scripts/run_tranche14_ns3_reference.py",
+        "SHA256": "eeb1384a5661a332dac024adda512b53f4e95414bdfc4e4245fb587f1295566e"
+      },
+      {
+        "Path": "scenarios/edge/plan.json",
+        "SHA256": "7e7ec33e946cb1fb315b0990813a2102d18c64b6f966b46cee021f8f273b61b9"
+      },
+      {
+        "Path": "scenarios/edge/cases.csv",
+        "SHA256": "df29719730e7022f7bb8e912e0863c2109bae300fb75021d4eb8d8bb2a13262f"
+      },
+      {
+        "Path": "scenarios/edge/draws.csv",
+        "SHA256": "5aff5bb3467c36370cc0c2617724022f69fc87d1601fee65f34fb06bef0efeb8"
+      }
+    ]
+  },
+  "FileBindings": [
+    {
+      "Path": "+csr/+validation/edgeRecordTable.m",
+      "SHA256": "7667f185627a3aa1bb301b0cd70a1f7b9fe65caa3b07ab95e62dd6030b44075d",
+      "Bytes": 2367
+    },
+    {
+      "Path": "+csr/+validation/ackEdgeContract.m",
+      "SHA256": "d53d70d23ad42fa92d2d6ba5bef046c8f7f34f609a0d1e072d02a27ca470bb32",
+      "Bytes": 31019
+    },
+    {
+      "Path": "+csr/+validation/TraceScheduler.m",
+      "SHA256": "a538c067be72df309b0cec6190bdf7c35c2e948f0a87085e75df6816c70eafec",
+      "Bytes": 3627
+    },
+    {
+      "Path": "tests/TestEdgeRecords.m",
+      "SHA256": "57ee6cdbf28fc99dddc6bfdf2878a9ca5692cf10ed86741e33d6febfa5c3aba0",
+      "Bytes": 6442
+    },
+    {
+      "Path": "tests/TestAckEdgeContract.m",
+      "SHA256": "d13181b351c919a7e6f594230b9b0602902741ee257937be24dad0de67c33e89",
+      "Bytes": 20309
+    },
+    {
+      "Path": "run_tranche14_validation.m",
+      "SHA256": "143c02834b9daa6b214cc78d8feb61f4b8e0f30bec6e6ac0d216b544198fc7ff",
+      "Bytes": 13598
+    }
+  ],
+  "OpenCodeFindings": [],
+  "MATLABExecuted": false,
+  "AcceptanceEstablished": false,
+  "NumericalParityEstablished": false,
+  "Limitations": [
+    "No MATLAB or Octave execution occurred in this environment. The owner must execute the new preflight and six-case fixture before runtime acceptance or parity conclusions.",
+    "The supplied failed return contains no completed T14 case CSVs; its reported zero differences are not parity evidence."
+  ]
+}

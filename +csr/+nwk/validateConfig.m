@@ -2,15 +2,24 @@ function config = validateConfig(config)
 %VALIDATECONFIG Normalize autonomous routing scenarios before scheduling work.
 if ~isfield(config,'Nwk'), config.Nwk = struct(); end
 options = merge(config.Nwk,csr.nwk.defaults(),'Nwk');
-if ~ischar(options.SecurityProfile) || ...
-        ~strcmp(options.SecurityProfile,'behavioral-production-pairwise16-size-only')
+profiles = {'behavioral-production-pairwise16-size-only', ...
+    'behavioral-hist-adb97c54-bare-size-only', ...
+    'behavioral-hist-dd3f38e8-bare-size-only'};
+if ~ischar(options.SecurityProfile) || ~isrow(options.SecurityProfile) || ...
+        ~any(strcmp(options.SecurityProfile,profiles))
     error('csr:nwk:InvalidConfig', ...
-        'Tranche 3 supports only behavioral-production-pairwise16-size-only security.');
+        'Nwk.SecurityProfile must select a supported atomic DATA/ACK byte profile.');
 end
-if ~strcmp(config.Radio.EnvelopeProfile,'pairwise16-size-only')
+envelope = 'bare';
+if strcmp(options.SecurityProfile,profiles{1}), envelope = 'pairwise16-size-only'; end
+if ~strcmp(config.Radio.EnvelopeProfile,envelope)
     error('csr:nwk:SecurityProfileMismatch', ...
-        'The Tranche 3 production-behavioral profile requires pairwise16-size-only DATA/ACK envelopes.');
+        'The selected Nwk.SecurityProfile requires %s DATA/ACK envelopes.',envelope);
 end
+% Historical selection changes ordinary DATA and every ACK/DACK envelope.
+% It retains the pinned ns-3 admission/key/control lifecycle and control
+% record sizes. Executable/application/MAC tuple binding is validated by the
+% scenario importer; neither topology nor a bare Radio option selects it.
 if ~any(strcmp(options.StartupMode,{'gateway','all','manual'}))
     error('csr:nwk:InvalidConfig','Nwk.StartupMode must be gateway, all or manual.');
 end

@@ -1,0 +1,24 @@
+{
+  "schema": "csr-tranche14-independent-design-review-v1",
+  "review_stage": "preimplementation",
+  "conceptual_blockers": [],
+  "scope": "Six receiver ACK-service boundary cases; real MAC schedule/packing and receiver HOP/NWK ingress, reconstructed sender queue input. No sender HOP custody or admission assertion.",
+  "required_observations": [
+    "actual source5 mixed aggregate 41+48=89 bytes and 3.12s transmit callback",
+    "real gateway MAC counter reaches service opportunity at3.144961s",
+    "actual callback time binary64 hex, diagnostic ingress scheduling identifier and arm time",
+    "before/tie-early/tie-late/after control ordering, cumulative ACK sequence2/bits3 or3/bits7 produced by HOP receive and MAC replacement",
+    "continuous arithmetic baseline versus local per-duration nanosecond transport option, without global clock or source baseline edits"
+  ],
+  "separate_residuals": [
+    "T13 startup28ns phase offset",
+    "binary64 one-ULP arrival/ACK ordering"
+  ],
+  "bindings": {
+    "csr14/AGENTS.md": "0ded7471df78325c00c73cd339798338b987ef86b73b483b5e45f0358d6877fa",
+    "t13ok.md": "46ae094dc2cc9c577fefed3e4e8dbb730b11a118b6bf9751c260fac61dee6bb2",
+    "t13v/boundary.json": "bb92d10be45ed05ba5e5855467271d5d8b9bfdf487053798b11835fc3a8af3c4",
+    "csr14/+csr/+mac/Layer.m": "d2e1b9e08c7e3d3ea60c88b61f3480f881e53c5963f48ae09822c4f04170e67b",
+    "csr14/+csr/+sim/EventScheduler.m": "0e1887cf9d1195a20ab8e4a24c7ff182a2e72303abfec67d34a61eaa1fa9585e"
+  }
+}

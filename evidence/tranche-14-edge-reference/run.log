@@ -1,0 +1,911 @@
+[MAC 1] active_nodes set to 3 for local slotting and post-TX wait
+[MAC 1] max_reported_active_nodes updated to 3
+[MAC 4] active_nodes set to 3 for local slotting and post-TX wait
+[MAC 4] max_reported_active_nodes updated to 3
+[MAC 5] active_nodes set to 3 for local slotting and post-TX wait
+[MAC 5] max_reported_active_nodes updated to 3
+[NWK 1] automatic_route_propagation=disabled
+[NWK 1] routing_snapshot_response_enabled=false
+[NWK 1] ARL neighbor admission=disabled
+[NWK 1] Routing INFO changed reason=link-control limits changed
+[NWK 1] routesProcess grouped selected-route changes count=0 infoChanged=1 time=0
+[NWK 1] Automatic route propagation disabled; reporting only
+[MAC 5] Enqueue ACK dest=4 seq=4 window=1 ack_queue_size=1
+[MAC] Enqueue TX pkt dscp=0 insert_pos=0 queue_size_before=0
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] starts Pre-Tx with new slot=0 holdoff_over=0
+[HOP 1] New neighbor 5 heard at t=2.83296s
+[HOP 1] link_control dest=5 neighborKnown=1 s0=-100 pathloss=70 failures=0 speed=128 txPower=33 rxPower=-109 cost=116
+[MAC 1] Enqueue ACK dest=5 seq=1 window=1 ack_queue_size=1
+[NWK 1] Added reverse path netSrc=5 reverseHop=5
+[HOP 1] link_control dest=5 neighborKnown=1 s0=-100 pathloss=70 failures=0 speed=128 txPower=33 rxPower=-109 cost=116
+[MAC 1] Update cumulative ACK queue entry dest=5 baseSeq=2 txCount=0
+[NWK 1] Updated reverse path netSrc=5 reverseHop=5
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] starts Pre-Tx with new slot=0 holdoff_over=0
+[MAC 5] OPNET 300-ms transmit holdoff complete
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.12] TX from node 5 to dest 4 seq 4 size 89 bytes segments 2 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02496 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=1/5
+[MAC 5] OPNET aggregate transmitted segments=2 ackSegments=1 dataSegments=1 bytes=89 rate=128
+[MAC 1] OPNET 300-ms transmit holdoff complete
+[MAC 5] resumes Pre-Tx with live slot=0 counter=0
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] New neighbor 5 heard at t=3.14496s
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 1] link_control dest=5 neighborKnown=1 s0=-100 pathloss=70 failures=0 speed=128 txPower=33 rxPower=-109 cost=116
+[MAC 1] Update cumulative ACK queue entry dest=5 baseSeq=3 txCount=0
+[NWK 1] Updated reverse path netSrc=5 reverseHop=5
+[MAC 1] rtslot_counter expired for neighbor 5 reserveSlot=0
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.14496] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=1/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.146] TX from node 5 to dest 4 seq 4 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=2/5
+[MAC 5] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 1] resumes Pre-Tx with live slot=0 counter=0
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] New neighbor 1 heard at t=3.16704s
+[HOP 5] RX ACK from 1 seq=3
+[MAC 5] resumes Pre-Tx with live slot=0 counter=0
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.17096] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=2/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.172] TX from node 5 to dest 4 seq 4 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=3/5
+[MAC 5] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 1] resumes Pre-Tx with live slot=0 counter=0
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] RX ACK from 1 seq=3
+[MAC 5] resumes Pre-Tx with live slot=0 counter=0
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.19696] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=3/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.198] TX from node 5 to dest 4 seq 4 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=4/5
+[MAC 5] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 1] resumes Pre-Tx with live slot=0 counter=0
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] RX ACK from 1 seq=3
+[MAC 5] resumes Pre-Tx with live slot=0 counter=0
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.22296] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=4/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.224] TX from node 5 to dest 4 seq 4 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=5/5
+[MAC 5] Remove ACK after OPNET resend limit dest=4 seq=4
+[MAC 5] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 1] resumes Pre-Tx with live slot=0 counter=0
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] RX ACK from 1 seq=3
+[MAC 5] post-TX WAIT_FOR_ACK until 23.2461 (POST_TX_WAIT=20 s)
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.24896] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=5/5
+[MAC 1] Remove ACK after OPNET resend limit dest=5 seq=3
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+[MAC 5] local advertised reservation expired
+[MAC 1] post-TX WAIT_FOR_ACK until 23.271 (POST_TX_WAIT=20 s)
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] RX ACK from 1 seq=3
+[MAC 1] local advertised reservation expired
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+EDGE_CASE tie_early events=33 checks=37 failed=0
+[MAC 1] active_nodes set to 3 for local slotting and post-TX wait
+[MAC 1] max_reported_active_nodes updated to 3
+[MAC 4] active_nodes set to 3 for local slotting and post-TX wait
+[MAC 4] max_reported_active_nodes updated to 3
+[MAC 5] active_nodes set to 3 for local slotting and post-TX wait
+[MAC 5] max_reported_active_nodes updated to 3
+[NWK 1] automatic_route_propagation=disabled
+[NWK 1] routing_snapshot_response_enabled=false
+[NWK 1] ARL neighbor admission=disabled
+[NWK 1] Routing INFO changed reason=link-control limits changed
+[NWK 1] routesProcess grouped selected-route changes count=0 infoChanged=1 time=0
+[NWK 1] Automatic route propagation disabled; reporting only
+[MAC 5] Enqueue ACK dest=4 seq=4 window=1 ack_queue_size=1
+[MAC] Enqueue TX pkt dscp=0 insert_pos=0 queue_size_before=0
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] starts Pre-Tx with new slot=0 holdoff_over=0
+[HOP 1] New neighbor 5 heard at t=2.83296s
+[HOP 1] link_control dest=5 neighborKnown=1 s0=-100 pathloss=70 failures=0 speed=128 txPower=33 rxPower=-109 cost=116
+[MAC 1] Enqueue ACK dest=5 seq=1 window=1 ack_queue_size=1
+[NWK 1] Added reverse path netSrc=5 reverseHop=5
+[HOP 1] link_control dest=5 neighborKnown=1 s0=-100 pathloss=70 failures=0 speed=128 txPower=33 rxPower=-109 cost=116
+[MAC 1] Update cumulative ACK queue entry dest=5 baseSeq=2 txCount=0
+[NWK 1] Updated reverse path netSrc=5 reverseHop=5
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] starts Pre-Tx with new slot=0 holdoff_over=0
+[MAC 5] OPNET 300-ms transmit holdoff complete
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.12] TX from node 5 to dest 4 seq 4 size 89 bytes segments 2 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02496 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=1/5
+[MAC 5] OPNET aggregate transmitted segments=2 ackSegments=1 dataSegments=1 bytes=89 rate=128
+[MAC 1] OPNET 300-ms transmit holdoff complete
+[MAC 5] resumes Pre-Tx with live slot=0 counter=0
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.14496] TX from node 1 to dest 5 seq 2 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=2 txCount=1/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] New neighbor 5 heard at t=3.14496s
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 1] link_control dest=5 neighborKnown=1 s0=-100 pathloss=70 failures=0 speed=128 txPower=33 rxPower=-109 cost=116
+[MAC 1] Update cumulative ACK queue entry dest=5 baseSeq=3 txCount=0
+[NWK 1] Updated reverse path netSrc=5 reverseHop=5
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.146] TX from node 5 to dest 4 seq 4 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=2/5
+[MAC 5] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 1] resumes Pre-Tx with live slot=0 counter=0
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] New neighbor 1 heard at t=3.16704s
+[HOP 5] RX ACK from 1 seq=2
+[MAC 5] resumes Pre-Tx with live slot=0 counter=0
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] rtslot_counter expired for neighbor 5 reserveSlot=0
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.17096] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=1/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.172] TX from node 5 to dest 4 seq 4 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=3/5
+[MAC 5] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 1] resumes Pre-Tx with live slot=0 counter=0
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] RX ACK from 1 seq=3
+[MAC 5] resumes Pre-Tx with live slot=0 counter=0
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.19696] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=2/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.198] TX from node 5 to dest 4 seq 4 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=4/5
+[MAC 5] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 1] resumes Pre-Tx with live slot=0 counter=0
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] RX ACK from 1 seq=3
+[MAC 5] resumes Pre-Tx with live slot=0 counter=0
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.22296] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=3/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.224] TX from node 5 to dest 4 seq 4 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=5/5
+[MAC 5] Remove ACK after OPNET resend limit dest=4 seq=4
+[MAC 5] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 1] resumes Pre-Tx with live slot=0 counter=0
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] RX ACK from 1 seq=3
+[MAC 5] post-TX WAIT_FOR_ACK until 23.2461 (POST_TX_WAIT=20 s)
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.24896] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=4/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+[MAC 5] local advertised reservation expired
+[MAC 1] resumes Pre-Tx with live slot=0 counter=0
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] RX ACK from 1 seq=3
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.27496] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=5/5
+[MAC 1] Remove ACK after OPNET resend limit dest=5 seq=3
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+[MAC 1] post-TX WAIT_FOR_ACK until 23.297 (POST_TX_WAIT=20 s)
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] RX ACK from 1 seq=3
+[MAC 1] local advertised reservation expired
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+EDGE_CASE tie_late events=35 checks=37 failed=0
+[MAC 1] active_nodes set to 3 for local slotting and post-TX wait
+[MAC 1] max_reported_active_nodes updated to 3
+[MAC 4] active_nodes set to 3 for local slotting and post-TX wait
+[MAC 4] max_reported_active_nodes updated to 3
+[MAC 5] active_nodes set to 3 for local slotting and post-TX wait
+[MAC 5] max_reported_active_nodes updated to 3
+[NWK 1] automatic_route_propagation=disabled
+[NWK 1] routing_snapshot_response_enabled=false
+[NWK 1] ARL neighbor admission=disabled
+[NWK 1] Routing INFO changed reason=link-control limits changed
+[NWK 1] routesProcess grouped selected-route changes count=0 infoChanged=1 time=0
+[NWK 1] Automatic route propagation disabled; reporting only
+[MAC 5] Enqueue ACK dest=4 seq=4 window=1 ack_queue_size=1
+[MAC] Enqueue TX pkt dscp=0 insert_pos=0 queue_size_before=0
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] starts Pre-Tx with new slot=0 holdoff_over=0
+[HOP 1] New neighbor 5 heard at t=2.83296s
+[HOP 1] link_control dest=5 neighborKnown=1 s0=-100 pathloss=70 failures=0 speed=128 txPower=33 rxPower=-109 cost=116
+[MAC 1] Enqueue ACK dest=5 seq=1 window=1 ack_queue_size=1
+[NWK 1] Added reverse path netSrc=5 reverseHop=5
+[HOP 1] link_control dest=5 neighborKnown=1 s0=-100 pathloss=70 failures=0 speed=128 txPower=33 rxPower=-109 cost=116
+[MAC 1] Update cumulative ACK queue entry dest=5 baseSeq=2 txCount=0
+[NWK 1] Updated reverse path netSrc=5 reverseHop=5
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] starts Pre-Tx with new slot=0 holdoff_over=0
+[MAC 5] OPNET 300-ms transmit holdoff complete
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.12] TX from node 5 to dest 4 seq 4 size 89 bytes segments 2 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02496 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=1/5
+[MAC 5] OPNET aggregate transmitted segments=2 ackSegments=1 dataSegments=1 bytes=89 rate=128
+[MAC 1] OPNET 300-ms transmit holdoff complete
+[MAC 5] resumes Pre-Tx with live slot=0 counter=0
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] New neighbor 5 heard at t=3.14496s
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 1] link_control dest=5 neighborKnown=1 s0=-100 pathloss=70 failures=0 speed=128 txPower=33 rxPower=-109 cost=116
+[MAC 1] Update cumulative ACK queue entry dest=5 baseSeq=3 txCount=0
+[NWK 1] Updated reverse path netSrc=5 reverseHop=5
+[MAC 1] rtslot_counter expired for neighbor 5 reserveSlot=0
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.14496] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=1/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.146] TX from node 5 to dest 4 seq 4 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=2/5
+[MAC 5] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 1] resumes Pre-Tx with live slot=0 counter=0
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] New neighbor 1 heard at t=3.16704s
+[HOP 5] RX ACK from 1 seq=3
+[MAC 5] resumes Pre-Tx with live slot=0 counter=0
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.17096] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=2/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.172] TX from node 5 to dest 4 seq 4 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=3/5
+[MAC 5] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 1] resumes Pre-Tx with live slot=0 counter=0
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] RX ACK from 1 seq=3
+[MAC 5] resumes Pre-Tx with live slot=0 counter=0
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.19696] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=3/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.198] TX from node 5 to dest 4 seq 4 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=4/5
+[MAC 5] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 1] resumes Pre-Tx with live slot=0 counter=0
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] RX ACK from 1 seq=3
+[MAC 5] resumes Pre-Tx with live slot=0 counter=0
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.22296] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=4/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.224] TX from node 5 to dest 4 seq 4 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=5/5
+[MAC 5] Remove ACK after OPNET resend limit dest=4 seq=4
+[MAC 5] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 1] resumes Pre-Tx with live slot=0 counter=0
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] RX ACK from 1 seq=3
+[MAC 5] post-TX WAIT_FOR_ACK until 23.2461 (POST_TX_WAIT=20 s)
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.24896] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=5/5
+[MAC 1] Remove ACK after OPNET resend limit dest=5 seq=3
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+[MAC 5] local advertised reservation expired
+[MAC 1] post-TX WAIT_FOR_ACK until 23.271 (POST_TX_WAIT=20 s)
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] RX ACK from 1 seq=3
+[MAC 1] local advertised reservation expired
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+EDGE_CASE before events=33 checks=37 failed=0
+[MAC 1] active_nodes set to 3 for local slotting and post-TX wait
+[MAC 1] max_reported_active_nodes updated to 3
+[MAC 4] active_nodes set to 3 for local slotting and post-TX wait
+[MAC 4] max_reported_active_nodes updated to 3
+[MAC 5] active_nodes set to 3 for local slotting and post-TX wait
+[MAC 5] max_reported_active_nodes updated to 3
+[NWK 1] automatic_route_propagation=disabled
+[NWK 1] routing_snapshot_response_enabled=false
+[NWK 1] ARL neighbor admission=disabled
+[NWK 1] Routing INFO changed reason=link-control limits changed
+[NWK 1] routesProcess grouped selected-route changes count=0 infoChanged=1 time=0
+[NWK 1] Automatic route propagation disabled; reporting only
+[MAC 5] Enqueue ACK dest=4 seq=4 window=1 ack_queue_size=1
+[MAC] Enqueue TX pkt dscp=0 insert_pos=0 queue_size_before=0
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] starts Pre-Tx with new slot=0 holdoff_over=0
+[HOP 1] New neighbor 5 heard at t=2.83296s
+[HOP 1] link_control dest=5 neighborKnown=1 s0=-100 pathloss=70 failures=0 speed=128 txPower=33 rxPower=-109 cost=116
+[MAC 1] Enqueue ACK dest=5 seq=1 window=1 ack_queue_size=1
+[NWK 1] Added reverse path netSrc=5 reverseHop=5
+[HOP 1] link_control dest=5 neighborKnown=1 s0=-100 pathloss=70 failures=0 speed=128 txPower=33 rxPower=-109 cost=116
+[MAC 1] Update cumulative ACK queue entry dest=5 baseSeq=2 txCount=0
+[NWK 1] Updated reverse path netSrc=5 reverseHop=5
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] starts Pre-Tx with new slot=0 holdoff_over=0
+[MAC 5] OPNET 300-ms transmit holdoff complete
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.12] TX from node 5 to dest 4 seq 4 size 89 bytes segments 2 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02496 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=1/5
+[MAC 5] OPNET aggregate transmitted segments=2 ackSegments=1 dataSegments=1 bytes=89 rate=128
+[MAC 1] OPNET 300-ms transmit holdoff complete
+[MAC 5] resumes Pre-Tx with live slot=0 counter=0
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.14496] TX from node 1 to dest 5 seq 2 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=2 txCount=1/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] New neighbor 5 heard at t=3.14496s
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 1] link_control dest=5 neighborKnown=1 s0=-100 pathloss=70 failures=0 speed=128 txPower=33 rxPower=-109 cost=116
+[MAC 1] Update cumulative ACK queue entry dest=5 baseSeq=3 txCount=0
+[NWK 1] Updated reverse path netSrc=5 reverseHop=5
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.146] TX from node 5 to dest 4 seq 4 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=2/5
+[MAC 5] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 1] resumes Pre-Tx with live slot=0 counter=0
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] New neighbor 1 heard at t=3.16704s
+[HOP 5] RX ACK from 1 seq=2
+[MAC 5] resumes Pre-Tx with live slot=0 counter=0
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] rtslot_counter expired for neighbor 5 reserveSlot=0
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.17096] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=1/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.172] TX from node 5 to dest 4 seq 4 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=3/5
+[MAC 5] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 1] resumes Pre-Tx with live slot=0 counter=0
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] RX ACK from 1 seq=3
+[MAC 5] resumes Pre-Tx with live slot=0 counter=0
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.19696] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=2/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.198] TX from node 5 to dest 4 seq 4 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=4/5
+[MAC 5] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 1] resumes Pre-Tx with live slot=0 counter=0
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] RX ACK from 1 seq=3
+[MAC 5] resumes Pre-Tx with live slot=0 counter=0
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.22296] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=3/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.224] TX from node 5 to dest 4 seq 4 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=5/5
+[MAC 5] Remove ACK after OPNET resend limit dest=4 seq=4
+[MAC 5] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 1] resumes Pre-Tx with live slot=0 counter=0
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] RX ACK from 1 seq=3
+[MAC 5] post-TX WAIT_FOR_ACK until 23.2461 (POST_TX_WAIT=20 s)
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.24896] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=4/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+[MAC 5] local advertised reservation expired
+[MAC 1] resumes Pre-Tx with live slot=0 counter=0
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] RX ACK from 1 seq=3
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.27496] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=5/5
+[MAC 1] Remove ACK after OPNET resend limit dest=5 seq=3
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+[MAC 1] post-TX WAIT_FOR_ACK until 23.297 (POST_TX_WAIT=20 s)
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] RX ACK from 1 seq=3
+[MAC 1] local advertised reservation expired
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+EDGE_CASE after events=35 checks=37 failed=0
+[MAC 1] active_nodes set to 3 for local slotting and post-TX wait
+[MAC 1] max_reported_active_nodes updated to 3
+[MAC 4] active_nodes set to 3 for local slotting and post-TX wait
+[MAC 4] max_reported_active_nodes updated to 3
+[MAC 5] active_nodes set to 3 for local slotting and post-TX wait
+[MAC 5] max_reported_active_nodes updated to 3
+[NWK 1] automatic_route_propagation=disabled
+[NWK 1] routing_snapshot_response_enabled=false
+[NWK 1] ARL neighbor admission=disabled
+[NWK 1] Routing INFO changed reason=link-control limits changed
+[NWK 1] routesProcess grouped selected-route changes count=0 infoChanged=1 time=0
+[NWK 1] Automatic route propagation disabled; reporting only
+[MAC 5] Enqueue ACK dest=4 seq=4 window=1 ack_queue_size=1
+[MAC] Enqueue TX pkt dscp=0 insert_pos=0 queue_size_before=0
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] starts Pre-Tx with new slot=0 holdoff_over=0
+[HOP 1] New neighbor 5 heard at t=2.83296s
+[HOP 1] link_control dest=5 neighborKnown=1 s0=-100 pathloss=70 failures=0 speed=128 txPower=33 rxPower=-109 cost=116
+[MAC 1] Enqueue ACK dest=5 seq=1 window=1 ack_queue_size=1
+[NWK 1] Added reverse path netSrc=5 reverseHop=5
+[HOP 1] link_control dest=5 neighborKnown=1 s0=-100 pathloss=70 failures=0 speed=128 txPower=33 rxPower=-109 cost=116
+[MAC 1] Update cumulative ACK queue entry dest=5 baseSeq=2 txCount=0
+[NWK 1] Updated reverse path netSrc=5 reverseHop=5
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] starts Pre-Tx with new slot=0 holdoff_over=0
+[MAC 5] OPNET 300-ms transmit holdoff complete
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.12] TX from node 5 to dest 4 seq 4 size 89 bytes segments 2 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02496 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=1/5
+[MAC 5] OPNET aggregate transmitted segments=2 ackSegments=1 dataSegments=1 bytes=89 rate=128
+[MAC 1] OPNET 300-ms transmit holdoff complete
+[MAC 5] resumes Pre-Tx with live slot=0 counter=0
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] New neighbor 5 heard at t=3.14496s
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 1] link_control dest=5 neighborKnown=1 s0=-100 pathloss=70 failures=0 speed=128 txPower=33 rxPower=-109 cost=116
+[MAC 1] Update cumulative ACK queue entry dest=5 baseSeq=3 txCount=0
+[NWK 1] Updated reverse path netSrc=5 reverseHop=5
+[MAC 1] rtslot_counter expired for neighbor 5 reserveSlot=0
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.14496] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=1/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.146] TX from node 5 to dest 4 seq 4 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=2/5
+[MAC 5] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 1] resumes Pre-Tx with live slot=0 counter=0
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] New neighbor 1 heard at t=3.16704s
+[HOP 5] RX ACK from 1 seq=3
+[MAC 5] resumes Pre-Tx with live slot=0 counter=0
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.17096] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=2/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.172] TX from node 5 to dest 4 seq 4 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=3/5
+[MAC 5] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 1] resumes Pre-Tx with live slot=0 counter=0
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] RX ACK from 1 seq=3
+[MAC 5] resumes Pre-Tx with live slot=0 counter=0
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.19696] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=3/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.198] TX from node 5 to dest 4 seq 4 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=4/5
+[MAC 5] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 1] resumes Pre-Tx with live slot=0 counter=0
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] RX ACK from 1 seq=3
+[MAC 5] resumes Pre-Tx with live slot=0 counter=0
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.22296] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=4/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.224] TX from node 5 to dest 4 seq 4 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=5/5
+[MAC 5] Remove ACK after OPNET resend limit dest=4 seq=4
+[MAC 5] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 1] resumes Pre-Tx with live slot=0 counter=0
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] RX ACK from 1 seq=3
+[MAC 5] post-TX WAIT_FOR_ACK until 23.2461 (POST_TX_WAIT=20 s)
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.24896] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=5/5
+[MAC 1] Remove ACK after OPNET resend limit dest=5 seq=3
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+[MAC 5] local advertised reservation expired
+[MAC 1] post-TX WAIT_FOR_ACK until 23.271 (POST_TX_WAIT=20 s)
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] RX ACK from 1 seq=3
+[MAC 1] local advertised reservation expired
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+EDGE_CASE continuous events=33 checks=37 failed=0
+[MAC 1] active_nodes set to 3 for local slotting and post-TX wait
+[MAC 1] max_reported_active_nodes updated to 3
+[MAC 4] active_nodes set to 3 for local slotting and post-TX wait
+[MAC 4] max_reported_active_nodes updated to 3
+[MAC 5] active_nodes set to 3 for local slotting and post-TX wait
+[MAC 5] max_reported_active_nodes updated to 3
+[NWK 1] automatic_route_propagation=disabled
+[NWK 1] routing_snapshot_response_enabled=false
+[NWK 1] ARL neighbor admission=disabled
+[NWK 1] Routing INFO changed reason=link-control limits changed
+[NWK 1] routesProcess grouped selected-route changes count=0 infoChanged=1 time=0
+[NWK 1] Automatic route propagation disabled; reporting only
+[MAC 5] Enqueue ACK dest=4 seq=4 window=1 ack_queue_size=1
+[MAC] Enqueue TX pkt dscp=0 insert_pos=0 queue_size_before=0
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] starts Pre-Tx with new slot=0 holdoff_over=0
+[HOP 1] New neighbor 5 heard at t=2.83296s
+[HOP 1] link_control dest=5 neighborKnown=1 s0=-100 pathloss=70 failures=0 speed=128 txPower=33 rxPower=-109 cost=116
+[MAC 1] Enqueue ACK dest=5 seq=1 window=1 ack_queue_size=1
+[NWK 1] Added reverse path netSrc=5 reverseHop=5
+[HOP 1] link_control dest=5 neighborKnown=1 s0=-100 pathloss=70 failures=0 speed=128 txPower=33 rxPower=-109 cost=116
+[MAC 1] Update cumulative ACK queue entry dest=5 baseSeq=2 txCount=0
+[NWK 1] Updated reverse path netSrc=5 reverseHop=5
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] starts Pre-Tx with new slot=0 holdoff_over=0
+[MAC 5] OPNET 300-ms transmit holdoff complete
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.12] TX from node 5 to dest 4 seq 4 size 89 bytes segments 2 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02496 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=1/5
+[MAC 5] OPNET aggregate transmitted segments=2 ackSegments=1 dataSegments=1 bytes=89 rate=128
+[MAC 1] OPNET 300-ms transmit holdoff complete
+[MAC 5] resumes Pre-Tx with live slot=0 counter=0
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] New neighbor 5 heard at t=3.14496s
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 1] link_control dest=5 neighborKnown=1 s0=-100 pathloss=70 failures=0 speed=128 txPower=33 rxPower=-109 cost=116
+[MAC 1] Update cumulative ACK queue entry dest=5 baseSeq=3 txCount=0
+[NWK 1] Updated reverse path netSrc=5 reverseHop=5
+[MAC 1] rtslot_counter expired for neighbor 5 reserveSlot=0
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.14496] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=1/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.146] TX from node 5 to dest 4 seq 4 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=2/5
+[MAC 5] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 1] resumes Pre-Tx with live slot=0 counter=0
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] New neighbor 1 heard at t=3.16704s
+[HOP 5] RX ACK from 1 seq=3
+[MAC 5] resumes Pre-Tx with live slot=0 counter=0
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.17096] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=2/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.172] TX from node 5 to dest 4 seq 4 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=3/5
+[MAC 5] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 1] resumes Pre-Tx with live slot=0 counter=0
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] RX ACK from 1 seq=3
+[MAC 5] resumes Pre-Tx with live slot=0 counter=0
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.19696] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=3/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.198] TX from node 5 to dest 4 seq 4 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=4/5
+[MAC 5] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 1] resumes Pre-Tx with live slot=0 counter=0
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] RX ACK from 1 seq=3
+[MAC 5] resumes Pre-Tx with live slot=0 counter=0
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.22296] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=4/5
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+[MAC 5] PickTxSlot(dest=4) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 5] PickTxSlot(dest=4) avoid:
+[MAC 5] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 5] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.224] TX from node 5 to dest 4 seq 4 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 5] ACK transmitted in aggregate dest=4 seq=4 txCount=5/5
+[MAC 5] Remove ACK after OPNET resend limit dest=4 seq=4
+[MAC 5] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 1] resumes Pre-Tx with live slot=0 counter=0
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] RX ACK from 1 seq=3
+[MAC 5] post-TX WAIT_FOR_ACK until 23.2461 (POST_TX_WAIT=20 s)
+[MAC 4] Learned neighbor 5 uses slot 0 (rtCounter=0)
+[HOP 4] RX ACK from 5 seq=4
+[MAC 1] PickTxSlot(dest=5) active_nodes_for_slotting=3 opnet_slot_range=31
+[MAC 1] PickTxSlot(dest=5) avoid:
+[MAC 1] PickTxSlot chose 0 using historical next_tslot modulo probe
+[MAC 1] TX opportunity reached currentSlot=0 reserveNextSlot=0
+... type=1 speedKey=128[t=3.24896] TX from node 1 to dest 5 seq 3 size 41 bytes segments 1 at slot 0 rate 128 kbps txPower 33 dBm (133333 bps) preamble SHORT duration 0.02208 s
+[MAC 1] ACK transmitted in aggregate dest=5 seq=3 txCount=5/5
+[MAC 1] Remove ACK after OPNET resend limit dest=5 seq=3
+[MAC 1] OPNET aggregate transmitted segments=1 ackSegments=1 dataSegments=0 bytes=41 rate=128
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+[MAC 5] local advertised reservation expired
+[MAC 1] post-TX WAIT_FOR_ACK until 23.271 (POST_TX_WAIT=20 s)
+[MAC 5] Learned neighbor 1 uses slot 0 (rtCounter=0)
+[HOP 5] RX ACK from 1 seq=3
+[MAC 1] local advertised reservation expired
+[MAC 5] rtslot_counter expired for neighbor 1 reserveSlot=0
+EDGE_CASE quantized events=33 checks=37 failed=0
+EDGE_SUMMARY cases=6 completed=1

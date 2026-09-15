@@ -1,0 +1,319 @@
+{
+  "schema": "csr-tranche14-native-control-build-v1",
+  "status": "passed",
+  "generated_utc": "2026-09-15T12:27:14.302562+00:00",
+  "source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "source_tree": "b611b233fb369569b98f0914ece24d029ccc2f42",
+  "engine_commit": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+  "engine_tree": "f30343185fb057e3a9cdd54f496cca0cef49ae23",
+  "source_repository": "https://github.com/mjburke4/CSR-Project-NS3-part2.git",
+  "engine_repository": "https://github.com/nsnam/ns-3-dev-git.git",
+  "engine_rebuilt": true,
+  "reused_historical_libraries": false,
+  "historical_libraries_byte_identity_claimed": false,
+  "csr_tracked_sources_unchanged": true,
+  "engine_tracked_sources_unchanged": true,
+  "source_path": "/workspace/scratch/1a5b1ad6ce1b/t14n/native/ns",
+  "build_path": "/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build",
+  "build_profile": "Debug",
+  "cpp_standard": 23,
+  "assertions": true,
+  "logging": true,
+  "enabled_modules": [
+    "csr",
+    "spectrum",
+    "buildings",
+    "propagation",
+    "mobility",
+    "antenna",
+    "network",
+    "stats",
+    "core"
+  ],
+  "toolchain": {
+    "compiler": {
+      "executable": "/usr/bin/x86_64-linux-gnu-g++-13",
+      "sha256": "52f1ddb33fe78b9441e0f42e9cd22c571f1101938e046c8a26582494e041cc73",
+      "version": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE."
+    },
+    "linker": {
+      "executable": "/usr/bin/x86_64-linux-gnu-ld.bfd",
+      "sha256": "5b674ea1d7017c2929f3c52c43487478bb240ecdd7197a25cce3813a70329a5c",
+      "version": "GNU ld (GNU Binutils for Ubuntu) 2.42\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis program is free software; you may redistribute it under the terms of\nthe GNU General Public License version 3 or (at your option) a later version.\nThis program has absolutely no warranty."
+    },
+    "cmake": {
+      "executable": "/workspace/scratch/1a5b1ad6ce1b/t14n/native/tools/cmake/data/bin/cmake",
+      "sha256": "84962dbf5de6a863507ae89347aa9414d978c0c610055b16c7c8f4233d8a339c",
+      "version": "cmake version 4.4.3\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake)."
+    },
+    "ninja": {
+      "executable": "/workspace/scratch/1a5b1ad6ce1b/t14n/native/tools/bin/ninja",
+      "sha256": "08639e194fffa7f08b259fc4abfa4803aff66b64de52549cee42ec527d55cea6",
+      "version": "1.13.2.git.kitware.jobserver-pipe-1"
+    },
+    "python": {
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+      "sha256": "fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7",
+      "version": "Python 3.12.14"
+    }
+  },
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "module_files": [
+    {
+      "path": "model/csr-arl-routing-message.cc",
+      "sha256": "046d7b1c91d4339f7cb67cda7066532ae4659b8e324b1bd482b6aba0a5562c3f"
+    },
+    {
+      "path": "model/csr-arl-routing-message.h",
+      "sha256": "0eddd945d264965c90bcea60d73b14cab2159bc0664e0e526d38e50b0d363a8c"
+    },
+    {
+      "path": "model/csr-common.h",
+      "sha256": "f1e0a962862ef1cc5a6994f24988858a2bea70385ce02b1264285de194fe6ae1"
+    },
+    {
+      "path": "model/csr-differential-trace.h",
+      "sha256": "78b443af6e91e927c398450ef71245e815ba4bd02ad9369a06fd95f98e2dff84"
+    },
+    {
+      "path": "model/csr-hello-header.cc",
+      "sha256": "e6a1a9e95312d089404873fd7d9d4c87bf024d754af224064328106d5c886a4f"
+    },
+    {
+      "path": "model/csr-hello-header.h",
+      "sha256": "741ccff278e1694ea40c4c6c5b1cb14a3a6034864d0328c6a2e04420935fb7d4"
+    },
+    {
+      "path": "model/csr-hop-layer.h",
+      "sha256": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b"
+    },
+    {
+      "path": "model/csr-hop-security.cc",
+      "sha256": "2b390e6496c98e87a771ed10613e69ecd702922a0b9f54e8058170653271cc6a"
+    },
+    {
+      "path": "model/csr-hop-security.h",
+      "sha256": "9bca9c9a6e4ae04a20a3309ac8a8787589ac4ad65785cbf57fbe20c5e8e37d5e"
+    },
+    {
+      "path": "model/csr-legacy-crypto.cc",
+      "sha256": "c3f32f583813dead77c42d51736f73fb300a59b33f9fa75da4fc939c7e6553e0"
+    },
+    {
+      "path": "model/csr-legacy-crypto.h",
+      "sha256": "ce2e76387addc44e63601b8638d066b484dbd13f301bc09882bd21959a118306"
+    },
+    {
+      "path": "model/csr-mac-core.h",
+      "sha256": "64a71ad280ba14ab2b00d5d2b9dac708fabea939dfa385ad62dd73e5e40203e9"
+    },
+    {
+      "path": "model/csr-module.cc",
+      "sha256": "34b32e33586f4adaddd47c41d1795c8f81205c00b8f4981355cad8674c23ad8e"
+    },
+    {
+      "path": "model/csr-net-device.h",
+      "sha256": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb"
+    },
+    {
+      "path": "model/csr-nwk-layer.h",
+      "sha256": "bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc"
+    },
+    {
+      "path": "model/csr-opnet-ber-tables-data.inc",
+      "sha256": "d10a9ba3ded2301598b79d6bf28a6ea318da34b5ce79709ba2a06a0b8fce95b8"
+    },
+    {
+      "path": "model/csr-opnet-ber-tables.cc",
+      "sha256": "0af0b66c23ea95bbf74f32099ab0562a8a781e1b1048f5eb0b45faea83b73cf6"
+    },
+    {
+      "path": "model/csr-opnet-ber-tables.h",
+      "sha256": "8034348552990ce6a0aa0fd673a319299762fbd75c402de59a64ac160eb7cfb5"
+    },
+    {
+      "path": "model/csr-opnet-envelope.h",
+      "sha256": "e67b526126907f43f2ee4199552c583ac9c2a0f927cf942fe76aa328900e001a"
+    },
+    {
+      "path": "model/csr-opnet-packet-model.cc",
+      "sha256": "16af5d39e7f12c17e1f27a49f80c1ea313618bce87d3c5b75b07bc38cebf2056"
+    },
+    {
+      "path": "model/csr-opnet-packet-model.h",
+      "sha256": "59eb4ccd19d109f623fb8ea4d9ad23b2d936f081268261c100231c26cb2dccc6"
+    },
+    {
+      "path": "model/csr-phy-model.h",
+      "sha256": "d690b4c572491a9ea8c48735b1726770938b118dcbcd931e92920e602cae18fc"
+    },
+    {
+      "path": "model/csr-wire-format.h",
+      "sha256": "eb9097e1588c8e235a06cec5f0b28c13a22a3f3c88c6b8581e4186d69fc94c2f"
+    }
+  ],
+  "libraries": [
+    {
+      "path": "/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/lib/libns3-dev-csr-debug.so",
+      "sha256": "3030ea9ca68897f99eff16cae599800094249f12e08c5da30b9eae182111ca7c",
+      "bytes": 3001312
+    },
+    {
+      "path": "/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/lib/libns3-dev-spectrum-debug.so",
+      "sha256": "41345a338691d05a656af6a3e026d2d600c7753ddb59986a76900278c1e6269c",
+      "bytes": 14762704
+    },
+    {
+      "path": "/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/lib/libns3-dev-buildings-debug.so",
+      "sha256": "d9d823f913a8127a6b6fad615412ec099f7a27cec5fc5c227dc38e070268e8d9",
+      "bytes": 4698872
+    },
+    {
+      "path": "/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/lib/libns3-dev-propagation-debug.so",
+      "sha256": "40edfd881607ee44f654021039c6880e0918ce53c90fe9a1d1bdcae1ce0220e0",
+      "bytes": 5068536
+    },
+    {
+      "path": "/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/lib/libns3-dev-mobility-debug.so",
+      "sha256": "515d19fae3de40d2af3778715ca2a44daf0bea16906db63527930e03a1959c31",
+      "bytes": 7196096
+    },
+    {
+      "path": "/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/lib/libns3-dev-antenna-debug.so",
+      "sha256": "676dccc599d0bf8e269e3a48e2bacabb2507188541b9d0f1f3cfe7bfe29949d4",
+      "bytes": 1721408
+    },
+    {
+      "path": "/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/lib/libns3-dev-network-debug.so",
+      "sha256": "717dfeec241c8444bc952fd91e1469890449d4dae361f14fe2e88ac6350aae36",
+      "bytes": 17946080
+    },
+    {
+      "path": "/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/lib/libns3-dev-stats-debug.so",
+      "sha256": "ee5a1d30fdddbd994b26c45f4ee95e48d151e8c52f2a10735dfabf915f4945af",
+      "bytes": 8091648
+    },
+    {
+      "path": "/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/build/lib/libns3-dev-core-debug.so",
+      "sha256": "f445dbcf2a7e1d13e67bdc7d65305a2152f637bd2562e5cd1dcadb28c2c22eaf",
+      "bytes": 17183480
+    }
+  ],
+  "records": {
+    "configure": {
+      "argv": [
+        "/workspace/scratch/1a5b1ad6ce1b/t14n/native/tools/cmake/data/bin/cmake",
+        "-S",
+        "/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine",
+        "-B",
+        "/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/cmake-cache",
+        "-G",
+        "Ninja",
+        "-DCMAKE_MAKE_PROGRAM=/workspace/scratch/1a5b1ad6ce1b/t14n/native/tools/bin/ninja",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DCMAKE_CXX_STANDARD=23",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++",
+        "-DNS3_ASSERT=ON",
+        "-DNS3_LOG=ON",
+        "-DNS3_WARNINGS_AS_ERRORS=OFF",
+        "-DNS3_EXAMPLES=OFF",
+        "-DNS3_TESTS=OFF",
+        "-DNS3_PYTHON_BINDINGS=OFF",
+        "-DNS3_ENABLED_MODULES=csr;spectrum;buildings;propagation;mobility;antenna;network;stats;core"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 3.5151297679999516
+    },
+    "build": {
+      "argv": [
+        "/workspace/scratch/1a5b1ad6ce1b/t14n/native/tools/cmake/data/bin/cmake",
+        "--build",
+        "/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/cmake-cache",
+        "--parallel",
+        "4",
+        "--target",
+        "csr",
+        "spectrum",
+        "buildings",
+        "propagation",
+        "mobility",
+        "antenna",
+        "network",
+        "stats",
+        "core"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 103.29674561799993
+    },
+    "finish": {
+      "argv": [
+        "/workspace/scratch/1a5b1ad6ce1b/t14n/native/tools/cmake/data/bin/cmake",
+        "--build",
+        "/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/cmake-cache",
+        "--parallel",
+        "4",
+        "--target",
+        "csr",
+        "spectrum",
+        "buildings",
+        "propagation",
+        "mobility",
+        "antenna",
+        "network",
+        "stats",
+        "core"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.028468692999922496
+    },
+    "repair-link": {
+      "argv": [
+        "/workspace/scratch/1a5b1ad6ce1b/t14n/native/tools/cmake/data/bin/cmake",
+        "--build",
+        "/workspace/scratch/1a5b1ad6ce1b/t14n/native/engine/cmake-cache",
+        "--parallel",
+        "1",
+        "--target",
+        "buildings"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.2675517459997536,
+      "reason": "buildings library was zero bytes after initial successful build; invalid output removed and target relinked"
+    }
+  },
+  "cmake_cache_sha256": "cffa542cb30ce99c0aadde06c347a09dddbaa7b88df6332340987673520f2e4f",
+  "artifact_files": {
+    "build.log": "e374a78daaeb61f61573241d159bfac26ba00eb4f1d28f1859c54bae7cd4a2a5",
+    "configure.log": "fd61da7e95292cab00bf90670b40c1f35955c3671c3f04ba8033a9aa12ce58e8",
+    "finish.log": "c2ed93ffd93c840755c0e91392ae593b1b52de9b7aaf6c208123feaceb1dde2e",
+    "repair-link.log": "d53ae498cdd6dba3c93b5c30e12a72a2e9e19bcf663c2114455192de3f8b4ab7"
+  },
+  "matlab_executed": false,
+  "full_engine_test_suite_executed": false,
+  "notes": [
+    "Initial build process exited zero but buildings shared library was zero bytes. Removed only that invalid generated output and relinked its target; every final library has ELF signature.",
+    "Standalone fixture links retain all nine dependency libraries with --no-as-needed; source/model behavior unchanged. Actual clean and disabled-seam controls follow in edge reference."
+  ],
+  "controls": {
+    "ack": {
+      "checks": 101,
+      "passed": true,
+      "clean_and_disabled_byte_equal": true,
+      "sha256": "2991bbc93e5ba2c64d06a93cee278160cd9baf2fdc11b052ee5b0cb561fe4b73"
+    },
+    "receiver": {
+      "checks": 154,
+      "passed": true,
+      "clean_and_disabled_byte_equal": true,
+      "sha256": "a3562a3f23e5603359610b150e20551f5a671298d7db529e037d842ce7206c1a"
+    },
+    "clock": {
+      "checks": 72,
+      "passed": true,
+      "clean_and_disabled_byte_equal": true,
+      "sha256": "718591f9e6c13d114d9ca24167a68b07d1740afaf0fd560a239e559b525efec7"
+    }
+  },
+  "control_artifact_location": "evidence/tranche-14-edge-reference/controls",
+  "native_control_checks": 327
+}

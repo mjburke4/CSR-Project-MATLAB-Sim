@@ -1,0 +1,46 @@
+{
+  "schema": "csr-tranche11-static-matlab-review-v1",
+  "status": "passed",
+  "command": [
+    "python",
+    "-m",
+    "miss_hit.mh_lint",
+    "--brief",
+    "run_tranche11_validation.m",
+    "+csr/+validation/ReplayStreams.m",
+    "+csr/+validation/ReplayStream.m",
+    "+csr/+validation/replayContract.m",
+    "tests/TestReplayStreams.m",
+    "tests/TestReplayContract.m"
+  ],
+  "stdout": "MISS_HIT Lint Summary: 6 file(s) analysed, everything seems fine\n",
+  "exit_code": 0,
+  "files": [
+    {
+      "path": "run_tranche11_validation.m",
+      "sha256": "8c7fc91d9d71cb48e932b41419311ede1aa177c3d0209166a6fa4950e4fd45f7"
+    },
+    {
+      "path": "+csr/+validation/ReplayStreams.m",
+      "sha256": "5807dc79cb413a826d029f3f9875e13eba9855fde255a39d6a6b6422a782c566"
+    },
+    {
+      "path": "+csr/+validation/ReplayStream.m",
+      "sha256": "3e47217e1cf1f49c4bef58fb71c336c388dccd6863865d3debe52ec46307951f"
+    },
+    {
+      "path": "+csr/+validation/replayContract.m",
+      "sha256": "6574f3c0fe65771d049a81ebdce5eca39ad603d15c2d096a3d6a5a6aad778d0c"
+    },
+    {
+      "path": "tests/TestReplayStreams.m",
+      "sha256": "cd3fe22573361a740a403ccf82b6232d98f524806f689238dc27023fc3209b5c"
+    },
+    {
+      "path": "tests/TestReplayContract.m",
+      "sha256": "499520214ebdd4908bfc9eda260ebdc54829917645c49ccee9da8e0d2777c899"
+    }
+  ],
+  "matlab_executed": false,
+  "scope": "Syntax/static analysis only; owner MATLAB execution remains pending."
+}

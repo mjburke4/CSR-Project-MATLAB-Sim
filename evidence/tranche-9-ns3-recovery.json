@@ -1,0 +1,282 @@
+{
+  "schema": "csr-tranche9-ns3-reference-recovery-v1",
+  "status": "completed",
+  "cause_established": false,
+  "rejected_run": {
+    "status": "rejected",
+    "reason": "Closed-artifact hashes changed after per-case manifest capture",
+    "cause_established": false,
+    "suite_sha256": "3514a87459521119031be960fc44261a9ad654142c8fd115ab282d09510f71b8",
+    "failures": [
+      {
+        "path": "a129/ns3-trace.csv.gz",
+        "recorded": {
+          "path": "ns3-trace.csv.gz",
+          "sha256": "a97b70d7e19275d94955b982ba50aa4c2b9e581caf4f47166b89d910fcc6789e",
+          "bytes": 1143961
+        },
+        "observed_bytes": 859602,
+        "observed_sha256": "9501bce2172099415353afb8e029fec63336b5f50bb8756b2f814e4acf15518a"
+      },
+      {
+        "path": "c129/ns3-aggregate.log",
+        "recorded": {
+          "path": "ns3-aggregate.log",
+          "sha256": "51490648a079177b2e0341ebd47bd34b4a07be8753ce94fab6933651f3c36bfd",
+          "bytes": 245
+        },
+        "observed_bytes": 0,
+        "observed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "c131/ns3-aggregate.log",
+        "recorded": {
+          "path": "ns3-aggregate.log",
+          "sha256": "cae1cfe1efb72a641770e4d589b2e395a7385adf8231f0d3855bab534decce0d",
+          "bytes": 245
+        },
+        "observed_bytes": 0,
+        "observed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  "recovery_action": "Quarantine full failed outputs unchanged in scratch, then fresh full six-case observer-on/off execution into an isolated short scratch directory and verify all closed artifacts before moving the complete directory to its canonical evidence path.",
+  "earlier_preflight": {
+    "status": "rejected",
+    "reason": "Service reviewer incorrectly expected capitalized MAC states; native source StateName returns lowercase idle/search/track/tx. Reporting gate repaired and covered by a regression test before full regeneration. No simulator source changed."
+  },
+  "schema_label_correction": "Generic native sequence retained as sequence; application and HOP identities remain event-specific. No packet tags or model bytes changed.",
+  "promoted_suite_sha256": "e7d8cdf5303fba9c290e83526ba65e4e4f7b7bb52add727c1b7cc8b372169331",
+  "promoted_build_sha256": "58aa3e8c32388eb56907495a2549bdd7eb0db1ad7d91dc6b75683eb96aba9783",
+  "plan_sha256": "372db92a385781d9854a096149fd419b90ae79823125b79269506bd9877e0116",
+  "promotion_verification": {
+    "file_hash_checks": 96,
+    "gzip_original_byte_roundtrips": 24,
+    "all_passed": true
+  },
+  "all_six_on_off_checks_passed": true,
+  "all_24_accepted_t8_artifact_pairs_byte_exact": true,
+  "no_failed_artifacts_promoted": true,
+  "matlab_executed": false,
+  "full_ns3_rebuild_performed": false,
+  "preserved_failed_inventories": [
+    {
+      "path": "evidence/tranche-9-ns3-recovery/a129.json",
+      "bytes": 16134,
+      "sha256": "6b4a14ea7f9353759c91ba035dbda9b25b2a35ac4242dc2372f5f631b593f741"
+    },
+    {
+      "path": "evidence/tranche-9-ns3-recovery/c128.json",
+      "bytes": 16334,
+      "sha256": "9aa9447ab6011f5c15c82613d421f4e8ea7c5160bdf7e6fa0c12dcfff468b699"
+    },
+    {
+      "path": "evidence/tranche-9-ns3-recovery/c129.json",
+      "bytes": 16354,
+      "sha256": "b678efb646de40acffe14f99f2ebf5ca2d92addeff0dab7937f0176c2f589f7a"
+    },
+    {
+      "path": "evidence/tranche-9-ns3-recovery/c130.json",
+      "bytes": 16333,
+      "sha256": "57726da9c4b04b1e681aba5706bf07c8c6bad5909e2233d11d56860d7ab3063d"
+    },
+    {
+      "path": "evidence/tranche-9-ns3-recovery/c131.json",
+      "bytes": 16335,
+      "sha256": "3ff219419cba400f448537c7f568ed52fb4fdd42bcc6d2c11677e42335e8d56f"
+    },
+    {
+      "path": "evidence/tranche-9-ns3-recovery/c132.json",
+      "bytes": 16334,
+      "sha256": "edcca17ff8aa943742d4ab600a737521f55b921726059308150a03c144e44c23"
+    },
+    {
+      "path": "evidence/tranche-9-ns3-recovery/failed-build.json",
+      "bytes": 34183,
+      "sha256": "005760452d6a02dc6fa66add16eb4fe73db754bcfc5651809d75065f599a4ac3"
+    },
+    {
+      "path": "evidence/tranche-9-ns3-recovery/failed-suite.json",
+      "bytes": 15600,
+      "sha256": "3514a87459521119031be960fc44261a9ad654142c8fd115ab282d09510f71b8"
+    }
+  ],
+  "unexpected_raw_duplicates": {
+    "cause_established": false,
+    "count": 21,
+    "files": [
+      {
+        "path": "c129/ns3-link-decisions.csv",
+        "bytes": 448685,
+        "sha256": "3635c06092ffe3df421c55e5eb44750761f5eb978133408a844132e0b7ede6c1",
+        "mtime_ns": 1789136768501305448,
+        "ctime_ns": 1789136771433346395,
+        "matches_declared_original": true
+      },
+      {
+        "path": "c129/ns3-service.csv",
+        "bytes": 8258152,
+        "sha256": "e4c8faf40192719485aa77843e999ceb461caa5391aad35a0be993014820685e",
+        "mtime_ns": 1789136768501305448,
+        "ctime_ns": 1789136771433346395,
+        "matches_declared_original": true
+      },
+      {
+        "path": "c129/ns3-trace.csv",
+        "bytes": 1302707,
+        "sha256": "35994af8a7ed8c669361adb31a04843036e51b3951c8d11b5ed3dbebb9e788a6",
+        "mtime_ns": 1789136768501305448,
+        "ctime_ns": 1789136771433346395,
+        "matches_declared_original": true
+      },
+      {
+        "path": "c129/off-ns3-trace.csv",
+        "bytes": 1302707,
+        "sha256": "35994af8a7ed8c669361adb31a04843036e51b3951c8d11b5ed3dbebb9e788a6",
+        "mtime_ns": 1789136769037312933,
+        "ctime_ns": 1789136771433346395,
+        "matches_declared_original": true
+      },
+      {
+        "path": "c128/ns3-link-decisions.csv",
+        "bytes": 476320,
+        "sha256": "1fc15fc29515cad7cf55edc43a0db0e8d0bb6554bdec6ddbb49b28886cf43e9a",
+        "mtime_ns": 1789136770929339356,
+        "ctime_ns": 1789136773885380638,
+        "matches_declared_original": true
+      },
+      {
+        "path": "c128/ns3-service.csv",
+        "bytes": 8432586,
+        "sha256": "766b64da4faaf412df5f7c901254e88e703aeec03b495226d69c84af90a5a048",
+        "mtime_ns": 1789136770929339356,
+        "ctime_ns": 1789136773885380638,
+        "matches_declared_original": true
+      },
+      {
+        "path": "c128/ns3-trace.csv",
+        "bytes": 1430657,
+        "sha256": "38f8e7de54969a63348f07d5514ffaaf06b4437dbf573299827702c1b9486222",
+        "mtime_ns": 1789136770929339356,
+        "ctime_ns": 1789136773885380638,
+        "matches_declared_original": true
+      },
+      {
+        "path": "c128/off-ns3-trace.csv",
+        "bytes": 1430657,
+        "sha256": "38f8e7de54969a63348f07d5514ffaaf06b4437dbf573299827702c1b9486222",
+        "mtime_ns": 1789136771465346842,
+        "ctime_ns": 1789136773885380638,
+        "matches_declared_original": true
+      },
+      {
+        "path": "c130/ns3-link-decisions.csv",
+        "bytes": 484367,
+        "sha256": "82c1e6104f54033a5ff9dcd441db5e21becf909d14a9c3519cefaace4b105e3d",
+        "mtime_ns": 1789136773341373041,
+        "ctime_ns": 1789136776297414268,
+        "matches_declared_original": true
+      },
+      {
+        "path": "c130/ns3-service.csv",
+        "bytes": 8414978,
+        "sha256": "24cedb8b541f2ddd0bdd9476040fd73ad9405229aa7491f909c69b879a30b755",
+        "mtime_ns": 1789136773341373041,
+        "ctime_ns": 1789136776297414268,
+        "matches_declared_original": true
+      },
+      {
+        "path": "c130/ns3-trace.csv",
+        "bytes": 1438065,
+        "sha256": "674d6c07c2aca8a4a01fedc50494f6bbedf730b1c0fe92b62fc637e42a6500e7",
+        "mtime_ns": 1789136773341373041,
+        "ctime_ns": 1789136776297414268,
+        "matches_declared_original": true
+      },
+      {
+        "path": "c130/off-ns3-trace.csv",
+        "bytes": 1438065,
+        "sha256": "674d6c07c2aca8a4a01fedc50494f6bbedf730b1c0fe92b62fc637e42a6500e7",
+        "mtime_ns": 1789136773872704042,
+        "ctime_ns": 1789136776297414268,
+        "matches_declared_original": true
+      },
+      {
+        "path": "c131/ns3-link-decisions.csv",
+        "bytes": 473166,
+        "sha256": "e3c1156f2eddf24667e1b4ee5ef9b391b3867ad9d59ef94731b3b57f9d42dc93",
+        "mtime_ns": 1789136775749406670,
+        "ctime_ns": 1789136778765448460,
+        "matches_declared_original": true
+      },
+      {
+        "path": "c131/ns3-service.csv",
+        "bytes": 8334584,
+        "sha256": "f1c44217d84c57241c50a9b076b8bb6e83d4db4a543ef57a0a59c8cf39673580",
+        "mtime_ns": 1789136775749406670,
+        "ctime_ns": 1789136778765448460,
+        "matches_declared_original": true
+      },
+      {
+        "path": "c131/ns3-trace.csv",
+        "bytes": 1374697,
+        "sha256": "f09472a9a0a99c2708f86b1272752eb3a950ded2f8b9ac39eac1f86dce6aa72d",
+        "mtime_ns": 1789136775749406670,
+        "ctime_ns": 1789136778765448460,
+        "matches_declared_original": true
+      },
+      {
+        "path": "c131/off-ns3-trace.csv",
+        "bytes": 1374697,
+        "sha256": "f09472a9a0a99c2708f86b1272752eb3a950ded2f8b9ac39eac1f86dce6aa72d",
+        "mtime_ns": 1789136776301414323,
+        "ctime_ns": 1789136778765448460,
+        "matches_declared_original": true
+      },
+      {
+        "path": "c132/ns3-service.csv",
+        "bytes": 8476125,
+        "sha256": "82cc52b2c82b3bfb6e73318f82c228858f5078b092949b0ed05594bb5ae0493b",
+        "mtime_ns": 1789136778765448460,
+        "ctime_ns": 1789136784563003443,
+        "matches_declared_original": true
+      },
+      {
+        "path": "a129/ns3-link-decisions.csv",
+        "bytes": 5317963,
+        "sha256": "97a429c37f45351bb140570fa1526cb9ae200f4358569f2c5e705efa588dc7c4",
+        "mtime_ns": 1789136787861574148,
+        "ctime_ns": 1789136795183928651,
+        "matches_declared_original": true
+      },
+      {
+        "path": "a129/ns3-service.csv",
+        "bytes": 1898970,
+        "sha256": "13b4c85abcd288781372eefce1fdac146daa81100d1ac4ff24e3f1345b993fcb",
+        "mtime_ns": 1789136787861574148,
+        "ctime_ns": 1789136795183928651,
+        "matches_declared_original": true
+      },
+      {
+        "path": "a129/ns3-trace.csv",
+        "bytes": 16940941,
+        "sha256": "e073e021d8fd0e89fd34044f93b7dfaf8d23e41626a1727984c60fb61cca9578",
+        "mtime_ns": 1789136787861574148,
+        "ctime_ns": 1789136795183928651,
+        "matches_declared_original": true
+      },
+      {
+        "path": "a129/off-ns3-trace.csv",
+        "bytes": 16940941,
+        "sha256": "e073e021d8fd0e89fd34044f93b7dfaf8d23e41626a1727984c60fb61cca9578",
+        "mtime_ns": 1789136790853615355,
+        "ctime_ns": 1789136795183928651,
+        "matches_declared_original": true
+      }
+    ],
+    "disposition": "All unexpected unlisted raw CSVs were proved byte-exact to their declared compressed originals, then moved unchanged to a scratch quarantine. No declared evidence or gzip bytes were modified.",
+    "final_strict_file_membership_passed": true,
+    "canonical_file_count": 97,
+    "declared_hash_checks_after_quarantine": 96
+  }
+}

@@ -1,0 +1,847 @@
+{
+  "input_archive_sha256": "066c180f31c44412b617e1cc0f6197711ac50daaac9cbbbcbefbc6a59f1916f8",
+  "method": "Unique applications reconstructed from MATLAB protocol_trace.csv and native app_send/nwk_delivery events. MATLAB application exports are then checked independently. Latency is pooled over delivered packets.",
+  "limitations": [
+    "Native unresolved applications are not classified as drops or finite-stop pending.",
+    "Only one campus seed is represented; equal seed numbers do not establish identical random draws.",
+    "Campus admission attempt trace is truncated; complete counters and complete application events support counts."
+  ],
+  "results": {
+    "campus": {
+      "T10": {
+        "total": {
+          "generated": 12484,
+          "delivered": 11825,
+          "mean_packet_latency_seconds": 98.97012338799513,
+          "first_delivery_seconds": 301.654268077373,
+          "delivered_300_to_320": 38,
+          "delivered_320_to_stop": 11787,
+          "dropped": 402,
+          "pending": 257
+        },
+        "flows": {
+          "2": {
+            "generated": 551,
+            "delivered": 411,
+            "mean_packet_latency_seconds": 487.3300714266931,
+            "first_delivery_seconds": 408.821811086064,
+            "delivered_300_to_320": 0,
+            "delivered_320_to_stop": 411,
+            "dropped": 97,
+            "pending": 43
+          },
+          "3": {
+            "generated": 8489,
+            "delivered": 8472,
+            "mean_packet_latency_seconds": 10.328367385680105,
+            "first_delivery_seconds": 301.654268077373,
+            "delivered_300_to_320": 26,
+            "delivered_320_to_stop": 8446,
+            "dropped": 1,
+            "pending": 16
+          },
+          "4": {
+            "generated": 439,
+            "delivered": 348,
+            "mean_packet_latency_seconds": 299.1536214308882,
+            "first_delivery_seconds": 329.014811086064,
+            "delivered_300_to_320": 0,
+            "delivered_320_to_stop": 348,
+            "dropped": 62,
+            "pending": 29
+          },
+          "5": {
+            "generated": 1669,
+            "delivered": 1644,
+            "mean_packet_latency_seconds": 53.46351789871244,
+            "first_delivery_seconds": 307.278811086064,
+            "delivered_300_to_320": 12,
+            "delivered_320_to_stop": 1632,
+            "dropped": 9,
+            "pending": 16
+          },
+          "7": {
+            "generated": 748,
+            "delivered": 533,
+            "mean_packet_latency_seconds": 784.5565033937527,
+            "first_delivery_seconds": 647.670811086064,
+            "delivered_300_to_320": 0,
+            "delivered_320_to_stop": 533,
+            "dropped": 127,
+            "pending": 88
+          },
+          "8": {
+            "generated": 588,
+            "delivered": 417,
+            "mean_packet_latency_seconds": 653.1391396232308,
+            "first_delivery_seconds": 445.988811086064,
+            "delivered_300_to_320": 0,
+            "delivered_320_to_stop": 417,
+            "dropped": 106,
+            "pending": 65
+          }
+        },
+        "hop_failures_by_link": {
+          "2->4": 28,
+          "3->1": 1,
+          "4->5": 310,
+          "5->1": 23,
+          "7->8": 10,
+          "8->2": 31
+        },
+        "raw_identities_checked_against_export": 12484
+      },
+      "T7": {
+        "total": {
+          "generated": 12382,
+          "delivered": 11727,
+          "mean_packet_latency_seconds": 103.96344172132353,
+          "first_delivery_seconds": 301.654268077372,
+          "delivered_300_to_320": 38,
+          "delivered_320_to_stop": 11689,
+          "dropped": 401,
+          "pending": 254
+        },
+        "flows": {
+          "2": {
+            "generated": 506,
+            "delivered": 395,
+            "mean_packet_latency_seconds": 445.78536803392035,
+            "first_delivery_seconds": 424.785811085869,
+            "delivered_300_to_320": 0,
+            "delivered_320_to_stop": 395,
+            "dropped": 68,
+            "pending": 43
+          },
+          "3": {
+            "generated": 8608,
+            "delivered": 8593,
+            "mean_packet_latency_seconds": 10.189931590953798,
+            "first_delivery_seconds": 301.654268077372,
+            "delivered_300_to_320": 26,
+            "delivered_320_to_stop": 8567,
+            "dropped": 1,
+            "pending": 14
+          },
+          "4": {
+            "generated": 566,
+            "delivered": 454,
+            "mean_packet_latency_seconds": 253.2403837608147,
+            "first_delivery_seconds": 339.505811086021,
+            "delivered_300_to_320": 0,
+            "delivered_320_to_stop": 454,
+            "dropped": 80,
+            "pending": 32
+          },
+          "5": {
+            "generated": 1309,
+            "delivered": 1285,
+            "mean_packet_latency_seconds": 68.33825387614925,
+            "first_delivery_seconds": 307.278811086051,
+            "delivered_300_to_320": 12,
+            "delivered_320_to_stop": 1273,
+            "dropped": 9,
+            "pending": 15
+          },
+          "7": {
+            "generated": 832,
+            "delivered": 617,
+            "mean_packet_latency_seconds": 799.4138726612474,
+            "first_delivery_seconds": 610.828811085968,
+            "delivered_300_to_320": 0,
+            "delivered_320_to_stop": 617,
+            "dropped": 126,
+            "pending": 89
+          },
+          "8": {
+            "generated": 561,
+            "delivered": 383,
+            "mean_packet_latency_seconds": 677.5661322225724,
+            "first_delivery_seconds": 445.845811085831,
+            "delivered_300_to_320": 0,
+            "delivered_320_to_stop": 383,
+            "dropped": 117,
+            "pending": 61
+          }
+        },
+        "hop_failures_by_link": {
+          "2->4": 39,
+          "3->1": 1,
+          "4->5": 305,
+          "5->1": 21,
+          "7->8": 7,
+          "8->2": 28
+        },
+        "raw_identities_checked_against_export": 12382
+      },
+      "NS3": {
+        "total": {
+          "generated": 12417,
+          "delivered": 11769,
+          "mean_packet_latency_seconds": 104.19477083093882,
+          "first_delivery_seconds": 301.758271086,
+          "delivered_300_to_320": 35,
+          "delivered_320_to_stop": 11734,
+          "unresolved": 648
+        },
+        "flows": {
+          "2": {
+            "generated": 547,
+            "delivered": 410,
+            "mean_packet_latency_seconds": 456.845567183561,
+            "first_delivery_seconds": 394.807811086,
+            "delivered_300_to_320": 0,
+            "delivered_320_to_stop": 410,
+            "unresolved": 137
+          },
+          "3": {
+            "generated": 8551,
+            "delivered": 8535,
+            "mean_packet_latency_seconds": 10.44845909750381,
+            "first_delivery_seconds": 303.071268077,
+            "delivered_300_to_320": 27,
+            "delivered_320_to_stop": 8508,
+            "unresolved": 16
+          },
+          "4": {
+            "generated": 498,
+            "delivered": 419,
+            "mean_packet_latency_seconds": 269.68891848456803,
+            "first_delivery_seconds": 358.017811086,
+            "delivered_300_to_320": 0,
+            "delivered_320_to_stop": 419,
+            "unresolved": 79
+          },
+          "5": {
+            "generated": 1397,
+            "delivered": 1369,
+            "mean_packet_latency_seconds": 67.30344765283712,
+            "first_delivery_seconds": 301.758271086,
+            "delivered_300_to_320": 8,
+            "delivered_320_to_stop": 1361,
+            "unresolved": 28
+          },
+          "7": {
+            "generated": 803,
+            "delivered": 574,
+            "mean_packet_latency_seconds": 777.8483145703206,
+            "first_delivery_seconds": 717.519811086,
+            "delivered_300_to_320": 0,
+            "delivered_320_to_stop": 574,
+            "unresolved": 229
+          },
+          "8": {
+            "generated": 621,
+            "delivered": 462,
+            "mean_packet_latency_seconds": 645.3700600037489,
+            "first_delivery_seconds": 690.882811086,
+            "delivered_300_to_320": 0,
+            "delivered_320_to_stop": 462,
+            "unresolved": 159
+          }
+        }
+      }
+    },
+    "c128": {
+      "T10": {
+        "total": {
+          "generated": 954,
+          "delivered": 928,
+          "mean_packet_latency_seconds": 1.6406713706896547,
+          "first_delivery_seconds": 301.583104,
+          "delivered_300_to_320": 254,
+          "delivered_320_to_stop": 674,
+          "dropped": 0,
+          "pending": 26
+        },
+        "flows": {
+          "2": {
+            "generated": 493,
+            "delivered": 477,
+            "mean_packet_latency_seconds": 1.5254848805031438,
+            "first_delivery_seconds": 302.688104,
+            "delivered_300_to_320": 133,
+            "delivered_320_to_stop": 344,
+            "dropped": 0,
+            "pending": 16
+          },
+          "3": {
+            "generated": 461,
+            "delivered": 451,
+            "mean_packet_latency_seconds": 1.7624983237250555,
+            "first_delivery_seconds": 301.583104,
+            "delivered_300_to_320": 121,
+            "delivered_320_to_stop": 330,
+            "dropped": 0,
+            "pending": 10
+          }
+        },
+        "hop_failures_by_link": {},
+        "raw_identities_checked_against_export": 954
+      },
+      "T9": {
+        "total": {
+          "generated": 954,
+          "delivered": 928,
+          "mean_packet_latency_seconds": 1.6406713706324183,
+          "first_delivery_seconds": 301.583103999999,
+          "delivered_300_to_320": 254,
+          "delivered_320_to_stop": 674,
+          "dropped": 0,
+          "pending": 26
+        },
+        "flows": {
+          "2": {
+            "generated": 493,
+            "delivered": 477,
+            "mean_packet_latency_seconds": 1.5254848804457097,
+            "first_delivery_seconds": 302.688103999997,
+            "delivered_300_to_320": 133,
+            "delivered_320_to_stop": 344,
+            "dropped": 0,
+            "pending": 16
+          },
+          "3": {
+            "generated": 461,
+            "delivered": 451,
+            "mean_packet_latency_seconds": 1.762498323668028,
+            "first_delivery_seconds": 301.583103999999,
+            "delivered_300_to_320": 121,
+            "delivered_320_to_stop": 330,
+            "dropped": 0,
+            "pending": 10
+          }
+        },
+        "hop_failures_by_link": {},
+        "raw_identities_checked_against_export": 954
+      },
+      "NS3": {
+        "total": {
+          "generated": 946,
+          "delivered": 914,
+          "mean_packet_latency_seconds": 1.6948455317286661,
+          "first_delivery_seconds": 301.557104,
+          "delivered_300_to_320": 222,
+          "delivered_320_to_stop": 692,
+          "unresolved": 32
+        },
+        "flows": {
+          "2": {
+            "generated": 460,
+            "delivered": 444,
+            "mean_packet_latency_seconds": 1.6985773783783795,
+            "first_delivery_seconds": 301.557104,
+            "delivered_300_to_320": 100,
+            "delivered_320_to_stop": 344,
+            "unresolved": 16
+          },
+          "3": {
+            "generated": 486,
+            "delivered": 470,
+            "mean_packet_latency_seconds": 1.6913201276595753,
+            "first_delivery_seconds": 302.649104,
+            "delivered_300_to_320": 122,
+            "delivered_320_to_stop": 348,
+            "unresolved": 16
+          }
+        }
+      }
+    },
+    "c129": {
+      "T10": {
+        "total": {
+          "generated": 980,
+          "delivered": 948,
+          "mean_packet_latency_seconds": 1.6025889367088617,
+          "first_delivery_seconds": 301.375104,
+          "delivered_300_to_320": 260,
+          "delivered_320_to_stop": 688,
+          "dropped": 0,
+          "pending": 32
+        },
+        "flows": {
+          "2": {
+            "generated": 526,
+            "delivered": 510,
+            "mean_packet_latency_seconds": 1.492116196078433,
+            "first_delivery_seconds": 302.519104,
+            "delivered_300_to_320": 152,
+            "delivered_320_to_stop": 358,
+            "dropped": 0,
+            "pending": 16
+          },
+          "3": {
+            "generated": 454,
+            "delivered": 438,
+            "mean_packet_latency_seconds": 1.7312215799086756,
+            "first_delivery_seconds": 301.375104,
+            "delivered_300_to_320": 108,
+            "delivered_320_to_stop": 330,
+            "dropped": 0,
+            "pending": 16
+          }
+        },
+        "hop_failures_by_link": {},
+        "raw_identities_checked_against_export": 980
+      },
+      "T9": {
+        "total": {
+          "generated": 980,
+          "delivered": 948,
+          "mean_packet_latency_seconds": 1.602588936651351,
+          "first_delivery_seconds": 301.375103999999,
+          "delivered_300_to_320": 260,
+          "delivered_320_to_stop": 688,
+          "dropped": 0,
+          "pending": 32
+        },
+        "flows": {
+          "2": {
+            "generated": 526,
+            "delivered": 510,
+            "mean_packet_latency_seconds": 1.4921161960219698,
+            "first_delivery_seconds": 302.519103999997,
+            "delivered_300_to_320": 152,
+            "delivered_320_to_stop": 358,
+            "dropped": 0,
+            "pending": 16
+          },
+          "3": {
+            "generated": 454,
+            "delivered": 438,
+            "mean_packet_latency_seconds": 1.7312215798499457,
+            "first_delivery_seconds": 301.375103999999,
+            "delivered_300_to_320": 108,
+            "delivered_320_to_stop": 330,
+            "dropped": 0,
+            "pending": 16
+          }
+        },
+        "hop_failures_by_link": {},
+        "raw_identities_checked_against_export": 980
+      },
+      "NS3": {
+        "total": {
+          "generated": 854,
+          "delivered": 822,
+          "mean_packet_latency_seconds": 1.918685946472017,
+          "first_delivery_seconds": 301.401104,
+          "delivered_300_to_320": 164,
+          "delivered_320_to_stop": 658,
+          "unresolved": 32
+        },
+        "flows": {
+          "2": {
+            "generated": 369,
+            "delivered": 353,
+            "mean_packet_latency_seconds": 2.222310232294614,
+            "first_delivery_seconds": 301.401104,
+            "delivered_300_to_320": 35,
+            "delivered_320_to_stop": 318,
+            "unresolved": 16
+          },
+          "3": {
+            "generated": 485,
+            "delivered": 469,
+            "mean_packet_latency_seconds": 1.6901584989339002,
+            "first_delivery_seconds": 302.493104,
+            "delivered_300_to_320": 129,
+            "delivered_320_to_stop": 340,
+            "unresolved": 16
+          }
+        }
+      }
+    },
+    "c130": {
+      "T10": {
+        "total": {
+          "generated": 926,
+          "delivered": 894,
+          "mean_packet_latency_seconds": 1.7755907561521258,
+          "first_delivery_seconds": 301.427104,
+          "delivered_300_to_320": 215,
+          "delivered_320_to_stop": 679,
+          "dropped": 0,
+          "pending": 32
+        },
+        "flows": {
+          "2": {
+            "generated": 465,
+            "delivered": 449,
+            "mean_packet_latency_seconds": 1.7961397238307377,
+            "first_delivery_seconds": 302.714104,
+            "delivered_300_to_320": 122,
+            "delivered_320_to_stop": 327,
+            "dropped": 0,
+            "pending": 16
+          },
+          "3": {
+            "generated": 461,
+            "delivered": 445,
+            "mean_packet_latency_seconds": 1.754857078651684,
+            "first_delivery_seconds": 301.427104,
+            "delivered_300_to_320": 93,
+            "delivered_320_to_stop": 352,
+            "dropped": 0,
+            "pending": 16
+          }
+        },
+        "hop_failures_by_link": {},
+        "raw_identities_checked_against_export": 926
+      },
+      "T9": {
+        "total": {
+          "generated": 926,
+          "delivered": 894,
+          "mean_packet_latency_seconds": 1.7755907560928177,
+          "first_delivery_seconds": 301.427103999999,
+          "delivered_300_to_320": 215,
+          "delivered_320_to_stop": 679,
+          "dropped": 0,
+          "pending": 32
+        },
+        "flows": {
+          "2": {
+            "generated": 465,
+            "delivered": 449,
+            "mean_packet_latency_seconds": 1.7961397237744303,
+            "first_delivery_seconds": 302.714103999997,
+            "delivered_300_to_320": 122,
+            "delivered_320_to_stop": 327,
+            "dropped": 0,
+            "pending": 16
+          },
+          "3": {
+            "generated": 461,
+            "delivered": 445,
+            "mean_packet_latency_seconds": 1.7548570785893478,
+            "first_delivery_seconds": 301.427103999999,
+            "delivered_300_to_320": 93,
+            "delivered_320_to_stop": 352,
+            "dropped": 0,
+            "pending": 16
+          }
+        },
+        "hop_failures_by_link": {},
+        "raw_identities_checked_against_export": 926
+      },
+      "NS3": {
+        "total": {
+          "generated": 948,
+          "delivered": 916,
+          "mean_packet_latency_seconds": 1.659646358078607,
+          "first_delivery_seconds": 301.596104,
+          "delivered_300_to_320": 234,
+          "delivered_320_to_stop": 682,
+          "unresolved": 32
+        },
+        "flows": {
+          "2": {
+            "generated": 473,
+            "delivered": 457,
+            "mean_packet_latency_seconds": 1.6926221619256077,
+            "first_delivery_seconds": 301.596104,
+            "delivered_300_to_320": 113,
+            "delivered_320_to_stop": 344,
+            "unresolved": 16
+          },
+          "3": {
+            "generated": 475,
+            "delivered": 459,
+            "mean_packet_latency_seconds": 1.6268142396514187,
+            "first_delivery_seconds": 302.753104,
+            "delivered_300_to_320": 121,
+            "delivered_320_to_stop": 338,
+            "unresolved": 16
+          }
+        }
+      }
+    },
+    "c131": {
+      "T10": {
+        "total": {
+          "generated": 927,
+          "delivered": 895,
+          "mean_packet_latency_seconds": 1.7154901229050283,
+          "first_delivery_seconds": 301.557104,
+          "delivered_300_to_320": 211,
+          "delivered_320_to_stop": 684,
+          "dropped": 0,
+          "pending": 32
+        },
+        "flows": {
+          "2": {
+            "generated": 458,
+            "delivered": 442,
+            "mean_packet_latency_seconds": 1.728987846153847,
+            "first_delivery_seconds": 301.557104,
+            "delivered_300_to_320": 104,
+            "delivered_320_to_stop": 338,
+            "dropped": 0,
+            "pending": 16
+          },
+          "3": {
+            "generated": 469,
+            "delivered": 453,
+            "mean_packet_latency_seconds": 1.7023201589403971,
+            "first_delivery_seconds": 302.623104,
+            "delivered_300_to_320": 107,
+            "delivered_320_to_stop": 346,
+            "dropped": 0,
+            "pending": 16
+          }
+        },
+        "hop_failures_by_link": {},
+        "raw_identities_checked_against_export": 927
+      },
+      "T9": {
+        "total": {
+          "generated": 927,
+          "delivered": 895,
+          "mean_packet_latency_seconds": 1.715490122845307,
+          "first_delivery_seconds": 301.557103999999,
+          "delivered_300_to_320": 211,
+          "delivered_320_to_stop": 684,
+          "dropped": 0,
+          "pending": 32
+        },
+        "flows": {
+          "2": {
+            "generated": 458,
+            "delivered": 442,
+            "mean_packet_latency_seconds": 1.728987846093154,
+            "first_delivery_seconds": 301.557103999999,
+            "delivered_300_to_320": 104,
+            "delivered_320_to_stop": 338,
+            "dropped": 0,
+            "pending": 16
+          },
+          "3": {
+            "generated": 469,
+            "delivered": 453,
+            "mean_packet_latency_seconds": 1.7023201588816241,
+            "first_delivery_seconds": 302.623103999997,
+            "delivered_300_to_320": 107,
+            "delivered_320_to_stop": 346,
+            "dropped": 0,
+            "pending": 16
+          }
+        },
+        "hop_failures_by_link": {},
+        "raw_identities_checked_against_export": 927
+      },
+      "NS3": {
+        "total": {
+          "generated": 903,
+          "delivered": 883,
+          "mean_packet_latency_seconds": 1.7760154156285393,
+          "first_delivery_seconds": 301.453104,
+          "delivered_300_to_320": 207,
+          "delivered_320_to_stop": 676,
+          "unresolved": 20
+        },
+        "flows": {
+          "2": {
+            "generated": 433,
+            "delivered": 417,
+            "mean_packet_latency_seconds": 1.8792065419664274,
+            "first_delivery_seconds": 302.532104,
+            "delivered_300_to_320": 102,
+            "delivered_320_to_stop": 315,
+            "unresolved": 16
+          },
+          "3": {
+            "generated": 470,
+            "delivered": 466,
+            "mean_packet_latency_seconds": 1.6836748583690986,
+            "first_delivery_seconds": 301.453104,
+            "delivered_300_to_320": 105,
+            "delivered_320_to_stop": 361,
+            "unresolved": 4
+          }
+        }
+      }
+    },
+    "c132": {
+      "T10": {
+        "total": {
+          "generated": 949,
+          "delivered": 917,
+          "mean_packet_latency_seconds": 1.6929540109051249,
+          "first_delivery_seconds": 301.362104,
+          "delivered_300_to_320": 233,
+          "delivered_320_to_stop": 684,
+          "dropped": 0,
+          "pending": 32
+        },
+        "flows": {
+          "2": {
+            "generated": 446,
+            "delivered": 430,
+            "mean_packet_latency_seconds": 1.8298422790697677,
+            "first_delivery_seconds": 302.467104,
+            "delivered_300_to_320": 104,
+            "delivered_320_to_stop": 326,
+            "dropped": 0,
+            "pending": 16
+          },
+          "3": {
+            "generated": 503,
+            "delivered": 487,
+            "mean_packet_latency_seconds": 1.572087572895276,
+            "first_delivery_seconds": 301.362104,
+            "delivered_300_to_320": 129,
+            "delivered_320_to_stop": 358,
+            "dropped": 0,
+            "pending": 16
+          }
+        },
+        "hop_failures_by_link": {},
+        "raw_identities_checked_against_export": 949
+      },
+      "T9": {
+        "total": {
+          "generated": 949,
+          "delivered": 917,
+          "mean_packet_latency_seconds": 1.6929540108469745,
+          "first_delivery_seconds": 301.362103999999,
+          "delivered_300_to_320": 233,
+          "delivered_320_to_stop": 684,
+          "dropped": 0,
+          "pending": 32
+        },
+        "flows": {
+          "2": {
+            "generated": 446,
+            "delivered": 430,
+            "mean_packet_latency_seconds": 1.8298422790102917,
+            "first_delivery_seconds": 302.467103999997,
+            "delivered_300_to_320": 104,
+            "delivered_320_to_stop": 326,
+            "dropped": 0,
+            "pending": 16
+          },
+          "3": {
+            "generated": 503,
+            "delivered": 487,
+            "mean_packet_latency_seconds": 1.5720875728382961,
+            "first_delivery_seconds": 301.362103999999,
+            "delivered_300_to_320": 129,
+            "delivered_320_to_stop": 358,
+            "dropped": 0,
+            "pending": 16
+          }
+        },
+        "hop_failures_by_link": {},
+        "raw_identities_checked_against_export": 949
+      },
+      "NS3": {
+        "total": {
+          "generated": 952,
+          "delivered": 920,
+          "mean_packet_latency_seconds": 1.6532728260869565,
+          "first_delivery_seconds": 301.674104,
+          "delivered_300_to_320": 223,
+          "delivered_320_to_stop": 697,
+          "unresolved": 32
+        },
+        "flows": {
+          "2": {
+            "generated": 467,
+            "delivered": 451,
+            "mean_packet_latency_seconds": 1.7130548647450086,
+            "first_delivery_seconds": 302.779104,
+            "delivered_300_to_320": 118,
+            "delivered_320_to_stop": 333,
+            "unresolved": 16
+          },
+          "3": {
+            "generated": 485,
+            "delivered": 469,
+            "mean_packet_latency_seconds": 1.595785194029853,
+            "first_delivery_seconds": 301.674104,
+            "delivered_300_to_320": 105,
+            "delivered_320_to_stop": 364,
+            "unresolved": 16
+          }
+        }
+      }
+    },
+    "a129": {
+      "T10": {
+        "total": {
+          "generated": 11361,
+          "delivered": 11357,
+          "mean_packet_latency_seconds": 0.92829487787268,
+          "first_delivery_seconds": 301.635104,
+          "delivered_300_to_320": 212,
+          "delivered_320_to_stop": 11145,
+          "dropped": 0,
+          "pending": 4
+        },
+        "flows": {
+          "2": {
+            "generated": 11361,
+            "delivered": 11357,
+            "mean_packet_latency_seconds": 0.92829487787268,
+            "first_delivery_seconds": 301.635104,
+            "delivered_300_to_320": 212,
+            "delivered_320_to_stop": 11145,
+            "dropped": 0,
+            "pending": 4
+          }
+        },
+        "hop_failures_by_link": {},
+        "raw_identities_checked_against_export": 11361
+      },
+      "T9": {
+        "total": {
+          "generated": 11358,
+          "delivered": 11354,
+          "mean_packet_latency_seconds": 0.9290211271967853,
+          "first_delivery_seconds": 301.635103999999,
+          "delivered_300_to_320": 212,
+          "delivered_320_to_stop": 11142,
+          "dropped": 0,
+          "pending": 4
+        },
+        "flows": {
+          "2": {
+            "generated": 11358,
+            "delivered": 11354,
+            "mean_packet_latency_seconds": 0.9290211271967853,
+            "first_delivery_seconds": 301.635103999999,
+            "delivered_300_to_320": 212,
+            "delivered_320_to_stop": 11142,
+            "dropped": 0,
+            "pending": 4
+          }
+        },
+        "hop_failures_by_link": {},
+        "raw_identities_checked_against_export": 11358
+      },
+      "NS3": {
+        "total": {
+          "generated": 11234,
+          "delivered": 11227,
+          "mean_packet_latency_seconds": 0.9597574995991802,
+          "first_delivery_seconds": 301.726104,
+          "delivered_300_to_320": 216,
+          "delivered_320_to_stop": 11011,
+          "unresolved": 7
+        },
+        "flows": {
+          "2": {
+            "generated": 11234,
+            "delivered": 11227,
+            "mean_packet_latency_seconds": 0.9597574995991802,
+            "first_delivery_seconds": 301.726104,
+            "delivered_300_to_320": 216,
+            "delivered_320_to_stop": 11011,
+            "unresolved": 7
+          }
+        }
+      }
+    }
+  }
+}

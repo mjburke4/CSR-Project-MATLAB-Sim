@@ -1,0 +1,368 @@
+{
+  "schema": "csr-tranche7-benchmark-reference-case-v1",
+  "case_id": "campus_multihop_6000",
+  "status": "completed",
+  "started_utc": "2026-09-10T13:37:43.262394+00:00",
+  "case": {
+    "case_id": "campus_multihop_6000",
+    "scenario": "blue_radio_campus-multihop",
+    "scenario_file": "scenarios/benchmarks/campus_multihop_6000.csv",
+    "scenario_sha256": "90b143d93c13c6c2761bc5f2875ccc3fff98f85af6f2550370e435df2aaabcfc",
+    "profile_id": "hist-adb97c54-bare",
+    "duration_s": 6000,
+    "seed": 128,
+    "bucket_width_s": 60,
+    "default": true,
+    "flow_limit": 0,
+    "reference_directory": "evidence/tranche-7-ns3-reference/campus_multihop_6000",
+    "historical_benchmark": true,
+    "opnet_available": true,
+    "compare_core_applications": true,
+    "source_kind": "archived_opnet",
+    "opnet_ov_file": "evidence/tranche-7-benchmark-inputs/originals/blue_radio_campus.project/blue_radio_campus-multihop-DES-1.ov",
+    "probe_definition_file": "evidence/tranche-7-benchmark-inputs/originals/blue_radio_campus.project/blue_radio_campus-multihop.pb.m",
+    "opnet_source_file": "evidence/tranche-7-benchmark-inputs/originals/blue_radio_campus.project/blue_radio_campus-multihop.nt.m"
+  },
+  "runner_sha256": "1dba24abff867499c695ed1e1bd4484e869370664ebff69d489c87069bc5ce75",
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "full_ns3_rebuild_performed": false,
+  "matlab_executed": false,
+  "opnet_executed": false,
+  "stages": {
+    "aggregate_ns3": {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-I",
+        "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/utils/aggregate-ns3-trace.py",
+        "/workspace/scratch/1a5b1ad6ce1b/t7-reference-live/campus_multihop_6000/ns3-trace.csv",
+        "/workspace/scratch/1a5b1ad6ce1b/t7-reference-live/campus_multihop_6000/ns3-aggregates.csv",
+        "--scenario",
+        "blue_radio_campus-multihop",
+        "--bucket-width",
+        "60",
+        "--stop-time",
+        "6000",
+        "--legacy-trace-size-exclusion-bits",
+        "0",
+        "--require-zero-size-mismatches",
+        "--provenance",
+        "/workspace/scratch/1a5b1ad6ce1b/t7-reference-live/campus_multihop_6000/ns3-aggregates.provenance.json"
+      ],
+      "exact_sequence_validation": {
+        "matched_by_method": {
+          "exact_sequence": 11769
+        },
+        "matched_count": 11769,
+        "matched_size_compared_count": 11769,
+        "matched_size_mismatch_count": 0,
+        "source_exact_dack_retry_duplicate_delivery_count": 0,
+        "source_exact_dack_retry_duplicate_proof_count": 0,
+        "unmatched_delivery_count": 0
+      },
+      "exit_code": 0,
+      "log": "ns3-aggregate.log"
+    },
+    "compare": {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-I",
+        "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/utils/compare-opnet-ns3-aggregates.py",
+        "/workspace/scratch/1a5b1ad6ce1b/t7-reference-live/campus_multihop_6000/opnet-aggregates.csv",
+        "/workspace/scratch/1a5b1ad6ce1b/t7-reference-live/campus_multihop_6000/ns3-aggregates.csv",
+        "--scenario",
+        "blue_radio_campus-multihop",
+        "--time-start",
+        "60",
+        "--time-stop",
+        "6000",
+        "--abs-tolerance",
+        "0",
+        "--rel-tolerance",
+        "0",
+        "--time-tolerance",
+        "0",
+        "--max-differences",
+        "200",
+        "--report",
+        "/workspace/scratch/1a5b1ad6ce1b/t7-reference-live/campus_multihop_6000/aggregate-report.json",
+        "--normalized",
+        "/workspace/scratch/1a5b1ad6ce1b/t7-reference-live/campus_multihop_6000/aggregate-normalized.csv",
+        "--statistic",
+        "Generator.Traffic Sent (packets/sec)",
+        "--statistic",
+        "Generator.Traffic Sent (bits/sec)",
+        "--statistic",
+        "Generator.Packet Size (bits)",
+        "--statistic",
+        "Sink.Traffic Received (packets/sec)",
+        "--statistic",
+        "Sink.Traffic Received (packets)",
+        "--statistic",
+        "Sink.Traffic Received (bits/sec)",
+        "--statistic",
+        "Sink.Traffic Received (bits)",
+        "--statistic",
+        "Sink.End-to-End Delay (seconds)"
+      ],
+      "exit_code": 1,
+      "log": "aggregate-compare.log"
+    },
+    "extract_opnet": {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-I",
+        "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/utils/extract-opnet-ov.py",
+        "/workspace/scratch/1a5b1ad6ce1b/tranche7/evidence/tranche-7-benchmark-inputs/originals/blue_radio_campus.project/blue_radio_campus-multihop-DES-1.ov",
+        "--json",
+        "/workspace/scratch/1a5b1ad6ce1b/t7-reference-live/campus_multihop_6000/opnet-extract.json",
+        "--csv",
+        "/workspace/scratch/1a5b1ad6ce1b/t7-reference-live/campus_multihop_6000/opnet-aggregates.csv",
+        "--strict",
+        "--probe-definition",
+        "/workspace/scratch/1a5b1ad6ce1b/tranche7/evidence/tranche-7-benchmark-inputs/originals/blue_radio_campus.project/blue_radio_campus-multihop.pb.m"
+      ],
+      "exit_code": 0,
+      "log": "opnet-extract.log"
+    },
+    "run_ns3": {
+      "application_admission_totals": {
+        "admitted": 12417,
+        "attempts": 1710000,
+        "blocked_destination": 0,
+        "blocked_discovery": 0,
+        "blocked_gateway_route": 0,
+        "blocked_nsdp": 1697583,
+        "blocked_topology": 0
+      },
+      "command": [
+        "/workspace/scratch/1a5b1ad6ce1b/t7-ns3-build/csr-opnet-scenario-runner",
+        "--scenario=/workspace/scratch/1a5b1ad6ce1b/tranche7/scenarios/benchmarks/campus_multihop_6000.csv",
+        "--trace=/workspace/scratch/1a5b1ad6ce1b/t7-reference-live/campus_multihop_6000/ns3-trace.csv",
+        "--appDiagnostics=/workspace/scratch/1a5b1ad6ce1b/t7-reference-live/campus_multihop_6000/app-admission-diagnostics.csv",
+        "--stop=6000",
+        "--flowLimit=0",
+        "--dutyCycling=1",
+        "--opnetAlignedDutyCycle=1",
+        "--gatewayDiscovery=1",
+        "--opnetAppGating=1",
+        "--aggregateTraceOnly=1",
+        "--quietModelLogs=1"
+      ],
+      "exit_code": 0,
+      "log": "ns3-run.log"
+    }
+  },
+  "compressed_artifacts": [
+    {
+      "original_name": "ns3-trace.csv",
+      "original_sha256": "b5d4a7fd8da818c8581a73bef52ab8f98ced815f821745350e8f95c7c7f02722",
+      "original_bytes": 51686904,
+      "path": "ns3-trace.csv.gz",
+      "sha256": "4a6bd194f83922add6c3b0b505e8f36596b639e314a12d0225347faca59e1ba5",
+      "bytes": 4360419
+    }
+  ],
+  "workflow_process": {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "-B",
+      "-I",
+      "/workspace/scratch/4bc527402fde/CSR-Project-NS3-part2/utils/run-opnet-aggregate-differential.py",
+      "--scenario",
+      "/workspace/scratch/1a5b1ad6ce1b/tranche7/scenarios/benchmarks/campus_multihop_6000.csv",
+      "--runner",
+      "/workspace/scratch/1a5b1ad6ce1b/t7-ns3-build/csr-opnet-scenario-runner",
+      "--opnet-ov",
+      "/workspace/scratch/1a5b1ad6ce1b/tranche7/evidence/tranche-7-benchmark-inputs/originals/blue_radio_campus.project/blue_radio_campus-multihop-DES-1.ov",
+      "--probe-definition",
+      "/workspace/scratch/1a5b1ad6ce1b/tranche7/evidence/tranche-7-benchmark-inputs/originals/blue_radio_campus.project/blue_radio_campus-multihop.pb.m",
+      "--expected-opnet-ov-sha256",
+      "b643bee5c1d0260581a0135c0add5c87441bd98f70f66388fac0bf95096c39ee",
+      "--expected-probe-definition-sha256",
+      "2871b54d0c531198f8ff77b1aa2a3cc81da6f05814c9ca00e64ed6a544a6470f",
+      "--output-dir",
+      "/workspace/scratch/1a5b1ad6ce1b/t7-reference-live/campus_multihop_6000"
+    ],
+    "exit_code": 1,
+    "elapsed_seconds": 32.01052545700077,
+    "log": "campus_multihop_6000-workflow.log"
+  },
+  "opnet_numeric_parity_passed": false,
+  "application_admission_totals": {
+    "attempts": 1710000,
+    "admitted": 12417,
+    "blocked_discovery": 0,
+    "blocked_topology": 0,
+    "blocked_gateway_route": 0,
+    "blocked_destination": 0,
+    "blocked_nsdp": 1697583
+  },
+  "exact_sequence_validation": {
+    "matched_count": 11769,
+    "matched_by_method": {
+      "exact_sequence": 11769
+    },
+    "source_exact_dack_retry_duplicate_proof_count": 0,
+    "source_exact_dack_retry_duplicate_delivery_count": 0,
+    "unmatched_delivery_count": 0,
+    "matched_size_compared_count": 11769,
+    "matched_size_mismatch_count": 0
+  },
+  "normalized_sidecars": [
+    {
+      "schema": "csr-benchmark-source-provenance-v1",
+      "source": "ns3",
+      "scenario": "blue_radio_campus-multihop",
+      "scenario_sha256": "90b143d93c13c6c2761bc5f2875ccc3fff98f85af6f2550370e435df2aaabcfc",
+      "profile_id": "hist-adb97c54-bare",
+      "source_file_sha256": "b5d4a7fd8da818c8581a73bef52ab8f98ced815f821745350e8f95c7c7f02722",
+      "source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+      "window": {
+        "start_time_s": 0,
+        "stop_time_s": 6000,
+        "bucket_width_s": 60,
+        "bucket_count": 100,
+        "start_endpoint": "inclusive",
+        "stop_endpoint": "exclusive"
+      },
+      "output": {
+        "path": "ns3-aggregates.csv",
+        "sha256": "d0b37516ba57ce76fc5692ce295dc4bed65e0654e9849a9e5b087d164f8870b1"
+      },
+      "upstream_provenance": {
+        "path": "ns3-aggregates.provenance.json",
+        "sha256": "ce7f21c0bd452b832ddda196f39e93fe394b550584ecd8592e4d3a14feb34c91",
+        "bytes": 12757
+      },
+      "excluded_extra_statistics": [
+        "ECC.Traffic Dropped (packets/sec)",
+        "HOP.Resend Queue Size (packets)",
+        "MAC.ACK Queue Size (packets)",
+        "MAC.Tx Queue Size (packets)",
+        "MAC.Tx Queuing Delay (sec)",
+        "NWK.Network Queue Size (packets)",
+        "NWK.Network Queuing Delay (sec)"
+      ],
+      "opnet_runtime_executed": false,
+      "matlab_runtime_executed": false,
+      "source_kind": "archived_opnet"
+    },
+    {
+      "schema": "csr-benchmark-source-provenance-v1",
+      "source": "opnet",
+      "scenario": "blue_radio_campus-multihop",
+      "scenario_sha256": "90b143d93c13c6c2761bc5f2875ccc3fff98f85af6f2550370e435df2aaabcfc",
+      "profile_id": "hist-adb97c54-bare",
+      "source_file_sha256": "b643bee5c1d0260581a0135c0add5c87441bd98f70f66388fac0bf95096c39ee",
+      "source_commit": null,
+      "window": {
+        "start_time_s": 0,
+        "stop_time_s": 6000,
+        "bucket_width_s": 60,
+        "bucket_count": 100,
+        "start_endpoint": "inclusive",
+        "stop_endpoint": "exclusive"
+      },
+      "output": {
+        "path": "opnet-aggregates.csv",
+        "sha256": "472ae8b183281d7c70bf1252de08ecb6fb3d3b508fe549d3b13a7ac56fc5399c"
+      },
+      "upstream_provenance": {
+        "path": "opnet-extract.json",
+        "sha256": "561a1a56e558246a6c16180bcf68235bb3288f9a6f517d687e3eb6605f5831ce",
+        "bytes": 264304
+      },
+      "excluded_extra_statistics": [
+        "Generator.Packet Interarrival Time (secs)",
+        "HOP.Resend Queue Size (packets)",
+        "MAC.ACK Queue Size (packets)",
+        "MAC.Tx Queue Size (packets)",
+        "MAC.Tx Queuing Delay (sec)"
+      ],
+      "opnet_runtime_executed": false,
+      "matlab_runtime_executed": false,
+      "source_kind": "archived_opnet"
+    }
+  ],
+  "completed_utc": "2026-09-10T13:38:18.138884+00:00",
+  "files": [
+    {
+      "path": "aggregate-compare.log",
+      "sha256": "ed56b5292d042fb6fa3402f478584fb7551410d456afffdba18b85b6910c1c46",
+      "bytes": 10171
+    },
+    {
+      "path": "aggregate-normalized.csv",
+      "sha256": "a49c1ebd3f1944bad174c2c3636094b0232bfe9ca16a8f6ae8cdc3a42addfef2",
+      "bytes": 378450
+    },
+    {
+      "path": "aggregate-report.json",
+      "sha256": "1cc0114f4742b3aa22efb1dc0794c65941c084db10d87c7afd3dc6259508517d",
+      "bytes": 257310
+    },
+    {
+      "path": "aggregate-run-manifest.json",
+      "sha256": "f6969aa4e2c231360f843b954853d14a97e6f327c07c4b9a3848569263f9dac3",
+      "bytes": 17285
+    },
+    {
+      "path": "app-admission-diagnostics.csv",
+      "sha256": "03e4976c1bc0bb92687b882f714f6ce0cdf24f90c9641fabaa4b0d1fc4bf4c8e",
+      "bytes": 1113
+    },
+    {
+      "path": "ns3-aggregate.log",
+      "sha256": "87ca5e131f0211533950de7ceb850ff0dcf380c400ef73796498ac61a1842c59",
+      "bytes": 237
+    },
+    {
+      "path": "ns3-aggregates.csv",
+      "sha256": "d0b37516ba57ce76fc5692ce295dc4bed65e0654e9849a9e5b087d164f8870b1",
+      "bytes": 330580
+    },
+    {
+      "path": "ns3-aggregates.provenance.json",
+      "sha256": "ce7f21c0bd452b832ddda196f39e93fe394b550584ecd8592e4d3a14feb34c91",
+      "bytes": 12757
+    },
+    {
+      "path": "ns3-benchmark.provenance.json",
+      "sha256": "449aa0512e577b10cffeb370e9f283f4b178e85d11b88fc25bf863b4477e9787",
+      "bytes": 1304
+    },
+    {
+      "path": "ns3-run.log",
+      "sha256": "57a6ef05887f11f63e4b9cf177175bc4c8504dbc59e782bfd8d15b2be391e5b7",
+      "bytes": 340
+    },
+    {
+      "path": "ns3-trace.csv.gz",
+      "sha256": "4a6bd194f83922add6c3b0b505e8f36596b639e314a12d0225347faca59e1ba5",
+      "bytes": 4360419
+    },
+    {
+      "path": "opnet-aggregates.csv",
+      "sha256": "472ae8b183281d7c70bf1252de08ecb6fb3d3b508fe549d3b13a7ac56fc5399c",
+      "bytes": 336401
+    },
+    {
+      "path": "opnet-benchmark.provenance.json",
+      "sha256": "57a6bb65476195fcf4baa59ff434023089d42ae68fba7cadc7360601bcfb95c7",
+      "bytes": 1188
+    },
+    {
+      "path": "opnet-extract.json",
+      "sha256": "561a1a56e558246a6c16180bcf68235bb3288f9a6f517d687e3eb6605f5831ce",
+      "bytes": 264304
+    },
+    {
+      "path": "opnet-extract.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  ]
+}

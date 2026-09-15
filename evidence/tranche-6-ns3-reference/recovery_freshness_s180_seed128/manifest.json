@@ -1,0 +1,90 @@
+{
+  "schema": "csr-tranche6-outage-reference-case-v1",
+  "status": "completed",
+  "started_utc": "2026-09-10T00:54:50.235914+00:00",
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "execution_completed": true,
+  "matlab_executed": false,
+  "full_ns3_rebuild_performed": false,
+  "case": "recovery_freshness_s180_seed128",
+  "build_manifest_sha256": "2dfb6801c6a1700edd545fa770ae7485ef55ae0e1299d61ed53c5fb4105591c5",
+  "runner_sha256": "eab733aa8d2639bca4cbc2abeb0bbc842c0899d1d7d240a5cda3d0d9bcbe5020",
+  "coupling_differences": [
+    "The ns-3 hook runs after successful physical decoding and MAC last-heard, pathloss and reservation updates, before HOP/NWK receipt. MATLAB gates before its MAC bookkeeping; blackout MAC side effects therefore differ.",
+    "ns-3 uses its actual production pairwise16/group cryptographic state; MATLAB uses behavioral production security and size-only envelopes.",
+    "The same seed identities do not create common random draws across ns-3 and MATLAB; random engines, stream assignment and event order differ.",
+    "Native ns-3 behavior is retained for freshness, admission and retry/custody. Results describe the pinned implementation and are not a numerical-parity gate."
+  ],
+  "command": [
+    "/workspace/scratch/1a5b1ad6ce1b/tranche6-reference-build/csr-tranche6-outage-reference",
+    "--seed=128",
+    "--freshness=180",
+    "--trace=/workspace/scratch/1a5b1ad6ce1b/tranche6/evidence/tranche-6-ns3-reference/recovery_freshness_s180_seed128/trace.csv",
+    "--snapshots=/workspace/scratch/1a5b1ad6ce1b/tranche6/evidence/tranche-6-ns3-reference/recovery_freshness_s180_seed128/snapshots.csv"
+  ],
+  "elapsed_seconds": 0.4652406289969804,
+  "exit_code": 0,
+  "uncompressed_trace_sha256": "4151351c893444bf0591d627fd9f90069338801d5e49daf7e990de09fd3f40b6",
+  "trace_row_count": 15925,
+  "observations": {
+    "app_generated": 5,
+    "app_delivered_unique": 2,
+    "app_delivery_events": 2,
+    "duplicate_app_deliveries": 0,
+    "undelivered_with_retry_exhaustion": 3,
+    "undelivered_without_terminal_trace": 0,
+    "hop_no_ack_completions": 3,
+    "link_failure_callbacks": 0,
+    "post_phy_eligibility_drops": 20,
+    "tx_start": 400,
+    "phy_rx_accept_before_gate": 502,
+    "phy_rx_drop": 298,
+    "maximum_delivered_latency_seconds": 30.03421266700002,
+    "minimum_delivered_latency_seconds": 3.0730126669999436,
+    "first_delivery_seconds": 588.034212667,
+    "first_after_restore_seconds": 588.034212667,
+    "stop_nwk_queue": 0,
+    "stop_hop_pending_data": 0,
+    "stop_hop_resend_queue": 0,
+    "stop_mac_queue": 0,
+    "terminal_interpretation": "A no-ACK completion proves local HOP exhaustion, not global packet loss when later delivery or downstream custody exists. Unresolved applications remain explicitly unresolved; queue snapshots are aggregate."
+  },
+  "completed_utc": "2026-09-10T00:54:50.898269+00:00",
+  "files": [
+    {
+      "path": "applications.csv",
+      "sha256": "202c33486550f8e804fd838e46a83fd290e6e250ec8175b1321e0d0e00cd360f",
+      "bytes": 454
+    },
+    {
+      "path": "event_counts.csv",
+      "sha256": "aa316939f204974f68190bb195095c7b51b3183fbbaad38a77b47c1f1fc5536c",
+      "bytes": 413
+    },
+    {
+      "path": "event_timeline.csv.gz",
+      "sha256": "0e10a4adc7fcfda54bd29f102c4f07378a1288b68a8b4fb0895f496b8d274459",
+      "bytes": 2163
+    },
+    {
+      "path": "run.log.gz",
+      "sha256": "0a8affc22c2e2f198273a7734a8877dba2ac9dd1c06b50c45c01f21fc23af163",
+      "bytes": 77919
+    },
+    {
+      "path": "scenario.json",
+      "sha256": "be79140f095fba4bf017e5aa272957c481d0915890d3388d94fe9fe01a377566",
+      "bytes": 3537
+    },
+    {
+      "path": "snapshots.csv",
+      "sha256": "b381bdd6fb4931c3db77473a51c21f13b9494ccdfe0c2e0711acb76c4b924a8a",
+      "bytes": 20742
+    },
+    {
+      "path": "trace.csv.gz",
+      "sha256": "96da67e057fe37c88a0d7d7242c02ae8649f989b7297e38676a39b7d496bf174",
+      "bytes": 144604
+    }
+  ]
+}

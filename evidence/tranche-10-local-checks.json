@@ -1,0 +1,320 @@
+{
+  "schema": "csr-matlab-tranche-10-local-checks-v1",
+  "status": "ready_for_owner_portable_execution",
+  "completed_utc": "2026-09-11T19:56:30.243231+00:00",
+  "branch": "agent/tranche-10-contention-campus",
+  "matlab_base_commit": "386f669f369f90b18d1d553db85b017b0ca8c77c",
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "matlab_executed": false,
+  "octave_executed": false,
+  "portable_acceptance_established": false,
+  "numerical_parity_established": false,
+  "performance_improvement_established": false,
+  "python": {
+    "command": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "scripts/tests",
+      "-v"
+    ],
+    "exit_code": 0,
+    "tests": 303,
+    "status": "passed",
+    "elapsed_seconds": 6.757531141000072,
+    "source_stable": true,
+    "python_version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "completed_utc": "2026-09-11T19:51:58.961837+00:00",
+    "log_sha256": "27c0832d77dac6df38d9b04bd1130058c51810a51602636eee75272db4e2230b",
+    "matlab_executed": false
+  },
+  "matlab_static": {
+    "command": [
+      "python3",
+      "-m",
+      "miss_hit.mh_lint",
+      "--matlab",
+      "2022a",
+      "+csr/+analysis/benchmarkAggregates.m",
+      "+csr/+analysis/exportResults.m",
+      "+csr/+analysis/performanceSummary.m",
+      "+csr/+analysis/researchSummary.m",
+      "+csr/+hop/Frames.m",
+      "+csr/+hop/Layer.m",
+      "+csr/+hop/validateConfig.m",
+      "+csr/+mac/Layer.m",
+      "+csr/+mac/SlotSelection.m",
+      "+csr/+nwk/Layer.m",
+      "+csr/+nwk/Neighbors.m",
+      "+csr/+nwk/Reassembly.m",
+      "+csr/+nwk/Routes.m",
+      "+csr/+nwk/RoutingCodec.m",
+      "+csr/+nwk/controlWireBytes.m",
+      "+csr/+nwk/defaults.m",
+      "+csr/+nwk/linkCost.m",
+      "+csr/+nwk/validateConfig.m",
+      "+csr/+phy/BerTables.m",
+      "+csr/+phy/ControlledChannel.m",
+      "+csr/+phy/Model.m",
+      "+csr/+phy/RadioProfile.m",
+      "+csr/+phy/SignalEngine.m",
+      "+csr/+phy/airtime.m",
+      "+csr/+phy/rateDefinition.m",
+      "+csr/+scenario/ackServiceSuite.m",
+      "+csr/+scenario/benchmarkSuite.m",
+      "+csr/+scenario/importNs3.m",
+      "+csr/+scenario/linkDiagnosticSuite.m",
+      "+csr/+scenario/macHopNetwork.m",
+      "+csr/+scenario/phyNetwork.m",
+      "+csr/+scenario/researchNetwork.m",
+      "+csr/+scenario/researchSweep.m",
+      "+csr/+scenario/retainedSuite.m",
+      "+csr/+scenario/routedNetwork.m",
+      "+csr/+scenario/smallNetwork.m",
+      "+csr/+scenario/tranche10Suite.m",
+      "+csr/+scenario/validate.m",
+      "+csr/+sim/+native/ClockNode.m",
+      "+csr/+sim/+native/PacketNode.m",
+      "+csr/+sim/+native/fixedProbeChannel.m",
+      "+csr/+sim/+native/probePacketTransport.m",
+      "+csr/+sim/+native/requireAvailable.m",
+      "+csr/+sim/+native/wrapPacket.m",
+      "+csr/+sim/AckServiceDiagnostics.m",
+      "+csr/+sim/ApplicationGenerator.m",
+      "+csr/+sim/EventScheduler.m",
+      "+csr/+sim/LinkDiagnostics.m",
+      "+csr/+sim/MacHopSimulation.m",
+      "+csr/+sim/NativeScheduler.m",
+      "+csr/+sim/NetworkSimulation.m",
+      "+csr/+sim/RandomStreams.m",
+      "+csr/+sim/capabilities.m",
+      "+csr/+sim/probeWirelessScheduler.m",
+      "+csr/+validation/Artifacts.m",
+      "+csr/+validation/ackServiceContract.m",
+      "+csr/+validation/contentionContract.m",
+      "+csr/+validation/exportResearchCase.m",
+      "+csr/+validation/receiverTimingContract.m",
+      "+csr/Node.m",
+      "+csr/Simulation.m",
+      "+csr/packet.m",
+      "+csr/runScenario.m",
+      "examples/run_small_network.m",
+      "run_tranche10_validation.m",
+      "run_tranche1_validation.m",
+      "run_tranche2_validation.m",
+      "run_tranche3_validation.m",
+      "run_tranche4_validation.m",
+      "run_tranche5_validation.m",
+      "run_tranche6_validation.m",
+      "run_tranche7_validation.m",
+      "run_tranche8_validation.m",
+      "run_tranche9_validation.m",
+      "run_validation.m",
+      "tests/TestAckServiceContract.m",
+      "tests/TestAckServiceDiagnostics.m",
+      "tests/TestAckServiceSuite.m",
+      "tests/TestApplicationObservations.m",
+      "tests/TestBenchmarkAggregates.m",
+      "tests/TestBenchmarkSuite.m",
+      "tests/TestBerTables.m",
+      "tests/TestContentionContract.m",
+      "tests/TestControlWireProfile.m",
+      "tests/TestCppBerReference.m",
+      "tests/TestEventScheduler.m",
+      "tests/TestFoundation.m",
+      "tests/TestHistoricalApplication.m",
+      "tests/TestHistoricalEnvelope.m",
+      "tests/TestHistoricalMac.m",
+      "tests/TestHistoricalResearchEvidence.m",
+      "tests/TestHistoricalScenarioImport.m",
+      "tests/TestHopControls.m",
+      "tests/TestHopFrames.m",
+      "tests/TestHopLayer.m",
+      "tests/TestLinkDiagnosticSuite.m",
+      "tests/TestLinkDiagnostics.m",
+      "tests/TestMacHopCustody.m",
+      "tests/TestMacHopScenarios.m",
+      "tests/TestMacLayer.m",
+      "tests/TestNeighbors.m",
+      "tests/TestNetworkConfig.m",
+      "tests/TestNs3ScenarioImport.m",
+      "tests/TestNwkLayer.m",
+      "tests/TestNwkScenarios.m",
+      "tests/TestOutageRecovery.m",
+      "tests/TestPerformanceSummary.m",
+      "tests/TestPhyFoundation.m",
+      "tests/TestPhyMacBridge.m",
+      "tests/TestPhyModel.m",
+      "tests/TestPhyScenarios.m",
+      "tests/TestRandomStreams.m",
+      "tests/TestReceiverTimingContract.m",
+      "tests/TestResearchEvidence.m",
+      "tests/TestResearchScenarios.m",
+      "tests/TestResearchSweep.m",
+      "tests/TestRoutes.m",
+      "tests/TestRoutingCodec.m",
+      "tests/TestSignalEngine.m",
+      "tests/TestTranche10Suite.m",
+      "tests/TestTranche1Integration.m",
+      "tests/native/TestNativeIntegration.m",
+      "validate_native.m"
+    ],
+    "exit_code": 0,
+    "matlab_files": 123,
+    "status": "passed",
+    "matlab_executed": false,
+    "scope": "Project MATLAB production, entry points and portable/native test source; archived OPNET input scripts excluded.",
+    "initial_broad_scan": "Repository-wide scan encountered a MISS_HIT encoding/internal error on archived input material and incorrectly returned exit0; not counted as passed.",
+    "final_gateway_export_fix_included": true
+  },
+  "prepared_portable_test_methods": 544,
+  "new_portable_test_methods": 30,
+  "source_snapshot_files": 223,
+  "matlab_source_files": 123,
+  "source_snapshot": "tranche-10-local/source-snapshot.json",
+  "post_test_metadata_added": [
+    "evidence/tranche-10-candidate.json"
+  ],
+  "tested_code_and_stimuli_unchanged": true,
+  "protected_baseline": "tranche-10-local/protected-baseline.json",
+  "reference_preflight": "tranche-10-local/reference-preflight.json",
+  "reference_files_verified": 332,
+  "path_budget": "tranche-10-local/path-budget.json",
+  "independent_review": {
+    "path": "docs/tranche-10-review.md",
+    "sha256": "98c1f29dd6f1bedb4eb6aa2a30a06c190653a6764617da3fe5dfc09769c2868d",
+    "record": "evidence/tranche-10-gate/final-review.json",
+    "record_sha256": "5c2f96920fd1e145f788b8504a0c11aad729a2d8d0952500f0b4853a747d7d08",
+    "open_blockers": 0,
+    "reviewed_files_verified": 42,
+    "reviewed_source_snapshot_verified": true
+  },
+  "native_contracts": {
+    "mac": 279,
+    "receiver": 154,
+    "retained_ack": 101,
+    "total": 534
+  },
+  "fresh_ns3_required_modules_rebuilt": 9,
+  "fresh_engine_compatibility": {
+    "cases": 6,
+    "accepted_t8_artifact_pairs": 24,
+    "observer_on_off_artifact_pairs": 12,
+    "retained_t9_service_rows": 182429,
+    "closed_output_hashes": 125
+  },
+  "whitespace_check": {
+    "source_and_authored_artifacts": "passed",
+    "preserved_log_exception": "Four original trailing-whitespace lines in evidence/tranche-10-native-build/engine-logs/configure.log remain byte-exact; no log normalization.",
+    "command": [
+      "git",
+      "diff",
+      "--cached",
+      "--check",
+      "--",
+      ".",
+      ":(exclude)evidence/tranche-10-native-build/engine-logs/configure.log"
+    ],
+    "exit_code": 0
+  },
+  "remaining_gate": "Owner MATLAB R2025a portable default execution, returned evidence validation and measured diagnostic/campus comparison.",
+  "artifacts": [
+    {
+      "path": "tranche-10-local/matlab-lint.json",
+      "bytes": 4804,
+      "sha256": "bdd91c35dc762b189fe12da332b7399a85fab873f23e517353157a53c95db26a"
+    },
+    {
+      "path": "tranche-10-local/matlab-lint.log",
+      "bytes": 67,
+      "sha256": "3a84596921d2ec3302e9179c2b2a3015558718da20aa2130888f338df81eb64a"
+    },
+    {
+      "path": "tranche-10-local/path-budget.json",
+      "bytes": 629,
+      "sha256": "ecab4e4ab8231610fbf7e8907b151d89cffd8a8e0c3b95f17555e402915c248f"
+    },
+    {
+      "path": "tranche-10-local/prepared-test-membership.json",
+      "bytes": 36732,
+      "sha256": "250b030060b58b479e2f2c73e992eb6dc86d8d17f76f0740472f2d0ee7643cff"
+    },
+    {
+      "path": "tranche-10-local/protected-baseline.json",
+      "bytes": 784,
+      "sha256": "8d5f49c5fce55ea44cc4919e7f7a04717cfbc7b5c28903f9d75dd6376e71581a"
+    },
+    {
+      "path": "tranche-10-local/python-tests.json",
+      "bytes": 485,
+      "sha256": "f9936dac5d9f138ccbd6b4a0c6435f63d49a7d2446feb22f249a15f012662d39"
+    },
+    {
+      "path": "tranche-10-local/python-tests.log",
+      "bytes": 47376,
+      "sha256": "27c0832d77dac6df38d9b04bd1130058c51810a51602636eee75272db4e2230b"
+    },
+    {
+      "path": "tranche-10-local/reference-preflight.json",
+      "bytes": 70197,
+      "sha256": "dd3b992800b7d79cb3d432471fb95f47faf95a494d5608ebb6f4a2e3f955b6d2"
+    },
+    {
+      "path": "tranche-10-local/source-snapshot.json",
+      "bytes": 24170,
+      "sha256": "3d860b8012c97bbda1a5fbf596134b34d5e014de25973a75a055c9595897a40c"
+    },
+    {
+      "path": "tranche-10-local/tested-source-snapshot.json",
+      "bytes": 24062,
+      "sha256": "65f4e808b629859c250ec80cd2f4868776b154537164c37e46405c641436b747"
+    },
+    {
+      "path": "tranche-10-gate/accepted-accounting-recheck-final.json",
+      "bytes": 6720,
+      "sha256": "31df7134572a659acfe9469eef912d8997a3ebf4fbd8e5d536f277e175a32057"
+    },
+    {
+      "path": "tranche-10-gate/accepted-accounting-recheck-final2.json",
+      "bytes": 7264,
+      "sha256": "fb4fd1a8624ffc34244446774616a3fce967a235a37a71dcf9047eafb0b31938"
+    },
+    {
+      "path": "tranche-10-gate/accepted-accounting-recheck-final3.json",
+      "bytes": 6720,
+      "sha256": "31df7134572a659acfe9469eef912d8997a3ebf4fbd8e5d536f277e175a32057"
+    },
+    {
+      "path": "tranche-10-gate/accepted-accounting-recheck.json",
+      "bytes": 8923,
+      "sha256": "b80b88aab3bb887bed6a343958060dfc81b9cab67bdccd06fd5bfbd8a7a46334"
+    },
+    {
+      "path": "tranche-10-gate/compatibility-recheck.json",
+      "bytes": 333,
+      "sha256": "1df148a0ffaa23994faa4446b73c0b57cae31e66e784965c5dedd9d670f63181"
+    },
+    {
+      "path": "tranche-10-gate/final-review.json",
+      "bytes": 41526,
+      "sha256": "5c2f96920fd1e145f788b8504a0c11aad729a2d8d0952500f0b4853a747d7d08"
+    },
+    {
+      "path": "tranche-10-gate/matlab-lint.log",
+      "bytes": 65,
+      "sha256": "9ce818dc1bc91ef117e92612d2564fb55d52027453d1b2e4510c66102ac02245"
+    },
+    {
+      "path": "tranche-10-gate/native-recheck.json",
+      "bytes": 618,
+      "sha256": "428392c0e43019ad9989f0a0dc217c30aff5d9dc7407eb974d52c3c82c1652aa"
+    },
+    {
+      "path": "tranche-10-gate/python-t10-tests.log",
+      "bytes": 7236,
+      "sha256": "e35f0dd074616e4d1d75cc60a5aa427b68453e3c7b666dade090fe0e2b423400"
+    }
+  ]
+}

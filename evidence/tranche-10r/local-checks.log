@@ -1,0 +1,21 @@
+Executed in the restored csr10 tree on 2026-09-14.
+
+$ python -m miss_hit.mh_lint --matlab 2022a +csr/+nwk/Neighbors.m +csr/+sim/EventScheduler.m tests/TestEventScheduler.m tests/TestNeighbors.m run_tranche10_mesh.m
+MISS_HIT Lint Summary: 5 file(s) analysed, everything seems fine
+
+$ python -m unittest discover -s scripts/tests -q
+benchmark comparison failed: comparison-input.json already exists; choose a fresh output directory
+Tranche 10 review failed: T10 accepted baseline identity mismatch
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/zipfile/__init__.py:1625: UserWarning: Duplicate name: 'item'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+Tranche 8 review failed: Tranche 8 accepted baseline identity mismatch
+Tranche 9 review failed: Tranche 9 accepted baseline identity mismatch
+----------------------------------------------------------------------
+Ran 303 tests in 12.917s
+
+OK
+synthetic-test-input: structural pass; 3 pair comparisons; numeric differences descriptive
+synthetic-test-input: structural pass; 1 pair comparisons; numeric differences descriptive
+
+The expected negative-test messages above do not indicate a failing test suite.
+No MATLAB, Octave or native ns-3 simulation executed for this repair.

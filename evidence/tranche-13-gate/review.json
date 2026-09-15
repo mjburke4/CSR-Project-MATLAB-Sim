@@ -1,0 +1,216 @@
+{
+  "schema": "csr-tranche13-independent-review-v1",
+  "created_utc": "2026-09-14T19:36:28.478893+00:00",
+  "reviewer": "t13_review",
+  "status": "passed_pending_owner_matlab",
+  "matlab_execution": false,
+  "cross_simulator_parity_established": false,
+  "scope": "Independent adversarial code and design review, actual native identity/transport/capacity audit, owner-runner review, and final candidate/source bindings. Python return gate reviewed separately by its owner.",
+  "bindings": {
+    "AGENTS.md": "0ded7471df78325c00c73cd339798338b987ef86b73b483b5e45f0358d6877fa",
+    "run_tranche13_validation.m": "b73cb2790aa918c84a485978f36a472b428fbb5ca04c13db096aff9c1c2d539e",
+    "+csr/+validation/lossContract.m": "283d5d83990aeb05523b6e6f3c0e81343b9e51f532891c340f75751cfdef401b",
+    "tests/TestLossContract.m": "fb8a11269170a09f93135b722b7a4b32941dcba7de29b7affe264a2410bb0127",
+    "scripts/ns3/tranche13_loss.cc": "24e99170b476550273a8cf32df3a31951182bbdb5ea2ce9a1650e76ba8181de1",
+    "scripts/run_tranche13_ns3_reference.py": "2e7945003d343a47ce1931a222fca4321faa92364405b4b78bfba387fcabc456",
+    "scenarios/loss/plan.json": "06ede1b0b67d28b5690e6912284b3a57518ed1c884b725475ba14a881ea5a142",
+    "scenarios/loss/cases.csv": "d14be63f6d623222325a61f74e1302431fe5cbdac194749e579ba704c22ba8ce",
+    "scenarios/loss/offers.csv": "fb0cc72507d08c3376676dc9100da07d2dc83fbaa7851d5bd20f7eaf2f086059",
+    "scenarios/loss/draws.csv": "5c975f831e8f8e4a352567ac45abd57654279a22531e2c6b4fc8e51745a609d4",
+    "evidence/tranche-13-loss-reference/manifest.json": "5060717c9fa32c73ed78f5ab392783d3835c00b90209df0af1352b19989a1a13",
+    "evidence/tranche-13-candidate.json": "3c9ba4a9d9029180b82611d71dcbb01ac6cd2ddc273ee6ecf6dec36ba81881e0"
+  },
+  "native_audit": {
+    "passed": true,
+    "cases": [
+      {
+        "case": "ok",
+        "identity_counts": {
+          "generate": 96,
+          "admit": 96,
+          "deliver": 96
+        },
+        "events": 2317,
+        "transport_segments": 401,
+        "recipient_groups": 318,
+        "dropped_groups": 0,
+        "dropped_segments": 0,
+        "retransmitted_data_attempts": 0,
+        "source_activity": {
+          "4": {
+            "late_admissions_at_or_after_20s": 11,
+            "last_admit_ns": 28000000000,
+            "blocked_offers_with_dack_holds": 200,
+            "last_blocked_held_ns": 21980000000,
+            "observations_with_queued_data_and_dack_holds": 469
+          },
+          "5": {
+            "late_admissions_at_or_after_20s": 9,
+            "last_admit_ns": 28000000000,
+            "blocked_offers_with_dack_holds": 0,
+            "last_blocked_held_ns": null,
+            "observations_with_queued_data_and_dack_holds": 0
+          }
+        },
+        "maximum_ack_bits": 18446744073709551615,
+        "final_queues_clear": true
+      },
+      {
+        "case": "data",
+        "identity_counts": {
+          "generate": 96,
+          "admit": 96,
+          "deliver": 96
+        },
+        "events": 2988,
+        "transport_segments": 388,
+        "recipient_groups": 305,
+        "dropped_groups": 2,
+        "dropped_segments": 2,
+        "retransmitted_data_attempts": 2,
+        "source_activity": {
+          "4": {
+            "late_admissions_at_or_after_20s": 11,
+            "last_admit_ns": 28000000000,
+            "blocked_offers_with_dack_holds": 318,
+            "last_blocked_held_ns": 24340000000,
+            "observations_with_queued_data_and_dack_holds": 709
+          },
+          "5": {
+            "late_admissions_at_or_after_20s": 9,
+            "last_admit_ns": 28000000000,
+            "blocked_offers_with_dack_holds": 0,
+            "last_blocked_held_ns": null,
+            "observations_with_queued_data_and_dack_holds": 0
+          }
+        },
+        "maximum_ack_bits": 18446744073709551615,
+        "final_queues_clear": true
+      },
+      {
+        "case": "ack",
+        "identity_counts": {
+          "generate": 96,
+          "admit": 96,
+          "deliver": 96
+        },
+        "events": 2366,
+        "transport_segments": 410,
+        "recipient_groups": 326,
+        "dropped_groups": 2,
+        "dropped_segments": 2,
+        "retransmitted_data_attempts": 0,
+        "source_activity": {
+          "4": {
+            "late_admissions_at_or_after_20s": 11,
+            "last_admit_ns": 28000000000,
+            "blocked_offers_with_dack_holds": 199,
+            "last_blocked_held_ns": 21960000000,
+            "observations_with_queued_data_and_dack_holds": 467
+          },
+          "5": {
+            "late_admissions_at_or_after_20s": 9,
+            "last_admit_ns": 28000000000,
+            "blocked_offers_with_dack_holds": 0,
+            "last_blocked_held_ns": null,
+            "observations_with_queued_data_and_dack_holds": 0
+          }
+        },
+        "maximum_ack_bits": 18446744073709551615,
+        "final_queues_clear": true
+      },
+      {
+        "case": "out",
+        "identity_counts": {
+          "generate": 96,
+          "admit": 96,
+          "deliver": 96
+        },
+        "events": 2291,
+        "transport_segments": 393,
+        "recipient_groups": 308,
+        "dropped_groups": 2,
+        "dropped_segments": 2,
+        "retransmitted_data_attempts": 2,
+        "source_activity": {
+          "4": {
+            "late_admissions_at_or_after_20s": 11,
+            "last_admit_ns": 28000000000,
+            "blocked_offers_with_dack_holds": 200,
+            "last_blocked_held_ns": 21980000000,
+            "observations_with_queued_data_and_dack_holds": 469
+          },
+          "5": {
+            "late_admissions_at_or_after_20s": 9,
+            "last_admit_ns": 28000000000,
+            "blocked_offers_with_dack_holds": 0,
+            "last_blocked_held_ns": null,
+            "observations_with_queued_data_and_dack_holds": 0
+          }
+        },
+        "maximum_ack_bits": 18446744073709551615,
+        "final_queues_clear": true
+      }
+    ],
+    "bindings": {
+      "evidence/tranche-13-loss-reference/events.csv": "f5a4948956a4bc867c3c2bf56c89287102ca804e74d1d40b3200b9ba380cfb1c",
+      "evidence/tranche-13-loss-reference/transport.csv": "4811cead3b7b39272a2ae395de56ea604e28effc8c103f4ede39a4c4b01706c7",
+      "scenarios/loss/plan.json": "06ede1b0b67d28b5690e6912284b3a57518ed1c884b725475ba14a881ea5a142"
+    }
+  },
+  "native_closed_artifacts_verified": 47,
+  "native_terminal_identity_owners": 576,
+  "native_terminal_reasons": {
+    "ack": 556,
+    "dack_custody": 20
+  },
+  "native_failed_terminals": 0,
+  "new_matlab_tests": 16,
+  "selected_matlab_tests": 88,
+  "matlab_functional_checks_per_case": 66,
+  "matlab_functional_checks_total": 264,
+  "findings_resolved": [
+    {
+      "id": "uint64",
+      "finding": "Inherited T12 comparator assumed <=40-bit maps and converted all numeric columns to double.",
+      "resolution": "T13 preserves app_id/ack_bits/dack_bits as uint64, forces CSV imports of exact columns to strings before reading, compares exact decimal strings, and tests actual >2^53 exported maps. Native data reaches uint64 maximum."
+    },
+    {
+      "id": "native_event_name",
+      "finding": "First native draft emitted generated instead of pinned generate.",
+      "resolution": "Aligned before executed/final reference generation; exact input generation time and identity audit passed."
+    },
+    {
+      "id": "group_loss_coverage",
+      "finding": "Prescribed actual losses select singleton recipient groups, leaving mixed-kind multi-segment grouping unexercised by the four native scenarios.",
+      "resolution": "Shared production-fixture GroupFrames helper now has explicit self-tests for mixed-kind companions and independently passed second recipient. Actual singleton-loss limitation remains disclosed."
+    },
+    {
+      "id": "final_mac_queues",
+      "finding": "Initial MATLAB structural checks required HOP/NWK drainage but omitted final MAC ACK/DATA queue counts.",
+      "resolution": "Added six functional checks per case and MATLAB test assertions for final MAC queues."
+    },
+    {
+      "id": "no_loss_control",
+      "finding": "Shared delivery-or-observed-terminal-failure rule could allow a failed no-loss control to pass.",
+      "resolution": "Added strict ok-case 96 unique deliveries and zero false terminals in MATLAB checks/tests, matching native generator."
+    }
+  ],
+  "review_observations": [
+    "Real NWK/HOP/MAC baseline code remains unchanged; synthetic finite generation consults production application-state NSDP16 before actual NWK Send. Callback wrappers access completed layer cells at invocation time.",
+    "Loss is determined once at actual aggregate TX start per addressed recipient, then cached until arrival. Dropped segments cause no MAC heard/reservation updates or HOP ingress, and no synthetic feedback is generated.",
+    "Generation callbacks are queued in input CSV order before admission polling; original due times persist independently of admission delays.",
+    "Whole emitted segment multiset equals TX observations and partitions exactly into pass-ingress-before/after versus loss observations with identity, sequence, and exact uint64 bitmaps.",
+    "Stable pending capacity equals resends plus DACK holds, and all custody equals NSDP4+NSDP5. Active queued data and blocked offers overlap DACK holds in source4, including after20s; data resumes as holds clear.",
+    "Receiver-side deliveries and sender/relay HOP terminals remain distinct. DACK normalization changes reporting semantics only; original native trace reason and false flag remain preserved.",
+    "Runner preserves fixed baseline hashes, exact test identity lists, before/after source/reference snapshots, honest diagnostic/acceptance flags, partial failure outputs, and short t13 paths."
+  ],
+  "limitations": [
+    "No MATLAB runtime was available; all88 selected MATLAB tests await owner execution.",
+    "Fixed preconditioned routes, fixed nominal128kbps/+33dBm, prescribed successful or dropped transport; no RF/collision/half-duplex, discovery/reconvergence, adaptive radio, node reset, or campus claim.",
+    "Native ACK-loss case recovers through later cumulative feedback with zero DATA retransmissions. Native DATA and out cases each have two DATA retransmissions.",
+    "Actual blackout losses are two singleton DATA groups on5->1; the configured policy covers both links/directions but other direction losses are not observed in this particular blackout run.",
+    "Exact native/MATLAB trace parity is not yet assessed. Existing startup timing and intermediate callback-state differences remain permitted reported residuals."
+  ],
+  "outstanding_blockers": []
+}

@@ -1,0 +1,79 @@
+{
+  "Schema": "csr-tranche-12-readiness-v1",
+  "Status": "fixture_repair_ready_for_owner_matlab_rerun",
+  "CandidateSHA256": "ebf493fc8d34dc7c7819f14e266bf19b99f0f94441a79da38a801cd7f52292c4",
+  "BaselineSourceFilesUnchanged": 241,
+  "BaselineMatlabFilesUnchanged": 130,
+  "CoreSourceFilesUnchanged": 225,
+  "CoreMatlabFilesUnchanged": 124,
+  "NativeRelayCases": 4,
+  "NativeRelayEvents": 2344,
+  "NativeRelayDraws": 332,
+  "NativeApplicationsDelivered": 120,
+  "NativeApplicationsExpected": 120,
+  "NativeHopReleaseCallbacks": 180,
+  "NativeDackHoldsAt16Seconds": {
+    "relay": 0,
+    "local": 0,
+    "mix": 4,
+    "sw": 1
+  },
+  "NativeDackHoldsAt24Seconds": 0,
+  "NativeClockCases": 6,
+  "NativeClockObservations": 18,
+  "NativeClockChecksPassed": 72,
+  "NativeDisabledSeamCheckpointsByteIdentical": 255,
+  "NativeRawDrawRejectionTestsPassed": 6,
+  "SelectedMatlabTests": 72,
+  "NewMatlabTests": 20,
+  "RetainedMatlabTests": 52,
+  "NewMatlabFilesStaticReviewPassed": 5,
+  "PythonReturnGateTestsPassed": 34,
+  "MATLABExecuted": false,
+  "AcceptanceEstablished": false,
+  "NumericalParityEstablished": false,
+  "ExpectedClockStrictMatch": false,
+  "ExpectedClockSharedIntegerMatch": true,
+  "ClockResidualScope": "Continuous test transport intentionally retains the known one-ULP boundary difference; only quantized case uses integer-nanosecond transport. No global clock change.",
+  "Scope": "Finite synthetic offer driver applies existing application-limit rule to real NWK state; production NWK/HOP/MAC queue/custody/service with preconditioned next hops and controlled successful transport. Excludes full application-generator, route-state/convergence, neighbor-security, RF and campus parity.",
+  "Reviews": [
+    {
+      "path": "evidence/t12r/audit.json",
+      "sha256": "7d0d3a88997ef421f01983588d169cb5bf1d2aa844810de41821c6cdca914430"
+    },
+    {
+      "path": "evidence/t12r/diag.json",
+      "sha256": "240255c61f71227c1b43eda34d73ab2dd7cece0b782196b1e5c6e824656f4037"
+    },
+    {
+      "path": "evidence/t12r/fix-review.json",
+      "sha256": "9dddba56d680bb9323943fb9469906819083d3536f9b29aaaea154c3ab02544b"
+    },
+    {
+      "path": "evidence/t12r/lint.log",
+      "sha256": "c9435e65b12a5f20b10b70e671da07816247de3dee51f10235eabef7c8f99bfa"
+    },
+    {
+      "path": "evidence/t12r/tests.log",
+      "sha256": "d2011a5a2cc98b55a052afdb9c06bc240416526990b1d130a56dacaed6ad701e"
+    }
+  ],
+  "OwnerCommand": "report = run_tranche12_validation;",
+  "ReturnArchive": "t12.zip",
+  "Revision": "r1",
+  "PriorOwnerMATLABExecuted": true,
+  "PriorOwnerReturnSHA256": "3a6033f609c24a1cf8a2b5c4183402d8b7b9937e7528104ebb7e81f3b9ea5bd9",
+  "PriorOwnerOutcome": "63/72 tests; nine relay failures including one incomplete; all52retained and8clock tests pass;72clock checks pass; fixture repair requires rerun.",
+  "CurrentRepairSource": "+csr/+validation/relayContract.m",
+  "CurrentRepairSourceSHA256": "b33136349b7ae851927a802461551a5b8fcecb1456a4b42d2467fe0d978aee1e",
+  "CandidateSourceFiles": 259,
+  "ReferenceFiles": 132,
+  "ChangedMatlabFiles": [
+    "+csr/+validation/relayContract.m"
+  ],
+  "SourceFilesChangedFromInitialT12": [
+    "+csr/+validation/relayContract.m",
+    "evidence/tranche-12-candidate.json"
+  ],
+  "PreviousPreparationReviews": "evidence/tranche-12-gate records initial candidate identified by evidence/t12r/base.json, not the repaired MATLAB file."
+}

@@ -1,0 +1,163 @@
+{
+  "schema": "csr-tranche12-relay-input-v1",
+  "source_pin": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "scope": "Finite offer driver applies the existing application NSDP16 rule from real NWK state; pre-admitted fixed-route production NWK custody/HOP/MAC service with controlled successful addressed transport; excludes full application-generator parity, security admission, route convergence, RF collisions, half-duplex loss, PHY/ECC validation and stochastic population equivalence",
+  "cases": [
+    "relay",
+    "local",
+    "mix",
+    "sw"
+  ],
+  "nodes": [
+    1,
+    4,
+    5
+  ],
+  "gateway": 1,
+  "sources": [
+    4,
+    5
+  ],
+  "relay": 5,
+  "applications_per_active_source": 20,
+  "application_payload_bytes": 16,
+  "dscp": 0,
+  "wire_profile": "bare",
+  "rate_kbps": 128,
+  "power_dbm": 33,
+  "slot_profile": "hist-2014-next-tslot-modulo-probe",
+  "slot_range": 31,
+  "slot_reduction": 0,
+  "active_nodes": 3,
+  "reported_active_nodes": 3,
+  "duty_cycle": false,
+  "slot_seconds": 0.013,
+  "holdoff_seconds": 0.3,
+  "initial_mac_state": "Search",
+  "initial_neighbor_reservation": -1,
+  "initial_neighbor_last_heard_seconds": 0,
+  "known_neighbors": {
+    "1": [
+      5
+    ],
+    "4": [
+      5
+    ],
+    "5": [
+      1,
+      4
+    ]
+  },
+  "next_hops": {
+    "4": 5,
+    "5": 1
+  },
+  "precondition": "Neighbor security admission and freshness disabled; real public neighbor/route APIs establish only the fixed chain before zero-time callbacks settle; no MAC timers or data are prewarmed",
+  "route_target": 1,
+  "route_capability": 2,
+  "neighbor_admission_enabled": false,
+  "neighbor_freshness_enabled": false,
+  "automatic_route_control_transport": false,
+  "matlab_control_retry_seconds": 1000,
+  "matlab_snapshot_watchdog_seconds": 1000,
+  "control_scope": "Bootstrap routing controls are excluded from radio service: native propagation/snapshot response disabled, MATLAB CanSendControl false with retry/watchdog beyond horizon; retain and disclose per-implementation pending controls; no claim of equivalent control queues",
+  "prescribed_sync_present": false,
+  "transport": "unconditional addressed frame ingress at source-computed TX end plus fixed propagation; no overhearing or transport-driven receiver state changes",
+  "propagation_seconds": 1e-06,
+  "pathloss_db": 70,
+  "snr_db": 20,
+  "offered_start_seconds": 0,
+  "offered_poll_seconds": 0.02,
+  "offered_poll_stop_exclusive_seconds": 16,
+  "offer_rule": "At each integer20ms poll invoke node4 then5 once. If source has fewer case-defined apps admitted, emit offer; finite driver consults native CanAdmitApplicationPacket or MATLAB NWK applicationState.NsdpCount < NsdpLimit (assert limit16), then calls NWK application send. Blocked attempts retain candidate identity. No application offer from HOP wake; production HOP wake drives real NWK queue only. Full production ApplicationGenerator is not invoked.",
+  "application_id_rule": "Per-source candidate IDs1..20; SourceId plus ID identifies one app. Generation time assigned only on successful NWK admission; relaying preserves source,ID,payload and generation time.",
+  "application_nsdp_limit": 16,
+  "tape_entries_per_node": 256,
+  "tape_rule": "Exact support 0..31; exhaust fails; unused suffix recorded by node; MATLAB must match native consumed ordinal count, support and value",
+  "events_schema": [
+    "case",
+    "order",
+    "time_ns",
+    "event",
+    "node",
+    "peer",
+    "app_source",
+    "app_id",
+    "hop_seq",
+    "ack_bits",
+    "dack_bits",
+    "mac_state",
+    "ack_queue",
+    "data_queue",
+    "prep",
+    "counter",
+    "opportunity",
+    "advertised",
+    "hop_pending",
+    "neighbor_outstanding",
+    "neighbor_threshold",
+    "resend_queue",
+    "admitted",
+    "rate_kbps",
+    "power_dbm",
+    "nwk_waiting",
+    "nwk_custody",
+    "nsdp4",
+    "nsdp5",
+    "dack_holds"
+  ],
+  "draws_output_schema": [
+    "case",
+    "node",
+    "ordinal",
+    "time_ns",
+    "min",
+    "max",
+    "draw",
+    "resolved",
+    "purpose"
+  ],
+  "numeric_conventions": {
+    "not_applicable": 0,
+    "no_app_or_sequence": 0,
+    "state_codes": {
+      "Idle": 0,
+      "Search": 1,
+      "Track": 2,
+      "Tx": 3
+    },
+    "time_ns": "round(time_seconds * 1e9); compare with at most 1 ns tolerance to native integer time, separately disclose any nonzero difference"
+  },
+  "event_names": [
+    "offer",
+    "admit",
+    "blocked",
+    "tx_start",
+    "ingress_before",
+    "ingress_after",
+    "release",
+    "deliver",
+    "checkpoint",
+    "final"
+  ],
+  "radio_scope": "Fixed128kbps/+33dBm; does not validate adaptive radio rate/power decisions",
+  "native_link_margin_db": 6,
+  "final_snapshots": [
+    {
+      "node": 1,
+      "peer": 0
+    },
+    {
+      "node": 4,
+      "peer": 5
+    },
+    {
+      "node": 5,
+      "peer": 1
+    }
+  ],
+  "release_identity": "app_source from real callback; app_id/hop_seq/bitmaps0; peer4->5 or5->1; observe after real NWK release callback before HOP resend removal",
+  "custody_scope": "nwk_waiting counts only unsubmitted data; nwk_custody counts outstanding original plus relayed data awaiting release (MATLAB PendingCustody, native NSDP4+NSDP5); nsdp4/nsdp5 are row-node counts for source4/source5 to destination1. Excludes bootstrap control owners.",
+  "checkpoint_seconds": 16,
+  "capacity_release_scope": "Observe real DACK holds at16s with workload complete; continue unchanged production timers to final24s for DACK-expiry capacity release. At stable checkpoint/final snapshots HOP pending equals live resend owners plus actual DACK holds; release callbacks may observe intentional intermediate removal order."
+}

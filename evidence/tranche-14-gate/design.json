@@ -1,0 +1,41 @@
+{
+  "schema": "csr-tranche14-design-validation-v1",
+  "passed": true,
+  "check_count": 17,
+  "checks": {
+    "closed_three_inputs": true,
+    "bindings_exact": true,
+    "six_distinct_ordered_cases": true,
+    "mode_mapping": true,
+    "tape_1152_exact": true,
+    "epoch_source_relation": true,
+    "epoch_gateway_relation": true,
+    "late_arm_after_preceding_tick": true,
+    "mixed_tx_before_preceding_tick": true,
+    "mixed_size89": true,
+    "integer_time_under_2pow53": true,
+    "stop_after_boundary": true,
+    "event_schema18_unique": true,
+    "boundary_schema23_unique": true,
+    "time_string_matches_ns": true,
+    "separate_time_and_identity_columns": true,
+    "usage_schema_matches_retained_ReplayStreams": true
+  },
+  "input_bindings": {
+    "cases.csv": {
+      "sha256": "df29719730e7022f7bb8e912e0863c2109bae300fb75021d4eb8d8bb2a13262f",
+      "bytes": 168
+    },
+    "draws.csv": {
+      "sha256": "5aff5bb3467c36370cc0c2617724022f69fc87d1601fee65f34fb06bef0efeb8",
+      "bytes": 25022
+    },
+    "plan.json": {
+      "sha256": "7e7ec33e946cb1fb315b0990813a2102d18c64b6f966b46cee021f8f273b61b9",
+      "bytes": 7702
+    }
+  },
+  "review": "Independent design review approved; no unresolved conceptual blocker. Runtime fixture review and owner MATLAB execution remain separate.",
+  "native_probe": "Native agent reports actual first probe confirms source TX3.12s,89bytes and gateway ACK3.144961s; authoritative trace closure belongs to final native manifest, not this design validation.",
+  "amendment": "Before candidate freeze, corrected usage_schema to retained ReplayStreams/native columns case,node,supplied,consumed,unused. No source behavior, scenario, timing, tape or other plan field changed."
+}

@@ -1,0 +1,898 @@
+{
+  "schema": "csr-tranche14-independent-return-differences-v1",
+  "reviewer_matlab_executed": false,
+  "owner_zip_sha256": "1b351bc8cf356ace8fe5e60413cba30812b5c3fcb4d71cede29d356102fe4241",
+  "candidate_sha256": "4bb51710031ead9d8d7c6b718fb41fd9224156b46076111e4e9c161aebbcc69f",
+  "script_sha256": "4bd60d81b6372a79d6d6b3122056d2655b49eac0a6c37b3ede5f17eb3480b754",
+  "source_bindings": {
+    "owner:edge/events.csv": "2f30c9e10d5745ab468956d4d177662268bc7083818aeb18fd98a670e3dbf647",
+    "owner:edge/boundary.csv": "21bde7e87a1ab032eb037be9a35b635d57e88bbee6148573c73d7579b8f6230c",
+    "owner:edge/draws.csv": "cba3d7ec1c07dc584eed68b0707f2dcda8b5150b355019d71c9040c956947557",
+    "owner:edge/usage.csv": "f766a044fd9ab846017388566646e5d7dc5ea7709840a3aaf73a9558e672f3fb",
+    "owner:edge/scheduler.csv": "1161227626c25b7d9ccf77c971467a5cd5ac99b6b4079e612f5401fe92c39aa6"
+  },
+  "native_bindings": {
+    "evidence/tranche-14-edge-reference/events.csv": "6b9f2ae95586e344b74b2ee48b136733cc4e68dae109c2da257b3bfda72e1550",
+    "evidence/tranche-14-edge-reference/boundary.csv": "0bd2fc020d49152d144a3637b742aec88f2a1611c223734387f96981e9476ba4",
+    "evidence/tranche-14-edge-reference/draws.csv": "dee5230d5693b35e4d609fc7b046e7972213b8c1d30d154596697eb4be1869d3",
+    "evidence/tranche-14-edge-reference/usage.csv": "6162b794d99a5cd3c2474cc34992879f766e4b518d90ffc45f2d6a77c5c191de"
+  },
+  "cases": [
+    {
+      "case": "tie_early",
+      "matlab": {
+        "events": 33,
+        "deliveries": 3,
+        "delivery_identities": [
+          [
+            "5",
+            "1"
+          ],
+          [
+            "5",
+            "2"
+          ],
+          [
+            "5",
+            "3"
+          ]
+        ],
+        "first_ack_sequence": 3,
+        "first_ack_bitmap": 7,
+        "first_ack_time_ns": 3144961000,
+        "first_updated_ack_time_ns": 3144961000,
+        "last_ack_time_ns": 3248961000,
+        "gateway_ack_transmissions": 5,
+        "ack_and_data_queues_empty_at_horizon": true
+      },
+      "native": {
+        "events": 33,
+        "deliveries": 3,
+        "delivery_identities": [
+          [
+            "5",
+            "1"
+          ],
+          [
+            "5",
+            "2"
+          ],
+          [
+            "5",
+            "3"
+          ]
+        ],
+        "first_ack_sequence": 3,
+        "first_ack_bitmap": 7,
+        "first_ack_time_ns": 3144961000,
+        "first_updated_ack_time_ns": 3144961000,
+        "last_ack_time_ns": 3248961000,
+        "gateway_ack_transmissions": 5,
+        "ack_and_data_queues_empty_at_horizon": true
+      },
+      "updated_ack_delay_ns": 0,
+      "arrival_minus_tick_seconds_matlab": 0.0,
+      "arrival_minus_tick_seconds_native": 0.0,
+      "arrival_hex_matlab": "400928e15011904b",
+      "arrival_hex_native": "400928e15011904b",
+      "matlab_ingress_event_id": 59,
+      "matlab_first_ack_event_id": 61,
+      "matlab_execution_order": [
+        "59",
+        "61"
+      ],
+      "comparisons": {
+        "semantic": [],
+        "boundary": [
+          {
+            "row": 1,
+            "fields": {
+              "duration_seconds_hex": {
+                "matlab": "3f998f1d3ed527e6",
+                "native": "3f998f1d3ed527e5"
+              }
+            }
+          }
+        ],
+        "precision": [],
+        "draws": [],
+        "usage": []
+      }
+    },
+    {
+      "case": "tie_late",
+      "matlab": {
+        "events": 35,
+        "deliveries": 3,
+        "delivery_identities": [
+          [
+            "5",
+            "1"
+          ],
+          [
+            "5",
+            "2"
+          ],
+          [
+            "5",
+            "3"
+          ]
+        ],
+        "first_ack_sequence": 2,
+        "first_ack_bitmap": 3,
+        "first_ack_time_ns": 3144961000,
+        "first_updated_ack_time_ns": 3170961000,
+        "last_ack_time_ns": 3274961000,
+        "gateway_ack_transmissions": 6,
+        "ack_and_data_queues_empty_at_horizon": true
+      },
+      "native": {
+        "events": 35,
+        "deliveries": 3,
+        "delivery_identities": [
+          [
+            "5",
+            "1"
+          ],
+          [
+            "5",
+            "2"
+          ],
+          [
+            "5",
+            "3"
+          ]
+        ],
+        "first_ack_sequence": 2,
+        "first_ack_bitmap": 3,
+        "first_ack_time_ns": 3144961000,
+        "first_updated_ack_time_ns": 3170961000,
+        "last_ack_time_ns": 3274961000,
+        "gateway_ack_transmissions": 6,
+        "ack_and_data_queues_empty_at_horizon": true
+      },
+      "updated_ack_delay_ns": 0,
+      "arrival_minus_tick_seconds_matlab": 0.0,
+      "arrival_minus_tick_seconds_native": 0.0,
+      "arrival_hex_matlab": "400928e15011904b",
+      "arrival_hex_native": "400928e15011904b",
+      "matlab_ingress_event_id": 63,
+      "matlab_first_ack_event_id": 61,
+      "matlab_execution_order": [
+        "61",
+        "63"
+      ],
+      "comparisons": {
+        "semantic": [],
+        "boundary": [
+          {
+            "row": 1,
+            "fields": {
+              "duration_seconds_hex": {
+                "matlab": "3f998f1d3ed527e6",
+                "native": "3f998f1d3ed527e5"
+              }
+            }
+          }
+        ],
+        "precision": [],
+        "draws": [],
+        "usage": []
+      }
+    },
+    {
+      "case": "before",
+      "matlab": {
+        "events": 33,
+        "deliveries": 3,
+        "delivery_identities": [
+          [
+            "5",
+            "1"
+          ],
+          [
+            "5",
+            "2"
+          ],
+          [
+            "5",
+            "3"
+          ]
+        ],
+        "first_ack_sequence": 3,
+        "first_ack_bitmap": 7,
+        "first_ack_time_ns": 3144961000,
+        "first_updated_ack_time_ns": 3144961000,
+        "last_ack_time_ns": 3248961000,
+        "gateway_ack_transmissions": 5,
+        "ack_and_data_queues_empty_at_horizon": true
+      },
+      "native": {
+        "events": 33,
+        "deliveries": 3,
+        "delivery_identities": [
+          [
+            "5",
+            "1"
+          ],
+          [
+            "5",
+            "2"
+          ],
+          [
+            "5",
+            "3"
+          ]
+        ],
+        "first_ack_sequence": 3,
+        "first_ack_bitmap": 7,
+        "first_ack_time_ns": 3144961000,
+        "first_updated_ack_time_ns": 3144961000,
+        "last_ack_time_ns": 3248961000,
+        "gateway_ack_transmissions": 5,
+        "ack_and_data_queues_empty_at_horizon": true
+      },
+      "updated_ack_delay_ns": 0,
+      "arrival_minus_tick_seconds_matlab": -1.000000082740371e-09,
+      "arrival_minus_tick_seconds_native": -1.000000082740371e-09,
+      "arrival_hex_matlab": "400928e14fef3433",
+      "arrival_hex_native": "400928e14fef3433",
+      "matlab_ingress_event_id": 59,
+      "matlab_first_ack_event_id": 61,
+      "matlab_execution_order": [
+        "59",
+        "61"
+      ],
+      "comparisons": {
+        "semantic": [],
+        "boundary": [
+          {
+            "row": 1,
+            "fields": {
+              "duration_seconds_hex": {
+                "matlab": "3f998f1d3ed527e6",
+                "native": "3f998f1d3ed527e5"
+              }
+            }
+          }
+        ],
+        "precision": [],
+        "draws": [],
+        "usage": []
+      }
+    },
+    {
+      "case": "after",
+      "matlab": {
+        "events": 35,
+        "deliveries": 3,
+        "delivery_identities": [
+          [
+            "5",
+            "1"
+          ],
+          [
+            "5",
+            "2"
+          ],
+          [
+            "5",
+            "3"
+          ]
+        ],
+        "first_ack_sequence": 2,
+        "first_ack_bitmap": 3,
+        "first_ack_time_ns": 3144961000,
+        "first_updated_ack_time_ns": 3170961000,
+        "last_ack_time_ns": 3274961000,
+        "gateway_ack_transmissions": 6,
+        "ack_and_data_queues_empty_at_horizon": true
+      },
+      "native": {
+        "events": 35,
+        "deliveries": 3,
+        "delivery_identities": [
+          [
+            "5",
+            "1"
+          ],
+          [
+            "5",
+            "2"
+          ],
+          [
+            "5",
+            "3"
+          ]
+        ],
+        "first_ack_sequence": 2,
+        "first_ack_bitmap": 3,
+        "first_ack_time_ns": 3144961000,
+        "first_updated_ack_time_ns": 3170961000,
+        "last_ack_time_ns": 3274961000,
+        "gateway_ack_transmissions": 6,
+        "ack_and_data_queues_empty_at_horizon": true
+      },
+      "updated_ack_delay_ns": 0,
+      "arrival_minus_tick_seconds_matlab": 1.000000082740371e-09,
+      "arrival_minus_tick_seconds_native": 1.000000082740371e-09,
+      "arrival_hex_matlab": "400928e15033ec63",
+      "arrival_hex_native": "400928e15033ec63",
+      "matlab_ingress_event_id": 59,
+      "matlab_first_ack_event_id": 61,
+      "matlab_execution_order": [
+        "61",
+        "59"
+      ],
+      "comparisons": {
+        "semantic": [],
+        "boundary": [
+          {
+            "row": 1,
+            "fields": {
+              "duration_seconds_hex": {
+                "matlab": "3f998f1d3ed527e6",
+                "native": "3f998f1d3ed527e5"
+              }
+            }
+          }
+        ],
+        "precision": [],
+        "draws": [],
+        "usage": []
+      }
+    },
+    {
+      "case": "continuous",
+      "matlab": {
+        "events": 35,
+        "deliveries": 3,
+        "delivery_identities": [
+          [
+            "5",
+            "1"
+          ],
+          [
+            "5",
+            "2"
+          ],
+          [
+            "5",
+            "3"
+          ]
+        ],
+        "first_ack_sequence": 2,
+        "first_ack_bitmap": 3,
+        "first_ack_time_ns": 3144961000,
+        "first_updated_ack_time_ns": 3170961000,
+        "last_ack_time_ns": 3274961000,
+        "gateway_ack_transmissions": 6,
+        "ack_and_data_queues_empty_at_horizon": true
+      },
+      "native": {
+        "events": 33,
+        "deliveries": 3,
+        "delivery_identities": [
+          [
+            "5",
+            "1"
+          ],
+          [
+            "5",
+            "2"
+          ],
+          [
+            "5",
+            "3"
+          ]
+        ],
+        "first_ack_sequence": 3,
+        "first_ack_bitmap": 7,
+        "first_ack_time_ns": 3144961000,
+        "first_updated_ack_time_ns": 3144961000,
+        "last_ack_time_ns": 3248961000,
+        "gateway_ack_transmissions": 5,
+        "ack_and_data_queues_empty_at_horizon": true
+      },
+      "updated_ack_delay_ns": 26000000,
+      "arrival_minus_tick_seconds_matlab": 4.440892098500626e-16,
+      "arrival_minus_tick_seconds_native": 0.0,
+      "arrival_hex_matlab": "400928e15011904c",
+      "arrival_hex_native": "400928e15011904b",
+      "matlab_ingress_event_id": 59,
+      "matlab_first_ack_event_id": 61,
+      "matlab_execution_order": [
+        "61",
+        "59"
+      ],
+      "comparisons": {
+        "semantic": [
+          {
+            "row": 9,
+            "fields": {
+              "phase": {
+                "matlab": "ack_tx",
+                "native": "feedback_ingress"
+              },
+              "node": {
+                "matlab": "1",
+                "native": "4"
+              },
+              "hop_seq": {
+                "matlab": "2",
+                "native": "4"
+              },
+              "ack_bits": {
+                "matlab": "3",
+                "native": "15"
+              },
+              "ack_queue": {
+                "matlab": "1",
+                "native": "0"
+              }
+            }
+          },
+          {
+            "row": 10,
+            "fields": {
+              "phase": {
+                "matlab": "feedback_ingress",
+                "native": "ingress_before"
+              },
+              "node": {
+                "matlab": "4",
+                "native": "1"
+              },
+              "kind": {
+                "matlab": "ACK",
+                "native": "DATA"
+              },
+              "app_source": {
+                "matlab": "0",
+                "native": "5"
+              },
+              "app_id": {
+                "matlab": "0",
+                "native": "3"
+              },
+              "hop_seq": {
+                "matlab": "4",
+                "native": "3"
+              },
+              "ack_bits": {
+                "matlab": "15",
+                "native": "0"
+              },
+              "ack_queue": {
+                "matlab": "0",
+                "native": "1"
+              }
+            }
+          },
+          {
+            "row": 11,
+            "fields": {
+              "phase": {
+                "matlab": "ingress_before",
+                "native": "deliver"
+              },
+              "hop_seq": {
+                "matlab": "3",
+                "native": "0"
+              },
+              "transmissions": {
+                "matlab": "1",
+                "native": "0"
+              }
+            }
+          },
+          {
+            "row": 12,
+            "fields": {
+              "phase": {
+                "matlab": "deliver",
+                "native": "ingress_after"
+              },
+              "hop_seq": {
+                "matlab": "0",
+                "native": "3"
+              },
+              "transmissions": {
+                "matlab": "1",
+                "native": "0"
+              }
+            }
+          },
+          {
+            "row": 13,
+            "fields": {
+              "phase": {
+                "matlab": "ingress_after",
+                "native": "ack_tx"
+              },
+              "kind": {
+                "matlab": "DATA",
+                "native": "ACK"
+              },
+              "app_source": {
+                "matlab": "5",
+                "native": "0"
+              },
+              "app_id": {
+                "matlab": "3",
+                "native": "0"
+              },
+              "ack_bits": {
+                "matlab": "0",
+                "native": "7"
+              },
+              "transmissions": {
+                "matlab": "1",
+                "native": "0"
+              }
+            }
+          },
+          {
+            "row": 15,
+            "fields": {
+              "hop_seq": {
+                "matlab": "2",
+                "native": "3"
+              },
+              "ack_bits": {
+                "matlab": "3",
+                "native": "7"
+              }
+            }
+          },
+          {
+            "row": 31,
+            "fields": {
+              "phase": {
+                "matlab": "ack_tx",
+                "native": "settled"
+              },
+              "time_ns": {
+                "matlab": "3274961000",
+                "native": "4000000000"
+              },
+              "peer": {
+                "matlab": "5",
+                "native": "0"
+              },
+              "kind": {
+                "matlab": "ACK",
+                "native": "NONE"
+              },
+              "hop_seq": {
+                "matlab": "3",
+                "native": "0"
+              },
+              "ack_bits": {
+                "matlab": "7",
+                "native": "0"
+              },
+              "ack_queue": {
+                "matlab": "1",
+                "native": "0"
+              }
+            }
+          },
+          {
+            "row": 32,
+            "fields": {
+              "phase": {
+                "matlab": "feedback_ingress",
+                "native": "settled"
+              },
+              "time_ns": {
+                "matlab": "3297042000",
+                "native": "4000000000"
+              },
+              "node": {
+                "matlab": "5",
+                "native": "4"
+              },
+              "peer": {
+                "matlab": "1",
+                "native": "0"
+              },
+              "kind": {
+                "matlab": "ACK",
+                "native": "NONE"
+              },
+              "hop_seq": {
+                "matlab": "3",
+                "native": "0"
+              },
+              "ack_bits": {
+                "matlab": "7",
+                "native": "0"
+              },
+              "transmissions": {
+                "matlab": "5",
+                "native": "0"
+              }
+            }
+          },
+          {
+            "row": 33,
+            "fields": {
+              "node": {
+                "matlab": "1",
+                "native": "5"
+              },
+              "transmissions": {
+                "matlab": "6",
+                "native": "5"
+              }
+            }
+          },
+          {
+            "row": 34,
+            "fields": {
+              "missing_row": true
+            }
+          },
+          {
+            "row": 35,
+            "fields": {
+              "missing_row": true
+            }
+          }
+        ],
+        "boundary": [
+          {
+            "row": 1,
+            "fields": {
+              "duration_seconds_hex": {
+                "matlab": "3f998f1d3ed527e6",
+                "native": "3f998f1d3ed527e5"
+              },
+              "arrival_seconds_hex": {
+                "matlab": "400928e15011904c",
+                "native": "400928e15011904b"
+              },
+              "arrival_minus_tick_seconds_hex": {
+                "matlab": "3cc0000000000000",
+                "native": "0000000000000000"
+              }
+            }
+          }
+        ],
+        "precision": [
+          {
+            "row": 9,
+            "fields": {
+              "phase": {
+                "matlab": "ack_tx",
+                "native": "feedback_ingress"
+              }
+            }
+          },
+          {
+            "row": 10,
+            "fields": {
+              "phase": {
+                "matlab": "feedback_ingress",
+                "native": "ingress_before"
+              },
+              "time_seconds_hex": {
+                "matlab": "400928e15011904c",
+                "native": "400928e15011904b"
+              }
+            }
+          },
+          {
+            "row": 11,
+            "fields": {
+              "phase": {
+                "matlab": "ingress_before",
+                "native": "deliver"
+              },
+              "time_seconds_hex": {
+                "matlab": "400928e15011904c",
+                "native": "400928e15011904b"
+              }
+            }
+          },
+          {
+            "row": 12,
+            "fields": {
+              "phase": {
+                "matlab": "deliver",
+                "native": "ingress_after"
+              },
+              "time_seconds_hex": {
+                "matlab": "400928e15011904c",
+                "native": "400928e15011904b"
+              }
+            }
+          },
+          {
+            "row": 13,
+            "fields": {
+              "phase": {
+                "matlab": "ingress_after",
+                "native": "ack_tx"
+              },
+              "time_seconds_hex": {
+                "matlab": "400928e15011904c",
+                "native": "400928e15011904b"
+              }
+            }
+          },
+          {
+            "row": 31,
+            "fields": {
+              "phase": {
+                "matlab": "ack_tx",
+                "native": "settled"
+              },
+              "time_seconds_hex": {
+                "matlab": "400a331ec0b56755",
+                "native": "4010000000000000"
+              }
+            }
+          },
+          {
+            "row": 32,
+            "fields": {
+              "phase": {
+                "matlab": "feedback_ingress",
+                "native": "settled"
+              },
+              "time_seconds_hex": {
+                "matlab": "400a60578e5c4eb5",
+                "native": "4010000000000000"
+              }
+            }
+          },
+          {
+            "row": 34,
+            "fields": {
+              "missing_row": true
+            }
+          },
+          {
+            "row": 35,
+            "fields": {
+              "missing_row": true
+            }
+          }
+        ],
+        "draws": [
+          {
+            "row": 13,
+            "fields": {
+              "missing_row": true
+            }
+          }
+        ],
+        "usage": [
+          {
+            "row": 1,
+            "fields": {
+              "consumed": {
+                "matlab": "7",
+                "native": "6"
+              },
+              "unused": {
+                "matlab": "57",
+                "native": "58"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "case": "quantized",
+      "matlab": {
+        "events": 33,
+        "deliveries": 3,
+        "delivery_identities": [
+          [
+            "5",
+            "1"
+          ],
+          [
+            "5",
+            "2"
+          ],
+          [
+            "5",
+            "3"
+          ]
+        ],
+        "first_ack_sequence": 3,
+        "first_ack_bitmap": 7,
+        "first_ack_time_ns": 3144961000,
+        "first_updated_ack_time_ns": 3144961000,
+        "last_ack_time_ns": 3248961000,
+        "gateway_ack_transmissions": 5,
+        "ack_and_data_queues_empty_at_horizon": true
+      },
+      "native": {
+        "events": 33,
+        "deliveries": 3,
+        "delivery_identities": [
+          [
+            "5",
+            "1"
+          ],
+          [
+            "5",
+            "2"
+          ],
+          [
+            "5",
+            "3"
+          ]
+        ],
+        "first_ack_sequence": 3,
+        "first_ack_bitmap": 7,
+        "first_ack_time_ns": 3144961000,
+        "first_updated_ack_time_ns": 3144961000,
+        "last_ack_time_ns": 3248961000,
+        "gateway_ack_transmissions": 5,
+        "ack_and_data_queues_empty_at_horizon": true
+      },
+      "updated_ack_delay_ns": 0,
+      "arrival_minus_tick_seconds_matlab": 0.0,
+      "arrival_minus_tick_seconds_native": 0.0,
+      "arrival_hex_matlab": "400928e15011904b",
+      "arrival_hex_native": "400928e15011904b",
+      "matlab_ingress_event_id": 59,
+      "matlab_first_ack_event_id": 61,
+      "matlab_execution_order": [
+        "59",
+        "61"
+      ],
+      "comparisons": {
+        "semantic": [],
+        "boundary": [
+          {
+            "row": 1,
+            "fields": {
+              "duration_seconds_hex": {
+                "matlab": "3f998f1d3ed527e6",
+                "native": "3f998f1d3ed527e5"
+              }
+            }
+          }
+        ],
+        "precision": [],
+        "draws": [],
+        "usage": []
+      }
+    }
+  ],
+  "comparison_row_counts": {
+    "semantic": 11,
+    "boundary": 6,
+    "precision": 9,
+    "draws": 1,
+    "usage": 1
+  },
+  "reported_total_row_differences": 28,
+  "counter_interpretation": "Overlapping positional row comparisons, not independent defects or a network error rate.",
+  "duration_binary64_arithmetic_probe": {
+    "3f998f1d3ed527e5": "400928e15011904c",
+    "3f998f1d3ed527e6": "400928e15011904c"
+  },
+  "duration_difference_seconds": 3.469446951953614e-18,
+  "checkpoints_recomputed": {
+    "total": 222,
+    "passed": 222
+  },
+  "bounded_conclusion": "Five controls exactly match semantic and full-precision event traces. Continuous binary64 transport places DATA one ULP after ACK service, delays updated feedback 26 ms and adds one gateway ACK plus one draw. All 18 unique deliveries occur and all final ACK/DATA queues are empty.",
+  "not_established": [
+    "Full network numerical parity",
+    "Source sender custody or admission-capacity gain",
+    "Loss-recovery improvement",
+    "Global clock change suitability",
+    "PHY/ECC or RF behavior"
+  ],
+  "next_investigation": "A separately reviewed, opt-in transport nanosecond conversion experiment in the T13 continued-traffic loss/recovery harness, paired against the accepted default and pinned native trace. Observe real sender custody, retry count, capacity release, delivery latency, and unchanged 1 ns before/tie/after ordering before considering production adoption."
+}

@@ -1,0 +1,113 @@
+{
+  "Schema": "csr-tranche14-repair-preflight-v1",
+  "Status": "passed",
+  "CreatedUTC": "2026-09-15T13:00:14.722286+00:00",
+  "MATLABExecuted": false,
+  "CandidateSHA256": "94bde01e85eac80af05b0e9aa81132b4b7b0fee7907fc3420d28ae8b49eb9609",
+  "SourceFiles": 283,
+  "MatlabSourceFiles": 142,
+  "ReferenceFiles": 299,
+  "MatlabTestCount": 106,
+  "MatlabTestNamesUnchanged": true,
+  "PythonEvidenceTestsPassed": 37,
+  "MatlabStaticFilesPassed": 4,
+  "BaselineSourceFilesUnchanged": 271,
+  "BaselineMatlabFilesUnchanged": 138,
+  "ChangedSourceBindings": {
+    "+csr/+validation/ackEdgeContract.m": "87cff2b6c64b8a62d55b1b2ad97a5ce53be887dd8c3d89aa7c8e453213de0e94",
+    "evidence/tranche-14-candidate.json": "94bde01e85eac80af05b0e9aa81132b4b7b0fee7907fc3420d28ae8b49eb9609",
+    "tests/TestAckEdgeContract.m": "8ec230f95b7c2b6a2f801ed79594dccef2b3e4120adfbbaa3589f445c46a1bd2"
+  },
+  "OriginalReferenceFilesUnchanged": 283,
+  "NativeReferenceProof": {
+    "source_pin": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+    "engine_pin": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+    "fresh_engine_build": true,
+    "historical_library_identity_claimed": false,
+    "artifact_count": 67,
+    "control_checks": 327,
+    "native_self_tests": 14,
+    "case_count": 6,
+    "event_count": 202,
+    "checkpoint_count": 222,
+    "delivered": 18,
+    "draws": {
+      "consumed": 74,
+      "supplied": 1152,
+      "unused": 1078
+    },
+    "cases": [
+      {
+        "case": "tie_early",
+        "delivered": 3,
+        "first_ack_sequence": 3,
+        "first_ack_bits": "7",
+        "gateway_ack_transmissions": 5,
+        "source_ack_transmissions": 5,
+        "source_data_transmissions": 1,
+        "data_precedes_first_ack": true,
+        "final_queues_clear": true
+      },
+      {
+        "case": "tie_late",
+        "delivered": 3,
+        "first_ack_sequence": 2,
+        "first_ack_bits": "3",
+        "gateway_ack_transmissions": 6,
+        "source_ack_transmissions": 5,
+        "source_data_transmissions": 1,
+        "data_precedes_first_ack": false,
+        "final_queues_clear": true
+      },
+      {
+        "case": "before",
+        "delivered": 3,
+        "first_ack_sequence": 3,
+        "first_ack_bits": "7",
+        "gateway_ack_transmissions": 5,
+        "source_ack_transmissions": 5,
+        "source_data_transmissions": 1,
+        "data_precedes_first_ack": true,
+        "final_queues_clear": true
+      },
+      {
+        "case": "after",
+        "delivered": 3,
+        "first_ack_sequence": 2,
+        "first_ack_bits": "3",
+        "gateway_ack_transmissions": 6,
+        "source_ack_transmissions": 5,
+        "source_data_transmissions": 1,
+        "data_precedes_first_ack": false,
+        "final_queues_clear": true
+      },
+      {
+        "case": "continuous",
+        "delivered": 3,
+        "first_ack_sequence": 3,
+        "first_ack_bits": "7",
+        "gateway_ack_transmissions": 5,
+        "source_ack_transmissions": 5,
+        "source_data_transmissions": 1,
+        "data_precedes_first_ack": true,
+        "final_queues_clear": true
+      },
+      {
+        "case": "quantized",
+        "delivered": 3,
+        "first_ack_sequence": 3,
+        "first_ack_bits": "7",
+        "gateway_ack_transmissions": 5,
+        "source_ack_transmissions": 5,
+        "source_data_transmissions": 1,
+        "data_precedes_first_ack": true,
+        "final_queues_clear": true
+      }
+    ]
+  },
+  "NativeRerunForRepair": false,
+  "FailedOwnerReturnAccepted": false,
+  "ReviewSHA256": "8e65cbd49d4412486640b36abec20c6f43e2299541639360a1eb6e201cb68e45",
+  "TestLogSHA256": "deab04b5a50b87a7190d34ae6d3bb23e0947c169fe2e9eeb3ecb0fbd2505a3de",
+  "LintLogSHA256": "2a038b2de6490bfc28f1ebf3ea208808501a5663aa992a5b58277255a64e4c5c"
+}

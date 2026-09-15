@@ -51,6 +51,10 @@ for k = 1:numel(files)
         case 'nwk_nodes.csv', files(k).row_count = height(result.NodeNwkStatistics);
         case 'routes.csv', files(k).row_count = height(result.Routes);
         case 'neighbors.csv', files(k).row_count = height(result.Neighbors);
+        case 'application_admission_statistics.csv'
+            files(k).row_count = height(result.ApplicationAdmissionStatistics);
+        case 'application_admission_trace.csv'
+            files(k).row_count = height(result.ApplicationAdmissionTrace);
         case 'research_summary.csv', files(k).row_count = 1;
         case 'scenario.csv'
             % The shared CSV parser rejects embedded newlines in fields.

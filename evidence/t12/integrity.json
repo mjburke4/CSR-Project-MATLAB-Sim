@@ -1,0 +1,156 @@
+{
+  "schema": "csr-tranche12-repaired-return-independent-integrity-v1",
+  "disposition": "focused_diagnostic_execution_verified; strict_numerical_parity_not_established",
+  "owner_archive_sha256": "266a47c167e9b2d50d47abcd77a349b8f474334c9e9742d7abc8cca22547633d",
+  "delivered_base_sha256": "3bee81b079d77269cb533673820fd5ee5df099452acf99dff86e60d6f2ded6bc",
+  "delivered_repair_sha256": "046055cf20a8435c41e74fa8435ba21d46eb65c11d0291e3358a96abe854108e",
+  "candidate_sha256": "ebf493fc8d34dc7c7819f14e266bf19b99f0f94441a79da38a801cd7f52292c4",
+  "source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "runtime": {
+    "Runtime": "MATLAB",
+    "Version": "25.1.0.2943329 (R2025a)",
+    "Release": "2025a",
+    "HasWirelessNetworkSimulator": false,
+    "HasWnetNode": false,
+    "HasWirelessPacket": false,
+    "DefaultBackend": "portable",
+    "WirelessAdapterImplemented": true,
+    "WirelessAdapterScope": "Optional R2026a wireless-clock candidate; runtime validation pending",
+    "NativePacketTransportIntegrated": false,
+    "ProbeScope": "Symbol discovery only; licenses and execution are not validated."
+  },
+  "started_utc": "2026-09-14T19:09:01.213Z",
+  "completed_utc": "2026-09-14T19:10:23.544Z",
+  "integrity": {
+    "archive_members": 14,
+    "artifact_hashes_verified": 13,
+    "delivered_overlay_inventory_files_verified": 1598,
+    "source_files_verified": 259,
+    "reference_files_verified": 132,
+    "source_reference_pre_post_identical": true,
+    "source_reference_sets_closed_against_immutable_delivery": true,
+    "native_reference_artifacts": {
+      "relay": 41,
+      "clock": 5
+    },
+    "baselines": {
+      "tranche11": {
+        "source_files": 241,
+        "matlab_files": 130,
+        "all_unchanged": true
+      },
+      "tranche10_core": {
+        "source_files": 225,
+        "matlab_files": 124,
+        "all_unchanged": true
+      }
+    },
+    "repair_matlab_files_changed": [
+      "+csr/+validation/relayContract.m"
+    ]
+  },
+  "tests": {
+    "passed": 72,
+    "failed": 0,
+    "incomplete": 0,
+    "by_class": {
+      "TestRelayContract": 12,
+      "TestClockBoundaryContract": 8,
+      "TestReplayStreams": 13,
+      "TestReplayContract": 8,
+      "TestContentionContract": 19,
+      "TestAckServiceContract": 7,
+      "TestRandomStreams": 5
+    },
+    "retained_passed": 52
+  },
+  "relay": {
+    "cases": {
+      "relay": {
+        "admitted": 20,
+        "delivered": 20,
+        "release_callbacks": 40,
+        "checks_passed": 41,
+        "final_data_owners_and_holds_zero": true
+      },
+      "local": {
+        "admitted": 20,
+        "delivered": 20,
+        "release_callbacks": 20,
+        "checks_passed": 41,
+        "final_data_owners_and_holds_zero": true
+      },
+      "mix": {
+        "admitted": 40,
+        "delivered": 40,
+        "release_callbacks": 60,
+        "checks_passed": 41,
+        "final_data_owners_and_holds_zero": true
+      },
+      "sw": {
+        "admitted": 40,
+        "delivered": 40,
+        "release_callbacks": 60,
+        "checks_passed": 41,
+        "final_data_owners_and_holds_zero": true
+      }
+    },
+    "checks_passed": 164,
+    "checks_failed": 0,
+    "event_count": 2344,
+    "draw_count": 332,
+    "usage_records": 12,
+    "unused_draw_suffix_recorded": true,
+    "bootstrap_pending_controls_per_case": [
+      2,
+      0,
+      0,
+      2,
+      3
+    ],
+    "strict_matches_native": false
+  },
+  "clock": {
+    "cases": 6,
+    "checks_passed": 72,
+    "checks_failed": 0,
+    "shared_integer_cases_exact": 5,
+    "continuous_difference_rows": 3,
+    "continuous_difference_fields": 4,
+    "differences": [
+      {
+        "case": "continuous",
+        "phase": "ingress_before",
+        "field": "local_counter",
+        "matlab": 15,
+        "native": 16
+      },
+      {
+        "case": "continuous",
+        "phase": "ingress_before",
+        "field": "neighbor_counter",
+        "matlab": 15,
+        "native": 16
+      },
+      {
+        "case": "continuous",
+        "phase": "ingress_after",
+        "field": "local_counter",
+        "matlab": 15,
+        "native": 16
+      },
+      {
+        "case": "continuous",
+        "phase": "settled",
+        "field": "neighbor_counter",
+        "matlab": 16,
+        "native": 15
+      }
+    ],
+    "global_clock_changed": false
+  },
+  "full_acceptance_gate_executed": false,
+  "numerical_parity_established": false,
+  "method": "Independent Python standard-library parsing, SHA256 and closed-set checks against immutable csr12.zip+t12fix.zip. Raw service events cross-checked against reported outcomes. No project acceptance checker imported; no MATLAB/native simulator executed by this audit.",
+  "scope": "Actual owner-returned R2025a focused tests and controlled relay/clock fixtures. Prescribed random draws, successful addressed transport, fixed 128 rate key/+33dBm, preconditioned routes and neighbors; bootstrap controls excluded and still queued. No RF/PHY, stochastic population, routing convergence, security admission, full application generator or campus parity claim."
+}

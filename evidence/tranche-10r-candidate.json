@@ -1,0 +1,108 @@
+{
+  "schema": "csr-matlab-tranche-10r-candidate-v1",
+  "status": "ready_for_owner_mesh_diagnostic",
+  "created_date": "2026-09-14",
+  "base_archive": "csr10.zip",
+  "base_archive_sha256": "18a72bd452c08e15f3c3eef65dfe899214a91940dc54b88ce5944918495522f7",
+  "base_archive_commit": "87d0d69ed7f23496f711816bb0f048548366ac7c",
+  "accepted_tranche9_matlab_commit": "99fff0381fe9621ccd76fbdce41eac9aba5a9469",
+  "repair_delivery": "complete source archive; no new git commit or remote publication",
+  "source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "source_recheck": "evidence/tranche-10r/source-recheck.json",
+  "owner_failure_log": "evidence/tranche-10r/owner-log.md",
+  "owner_failure_log_sha256": "bc1a1a0490844b3bf87e9bf4942f19e131a23bbc5a768780d361a8c33f9183cc",
+  "owner_full_archive_received": false,
+  "owner_log_contract_checkpoints_passed": 534,
+  "owner_log_retained_completed": 26,
+  "owner_log_failed_case": "research_mesh_6_seed_128",
+  "owner_log_campus_started": false,
+  "owner_failure_cause_confirmed": false,
+  "demonstrated_defect": "Same-time neighbor admission retry when elapsed and absolute-deadline binary64 arithmetic disagree",
+  "repair": "Compare and schedule identical absolute deadlines for key request, key update and overheard retries",
+  "phy_ecc_changed": false,
+  "mac_changed_from_t10": false,
+  "hop_changed": false,
+  "rng_policy_changed": false,
+  "stimuli_changed": false,
+  "max_events_changed": false,
+  "scheduler_event_order_changed": false,
+  "scheduler_change": "Failure-only exception text includes Now, next time and last/next callback labels",
+  "matlab_executed": false,
+  "octave_executed": false,
+  "native_executed_this_repair": false,
+  "full_acceptance_established": false,
+  "numerical_parity_established": false,
+  "performance_improvement_established": false,
+  "prepared_portable_test_methods": 550,
+  "focused_test_methods": 32,
+  "local_checks": "evidence/tranche-10r/local-checks.json",
+  "independent_review": "evidence/tranche-10r/final-review.json",
+  "focused_command": "report = run_tranche10_mesh;",
+  "focused_case": {
+    "name": "research_mesh_6_seed_128",
+    "seed": 128,
+    "duration_s": 900,
+    "max_events": 2000000
+  },
+  "full_gate_after_diagnostic_review": "report = run_tranche10_validation;",
+  "changed_existing_files": [
+    {
+      "path": "+csr/+nwk/Neighbors.m",
+      "before_sha256": "530819c30d9715572763013580050a1957c72ed14930557e0ab9a349e9e0a868",
+      "after_sha256": "65cb269a9b7e3cade654aad4b262bc6d7ebdf103743fa2581d8694bc6e45aed7"
+    },
+    {
+      "path": "+csr/+sim/EventScheduler.m",
+      "before_sha256": "22a937be4cc18d5e2e5b2956f87273b65dfcdf7a37ee0f0487dfe2a6f647f9b3",
+      "after_sha256": "0e1887cf9d1195a20ab8e4a24c7ff182a2e72303abfec67d34a61eaa1fa9585e"
+    },
+    {
+      "path": "README.md",
+      "before_sha256": "eb1e415a6a831faf1a04927911cd2400e459eeb3444e0664f46f9ebf65ce0fd8",
+      "after_sha256": "d5afa8023c0a15e32ae43535e9dca7acd1db4d72d1eaf3da67131fbd6527af5e"
+    },
+    {
+      "path": "docs/parity-ledger.csv",
+      "before_sha256": "6b1c87967143afc988a4de42ca1ab6478a8f73d39a308d4171703802c7dd4d2e",
+      "after_sha256": "8c03adb0e129eda28019e1e923f34d1afeaef6722c3fc4150a6d7692cfb252e8"
+    },
+    {
+      "path": "evidence/source-baseline.json",
+      "before_sha256": "7eae1d1725bb909a274b8d9f27062749cae64eaf521faabc3d386d2526741fe3",
+      "after_sha256": "2754248d3e6cbccc01d4162b1803bb1765c5afb7a902f249e5096f1f68e5c4a9"
+    },
+    {
+      "path": "tests/TestEventScheduler.m",
+      "before_sha256": "74fa14282b8ee28f50806f84da7952f50b45aa54a2675d82ace0736219e13dd4",
+      "after_sha256": "5276cace17dc168beda48029c37a4458f64af3c8c4dbce30b90b3d5922112223"
+    },
+    {
+      "path": "tests/TestNeighbors.m",
+      "before_sha256": "e4d04b1a9860952c88601f805f4442a24ae3c1688bdacff11a6a581c6c6b3ad9",
+      "after_sha256": "75fe7378590f9e8f8b133c8c6ee50d6f35b13010a3d1bc2835a11e8361736052"
+    }
+  ],
+  "changed_or_new_matlab_files": [
+    {
+      "path": "+csr/+nwk/Neighbors.m",
+      "sha256": "65cb269a9b7e3cade654aad4b262bc6d7ebdf103743fa2581d8694bc6e45aed7"
+    },
+    {
+      "path": "+csr/+sim/EventScheduler.m",
+      "sha256": "0e1887cf9d1195a20ab8e4a24c7ff182a2e72303abfec67d34a61eaa1fa9585e"
+    },
+    {
+      "path": "tests/TestNeighbors.m",
+      "sha256": "75fe7378590f9e8f8b133c8c6ee50d6f35b13010a3d1bc2835a11e8361736052"
+    },
+    {
+      "path": "tests/TestEventScheduler.m",
+      "sha256": "5276cace17dc168beda48029c37a4458f64af3c8c4dbce30b90b3d5922112223"
+    },
+    {
+      "path": "run_tranche10_mesh.m",
+      "sha256": "28f73894e999215861285438a7264482b24967aa9c267dd4198366fc9944df5c"
+    }
+  ],
+  "unchanged_production_data_scenario_files_verified": 100
+}

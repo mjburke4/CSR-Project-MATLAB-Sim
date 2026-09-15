@@ -1,0 +1,1129 @@
+{
+  "schema": "csr-tranche8-ns3-feedback-findings-v1",
+  "status": "ns3_diagnostics_completed_matlab_multiseed_pending",
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "reference_suite_sha256": "5ea5a39c7751c856e710d2eaa09b5d71d4a23c543bafa894c605052f1ded9d5a",
+  "cases": [
+    {
+      "case_id": "two_node_admission_1200_s128",
+      "base_case_id": "two_node_admission_1200",
+      "seed": 128,
+      "admitted": 11380,
+      "delivered": 11364,
+      "unmatched_admitted": 16,
+      "packet_weighted_delay_mean_s": 0.942769619500175,
+      "maximum_delay_s": 4.293724000000054,
+      "flows": [
+        {
+          "source": 2,
+          "destination": 1,
+          "admitted": 11380,
+          "delivered": 11364,
+          "unmatched_admitted": 16,
+          "packet_weighted_delay_mean_s": 0.942769619500175,
+          "maximum_delay_s": 4.293724000000054
+        }
+      ],
+      "feedback": {
+        "ordinary_cumulative": {
+          "construction_count": 11364,
+          "ota_member_count": 1979,
+          "ordinary_response_contexts": 11364,
+          "dack_construction_count": 0,
+          "ota_radio_changed_from_selection": 0,
+          "changed_ota_time_range_s": null,
+          "selected_rate_keys_kbps": [
+            128
+          ],
+          "selected_powers_dbm": [
+            33.0
+          ],
+          "actual_rate_keys_kbps": [
+            128
+          ],
+          "actual_powers_dbm": [
+            33.0
+          ]
+        },
+        "exact_control": {
+          "construction_count": 15,
+          "ota_member_count": 75,
+          "ordinary_response_contexts": 0,
+          "dack_construction_count": 0,
+          "ota_radio_changed_from_selection": 1,
+          "changed_ota_time_range_s": [
+            25.545,
+            25.545
+          ],
+          "selected_rate_keys_kbps": [
+            128
+          ],
+          "selected_powers_dbm": [
+            33.0
+          ],
+          "actual_rate_keys_kbps": [
+            8,
+            128
+          ],
+          "actual_powers_dbm": [
+            33.0
+          ]
+        }
+      },
+      "selection_input_ranges": {
+        "peer_s0_dbm": [
+          -103.0
+        ],
+        "path_loss_db": [
+          123.16724984190499
+        ],
+        "hop_failure_count": [
+          0.0
+        ],
+        "min_rate_key_kbps": [
+          8.0
+        ],
+        "max_rate_key_kbps": [
+          128.0
+        ],
+        "min_power_dbm": [
+          -36.0
+        ],
+        "max_power_dbm": [
+          33.0
+        ],
+        "link_margin_db": [
+          12.0
+        ],
+        "advertised_rx_power_dbm": [
+          -103.0
+        ],
+        "unknown_peer_count": 0
+      }
+    },
+    {
+      "case_id": "three_node_contention_360_s128",
+      "base_case_id": "three_node_contention_360",
+      "seed": 128,
+      "admitted": 946,
+      "delivered": 914,
+      "unmatched_admitted": 32,
+      "packet_weighted_delay_mean_s": 1.6948455317286661,
+      "maximum_delay_s": 9.40572400000002,
+      "flows": [
+        {
+          "source": 2,
+          "destination": 1,
+          "admitted": 460,
+          "delivered": 444,
+          "unmatched_admitted": 16,
+          "packet_weighted_delay_mean_s": 1.6985773783783795,
+          "maximum_delay_s": 9.40572400000002
+        },
+        {
+          "source": 3,
+          "destination": 1,
+          "admitted": 486,
+          "delivered": 470,
+          "unmatched_admitted": 16,
+          "packet_weighted_delay_mean_s": 1.6913201276595753,
+          "maximum_delay_s": 7.793724000000054
+        }
+      ],
+      "feedback": {
+        "ordinary_cumulative": {
+          "construction_count": 915,
+          "ota_member_count": 176,
+          "ordinary_response_contexts": 915,
+          "dack_construction_count": 0,
+          "ota_radio_changed_from_selection": 0,
+          "changed_ota_time_range_s": null,
+          "selected_rate_keys_kbps": [
+            128
+          ],
+          "selected_powers_dbm": [
+            33.0
+          ],
+          "actual_rate_keys_kbps": [
+            128
+          ],
+          "actual_powers_dbm": [
+            33.0
+          ]
+        },
+        "exact_control": {
+          "construction_count": 43,
+          "ota_member_count": 215,
+          "ordinary_response_contexts": 0,
+          "dack_construction_count": 0,
+          "ota_radio_changed_from_selection": 19,
+          "changed_ota_time_range_s": [
+            15.158,
+            42.367
+          ],
+          "selected_rate_keys_kbps": [
+            8,
+            128
+          ],
+          "selected_powers_dbm": [
+            33.0
+          ],
+          "actual_rate_keys_kbps": [
+            8,
+            128
+          ],
+          "actual_powers_dbm": [
+            33.0
+          ]
+        }
+      },
+      "selection_input_ranges": {
+        "peer_s0_dbm": [
+          -103.0
+        ],
+        "path_loss_db": [
+          123.16724984190499,
+          135.20844966846423
+        ],
+        "hop_failure_count": [
+          0.0
+        ],
+        "min_rate_key_kbps": [
+          8.0
+        ],
+        "max_rate_key_kbps": [
+          128.0
+        ],
+        "min_power_dbm": [
+          -36.0
+        ],
+        "max_power_dbm": [
+          33.0
+        ],
+        "link_margin_db": [
+          12.0
+        ],
+        "advertised_rx_power_dbm": [
+          -103.0
+        ],
+        "unknown_peer_count": 0
+      }
+    },
+    {
+      "case_id": "two_node_admission_1200_s129",
+      "base_case_id": "two_node_admission_1200",
+      "seed": 129,
+      "admitted": 11234,
+      "delivered": 11227,
+      "unmatched_admitted": 7,
+      "packet_weighted_delay_mean_s": 0.9597574995991802,
+      "maximum_delay_s": 4.65772400000003,
+      "flows": [
+        {
+          "source": 2,
+          "destination": 1,
+          "admitted": 11234,
+          "delivered": 11227,
+          "unmatched_admitted": 7,
+          "packet_weighted_delay_mean_s": 0.9597574995991802,
+          "maximum_delay_s": 4.65772400000003
+        }
+      ],
+      "feedback": {
+        "ordinary_cumulative": {
+          "construction_count": 11227,
+          "ota_member_count": 2002,
+          "ordinary_response_contexts": 11227,
+          "dack_construction_count": 0,
+          "ota_radio_changed_from_selection": 0,
+          "changed_ota_time_range_s": null,
+          "selected_rate_keys_kbps": [
+            128
+          ],
+          "selected_powers_dbm": [
+            33.0
+          ],
+          "actual_rate_keys_kbps": [
+            128
+          ],
+          "actual_powers_dbm": [
+            33.0
+          ]
+        },
+        "exact_control": {
+          "construction_count": 15,
+          "ota_member_count": 75,
+          "ordinary_response_contexts": 0,
+          "dack_construction_count": 0,
+          "ota_radio_changed_from_selection": 1,
+          "changed_ota_time_range_s": [
+            25.61,
+            25.61
+          ],
+          "selected_rate_keys_kbps": [
+            128
+          ],
+          "selected_powers_dbm": [
+            33.0
+          ],
+          "actual_rate_keys_kbps": [
+            8,
+            128
+          ],
+          "actual_powers_dbm": [
+            33.0
+          ]
+        }
+      },
+      "selection_input_ranges": {
+        "peer_s0_dbm": [
+          -103.0
+        ],
+        "path_loss_db": [
+          123.16724984190499
+        ],
+        "hop_failure_count": [
+          0.0
+        ],
+        "min_rate_key_kbps": [
+          8.0
+        ],
+        "max_rate_key_kbps": [
+          128.0
+        ],
+        "min_power_dbm": [
+          -36.0
+        ],
+        "max_power_dbm": [
+          33.0
+        ],
+        "link_margin_db": [
+          12.0
+        ],
+        "advertised_rx_power_dbm": [
+          -103.0
+        ],
+        "unknown_peer_count": 0
+      }
+    },
+    {
+      "case_id": "three_node_contention_360_s129",
+      "base_case_id": "three_node_contention_360",
+      "seed": 129,
+      "admitted": 854,
+      "delivered": 822,
+      "unmatched_admitted": 32,
+      "packet_weighted_delay_mean_s": 1.918685946472017,
+      "maximum_delay_s": 13.896704,
+      "flows": [
+        {
+          "source": 2,
+          "destination": 1,
+          "admitted": 369,
+          "delivered": 353,
+          "unmatched_admitted": 16,
+          "packet_weighted_delay_mean_s": 2.222310232294614,
+          "maximum_delay_s": 13.896704
+        },
+        {
+          "source": 3,
+          "destination": 1,
+          "admitted": 485,
+          "delivered": 469,
+          "unmatched_admitted": 16,
+          "packet_weighted_delay_mean_s": 1.6901584989339002,
+          "maximum_delay_s": 9.918703999999991
+        }
+      ],
+      "feedback": {
+        "ordinary_cumulative": {
+          "construction_count": 823,
+          "ota_member_count": 181,
+          "ordinary_response_contexts": 823,
+          "dack_construction_count": 0,
+          "ota_radio_changed_from_selection": 0,
+          "changed_ota_time_range_s": null,
+          "selected_rate_keys_kbps": [
+            128
+          ],
+          "selected_powers_dbm": [
+            33.0
+          ],
+          "actual_rate_keys_kbps": [
+            128
+          ],
+          "actual_powers_dbm": [
+            33.0
+          ]
+        },
+        "exact_control": {
+          "construction_count": 51,
+          "ota_member_count": 255,
+          "ordinary_response_contexts": 0,
+          "dack_construction_count": 0,
+          "ota_radio_changed_from_selection": 30,
+          "changed_ota_time_range_s": [
+            15.34,
+            57.811
+          ],
+          "selected_rate_keys_kbps": [
+            8,
+            128
+          ],
+          "selected_powers_dbm": [
+            33.0
+          ],
+          "actual_rate_keys_kbps": [
+            8,
+            128
+          ],
+          "actual_powers_dbm": [
+            33.0
+          ]
+        }
+      },
+      "selection_input_ranges": {
+        "peer_s0_dbm": [
+          -103.0
+        ],
+        "path_loss_db": [
+          123.16724984190499,
+          135.20844966846423
+        ],
+        "hop_failure_count": [
+          0.0
+        ],
+        "min_rate_key_kbps": [
+          8.0
+        ],
+        "max_rate_key_kbps": [
+          128.0
+        ],
+        "min_power_dbm": [
+          -36.0
+        ],
+        "max_power_dbm": [
+          33.0
+        ],
+        "link_margin_db": [
+          12.0
+        ],
+        "advertised_rx_power_dbm": [
+          -103.0
+        ],
+        "unknown_peer_count": 0
+      }
+    },
+    {
+      "case_id": "two_node_admission_1200_s130",
+      "base_case_id": "two_node_admission_1200",
+      "seed": 130,
+      "admitted": 11412,
+      "delivered": 11396,
+      "unmatched_admitted": 16,
+      "packet_weighted_delay_mean_s": 0.9396786805896803,
+      "maximum_delay_s": 5.190724000000046,
+      "flows": [
+        {
+          "source": 2,
+          "destination": 1,
+          "admitted": 11412,
+          "delivered": 11396,
+          "unmatched_admitted": 16,
+          "packet_weighted_delay_mean_s": 0.9396786805896803,
+          "maximum_delay_s": 5.190724000000046
+        }
+      ],
+      "feedback": {
+        "ordinary_cumulative": {
+          "construction_count": 11396,
+          "ota_member_count": 2018,
+          "ordinary_response_contexts": 11396,
+          "dack_construction_count": 0,
+          "ota_radio_changed_from_selection": 0,
+          "changed_ota_time_range_s": null,
+          "selected_rate_keys_kbps": [
+            128
+          ],
+          "selected_powers_dbm": [
+            33.0
+          ],
+          "actual_rate_keys_kbps": [
+            128
+          ],
+          "actual_powers_dbm": [
+            33.0
+          ]
+        },
+        "exact_control": {
+          "construction_count": 15,
+          "ota_member_count": 75,
+          "ordinary_response_contexts": 0,
+          "dack_construction_count": 0,
+          "ota_radio_changed_from_selection": 1,
+          "changed_ota_time_range_s": [
+            25.727,
+            25.727
+          ],
+          "selected_rate_keys_kbps": [
+            128
+          ],
+          "selected_powers_dbm": [
+            33.0
+          ],
+          "actual_rate_keys_kbps": [
+            8,
+            128
+          ],
+          "actual_powers_dbm": [
+            33.0
+          ]
+        }
+      },
+      "selection_input_ranges": {
+        "peer_s0_dbm": [
+          -103.0
+        ],
+        "path_loss_db": [
+          123.16724984190499
+        ],
+        "hop_failure_count": [
+          0.0
+        ],
+        "min_rate_key_kbps": [
+          8.0
+        ],
+        "max_rate_key_kbps": [
+          128.0
+        ],
+        "min_power_dbm": [
+          -36.0
+        ],
+        "max_power_dbm": [
+          33.0
+        ],
+        "link_margin_db": [
+          12.0
+        ],
+        "advertised_rx_power_dbm": [
+          -103.0
+        ],
+        "unknown_peer_count": 0
+      }
+    },
+    {
+      "case_id": "three_node_contention_360_s130",
+      "base_case_id": "three_node_contention_360",
+      "seed": 130,
+      "admitted": 948,
+      "delivered": 916,
+      "unmatched_admitted": 32,
+      "packet_weighted_delay_mean_s": 1.659646358078607,
+      "maximum_delay_s": 8.612724000000014,
+      "flows": [
+        {
+          "source": 2,
+          "destination": 1,
+          "admitted": 473,
+          "delivered": 457,
+          "unmatched_admitted": 16,
+          "packet_weighted_delay_mean_s": 1.6926221619256077,
+          "maximum_delay_s": 8.612724000000014
+        },
+        {
+          "source": 3,
+          "destination": 1,
+          "admitted": 475,
+          "delivered": 459,
+          "unmatched_admitted": 16,
+          "packet_weighted_delay_mean_s": 1.6268142396514187,
+          "maximum_delay_s": 7.92372400000005
+        }
+      ],
+      "feedback": {
+        "ordinary_cumulative": {
+          "construction_count": 918,
+          "ota_member_count": 168,
+          "ordinary_response_contexts": 918,
+          "dack_construction_count": 0,
+          "ota_radio_changed_from_selection": 0,
+          "changed_ota_time_range_s": null,
+          "selected_rate_keys_kbps": [
+            128
+          ],
+          "selected_powers_dbm": [
+            33.0
+          ],
+          "actual_rate_keys_kbps": [
+            128
+          ],
+          "actual_powers_dbm": [
+            33.0
+          ]
+        },
+        "exact_control": {
+          "construction_count": 50,
+          "ota_member_count": 250,
+          "ordinary_response_contexts": 0,
+          "dack_construction_count": 0,
+          "ota_radio_changed_from_selection": 24,
+          "changed_ota_time_range_s": [
+            25.441,
+            57.798
+          ],
+          "selected_rate_keys_kbps": [
+            8,
+            128
+          ],
+          "selected_powers_dbm": [
+            33.0
+          ],
+          "actual_rate_keys_kbps": [
+            8,
+            128
+          ],
+          "actual_powers_dbm": [
+            33.0
+          ]
+        }
+      },
+      "selection_input_ranges": {
+        "peer_s0_dbm": [
+          -103.0
+        ],
+        "path_loss_db": [
+          123.16724984190499,
+          135.20844966846423
+        ],
+        "hop_failure_count": [
+          0.0
+        ],
+        "min_rate_key_kbps": [
+          8.0
+        ],
+        "max_rate_key_kbps": [
+          128.0
+        ],
+        "min_power_dbm": [
+          -36.0
+        ],
+        "max_power_dbm": [
+          33.0
+        ],
+        "link_margin_db": [
+          12.0
+        ],
+        "advertised_rx_power_dbm": [
+          -103.0
+        ],
+        "unknown_peer_count": 0
+      }
+    },
+    {
+      "case_id": "two_node_admission_1200_s131",
+      "base_case_id": "two_node_admission_1200",
+      "seed": 131,
+      "admitted": 11334,
+      "delivered": 11330,
+      "unmatched_admitted": 4,
+      "packet_weighted_delay_mean_s": 0.933307842894969,
+      "maximum_delay_s": 4.163724000000002,
+      "flows": [
+        {
+          "source": 2,
+          "destination": 1,
+          "admitted": 11334,
+          "delivered": 11330,
+          "unmatched_admitted": 4,
+          "packet_weighted_delay_mean_s": 0.933307842894969,
+          "maximum_delay_s": 4.163724000000002
+        }
+      ],
+      "feedback": {
+        "ordinary_cumulative": {
+          "construction_count": 11330,
+          "ota_member_count": 1960,
+          "ordinary_response_contexts": 11330,
+          "dack_construction_count": 0,
+          "ota_radio_changed_from_selection": 0,
+          "changed_ota_time_range_s": null,
+          "selected_rate_keys_kbps": [
+            128
+          ],
+          "selected_powers_dbm": [
+            33.0
+          ],
+          "actual_rate_keys_kbps": [
+            128
+          ],
+          "actual_powers_dbm": [
+            33.0
+          ]
+        },
+        "exact_control": {
+          "construction_count": 15,
+          "ota_member_count": 75,
+          "ordinary_response_contexts": 0,
+          "dack_construction_count": 0,
+          "ota_radio_changed_from_selection": 1,
+          "changed_ota_time_range_s": [
+            25.311,
+            25.311
+          ],
+          "selected_rate_keys_kbps": [
+            128
+          ],
+          "selected_powers_dbm": [
+            33.0
+          ],
+          "actual_rate_keys_kbps": [
+            8,
+            128
+          ],
+          "actual_powers_dbm": [
+            33.0
+          ]
+        }
+      },
+      "selection_input_ranges": {
+        "peer_s0_dbm": [
+          -103.0
+        ],
+        "path_loss_db": [
+          123.16724984190499
+        ],
+        "hop_failure_count": [
+          0.0
+        ],
+        "min_rate_key_kbps": [
+          8.0
+        ],
+        "max_rate_key_kbps": [
+          128.0
+        ],
+        "min_power_dbm": [
+          -36.0
+        ],
+        "max_power_dbm": [
+          33.0
+        ],
+        "link_margin_db": [
+          12.0
+        ],
+        "advertised_rx_power_dbm": [
+          -103.0
+        ],
+        "unknown_peer_count": 0
+      }
+    },
+    {
+      "case_id": "three_node_contention_360_s131",
+      "base_case_id": "three_node_contention_360",
+      "seed": 131,
+      "admitted": 903,
+      "delivered": 883,
+      "unmatched_admitted": 20,
+      "packet_weighted_delay_mean_s": 1.7760154156285393,
+      "maximum_delay_s": 9.912724000000026,
+      "flows": [
+        {
+          "source": 2,
+          "destination": 1,
+          "admitted": 433,
+          "delivered": 417,
+          "unmatched_admitted": 16,
+          "packet_weighted_delay_mean_s": 1.8792065419664274,
+          "maximum_delay_s": 9.912724000000026
+        },
+        {
+          "source": 3,
+          "destination": 1,
+          "admitted": 470,
+          "delivered": 466,
+          "unmatched_admitted": 4,
+          "packet_weighted_delay_mean_s": 1.6836748583690986,
+          "maximum_delay_s": 9.275724000000025
+        }
+      ],
+      "feedback": {
+        "ordinary_cumulative": {
+          "construction_count": 885,
+          "ota_member_count": 181,
+          "ordinary_response_contexts": 885,
+          "dack_construction_count": 0,
+          "ota_radio_changed_from_selection": 0,
+          "changed_ota_time_range_s": null,
+          "selected_rate_keys_kbps": [
+            128
+          ],
+          "selected_powers_dbm": [
+            33.0
+          ],
+          "actual_rate_keys_kbps": [
+            128
+          ],
+          "actual_powers_dbm": [
+            33.0
+          ]
+        },
+        "exact_control": {
+          "construction_count": 50,
+          "ota_member_count": 250,
+          "ordinary_response_contexts": 0,
+          "dack_construction_count": 0,
+          "ota_radio_changed_from_selection": 30,
+          "changed_ota_time_range_s": [
+            15.21,
+            58.682
+          ],
+          "selected_rate_keys_kbps": [
+            8,
+            128
+          ],
+          "selected_powers_dbm": [
+            33.0
+          ],
+          "actual_rate_keys_kbps": [
+            8,
+            128
+          ],
+          "actual_powers_dbm": [
+            33.0
+          ]
+        }
+      },
+      "selection_input_ranges": {
+        "peer_s0_dbm": [
+          -103.0
+        ],
+        "path_loss_db": [
+          123.16724984190499,
+          135.20844966846423
+        ],
+        "hop_failure_count": [
+          0.0
+        ],
+        "min_rate_key_kbps": [
+          8.0
+        ],
+        "max_rate_key_kbps": [
+          128.0
+        ],
+        "min_power_dbm": [
+          -36.0
+        ],
+        "max_power_dbm": [
+          33.0
+        ],
+        "link_margin_db": [
+          12.0
+        ],
+        "advertised_rx_power_dbm": [
+          -103.0
+        ],
+        "unknown_peer_count": 0
+      }
+    },
+    {
+      "case_id": "two_node_admission_1200_s132",
+      "base_case_id": "two_node_admission_1200",
+      "seed": 132,
+      "admitted": 11383,
+      "delivered": 11375,
+      "unmatched_admitted": 8,
+      "packet_weighted_delay_mean_s": 0.9297350435164843,
+      "maximum_delay_s": 4.462724000000037,
+      "flows": [
+        {
+          "source": 2,
+          "destination": 1,
+          "admitted": 11383,
+          "delivered": 11375,
+          "unmatched_admitted": 8,
+          "packet_weighted_delay_mean_s": 0.9297350435164843,
+          "maximum_delay_s": 4.462724000000037
+        }
+      ],
+      "feedback": {
+        "ordinary_cumulative": {
+          "construction_count": 11375,
+          "ota_member_count": 2025,
+          "ordinary_response_contexts": 11375,
+          "dack_construction_count": 0,
+          "ota_radio_changed_from_selection": 0,
+          "changed_ota_time_range_s": null,
+          "selected_rate_keys_kbps": [
+            128
+          ],
+          "selected_powers_dbm": [
+            33.0
+          ],
+          "actual_rate_keys_kbps": [
+            128
+          ],
+          "actual_powers_dbm": [
+            33.0
+          ]
+        },
+        "exact_control": {
+          "construction_count": 15,
+          "ota_member_count": 75,
+          "ordinary_response_contexts": 0,
+          "dack_construction_count": 0,
+          "ota_radio_changed_from_selection": 1,
+          "changed_ota_time_range_s": [
+            25.805,
+            25.805
+          ],
+          "selected_rate_keys_kbps": [
+            128
+          ],
+          "selected_powers_dbm": [
+            33.0
+          ],
+          "actual_rate_keys_kbps": [
+            8,
+            128
+          ],
+          "actual_powers_dbm": [
+            33.0
+          ]
+        }
+      },
+      "selection_input_ranges": {
+        "peer_s0_dbm": [
+          -103.0
+        ],
+        "path_loss_db": [
+          123.16724984190499
+        ],
+        "hop_failure_count": [
+          0.0
+        ],
+        "min_rate_key_kbps": [
+          8.0
+        ],
+        "max_rate_key_kbps": [
+          128.0
+        ],
+        "min_power_dbm": [
+          -36.0
+        ],
+        "max_power_dbm": [
+          33.0
+        ],
+        "link_margin_db": [
+          12.0
+        ],
+        "advertised_rx_power_dbm": [
+          -103.0
+        ],
+        "unknown_peer_count": 0
+      }
+    },
+    {
+      "case_id": "three_node_contention_360_s132",
+      "base_case_id": "three_node_contention_360",
+      "seed": 132,
+      "admitted": 952,
+      "delivered": 920,
+      "unmatched_admitted": 32,
+      "packet_weighted_delay_mean_s": 1.6532728260869565,
+      "maximum_delay_s": 10.081724000000008,
+      "flows": [
+        {
+          "source": 2,
+          "destination": 1,
+          "admitted": 467,
+          "delivered": 451,
+          "unmatched_admitted": 16,
+          "packet_weighted_delay_mean_s": 1.7130548647450086,
+          "maximum_delay_s": 8.443724000000032
+        },
+        {
+          "source": 3,
+          "destination": 1,
+          "admitted": 485,
+          "delivered": 469,
+          "unmatched_admitted": 16,
+          "packet_weighted_delay_mean_s": 1.595785194029853,
+          "maximum_delay_s": 10.081724000000008
+        }
+      ],
+      "feedback": {
+        "ordinary_cumulative": {
+          "construction_count": 921,
+          "ota_member_count": 180,
+          "ordinary_response_contexts": 921,
+          "dack_construction_count": 0,
+          "ota_radio_changed_from_selection": 0,
+          "changed_ota_time_range_s": null,
+          "selected_rate_keys_kbps": [
+            128
+          ],
+          "selected_powers_dbm": [
+            33.0
+          ],
+          "actual_rate_keys_kbps": [
+            128
+          ],
+          "actual_powers_dbm": [
+            33.0
+          ]
+        },
+        "exact_control": {
+          "construction_count": 49,
+          "ota_member_count": 245,
+          "ordinary_response_contexts": 0,
+          "dack_construction_count": 0,
+          "ota_radio_changed_from_selection": 31,
+          "changed_ota_time_range_s": [
+            25.298,
+            58.578
+          ],
+          "selected_rate_keys_kbps": [
+            8,
+            128
+          ],
+          "selected_powers_dbm": [
+            33.0
+          ],
+          "actual_rate_keys_kbps": [
+            8,
+            128
+          ],
+          "actual_powers_dbm": [
+            33.0
+          ]
+        }
+      },
+      "selection_input_ranges": {
+        "peer_s0_dbm": [
+          -103.0
+        ],
+        "path_loss_db": [
+          123.16724984190499,
+          135.20844966846423
+        ],
+        "hop_failure_count": [
+          0.0
+        ],
+        "min_rate_key_kbps": [
+          8.0
+        ],
+        "max_rate_key_kbps": [
+          128.0
+        ],
+        "min_power_dbm": [
+          -36.0
+        ],
+        "max_power_dbm": [
+          33.0
+        ],
+        "link_margin_db": [
+          12.0
+        ],
+        "advertised_rx_power_dbm": [
+          -103.0
+        ],
+        "unknown_peer_count": 0
+      }
+    }
+  ],
+  "seed_summaries": [
+    {
+      "base_case_id": "three_node_contention_360",
+      "seeds": [
+        128,
+        129,
+        130,
+        131,
+        132
+      ],
+      "delivered_values": [
+        914,
+        822,
+        916,
+        883,
+        920
+      ],
+      "mean_delivered": 891,
+      "sample_sd_delivered": 41.291645644125154,
+      "min_delivered": 822,
+      "max_delivered": 920,
+      "sample_cv_percent": 4.634303663762644
+    },
+    {
+      "base_case_id": "two_node_admission_1200",
+      "seeds": [
+        128,
+        129,
+        130,
+        131,
+        132
+      ],
+      "delivered_values": [
+        11364,
+        11227,
+        11396,
+        11330,
+        11375
+      ],
+      "mean_delivered": 11338.4,
+      "sample_sd_delivered": 66.69557706474995,
+      "min_delivered": 11227,
+      "max_delivered": 11396,
+      "sample_cv_percent": 0.5882274136099446
+    }
+  ],
+  "limits": [
+    "No MATLAB multiseed execution is claimed.",
+    "Equal numerical seed labels do not imply common random samples across MATLAB and ns-3.",
+    "Unmatched admitted packets are not a source-certified drop/pending partition.",
+    "These direct-to-gateway cases produce no DACK; they do not exercise relay backpressure feedback.",
+    "Observer-on/off comparison binds aggregateTraceOnly app/statistics event trace and admission counters, not complete protocol/PHY traces.",
+    "HOP failure count was zero in every feedback selection; these observations do not characterize failure-state-dependent behavior."
+  ],
+  "all_case_selection_input_ranges": {
+    "peer_s0_dbm": [
+      -103.0
+    ],
+    "path_loss_db": [
+      123.16724984190499,
+      135.20844966846423
+    ],
+    "hop_failure_count": [
+      0.0
+    ],
+    "min_rate_key_kbps": [
+      8.0
+    ],
+    "max_rate_key_kbps": [
+      128.0
+    ],
+    "min_power_dbm": [
+      -36.0
+    ],
+    "max_power_dbm": [
+      33.0
+    ],
+    "link_margin_db": [
+      12.0
+    ],
+    "advertised_rx_power_dbm": [
+      -103.0
+    ]
+  },
+  "selection_count": 61472,
+  "policy_inspection": {
+    "source_file": "model/csr-hop-layer.h",
+    "source_sha256": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+    "functions": [
+      "ComputeLinkControl",
+      "ApplyLinkControl",
+      "ProtectAckFrame"
+    ],
+    "read_only_inference": "All observed peers were known and advertised S0=-103dBm with failurecount0. At123.16724984190499dB pathloss the source margin at8kbps is12.832750158095dB, selecting key128; required32.167249841905dBm is ceiled to33dBm. Cross-peer control pathloss135.20844966846423dB leaves0.791550331536dB margin and selects key8, also ceiled33dBm. NumFailures changes source linkCost only, not the speed/power selection expressions. Unknown-peer fallback, varying advertisedS0, nonzero failure counts and relay DACK branches are not exercised.",
+    "causal_limit": "Existing MATLAB copies incoming DATA rate and resolves node power; these particular direct-link inputs also produce the same ns3 reverse-link selection. This is no evidence that replacing the MATLAB rule improves results, and it does not explain the campus source8 single-seed residual."
+  }
+}

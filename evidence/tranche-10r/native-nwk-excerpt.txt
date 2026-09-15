@@ -1,0 +1,446 @@
+CsrNetLayer::ScheduleAdmissionRetry (
+  CsrNodeId neighbor,
+  Time delay)
+{
+  auto it = m_nwkNeighbors.find (neighbor);
+  if (it == m_nwkNeighbors.end () || it->second.arlActive)
+    {
+      return;
+    }
+
+  // There is one legacy-admission deadline per neighbor.  A new packet or a
+  // transition to the next key/check phase replaces the obsolete deadline.
+  if (it->second.admissionRetryEvent.IsPending ())
+    {
+      Simulator::Cancel (it->second.admissionRetryEvent);
+    }
+
+  it->second.admissionRetryEvent = Simulator::Schedule (
+    delay,
+    &CsrNetLayer::AdmissionRetry,
+    this,
+    neighbor);
+}
+
+void
+CsrNetLayer::AdmissionRetry (CsrNodeId neighbor)
+{
+  EvaluateNeighborAdmission (neighbor, false);
+}
+
+void
+CsrNetLayer::SendKeyRequest (
+  CsrNodeId neighbor,
+  bool resetDelay)
+{
+  if (m_hop == nullptr)
+    {
+      return;
+    }
+
+  NwkNeighborEntry &entry = GetOrCreateNwkNeighbor (neighbor);
+  entry.nodeId = neighbor;
+
+  if (resetDelay)
+    {
+      entry.keyRequestDelay = MilliSeconds (5000);
+      entry.keySendDelay = MilliSeconds (5000);
+    }
+
+  entry.keyRequestSentValid = true;
+  entry.keyRequestSentWhen = Simulator::Now ();
+  m_keyRequestSentCount++;
+
+  std::cout << "[NWK " << m_nodeId
+            << "] Sending source-faithful KeyRequest"
+            << " neighbor=" << neighbor
+            << " noAck=1"
+            << " retryDelayMs="
+            << entry.keyRequestDelay.GetMilliSeconds ()
+            << std::endl;
+
+  m_hop->SendKeyRequest (neighbor);
+  ScheduleAdmissionRetry (neighbor, entry.keyRequestDelay);
+}
+
+void
+CsrNetLayer::SendKeyUpdate (CsrNodeId neighbor)
+{
+  if (m_hop == nullptr)
+    {
+      return;
+    }
+
+  NwkNeighborEntry &entry = GetOrCreateNwkNeighbor (neighbor);
+  entry.nodeId = neighbor;
+  SyncNeighborKeyState (neighbor);
+
+  if (entry.keySendComplete || entry.keySendActive)
+    {
+      return;
+    }
+
+  entry.keySendValid = true;
+  entry.keySendWhen = Simulator::Now ();
+
+  if (m_hop->SendKeyUpdate (neighbor))
+    {
+      entry.keySendActive = true;
+      m_keyUpdateSentCount++;
+
+      std::cout << "[NWK " << m_nodeId
+                << "] KeyUpdate send active"
+                << " neighbor=" << neighbor
+                << " reliable=1"
+                << " securityBytes="
+                << CsrKeyUpdateHeader::SERIALIZED_SIZE
+                << std::endl;
+
+      ScheduleAdmissionRetry (neighbor, entry.keySendDelay);
+    }
+}
+
+void
+CsrNetLayer::SendPendingDiscoveryCheck (CsrNodeId neighbor)
+{
+  auto it = m_nwkNeighbors.find (neighbor);
+  if (it == m_nwkNeighbors.end ())
+    {
+      return;
+    }
+
+  NwkNeighborEntry &entry = it->second;
+
+  if (!entry.admissionDiscoveryCheckPending ||
+      entry.admissionDiscoveryCheckActive ||
+      !entry.keySendComplete ||
+      !m_discoveryResponseEnabled)
+    {
+      return;
+    }
+
+  entry.admissionDiscoveryCheckPending = false;
+  entry.admissionDiscoveryCheckActive = true;
+
+  std::cout << "[NWK " << m_nodeId
+            << "] Sending deferred Discovery NeighborCheck"
+            << " neighbor=" << neighbor
+            << " sequence=" << entry.admissionDiscoverySequence
+            << " afterKeySend=1"
+            << std::endl;
+
+  SendNeighborCheck (neighbor,
+                     CsrNeighborCheckType::Discovery,
+                     CSR_BROADCAST_ID,
+                     entry.admissionDiscoverySequence);
+}
+
+void
+CsrNetLayer::EnsureCheckMessage (
+  CsrNodeId neighbor,
+  const char *reason)
+{
+  if (!m_arlNeighborAdmissionEnabled || m_hop == nullptr)
+    {
+      return;
+    }
+
+  NwkNeighborEntry &entry = GetOrCreateNwkNeighbor (neighbor);
+  entry.nodeId = neighbor;
+
+  if (entry.arlActive ||
+      entry.checkMessageActive ||
+      entry.admissionDiscoveryCheckActive)
+    {
+      return;
+    }
+
+  entry.checkMessageActive = true;
+
+  std::cout << "[NWK " << m_nodeId
+            << "] Starting CHECK_MESSAGE admission proof"
+            << " neighbor=" << neighbor
+            << " reason=" << reason
+            << std::endl;
+
+  SendNeighborCheck (neighbor, CsrNeighborCheckType::Message);
+}
+
+void
+CsrNetLayer::TryMakeNeighborActive (
+  CsrNodeId neighbor,
+  const char *reason)
+{
+  auto it = m_nwkNeighbors.find (neighbor);
+  if (it == m_nwkNeighbors.end ())
+    {
+      return;
+    }
+
+  NwkNeighborEntry &entry = it->second;
+  SyncNeighborKeyState (neighbor);
+
+  if (m_arlNeighborAdmissionEnabled &&
+      (!entry.keyUpdateComplete || !entry.keySendComplete))
+    {
+      std::cout << "[NWK " << m_nodeId
+                << "] Neighbor admission deferred"
+                << " neighbor=" << neighbor
+                << " reason=" << reason
+                << " receivedKey="
+                << (entry.keyUpdateComplete ? 1 : 0)
+                << " sentKey="
+                << (entry.keySendComplete ? 1 : 0)
+                << std::endl;
+      return;
+    }
+
+  if (entry.arlActive)
+    {
+      return;
+    }
+
+  NoteDestinationCreated (neighbor);
+
+  // routesMakeNeighborActive() recomputes only the destination represented by
+  // the neighbor itself.  Transit UPDATEs cached while the peer was inactive
+  // remain selection-deferred until a later source-owned recomputation visits
+  // their destination.
+  SelectedRouteState directRouteBefore =
+    CaptureSelectedRouteState (neighbor);
+
+  entry.arlActive = true;
+  entry.stale = false;
+  entry.overheardDelay = MilliSeconds (5000);
+  entry.checkMessageActive = false;
+  entry.admissionDiscoveryCheckActive = false;
+
+  if (entry.admissionRetryEvent.IsPending ())
+    {
+      Simulator::Cancel (entry.admissionRetryEvent);
+    }
+
+  std::cout << "[NWK " << m_nodeId
+            << "] ARL neighbor ACTIVE"
+            << " neighbor=" << neighbor
+            << " reason=" << reason
+            << " keys=two-sided"
+            << std::endl;
+
+  ReleaseDeferredRouteCandidates (neighbor);
+
+  SelectedRouteState directRouteAfter =
+    CaptureSelectedRouteState (neighbor);
+
+  // routesMakeNeighborActive() sets needsUpdate; routesProcess() later walks
+  // all such neighbors before its changed-destination block.  Keep this as
+  // pending process state so admission handling never re-enters HOP/MAC.
+  m_pendingRoutingSnapshots.insert (neighbor);
+
+  if (!SameSelectedRouteState (directRouteBefore, directRouteAfter))
+    {
+      MarkSelectedRouteChanged (neighbor, "neighbor admitted");
+    }
+  else
+    {
+      ScheduleRoutesProcess ();
+    }
+
+  if (entry.admissionNeedsRoutingRequest)
+    {
+      entry.admissionNeedsRoutingRequest = false;
+      Simulator::ScheduleNow (
+        &CsrNetLayer::SendRoutingRequest,
+        this,
+        neighbor);
+    }
+
+}
+
+void
+CsrNetLayer::MakeNeighborInactive (
+  CsrNodeId neighbor,
+  const char *reason)
+{
+  auto it = m_nwkNeighbors.find (neighbor);
+  if (it == m_nwkNeighbors.end ())
+    {
+      return;
+    }
+
+  std::map<CsrNodeId, SelectedRouteState> selectedBefore;
+  for (const auto &route : m_routes)
+    {
+      if (route.nextHop == neighbor &&
+          selectedBefore.find (route.nwkDst) == selectedBefore.end ())
+        {
+          selectedBefore.emplace (
+            route.nwkDst,
+            CaptureSelectedRouteState (route.nwkDst));
+        }
+    }
+
+  NwkNeighborEntry &entry = it->second;
+  const bool wasActive = entry.arlActive;
+  entry.arlActive = false;
+  entry.checkMessageActive = false;
+  entry.admissionDiscoveryCheckActive = false;
+  entry.arlRoutingReassemblies.clear ();
+  entry.routingSequenceValid = false;
+  entry.routingSequence = 0;
+  entry.routingUpdateSectionStateValid = false;
+
+  std::cout << "[NWK " << m_nodeId
+            << "] ARL neighbor INACTIVE"
+            << " neighbor=" << neighbor
+            << " reason=" << reason
+            << " wasActive=" << (wasActive ? 1 : 0)
+            << std::endl;
+
+  // routesMakeNeighborInactive() sets sendChirp and wakes CTRLSEMA only for
+  // an actual ACTIVE-to-INACTIVE transition.  Defer the send to the next
+  // same-time event so callers finish deleting/recomputing route state first.
+  if (wasActive)
+    {
+      ScheduleDiscoveryChirp ();
+    }
+
+  // routesMakeNeighborInactive() calls routesDeleteNeighborRoutes() before
+  // recomputing affected destinations.  Direct-neighbor state remains, but
+  // its learned self capability does not: readmission starts from the
+  // capability-zero direct fallback until a new self UPDATE arrives.  Every
+  // transit candidate learned from this reporter is discarded as well.
+  for (auto &route : m_routes)
+    {
+      if (route.immediate &&
+          route.nwkDst == neighbor &&
+          route.nextHop == neighbor)
+        {
+          route.capability = 0;
+          route.routingSequenceValid = false;
+          route.routingSequence = 0;
+        }
+    }
+
+  const auto oldRouteCount = m_routes.size ();
+  m_routes.erase (
+    std::remove_if (
+      m_routes.begin (),
+      m_routes.end (),
+      [neighbor] (const RouteEntry &route) {
+        return !route.immediate && route.learnedFrom == neighbor;
+      }),
+    m_routes.end ());
+
+  const auto deletedRouteCount = oldRouteCount - m_routes.size ();
+  if (deletedRouteCount != 0)
+    {
+      std::cout << "[NWK " << m_nodeId
+                << "] Deleted inactive-neighbor transit routes"
+                << " neighbor=" << neighbor
+                << " count=" << deletedRouteCount
+                << std::endl;
+    }
+
+  for (const auto &before : selectedBefore)
+    {
+      if (before.second.available &&
+          before.second.nextHop == neighbor)
+        {
+          ReleaseDeferredRouteCandidates (before.first);
+        }
+
+      SelectedRouteState after =
+        CaptureSelectedRouteState (before.first);
+
+      if (!SameSelectedRouteState (before.second, after))
+        {
+          MarkSelectedRouteChanged (before.first, "neighbor inactive");
+        }
+    }
+}
+
+void
+CsrNetLayer::EvaluateNeighborAdmission (
+  CsrNodeId neighbor,
+  bool receivedDiscovery)
+{
+  if (!m_arlNeighborAdmissionEnabled || m_hop == nullptr)
+    {
+      return;
+    }
+
+  auto it = m_nwkNeighbors.find (neighbor);
+  if (it == m_nwkNeighbors.end ())
+    {
+      return;
+    }
+
+  SyncNeighborKeyState (neighbor);
+  NwkNeighborEntry &entry = it->second;
+
+  if (entry.stale || entry.arlActive)
+    {
+      return;
+    }
+
+  Time now = Simulator::Now ();
+
+  if (!entry.keyUpdateComplete)
+    {
+      if (receivedDiscovery)
+        {
+          // routesRcvUnAuthedMsg() resets both delays to 5000 ms and sends a
+          // new no-ACK KeyRequest for the authenticated-but-not-decryptable
+          // Discover.
+          SendKeyRequest (neighbor, true);
+        }
+      else if (!entry.keyRequestSentValid ||
+               now - entry.keyRequestSentWhen >= entry.keyRequestDelay)
+        {
+          // routesValidRx() doubles the next eligibility interval before it
+          // emits a retry.  routesRcvUnAuthedMsg() is the special initial
+          // Discover path above and keeps the reset 5000-ms interval.
+          entry.keyRequestDelay = entry.keyRequestDelay * 2;
+          SendKeyRequest (neighbor, false);
+        }
+      return;
+    }
+
+  if (!entry.keySendComplete)
+    {
+      if (!entry.keySendActive &&
+          (!entry.keySendValid ||
+           now - entry.keySendWhen >= entry.keySendDelay))
+        {
+          if (entry.keySendValid)
+            {
+              entry.keySendDelay = entry.keySendDelay * 2;
+            }
+          SendKeyUpdate (neighbor);
+        }
+      return;
+    }
+
+  if (entry.admissionDiscoveryCheckPending)
+    {
+      SendPendingDiscoveryCheck (neighbor);
+      return;
+    }
+
+  if (!entry.overheardValid ||
+      now - entry.overheardWhen >= entry.overheardDelay)
+    {
+      entry.overheardValid = true;
+      entry.overheardWhen = now;
+      entry.overheardDelay = entry.overheardDelay * 2;
+
+      std::cout << "[NWK " << m_nodeId
+                << "] Sending CHECK_OVERHEARD after two-sided key exchange"
+                << " neighbor=" << neighbor
+                << std::endl;
+
+      SendNeighborCheck (neighbor, CsrNeighborCheckType::Overheard);
+      ScheduleAdmissionRetry (neighbor, entry.overheardDelay);
+    }
+}

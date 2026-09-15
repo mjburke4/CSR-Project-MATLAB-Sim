@@ -1,0 +1,136 @@
+{
+  "schema": "csr-tranche8-independent-return-integrity-audit-v1",
+  "audit_kind": "Independent raw-byte and semantic acceptance audit; no project analyzer imports or simulator execution",
+  "audited_utc": "2026-09-11T13:15:44.680919+00:00",
+  "archive": "/workspace/scratch/1a5b1ad6ce1b/upload/tranche8_evidence.zip",
+  "archive_sha256": "bfc4f7f05f0800316b371df3ec316f309f14e3482ef259c3f9c7bd7eea025d77",
+  "archive_bytes": 17925128,
+  "archive_file_count": 257,
+  "expanded_bytes": 189364874,
+  "zip_crcs_verified": 257,
+  "zip_safe_paths": true,
+  "frozen_matlab_candidate_commit": "89b62e729e588f396bb919afdff522f7e9419268",
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "started_utc": "2026-09-10T19:17:21.583Z",
+  "completed_utc": "2026-09-10T19:49:40.794Z",
+  "elapsed_wall_seconds": 1939.211,
+  "source_files_verified": 189,
+  "source_extensions": {
+    ".m": 108,
+    ".py": 28,
+    ".json": 29,
+    ".csv": 19,
+    ".md": 2,
+    ".h": 1,
+    ".cc": 2
+  },
+  "matlab_files_verified": 108,
+  "source_snapshot_sha256": "9bf7f657c08826ab1b502c7ef919b1dbca95dfa815636e69b4b088d82d4a64c7",
+  "reference_files_verified": 192,
+  "source_reference_stable": true,
+  "inventory_verification_counts": {
+    "top_inventory": 256,
+    "benchmark_inventory": 210,
+    "raw_inventory": 160,
+    "control_inventory": 28
+  },
+  "test_count": 485,
+  "test_classes": 40,
+  "test_names_exact": true,
+  "test_passed": 485,
+  "test_failed": 0,
+  "test_incomplete": 0,
+  "test_duration_seconds_sum": 191.9702483,
+  "plan_sha256": "ed648ee4f54ebf14e14b98d6fcecce224590727139db83f0f4d23161ddfc7a09",
+  "controls": [
+    {
+      "case_id": "two_node_admission_1200_s128",
+      "statistics_equal": true,
+      "config_equal": true,
+      "byte_exact_csv_files": 12
+    },
+    {
+      "case_id": "three_node_contention_360_s128",
+      "statistics_equal": true,
+      "config_equal": true,
+      "byte_exact_csv_files": 12
+    }
+  ],
+  "ns3_reference_inventory_checks": 130,
+  "ns3_gzip_roundtrips": 32,
+  "ns3_t7_anchors": [
+    {
+      "case_id": "two_node_admission_1200_s128",
+      "raw_trace_byte_exact": true,
+      "files": [
+        {
+          "path": "app-admission-diagnostics.csv",
+          "equal_except_scenario_label": true,
+          "rows": 1
+        },
+        {
+          "path": "ns3-aggregates.csv",
+          "equal_except_scenario_label": true,
+          "rows": 1500
+        }
+      ]
+    },
+    {
+      "case_id": "three_node_contention_360_s128",
+      "raw_trace_byte_exact": true,
+      "files": [
+        {
+          "path": "app-admission-diagnostics.csv",
+          "equal_except_scenario_label": true,
+          "rows": 2
+        },
+        {
+          "path": "ns3-aggregates.csv",
+          "equal_except_scenario_label": true,
+          "rows": 1500
+        }
+      ]
+    }
+  ],
+  "check_counts": {
+    "zip": 6,
+    "zip_crc": 257,
+    "top_inventory": 527,
+    "execution": 5,
+    "source": 3,
+    "source_file": 189,
+    "reference": 2,
+    "reference_file": 192,
+    "csv": 436,
+    "tests": 45,
+    "plan": 3,
+    "cases": 91,
+    "benchmark_inventory": 450,
+    "raw_inventory": 350,
+    "csv_rows": 156,
+    "application": 110,
+    "delivery_identity": 61244,
+    "admission": 50,
+    "admission_attempt": 1575000,
+    "observer": 40,
+    "feedback_identity": 12438,
+    "controls": 9,
+    "control_inventory": 62,
+    "control_csv": 24,
+    "t7_anchor": 25,
+    "t7_anchor_rows": 468300,
+    "ns3_reference": 150,
+    "ns3_gzip": 32,
+    "ns3_controls": 24,
+    "ns3_t7_anchor": 8
+  },
+  "failure_count": 0,
+  "passed": true,
+  "limitations": [
+    "MATLAB execution is owner-supplied R2025a evidence, not a local rerun.",
+    "13 MAT objects remain on the execution laptop by declared archive policy; their contents were not inspected.",
+    "No native simulator execution, campus rerun, or numerical/statistical parity established.",
+    "T7 CSV comparison tolerates export floating-format differences; identifiers and large integer values compare exactly.",
+    "Full Config is identical for same-run observer controls. T7 anchor statistics and unchanged CSV observations compare semantically; scenario labels/provenance legitimately differ."
+  ]
+}

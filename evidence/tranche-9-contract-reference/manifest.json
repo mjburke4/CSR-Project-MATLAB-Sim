@@ -1,0 +1,178 @@
+{
+  "schema": "csr-tranche9-ack-contract-reference-v1",
+  "status": "passed",
+  "source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "source_headers_unchanged": true,
+  "matlab_executed": false,
+  "native_contract_executed": true,
+  "engine_rebuilt": false,
+  "checkpoint_count": 101,
+  "case_count": 6,
+  "scope": "Prescribed receiver states and ACK ingress; no RF delivery or RNG-stream equivalence",
+  "contract_source": {
+    "path": "scripts/ns3/tranche9_ack_contract.cc",
+    "sha256": "83b8477859d176823b150329a1bacbf6f321f0eda533b69b159962f5e18c2068"
+  },
+  "runner_source": {
+    "path": "scripts/run_tranche9_ack_contract.py",
+    "sha256": "674bab57f8c30555b5f10bb98227992a977cb21fd0e8d23b2a17d225af1d4ac1"
+  },
+  "source_headers": [
+    {
+      "path": "model/csr-arl-routing-message.h",
+      "sha256": "0eddd945d264965c90bcea60d73b14cab2159bc0664e0e526d38e50b0d363a8c"
+    },
+    {
+      "path": "model/csr-common.h",
+      "sha256": "f1e0a962862ef1cc5a6994f24988858a2bea70385ce02b1264285de194fe6ae1"
+    },
+    {
+      "path": "model/csr-differential-trace.h",
+      "sha256": "78b443af6e91e927c398450ef71245e815ba4bd02ad9369a06fd95f98e2dff84"
+    },
+    {
+      "path": "model/csr-hello-header.h",
+      "sha256": "741ccff278e1694ea40c4c6c5b1cb14a3a6034864d0328c6a2e04420935fb7d4"
+    },
+    {
+      "path": "model/csr-hop-layer.h",
+      "sha256": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b"
+    },
+    {
+      "path": "model/csr-hop-security.h",
+      "sha256": "9bca9c9a6e4ae04a20a3309ac8a8787589ac4ad65785cbf57fbe20c5e8e37d5e"
+    },
+    {
+      "path": "model/csr-legacy-crypto.h",
+      "sha256": "ce2e76387addc44e63601b8638d066b484dbd13f301bc09882bd21959a118306"
+    },
+    {
+      "path": "model/csr-mac-core.h",
+      "sha256": "64a71ad280ba14ab2b00d5d2b9dac708fabea939dfa385ad62dd73e5e40203e9"
+    },
+    {
+      "path": "model/csr-net-device.h",
+      "sha256": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb"
+    },
+    {
+      "path": "model/csr-nwk-layer.h",
+      "sha256": "bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc"
+    },
+    {
+      "path": "model/csr-opnet-ber-tables.h",
+      "sha256": "8034348552990ce6a0aa0fd673a319299762fbd75c402de59a64ac160eb7cfb5"
+    },
+    {
+      "path": "model/csr-opnet-envelope.h",
+      "sha256": "e67b526126907f43f2ee4199552c583ac9c2a0f927cf942fe76aa328900e001a"
+    },
+    {
+      "path": "model/csr-opnet-packet-model.h",
+      "sha256": "59eb4ccd19d109f623fb8ea4d9ad23b2d936f081268261c100231c26cb2dccc6"
+    },
+    {
+      "path": "model/csr-phy-model.h",
+      "sha256": "d690b4c572491a9ea8c48735b1726770938b118dcbcd931e92920e602cae18fc"
+    },
+    {
+      "path": "model/csr-wire-format.h",
+      "sha256": "eb9097e1588c8e235a06cec5f0b28c13a22a3f3c88c6b8581e4186d69fc94c2f"
+    }
+  ],
+  "preserved_libraries": [
+    {
+      "path": "/workspace/scratch/9025d0c81d32/ns3-engine-t1/build/lib/libns3-dev-csr-debug.so",
+      "sha256": "c35e8f79c9bde17b40e2cbf498b28eb2756bcdf2b374ae3d7a7c7883669cc5b3"
+    },
+    {
+      "path": "/workspace/scratch/9025d0c81d32/ns3-engine-t1/build/lib/libns3-dev-spectrum-debug.so",
+      "sha256": "98089d15eff66c3e222e9456bb563155b28beb8f5b02ab9c7a0fd0bc47d262b1"
+    },
+    {
+      "path": "/workspace/scratch/9025d0c81d32/ns3-engine-t1/build/lib/libns3-dev-buildings-debug.so",
+      "sha256": "83386f06253c1ed979e83b6731a736dfc1668be2115c77cead92c3c23172b586"
+    },
+    {
+      "path": "/workspace/scratch/9025d0c81d32/ns3-engine-t1/build/lib/libns3-dev-propagation-debug.so",
+      "sha256": "8e9aca5be3266e98472128976b267fd74ebae8e916aeba6b7347e7704e742d15"
+    },
+    {
+      "path": "/workspace/scratch/9025d0c81d32/ns3-engine-t1/build/lib/libns3-dev-mobility-debug.so",
+      "sha256": "5cbb51681afd3dbb16ee654b2b698d495ed28859ce24ae0b3de783f53eedbc9d"
+    },
+    {
+      "path": "/workspace/scratch/9025d0c81d32/ns3-engine-t1/build/lib/libns3-dev-antenna-debug.so",
+      "sha256": "874afd8798f6ad79c87916458fd6a44ff6d95b214afdeda5e10bac25afc42570"
+    },
+    {
+      "path": "/workspace/scratch/9025d0c81d32/ns3-engine-t1/build/lib/libns3-dev-network-debug.so",
+      "sha256": "6e9f4c71e2ae73ce1e1e297543e38bd4697e3af274e47d7ff8c0b14de3138e35"
+    },
+    {
+      "path": "/workspace/scratch/9025d0c81d32/ns3-engine-t1/build/lib/libns3-dev-stats-debug.so",
+      "sha256": "86f4d5ccead2742b40b1c8a636e39cebe4cc985998e315ff1ca1cd9f1231cbe2"
+    },
+    {
+      "path": "/workspace/scratch/9025d0c81d32/ns3-engine-t1/build/lib/libns3-dev-core-debug.so",
+      "sha256": "31123d9d0dca501d6a115575b0b675a095528b336dc56ffb5c2f858926e11d92"
+    }
+  ],
+  "compiler": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+  "compile_command": [
+    "g++",
+    "-std=c++23",
+    "-g",
+    "-DNS3_ASSERT_ENABLE",
+    "-DNS3_BUILD_PROFILE_DEBUG",
+    "-DNS3_LOG_ENABLE",
+    "-DSTACKTRACE_LIBRARY_IS_LINKED=1",
+    "-D__LINUX__",
+    "-I/workspace/scratch/9025d0c81d32/ns3-engine-t1/build/include",
+    "/workspace/scratch/1a5b1ad6ce1b/csr9/scripts/ns3/tranche9_ack_contract.cc",
+    "-L/workspace/scratch/9025d0c81d32/ns3-engine-t1/build/lib",
+    "-Wl,-rpath,/workspace/scratch/9025d0c81d32/ns3-engine-t1/build/lib",
+    "-Wl,--no-as-needed",
+    "-lns3-dev-csr-debug",
+    "-Wl,--as-needed",
+    "-lns3-dev-spectrum-debug",
+    "-lns3-dev-buildings-debug",
+    "-lns3-dev-propagation-debug",
+    "-lns3-dev-mobility-debug",
+    "-lns3-dev-antenna-debug",
+    "-lns3-dev-network-debug",
+    "-lns3-dev-stats-debug",
+    "-lns3-dev-core-debug",
+    "-lstdc++exp",
+    "-o",
+    "/workspace/scratch/1a5b1ad6ce1b/t9a/build/ack-contract"
+  ],
+  "compile_returncode": 0,
+  "run_command": [
+    "/workspace/scratch/1a5b1ad6ce1b/t9a/build/ack-contract",
+    "/workspace/scratch/1a5b1ad6ce1b/csr9/evidence/tranche-9-contract-reference/checkpoints.csv"
+  ],
+  "run_returncode": 0,
+  "binary_sha256": "856968efed965ad4f7cafed08f8fe2831d29eabdc18afab78a9db6af39514f5d",
+  "artifacts": [
+    {
+      "path": "checkpoints.csv",
+      "sha256": "2991bbc93e5ba2c64d06a93cee278160cd9baf2fdc11b052ee5b0cb561fe4b73",
+      "bytes": 5288
+    },
+    {
+      "path": "compile.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "run.log",
+      "sha256": "1ddef194fc064c32ead66e2cb86a463b74397d97c5e20457bde46547c8a55f17",
+      "bytes": 9271
+    },
+    {
+      "path": "summary.json",
+      "sha256": "0d1b3ac42e30dbcf775567d96e3889692ae2279f90083fe994a3fc0ed5799234",
+      "bytes": 279
+    }
+  ]
+}

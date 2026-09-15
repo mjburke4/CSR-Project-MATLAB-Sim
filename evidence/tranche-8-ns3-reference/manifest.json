@@ -1,0 +1,710 @@
+{
+  "schema": "csr-tranche8-link-diagnostic-reference-suite-v1",
+  "status": "completed",
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "started_utc": "2026-09-10T19:02:52.996704+00:00",
+  "plan_sha256": "ed648ee4f54ebf14e14b98d6fcecce224590727139db83f0f4d23161ddfc7a09",
+  "matlab_executed": false,
+  "opnet_executed": false,
+  "full_ns3_rebuild_performed": false,
+  "cases": [
+    {
+      "case_id": "two_node_admission_1200_s128",
+      "status": "completed",
+      "manifest": "two_node_admission_1200_s128/manifest.json",
+      "manifest_sha256": "49fe00315c7607511947374c4ce9f8cfb879ff4bad0d352d5ef877494b9bd1f4",
+      "application_admission_totals": {
+        "attempts": 45000,
+        "admitted": 11380,
+        "blocked_discovery": 0,
+        "blocked_topology": 0,
+        "blocked_gateway_route": 0,
+        "blocked_destination": 0,
+        "blocked_nsdp": 33620
+      },
+      "exact_sequence_validation": {
+        "matched_count": 11364,
+        "matched_by_method": {
+          "exact_sequence": 11364
+        },
+        "source_exact_dack_retry_duplicate_proof_count": 0,
+        "source_exact_dack_retry_duplicate_delivery_count": 0,
+        "unmatched_delivery_count": 0,
+        "matched_size_compared_count": 11364,
+        "matched_size_mismatch_count": 0
+      },
+      "observer_diagnostics": {
+        "schema": "csr-ns3-feedback-observation-summary-v1",
+        "status": "passed",
+        "rows": 24797,
+        "selection_count": 11379,
+        "ordinary_data_context_count": 11364,
+        "ota_feedback_member_count": 2054,
+        "ota_aggregates_containing_feedback": 2018,
+        "all_ota_members_linked_to_selection": true,
+        "distinct_decisions_transmitted": 1414,
+        "actual_vs_selected_rate_change_count": 1,
+        "actual_vs_selected_power_change_count": 0,
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 11379
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 1
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 2053
+          }
+        ],
+        "incoming_vs_selected_rate_difference_count": 0,
+        "incoming_vs_selected_power_difference_count": 0,
+        "scope": "Selection is feedback construction after ApplyLinkControl, not successful MAC admission; OTA rows count actual members including repeats. Control-exact incoming context is unavailable."
+      }
+    },
+    {
+      "case_id": "three_node_contention_360_s128",
+      "status": "completed",
+      "manifest": "three_node_contention_360_s128/manifest.json",
+      "manifest_sha256": "b2411f3816bf1a12a3bd4dad474e33b257cff5a841d6a070751cb5f295236119",
+      "application_admission_totals": {
+        "attempts": 60000,
+        "admitted": 946,
+        "blocked_discovery": 0,
+        "blocked_topology": 0,
+        "blocked_gateway_route": 0,
+        "blocked_destination": 0,
+        "blocked_nsdp": 59054
+      },
+      "exact_sequence_validation": {
+        "matched_count": 914,
+        "matched_by_method": {
+          "exact_sequence": 914
+        },
+        "source_exact_dack_retry_duplicate_proof_count": 0,
+        "source_exact_dack_retry_duplicate_delivery_count": 0,
+        "unmatched_delivery_count": 0,
+        "matched_size_compared_count": 914,
+        "matched_size_mismatch_count": 0
+      },
+      "observer_diagnostics": {
+        "schema": "csr-ns3-feedback-observation-summary-v1",
+        "status": "passed",
+        "rows": 2264,
+        "selection_count": 958,
+        "ordinary_data_context_count": 915,
+        "ota_feedback_member_count": 391,
+        "ota_aggregates_containing_feedback": 166,
+        "all_ota_members_linked_to_selection": true,
+        "distinct_decisions_transmitted": 163,
+        "actual_vs_selected_rate_change_count": 19,
+        "actual_vs_selected_power_change_count": 0,
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 10
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 948
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 69
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 322
+          }
+        ],
+        "incoming_vs_selected_rate_difference_count": 0,
+        "incoming_vs_selected_power_difference_count": 0,
+        "scope": "Selection is feedback construction after ApplyLinkControl, not successful MAC admission; OTA rows count actual members including repeats. Control-exact incoming context is unavailable."
+      }
+    },
+    {
+      "case_id": "two_node_admission_1200_s129",
+      "status": "completed",
+      "manifest": "two_node_admission_1200_s129/manifest.json",
+      "manifest_sha256": "2f62e7f556f38288efaa77262adef15342291f292f5214b1f8557044c0840127",
+      "application_admission_totals": {
+        "attempts": 45000,
+        "admitted": 11234,
+        "blocked_discovery": 0,
+        "blocked_topology": 0,
+        "blocked_gateway_route": 0,
+        "blocked_destination": 0,
+        "blocked_nsdp": 33766
+      },
+      "exact_sequence_validation": {
+        "matched_count": 11227,
+        "matched_by_method": {
+          "exact_sequence": 11227
+        },
+        "source_exact_dack_retry_duplicate_proof_count": 0,
+        "source_exact_dack_retry_duplicate_delivery_count": 0,
+        "unmatched_delivery_count": 0,
+        "matched_size_compared_count": 11227,
+        "matched_size_mismatch_count": 0
+      },
+      "observer_diagnostics": {
+        "schema": "csr-ns3-feedback-observation-summary-v1",
+        "status": "passed",
+        "rows": 24546,
+        "selection_count": 11242,
+        "ordinary_data_context_count": 11227,
+        "ota_feedback_member_count": 2077,
+        "ota_aggregates_containing_feedback": 2042,
+        "all_ota_members_linked_to_selection": true,
+        "distinct_decisions_transmitted": 1404,
+        "actual_vs_selected_rate_change_count": 1,
+        "actual_vs_selected_power_change_count": 0,
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 11242
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 1
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 2076
+          }
+        ],
+        "incoming_vs_selected_rate_difference_count": 0,
+        "incoming_vs_selected_power_difference_count": 0,
+        "scope": "Selection is feedback construction after ApplyLinkControl, not successful MAC admission; OTA rows count actual members including repeats. Control-exact incoming context is unavailable."
+      }
+    },
+    {
+      "case_id": "three_node_contention_360_s129",
+      "status": "completed",
+      "manifest": "three_node_contention_360_s129/manifest.json",
+      "manifest_sha256": "b6ee0379ca91be4c69baa21cfd02d61f3d36dfb498b984cff311a40cb51fa03f",
+      "application_admission_totals": {
+        "attempts": 60000,
+        "admitted": 854,
+        "blocked_discovery": 0,
+        "blocked_topology": 0,
+        "blocked_gateway_route": 0,
+        "blocked_destination": 0,
+        "blocked_nsdp": 59146
+      },
+      "exact_sequence_validation": {
+        "matched_count": 822,
+        "matched_by_method": {
+          "exact_sequence": 822
+        },
+        "source_exact_dack_retry_duplicate_proof_count": 0,
+        "source_exact_dack_retry_duplicate_delivery_count": 0,
+        "unmatched_delivery_count": 0,
+        "matched_size_compared_count": 822,
+        "matched_size_mismatch_count": 0
+      },
+      "observer_diagnostics": {
+        "schema": "csr-ns3-feedback-observation-summary-v1",
+        "status": "passed",
+        "rows": 2133,
+        "selection_count": 874,
+        "ordinary_data_context_count": 823,
+        "ota_feedback_member_count": 436,
+        "ota_aggregates_containing_feedback": 183,
+        "all_ota_members_linked_to_selection": true,
+        "distinct_decisions_transmitted": 166,
+        "actual_vs_selected_rate_change_count": 30,
+        "actual_vs_selected_power_change_count": 0,
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 14
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 860
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 100
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 336
+          }
+        ],
+        "incoming_vs_selected_rate_difference_count": 0,
+        "incoming_vs_selected_power_difference_count": 0,
+        "scope": "Selection is feedback construction after ApplyLinkControl, not successful MAC admission; OTA rows count actual members including repeats. Control-exact incoming context is unavailable."
+      }
+    },
+    {
+      "case_id": "two_node_admission_1200_s130",
+      "status": "completed",
+      "manifest": "two_node_admission_1200_s130/manifest.json",
+      "manifest_sha256": "4cd6ab4987628601b89a752b4c93b7b3aa71e1634e09830fa07b430a5830609b",
+      "application_admission_totals": {
+        "attempts": 45000,
+        "admitted": 11412,
+        "blocked_discovery": 0,
+        "blocked_topology": 0,
+        "blocked_gateway_route": 0,
+        "blocked_destination": 0,
+        "blocked_nsdp": 33588
+      },
+      "exact_sequence_validation": {
+        "matched_count": 11396,
+        "matched_by_method": {
+          "exact_sequence": 11396
+        },
+        "source_exact_dack_retry_duplicate_proof_count": 0,
+        "source_exact_dack_retry_duplicate_delivery_count": 0,
+        "unmatched_delivery_count": 0,
+        "matched_size_compared_count": 11396,
+        "matched_size_mismatch_count": 0
+      },
+      "observer_diagnostics": {
+        "schema": "csr-ns3-feedback-observation-summary-v1",
+        "status": "passed",
+        "rows": 24900,
+        "selection_count": 11411,
+        "ordinary_data_context_count": 11396,
+        "ota_feedback_member_count": 2093,
+        "ota_aggregates_containing_feedback": 2055,
+        "all_ota_members_linked_to_selection": true,
+        "distinct_decisions_transmitted": 1418,
+        "actual_vs_selected_rate_change_count": 1,
+        "actual_vs_selected_power_change_count": 0,
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 11411
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 1
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 2092
+          }
+        ],
+        "incoming_vs_selected_rate_difference_count": 0,
+        "incoming_vs_selected_power_difference_count": 0,
+        "scope": "Selection is feedback construction after ApplyLinkControl, not successful MAC admission; OTA rows count actual members including repeats. Control-exact incoming context is unavailable."
+      }
+    },
+    {
+      "case_id": "three_node_contention_360_s130",
+      "status": "completed",
+      "manifest": "three_node_contention_360_s130/manifest.json",
+      "manifest_sha256": "dc622498bd2685c118954683a3ce5ed58de996e08d31b2b51cf772fccafb0f87",
+      "application_admission_totals": {
+        "attempts": 60000,
+        "admitted": 948,
+        "blocked_discovery": 0,
+        "blocked_topology": 0,
+        "blocked_gateway_route": 0,
+        "blocked_destination": 0,
+        "blocked_nsdp": 59052
+      },
+      "exact_sequence_validation": {
+        "matched_count": 916,
+        "matched_by_method": {
+          "exact_sequence": 916
+        },
+        "source_exact_dack_retry_duplicate_proof_count": 0,
+        "source_exact_dack_retry_duplicate_delivery_count": 0,
+        "unmatched_delivery_count": 0,
+        "matched_size_compared_count": 916,
+        "matched_size_mismatch_count": 0
+      },
+      "observer_diagnostics": {
+        "schema": "csr-ns3-feedback-observation-summary-v1",
+        "status": "passed",
+        "rows": 2304,
+        "selection_count": 968,
+        "ordinary_data_context_count": 918,
+        "ota_feedback_member_count": 418,
+        "ota_aggregates_containing_feedback": 183,
+        "all_ota_members_linked_to_selection": true,
+        "distinct_decisions_transmitted": 171,
+        "actual_vs_selected_rate_change_count": 24,
+        "actual_vs_selected_power_change_count": 0,
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 14
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 954
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 94
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 324
+          }
+        ],
+        "incoming_vs_selected_rate_difference_count": 0,
+        "incoming_vs_selected_power_difference_count": 0,
+        "scope": "Selection is feedback construction after ApplyLinkControl, not successful MAC admission; OTA rows count actual members including repeats. Control-exact incoming context is unavailable."
+      }
+    },
+    {
+      "case_id": "two_node_admission_1200_s131",
+      "status": "completed",
+      "manifest": "two_node_admission_1200_s131/manifest.json",
+      "manifest_sha256": "de21192c1e26ed59a7e39d9e25b976408b7731a6094fe2b31e634815fd6b3854",
+      "application_admission_totals": {
+        "attempts": 45000,
+        "admitted": 11334,
+        "blocked_discovery": 0,
+        "blocked_topology": 0,
+        "blocked_gateway_route": 0,
+        "blocked_destination": 0,
+        "blocked_nsdp": 33666
+      },
+      "exact_sequence_validation": {
+        "matched_count": 11330,
+        "matched_by_method": {
+          "exact_sequence": 11330
+        },
+        "source_exact_dack_retry_duplicate_proof_count": 0,
+        "source_exact_dack_retry_duplicate_delivery_count": 0,
+        "unmatched_delivery_count": 0,
+        "matched_size_compared_count": 11330,
+        "matched_size_mismatch_count": 0
+      },
+      "observer_diagnostics": {
+        "schema": "csr-ns3-feedback-observation-summary-v1",
+        "status": "passed",
+        "rows": 24710,
+        "selection_count": 11345,
+        "ordinary_data_context_count": 11330,
+        "ota_feedback_member_count": 2035,
+        "ota_aggregates_containing_feedback": 1999,
+        "all_ota_members_linked_to_selection": true,
+        "distinct_decisions_transmitted": 1385,
+        "actual_vs_selected_rate_change_count": 1,
+        "actual_vs_selected_power_change_count": 0,
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 11345
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 1
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 2034
+          }
+        ],
+        "incoming_vs_selected_rate_difference_count": 0,
+        "incoming_vs_selected_power_difference_count": 0,
+        "scope": "Selection is feedback construction after ApplyLinkControl, not successful MAC admission; OTA rows count actual members including repeats. Control-exact incoming context is unavailable."
+      }
+    },
+    {
+      "case_id": "three_node_contention_360_s131",
+      "status": "completed",
+      "manifest": "three_node_contention_360_s131/manifest.json",
+      "manifest_sha256": "4b96a16d6ef5ae5189c244d9dd8dc2e18d60d76ce71885f17dc4ad96c240ebb4",
+      "application_admission_totals": {
+        "attempts": 60000,
+        "admitted": 903,
+        "blocked_discovery": 0,
+        "blocked_topology": 0,
+        "blocked_gateway_route": 0,
+        "blocked_destination": 0,
+        "blocked_nsdp": 59097
+      },
+      "exact_sequence_validation": {
+        "matched_count": 883,
+        "matched_by_method": {
+          "exact_sequence": 883
+        },
+        "source_exact_dack_retry_duplicate_proof_count": 0,
+        "source_exact_dack_retry_duplicate_delivery_count": 0,
+        "unmatched_delivery_count": 0,
+        "matched_size_compared_count": 883,
+        "matched_size_mismatch_count": 0
+      },
+      "observer_diagnostics": {
+        "schema": "csr-ns3-feedback-observation-summary-v1",
+        "status": "passed",
+        "rows": 2251,
+        "selection_count": 935,
+        "ordinary_data_context_count": 885,
+        "ota_feedback_member_count": 431,
+        "ota_aggregates_containing_feedback": 187,
+        "all_ota_members_linked_to_selection": true,
+        "distinct_decisions_transmitted": 171,
+        "actual_vs_selected_rate_change_count": 30,
+        "actual_vs_selected_power_change_count": 0,
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 14
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 921
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 100
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 331
+          }
+        ],
+        "incoming_vs_selected_rate_difference_count": 0,
+        "incoming_vs_selected_power_difference_count": 0,
+        "scope": "Selection is feedback construction after ApplyLinkControl, not successful MAC admission; OTA rows count actual members including repeats. Control-exact incoming context is unavailable."
+      }
+    },
+    {
+      "case_id": "two_node_admission_1200_s132",
+      "status": "completed",
+      "manifest": "two_node_admission_1200_s132/manifest.json",
+      "manifest_sha256": "c7fe190e05b024f09ef072baa6b00134bfb1a09c79ab85eeb662626842a57915",
+      "application_admission_totals": {
+        "attempts": 45000,
+        "admitted": 11383,
+        "blocked_discovery": 0,
+        "blocked_topology": 0,
+        "blocked_gateway_route": 0,
+        "blocked_destination": 0,
+        "blocked_nsdp": 33617
+      },
+      "exact_sequence_validation": {
+        "matched_count": 11375,
+        "matched_by_method": {
+          "exact_sequence": 11375
+        },
+        "source_exact_dack_retry_duplicate_proof_count": 0,
+        "source_exact_dack_retry_duplicate_delivery_count": 0,
+        "unmatched_delivery_count": 0,
+        "matched_size_compared_count": 11375,
+        "matched_size_mismatch_count": 0
+      },
+      "observer_diagnostics": {
+        "schema": "csr-ns3-feedback-observation-summary-v1",
+        "status": "passed",
+        "rows": 24865,
+        "selection_count": 11390,
+        "ordinary_data_context_count": 11375,
+        "ota_feedback_member_count": 2100,
+        "ota_aggregates_containing_feedback": 2063,
+        "all_ota_members_linked_to_selection": true,
+        "distinct_decisions_transmitted": 1372,
+        "actual_vs_selected_rate_change_count": 1,
+        "actual_vs_selected_power_change_count": 0,
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 11390
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 1
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 2099
+          }
+        ],
+        "incoming_vs_selected_rate_difference_count": 0,
+        "incoming_vs_selected_power_difference_count": 0,
+        "scope": "Selection is feedback construction after ApplyLinkControl, not successful MAC admission; OTA rows count actual members including repeats. Control-exact incoming context is unavailable."
+      }
+    },
+    {
+      "case_id": "three_node_contention_360_s132",
+      "status": "completed",
+      "manifest": "three_node_contention_360_s132/manifest.json",
+      "manifest_sha256": "9d05276e17f51f6e117daf1ba96cddb9c8c25c03d04ef5f4201f3b2365bd7866",
+      "application_admission_totals": {
+        "attempts": 60000,
+        "admitted": 952,
+        "blocked_discovery": 0,
+        "blocked_topology": 0,
+        "blocked_gateway_route": 0,
+        "blocked_destination": 0,
+        "blocked_nsdp": 59048
+      },
+      "exact_sequence_validation": {
+        "matched_count": 920,
+        "matched_by_method": {
+          "exact_sequence": 920
+        },
+        "source_exact_dack_retry_duplicate_proof_count": 0,
+        "source_exact_dack_retry_duplicate_delivery_count": 0,
+        "unmatched_delivery_count": 0,
+        "matched_size_compared_count": 920,
+        "matched_size_mismatch_count": 0
+      },
+      "observer_diagnostics": {
+        "schema": "csr-ns3-feedback-observation-summary-v1",
+        "status": "passed",
+        "rows": 2316,
+        "selection_count": 970,
+        "ordinary_data_context_count": 921,
+        "ota_feedback_member_count": 425,
+        "ota_aggregates_containing_feedback": 182,
+        "all_ota_members_linked_to_selection": true,
+        "distinct_decisions_transmitted": 170,
+        "actual_vs_selected_rate_change_count": 31,
+        "actual_vs_selected_power_change_count": 0,
+        "selection_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 14
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 956
+          }
+        ],
+        "ota_member_distribution": [
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 8,
+            "power_dbm": 33.0,
+            "count": 101
+          },
+          {
+            "frame_type": "ACK",
+            "rate_key_kbps": 128,
+            "power_dbm": 33.0,
+            "count": 324
+          }
+        ],
+        "incoming_vs_selected_rate_difference_count": 0,
+        "incoming_vs_selected_power_difference_count": 0,
+        "scope": "Selection is feedback construction after ApplyLinkControl, not successful MAC admission; OTA rows count actual members including repeats. Control-exact incoming context is unavailable."
+      }
+    }
+  ],
+  "source_files_stable": true,
+  "input_files_stable": true,
+  "all_observer_on_off_checks_passed": true,
+  "both_seed128_anchors_passed": true,
+  "build_manifest_sha256": "08ddaf32e59a729aee90ad28761bfffe840f1cabb1e673d9bda1d9ec17291851",
+  "completed_utc": "2026-09-10T19:04:13.748761+00:00",
+  "files": [
+    {
+      "path": "build.json",
+      "sha256": "08ddaf32e59a729aee90ad28761bfffe840f1cabb1e673d9bda1d9ec17291851",
+      "bytes": 22120
+    },
+    {
+      "path": "compile-observer.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "compile-pristine.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "observational-overlay.patch",
+      "sha256": "5e9178a0343ab40defbeca78b41efc8e5a552966f411a48f8374bbbf0c0052ed",
+      "bytes": 4164
+    }
+  ]
+}

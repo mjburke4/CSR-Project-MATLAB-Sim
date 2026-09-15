@@ -1,0 +1,45 @@
+{
+  "schema": "csr-matlab-tranche-6-comparison-v1",
+  "status": "review_completed",
+  "candidate_runtime": {
+    "Runtime": "MATLAB",
+    "Version": "25.1.0.2943329 (R2025a)",
+    "Release": "2025a",
+    "HasWirelessNetworkSimulator": false,
+    "HasWnetNode": false,
+    "HasWirelessPacket": false,
+    "DefaultBackend": "portable",
+    "WirelessAdapterImplemented": true,
+    "WirelessAdapterScope": "Optional R2026a wireless-clock candidate; runtime validation pending",
+    "NativePacketTransportIntegrated": false,
+    "ProbeScope": "Symbol discovery only; licenses and execution are not validated."
+  },
+  "default_regression_gate_completed": true,
+  "candidate_metadata_sha256": "1f9dd282f8d653ce2abb13b6bf7b6e3d1ff058911adbe3562007b6d3dd483926",
+  "accepted_tranche5_archive_sha256": "824cf0f5cb6a735ee896ebc5431be5c72f69d9d95135c8e03311238bd0ca75c1",
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "protected_source_files_unchanged": 12,
+  "current_source_file_count": 127,
+  "tests": {
+    "status": "passed",
+    "requested": true,
+    "executed": true,
+    "TestCount": 380,
+    "PassedTests": 380,
+    "FailedTests": 0,
+    "IncompleteTests": 0
+  },
+  "cases": 18,
+  "applications": 357,
+  "baseline_cases": 18,
+  "comparison_scope": "Identical MATLAB configurations and application identities",
+  "acceptance_established": false,
+  "cross_simulator_equivalence_established": false,
+  "limitations": [
+    "Acceptance requires review of structural failures and measured regressions, not delivery alone.",
+    "Latency deltas include only applications delivered in both runs; all other outcomes remain in application_comparison.csv.",
+    "Repeated seeds identify configurations, not identical random draws after event ordering changes.",
+    "Recovery includes explicit rediscovery stimuli and a two-endpoint post-PHY blackout; it does not measure autonomous convergence.",
+    "Compare pinned ns-3 results separately with their documented receive-gate and security-profile differences."
+  ]
+}

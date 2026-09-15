@@ -1,0 +1,55 @@
+{
+  "schema": "csr-tranche11-python-return-gate-preflight-v1",
+  "status": "passed",
+  "generated_utc": "2026-09-14T17:43:41.910614+00:00",
+  "matlab_executed": false,
+  "owner_return_reviewed": false,
+  "acceptance_established": false,
+  "scope": "Python mutation tests and independent native-reference preflight only; no synthetic owner-return archive was created or accepted.",
+  "python_tests": {
+    "count": 25,
+    "passed": 25,
+    "exit_code": 0,
+    "log": "tests.log",
+    "log_sha256": "f8681033d148936dd433a3f892bd6b055ae7454d065cc9678228b684d010f53b"
+  },
+  "selected_matlab_tests": {
+    "count": 52,
+    "executed_here": false
+  },
+  "native_reference": {
+    "event_count": 1756,
+    "draw_count": 133,
+    "disabled_seam_checkpoints": 255,
+    "source_pin": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+    "controlled_transport": true
+  },
+  "native_case_event_counts": {
+    "ab": 423,
+    "ba": 423,
+    "slow": 483,
+    "track": 427
+  },
+  "native_service_checks": {
+    "count": 56,
+    "passed": 56
+  },
+  "native_tape_nodes": 12,
+  "baseline": {
+    "source_files": 225,
+    "matlab_files": 124,
+    "unchanged": true
+  },
+  "files": [
+    {
+      "path": "scripts/analyze_tranche11_return.py",
+      "sha256": "02253f30deb2067e53d3e17b4226e3b063541728d6a1ec3b5c1f84d4f778d8e6"
+    },
+    {
+      "path": "scripts/tests/test_tranche11_return.py",
+      "sha256": "fd86273f795859671c721d4c5dc49a2e24915c807b63b4a9459735756fe173e1"
+    }
+  ],
+  "native_manifest_sha256": "98bc1123da593ab0a3b3cc53785614630b8a26b598f0bd0cfd2722512281a1f0",
+  "fixture_plan_sha256": "4980ccbae6a52d378ca149be0bba81a08fb81e41608886388d985f9178ce27cc"
+}
