@@ -1,0 +1,54 @@
+name: Assemble verified Tranches 15-21 evidence blobs
+on:
+  push:
+    branches: [agent/t15-t21-checkpoint]
+    paths: [.checkpoint-transport/READY]
+permissions:
+  contents: write
+concurrency:
+  group: csr-t15-t21-checkpoint-transport
+  cancel-in-progress: false
+jobs:
+  assemble:
+    if: github.repository == 'mjburke4/CSR-Project-MATLAB-Sim' && github.ref == 'refs/heads/agent/t15-t21-checkpoint'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      BRIDGE_SCRIPT_GIT_SHA: 79aca4b17a921a0617739e4f164c493b2548b0e9
+      BRIDGE_SCRIPT_SHA256: aa31c57a9678084010faca248354baeb283bf4bdd92e046f0fa0f17c56321680
+      TRANSPORT_MANIFEST_GIT_SHA: a97ca41d09adacf9bab6d08dbbda9a27ccb53cbd
+      TRANSPORT_MANIFEST_SHA256: 4d1306775a8e5993127e6757c4c288735c911848e3616ac40984aa5bbb6d217d
+    steps:
+      - name: Verify the pinned bridge and attach the approved blobs
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import base64, hashlib, json, os, re, sys, urllib.error, urllib.request
+          repo = 'mjburke4/CSR-Project-MATLAB-Sim'
+          ref = 'refs/heads/agent/t15-t21-checkpoint'
+          if os.environ.get('GITHUB_REPOSITORY') != repo or os.environ.get('GITHUB_REF') != ref or os.environ.get('GITHUB_EVENT_NAME') != 'push':
+              sys.exit('Wrong repository, ref, or event')
+          sha = os.environ['BRIDGE_SCRIPT_GIT_SHA']
+          expected = os.environ['BRIDGE_SCRIPT_SHA256']
+          if not re.fullmatch('[0-9a-f]{40}', sha) or not re.fullmatch('[0-9a-f]{64}', expected):
+              sys.exit('Invalid pinned script identity')
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self, *args, **kwargs):
+                  return None
+          request = urllib.request.Request('https://api.github.com/repos/' + repo + '/git/blobs/' + sha, headers={
+              'Authorization': 'Bearer ' + os.environ['GH_TOKEN'], 'Accept': 'application/vnd.github+json',
+              'X-GitHub-Api-Version': '2022-11-28', 'User-Agent': 'CSR-checkpoint-bootstrap'})
+          try:
+              with urllib.request.build_opener(NoRedirect()).open(request, timeout=60) as response:
+                  result = json.load(response)
+          except (urllib.error.URLError, TimeoutError):
+              sys.exit('Unable to read pinned same-repository bridge')
+          if result.get('encoding') != 'base64' or result.get('sha') != sha or not 0 < result.get('size', 0) <= 65536:
+              sys.exit('Unexpected pinned bridge metadata')
+          script = base64.b64decode(''.join(result['content'].split()), validate=True)
+          actual_git_sha = hashlib.sha1(('blob ' + str(len(script)) + '\0').encode() + script).hexdigest()
+          if len(script) != result['size'] or hashlib.sha256(script).hexdigest() != expected or actual_git_sha != sha:
+              sys.exit('Pinned bridge hash mismatch')
+          exec(compile(script.decode('utf-8'), 'checkpoint_bridge.py', 'exec'), {'__name__': '__main__'})
+          PY
