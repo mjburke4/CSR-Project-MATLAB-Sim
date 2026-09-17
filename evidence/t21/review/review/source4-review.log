@@ -1,0 +1,43 @@
+{
+  "schema": "csr-tranche21-independent-source4-review-v1",
+  "passed": true,
+  "seeds": [
+    {
+      "seed": 128,
+      "source4_applications": 439,
+      "final_drop_identities_matched": 62,
+      "all_source4_failure_episodes": 62,
+      "failure_episodes_with_other_final_outcome": 0,
+      "hop_episode_capacity_intervals_checked": 5487,
+      "conservation_passed": true
+    },
+    {
+      "seed": 129,
+      "source4_applications": 503,
+      "final_drop_identities_matched": 75,
+      "all_source4_failure_episodes": 75,
+      "failure_episodes_with_other_final_outcome": 0,
+      "hop_episode_capacity_intervals_checked": 5563,
+      "conservation_passed": true
+    },
+    {
+      "seed": 130,
+      "source4_applications": 512,
+      "final_drop_identities_matched": 62,
+      "all_source4_failure_episodes": 63,
+      "failure_episodes_with_other_final_outcome": 1,
+      "hop_episode_capacity_intervals_checked": 5512,
+      "conservation_passed": true
+    }
+  ],
+  "identity": "Original application source independently matched to PacketId inventory; failed-hop callbacks not equated with terminal drops.",
+  "censoring": "Released and pending populations are separate; pending ages end at 6000 seconds. Retry waits explicitly pair to next observed hop_sent, not unique queued-retry lineage.",
+  "scope": "Native unmatched sends remain undelivered, not classified as losses. Arithmetic decompositions are descriptive and do not prove causality.",
+  "matlab_executed_by_reviewer": false,
+  "code_and_report_sha256": {
+    "source4/analyze_source4.py": "02a13249be8689950fe1e377ca96de7fb39adebbc58726cdfe00de802f36ef06",
+    "source4/source4.json": "99ef771ac5d5c8ac7969b982920cfcb8c12f86676aaaae98888c60f74851d282",
+    "source4/source4.md": "a31cd28e868423413dc6c59e0091560b9f44a4cd385a48c4e75cad5ef53838f6",
+    "source4/run.log": "5cdb4d1584a5d5549529a4bc4e3d731838b9b4fae0ebbce9d6408810d5c81507"
+  }
+}

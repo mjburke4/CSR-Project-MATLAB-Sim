@@ -1,0 +1,356 @@
+{
+  "schema": "csr-t16-reviewer-repair-summary-v1",
+  "status": "focused_diagnostic_review_completed",
+  "reviewer_repair_only": true,
+  "issued_source_unchanged_after_review": true,
+  "owner_evidence_unchanged_after_review": true,
+  "full_acceptance_established": false,
+  "numerical_parity_established": false,
+  "matlab_executed_by_reviewer": false,
+  "upstream_ns3_pin": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "matlab_candidate_sha256": "f22a893457fd7927342ed7fa176c1e227d387f6a6be3631fd0204f9a53bc1a36",
+  "source_snapshot_sha256": "90b5506f4fdb54f64ae7dac61c0e48df9da2253a8408a4b50b3ad30309ac1905",
+  "reference_snapshot_sha256": "7b642bee789b850f930e71b33ce8ed9cf9ad093071d3701708b1485295b4ca29",
+  "source_file_count": 304,
+  "current_matlab_file_count": 155,
+  "reference_file_count": 453,
+  "owner_archive": {
+    "path": "t16(1).zip",
+    "bytes": 23215583,
+    "sha256": "4fbfb17ba654bee0a137f1fc2d3ac3f65a091bf936d6c44589b1db9db1f4be60"
+  },
+  "owner_runtime": {
+    "Runtime": "MATLAB",
+    "Version": "25.1.0.2943329 (R2025a)",
+    "Release": "2025a",
+    "HasWirelessNetworkSimulator": false,
+    "HasWnetNode": false,
+    "HasWirelessPacket": false,
+    "DefaultBackend": "portable",
+    "WirelessAdapterImplemented": true,
+    "WirelessAdapterScope": "Optional R2026a wireless-clock candidate; runtime validation pending",
+    "NativePacketTransportIntegrated": false,
+    "ProbeScope": "Symbol discovery only; licenses and execution are not validated."
+  },
+  "owner_matlab_tests": 129,
+  "owner_network_cases": 12,
+  "owner_structural_checks": 192,
+  "owner_gate_scope": "Focused diagnostic only; full portable/campus acceptance remains pending.",
+  "reviewer_python_tests": {
+    "schema": "csr-t16-reviewer-tests-v1",
+    "tests_run": 97,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": true,
+    "matlab_executed": false,
+    "test_modules": [
+      "/workspace/scratch/ab77b42f47ca/t16-review/tests/test_reviewer_repairs.py",
+      "/workspace/scratch/ab77b42f47ca/csr16-base/scripts/tests/test_tranche11_return.py",
+      "/workspace/scratch/ab77b42f47ca/csr16-base/scripts/tests/test_tranche16_return.py"
+    ]
+  },
+  "repairs": [
+    {
+      "file": "scripts/analyze_tranche11_return.py",
+      "change": "Allow nonempty explicit ReferenceFiles when ReferenceRoots is empty; retain exact membership, duplicate/path safety, stability, hash and size gates."
+    },
+    {
+      "file": "scripts/analyze_tranche16_return.py",
+      "change": "Join all compared aggregate series by declared integer bin identity within four ULPs of endpoint serialization; require full bin membership and reject duplicates/off-grid endpoints; preserve all values and missing samples."
+    }
+  ],
+  "changed_reviewer_hashes": [
+    {
+      "path": "scripts/analyze_tranche11_return.py",
+      "original_sha256": "02253f30deb2067e53d3e17b4226e3b063541728d6a1ec3b5c1f84d4f778d8e6",
+      "reviewer_overlay_sha256": "96b0fddedf43882fff77ee84134e3e376c559c12a2568e8144be8dcc8be06d43"
+    },
+    {
+      "path": "scripts/analyze_tranche16_return.py",
+      "original_sha256": "9cd51150ab533bf66f0f087a2cd9982c5cad90ca7ba4df58be089ee61b9c83d0",
+      "reviewer_overlay_sha256": "558cfe7906b53389964556c6f55444496512887eed357a08f5eabb142af7bdd9"
+    }
+  ],
+  "paired_outcomes": [
+    {
+      "case_id": "a128",
+      "paired_application_counts_equal": true,
+      "node_counter_totals_equal": true,
+      "actual_feedback_member_counts_equal": true,
+      "physical_transmission_counts_equal": true,
+      "service_reconstruction_equal": true,
+      "summary_export_differences": {
+        "MeanLatencySeconds": [
+          "0.93773924771607",
+          "0.937739247716074"
+        ],
+        "LatencyP50Seconds": [
+          "0.929743999999801",
+          "0.929744000000028"
+        ],
+        "RuntimeSeconds": [
+          "195.9419833",
+          "139.7476448"
+        ],
+        "Mode": [
+          "continuous",
+          "nanoseconds"
+        ],
+        "PolicyKey": [
+          "c",
+          "n"
+        ]
+      }
+    },
+    {
+      "case_id": "c128",
+      "paired_application_counts_equal": true,
+      "node_counter_totals_equal": true,
+      "actual_feedback_member_counts_equal": true,
+      "physical_transmission_counts_equal": true,
+      "service_reconstruction_equal": true,
+      "summary_export_differences": {
+        "MeanLatencySeconds": [
+          "1.64067137068964",
+          "1.64067137068966"
+        ],
+        "RuntimeSeconds": [
+          "87.886328",
+          "73.2655895"
+        ],
+        "Mode": [
+          "continuous",
+          "nanoseconds"
+        ],
+        "PolicyKey": [
+          "c",
+          "n"
+        ]
+      }
+    },
+    {
+      "case_id": "a129",
+      "paired_application_counts_equal": true,
+      "node_counter_totals_equal": true,
+      "actual_feedback_member_counts_equal": true,
+      "physical_transmission_counts_equal": true,
+      "service_reconstruction_equal": true,
+      "summary_export_differences": {
+        "MeanLatencySeconds": [
+          "0.928294877872655",
+          "0.928294877872659"
+        ],
+        "LatencyP95Seconds": [
+          "1.47774399999997",
+          "1.47774400000003"
+        ],
+        "RuntimeSeconds": [
+          "163.5427228",
+          "152.311746"
+        ],
+        "Mode": [
+          "continuous",
+          "nanoseconds"
+        ],
+        "PolicyKey": [
+          "c",
+          "n"
+        ]
+      }
+    },
+    {
+      "case_id": "c129",
+      "paired_application_counts_equal": true,
+      "node_counter_totals_equal": true,
+      "actual_feedback_member_counts_equal": true,
+      "physical_transmission_counts_equal": true,
+      "service_reconstruction_equal": true,
+      "summary_export_differences": {
+        "MeanLatencySeconds": [
+          "1.60258893670885",
+          "1.60258893670886"
+        ],
+        "LatencyP95Seconds": [
+          "3.07374399999998",
+          "3.07374400000003"
+        ],
+        "RuntimeSeconds": [
+          "63.3838416",
+          "69.2458515"
+        ],
+        "Mode": [
+          "continuous",
+          "nanoseconds"
+        ],
+        "PolicyKey": [
+          "c",
+          "n"
+        ]
+      }
+    },
+    {
+      "case_id": "a130",
+      "paired_application_counts_equal": true,
+      "node_counter_totals_equal": true,
+      "actual_feedback_member_counts_equal": true,
+      "physical_transmission_counts_equal": true,
+      "service_reconstruction_equal": true,
+      "summary_export_differences": {
+        "MeanLatencySeconds": [
+          "0.944165970835159",
+          "0.944165970835149"
+        ],
+        "LatencyP95Seconds": [
+          "1.47274399999998",
+          "1.47274399999992"
+        ],
+        "LatencyP99Seconds": [
+          "1.64574400000004",
+          "1.64574399999992"
+        ],
+        "RuntimeSeconds": [
+          "134.8290333",
+          "139.0813307"
+        ],
+        "Mode": [
+          "continuous",
+          "nanoseconds"
+        ],
+        "PolicyKey": [
+          "c",
+          "n"
+        ]
+      }
+    },
+    {
+      "case_id": "c130",
+      "paired_application_counts_equal": true,
+      "node_counter_totals_equal": true,
+      "actual_feedback_member_counts_equal": true,
+      "physical_transmission_counts_equal": true,
+      "service_reconstruction_equal": true,
+      "summary_export_differences": {
+        "MeanLatencySeconds": [
+          "1.77559075615212",
+          "1.77559075615213"
+        ],
+        "LatencyP99Seconds": [
+          "7.36568399999999",
+          "7.36568400000004"
+        ],
+        "RuntimeSeconds": [
+          "73.4134062",
+          "62.8327832"
+        ],
+        "Mode": [
+          "continuous",
+          "nanoseconds"
+        ],
+        "PolicyKey": [
+          "c",
+          "n"
+        ]
+      }
+    }
+  ],
+  "native_comparisons": [
+    {
+      "case_id": "a128",
+      "seed": 128,
+      "matlab_admitted": 11394,
+      "matlab_delivered": 11384,
+      "matlab_explicit_drops": 0,
+      "matlab_pending": 10,
+      "matlab_ack_feedback_members": 2066,
+      "native_admitted": 11380,
+      "native_delivered": 11364,
+      "native_unmatched_sends": 16,
+      "native_ack_feedback_members": 2054
+    },
+    {
+      "case_id": "c128",
+      "seed": 128,
+      "matlab_admitted": 954,
+      "matlab_delivered": 928,
+      "matlab_explicit_drops": 0,
+      "matlab_pending": 26,
+      "matlab_ack_feedback_members": 366,
+      "native_admitted": 946,
+      "native_delivered": 914,
+      "native_unmatched_sends": 32,
+      "native_ack_feedback_members": 391
+    },
+    {
+      "case_id": "a129",
+      "seed": 129,
+      "matlab_admitted": 11361,
+      "matlab_delivered": 11357,
+      "matlab_explicit_drops": 0,
+      "matlab_pending": 4,
+      "matlab_ack_feedback_members": 2081,
+      "native_admitted": 11234,
+      "native_delivered": 11227,
+      "native_unmatched_sends": 7,
+      "native_ack_feedback_members": 2077
+    },
+    {
+      "case_id": "c129",
+      "seed": 129,
+      "matlab_admitted": 980,
+      "matlab_delivered": 948,
+      "matlab_explicit_drops": 0,
+      "matlab_pending": 32,
+      "matlab_ack_feedback_members": 402,
+      "native_admitted": 854,
+      "native_delivered": 822,
+      "native_unmatched_sends": 32,
+      "native_ack_feedback_members": 436
+    },
+    {
+      "case_id": "a130",
+      "seed": 130,
+      "matlab_admitted": 11331,
+      "matlab_delivered": 11315,
+      "matlab_explicit_drops": 0,
+      "matlab_pending": 16,
+      "matlab_ack_feedback_members": 2106,
+      "native_admitted": 11412,
+      "native_delivered": 11396,
+      "native_unmatched_sends": 16,
+      "native_ack_feedback_members": 2093
+    },
+    {
+      "case_id": "c130",
+      "seed": 130,
+      "matlab_admitted": 926,
+      "matlab_delivered": 894,
+      "matlab_explicit_drops": 0,
+      "matlab_pending": 32,
+      "matlab_ack_feedback_members": 432,
+      "native_admitted": 948,
+      "native_delivered": 916,
+      "native_unmatched_sends": 32,
+      "native_ack_feedback_members": 418
+    }
+  ],
+  "raw_review": {
+    "path": "return/review.json",
+    "sha256": "51f27268bfe8520f5bc5ba6f2379c9aa66f06d0968d725390a721d49c5e2e88d"
+  },
+  "recommendation": {
+    "next_tranche": 17,
+    "objective": "Full portable regression and one unchanged 6000-second campus run",
+    "default_receiver_timing": "continuous",
+    "promote_nanoseconds": false,
+    "change_phy_ecc": false,
+    "rationale": "Receiver timing policies produce the same admission, delivery, retry, actual feedback, ownership counters and service reconstruction in all six paired fixtures; proceed to the deferred full-network gate.",
+    "pending_scope": "Prepare and then obtain actual owner MATLAB execution; source/static/Python checks are not MATLAB runtime acceptance."
+  },
+  "comparison_limits": [
+    "Cross-simulator seed numbers do not imply shared RNG; native differences remain descriptive.",
+    "MATLAB finite-stop pending applications remain pending; ns-3 unmatched sends are not recategorized as drops or pending.",
+    "Timing fields represent simulator arithmetic and callback targets, not physical timing measurements.",
+    "Detailed service observations are limited to [300,320) seconds; callback CapacityReleased flags were zero, while network_custody_release callbacks were observed."
+  ]
+}

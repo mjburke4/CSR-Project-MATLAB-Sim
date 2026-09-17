@@ -1,0 +1,421 @@
+{
+  "delay_matching": {
+    "matched_by_flow": [
+      {
+        "count": 169,
+        "dst": "1",
+        "src": "4"
+      },
+      {
+        "count": 158,
+        "dst": "1",
+        "src": "5"
+      }
+    ],
+    "matched_by_method": {
+      "exact_sequence": 327
+    },
+    "matched_count": 327,
+    "method": "exact application sequence when present; FIFO per exact (src, dst) pair otherwise; an exact send timestamp is reused only for a source-exact duplicate proved by repeated first-reception DACK feedback",
+    "missing_sample_mean_bucket_ends_s": [
+      60.0,
+      120.0,
+      180.0,
+      240.0,
+      300.0
+    ],
+    "unmatched_deliveries": [],
+    "unmatched_delivery_count": 0,
+    "unmatched_send_count": 61,
+    "unmatched_sends": [
+      {
+        "count": 45,
+        "dst": "1",
+        "src": "4"
+      },
+      {
+        "count": 16,
+        "dst": "1",
+        "src": "5"
+      }
+    ]
+  },
+  "ecc_drop_derivation": {
+    "ignored_rx_drop_reasons": {
+      "half_duplex": 68,
+      "prior_stage": 654
+    },
+    "included_rx_drop_reason": "ecc"
+  },
+  "input": {
+    "event_counts": {
+      "app_admission": 30000,
+      "app_send": 388,
+      "hop_admission": 543,
+      "hop_capacity_release": 130,
+      "hop_completion": 525,
+      "hop_feedback": 525,
+      "mac_state": 7876,
+      "nwk_admission": 11093,
+      "nwk_delivery": 327,
+      "nwk_enqueue": 586,
+      "nwk_forward": 543,
+      "nwk_nsdp_release": 525,
+      "reservation_advertise": 1305,
+      "reservation_holdoff": 6,
+      "reservation_prepare": 1307,
+      "reservation_tick": 23410,
+      "route_change": 14,
+      "rx_accept": 1888,
+      "rx_drop": 722,
+      "scenario_link": 3,
+      "scenario_node": 3,
+      "statistic_sample": 4580,
+      "tx_start": 1305
+    },
+    "event_row_count": 87604,
+    "path": "/tmp/csr-t18-final-20260916-reference/m129/ns3-trace.csv",
+    "sha256": "ab39e33c7cac951997afe9472f495d6f86e643ebe0079c02bb12318c1f0bbf3c",
+    "size_bytes": 17929278,
+    "trace_schema": "csr-differential-trace-v1"
+  },
+  "matched_packet_size_integrity": {
+    "compared_count": 327,
+    "example_limit": 20,
+    "mismatch_count": 0,
+    "mismatch_examples": [],
+    "mismatches_by_flow": []
+  },
+  "opnet_app_size_semantics": {
+    "derived_statistic_bits": "size_bytes * 8 - size_exclusion_bits",
+    "missing_sample_mean_bucket_ends_s": {
+      "Generator.Packet Size (bits)": [
+        60.0,
+        120.0,
+        180.0,
+        240.0,
+        300.0
+      ],
+      "Sink.End-to-End Delay (seconds)": [
+        60.0,
+        120.0,
+        180.0,
+        240.0,
+        300.0
+      ]
+    },
+    "size_exclusion_bits": 0,
+    "size_exclusion_purpose": "explicit compatibility adjustment for legacy traces that recorded the configured source size instead of the modeled br_Network size",
+    "trace_size_source": "event size_bytes is the actual total br_Network packet size"
+  },
+  "output": {
+    "path": "/tmp/csr-t18-final-20260916-reference/m129/ns3-aggregates.csv",
+    "row_count": 150,
+    "sha256": "5193b150359cf934e15d9eb8b90201783fd4e942752cc7f2fb10534495254b6a",
+    "size_bytes": 29901
+  },
+  "output_schema": "csr-aggregate-series-v1",
+  "scenario": "csr_t18_m129",
+  "schema": "csr-ns3-aggregate-provenance-v1",
+  "semantic_limits": [
+    "Legacy rows without a common application sequence use deterministic FIFO matching per exact source/destination pair.",
+    "Runner-scheduled app_send flows are comparable to OPNET SEND_ONLY_TO_GATEWAY traffic only when scenario flow and gateway-discovery semantics are aligned.",
+    "A missing delay sample is marked missing, never replaced with a fabricated zero.",
+    "Current runner traces record the actual total br_Network packet size, so no post-hoc size exclusion is applied by default; any legacy adjustment is explicit in provenance."
+  ],
+  "source": "ns3",
+  "source_exact_dack_retry_duplicates": {
+    "lineages": [],
+    "matched_duplicate_delivery_count": 0,
+    "proof": "a prior reason=dack, first_reception=1 feedback row followed by another qualifying first-reception ACK/DACK with equal (src,dst,app sequence,relay,ingress peer,HOP sequence); each row follows a matching relay enqueue and has a valid pre/post relay NSDP increment",
+    "repeated_feedback_proof_count": 0,
+    "unused_proof_count": 0
+  },
+  "statistic_sample_derivation": {
+    "active_statistics": [
+      {
+        "aggregation": "bucket_sample_mean",
+        "excluded_after_stop_count": 0,
+        "excluded_at_stop_count": 0,
+        "in_window_sample_count": 989,
+        "in_window_samples_by_node": {
+          "1": 18,
+          "4": 270,
+          "5": 701
+        },
+        "integral_samples_required": true,
+        "missing_sample_mean_bucket_ends_s": [
+          120.0,
+          180.0,
+          240.0,
+          300.0
+        ],
+        "sample_count": 989,
+        "samples_by_node": {
+          "1": 18,
+          "4": 270,
+          "5": 701
+        },
+        "statistic": "HOP.Resend Queue Size (packets)",
+        "unit": "packets"
+      },
+      {
+        "aggregation": "bucket_sample_mean",
+        "excluded_after_stop_count": 0,
+        "excluded_at_stop_count": 0,
+        "in_window_sample_count": 123,
+        "in_window_samples_by_node": {
+          "1": 46,
+          "4": 16,
+          "5": 61
+        },
+        "integral_samples_required": true,
+        "missing_sample_mean_bucket_ends_s": [
+          120.0,
+          180.0,
+          240.0,
+          300.0
+        ],
+        "sample_count": 123,
+        "samples_by_node": {
+          "1": 46,
+          "4": 16,
+          "5": 61
+        },
+        "statistic": "MAC.ACK Queue Size (packets)",
+        "unit": "packets"
+      },
+      {
+        "aggregation": "bucket_sample_mean",
+        "excluded_after_stop_count": 0,
+        "excluded_at_stop_count": 0,
+        "in_window_sample_count": 1205,
+        "in_window_samples_by_node": {
+          "1": 32,
+          "4": 458,
+          "5": 715
+        },
+        "integral_samples_required": true,
+        "missing_sample_mean_bucket_ends_s": [
+          120.0,
+          180.0,
+          240.0,
+          300.0
+        ],
+        "sample_count": 1205,
+        "samples_by_node": {
+          "1": 32,
+          "4": 458,
+          "5": 715
+        },
+        "statistic": "MAC.Tx Queue Size (packets)",
+        "unit": "packets"
+      },
+      {
+        "aggregation": "bucket_sample_mean",
+        "excluded_after_stop_count": 0,
+        "excluded_at_stop_count": 0,
+        "in_window_sample_count": 591,
+        "in_window_samples_by_node": {
+          "1": 16,
+          "4": 226,
+          "5": 349
+        },
+        "integral_samples_required": false,
+        "missing_sample_mean_bucket_ends_s": [
+          120.0,
+          180.0,
+          240.0,
+          300.0
+        ],
+        "sample_count": 591,
+        "samples_by_node": {
+          "1": 16,
+          "4": 226,
+          "5": 349
+        },
+        "statistic": "MAC.Tx Queuing Delay (sec)",
+        "unit": "s"
+      },
+      {
+        "aggregation": "bucket_sample_mean",
+        "excluded_after_stop_count": 0,
+        "excluded_at_stop_count": 0,
+        "in_window_sample_count": 1129,
+        "in_window_samples_by_node": {
+          "4": 413,
+          "5": 716
+        },
+        "integral_samples_required": true,
+        "missing_sample_mean_bucket_ends_s": [
+          60.0,
+          120.0,
+          180.0,
+          240.0,
+          300.0
+        ],
+        "sample_count": 1129,
+        "samples_by_node": {
+          "4": 413,
+          "5": 716
+        },
+        "statistic": "NWK.Network Queue Size (packets)",
+        "unit": "packets"
+      },
+      {
+        "aggregation": "bucket_sample_mean",
+        "excluded_after_stop_count": 0,
+        "excluded_at_stop_count": 0,
+        "in_window_sample_count": 543,
+        "in_window_samples_by_node": {
+          "4": 199,
+          "5": 344
+        },
+        "integral_samples_required": false,
+        "missing_sample_mean_bucket_ends_s": [
+          60.0,
+          120.0,
+          180.0,
+          240.0,
+          300.0
+        ],
+        "sample_count": 543,
+        "samples_by_node": {
+          "4": 199,
+          "5": 344
+        },
+        "statistic": "NWK.Network Queuing Delay (sec)",
+        "unit": "s"
+      }
+    ],
+    "aggregation_semantics": "arithmetic mean of every discrete source-ordered sample from all nodes in [previous_bucket_end, bucket_end); samples are not time weighted and per-node means are not averaged",
+    "allowlisted_statistics": [
+      "HOP.Resend Queue Size (packets)",
+      "MAC.ACK Queue Size (packets)",
+      "MAC.Tx Queue Size (packets)",
+      "MAC.Tx Queuing Delay (sec)",
+      "NWK.Network Queue Size (packets)",
+      "NWK.Network Queuing Delay (sec)"
+    ],
+    "encoding": {
+      "node_field": "node",
+      "statistic_field": "statistic",
+      "value_field": "value"
+    },
+    "event": "statistic_sample"
+  },
+  "statistics": [
+    {
+      "aggregation": "bucket_sum_per_second",
+      "statistic": "Generator.Traffic Sent (packets/sec)",
+      "unit": "packets/s"
+    },
+    {
+      "aggregation": "bucket_sum_per_second",
+      "statistic": "Generator.Traffic Sent (bits/sec)",
+      "unit": "bits/s"
+    },
+    {
+      "aggregation": "bucket_sample_mean",
+      "statistic": "Generator.Packet Size (bits)",
+      "unit": "bits"
+    },
+    {
+      "aggregation": "bucket_sum_per_second",
+      "statistic": "Sink.Traffic Received (packets/sec)",
+      "unit": "packets/s"
+    },
+    {
+      "aggregation": "bucket_sum",
+      "statistic": "Sink.Traffic Received (packets)",
+      "unit": "packets"
+    },
+    {
+      "aggregation": "bucket_sum_per_second",
+      "statistic": "Sink.Traffic Received (bits/sec)",
+      "unit": "bits/s"
+    },
+    {
+      "aggregation": "bucket_sum",
+      "statistic": "Sink.Traffic Received (bits)",
+      "unit": "bits"
+    },
+    {
+      "aggregation": "bucket_sample_mean",
+      "statistic": "Sink.End-to-End Delay (seconds)",
+      "unit": "s"
+    },
+    {
+      "aggregation": "bucket_sum_per_second",
+      "statistic": "ECC.Traffic Dropped (packets/sec)",
+      "unit": "packets/s"
+    },
+    {
+      "aggregation": "bucket_sample_mean",
+      "statistic": "HOP.Resend Queue Size (packets)",
+      "unit": "packets"
+    },
+    {
+      "aggregation": "bucket_sample_mean",
+      "statistic": "MAC.ACK Queue Size (packets)",
+      "unit": "packets"
+    },
+    {
+      "aggregation": "bucket_sample_mean",
+      "statistic": "MAC.Tx Queue Size (packets)",
+      "unit": "packets"
+    },
+    {
+      "aggregation": "bucket_sample_mean",
+      "statistic": "MAC.Tx Queuing Delay (sec)",
+      "unit": "s"
+    },
+    {
+      "aggregation": "bucket_sample_mean",
+      "statistic": "NWK.Network Queue Size (packets)",
+      "unit": "packets"
+    },
+    {
+      "aggregation": "bucket_sample_mean",
+      "statistic": "NWK.Network Queuing Delay (sec)",
+      "unit": "s"
+    }
+  ],
+  "window": {
+    "bucket_count": 10,
+    "bucket_width_s": 60.0,
+    "excluded_after_stop": {},
+    "excluded_at_stop": {},
+    "in_window_event_counts": {
+      "app_admission": 30000,
+      "app_send": 388,
+      "hop_admission": 543,
+      "hop_capacity_release": 130,
+      "hop_completion": 525,
+      "hop_feedback": 525,
+      "mac_state": 7876,
+      "nwk_admission": 11093,
+      "nwk_delivery": 327,
+      "nwk_enqueue": 586,
+      "nwk_forward": 543,
+      "nwk_nsdp_release": 525,
+      "reservation_advertise": 1305,
+      "reservation_holdoff": 6,
+      "reservation_prepare": 1307,
+      "reservation_tick": 23410,
+      "route_change": 14,
+      "rx_accept": 1888,
+      "rx_drop": 722,
+      "scenario_link": 3,
+      "scenario_node": 3,
+      "statistic_sample": 4580,
+      "tx_start": 1305
+    },
+    "interval": "[previous_bucket_end, bucket_end); t=0 is included in the first bucket and t=stop_time_s is excluded",
+    "start_endpoint": "inclusive",
+    "start_time_s": 0.0,
+    "stop_endpoint": "exclusive",
+    "stop_time_s": 600.0,
+    "timestamp": "bucket_end"
+  }
+}

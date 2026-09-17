@@ -1,0 +1,47 @@
+{
+  "schema": "csr-tranche19-archived-metrics-check-v1",
+  "status": "passed",
+  "scope": "New T19 metrics reconstruction applied to authentic accepted T17 evidence. This is not execution or evidence of the experimental T19 policy.",
+  "matlab_executed": false,
+  "owner_evidence_sha256": "19921afa83c57db2779e4302e5b39afef5120afb129a87fddb1f6d1bdbec2bd1",
+  "totals": {
+    "attempts": 1710000,
+    "admitted": 12484,
+    "blocked": 1697516,
+    "delivered": 11825,
+    "dropped": 402,
+    "pending": 257
+  },
+  "hop_4_to_5": {
+    "episodes": 2095,
+    "retry_requests": 1692,
+    "hop_sent_callbacks": 3747,
+    "capacity_release_events": {
+      "hop_ack": 1647,
+      "hop_failed": 310,
+      "hop_dack_expired": 133
+    },
+    "retry_request_next_sent_waits": {
+      "count": 1653,
+      "minimum_s": 0.014999972219811752,
+      "median_s": 1.002999972219186,
+      "mean_s": 2.2016817629038266,
+      "maximum_s": 22.62199997222001
+    },
+    "retry_request_completion_counts": {
+      "next_observed_hop_sent": 1653,
+      "terminal_before_next_hop_sent": 37,
+      "censored_at_stop": 2
+    },
+    "pending_capacity_at_stop": 5
+  },
+  "limitations": [
+    "Ownership is reconstructed after exported callbacks; no hidden queue polling or instantaneous free-capacity claim.",
+    "DACK ends retry service but holds HOP DATA capacity until hop_dack_expired; NWK custody may release earlier.",
+    "Each retry request is retained separately. Next observed hop_sent is descriptive; overlapping requests may share it and are not uniquely assigned to an actual queued retry.",
+    "hop_sent denotes an exported HOP confirmation callback at actual radio TX time; the original trace does not independently expose aggregate member identities or resend count.",
+    "All 300-second attempts are reconstructed from exact configured schedules and validated complete per-flow counters. Per-bin blocked totals are attempts minus admitted; omitted blocked-reason timing is never inferred.",
+    "Bins are [start,end), final bin includes callbacks at H. Drop events may later be superseded by relay_accept; endpoint populations use callback order.",
+    "Single-seed descriptive policy intervention; subsequent event/RNG consumption can diverge. No cross-engine packet identity joins."
+  ]
+}

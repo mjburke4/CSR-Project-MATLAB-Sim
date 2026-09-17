@@ -1,0 +1,792 @@
+{
+  "schema": "csr-tranche18-native-service-summary-v1",
+  "status": "passed",
+  "rows": 1082082,
+  "max_records": 2000000,
+  "omitted_records": 0,
+  "window_s": [
+    0,
+    900
+  ],
+  "stop_endpoint": "exclusive",
+  "event_counts": {
+    "ack_queue_enqueue_after": 447,
+    "ack_queue_exact_duplicate": 4,
+    "ack_queue_replace_after": 1784,
+    "ack_queue_replace_before": 1784,
+    "app_admission": 180000,
+    "app_send": 1606,
+    "hop_admission": 2128,
+    "hop_capacity_release": 506,
+    "hop_completion": 2096,
+    "hop_feedback": 2052,
+    "hop_retry": 617,
+    "mac_cancel_begin": 3853,
+    "mac_cancel_end": 3853,
+    "mac_cancel_frame_after": 136,
+    "mac_cancel_frame_before": 136,
+    "mac_holdoff_expired": 33,
+    "mac_holdoff_schedule_before": 1310,
+    "mac_idle_rts_schedule": 20,
+    "mac_prepare_after": 5933,
+    "mac_receive_state_after": 22264,
+    "mac_receive_state_before": 22264,
+    "mac_schedule_request": 5206,
+    "mac_slot_tick": 386705,
+    "mac_state": 34121,
+    "mac_sync_change_before": 24064,
+    "nwk_admission": 190140,
+    "nwk_delivery": 1245,
+    "nwk_enqueue": 2409,
+    "nwk_forward": 2128,
+    "nwk_nsdp_release": 2096,
+    "reservation_advertise": 5929,
+    "reservation_holdoff": 33,
+    "reservation_prepare": 5933,
+    "reservation_tick": 107517,
+    "route_change": 91,
+    "rx_accept": 9820,
+    "rx_drop": 25751,
+    "scenario_link": 21,
+    "scenario_node": 7,
+    "statistic_sample": 20111,
+    "tx_start": 5929
+  },
+  "forwarding": [
+    {
+      "src": "2",
+      "dst": "1",
+      "node": "2",
+      "ingress_peer": "",
+      "next_hop": "4",
+      "kind": "local",
+      "count": 69
+    },
+    {
+      "src": "2",
+      "dst": "1",
+      "node": "4",
+      "ingress_peer": "2",
+      "next_hop": "5",
+      "kind": "relay",
+      "count": 60
+    },
+    {
+      "src": "2",
+      "dst": "1",
+      "node": "5",
+      "ingress_peer": "4",
+      "next_hop": "1",
+      "kind": "relay",
+      "count": 47
+    },
+    {
+      "src": "3",
+      "dst": "1",
+      "node": "3",
+      "ingress_peer": "",
+      "next_hop": "1",
+      "kind": "local",
+      "count": 876
+    },
+    {
+      "src": "4",
+      "dst": "1",
+      "node": "4",
+      "ingress_peer": "",
+      "next_hop": "5",
+      "kind": "local",
+      "count": 48
+    },
+    {
+      "src": "4",
+      "dst": "1",
+      "node": "5",
+      "ingress_peer": "4",
+      "next_hop": "1",
+      "kind": "relay",
+      "count": 43
+    },
+    {
+      "src": "5",
+      "dst": "1",
+      "node": "5",
+      "ingress_peer": "",
+      "next_hop": "1",
+      "kind": "local",
+      "count": 244
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "2",
+      "ingress_peer": "8",
+      "next_hop": "4",
+      "kind": "relay",
+      "count": 75
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "4",
+      "ingress_peer": "2",
+      "next_hop": "5",
+      "kind": "relay",
+      "count": 48
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "5",
+      "ingress_peer": "4",
+      "next_hop": "1",
+      "kind": "relay",
+      "count": 41
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "7",
+      "ingress_peer": "",
+      "next_hop": "8",
+      "kind": "local",
+      "count": 172
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "8",
+      "ingress_peer": "7",
+      "next_hop": "2",
+      "kind": "relay",
+      "count": 145
+    },
+    {
+      "src": "8",
+      "dst": "1",
+      "node": "2",
+      "ingress_peer": "8",
+      "next_hop": "4",
+      "kind": "relay",
+      "count": 68
+    },
+    {
+      "src": "8",
+      "dst": "1",
+      "node": "4",
+      "ingress_peer": "2",
+      "next_hop": "5",
+      "kind": "relay",
+      "count": 41
+    },
+    {
+      "src": "8",
+      "dst": "1",
+      "node": "5",
+      "ingress_peer": "4",
+      "next_hop": "1",
+      "kind": "relay",
+      "count": 30
+    },
+    {
+      "src": "8",
+      "dst": "1",
+      "node": "8",
+      "ingress_peer": "",
+      "next_hop": "2",
+      "kind": "local",
+      "count": 121
+    }
+  ],
+  "completions": [
+    {
+      "src": "2",
+      "dst": "1",
+      "node": "2",
+      "peer": "4",
+      "reason": "ack",
+      "count": 26
+    },
+    {
+      "src": "2",
+      "dst": "1",
+      "node": "2",
+      "peer": "4",
+      "reason": "dack",
+      "count": 41
+    },
+    {
+      "src": "2",
+      "dst": "1",
+      "node": "2",
+      "peer": "4",
+      "reason": "no_ack",
+      "count": 2
+    },
+    {
+      "src": "2",
+      "dst": "1",
+      "node": "4",
+      "peer": "5",
+      "reason": "ack",
+      "count": 48
+    },
+    {
+      "src": "2",
+      "dst": "1",
+      "node": "4",
+      "peer": "5",
+      "reason": "no_ack",
+      "count": 12
+    },
+    {
+      "src": "2",
+      "dst": "1",
+      "node": "5",
+      "peer": "1",
+      "reason": "ack",
+      "count": 39
+    },
+    {
+      "src": "2",
+      "dst": "1",
+      "node": "5",
+      "peer": "1",
+      "reason": "no_ack",
+      "count": 6
+    },
+    {
+      "src": "3",
+      "dst": "1",
+      "node": "3",
+      "peer": "1",
+      "reason": "ack",
+      "count": 807
+    },
+    {
+      "src": "3",
+      "dst": "1",
+      "node": "3",
+      "peer": "1",
+      "reason": "no_ack",
+      "count": 53
+    },
+    {
+      "src": "4",
+      "dst": "1",
+      "node": "4",
+      "peer": "5",
+      "reason": "ack",
+      "count": 43
+    },
+    {
+      "src": "4",
+      "dst": "1",
+      "node": "4",
+      "peer": "5",
+      "reason": "no_ack",
+      "count": 5
+    },
+    {
+      "src": "4",
+      "dst": "1",
+      "node": "5",
+      "peer": "1",
+      "reason": "ack",
+      "count": 39
+    },
+    {
+      "src": "4",
+      "dst": "1",
+      "node": "5",
+      "peer": "1",
+      "reason": "no_ack",
+      "count": 4
+    },
+    {
+      "src": "5",
+      "dst": "1",
+      "node": "5",
+      "peer": "1",
+      "reason": "ack",
+      "count": 204
+    },
+    {
+      "src": "5",
+      "dst": "1",
+      "node": "5",
+      "peer": "1",
+      "reason": "no_ack",
+      "count": 36
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "2",
+      "peer": "4",
+      "reason": "ack",
+      "count": 15
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "2",
+      "peer": "4",
+      "reason": "dack",
+      "count": 58
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "2",
+      "peer": "4",
+      "reason": "no_ack",
+      "count": 2
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "4",
+      "peer": "5",
+      "reason": "ack",
+      "count": 34
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "4",
+      "peer": "5",
+      "reason": "dack",
+      "count": 9
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "4",
+      "peer": "5",
+      "reason": "no_ack",
+      "count": 4
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "5",
+      "peer": "1",
+      "reason": "ack",
+      "count": 30
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "5",
+      "peer": "1",
+      "reason": "no_ack",
+      "count": 7
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "7",
+      "peer": "8",
+      "reason": "ack",
+      "count": 33
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "7",
+      "peer": "8",
+      "reason": "dack",
+      "count": 137
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "7",
+      "peer": "8",
+      "reason": "no_ack",
+      "count": 2
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "8",
+      "peer": "2",
+      "reason": "ack",
+      "count": 16
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "8",
+      "peer": "2",
+      "reason": "dack",
+      "count": 125
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "8",
+      "peer": "2",
+      "reason": "no_ack",
+      "count": 4
+    },
+    {
+      "src": "8",
+      "dst": "1",
+      "node": "2",
+      "peer": "4",
+      "reason": "ack",
+      "count": 19
+    },
+    {
+      "src": "8",
+      "dst": "1",
+      "node": "2",
+      "peer": "4",
+      "reason": "dack",
+      "count": 45
+    },
+    {
+      "src": "8",
+      "dst": "1",
+      "node": "2",
+      "peer": "4",
+      "reason": "no_ack",
+      "count": 3
+    },
+    {
+      "src": "8",
+      "dst": "1",
+      "node": "4",
+      "peer": "5",
+      "reason": "ack",
+      "count": 30
+    },
+    {
+      "src": "8",
+      "dst": "1",
+      "node": "4",
+      "peer": "5",
+      "reason": "dack",
+      "count": 1
+    },
+    {
+      "src": "8",
+      "dst": "1",
+      "node": "4",
+      "peer": "5",
+      "reason": "no_ack",
+      "count": 10
+    },
+    {
+      "src": "8",
+      "dst": "1",
+      "node": "5",
+      "peer": "1",
+      "reason": "ack",
+      "count": 20
+    },
+    {
+      "src": "8",
+      "dst": "1",
+      "node": "5",
+      "peer": "1",
+      "reason": "no_ack",
+      "count": 6
+    },
+    {
+      "src": "8",
+      "dst": "1",
+      "node": "8",
+      "peer": "2",
+      "reason": "ack",
+      "count": 16
+    },
+    {
+      "src": "8",
+      "dst": "1",
+      "node": "8",
+      "peer": "2",
+      "reason": "dack",
+      "count": 105
+    }
+  ],
+  "retry_submissions": [
+    {
+      "src": "2",
+      "dst": "1",
+      "node": "2",
+      "peer": "4",
+      "count": 30
+    },
+    {
+      "src": "2",
+      "dst": "1",
+      "node": "4",
+      "peer": "5",
+      "count": 60
+    },
+    {
+      "src": "2",
+      "dst": "1",
+      "node": "5",
+      "peer": "1",
+      "count": 15
+    },
+    {
+      "src": "3",
+      "dst": "1",
+      "node": "3",
+      "peer": "1",
+      "count": 115
+    },
+    {
+      "src": "4",
+      "dst": "1",
+      "node": "4",
+      "peer": "5",
+      "count": 33
+    },
+    {
+      "src": "4",
+      "dst": "1",
+      "node": "5",
+      "peer": "1",
+      "count": 10
+    },
+    {
+      "src": "5",
+      "dst": "1",
+      "node": "5",
+      "peer": "1",
+      "count": 111
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "2",
+      "peer": "4",
+      "count": 25
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "4",
+      "peer": "5",
+      "count": 18
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "5",
+      "peer": "1",
+      "count": 16
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "7",
+      "peer": "8",
+      "count": 43
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "8",
+      "peer": "2",
+      "count": 30
+    },
+    {
+      "src": "8",
+      "dst": "1",
+      "node": "2",
+      "peer": "4",
+      "count": 32
+    },
+    {
+      "src": "8",
+      "dst": "1",
+      "node": "4",
+      "peer": "5",
+      "count": 31
+    },
+    {
+      "src": "8",
+      "dst": "1",
+      "node": "5",
+      "peer": "1",
+      "count": 13
+    },
+    {
+      "src": "8",
+      "dst": "1",
+      "node": "8",
+      "peer": "2",
+      "count": 35
+    }
+  ],
+  "blocked_admission_observations": [
+    {
+      "src": "2",
+      "dst": "1",
+      "node": "2",
+      "peer": "4",
+      "reason": "neighbor_flow_full",
+      "count": 14117
+    },
+    {
+      "src": "2",
+      "dst": "1",
+      "node": "4",
+      "peer": "5",
+      "reason": "neighbor_flow_full",
+      "count": 11866
+    },
+    {
+      "src": "2",
+      "dst": "1",
+      "node": "5",
+      "peer": "",
+      "reason": "global_hop_full",
+      "count": 5
+    },
+    {
+      "src": "2",
+      "dst": "1",
+      "node": "5",
+      "peer": "1",
+      "reason": "neighbor_flow_full",
+      "count": 2191
+    },
+    {
+      "src": "3",
+      "dst": "1",
+      "node": "3",
+      "peer": "1",
+      "reason": "neighbor_flow_full",
+      "count": 929
+    },
+    {
+      "src": "4",
+      "dst": "1",
+      "node": "4",
+      "peer": "5",
+      "reason": "neighbor_flow_full",
+      "count": 9547
+    },
+    {
+      "src": "4",
+      "dst": "1",
+      "node": "5",
+      "peer": "1",
+      "reason": "neighbor_flow_full",
+      "count": 2482
+    },
+    {
+      "src": "5",
+      "dst": "1",
+      "node": "5",
+      "peer": "",
+      "reason": "global_hop_full",
+      "count": 15
+    },
+    {
+      "src": "5",
+      "dst": "1",
+      "node": "5",
+      "peer": "1",
+      "reason": "neighbor_flow_full",
+      "count": 7998
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "2",
+      "peer": "4",
+      "reason": "neighbor_flow_full",
+      "count": 35636
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "4",
+      "peer": "5",
+      "reason": "neighbor_flow_full",
+      "count": 13518
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "5",
+      "peer": "",
+      "reason": "global_hop_full",
+      "count": 36
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "5",
+      "peer": "1",
+      "reason": "neighbor_flow_full",
+      "count": 2638
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "7",
+      "peer": "8",
+      "reason": "neighbor_flow_full",
+      "count": 9899
+    },
+    {
+      "src": "7",
+      "dst": "1",
+      "node": "8",
+      "peer": "2",
+      "reason": "neighbor_flow_full",
+      "count": 19283
+    },
+    {
+      "src": "8",
+      "dst": "1",
+      "node": "2",
+      "peer": "4",
+      "reason": "neighbor_flow_full",
+      "count": 29318
+    },
+    {
+      "src": "8",
+      "dst": "1",
+      "node": "4",
+      "peer": "5",
+      "reason": "neighbor_flow_full",
+      "count": 11213
+    },
+    {
+      "src": "8",
+      "dst": "1",
+      "node": "5",
+      "peer": "",
+      "reason": "global_hop_full",
+      "count": 3
+    },
+    {
+      "src": "8",
+      "dst": "1",
+      "node": "5",
+      "peer": "1",
+      "reason": "neighbor_flow_full",
+      "count": 1985
+    },
+    {
+      "src": "8",
+      "dst": "1",
+      "node": "8",
+      "peer": "2",
+      "reason": "neighbor_flow_full",
+      "count": 15333
+    }
+  ],
+  "scope": "Callback observations. Retry means MAC submission, not OTA. DACK is not application loss; no_ack is a custody completion, not proven end-to-end loss. NSDP release has no packet sequence. Finite-horizon unmatched lifetimes are censored."
+}

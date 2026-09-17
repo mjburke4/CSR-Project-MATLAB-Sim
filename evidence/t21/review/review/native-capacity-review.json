@@ -1,0 +1,38 @@
+{
+  "schema": "csr-tranche21-independent-native-capacity-review-v1",
+  "passed": true,
+  "seeds": [
+    {
+      "seed": 129,
+      "completed_capacity_episodes_checked": 3855,
+      "pending_capacity_episodes_checked": 11,
+      "DACK_delayed_capacity_release_joins": 1935,
+      "DACK_still_held_at_stop": 11,
+      "source4_node4_no_ack_with_delivery": 11,
+      "source4_node4_no_ack_without_delivery": 55,
+      "capacity_conservation_and_endpoint_semantics_passed": true
+    },
+    {
+      "seed": 130,
+      "completed_capacity_episodes_checked": 4176,
+      "pending_capacity_episodes_checked": 15,
+      "DACK_delayed_capacity_release_joins": 2503,
+      "DACK_still_held_at_stop": 14,
+      "source4_node4_no_ack_with_delivery": 2,
+      "source4_node4_no_ack_without_delivery": 58,
+      "capacity_conservation_and_endpoint_semantics_passed": true
+    }
+  ],
+  "scope": "Within-run identities include node, peer, original source, destination, application sequence and hop sequence. DACK NSDP release is not equated with delayed capacity release; unreleased episodes are censored at 6000 seconds.",
+  "review_method": "Reviewed raw-join implementation and independently checked generated CSV identities, cohort counts, durations, and pending/completed accounting; did not reparse raw multi-gigabyte trace.",
+  "causal_limit": "A no_ack HOP completion is not automatically an application drop. A later or earlier unique gateway delivery takes precedence for application delivery outcome.",
+  "reviewed_sha256": {
+    "s129-capacity-episodes.csv": "16305b9643629c69c272e5676cfc49a25d43b4e22e35f776e620e89ea629b68e",
+    "s130-completion-outcomes.csv": "d0fe9dddd5043ff6a83a7ae5e25e1d09fac9a87c34ceb65f69ee3d7db7d62614",
+    "s129-completion-outcomes.csv": "1026bd28ce45e7af1c7ef4350fc592f1ee1f4a075def451f3126c37327d82baf",
+    "join_outcomes.py": "561f8484452345cebd9ae5d52d501cffcb3dabc114205c0230c8151aac7b82e1",
+    "s129-outcome-joins.json": "090b8130e2fbea431a03f2675bb29ef8dc6f053f226e3fa5a5f0cc6d8b8283b7",
+    "s130-capacity-episodes.csv": "b84ab30b2b38a31849a665ee0a760eeab22f5f8aaf683eb1cbb3f218257c3866",
+    "s130-outcome-joins.json": "2a8d26c2d966cadd615b68246c2fec6f2f5ac1a9adb7ff20568ecf88a77f0cc6"
+  }
+}

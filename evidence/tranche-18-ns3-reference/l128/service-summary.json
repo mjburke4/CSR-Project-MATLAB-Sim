@@ -1,0 +1,83 @@
+{
+  "schema": "csr-tranche18-native-service-summary-v1",
+  "status": "passed",
+  "rows": 139511,
+  "max_records": 2000000,
+  "omitted_records": 0,
+  "window_s": [
+    0,
+    600
+  ],
+  "stop_endpoint": "exclusive",
+  "event_counts": {
+    "ack_queue_enqueue_after": 35,
+    "ack_queue_replace_after": 572,
+    "ack_queue_replace_before": 572,
+    "app_admission": 15000,
+    "app_send": 589,
+    "hop_admission": 589,
+    "hop_completion": 573,
+    "hop_feedback": 573,
+    "mac_cancel_begin": 745,
+    "mac_cancel_end": 745,
+    "mac_holdoff_expired": 6,
+    "mac_holdoff_schedule_before": 1046,
+    "mac_idle_rts_schedule": 2,
+    "mac_prepare_after": 1270,
+    "mac_receive_state_after": 4680,
+    "mac_receive_state_before": 4680,
+    "mac_schedule_request": 1249,
+    "mac_slot_tick": 59348,
+    "mac_state": 7217,
+    "mac_sync_change_before": 3756,
+    "nwk_admission": 1394,
+    "nwk_delivery": 573,
+    "nwk_enqueue": 589,
+    "nwk_forward": 589,
+    "nwk_nsdp_release": 573,
+    "reservation_advertise": 1269,
+    "reservation_holdoff": 6,
+    "reservation_prepare": 1270,
+    "reservation_tick": 21218,
+    "route_change": 14,
+    "rx_accept": 1293,
+    "rx_drop": 1243,
+    "scenario_link": 3,
+    "scenario_node": 3,
+    "statistic_sample": 4958,
+    "tx_start": 1269
+  },
+  "forwarding": [
+    {
+      "src": "5",
+      "dst": "1",
+      "node": "5",
+      "ingress_peer": "",
+      "next_hop": "1",
+      "kind": "local",
+      "count": 589
+    }
+  ],
+  "completions": [
+    {
+      "src": "5",
+      "dst": "1",
+      "node": "5",
+      "peer": "1",
+      "reason": "ack",
+      "count": 573
+    }
+  ],
+  "retry_submissions": [],
+  "blocked_admission_observations": [
+    {
+      "src": "5",
+      "dst": "1",
+      "node": "5",
+      "peer": "1",
+      "reason": "neighbor_flow_full",
+      "count": 805
+    }
+  ],
+  "scope": "Callback observations. Retry means MAC submission, not OTA. DACK is not application loss; no_ack is a custody completion, not proven end-to-end loss. NSDP release has no packet sequence. Finite-horizon unmatched lifetimes are censored."
+}

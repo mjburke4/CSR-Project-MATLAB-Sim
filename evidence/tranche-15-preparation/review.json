@@ -1,0 +1,119 @@
+{
+  "Schema": "csr-tranche15-independent-code-review-v1",
+  "ReviewedUTC": "2026-09-15T13:52:27.896859+00:00",
+  "Disposition": "ready_for_owner_matlab_execution",
+  "MATLABExecuted": false,
+  "NativeExecuted": false,
+  "AcceptanceEstablished": false,
+  "NumericalParityEstablished": false,
+  "OpenCodeFindings": [],
+  "FileBindings": [
+    {
+      "Path": "+csr/+validation/transportArrival.m",
+      "SHA256": "d0b5d6011b55ad22668453d5a7fe719fa61ba8f9f643b32371c9482cbd784086",
+      "Bytes": 2445
+    },
+    {
+      "Path": "+csr/+validation/lossTimingRun.m",
+      "SHA256": "1a504574f7355a7ef47460d260fef094027a60db74c05c8be15b0bb412d5bb5a",
+      "Bytes": 43383
+    },
+    {
+      "Path": "+csr/+validation/lossTimingContract.m",
+      "SHA256": "db92f6d00b76bd703573cdee40f392b30354bda836a44d4aa40dd40b38996c1d",
+      "Bytes": 3117
+    },
+    {
+      "Path": "tests/TestTransportArrival.m",
+      "SHA256": "66544053034adf951fb694f626904cf922434117750adfdc3986dd02e66b7182",
+      "Bytes": 5379
+    },
+    {
+      "Path": "run_tranche15_validation.m",
+      "SHA256": "d0c47c94cc762529b015a9fca4b9ada7f875f09b1bec38bcc284af40785491c5",
+      "Bytes": 13813
+    },
+    {
+      "Path": "scenarios/t15/plan.json",
+      "SHA256": "d108193eec32f9767c5104a7e70e0db3413e4a1bd0e15ef7cb7e19a172e1ae4f",
+      "Bytes": 5117
+    },
+    {
+      "Path": "scripts/analyze_tranche15_return.py",
+      "SHA256": "9334ef50efa55466decf04bcff53a0164a197137093cd4d4a384b6242a53f442",
+      "Bytes": 33678
+    },
+    {
+      "Path": "scripts/tests/test_tranche15_return.py",
+      "SHA256": "ec1b251e35e46f5b2c038c9f96299992f54f35743f72ce1a6e55904ea1f95670",
+      "Bytes": 12566
+    },
+    {
+      "Path": "START_T15.md",
+      "SHA256": "496f9595bc2e05a531dce0857735213d9b4953c902d8f52838a0b2c43552c911",
+      "Bytes": 1854
+    },
+    {
+      "Path": "docs/tranche-15-spec.md",
+      "SHA256": "8e212f8bea034d5590eeb1b549045d02d9ade4152234bac59d70754887d93b92",
+      "Bytes": 4800
+    },
+    {
+      "Path": "docs/release-roadmap.md",
+      "SHA256": "404aed40922b3feca95c01ad6849bee6aabf2fa13fab95c4c38d05939222a59a",
+      "Bytes": 2827
+    },
+    {
+      "Path": "evidence/tranche-15-candidate.json",
+      "SHA256": "be665c0c733f2e71766cb3b066ca789ea6a2a3de1d8a198ccb0b0a5fe00a16f0",
+      "Bytes": 13399
+    }
+  ],
+  "Preservation": {
+    "T14SourceFilesUnchanged": 285,
+    "T14MatlabFilesUnchanged": 144,
+    "T14ReferenceFilesUnchanged": 317,
+    "ProductionChanges": [],
+    "OriginalLossContractUnchanged": true,
+    "OriginalGlobalSchedulerUnchanged": true,
+    "OriginalPhyEccUnchanged": true
+  },
+  "ReviewScope": [
+    "Mechanical lossTimingRun versus accepted lossContract diff: only local arrival selection and typed precision/per-case observations added. Loss policy, admission, custody, HOP/MAC logic, inputs and horizon unchanged.",
+    "Both policies use identical supplied offers and prescribed raw draws. Native startup phase remains separate; no trace injection or global time quantization.",
+    "Helper arithmetic, positive finite scalar/exact integer bounds, past-arrival rejection, per-component rounding and real scheduler FIFO tests reviewed.",
+    "Five MATLAB files parsed; no MATLAB runtime was available or used. New 8 arithmetic tests and retained 109 tests remain pending owner execution.",
+    "Paired contract and runner require 2 modes, exact 8 case identities, 528 structural checks, exact 117 test identities and stable source/reference inventories.",
+    "Return checker reuses unchanged T13 raw event/draw/loss/terminal/check validation, requires exact six-table continuous reproduction and preserves zero-tolerance native comparisons.",
+    "Full precision decimal/hex values are independently round-tripped; selected arrival is recomputed and bound to actual TX/ingress/loss semantic observations. Airtime and envelope payload recompute from unchanged production semantics.",
+    "Release series preserves source/node/time/real queue state without inventing per-application release identity. Retirement and gateway delivery stay separate; delivered/failed-terminal overlap is retained.",
+    "Per-case snapshots use short c1..c4 folders and survive aggregate failure. No incomplete run establishes parity."
+  ],
+  "StaticValidation": {
+    "MATLABLint": {
+      "Tool": "MISS_HIT",
+      "Files": 5,
+      "ExitCode": 0,
+      "Log": "t15w/lint.log",
+      "SHA256": "0d3110b51ffb0b16e7e5cd66ecd4bdf459c41f38a3af6b3248535b1dfa64944d"
+    },
+    "NewPythonMutationAndEvidenceTests": {
+      "Passed": 28,
+      "Failed": 0,
+      "Log": "t15w/gate/tests.log",
+      "SHA256": "45cde5eda866d46995351c1816afce0571551f57254bd850e0c752fdab6453b6"
+    },
+    "RetainedT14PythonTests": {
+      "Passed": 37,
+      "Failed": 0,
+      "Log": "t15w/retained-tests.log",
+      "SHA256": "a5e351915cbe5548947131e562d76783808a939b5908fdb2d2048807e81e789d"
+    }
+  },
+  "Limitations": [
+    "The new MATLAB experiment has not run in this environment. Owner R2025a/R2026a evidence is required before completion or production promotion.",
+    "This is controlled fixed-route transport under DATA/ACK loss and link blackout, not RF collision, discovery/reconvergence or campus validation.",
+    "Component rounding is the explicit bounded local experiment, not a general replacement for native ns-3 Time or the MATLAB scheduler."
+  ],
+  "OpenFindings": []
+}

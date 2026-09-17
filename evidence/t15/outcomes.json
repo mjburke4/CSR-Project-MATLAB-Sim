@@ -1,0 +1,579 @@
+{
+  "schema": "csr-t15-outcome-cross-check-v1",
+  "exact_native_field_differences": {
+    "events": {
+      "rows": 9962,
+      "different_fields": {
+        "time_ns": 5730,
+        "resend_queue": 20,
+        "dack_holds": 20
+      },
+      "different_time_deltas_matlab_minus_native_ns": {
+        "time_ns": {
+          "-28": 5730
+        }
+      }
+    },
+    "draws": {
+      "rows": 1475,
+      "different_fields": {
+        "time_ns": 1475
+      },
+      "different_time_deltas_matlab_minus_native_ns": {
+        "time_ns": {
+          "-28": 1475
+        }
+      }
+    },
+    "usage": {
+      "rows": 12,
+      "different_fields": {},
+      "different_time_deltas_matlab_minus_native_ns": {}
+    },
+    "transport": {
+      "rows": 1592,
+      "different_fields": {
+        "tx_time_ns": 1592,
+        "arrival_ns": 1592,
+        "kind": 28,
+        "boundary_distance_ns": 393
+      },
+      "different_time_deltas_matlab_minus_native_ns": {
+        "tx_time_ns": {
+          "-28": 1592
+        },
+        "arrival_ns": {
+          "-28": 1592
+        },
+        "boundary_distance_ns": {
+          "28": 167,
+          "-28": 226
+        }
+      }
+    },
+    "terminal": {
+      "rows": 576,
+      "different_fields": {
+        "time_ns": 576
+      },
+      "different_time_deltas_matlab_minus_native_ns": {
+        "time_ns": {
+          "-28": 576
+        }
+      }
+    }
+  },
+  "nanoseconds_minus_continuous_nonzero_totals": {
+    "ok": {},
+    "data": {
+      "envelope_transmissions": -5,
+      "ack_segments": -4,
+      "feedback_envelopes": -4,
+      "blocked_polls": -8
+    },
+    "ack": {},
+    "out": {}
+  },
+  "nanoseconds_minus_native_nonzero_totals": {
+    "ok": {
+      "ack_segments": -7,
+      "dack_segments": 7
+    },
+    "data": {
+      "ack_segments": -7,
+      "dack_segments": 7
+    },
+    "ack": {
+      "ack_segments": -7,
+      "dack_segments": 7
+    },
+    "out": {
+      "ack_segments": -7,
+      "dack_segments": 7
+    }
+  },
+  "app_time_changes_nanoseconds_minus_continuous": {
+    "ok": {
+      "generate": {
+        "rows": 96,
+        "different_rows": 0,
+        "min_delta_ns": 0,
+        "max_delta_ns": 0
+      },
+      "admit": {
+        "rows": 96,
+        "different_rows": 0,
+        "min_delta_ns": 0,
+        "max_delta_ns": 0
+      },
+      "deliver": {
+        "rows": 96,
+        "different_rows": 0,
+        "min_delta_ns": 0,
+        "max_delta_ns": 0
+      }
+    },
+    "data": {
+      "generate": {
+        "rows": 96,
+        "different_rows": 0,
+        "min_delta_ns": 0,
+        "max_delta_ns": 0
+      },
+      "admit": {
+        "rows": 96,
+        "different_rows": 14,
+        "min_delta_ns": -220000000,
+        "max_delta_ns": 20000000
+      },
+      "deliver": {
+        "rows": 96,
+        "different_rows": 67,
+        "min_delta_ns": -408760000,
+        "max_delta_ns": 31760000
+      }
+    },
+    "ack": {
+      "generate": {
+        "rows": 96,
+        "different_rows": 0,
+        "min_delta_ns": 0,
+        "max_delta_ns": 0
+      },
+      "admit": {
+        "rows": 96,
+        "different_rows": 0,
+        "min_delta_ns": 0,
+        "max_delta_ns": 0
+      },
+      "deliver": {
+        "rows": 96,
+        "different_rows": 0,
+        "min_delta_ns": 0,
+        "max_delta_ns": 0
+      }
+    },
+    "out": {
+      "generate": {
+        "rows": 96,
+        "different_rows": 0,
+        "min_delta_ns": 0,
+        "max_delta_ns": 0
+      },
+      "admit": {
+        "rows": 96,
+        "different_rows": 0,
+        "min_delta_ns": 0,
+        "max_delta_ns": 0
+      },
+      "deliver": {
+        "rows": 96,
+        "different_rows": 0,
+        "min_delta_ns": 0,
+        "max_delta_ns": 0
+      }
+    }
+  },
+  "app_time_changes_nanoseconds_minus_native": {
+    "ok": {
+      "generate": {
+        "rows": 96,
+        "different_rows": 0,
+        "min_delta_ns": 0,
+        "max_delta_ns": 0
+      },
+      "admit": {
+        "rows": 96,
+        "different_rows": 0,
+        "min_delta_ns": 0,
+        "max_delta_ns": 0
+      },
+      "deliver": {
+        "rows": 96,
+        "different_rows": 96,
+        "min_delta_ns": -28,
+        "max_delta_ns": -28
+      }
+    },
+    "data": {
+      "generate": {
+        "rows": 96,
+        "different_rows": 0,
+        "min_delta_ns": 0,
+        "max_delta_ns": 0
+      },
+      "admit": {
+        "rows": 96,
+        "different_rows": 0,
+        "min_delta_ns": 0,
+        "max_delta_ns": 0
+      },
+      "deliver": {
+        "rows": 96,
+        "different_rows": 96,
+        "min_delta_ns": -28,
+        "max_delta_ns": -28
+      }
+    },
+    "ack": {
+      "generate": {
+        "rows": 96,
+        "different_rows": 0,
+        "min_delta_ns": 0,
+        "max_delta_ns": 0
+      },
+      "admit": {
+        "rows": 96,
+        "different_rows": 0,
+        "min_delta_ns": 0,
+        "max_delta_ns": 0
+      },
+      "deliver": {
+        "rows": 96,
+        "different_rows": 96,
+        "min_delta_ns": -28,
+        "max_delta_ns": -28
+      }
+    },
+    "out": {
+      "generate": {
+        "rows": 96,
+        "different_rows": 0,
+        "min_delta_ns": 0,
+        "max_delta_ns": 0
+      },
+      "admit": {
+        "rows": 96,
+        "different_rows": 0,
+        "min_delta_ns": 0,
+        "max_delta_ns": 0
+      },
+      "deliver": {
+        "rows": 96,
+        "different_rows": 96,
+        "min_delta_ns": -28,
+        "max_delta_ns": -28
+      }
+    }
+  },
+  "release_snapshot_differences": [
+    {
+      "case": "ok",
+      "order": "526",
+      "matlab_time_ns": "1801601000",
+      "resend_delta": -1,
+      "hold_delta": 1
+    },
+    {
+      "case": "ok",
+      "order": "527",
+      "matlab_time_ns": "1801601000",
+      "resend_delta": -1,
+      "hold_delta": 1
+    },
+    {
+      "case": "ok",
+      "order": "528",
+      "matlab_time_ns": "1801601000",
+      "resend_delta": -1,
+      "hold_delta": 1
+    },
+    {
+      "case": "ok",
+      "order": "579",
+      "matlab_time_ns": "1999481000",
+      "resend_delta": -1,
+      "hold_delta": 1
+    },
+    {
+      "case": "ok",
+      "order": "580",
+      "matlab_time_ns": "1999481000",
+      "resend_delta": -1,
+      "hold_delta": 1
+    },
+    {
+      "case": "data",
+      "order": "1073",
+      "matlab_time_ns": "4144481000",
+      "resend_delta": -1,
+      "hold_delta": 1
+    },
+    {
+      "case": "data",
+      "order": "1074",
+      "matlab_time_ns": "4144481000",
+      "resend_delta": -1,
+      "hold_delta": 1
+    },
+    {
+      "case": "data",
+      "order": "1075",
+      "matlab_time_ns": "4144481000",
+      "resend_delta": -1,
+      "hold_delta": 1
+    },
+    {
+      "case": "data",
+      "order": "1076",
+      "matlab_time_ns": "4144481000",
+      "resend_delta": -1,
+      "hold_delta": 1
+    },
+    {
+      "case": "data",
+      "order": "1129",
+      "matlab_time_ns": "4345241000",
+      "resend_delta": -1,
+      "hold_delta": 1
+    },
+    {
+      "case": "ack",
+      "order": "516",
+      "matlab_time_ns": "1772721000",
+      "resend_delta": -1,
+      "hold_delta": 1
+    },
+    {
+      "case": "ack",
+      "order": "517",
+      "matlab_time_ns": "1772721000",
+      "resend_delta": -1,
+      "hold_delta": 1
+    },
+    {
+      "case": "ack",
+      "order": "518",
+      "matlab_time_ns": "1772721000",
+      "resend_delta": -1,
+      "hold_delta": 1
+    },
+    {
+      "case": "ack",
+      "order": "564",
+      "matlab_time_ns": "1970601000",
+      "resend_delta": -1,
+      "hold_delta": 1
+    },
+    {
+      "case": "ack",
+      "order": "565",
+      "matlab_time_ns": "1970601000",
+      "resend_delta": -1,
+      "hold_delta": 1
+    },
+    {
+      "case": "out",
+      "order": "526",
+      "matlab_time_ns": "1801601000",
+      "resend_delta": -1,
+      "hold_delta": 1
+    },
+    {
+      "case": "out",
+      "order": "527",
+      "matlab_time_ns": "1801601000",
+      "resend_delta": -1,
+      "hold_delta": 1
+    },
+    {
+      "case": "out",
+      "order": "528",
+      "matlab_time_ns": "1801601000",
+      "resend_delta": -1,
+      "hold_delta": 1
+    },
+    {
+      "case": "out",
+      "order": "579",
+      "matlab_time_ns": "1999481000",
+      "resend_delta": -1,
+      "hold_delta": 1
+    },
+    {
+      "case": "out",
+      "order": "580",
+      "matlab_time_ns": "1999481000",
+      "resend_delta": -1,
+      "hold_delta": 1
+    }
+  ],
+  "feedback_kind_differences": [
+    {
+      "case": "ok",
+      "tx_id": "48",
+      "ack_bits": "524280",
+      "dack_bits": "7"
+    },
+    {
+      "case": "ok",
+      "tx_id": "50",
+      "ack_bits": "524280",
+      "dack_bits": "7"
+    },
+    {
+      "case": "ok",
+      "tx_id": "56",
+      "ack_bits": "2097120",
+      "dack_bits": "31"
+    },
+    {
+      "case": "ok",
+      "tx_id": "59",
+      "ack_bits": "2097120",
+      "dack_bits": "31"
+    },
+    {
+      "case": "ok",
+      "tx_id": "63",
+      "ack_bits": "2097120",
+      "dack_bits": "31"
+    },
+    {
+      "case": "ok",
+      "tx_id": "65",
+      "ack_bits": "2097120",
+      "dack_bits": "31"
+    },
+    {
+      "case": "ok",
+      "tx_id": "70",
+      "ack_bits": "2097120",
+      "dack_bits": "31"
+    },
+    {
+      "case": "data",
+      "tx_id": "58",
+      "ack_bits": "1048560",
+      "dack_bits": "15"
+    },
+    {
+      "case": "data",
+      "tx_id": "60",
+      "ack_bits": "1048560",
+      "dack_bits": "15"
+    },
+    {
+      "case": "data",
+      "tx_id": "66",
+      "ack_bits": "2097120",
+      "dack_bits": "31"
+    },
+    {
+      "case": "data",
+      "tx_id": "69",
+      "ack_bits": "2097120",
+      "dack_bits": "31"
+    },
+    {
+      "case": "data",
+      "tx_id": "74",
+      "ack_bits": "2097120",
+      "dack_bits": "31"
+    },
+    {
+      "case": "data",
+      "tx_id": "75",
+      "ack_bits": "2097120",
+      "dack_bits": "31"
+    },
+    {
+      "case": "data",
+      "tx_id": "80",
+      "ack_bits": "2097120",
+      "dack_bits": "31"
+    },
+    {
+      "case": "ack",
+      "tx_id": "46",
+      "ack_bits": "524280",
+      "dack_bits": "7"
+    },
+    {
+      "case": "ack",
+      "tx_id": "48",
+      "ack_bits": "524280",
+      "dack_bits": "7"
+    },
+    {
+      "case": "ack",
+      "tx_id": "54",
+      "ack_bits": "2097120",
+      "dack_bits": "31"
+    },
+    {
+      "case": "ack",
+      "tx_id": "57",
+      "ack_bits": "2097120",
+      "dack_bits": "31"
+    },
+    {
+      "case": "ack",
+      "tx_id": "61",
+      "ack_bits": "2097120",
+      "dack_bits": "31"
+    },
+    {
+      "case": "ack",
+      "tx_id": "64",
+      "ack_bits": "2097120",
+      "dack_bits": "31"
+    },
+    {
+      "case": "ack",
+      "tx_id": "68",
+      "ack_bits": "2097120",
+      "dack_bits": "31"
+    },
+    {
+      "case": "out",
+      "tx_id": "48",
+      "ack_bits": "524280",
+      "dack_bits": "7"
+    },
+    {
+      "case": "out",
+      "tx_id": "50",
+      "ack_bits": "524280",
+      "dack_bits": "7"
+    },
+    {
+      "case": "out",
+      "tx_id": "56",
+      "ack_bits": "2097120",
+      "dack_bits": "31"
+    },
+    {
+      "case": "out",
+      "tx_id": "59",
+      "ack_bits": "2097120",
+      "dack_bits": "31"
+    },
+    {
+      "case": "out",
+      "tx_id": "63",
+      "ack_bits": "2097120",
+      "dack_bits": "31"
+    },
+    {
+      "case": "out",
+      "tx_id": "65",
+      "ack_bits": "2097120",
+      "dack_bits": "31"
+    },
+    {
+      "case": "out",
+      "tx_id": "70",
+      "ack_bits": "2097120",
+      "dack_bits": "31"
+    }
+  ],
+  "interpretation": {
+    "event_order_and_identity": "All 9,962 paired event rows retain identical order, event kind, node/peer and application/hop identity. Twenty release snapshots retain differing resend/hold intermediate states; not strict semantic table equality.",
+    "feedback_kind": "Seven per case are MATLAB DACK vs native ACK, all carrying identical ACK and DACK bitmaps; no added feedback envelope or changed custody outcome. Native HOP constructs cumulative DACK with IsAck=true and IsDack=true. Native MAC DoTx chooses type by IsAck first, rewriting to ACK; MATLAB retains frame.Kind=DACK. Native csr-net-device.h SHA112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb and csr-hop-layer.h SHA0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b both match T13 reference native_source_hashes. Exact kind differences remain explicit.",
+    "release_state": "MATLAB complete moves resend to DackHolds and removes resend before releaseNsdp. Native HandleDackFrame calls NotifyNsdpFromEntry before creating DackEntry and erasing resend. Thus each of20 DACK custody callbacks has -1 resend/+1 hold in MATLAB; total HOP pending and NWK custody agree.",
+    "startup_offset": "Every nonzero event time delta and every draw/TX/arrival/terminal delta in nanosecond mode is exactly -28ns. Unshifted events have zero delta. No accumulating drift occurs within this64s fixture. This reproduces the previously documented native startup phase; T15 deliberately does not alter startup.",
+    "boundary_distance": "All393 outage transport rows recompute their nearest boundary distance exactly from actual TX time. Differences are +/-28ns from startup offset; loss decisions/reasons and group identity match.",
+    "scope": "Fixed routes, controlled loss, prescribed draws, portable runtime; no full-network parity."
+  }
+}

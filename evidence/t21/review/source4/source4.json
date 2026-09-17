@@ -1,0 +1,4791 @@
+{
+  "schema": "csr-tranche21-source4-existing-trace-diagnostic-v1",
+  "working_band_percent": 10,
+  "model_modified": false,
+  "simulations_executed": false,
+  "input_files": [
+    {
+      "path": "t20-return-review/analysis/review.json",
+      "sha256": "2d4dfbb66aa657cbfa230f3cf088c4be3815e0558e5573fbc9ba143aa4800b79"
+    },
+    {
+      "path": "csr20/evidence/t19/owner.zip",
+      "sha256": "525758669b8f84fa5dada46e293b8482980ef389efc5408ff056aac0e804ee30"
+    },
+    {
+      "path": "t20-return-review/owner/s129/analysis/applications.csv",
+      "sha256": "84942f49f740262d81ede6b38c7596493499a168774ce2764569bda7f7aa40f1"
+    },
+    {
+      "path": "t21-work/native/s129.json",
+      "sha256": "6f8d529021f97e5b8dd743bd0075932f086e21e072a4e2a9be5acf7ccc8b35d2"
+    },
+    {
+      "path": "t21-work/native/s129-outcome-joins.json",
+      "sha256": "090b8130e2fbea431a03f2675bb29ef8dc6f053f226e3fa5a5f0cc6d8b8283b7"
+    },
+    {
+      "path": "t21-work/native/s129-completion-outcomes.csv",
+      "sha256": "1026bd28ce45e7af1c7ef4350fc592f1ee1f4a075def451f3126c37327d82baf"
+    },
+    {
+      "path": "t20-return-review/owner/s130/analysis/applications.csv",
+      "sha256": "b7e4a48f71356324587319e8f044ba2cd2d92e3fe613b21c5e51ced7a66fa920"
+    },
+    {
+      "path": "t21-work/native/s130.json",
+      "sha256": "b7ae133af818d09916050e5bb91329d768035a49122fea133721cb314bc60cdd"
+    },
+    {
+      "path": "t21-work/native/s130-outcome-joins.json",
+      "sha256": "2a8d26c2d966cadd615b68246c2fec6f2f5ac1a9adb7ff20568ecf88a77f0cc6"
+    },
+    {
+      "path": "t21-work/native/s130-completion-outcomes.csv",
+      "sha256": "d0fe9dddd5043ff6a83a7ae5e25e1d09fac9a87c34ceb65f69ee3d7db7d62614"
+    }
+  ],
+  "seeds": [
+    {
+      "seed": 128,
+      "matlab_source4": {
+        "source": 4,
+        "attempts": 285000,
+        "admitted": 439,
+        "blocked": 284561,
+        "delivered": 348,
+        "dropped": 62,
+        "pending": 29,
+        "blocked_reason_totals": {
+          "BlockedDiscovery": 0,
+          "BlockedTopology": 0,
+          "BlockedGatewayRoute": 0,
+          "BlockedDestination": 0,
+          "BlockedNsdp": 284561
+        },
+        "delivered_latency": {
+          "count": 348,
+          "minimum_s": 29.0148110860638,
+          "median_s": 305.298311086064,
+          "mean_s": 299.1536214308915,
+          "maximum_s": 498.166811086064
+        }
+      },
+      "native_source4": {
+        "source": 4,
+        "attempts": 285000,
+        "admitted": 498,
+        "blocked": 284502,
+        "delivered": 419,
+        "unmatched_sends": 79,
+        "unique_delivered": 419,
+        "delivery_events": 419,
+        "duplicate_delivery_events": 0
+      },
+      "decomposition": {
+        "delivery_delta": -71,
+        "admission_delta": -59,
+        "matlab_undelivered": 91,
+        "native_undelivered": 79,
+        "undelivered_delta": 12,
+        "identity": "delivery_delta = admission_delta - undelivered_delta",
+        "delivered_residual_percent": -16.94510739856802,
+        "admitted_residual_percent": -11.847389558232932,
+        "matlab_delivery_fraction": 0.7927107061503417,
+        "native_delivery_fraction": 0.8413654618473896,
+        "within_ten_percent_delivery_band": false
+      },
+      "hops": [
+        {
+          "node": 4,
+          "peer": 5,
+          "source": 2,
+          "local_at_node": false,
+          "episodes": 512,
+          "unique_applications": 512,
+          "completion_counts": {
+            "hop_ack": 414,
+            "hop_dack_expired": 13,
+            "hop_failed": 84,
+            "pending_at_stop": 1
+          },
+          "hop_sent_callbacks": 939,
+          "retry_requests": 431,
+          "retry_requests_per_episode": 0.841796875,
+          "initial_admit_to_first_sent": {
+            "n": 512,
+            "mean_s": 1.947523488363914,
+            "median_s": 0.9002075138639896,
+            "maximum_s": 16.743707527752917
+          },
+          "retry_next_sent_wait": {
+            "n": 427,
+            "mean_s": 2.2458243281921564,
+            "median_s": 0.9639999722219272,
+            "maximum_s": 14.09399997221999
+          },
+          "retry_wait_completion_counts": {
+            "next_observed_hop_sent": 427,
+            "terminal_before_next_hop_sent": 3,
+            "censored_at_stop": 1
+          },
+          "capacity_retention_completed": {
+            "n": 511,
+            "mean_s": 7.361043434438049,
+            "median_s": 5.108999972222023,
+            "maximum_s": 48.08600000000024
+          },
+          "hop_service_to_ack_dack_or_failure": {
+            "n": 511,
+            "mean_s": 6.734820341754799,
+            "median_s": 4.783999972220045,
+            "maximum_s": 40.75070755552997
+          },
+          "capacity_retention_censored": {
+            "n": 1,
+            "mean_s": 7.584707527749742,
+            "median_s": 7.584707527749742,
+            "maximum_s": 7.584707527749742
+          },
+          "dack_hold_completed": {
+            "n": 13,
+            "mean_s": 24.615384643164642,
+            "median_s": 20.00000002778006,
+            "maximum_s": 40.00000002778006
+          },
+          "dack_hold_censored": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "failed_episodes_final_application_outcomes": {
+            "dropped": 84
+          },
+          "failed_episodes_matching_final_application_drop_time": 84
+        },
+        {
+          "node": 4,
+          "peer": 5,
+          "source": 4,
+          "local_at_node": true,
+          "episodes": 424,
+          "unique_applications": 424,
+          "completion_counts": {
+            "hop_ack": 358,
+            "hop_dack_expired": 7,
+            "hop_failed": 58,
+            "pending_at_stop": 1
+          },
+          "hop_sent_callbacks": 737,
+          "retry_requests": 324,
+          "retry_requests_per_episode": 0.7641509433962265,
+          "initial_admit_to_first_sent": {
+            "n": 424,
+            "mean_s": 2.3016913483754586,
+            "median_s": 0.9617075277501499,
+            "maximum_s": 18.36870752775303
+          },
+          "retry_next_sent_wait": {
+            "n": 313,
+            "mean_s": 2.3247220169487366,
+            "median_s": 1.1459999722198972,
+            "maximum_s": 16.043999972220035
+          },
+          "retry_wait_completion_counts": {
+            "next_observed_hop_sent": 313,
+            "terminal_before_next_hop_sent": 10,
+            "censored_at_stop": 1
+          },
+          "capacity_retention_completed": {
+            "n": 423,
+            "mean_s": 7.0559460241622265,
+            "median_s": 4.4589999722220455,
+            "maximum_s": 48.450000000000045
+          },
+          "hop_service_to_ack_dack_or_failure": {
+            "n": 423,
+            "mean_s": 6.677695432685962,
+            "median_s": 4.445999972220079,
+            "maximum_s": 38.378707527759616
+          },
+          "capacity_retention_censored": {
+            "n": 1,
+            "mean_s": 7.584707527749742,
+            "median_s": 7.584707527749742,
+            "maximum_s": 7.584707527749742
+          },
+          "dack_hold_completed": {
+            "n": 7,
+            "mean_s": 22.857142884922887,
+            "median_s": 20.00000002778006,
+            "maximum_s": 40.00000002778006
+          },
+          "dack_hold_censored": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "failed_episodes_final_application_outcomes": {
+            "dropped": 58
+          },
+          "failed_episodes_matching_final_application_drop_time": 58
+        },
+        {
+          "node": 4,
+          "peer": 5,
+          "source": 7,
+          "local_at_node": false,
+          "episodes": 641,
+          "unique_applications": 641,
+          "completion_counts": {
+            "hop_ack": 467,
+            "hop_dack_expired": 86,
+            "hop_failed": 85,
+            "pending_at_stop": 3
+          },
+          "hop_sent_callbacks": 1122,
+          "retry_requests": 501,
+          "retry_requests_per_episode": 0.781591263650546,
+          "initial_admit_to_first_sent": {
+            "n": 640,
+            "mean_s": 1.959202217985805,
+            "median_s": 0.8837075277515396,
+            "maximum_s": 17.653707527753
+          },
+          "retry_next_sent_wait": {
+            "n": 482,
+            "mean_s": 2.1641804701454457,
+            "median_s": 1.0354999722200091,
+            "maximum_s": 22.62199997222001
+          },
+          "retry_wait_completion_counts": {
+            "next_observed_hop_sent": 482,
+            "terminal_before_next_hop_sent": 19
+          },
+          "capacity_retention_completed": {
+            "n": 638,
+            "mean_s": 9.499096757049513,
+            "median_s": 5.784999972220248,
+            "maximum_s": 70.79700000000003
+          },
+          "hop_service_to_ack_dack_or_failure": {
+            "n": 639,
+            "mean_s": 6.294814911706993,
+            "median_s": 4.2249999722200755,
+            "maximum_s": 32.560707555529916
+          },
+          "capacity_retention_censored": {
+            "n": 3,
+            "mean_s": 6.731040861083481,
+            "median_s": 5.452707527750135,
+            "maximum_s": 10.366707527749895
+          },
+          "dack_hold_completed": {
+            "n": 86,
+            "mean_s": 23.720930260337674,
+            "median_s": 20.00000002778006,
+            "maximum_s": 40.00000002778006
+          },
+          "dack_hold_censored": {
+            "n": 1,
+            "mean_s": 3.4897075555300034,
+            "median_s": 3.4897075555300034,
+            "maximum_s": 3.4897075555300034
+          },
+          "failed_episodes_final_application_outcomes": {
+            "dropped": 85
+          },
+          "failed_episodes_matching_final_application_drop_time": 85
+        },
+        {
+          "node": 4,
+          "peer": 5,
+          "source": 8,
+          "local_at_node": false,
+          "episodes": 518,
+          "unique_applications": 518,
+          "completion_counts": {
+            "hop_ack": 408,
+            "hop_dack_expired": 27,
+            "hop_failed": 83
+          },
+          "hop_sent_callbacks": 949,
+          "retry_requests": 436,
+          "retry_requests_per_episode": 0.8416988416988417,
+          "initial_admit_to_first_sent": {
+            "n": 518,
+            "mean_s": 2.1214921456731473,
+            "median_s": 0.8612075138624391,
+            "maximum_s": 18.74570752775304
+          },
+          "retry_next_sent_wait": {
+            "n": 431,
+            "mean_s": 2.110533614911637,
+            "median_s": 0.846999972219237,
+            "maximum_s": 16.823999972222055
+          },
+          "retry_wait_completion_counts": {
+            "next_observed_hop_sent": 431,
+            "terminal_before_next_hop_sent": 5
+          },
+          "capacity_retention_completed": {
+            "n": 518,
+            "mean_s": 7.934276347217805,
+            "median_s": 5.589999972219971,
+            "maximum_s": 61.13799999999992
+          },
+          "hop_service_to_ack_dack_or_failure": {
+            "n": 518,
+            "mean_s": 6.775975187468726,
+            "median_s": 5.0994999583309095,
+            "maximum_s": 35.303707555529854
+          },
+          "capacity_retention_censored": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "dack_hold_completed": {
+            "n": 27,
+            "mean_s": 22.222222250000865,
+            "median_s": 20.000000027778015,
+            "maximum_s": 40.00000002778006
+          },
+          "dack_hold_censored": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "failed_episodes_final_application_outcomes": {
+            "dropped": 82,
+            "delivered": 1
+          },
+          "failed_episodes_matching_final_application_drop_time": 82
+        },
+        {
+          "node": 5,
+          "peer": 1,
+          "source": 2,
+          "local_at_node": false,
+          "episodes": 418,
+          "unique_applications": 418,
+          "completion_counts": {
+            "hop_ack": 411,
+            "hop_failed": 2,
+            "pending_at_stop": 5
+          },
+          "hop_sent_callbacks": 522,
+          "retry_requests": 121,
+          "retry_requests_per_episode": 0.2894736842105263,
+          "initial_admit_to_first_sent": {
+            "n": 417,
+            "mean_s": 22.374016700714595,
+            "median_s": 20.354888886160097,
+            "maximum_s": 65.42588888616001
+          },
+          "retry_next_sent_wait": {
+            "n": 105,
+            "mean_s": 21.48443806745849,
+            "median_s": 18.942999972219695,
+            "maximum_s": 54.66699997222031
+          },
+          "retry_wait_completion_counts": {
+            "next_observed_hop_sent": 105,
+            "terminal_before_next_hop_sent": 12,
+            "censored_at_stop": 4
+          },
+          "capacity_retention_completed": {
+            "n": 413,
+            "mean_s": 29.139053426343278,
+            "median_s": 23.542999972221992,
+            "maximum_s": 106.22299997222035
+          },
+          "hop_service_to_ack_dack_or_failure": {
+            "n": 413,
+            "mean_s": 29.139053426343278,
+            "median_s": 23.542999972221992,
+            "maximum_s": 106.22299997222035
+          },
+          "capacity_retention_censored": {
+            "n": 5,
+            "mean_s": 44.56948888616007,
+            "median_s": 45.86688888616027,
+            "maximum_s": 66.86188888616016
+          },
+          "dack_hold_completed": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "dack_hold_censored": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "failed_episodes_final_application_outcomes": {
+            "dropped": 2
+          },
+          "failed_episodes_matching_final_application_drop_time": 2
+        },
+        {
+          "node": 5,
+          "peer": 1,
+          "source": 4,
+          "local_at_node": false,
+          "episodes": 352,
+          "unique_applications": 352,
+          "completion_counts": {
+            "hop_ack": 348,
+            "hop_failed": 4
+          },
+          "hop_sent_callbacks": 427,
+          "retry_requests": 92,
+          "retry_requests_per_episode": 0.26136363636363635,
+          "initial_admit_to_first_sent": {
+            "n": 352,
+            "mean_s": 22.46981956041744,
+            "median_s": 20.387388886159783,
+            "maximum_s": 62.93518755553032
+          },
+          "retry_next_sent_wait": {
+            "n": 75,
+            "mean_s": 21.777519972220336,
+            "median_s": 18.565999972222016,
+            "maximum_s": 61.972999972219895
+          },
+          "retry_wait_completion_counts": {
+            "next_observed_hop_sent": 75,
+            "terminal_before_next_hop_sent": 17
+          },
+          "capacity_retention_completed": {
+            "n": 352,
+            "mean_s": 28.463966316270355,
+            "median_s": 23.57549997221986,
+            "maximum_s": 96.58288891394
+          },
+          "hop_service_to_ack_dack_or_failure": {
+            "n": 352,
+            "mean_s": 28.463966316270355,
+            "median_s": 23.57549997221986,
+            "maximum_s": 96.58288891394
+          },
+          "capacity_retention_censored": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "dack_hold_completed": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "dack_hold_censored": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "failed_episodes_final_application_outcomes": {
+            "dropped": 4
+          },
+          "failed_episodes_matching_final_application_drop_time": 4
+        },
+        {
+          "node": 5,
+          "peer": 1,
+          "source": 5,
+          "local_at_node": true,
+          "episodes": 1657,
+          "unique_applications": 1657,
+          "completion_counts": {
+            "hop_ack": 1644,
+            "hop_failed": 9,
+            "pending_at_stop": 4
+          },
+          "hop_sent_callbacks": 2032,
+          "retry_requests": 440,
+          "retry_requests_per_episode": 0.2655401327700664,
+          "initial_admit_to_first_sent": {
+            "n": 1653,
+            "mean_s": 21.165264432568996,
+            "median_s": 18.781888886160232,
+            "maximum_s": 66.51788888616011
+          },
+          "retry_next_sent_wait": {
+            "n": 379,
+            "mean_s": 22.68065432578222,
+            "median_s": 19.54099997221965,
+            "maximum_s": 64.39099997221979
+          },
+          "retry_wait_completion_counts": {
+            "next_observed_hop_sent": 379,
+            "terminal_before_next_hop_sent": 61
+          },
+          "capacity_retention_completed": {
+            "n": 1653,
+            "mean_s": 27.68319282079238,
+            "median_s": 21.81399997221979,
+            "maximum_s": 128.95999997222043
+          },
+          "hop_service_to_ack_dack_or_failure": {
+            "n": 1653,
+            "mean_s": 27.68319282079238,
+            "median_s": 21.81399997221979,
+            "maximum_s": 128.95999997222043
+          },
+          "capacity_retention_censored": {
+            "n": 4,
+            "mean_s": 17.30263888616014,
+            "median_s": 22.55788888616007,
+            "maximum_s": 23.571888886160195
+          },
+          "dack_hold_completed": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "dack_hold_censored": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "failed_episodes_final_application_outcomes": {
+            "dropped": 9
+          },
+          "failed_episodes_matching_final_application_drop_time": 9
+        },
+        {
+          "node": 5,
+          "peer": 1,
+          "source": 7,
+          "local_at_node": false,
+          "episodes": 540,
+          "unique_applications": 540,
+          "completion_counts": {
+            "hop_ack": 533,
+            "hop_failed": 4,
+            "pending_at_stop": 3
+          },
+          "hop_sent_callbacks": 664,
+          "retry_requests": 146,
+          "retry_requests_per_episode": 0.27037037037037037,
+          "initial_admit_to_first_sent": {
+            "n": 537,
+            "mean_s": 22.237754058112767,
+            "median_s": 19.66588888616002,
+            "maximum_s": 68.59788888616004
+          },
+          "retry_next_sent_wait": {
+            "n": 127,
+            "mean_s": 21.649559027338277,
+            "median_s": 19.9439999722199,
+            "maximum_s": 52.13199997222
+          },
+          "retry_wait_completion_counts": {
+            "next_observed_hop_sent": 127,
+            "terminal_before_next_hop_sent": 19
+          },
+          "capacity_retention_completed": {
+            "n": 537,
+            "mean_s": 28.684599884893608,
+            "median_s": 23.58199997221982,
+            "maximum_s": 94.37999997222005
+          },
+          "hop_service_to_ack_dack_or_failure": {
+            "n": 537,
+            "mean_s": 28.684599884893608,
+            "median_s": 23.58199997221982,
+            "maximum_s": 94.37999997222005
+          },
+          "capacity_retention_censored": {
+            "n": 3,
+            "mean_s": 24.694222219493593,
+            "median_s": 26.08088888616021,
+            "maximum_s": 26.08088888616021
+          },
+          "dack_hold_completed": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "dack_hold_censored": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "failed_episodes_final_application_outcomes": {
+            "dropped": 4
+          },
+          "failed_episodes_matching_final_application_drop_time": 4
+        },
+        {
+          "node": 5,
+          "peer": 1,
+          "source": 8,
+          "local_at_node": false,
+          "episodes": 425,
+          "unique_applications": 425,
+          "completion_counts": {
+            "hop_ack": 417,
+            "hop_failed": 4,
+            "pending_at_stop": 4
+          },
+          "hop_sent_callbacks": 516,
+          "retry_requests": 113,
+          "retry_requests_per_episode": 0.26588235294117646,
+          "initial_admit_to_first_sent": {
+            "n": 423,
+            "mean_s": 22.376091243934532,
+            "median_s": 20.133888886160094,
+            "maximum_s": 65.36088888615996
+          },
+          "retry_next_sent_wait": {
+            "n": 93,
+            "mean_s": 22.465860187274096,
+            "median_s": 20.671999972219965,
+            "maximum_s": 59.12599997221969
+          },
+          "retry_wait_completion_counts": {
+            "next_observed_hop_sent": 93,
+            "terminal_before_next_hop_sent": 19,
+            "censored_at_stop": 1
+          },
+          "capacity_retention_completed": {
+            "n": 421,
+            "mean_s": 28.66217848315995,
+            "median_s": 23.28299997221984,
+            "maximum_s": 112.0729999722198
+          },
+          "hop_service_to_ack_dack_or_failure": {
+            "n": 421,
+            "mean_s": 28.66217848315995,
+            "median_s": 23.28299997221984,
+            "maximum_s": 112.0729999722198
+          },
+          "capacity_retention_censored": {
+            "n": 4,
+            "mean_s": 28.099138886160063,
+            "median_s": 21.8883888861601,
+            "maximum_s": 51.83388888615991
+          },
+          "dack_hold_completed": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "dack_hold_censored": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "failed_episodes_final_application_outcomes": {
+            "dropped": 4
+          },
+          "failed_episodes_matching_final_application_drop_time": 4
+        }
+      ],
+      "custody": [
+        {
+          "node": 4,
+          "source": 2,
+          "local_at_node": false,
+          "episodes": 524,
+          "submitted": 512,
+          "released": 511,
+          "pending_at_stop": 13,
+          "enqueue_to_first_submit": {
+            "n": 512,
+            "mean_s": 231.0579538948999,
+            "median_s": 247.6589788398901,
+            "maximum_s": 399.8781864232001
+          },
+          "enqueue_to_release": {
+            "n": 511,
+            "mean_s": 238.02744835613612,
+            "median_s": 259.2484788121101,
+            "maximum_s": 400.4544788121102
+          },
+          "censored_enqueue_to_stop": {
+            "n": 13,
+            "mean_s": 70.39018636763929,
+            "median_s": 68.36218636763988,
+            "maximum_s": 118.72418636763996
+          }
+        },
+        {
+          "node": 4,
+          "source": 4,
+          "local_at_node": true,
+          "episodes": 439,
+          "submitted": 424,
+          "released": 423,
+          "pending_at_stop": 16,
+          "enqueue_to_first_submit": {
+            "n": 424,
+            "mean_s": 207.3279006327566,
+            "median_s": 197.11229247225003,
+            "maximum_s": 396.28829247224985
+          },
+          "enqueue_to_release": {
+            "n": 423,
+            "mean_s": 214.2280845008102,
+            "median_s": 209.5762924444698,
+            "maximum_s": 397.21129244447
+          },
+          "censored_enqueue_to_stop": {
+            "n": 16,
+            "mean_s": 35.90375000000006,
+            "median_s": 32.18000000000029,
+            "maximum_s": 120.80000000000018
+          }
+        },
+        {
+          "node": 4,
+          "source": 7,
+          "local_at_node": false,
+          "episodes": 664,
+          "submitted": 641,
+          "released": 639,
+          "pending_at_stop": 25,
+          "enqueue_to_first_submit": {
+            "n": 641,
+            "mean_s": 236.5905449838033,
+            "median_s": 253.08647883988988,
+            "maximum_s": 394.4094788398902
+          },
+          "enqueue_to_release": {
+            "n": 639,
+            "mean_s": 243.26748999298732,
+            "median_s": 259.10547881211005,
+            "maximum_s": 400.20318639541983
+          },
+          "censored_enqueue_to_stop": {
+            "n": 25,
+            "mean_s": 64.8605063676392,
+            "median_s": 67.33518636763984,
+            "maximum_s": 127.03118636763975
+          }
+        },
+        {
+          "node": 4,
+          "source": 8,
+          "local_at_node": false,
+          "episodes": 538,
+          "submitted": 518,
+          "released": 518,
+          "pending_at_stop": 20,
+          "enqueue_to_first_submit": {
+            "n": 518,
+            "mean_s": 230.94047800574936,
+            "median_s": 244.2594788398901,
+            "maximum_s": 389.8074788398899
+          },
+          "enqueue_to_release": {
+            "n": 518,
+            "mean_s": 237.7164531932181,
+            "median_s": 251.79083260376524,
+            "maximum_s": 399.37547881211003
+          },
+          "censored_enqueue_to_stop": {
+            "n": 20,
+            "mean_s": 60.81308636763956,
+            "median_s": 61.439686367640206,
+            "maximum_s": 114.00518636763991
+          }
+        },
+        {
+          "node": 5,
+          "source": 2,
+          "local_at_node": false,
+          "episodes": 427,
+          "submitted": 418,
+          "released": 413,
+          "pending_at_stop": 14,
+          "enqueue_to_first_submit": {
+            "n": 418,
+            "mean_s": 55.87191517973076,
+            "median_s": 60.42929866937004,
+            "maximum_s": 130.05729866937293
+          },
+          "enqueue_to_release": {
+            "n": 413,
+            "mean_s": 84.69066372121158,
+            "median_s": 88.05429864158987,
+            "maximum_s": 201.986298641595
+          },
+          "censored_enqueue_to_stop": {
+            "n": 14,
+            "mean_s": 84.94368755553003,
+            "median_s": 97.82668755553004,
+            "maximum_s": 143.58018755552985
+          }
+        },
+        {
+          "node": 5,
+          "source": 4,
+          "local_at_node": false,
+          "episodes": 365,
+          "submitted": 352,
+          "released": 352,
+          "pending_at_stop": 13,
+          "enqueue_to_first_submit": {
+            "n": 352,
+            "mean_s": 56.176667824658196,
+            "median_s": 62.26879866936952,
+            "maximum_s": 128.91329866937303
+          },
+          "enqueue_to_release": {
+            "n": 352,
+            "mean_s": 84.64063414092855,
+            "median_s": 86.23429864158982,
+            "maximum_s": 209.55818758330895
+          },
+          "censored_enqueue_to_stop": {
+            "n": 13,
+            "mean_s": 31.936187555529962,
+            "median_s": 33.197187555530036,
+            "maximum_s": 70.75418755552982
+          }
+        },
+        {
+          "node": 5,
+          "source": 5,
+          "local_at_node": true,
+          "episodes": 1669,
+          "submitted": 1657,
+          "released": 1653,
+          "pending_at_stop": 16,
+          "enqueue_to_first_submit": {
+            "n": 1657,
+            "mean_s": 26.870823981544245,
+            "median_s": 14.166111113839179,
+            "maximum_s": 121.47311111384204
+          },
+          "enqueue_to_release": {
+            "n": 1653,
+            "mean_s": 54.391302858882796,
+            "median_s": 42.94411108605982,
+            "maximum_s": 186.080111086064
+          },
+          "censored_enqueue_to_stop": {
+            "n": 16,
+            "mean_s": 78.89375000000001,
+            "median_s": 71.75,
+            "maximum_s": 117.35999999999967
+          }
+        },
+        {
+          "node": 5,
+          "source": 7,
+          "local_at_node": false,
+          "episodes": 554,
+          "submitted": 540,
+          "released": 537,
+          "pending_at_stop": 17,
+          "enqueue_to_first_submit": {
+            "n": 540,
+            "mean_s": 57.58410867429856,
+            "median_s": 64.77129866937003,
+            "maximum_s": 129.81029866937297
+          },
+          "enqueue_to_release": {
+            "n": 537,
+            "mean_s": 86.0793350582886,
+            "median_s": 88.8862986415902,
+            "maximum_s": 179.31429864159497
+          },
+          "censored_enqueue_to_stop": {
+            "n": 17,
+            "mean_s": 67.39177579082425,
+            "median_s": 76.77318755553006,
+            "maximum_s": 120.14118755553045
+          }
+        },
+        {
+          "node": 5,
+          "source": 8,
+          "local_at_node": false,
+          "episodes": 436,
+          "submitted": 425,
+          "released": 421,
+          "pending_at_stop": 15,
+          "enqueue_to_first_submit": {
+            "n": 425,
+            "mean_s": 59.30362667563222,
+            "median_s": 66.12329866937034,
+            "maximum_s": 129.39429866937303
+          },
+          "enqueue_to_release": {
+            "n": 421,
+            "mean_s": 87.68627858402982,
+            "median_s": 89.60129864158989,
+            "maximum_s": 192.60618758330907
+          },
+          "censored_enqueue_to_stop": {
+            "n": 15,
+            "mean_s": 75.17678755553007,
+            "median_s": 83.81918755553033,
+            "maximum_s": 131.1781875555298
+          }
+        }
+      ],
+      "ownership": [
+        {
+          "node": 4,
+          "source": 2,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 0.628179650420932,
+            "mean_active_300_to_6000s": 0.6612417372851916,
+            "peak_count": 5,
+            "end_count": 1
+          },
+          "nwk_custody": {
+            "mean_6000s": 20.42451642212748,
+            "mean_active_300_to_6000s": 21.499490970660503,
+            "peak_count": 40,
+            "end_count": 13
+          }
+        },
+        {
+          "node": 4,
+          "source": 3,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 0.0,
+            "mean_active_300_to_6000s": 0.0,
+            "peak_count": 0,
+            "end_count": 0
+          },
+          "nwk_custody": {
+            "mean_6000s": 0.0,
+            "mean_active_300_to_6000s": 0.0,
+            "peak_count": 0,
+            "end_count": 0
+          }
+        },
+        {
+          "node": 4,
+          "source": 4,
+          "local_at_node": true,
+          "hop_data_capacity": {
+            "mean_6000s": 0.49870831262472864,
+            "mean_active_300_to_6000s": 0.5249561185523459,
+            "peak_count": 5,
+            "end_count": 1
+          },
+          "nwk_custody": {
+            "mean_6000s": 15.198823290640451,
+            "mean_active_300_to_6000s": 15.998761358568897,
+            "peak_count": 16,
+            "end_count": 16
+          }
+        },
+        {
+          "node": 4,
+          "source": 5,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 0.0,
+            "mean_active_300_to_6000s": 0.0,
+            "peak_count": 0,
+            "end_count": 0
+          },
+          "nwk_custody": {
+            "mean_6000s": 0.0,
+            "mean_active_300_to_6000s": 0.0,
+            "peak_count": 0,
+            "end_count": 0
+          }
+        },
+        {
+          "node": 4,
+          "source": 7,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 1.0134361422634732,
+            "mean_active_300_to_6000s": 1.0667748865931297,
+            "peak_count": 7,
+            "end_count": 3
+          },
+          "nwk_custody": {
+            "mean_6000s": 26.178239794118316,
+            "mean_active_300_to_6000s": 27.556041888545597,
+            "peak_count": 50,
+            "end_count": 25
+          }
+        },
+        {
+          "node": 4,
+          "source": 8,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 0.6849925246431371,
+            "mean_active_300_to_6000s": 0.7210447627822496,
+            "peak_count": 7,
+            "end_count": 0
+          },
+          "nwk_custody": {
+            "mean_6000s": 20.72556408023996,
+            "mean_active_300_to_6000s": 21.81638324235785,
+            "peak_count": 41,
+            "end_count": 20
+          }
+        },
+        {
+          "node": 5,
+          "source": 2,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 2.0428794182517622,
+            "mean_active_300_to_6000s": 2.150399387633434,
+            "peak_count": 11,
+            "end_count": 5
+          },
+          "nwk_custody": {
+            "mean_6000s": 6.0277426237729665,
+            "mean_active_300_to_6000s": 6.3449922355504915,
+            "peak_count": 21,
+            "end_count": 14
+          }
+        },
+        {
+          "node": 5,
+          "source": 3,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 0.0,
+            "mean_active_300_to_6000s": 0.0,
+            "peak_count": 0,
+            "end_count": 0
+          },
+          "nwk_custody": {
+            "mean_6000s": 0.0,
+            "mean_active_300_to_6000s": 0.0,
+            "peak_count": 0,
+            "end_count": 0
+          }
+        },
+        {
+          "node": 5,
+          "source": 4,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 1.6698860238878608,
+            "mean_active_300_to_6000s": 1.757774761987222,
+            "peak_count": 9,
+            "end_count": 0
+          },
+          "nwk_custody": {
+            "mean_6000s": 5.034778942638123,
+            "mean_active_300_to_6000s": 5.29976730804013,
+            "peak_count": 18,
+            "end_count": 13
+          }
+        },
+        {
+          "node": 5,
+          "source": 5,
+          "local_at_node": true,
+          "hop_data_capacity": {
+            "mean_6000s": 7.638254714719076,
+            "mean_active_300_to_6000s": 8.040268120756922,
+            "peak_count": 16,
+            "end_count": 4
+          },
+          "nwk_custody": {
+            "mean_6000s": 15.195187270955543,
+            "mean_active_300_to_6000s": 15.994933969426889,
+            "peak_count": 16,
+            "end_count": 16
+          }
+        },
+        {
+          "node": 5,
+          "source": 7,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 2.5796188008077245,
+            "mean_active_300_to_6000s": 2.715388211376552,
+            "peak_count": 10,
+            "end_count": 3
+          },
+          "nwk_custody": {
+            "mean_6000s": 7.895043852457499,
+            "mean_active_300_to_6000s": 8.310572476271052,
+            "peak_count": 23,
+            "end_count": 17
+          }
+        },
+        {
+          "node": 5,
+          "source": 8,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 2.02986228282583,
+            "mean_active_300_to_6000s": 2.136697139816663,
+            "peak_count": 9,
+            "end_count": 4
+          },
+          "nwk_custody": {
+            "mean_6000s": 6.3405958495349175,
+            "mean_active_300_to_6000s": 6.674311420563071,
+            "peak_count": 25,
+            "end_count": 15
+          }
+        }
+      ],
+      "flow_timeline": [
+        {
+          "source": 4,
+          "start_s": 0.0,
+          "end_s": 300.0,
+          "attempts": 0,
+          "admitted": 0,
+          "blocked": 0,
+          "delivery_events": 0,
+          "drop_events": 0,
+          "delivered_at_end": 0,
+          "dropped_at_end": 0,
+          "pending_at_end": 0
+        },
+        {
+          "source": 4,
+          "start_s": 300.0,
+          "end_s": 600.0,
+          "attempts": 15000,
+          "admitted": 55,
+          "blocked": 14945,
+          "delivery_events": 31,
+          "drop_events": 3,
+          "delivered_at_end": 31,
+          "dropped_at_end": 3,
+          "pending_at_end": 21
+        },
+        {
+          "source": 4,
+          "start_s": 600.0,
+          "end_s": 900.0,
+          "attempts": 15000,
+          "admitted": 27,
+          "blocked": 14973,
+          "delivery_events": 20,
+          "drop_events": 4,
+          "delivered_at_end": 51,
+          "dropped_at_end": 7,
+          "pending_at_end": 24
+        },
+        {
+          "source": 4,
+          "start_s": 900.0,
+          "end_s": 1200.0,
+          "attempts": 15000,
+          "admitted": 16,
+          "blocked": 14984,
+          "delivery_events": 20,
+          "drop_events": 3,
+          "delivered_at_end": 71,
+          "dropped_at_end": 10,
+          "pending_at_end": 17
+        },
+        {
+          "source": 4,
+          "start_s": 1200.0,
+          "end_s": 1500.0,
+          "attempts": 15000,
+          "admitted": 16,
+          "blocked": 14984,
+          "delivery_events": 9,
+          "drop_events": 5,
+          "delivered_at_end": 80,
+          "dropped_at_end": 15,
+          "pending_at_end": 19
+        },
+        {
+          "source": 4,
+          "start_s": 1500.0,
+          "end_s": 1800.0,
+          "attempts": 15000,
+          "admitted": 35,
+          "blocked": 14965,
+          "delivery_events": 17,
+          "drop_events": 6,
+          "delivered_at_end": 97,
+          "dropped_at_end": 21,
+          "pending_at_end": 31
+        },
+        {
+          "source": 4,
+          "start_s": 1800.0,
+          "end_s": 2100.0,
+          "attempts": 15000,
+          "admitted": 28,
+          "blocked": 14972,
+          "delivery_events": 28,
+          "drop_events": 2,
+          "delivered_at_end": 125,
+          "dropped_at_end": 23,
+          "pending_at_end": 29
+        },
+        {
+          "source": 4,
+          "start_s": 2100.0,
+          "end_s": 2400.0,
+          "attempts": 15000,
+          "admitted": 18,
+          "blocked": 14982,
+          "delivery_events": 25,
+          "drop_events": 4,
+          "delivered_at_end": 150,
+          "dropped_at_end": 27,
+          "pending_at_end": 18
+        },
+        {
+          "source": 4,
+          "start_s": 2400.0,
+          "end_s": 2700.0,
+          "attempts": 15000,
+          "admitted": 37,
+          "blocked": 14963,
+          "delivery_events": 22,
+          "drop_events": 5,
+          "delivered_at_end": 172,
+          "dropped_at_end": 32,
+          "pending_at_end": 28
+        },
+        {
+          "source": 4,
+          "start_s": 2700.0,
+          "end_s": 3000.0,
+          "attempts": 15000,
+          "admitted": 16,
+          "blocked": 14984,
+          "delivery_events": 24,
+          "drop_events": 4,
+          "delivered_at_end": 196,
+          "dropped_at_end": 36,
+          "pending_at_end": 16
+        },
+        {
+          "source": 4,
+          "start_s": 3000.0,
+          "end_s": 3300.0,
+          "attempts": 15000,
+          "admitted": 16,
+          "blocked": 14984,
+          "delivery_events": 9,
+          "drop_events": 1,
+          "delivered_at_end": 205,
+          "dropped_at_end": 37,
+          "pending_at_end": 22
+        },
+        {
+          "source": 4,
+          "start_s": 3300.0,
+          "end_s": 3600.0,
+          "attempts": 15000,
+          "admitted": 16,
+          "blocked": 14984,
+          "delivery_events": 19,
+          "drop_events": 1,
+          "delivered_at_end": 224,
+          "dropped_at_end": 38,
+          "pending_at_end": 18
+        },
+        {
+          "source": 4,
+          "start_s": 3600.0,
+          "end_s": 3900.0,
+          "attempts": 15000,
+          "admitted": 16,
+          "blocked": 14984,
+          "delivery_events": 7,
+          "drop_events": 2,
+          "delivered_at_end": 231,
+          "dropped_at_end": 40,
+          "pending_at_end": 25
+        },
+        {
+          "source": 4,
+          "start_s": 3900.0,
+          "end_s": 4200.0,
+          "attempts": 15000,
+          "admitted": 16,
+          "blocked": 14984,
+          "delivery_events": 21,
+          "drop_events": 1,
+          "delivered_at_end": 252,
+          "dropped_at_end": 41,
+          "pending_at_end": 19
+        },
+        {
+          "source": 4,
+          "start_s": 4200.0,
+          "end_s": 4500.0,
+          "attempts": 15000,
+          "admitted": 19,
+          "blocked": 14981,
+          "delivery_events": 15,
+          "drop_events": 4,
+          "delivered_at_end": 267,
+          "dropped_at_end": 45,
+          "pending_at_end": 19
+        },
+        {
+          "source": 4,
+          "start_s": 4500.0,
+          "end_s": 4800.0,
+          "attempts": 15000,
+          "admitted": 29,
+          "blocked": 14971,
+          "delivery_events": 26,
+          "drop_events": 6,
+          "delivered_at_end": 293,
+          "dropped_at_end": 51,
+          "pending_at_end": 16
+        },
+        {
+          "source": 4,
+          "start_s": 4800.0,
+          "end_s": 5100.0,
+          "attempts": 15000,
+          "admitted": 16,
+          "blocked": 14984,
+          "delivery_events": 13,
+          "drop_events": 2,
+          "delivered_at_end": 306,
+          "dropped_at_end": 53,
+          "pending_at_end": 17
+        },
+        {
+          "source": 4,
+          "start_s": 5100.0,
+          "end_s": 5400.0,
+          "attempts": 15000,
+          "admitted": 16,
+          "blocked": 14984,
+          "delivery_events": 11,
+          "drop_events": 2,
+          "delivered_at_end": 317,
+          "dropped_at_end": 55,
+          "pending_at_end": 20
+        },
+        {
+          "source": 4,
+          "start_s": 5400.0,
+          "end_s": 5700.0,
+          "attempts": 15000,
+          "admitted": 16,
+          "blocked": 14984,
+          "delivery_events": 13,
+          "drop_events": 5,
+          "delivered_at_end": 330,
+          "dropped_at_end": 60,
+          "pending_at_end": 18
+        },
+        {
+          "source": 4,
+          "start_s": 5700.0,
+          "end_s": 6000.0,
+          "attempts": 15000,
+          "admitted": 31,
+          "blocked": 14969,
+          "delivery_events": 18,
+          "drop_events": 2,
+          "delivered_at_end": 348,
+          "dropped_at_end": 62,
+          "pending_at_end": 29
+        }
+      ],
+      "source4_hop_failures_by_link": {
+        "4->5": 58,
+        "5->1": 4
+      },
+      "source4_final_drop_reasons": {
+        "retry_exhausted": 62
+      },
+      "all_source4_final_drops_matched_to_hop_failure": true,
+      "node4_hop_failures_all_sources": {
+        "4": 58,
+        "2": 84,
+        "8": 83,
+        "7": 85
+      }
+    },
+    {
+      "seed": 129,
+      "matlab_source4": {
+        "source": 4,
+        "attempts": 285000,
+        "admitted": 503,
+        "blocked": 284497,
+        "delivered": 398,
+        "dropped": 75,
+        "pending": 30,
+        "blocked_reason_totals": {
+          "BlockedDiscovery": 0,
+          "BlockedTopology": 0,
+          "BlockedGatewayRoute": 0,
+          "BlockedDestination": 0,
+          "BlockedNsdp": 284497
+        },
+        "delivered_latency": {
+          "count": 398,
+          "minimum_s": 45.2908110860638,
+          "median_s": 267.00681108606454,
+          "mean_s": 271.17643671420467,
+          "maximum_s": 445.200811086064
+        }
+      },
+      "native_source4": {
+        "source": 4,
+        "attempts": 285000,
+        "admitted": 501,
+        "blocked": 284499,
+        "delivered": 426,
+        "unique_delivered": 426,
+        "delivery_events": 427,
+        "duplicate_delivery_events": 1,
+        "unmatched_sends": 75,
+        "first_delivery_delay_s": {
+          "count": 426,
+          "mean": 276.50659277614085,
+          "min": 56.132811086000004,
+          "max": 486.32981108600006
+        }
+      },
+      "decomposition": {
+        "delivery_delta": -28,
+        "admission_delta": 2,
+        "matlab_undelivered": 105,
+        "native_undelivered": 75,
+        "undelivered_delta": 30,
+        "identity": "delivery_delta = admission_delta - undelivered_delta",
+        "delivered_residual_percent": -6.572769953051643,
+        "admitted_residual_percent": 0.3992015968063872,
+        "matlab_delivery_fraction": 0.7912524850894632,
+        "native_delivery_fraction": 0.8502994011976048,
+        "within_ten_percent_delivery_band": true
+      },
+      "hops": [
+        {
+          "node": 4,
+          "peer": 5,
+          "source": 2,
+          "local_at_node": false,
+          "episodes": 573,
+          "unique_applications": 573,
+          "completion_counts": {
+            "hop_ack": 447,
+            "hop_dack_expired": 38,
+            "hop_failed": 86,
+            "pending_at_stop": 2
+          },
+          "hop_sent_callbacks": 1017,
+          "retry_requests": 458,
+          "retry_requests_per_episode": 0.7993019197207679,
+          "initial_admit_to_first_sent": {
+            "n": 573,
+            "mean_s": 2.1845795645460027,
+            "median_s": 0.8967075277496406,
+            "maximum_s": 21.072707527750026
+          },
+          "retry_next_sent_wait": {
+            "n": 444,
+            "mean_s": 2.181432404652712,
+            "median_s": 0.9184999722198199,
+            "maximum_s": 16.6939999722199
+          },
+          "retry_wait_completion_counts": {
+            "next_observed_hop_sent": 444,
+            "terminal_before_next_hop_sent": 14
+          },
+          "capacity_retention_completed": {
+            "n": 571,
+            "mean_s": 8.258510533221875,
+            "median_s": 5.082999972220023,
+            "maximum_s": 68.3139999999994
+          },
+          "hop_service_to_ack_dack_or_failure": {
+            "n": 572,
+            "mean_s": 6.659069079298112,
+            "median_s": 4.276999972219983,
+            "maximum_s": 40.49499997222199
+          },
+          "capacity_retention_censored": {
+            "n": 2,
+            "mean_s": 11.673707513864883,
+            "median_s": 11.673707513864883,
+            "maximum_s": 15.944707499979813
+          },
+          "dack_hold_completed": {
+            "n": 38,
+            "mean_s": 24.210526343568954,
+            "median_s": 20.00000002778006,
+            "maximum_s": 40.00000002778097
+          },
+          "dack_hold_censored": {
+            "n": 1,
+            "mean_s": 2.566707555530229,
+            "median_s": 2.566707555530229,
+            "maximum_s": 2.566707555530229
+          },
+          "failed_episodes_final_application_outcomes": {
+            "dropped": 86
+          },
+          "failed_episodes_matching_final_application_drop_time": 86
+        },
+        {
+          "node": 4,
+          "peer": 5,
+          "source": 4,
+          "local_at_node": true,
+          "episodes": 488,
+          "unique_applications": 488,
+          "completion_counts": {
+            "hop_ack": 407,
+            "hop_dack_expired": 11,
+            "hop_failed": 69,
+            "pending_at_stop": 1
+          },
+          "hop_sent_callbacks": 858,
+          "retry_requests": 378,
+          "retry_requests_per_episode": 0.7745901639344263,
+          "initial_admit_to_first_sent": {
+            "n": 488,
+            "mean_s": 2.2396788744046616,
+            "median_s": 0.8317075277500408,
+            "maximum_s": 20.903707527749702
+          },
+          "retry_next_sent_wait": {
+            "n": 370,
+            "mean_s": 2.459948620868865,
+            "median_s": 1.158999972219931,
+            "maximum_s": 18.2539999722203
+          },
+          "retry_wait_completion_counts": {
+            "next_observed_hop_sent": 370,
+            "terminal_before_next_hop_sent": 8
+          },
+          "capacity_retention_completed": {
+            "n": 487,
+            "mean_s": 7.427597181093487,
+            "median_s": 4.320292388910275,
+            "maximum_s": 66.28600000000006
+          },
+          "hop_service_to_ack_dack_or_failure": {
+            "n": 487,
+            "mean_s": 6.811580753361292,
+            "median_s": 4.198999972220008,
+            "maximum_s": 36.25270755552992
+          },
+          "capacity_retention_censored": {
+            "n": 1,
+            "mean_s": 2.5667075277497133,
+            "median_s": 2.5667075277497133,
+            "maximum_s": 2.5667075277497133
+          },
+          "dack_hold_completed": {
+            "n": 11,
+            "mean_s": 27.27272730050721,
+            "median_s": 20.00000002778006,
+            "maximum_s": 40.000000027780516
+          },
+          "dack_hold_censored": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "failed_episodes_final_application_outcomes": {
+            "dropped": 69
+          },
+          "failed_episodes_matching_final_application_drop_time": 69
+        },
+        {
+          "node": 4,
+          "peer": 5,
+          "source": 7,
+          "local_at_node": false,
+          "episodes": 723,
+          "unique_applications": 723,
+          "completion_counts": {
+            "hop_ack": 499,
+            "hop_dack_expired": 130,
+            "hop_failed": 92,
+            "pending_at_stop": 2
+          },
+          "hop_sent_callbacks": 1232,
+          "retry_requests": 532,
+          "retry_requests_per_episode": 0.73582295988935,
+          "initial_admit_to_first_sent": {
+            "n": 723,
+            "mean_s": 2.1683591718269217,
+            "median_s": 1.0007075277499098,
+            "maximum_s": 21.033707527750266
+          },
+          "retry_next_sent_wait": {
+            "n": 509,
+            "mean_s": 2.245534353359592,
+            "median_s": 0.8989999722198263,
+            "maximum_s": 19.592999972219786
+          },
+          "retry_wait_completion_counts": {
+            "next_observed_hop_sent": 509,
+            "terminal_before_next_hop_sent": 22,
+            "censored_at_stop": 1
+          },
+          "capacity_retention_completed": {
+            "n": 721,
+            "mean_s": 10.514505159420018,
+            "median_s": 6.2729999444497935,
+            "maximum_s": 77.6220000000003
+          },
+          "hop_service_to_ack_dack_or_failure": {
+            "n": 721,
+            "mean_s": 6.298138996297439,
+            "median_s": 4.497999972220441,
+            "maximum_s": 40.11370755553071
+          },
+          "capacity_retention_censored": {
+            "n": 2,
+            "mean_s": 12.983207513864727,
+            "median_s": 12.983207513864727,
+            "maximum_s": 18.966707499979748
+          },
+          "dack_hold_completed": {
+            "n": 130,
+            "mean_s": 23.384615412395224,
+            "median_s": 20.00000002778006,
+            "maximum_s": 40.000000027780516
+          },
+          "dack_hold_censored": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "failed_episodes_final_application_outcomes": {
+            "dropped": 90,
+            "delivered": 2
+          },
+          "failed_episodes_matching_final_application_drop_time": 90
+        },
+        {
+          "node": 4,
+          "peer": 5,
+          "source": 8,
+          "local_at_node": false,
+          "episodes": 452,
+          "unique_applications": 452,
+          "completion_counts": {
+            "hop_ack": 366,
+            "hop_dack_expired": 17,
+            "hop_failed": 67,
+            "pending_at_stop": 2
+          },
+          "hop_sent_callbacks": 806,
+          "retry_requests": 360,
+          "retry_requests_per_episode": 0.7964601769911505,
+          "initial_admit_to_first_sent": {
+            "n": 452,
+            "mean_s": 2.185851267119743,
+            "median_s": 1.065707527749737,
+            "maximum_s": 17.653707527750157
+          },
+          "retry_next_sent_wait": {
+            "n": 354,
+            "mean_s": 2.5341722886045677,
+            "median_s": 1.0874999722202574,
+            "maximum_s": 18.34499997222065
+          },
+          "retry_wait_completion_counts": {
+            "next_observed_hop_sent": 354,
+            "terminal_before_next_hop_sent": 6
+          },
+          "capacity_retention_completed": {
+            "n": 450,
+            "mean_s": 7.793880813884586,
+            "median_s": 5.206499972219717,
+            "maximum_s": 68.74299999999948
+          },
+          "hop_service_to_ack_dack_or_failure": {
+            "n": 451,
+            "mean_s": 6.940599480594296,
+            "median_s": 4.848999972219644,
+            "maximum_s": 33.83470755552935
+          },
+          "capacity_retention_censored": {
+            "n": 2,
+            "mean_s": 4.048707527749684,
+            "median_s": 4.048707527749684,
+            "maximum_s": 5.530707527749655
+          },
+          "dack_hold_completed": {
+            "n": 17,
+            "mean_s": 22.352941204250342,
+            "median_s": 20.000000027780516,
+            "maximum_s": 40.000000027779606
+          },
+          "dack_hold_censored": {
+            "n": 1,
+            "mean_s": 2.566707555530229,
+            "median_s": 2.566707555530229,
+            "maximum_s": 2.566707555530229
+          },
+          "failed_episodes_final_application_outcomes": {
+            "dropped": 67
+          },
+          "failed_episodes_matching_final_application_drop_time": 67
+        },
+        {
+          "node": 5,
+          "peer": 1,
+          "source": 2,
+          "local_at_node": false,
+          "episodes": 473,
+          "unique_applications": 473,
+          "completion_counts": {
+            "hop_ack": 466,
+            "hop_failed": 3,
+            "pending_at_stop": 4
+          },
+          "hop_sent_callbacks": 579,
+          "retry_requests": 131,
+          "retry_requests_per_episode": 0.2769556025369979,
+          "initial_admit_to_first_sent": {
+            "n": 471,
+            "mean_s": 22.465040988070548,
+            "median_s": 20.75788888615989,
+            "maximum_s": 76.30688888615987
+          },
+          "retry_next_sent_wait": {
+            "n": 108,
+            "mean_s": 22.674120342590555,
+            "median_s": 20.704499972219992,
+            "maximum_s": 59.84099997222029
+          },
+          "retry_wait_completion_counts": {
+            "next_observed_hop_sent": 108,
+            "terminal_before_next_hop_sent": 21,
+            "censored_at_stop": 2
+          },
+          "capacity_retention_completed": {
+            "n": 469,
+            "mean_s": 28.966954101911437,
+            "median_s": 23.39999997222003,
+            "maximum_s": 92.67699997221985
+          },
+          "hop_service_to_ack_dack_or_failure": {
+            "n": 469,
+            "mean_s": 28.966954101911437,
+            "median_s": 23.39999997222003,
+            "maximum_s": 92.67699997221985
+          },
+          "capacity_retention_censored": {
+            "n": 4,
+            "mean_s": 33.05213888616004,
+            "median_s": 25.749388886159977,
+            "maximum_s": 66.15988888615993
+          },
+          "dack_hold_completed": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "dack_hold_censored": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "failed_episodes_final_application_outcomes": {
+            "dropped": 3
+          },
+          "failed_episodes_matching_final_application_drop_time": 3
+        },
+        {
+          "node": 5,
+          "peer": 1,
+          "source": 4,
+          "local_at_node": false,
+          "episodes": 409,
+          "unique_applications": 409,
+          "completion_counts": {
+            "hop_ack": 398,
+            "hop_failed": 6,
+            "pending_at_stop": 5
+          },
+          "hop_sent_callbacks": 520,
+          "retry_requests": 134,
+          "retry_requests_per_episode": 0.3276283618581907,
+          "initial_admit_to_first_sent": {
+            "n": 404,
+            "mean_s": 21.415586648556125,
+            "median_s": 19.824538220844943,
+            "maximum_s": 54.3238888861606
+          },
+          "retry_next_sent_wait": {
+            "n": 116,
+            "mean_s": 22.753905144634086,
+            "median_s": 19.638499972219734,
+            "maximum_s": 59.34699997221969
+          },
+          "retry_wait_completion_counts": {
+            "next_observed_hop_sent": 116,
+            "terminal_before_next_hop_sent": 18
+          },
+          "capacity_retention_completed": {
+            "n": 404,
+            "mean_s": 29.453743560483638,
+            "median_s": 24.543999972219808,
+            "maximum_s": 109.60299997222
+          },
+          "hop_service_to_ack_dack_or_failure": {
+            "n": 404,
+            "mean_s": 29.453743560483638,
+            "median_s": 24.543999972219808,
+            "maximum_s": 109.60299997222
+          },
+          "capacity_retention_censored": {
+            "n": 5,
+            "mean_s": 14.154688886160148,
+            "median_s": 16.43488888615957,
+            "maximum_s": 17.357888886160254
+          },
+          "dack_hold_completed": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "dack_hold_censored": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "failed_episodes_final_application_outcomes": {
+            "dropped": 6
+          },
+          "failed_episodes_matching_final_application_drop_time": 6
+        },
+        {
+          "node": 5,
+          "peer": 1,
+          "source": 5,
+          "local_at_node": true,
+          "episodes": 1455,
+          "unique_applications": 1455,
+          "completion_counts": {
+            "hop_ack": 1440,
+            "hop_failed": 13,
+            "pending_at_stop": 2
+          },
+          "hop_sent_callbacks": 1796,
+          "retry_requests": 408,
+          "retry_requests_per_episode": 0.2804123711340206,
+          "initial_admit_to_first_sent": {
+            "n": 1454,
+            "mean_s": 21.88183448785609,
+            "median_s": 18.482888886160254,
+            "maximum_s": 73.17388888616006
+          },
+          "retry_next_sent_wait": {
+            "n": 342,
+            "mean_s": 22.14168418274672,
+            "median_s": 19.878999972220186,
+            "maximum_s": 66.52299997221962
+          },
+          "retry_wait_completion_counts": {
+            "next_observed_hop_sent": 342,
+            "terminal_before_next_hop_sent": 65,
+            "censored_at_stop": 1
+          },
+          "capacity_retention_completed": {
+            "n": 1453,
+            "mean_s": 28.44487302184793,
+            "median_s": 22.411999972219974,
+            "maximum_s": 126.47711108605927
+          },
+          "hop_service_to_ack_dack_or_failure": {
+            "n": 1453,
+            "mean_s": 28.44487302184793,
+            "median_s": 22.411999972219974,
+            "maximum_s": 126.47711108605927
+          },
+          "capacity_retention_censored": {
+            "n": 2,
+            "mean_s": 22.791888886159995,
+            "median_s": 22.791888886159995,
+            "maximum_s": 24.7028888861596
+          },
+          "dack_hold_completed": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "dack_hold_censored": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "failed_episodes_final_application_outcomes": {
+            "dropped": 13
+          },
+          "failed_episodes_matching_final_application_drop_time": 13
+        },
+        {
+          "node": 5,
+          "peer": 1,
+          "source": 7,
+          "local_at_node": false,
+          "episodes": 619,
+          "unique_applications": 619,
+          "completion_counts": {
+            "hop_ack": 608,
+            "hop_failed": 9,
+            "pending_at_stop": 2
+          },
+          "hop_sent_callbacks": 764,
+          "retry_requests": 168,
+          "retry_requests_per_episode": 0.27140549273021003,
+          "initial_admit_to_first_sent": {
+            "n": 618,
+            "mean_s": 21.88294438562484,
+            "median_s": 19.77638888615911,
+            "maximum_s": 67.99988888616008
+          },
+          "retry_next_sent_wait": {
+            "n": 146,
+            "mean_s": 21.630171205096758,
+            "median_s": 20.509499972220283,
+            "maximum_s": 52.82099997221985
+          },
+          "retry_wait_completion_counts": {
+            "next_observed_hop_sent": 146,
+            "terminal_before_next_hop_sent": 21,
+            "censored_at_stop": 1
+          },
+          "capacity_retention_completed": {
+            "n": 617,
+            "mean_s": 28.38777517342736,
+            "median_s": 22.762999972220314,
+            "maximum_s": 105.91099997222
+          },
+          "hop_service_to_ack_dack_or_failure": {
+            "n": 617,
+            "mean_s": 28.38777517342736,
+            "median_s": 22.762999972220314,
+            "maximum_s": 105.91099997222
+          },
+          "capacity_retention_censored": {
+            "n": 2,
+            "mean_s": 25.671388886160003,
+            "median_s": 25.671388886160003,
+            "maximum_s": 42.03188888616023
+          },
+          "dack_hold_completed": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "dack_hold_censored": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "failed_episodes_final_application_outcomes": {
+            "dropped": 9
+          },
+          "failed_episodes_matching_final_application_drop_time": 9
+        },
+        {
+          "node": 5,
+          "peer": 1,
+          "source": 8,
+          "local_at_node": false,
+          "episodes": 371,
+          "unique_applications": 371,
+          "completion_counts": {
+            "hop_ack": 360,
+            "hop_failed": 7,
+            "pending_at_stop": 4
+          },
+          "hop_sent_callbacks": 460,
+          "retry_requests": 112,
+          "retry_requests_per_episode": 0.3018867924528302,
+          "initial_admit_to_first_sent": {
+            "n": 368,
+            "mean_s": 22.49164484995732,
+            "median_s": 20.81638888615879,
+            "maximum_s": 66.25788888615989
+          },
+          "retry_next_sent_wait": {
+            "n": 92,
+            "mean_s": 22.123902146133144,
+            "median_s": 20.346999972221056,
+            "maximum_s": 53.990999972219925
+          },
+          "retry_wait_completion_counts": {
+            "next_observed_hop_sent": 92,
+            "terminal_before_next_hop_sent": 19,
+            "censored_at_stop": 1
+          },
+          "capacity_retention_completed": {
+            "n": 367,
+            "mean_s": 29.484205468867426,
+            "median_s": 24.478999972219754,
+            "maximum_s": 119.95099997222042
+          },
+          "hop_service_to_ack_dack_or_failure": {
+            "n": 367,
+            "mean_s": 29.484205468867426,
+            "median_s": 24.478999972219754,
+            "maximum_s": 119.95099997222042
+          },
+          "capacity_retention_censored": {
+            "n": 4,
+            "mean_s": 18.199638886160074,
+            "median_s": 17.390388886160054,
+            "maximum_s": 26.652888886160326
+          },
+          "dack_hold_completed": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "dack_hold_censored": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "failed_episodes_final_application_outcomes": {
+            "dropped": 7
+          },
+          "failed_episodes_matching_final_application_drop_time": 7
+        }
+      ],
+      "custody": [
+        {
+          "node": 4,
+          "source": 2,
+          "local_at_node": false,
+          "episodes": 589,
+          "submitted": 573,
+          "released": 572,
+          "pending_at_stop": 17,
+          "enqueue_to_first_submit": {
+            "n": 573,
+            "mean_s": 190.94244544183618,
+            "median_s": 184.74547883988998,
+            "maximum_s": 359.6734788398851
+          },
+          "enqueue_to_release": {
+            "n": 572,
+            "mean_s": 197.73214383337546,
+            "median_s": 188.97697881211025,
+            "maximum_s": 360.050478812105
+          },
+          "censored_enqueue_to_stop": {
+            "n": 17,
+            "mean_s": 53.442774602934094,
+            "median_s": 46.184186367639995,
+            "maximum_s": 123.6251863676398
+          }
+        },
+        {
+          "node": 4,
+          "source": 4,
+          "local_at_node": true,
+          "episodes": 503,
+          "submitted": 488,
+          "released": 487,
+          "pending_at_stop": 16,
+          "enqueue_to_first_submit": {
+            "n": 488,
+            "mean_s": 177.94728424034943,
+            "median_s": 172.87429247224998,
+            "maximum_s": 338.38729247225
+          },
+          "enqueue_to_release": {
+            "n": 487,
+            "mean_s": 184.89864731766988,
+            "median_s": 177.84229244447033,
+            "maximum_s": 339.7262924444699
+          },
+          "censored_enqueue_to_stop": {
+            "n": 16,
+            "mean_s": 71.65874999999988,
+            "median_s": 80.19999999999982,
+            "maximum_s": 112.4399999999996
+          }
+        },
+        {
+          "node": 4,
+          "source": 7,
+          "local_at_node": false,
+          "episodes": 744,
+          "submitted": 723,
+          "released": 721,
+          "pending_at_stop": 23,
+          "enqueue_to_first_submit": {
+            "n": 723,
+            "mean_s": 199.7805920644151,
+            "median_s": 190.3874788398898,
+            "maximum_s": 359.556478839885
+          },
+          "enqueue_to_release": {
+            "n": 721,
+            "mean_s": 206.31946785186548,
+            "median_s": 196.78347881210993,
+            "maximum_s": 360.492478812105
+          },
+          "censored_enqueue_to_stop": {
+            "n": 23,
+            "mean_s": 67.32105593285696,
+            "median_s": 68.67418636763978,
+            "maximum_s": 128.91618636763997
+          }
+        },
+        {
+          "node": 4,
+          "source": 8,
+          "local_at_node": false,
+          "episodes": 466,
+          "submitted": 452,
+          "released": 451,
+          "pending_at_stop": 15,
+          "enqueue_to_first_submit": {
+            "n": 452,
+            "mean_s": 208.15322890582843,
+            "median_s": 199.76697883989004,
+            "maximum_s": 344.8404788398851
+          },
+          "enqueue_to_release": {
+            "n": 451,
+            "mean_s": 215.29619590319865,
+            "median_s": 207.9721863954196,
+            "maximum_s": 351.938478812105
+          },
+          "censored_enqueue_to_stop": {
+            "n": 15,
+            "mean_s": 65.6685863676393,
+            "median_s": 68.27118636763043,
+            "maximum_s": 119.45218636764002
+          }
+        },
+        {
+          "node": 5,
+          "source": 2,
+          "local_at_node": false,
+          "episodes": 486,
+          "submitted": 473,
+          "released": 469,
+          "pending_at_stop": 17,
+          "enqueue_to_first_submit": {
+            "n": 473,
+            "mean_s": 57.48331634378903,
+            "median_s": 58.19329866937005,
+            "maximum_s": 113.65129866936968
+          },
+          "enqueue_to_release": {
+            "n": 469,
+            "mean_s": 86.14779298450148,
+            "median_s": 90.18629864158993,
+            "maximum_s": 162.79129864159086
+          },
+          "censored_enqueue_to_stop": {
+            "n": 17,
+            "mean_s": 63.08189343788292,
+            "median_s": 51.54018755552988,
+            "maximum_s": 150.3661875555299
+          }
+        },
+        {
+          "node": 5,
+          "source": 4,
+          "local_at_node": false,
+          "episodes": 418,
+          "submitted": 409,
+          "released": 404,
+          "pending_at_stop": 14,
+          "enqueue_to_first_submit": {
+            "n": 409,
+            "mean_s": 58.78944806788345,
+            "median_s": 60.33829866936958,
+            "maximum_s": 116.2902986693698
+          },
+          "enqueue_to_release": {
+            "n": 404,
+            "mean_s": 87.80364644765562,
+            "median_s": 88.69129864158992,
+            "maximum_s": 171.44929864158985
+          },
+          "censored_enqueue_to_stop": {
+            "n": 14,
+            "mean_s": 74.43040184124415,
+            "median_s": 87.82318755552978,
+            "maximum_s": 112.58818755552966
+          }
+        },
+        {
+          "node": 5,
+          "source": 5,
+          "local_at_node": true,
+          "episodes": 1469,
+          "submitted": 1455,
+          "released": 1453,
+          "pending_at_stop": 16,
+          "enqueue_to_first_submit": {
+            "n": 1455,
+            "mean_s": 33.72510293180144,
+            "median_s": 25.49811111383997,
+            "maximum_s": 109.62211111384022
+          },
+          "enqueue_to_release": {
+            "n": 1453,
+            "mean_s": 62.08776947301339,
+            "median_s": 59.38011108605997,
+            "maximum_s": 177.27111108605993
+          },
+          "censored_enqueue_to_stop": {
+            "n": 16,
+            "mean_s": 60.118750000000034,
+            "median_s": 68.03999999999996,
+            "maximum_s": 117.88000000000011
+          }
+        },
+        {
+          "node": 5,
+          "source": 7,
+          "local_at_node": false,
+          "episodes": 631,
+          "submitted": 619,
+          "released": 617,
+          "pending_at_stop": 14,
+          "enqueue_to_first_submit": {
+            "n": 619,
+            "mean_s": 59.73938703985591,
+            "median_s": 62.379298669369746,
+            "maximum_s": 118.38329866936965
+          },
+          "enqueue_to_release": {
+            "n": 617,
+            "mean_s": 88.01894531983267,
+            "median_s": 90.08229864158966,
+            "maximum_s": 182.06318758330963
+          },
+          "censored_enqueue_to_stop": {
+            "n": 14,
+            "mean_s": 76.35533041267283,
+            "median_s": 85.28818755553038,
+            "maximum_s": 133.8561875555297
+          }
+        },
+        {
+          "node": 5,
+          "source": 8,
+          "local_at_node": false,
+          "episodes": 384,
+          "submitted": 371,
+          "released": 367,
+          "pending_at_stop": 17,
+          "enqueue_to_first_submit": {
+            "n": 371,
+            "mean_s": 59.78309598829894,
+            "median_s": 63.86129866937017,
+            "maximum_s": 117.09629866936939
+          },
+          "enqueue_to_release": {
+            "n": 367,
+            "mean_s": 88.85502676854435,
+            "median_s": 91.12229864159008,
+            "maximum_s": 196.93518758330993
+          },
+          "censored_enqueue_to_stop": {
+            "n": 17,
+            "mean_s": 72.1038934378829,
+            "median_s": 85.28818755553038,
+            "maximum_s": 130.33318755552955
+          }
+        }
+      ],
+      "ownership": [
+        {
+          "node": 4,
+          "source": 2,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 0.7898261549162368,
+            "mean_active_300_to_6000s": 0.8313959525434071,
+            "peak_count": 5,
+            "end_count": 2
+          },
+          "nwk_custody": {
+            "mean_6000s": 19.001885573490107,
+            "mean_active_300_to_6000s": 20.00198481420011,
+            "peak_count": 44,
+            "end_count": 17
+          }
+        },
+        {
+          "node": 4,
+          "source": 3,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 0.0,
+            "mean_active_300_to_6000s": 0.0,
+            "peak_count": 0,
+            "end_count": 0
+          },
+          "nwk_custody": {
+            "mean_6000s": 0.0,
+            "mean_active_300_to_6000s": 0.0,
+            "peak_count": 0,
+            "end_count": 0
+          }
+        },
+        {
+          "node": 4,
+          "source": 4,
+          "local_at_node": true,
+          "hop_data_capacity": {
+            "mean_6000s": 0.6033010891200464,
+            "mean_active_300_to_6000s": 0.6350537780211014,
+            "peak_count": 7,
+            "end_count": 1
+          },
+          "nwk_custody": {
+            "mean_6000s": 15.19869687395087,
+            "mean_active_300_to_6000s": 15.99862828836934,
+            "peak_count": 16,
+            "end_count": 16
+          }
+        },
+        {
+          "node": 4,
+          "source": 5,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 0.0,
+            "mean_active_300_to_6000s": 0.0,
+            "peak_count": 0,
+            "end_count": 0
+          },
+          "nwk_custody": {
+            "mean_6000s": 0.0,
+            "mean_active_300_to_6000s": 0.0,
+            "peak_count": 0,
+            "end_count": 0
+          }
+        },
+        {
+          "node": 4,
+          "source": 7,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 1.267820772494927,
+            "mean_active_300_to_6000s": 1.3345481815736073,
+            "peak_count": 8,
+            "end_count": 2
+          },
+          "nwk_custody": {
+            "mean_6000s": 25.050786767941787,
+            "mean_active_300_to_6000s": 26.369249229412407,
+            "peak_count": 59,
+            "end_count": 23
+          }
+        },
+        {
+          "node": 4,
+          "source": 8,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 0.5858906302172605,
+            "mean_active_300_to_6000s": 0.6167269791760637,
+            "peak_count": 6,
+            "end_count": 2
+          },
+          "nwk_custody": {
+            "mean_6000s": 16.347268857976196,
+            "mean_active_300_to_6000s": 17.207651429448628,
+            "peak_count": 45,
+            "end_count": 15
+          }
+        },
+        {
+          "node": 5,
+          "source": 2,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 2.286285004890184,
+            "mean_active_300_to_6000s": 2.4066157946212465,
+            "peak_count": 11,
+            "end_count": 4
+          },
+          "nwk_custody": {
+            "mean_6000s": 6.9126178496958675,
+            "mean_active_300_to_6000s": 7.276439841785123,
+            "peak_count": 21,
+            "end_count": 17
+          }
+        },
+        {
+          "node": 5,
+          "source": 3,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 0.0,
+            "mean_active_300_to_6000s": 0.0,
+            "peak_count": 0,
+            "end_count": 0
+          },
+          "nwk_custody": {
+            "mean_6000s": 0.0,
+            "mean_active_300_to_6000s": 0.0,
+            "peak_count": 0,
+            "end_count": 0
+          }
+        },
+        {
+          "node": 5,
+          "source": 4,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 1.9950143071443651,
+            "mean_active_300_to_6000s": 2.1000150601519634,
+            "peak_count": 9,
+            "end_count": 5
+          },
+          "nwk_custody": {
+            "mean_6000s": 6.085783131771715,
+            "mean_active_300_to_6000s": 6.406087507128121,
+            "peak_count": 19,
+            "end_count": 14
+          }
+        },
+        {
+          "node": 5,
+          "source": 5,
+          "local_at_node": true,
+          "hop_data_capacity": {
+            "mean_6000s": 6.8959973797528935,
+            "mean_active_300_to_6000s": 7.258944610266203,
+            "peak_count": 16,
+            "end_count": 2
+          },
+          "nwk_custody": {
+            "mean_6000s": 15.19590484071474,
+            "mean_active_300_to_6000s": 15.995689306015516,
+            "peak_count": 16,
+            "end_count": 16
+          }
+        },
+        {
+          "node": 5,
+          "source": 7,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 2.9277666766295005,
+            "mean_active_300_to_6000s": 3.0818596596100005,
+            "peak_count": 12,
+            "end_count": 2
+          },
+          "nwk_custody": {
+            "mean_6000s": 9.229443981352361,
+            "mean_active_300_to_6000s": 9.715204190897223,
+            "peak_count": 27,
+            "end_count": 14
+          }
+        },
+        {
+          "node": 5,
+          "source": 8,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 1.8155836604364977,
+            "mean_active_300_to_6000s": 1.9111406951963132,
+            "peak_count": 8,
+            "end_count": 4
+          },
+          "nwk_custody": {
+            "mean_6000s": 5.639260168749964,
+            "mean_active_300_to_6000s": 5.936063335526278,
+            "peak_count": 19,
+            "end_count": 17
+          }
+        }
+      ],
+      "flow_timeline": [
+        {
+          "source": 4,
+          "start_s": 0.0,
+          "end_s": 300.0,
+          "attempts": 0,
+          "admitted": 0,
+          "blocked": 0,
+          "delivery_events": 0,
+          "drop_events": 0,
+          "delivered_at_end": 0,
+          "dropped_at_end": 0,
+          "pending_at_end": 0
+        },
+        {
+          "source": 4,
+          "start_s": 300.0,
+          "end_s": 600.0,
+          "attempts": 15000,
+          "admitted": 48,
+          "blocked": 14952,
+          "delivery_events": 27,
+          "drop_events": 5,
+          "delivered_at_end": 27,
+          "dropped_at_end": 5,
+          "pending_at_end": 16
+        },
+        {
+          "source": 4,
+          "start_s": 600.0,
+          "end_s": 900.0,
+          "attempts": 15000,
+          "admitted": 16,
+          "blocked": 14984,
+          "delivery_events": 13,
+          "drop_events": 3,
+          "delivered_at_end": 40,
+          "dropped_at_end": 8,
+          "pending_at_end": 16
+        },
+        {
+          "source": 4,
+          "start_s": 900.0,
+          "end_s": 1200.0,
+          "attempts": 15000,
+          "admitted": 16,
+          "blocked": 14984,
+          "delivery_events": 15,
+          "drop_events": 1,
+          "delivered_at_end": 55,
+          "dropped_at_end": 9,
+          "pending_at_end": 16
+        },
+        {
+          "source": 4,
+          "start_s": 1200.0,
+          "end_s": 1500.0,
+          "attempts": 15000,
+          "admitted": 16,
+          "blocked": 14984,
+          "delivery_events": 12,
+          "drop_events": 4,
+          "delivered_at_end": 67,
+          "dropped_at_end": 13,
+          "pending_at_end": 16
+        },
+        {
+          "source": 4,
+          "start_s": 1500.0,
+          "end_s": 1800.0,
+          "attempts": 15000,
+          "admitted": 18,
+          "blocked": 14982,
+          "delivery_events": 15,
+          "drop_events": 1,
+          "delivered_at_end": 82,
+          "dropped_at_end": 14,
+          "pending_at_end": 18
+        },
+        {
+          "source": 4,
+          "start_s": 1800.0,
+          "end_s": 2100.0,
+          "attempts": 15000,
+          "admitted": 30,
+          "blocked": 14970,
+          "delivery_events": 23,
+          "drop_events": 4,
+          "delivered_at_end": 105,
+          "dropped_at_end": 18,
+          "pending_at_end": 21
+        },
+        {
+          "source": 4,
+          "start_s": 2100.0,
+          "end_s": 2400.0,
+          "attempts": 15000,
+          "admitted": 22,
+          "blocked": 14978,
+          "delivery_events": 18,
+          "drop_events": 7,
+          "delivered_at_end": 123,
+          "dropped_at_end": 25,
+          "pending_at_end": 18
+        },
+        {
+          "source": 4,
+          "start_s": 2400.0,
+          "end_s": 2700.0,
+          "attempts": 15000,
+          "admitted": 42,
+          "blocked": 14958,
+          "delivery_events": 24,
+          "drop_events": 6,
+          "delivered_at_end": 147,
+          "dropped_at_end": 31,
+          "pending_at_end": 30
+        },
+        {
+          "source": 4,
+          "start_s": 2700.0,
+          "end_s": 3000.0,
+          "attempts": 15000,
+          "admitted": 38,
+          "blocked": 14962,
+          "delivery_events": 32,
+          "drop_events": 5,
+          "delivered_at_end": 179,
+          "dropped_at_end": 36,
+          "pending_at_end": 31
+        },
+        {
+          "source": 4,
+          "start_s": 3000.0,
+          "end_s": 3300.0,
+          "attempts": 15000,
+          "admitted": 22,
+          "blocked": 14978,
+          "delivery_events": 29,
+          "drop_events": 4,
+          "delivered_at_end": 208,
+          "dropped_at_end": 40,
+          "pending_at_end": 20
+        },
+        {
+          "source": 4,
+          "start_s": 3300.0,
+          "end_s": 3600.0,
+          "attempts": 15000,
+          "admitted": 25,
+          "blocked": 14975,
+          "delivery_events": 21,
+          "drop_events": 2,
+          "delivered_at_end": 229,
+          "dropped_at_end": 42,
+          "pending_at_end": 22
+        },
+        {
+          "source": 4,
+          "start_s": 3600.0,
+          "end_s": 3900.0,
+          "attempts": 15000,
+          "admitted": 21,
+          "blocked": 14979,
+          "delivery_events": 15,
+          "drop_events": 4,
+          "delivered_at_end": 244,
+          "dropped_at_end": 46,
+          "pending_at_end": 24
+        },
+        {
+          "source": 4,
+          "start_s": 3900.0,
+          "end_s": 4200.0,
+          "attempts": 15000,
+          "admitted": 32,
+          "blocked": 14968,
+          "delivery_events": 23,
+          "drop_events": 2,
+          "delivered_at_end": 267,
+          "dropped_at_end": 48,
+          "pending_at_end": 31
+        },
+        {
+          "source": 4,
+          "start_s": 4200.0,
+          "end_s": 4500.0,
+          "attempts": 15000,
+          "admitted": 32,
+          "blocked": 14968,
+          "delivery_events": 31,
+          "drop_events": 6,
+          "delivered_at_end": 298,
+          "dropped_at_end": 54,
+          "pending_at_end": 26
+        },
+        {
+          "source": 4,
+          "start_s": 4500.0,
+          "end_s": 4800.0,
+          "attempts": 15000,
+          "admitted": 18,
+          "blocked": 14982,
+          "delivery_events": 18,
+          "drop_events": 3,
+          "delivered_at_end": 316,
+          "dropped_at_end": 57,
+          "pending_at_end": 23
+        },
+        {
+          "source": 4,
+          "start_s": 4800.0,
+          "end_s": 5100.0,
+          "attempts": 15000,
+          "admitted": 33,
+          "blocked": 14967,
+          "delivery_events": 22,
+          "drop_events": 2,
+          "delivered_at_end": 338,
+          "dropped_at_end": 59,
+          "pending_at_end": 32
+        },
+        {
+          "source": 4,
+          "start_s": 5100.0,
+          "end_s": 5400.0,
+          "attempts": 15000,
+          "admitted": 21,
+          "blocked": 14979,
+          "delivery_events": 32,
+          "drop_events": 4,
+          "delivered_at_end": 370,
+          "dropped_at_end": 63,
+          "pending_at_end": 17
+        },
+        {
+          "source": 4,
+          "start_s": 5400.0,
+          "end_s": 5700.0,
+          "attempts": 15000,
+          "admitted": 17,
+          "blocked": 14983,
+          "delivery_events": 6,
+          "drop_events": 7,
+          "delivered_at_end": 376,
+          "dropped_at_end": 70,
+          "pending_at_end": 21
+        },
+        {
+          "source": 4,
+          "start_s": 5700.0,
+          "end_s": 6000.0,
+          "attempts": 15000,
+          "admitted": 36,
+          "blocked": 14964,
+          "delivery_events": 22,
+          "drop_events": 5,
+          "delivered_at_end": 398,
+          "dropped_at_end": 75,
+          "pending_at_end": 30
+        }
+      ],
+      "source4_hop_failures_by_link": {
+        "4->5": 69,
+        "5->1": 6
+      },
+      "source4_final_drop_reasons": {
+        "retry_exhausted": 75
+      },
+      "all_source4_final_drops_matched_to_hop_failure": true,
+      "node4_hop_failures_all_sources": {
+        "4": 69,
+        "2": 86,
+        "8": 67,
+        "7": 92
+      },
+      "native_node4_source4": {
+        "original_trace_hashes": {
+          "manifest_sha256": "3d67117c5e401edfcc61c9abe673f6fb43b784e3195e7c03ddc13b3db32126d6",
+          "trace_gzip_sha256": "aa4ae4e40309ef956d5e89d20040828c3fab47062747eaa51a637506764c2643",
+          "trace_raw_sha256": "05a4d3429b00b20e68344491f9a0c8e2317c3637162fb975cdaebf72fdaa7194",
+          "trace_raw_bytes": 1178203351,
+          "rows": 5049318,
+          "last_event_time_s": 5999.994
+        },
+        "events": [
+          {
+            "node": 4,
+            "source": 4,
+            "event": "hop_admission",
+            "reason": "admitted",
+            "count": 485
+          },
+          {
+            "node": 4,
+            "source": 4,
+            "event": "hop_capacity_release",
+            "reason": "dack_expiry",
+            "count": 20
+          },
+          {
+            "node": 4,
+            "source": 4,
+            "event": "hop_completion",
+            "reason": "ack",
+            "count": 399
+          },
+          {
+            "node": 4,
+            "source": 4,
+            "event": "hop_completion",
+            "reason": "dack",
+            "count": 20
+          },
+          {
+            "node": 4,
+            "source": 4,
+            "event": "hop_completion",
+            "reason": "no_ack",
+            "count": 66
+          },
+          {
+            "node": 4,
+            "source": 4,
+            "event": "nwk_admission",
+            "reason": "admitted",
+            "count": 485
+          },
+          {
+            "node": 4,
+            "source": 4,
+            "event": "nwk_admission",
+            "reason": "neighbor_flow_full",
+            "count": 95643
+          },
+          {
+            "node": 4,
+            "source": 4,
+            "event": "nwk_enqueue",
+            "reason": "local",
+            "count": 501
+          },
+          {
+            "node": 4,
+            "source": 4,
+            "event": "nwk_forward",
+            "reason": "local",
+            "count": 485
+          },
+          {
+            "node": 4,
+            "source": 4,
+            "event": "nwk_nsdp_release",
+            "reason": "hop_feedback",
+            "count": 485
+          }
+        ],
+        "residence": {
+          "node": 4,
+          "source": 4,
+          "nwk_queue_wait_s": {
+            "count": 485,
+            "mean": 177.65640945744332,
+            "p50": 166.69629250000025,
+            "p90": 272.64029247200006,
+            "max": 371.8382924719999
+          },
+          "hop_admission_to_nsdp_release_completion_s": {
+            "count": 485,
+            "mean": 5.585049379430931,
+            "p50": 3.6529999720005435,
+            "p90": 13.558999972000038,
+            "max": 23.51829241600001
+          },
+          "enqueue_to_nsdp_release_completion_s": {
+            "count": 485,
+            "mean": 183.24145883687424,
+            "p50": 172.66829244400014,
+            "p90": 278.98100002799947,
+            "max": 376.37829244399995
+          }
+        },
+        "nsdp": {
+          "node": 4,
+          "source": 4,
+          "destination": 1,
+          "last": 16,
+          "maximum": 16,
+          "time_weighted_mean_300_6000": 15.998534655418245,
+          "seconds_at_or_above_16_300_6000": 5694.357668292002,
+          "observations": 986
+        },
+        "comparison_scope": "native nwk_queue_wait_s vs MATLAB enqueue_to_first_submit; native hop_admission_to_nsdp_release_completion_s vs MATLAB hop_service_to_ack_dack_or_failure, excluding DACK capacity hold",
+        "warning": "Native no_ack completions are not application terminal drops; receiver may accept despite missing sender feedback.",
+        "completion_endpoint_join": {
+          "counts": [
+            {
+              "node": 4,
+              "source": 4,
+              "hop_completion_reason": "ack",
+              "unique_delivered_by_stop": false,
+              "count": 4
+            },
+            {
+              "node": 4,
+              "source": 4,
+              "hop_completion_reason": "ack",
+              "unique_delivered_by_stop": true,
+              "count": 395
+            },
+            {
+              "node": 4,
+              "source": 4,
+              "hop_completion_reason": "dack",
+              "unique_delivered_by_stop": true,
+              "count": 20
+            },
+            {
+              "node": 4,
+              "source": 4,
+              "hop_completion_reason": "no_ack",
+              "unique_delivered_by_stop": false,
+              "count": 55
+            },
+            {
+              "node": 4,
+              "source": 4,
+              "hop_completion_reason": "no_ack",
+              "unique_delivered_by_stop": true,
+              "count": 11
+            }
+          ],
+          "no_ack_followed_by_unique_delivery": 11,
+          "all_first_deliveries_occurred_after_no_ack": true,
+          "delivered_after_no_ack_rows": [
+            {
+              "seed": "129",
+              "node": "4",
+              "peer": "5",
+              "source": "4",
+              "destination": "1",
+              "sequence": "2117",
+              "hop_sequence": "135",
+              "completion_s": "738.006000028",
+              "reason": "no_ack",
+              "resend_count": "2",
+              "capacity_released": "1",
+              "nsdp_released": "1",
+              "event_index": "436092",
+              "unique_delivered_by_stop": "True",
+              "first_delivery_s": "836.235811086",
+              "delivery_after_hop_completion": "True"
+            },
+            {
+              "seed": "129",
+              "node": "4",
+              "peer": "5",
+              "source": "4",
+              "destination": "1",
+              "sequence": "3487",
+              "hop_sequence": "244",
+              "completion_s": "1011.112000028",
+              "reason": "no_ack",
+              "resend_count": "2",
+              "capacity_released": "1",
+              "nsdp_released": "1",
+              "event_index": "714672",
+              "unique_delivered_by_stop": "True",
+              "first_delivery_s": "1122.053811086",
+              "delivery_after_hop_completion": "True"
+            },
+            {
+              "seed": "129",
+              "node": "4",
+              "peer": "5",
+              "source": "4",
+              "destination": "1",
+              "sequence": "8065",
+              "hop_sequence": "535",
+              "completion_s": "1729.607000028",
+              "reason": "no_ack",
+              "resend_count": "2",
+              "capacity_released": "1",
+              "nsdp_released": "1",
+              "event_index": "1355529",
+              "unique_delivered_by_stop": "True",
+              "first_delivery_s": "1818.268811086",
+              "delivery_after_hop_completion": "True"
+            },
+            {
+              "seed": "129",
+              "node": "4",
+              "peer": "5",
+              "source": "4",
+              "destination": "1",
+              "sequence": "8043",
+              "hop_sequence": "533",
+              "completion_s": "1733.416000028",
+              "reason": "no_ack",
+              "resend_count": "2",
+              "capacity_released": "1",
+              "nsdp_released": "1",
+              "event_index": "1358779",
+              "unique_delivered_by_stop": "True",
+              "first_delivery_s": "1833.192811086",
+              "delivery_after_hop_completion": "True"
+            },
+            {
+              "seed": "129",
+              "node": "4",
+              "peer": "5",
+              "source": "4",
+              "destination": "1",
+              "sequence": "12955",
+              "hop_sequence": "919",
+              "completion_s": "2710.485000028",
+              "reason": "no_ack",
+              "resend_count": "2",
+              "capacity_released": "1",
+              "nsdp_released": "1",
+              "event_index": "2226670",
+              "unique_delivered_by_stop": "True",
+              "first_delivery_s": "2802.446811086",
+              "delivery_after_hop_completion": "True"
+            },
+            {
+              "seed": "129",
+              "node": "4",
+              "peer": "5",
+              "source": "4",
+              "destination": "1",
+              "sequence": "14256",
+              "hop_sequence": "1031",
+              "completion_s": "2976.710000028",
+              "reason": "no_ack",
+              "resend_count": "2",
+              "capacity_released": "1",
+              "nsdp_released": "1",
+              "event_index": "2453725",
+              "unique_delivered_by_stop": "True",
+              "first_delivery_s": "3075.095811086",
+              "delivery_after_hop_completion": "True"
+            },
+            {
+              "seed": "129",
+              "node": "4",
+              "peer": "5",
+              "source": "4",
+              "destination": "1",
+              "sequence": "18040",
+              "hop_sequence": "1304",
+              "completion_s": "3688.891000028",
+              "reason": "no_ack",
+              "resend_count": "2",
+              "capacity_released": "1",
+              "nsdp_released": "1",
+              "event_index": "3040056",
+              "unique_delivered_by_stop": "True",
+              "first_delivery_s": "3797.167811086",
+              "delivery_after_hop_completion": "True"
+            },
+            {
+              "seed": "129",
+              "node": "4",
+              "peer": "5",
+              "source": "4",
+              "destination": "1",
+              "sequence": "18308",
+              "hop_sequence": "1318",
+              "completion_s": "3708.142000028",
+              "reason": "no_ack",
+              "resend_count": "2",
+              "capacity_released": "1",
+              "nsdp_released": "1",
+              "event_index": "3057035",
+              "unique_delivered_by_stop": "True",
+              "first_delivery_s": "3821.373811086",
+              "delivery_after_hop_completion": "True"
+            },
+            {
+              "seed": "129",
+              "node": "4",
+              "peer": "5",
+              "source": "4",
+              "destination": "1",
+              "sequence": "23622",
+              "hop_sequence": "1798",
+              "completion_s": "4752.486000028",
+              "reason": "no_ack",
+              "resend_count": "2",
+              "capacity_released": "1",
+              "nsdp_released": "1",
+              "event_index": "3970338",
+              "unique_delivered_by_stop": "True",
+              "first_delivery_s": "4847.164811086",
+              "delivery_after_hop_completion": "True"
+            },
+            {
+              "seed": "129",
+              "node": "4",
+              "peer": "5",
+              "source": "4",
+              "destination": "1",
+              "sequence": "25427",
+              "hop_sequence": "1935",
+              "completion_s": "5121.855000028",
+              "reason": "no_ack",
+              "resend_count": "2",
+              "capacity_released": "1",
+              "nsdp_released": "1",
+              "event_index": "4295955",
+              "unique_delivered_by_stop": "True",
+              "first_delivery_s": "5239.244811086",
+              "delivery_after_hop_completion": "True"
+            },
+            {
+              "seed": "129",
+              "node": "4",
+              "peer": "5",
+              "source": "4",
+              "destination": "1",
+              "sequence": "26830",
+              "hop_sequence": "2036",
+              "completion_s": "5346.157000028",
+              "reason": "no_ack",
+              "resend_count": "2",
+              "capacity_released": "1",
+              "nsdp_released": "1",
+              "event_index": "4492691",
+              "unique_delivered_by_stop": "True",
+              "first_delivery_s": "5513.232811086",
+              "delivery_after_hop_completion": "True"
+            }
+          ],
+          "scope": "Same native run and original source/destination/application sequence; no cross-engine identity join. Undelivered by stop does not classify terminal drops."
+        }
+      }
+    },
+    {
+      "seed": 130,
+      "matlab_source4": {
+        "source": 4,
+        "attempts": 285000,
+        "admitted": 512,
+        "blocked": 284488,
+        "delivered": 426,
+        "dropped": 62,
+        "pending": 24,
+        "blocked_reason_totals": {
+          "BlockedDiscovery": 0,
+          "BlockedTopology": 0,
+          "BlockedGatewayRoute": 0,
+          "BlockedDestination": 0,
+          "BlockedNsdp": 284488
+        },
+        "delivered_latency": {
+          "count": 426,
+          "minimum_s": 42.1058110860638,
+          "median_s": 270.471311086064,
+          "mean_s": 277.1538768137635,
+          "maximum_s": 427.591811086064
+        }
+      },
+      "native_source4": {
+        "source": 4,
+        "attempts": 285000,
+        "admitted": 549,
+        "blocked": 284451,
+        "delivered": 455,
+        "unique_delivered": 455,
+        "delivery_events": 455,
+        "duplicate_delivery_events": 0,
+        "unmatched_sends": 94,
+        "first_delivery_delay_s": {
+          "count": 455,
+          "mean": 260.9899231739121,
+          "min": 39.77881108600002,
+          "max": 604.1928110860001
+        }
+      },
+      "decomposition": {
+        "delivery_delta": -29,
+        "admission_delta": -37,
+        "matlab_undelivered": 86,
+        "native_undelivered": 94,
+        "undelivered_delta": -8,
+        "identity": "delivery_delta = admission_delta - undelivered_delta",
+        "delivered_residual_percent": -6.373626373626373,
+        "admitted_residual_percent": -6.739526411657559,
+        "matlab_delivery_fraction": 0.83203125,
+        "native_delivery_fraction": 0.8287795992714025,
+        "within_ten_percent_delivery_band": true
+      },
+      "hops": [
+        {
+          "node": 4,
+          "peer": 5,
+          "source": 2,
+          "local_at_node": false,
+          "episodes": 557,
+          "unique_applications": 557,
+          "completion_counts": {
+            "hop_ack": 462,
+            "hop_dack_expired": 14,
+            "hop_failed": 78,
+            "pending_at_stop": 3
+          },
+          "hop_sent_callbacks": 957,
+          "retry_requests": 418,
+          "retry_requests_per_episode": 0.7504488330341114,
+          "initial_admit_to_first_sent": {
+            "n": 557,
+            "mean_s": 2.76622168404488,
+            "median_s": 1.3517075277495678,
+            "maximum_s": 20.318707527752963
+          },
+          "retry_next_sent_wait": {
+            "n": 400,
+            "mean_s": 2.9279424722203227,
+            "median_s": 1.4449999722201028,
+            "maximum_s": 17.525999972221996
+          },
+          "retry_wait_completion_counts": {
+            "next_observed_hop_sent": 400,
+            "terminal_before_next_hop_sent": 15,
+            "censored_at_stop": 3
+          },
+          "capacity_retention_completed": {
+            "n": 554,
+            "mean_s": 8.139116537099511,
+            "median_s": 5.238999972219972,
+            "maximum_s": 48.524707555530995
+          },
+          "hop_service_to_ack_dack_or_failure": {
+            "n": 554,
+            "mean_s": 7.52539812484516,
+            "median_s": 4.965999972220061,
+            "maximum_s": 48.524707555530995
+          },
+          "capacity_retention_censored": {
+            "n": 3,
+            "mean_s": 9.300707527749788,
+            "median_s": 9.65170752774975,
+            "maximum_s": 9.65170752774975
+          },
+          "dack_hold_completed": {
+            "n": 14,
+            "mean_s": 24.285714313493624,
+            "median_s": 20.000000027779947,
+            "maximum_s": 40.000000027780516
+          },
+          "dack_hold_censored": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "failed_episodes_final_application_outcomes": {
+            "dropped": 77,
+            "delivered": 1
+          },
+          "failed_episodes_matching_final_application_drop_time": 77
+        },
+        {
+          "node": 4,
+          "peer": 5,
+          "source": 4,
+          "local_at_node": true,
+          "episodes": 497,
+          "unique_applications": 497,
+          "completion_counts": {
+            "hop_ack": 422,
+            "hop_dack_expired": 16,
+            "hop_failed": 58,
+            "pending_at_stop": 1
+          },
+          "hop_sent_callbacks": 860,
+          "retry_requests": 369,
+          "retry_requests_per_episode": 0.7424547283702213,
+          "initial_admit_to_first_sent": {
+            "n": 497,
+            "mean_s": 2.3344148818204205,
+            "median_s": 1.091707527750259,
+            "maximum_s": 18.966707527752988
+          },
+          "retry_next_sent_wait": {
+            "n": 363,
+            "mean_s": 2.3731569970136626,
+            "median_s": 1.0939999722195353,
+            "maximum_s": 17.92899997221957
+          },
+          "retry_wait_completion_counts": {
+            "next_observed_hop_sent": 363,
+            "terminal_before_next_hop_sent": 5,
+            "censored_at_stop": 1
+          },
+          "capacity_retention_completed": {
+            "n": 496,
+            "mean_s": 7.377652381996979,
+            "median_s": 4.835999972220975,
+            "maximum_s": 49.317707555531
+          },
+          "hop_service_to_ack_dack_or_failure": {
+            "n": 496,
+            "mean_s": 6.651845929487955,
+            "median_s": 4.523999972220281,
+            "maximum_s": 49.317707555531
+          },
+          "capacity_retention_censored": {
+            "n": 1,
+            "mean_s": 8.598707527749866,
+            "median_s": 8.598707527749866,
+            "maximum_s": 8.598707527749866
+          },
+          "dack_hold_completed": {
+            "n": 16,
+            "mean_s": 22.500000027779762,
+            "median_s": 20.000000027779606,
+            "maximum_s": 40.00000002778006
+          },
+          "dack_hold_censored": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "failed_episodes_final_application_outcomes": {
+            "dropped": 58
+          },
+          "failed_episodes_matching_final_application_drop_time": 58
+        },
+        {
+          "node": 4,
+          "peer": 5,
+          "source": 7,
+          "local_at_node": false,
+          "episodes": 669,
+          "unique_applications": 669,
+          "completion_counts": {
+            "hop_ack": 452,
+            "hop_dack_expired": 110,
+            "hop_failed": 106,
+            "pending_at_stop": 1
+          },
+          "hop_sent_callbacks": 1211,
+          "retry_requests": 556,
+          "retry_requests_per_episode": 0.8310911808669657,
+          "initial_admit_to_first_sent": {
+            "n": 668,
+            "mean_s": 2.5572783494413427,
+            "median_s": 1.31270752775049,
+            "maximum_s": 18.979707527752907
+          },
+          "retry_next_sent_wait": {
+            "n": 543,
+            "mean_s": 2.9413646131041875,
+            "median_s": 1.3669999722196735,
+            "maximum_s": 20.450999972222007
+          },
+          "retry_wait_completion_counts": {
+            "next_observed_hop_sent": 543,
+            "terminal_before_next_hop_sent": 13
+          },
+          "capacity_retention_completed": {
+            "n": 668,
+            "mean_s": 11.77064864853186,
+            "median_s": 7.663499972220052,
+            "maximum_s": 74.82700000000023
+          },
+          "hop_service_to_ack_dack_or_failure": {
+            "n": 668,
+            "mean_s": 7.848492955334658,
+            "median_s": 5.6549999722200255,
+            "maximum_s": 42.860999972221975
+          },
+          "capacity_retention_censored": {
+            "n": 1,
+            "mean_s": 7.129707527749815,
+            "median_s": 7.129707527749815,
+            "maximum_s": 7.129707527749815
+          },
+          "dack_hold_completed": {
+            "n": 110,
+            "mean_s": 23.818181845961195,
+            "median_s": 20.000000027779947,
+            "maximum_s": 40.000000027781084
+          },
+          "dack_hold_censored": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "failed_episodes_final_application_outcomes": {
+            "dropped": 106
+          },
+          "failed_episodes_matching_final_application_drop_time": 106
+        },
+        {
+          "node": 4,
+          "peer": 5,
+          "source": 8,
+          "local_at_node": false,
+          "episodes": 578,
+          "unique_applications": 578,
+          "completion_counts": {
+            "hop_ack": 470,
+            "hop_dack_expired": 27,
+            "hop_failed": 81
+          },
+          "hop_sent_callbacks": 1004,
+          "retry_requests": 439,
+          "retry_requests_per_episode": 0.759515570934256,
+          "initial_admit_to_first_sent": {
+            "n": 578,
+            "mean_s": 2.560782588881379,
+            "median_s": 1.254207527750168,
+            "maximum_s": 19.174707527749888
+          },
+          "retry_next_sent_wait": {
+            "n": 426,
+            "mean_s": 3.1536149956943764,
+            "median_s": 1.9454999722210573,
+            "maximum_s": 19.163999972221973
+          },
+          "retry_wait_completion_counts": {
+            "next_observed_hop_sent": 426,
+            "terminal_before_next_hop_sent": 13
+          },
+          "capacity_retention_completed": {
+            "n": 578,
+            "mean_s": 8.640409488365355,
+            "median_s": 5.303999972220879,
+            "maximum_s": 60.69599999999991
+          },
+          "hop_service_to_ack_dack_or_failure": {
+            "n": 578,
+            "mean_s": 7.567745127206123,
+            "median_s": 5.011499972220236,
+            "maximum_s": 41.17970755553097
+          },
+          "capacity_retention_censored": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "dack_hold_completed": {
+            "n": 27,
+            "mean_s": 22.962962990742067,
+            "median_s": 20.000000027779606,
+            "maximum_s": 40.00000002778006
+          },
+          "dack_hold_censored": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "failed_episodes_final_application_outcomes": {
+            "dropped": 80,
+            "delivered": 1
+          },
+          "failed_episodes_matching_final_application_drop_time": 80
+        },
+        {
+          "node": 5,
+          "peer": 1,
+          "source": 2,
+          "local_at_node": false,
+          "episodes": 471,
+          "unique_applications": 471,
+          "completion_counts": {
+            "hop_ack": 463,
+            "hop_failed": 6,
+            "pending_at_stop": 2
+          },
+          "hop_sent_callbacks": 584,
+          "retry_requests": 131,
+          "retry_requests_per_episode": 0.2781316348195329,
+          "initial_admit_to_first_sent": {
+            "n": 469,
+            "mean_s": 22.067314083044042,
+            "median_s": 19.912888886159635,
+            "maximum_s": 77.19618755552983
+          },
+          "retry_next_sent_wait": {
+            "n": 115,
+            "mean_s": 22.329669537437667,
+            "median_s": 19.137999972219404,
+            "maximum_s": 55.550999972220325
+          },
+          "retry_wait_completion_counts": {
+            "next_observed_hop_sent": 115,
+            "terminal_before_next_hop_sent": 16
+          },
+          "capacity_retention_completed": {
+            "n": 469,
+            "mean_s": 28.924078332538095,
+            "median_s": 23.555999972222025,
+            "maximum_s": 103.1608889139402
+          },
+          "hop_service_to_ack_dack_or_failure": {
+            "n": 469,
+            "mean_s": 28.924078332538095,
+            "median_s": 23.555999972222025,
+            "maximum_s": 103.1608889139402
+          },
+          "capacity_retention_censored": {
+            "n": 2,
+            "mean_s": 3.499888886160079,
+            "median_s": 3.499888886160079,
+            "maximum_s": 3.499888886160079
+          },
+          "dack_hold_completed": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "dack_hold_censored": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "failed_episodes_final_application_outcomes": {
+            "dropped": 6
+          },
+          "failed_episodes_matching_final_application_drop_time": 6
+        },
+        {
+          "node": 5,
+          "peer": 1,
+          "source": 4,
+          "local_at_node": false,
+          "episodes": 434,
+          "unique_applications": 434,
+          "completion_counts": {
+            "hop_ack": 425,
+            "hop_failed": 5,
+            "pending_at_stop": 4
+          },
+          "hop_sent_callbacks": 548,
+          "retry_requests": 134,
+          "retry_requests_per_episode": 0.3087557603686636,
+          "initial_admit_to_first_sent": {
+            "n": 433,
+            "mean_s": 22.56033761287879,
+            "median_s": 20.74488888615997,
+            "maximum_s": 58.769888886160516
+          },
+          "retry_next_sent_wait": {
+            "n": 115,
+            "mean_s": 21.973243450481288,
+            "median_s": 19.709999972219975,
+            "maximum_s": 71.59299997221979
+          },
+          "retry_wait_completion_counts": {
+            "next_observed_hop_sent": 115,
+            "terminal_before_next_hop_sent": 16,
+            "censored_at_stop": 3
+          },
+          "capacity_retention_completed": {
+            "n": 430,
+            "mean_s": 29.656920305657405,
+            "median_s": 25.707499972219807,
+            "maximum_s": 99.0209999722199
+          },
+          "hop_service_to_ack_dack_or_failure": {
+            "n": 430,
+            "mean_s": 29.656920305657405,
+            "median_s": 25.707499972219807,
+            "maximum_s": 99.0209999722199
+          },
+          "capacity_retention_censored": {
+            "n": 4,
+            "mean_s": 64.60313888615974,
+            "median_s": 62.526388886159566,
+            "maximum_s": 104.53588888616014
+          },
+          "dack_hold_completed": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "dack_hold_censored": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "failed_episodes_final_application_outcomes": {
+            "dropped": 4,
+            "delivered": 1
+          },
+          "failed_episodes_matching_final_application_drop_time": 4
+        },
+        {
+          "node": 5,
+          "peer": 1,
+          "source": 5,
+          "local_at_node": true,
+          "episodes": 1267,
+          "unique_applications": 1267,
+          "completion_counts": {
+            "hop_ack": 1251,
+            "hop_failed": 10,
+            "pending_at_stop": 6
+          },
+          "hop_sent_callbacks": 1580,
+          "retry_requests": 379,
+          "retry_requests_per_episode": 0.2991318074191002,
+          "initial_admit_to_first_sent": {
+            "n": 1261,
+            "mean_s": 22.39446558919102,
+            "median_s": 19.80888888615982,
+            "maximum_s": 77.90499999999975
+          },
+          "retry_next_sent_wait": {
+            "n": 319,
+            "mean_s": 23.844733514539968,
+            "median_s": 21.25699997222,
+            "maximum_s": 68.22599997222005
+          },
+          "retry_wait_completion_counts": {
+            "next_observed_hop_sent": 319,
+            "terminal_before_next_hop_sent": 60
+          },
+          "capacity_retention_completed": {
+            "n": 1261,
+            "mean_s": 29.80736340754107,
+            "median_s": 24.32299997222026,
+            "maximum_s": 115.73899997222202
+          },
+          "hop_service_to_ack_dack_or_failure": {
+            "n": 1261,
+            "mean_s": 29.80736340754107,
+            "median_s": 24.32299997222026,
+            "maximum_s": 115.73899997222202
+          },
+          "capacity_retention_censored": {
+            "n": 6,
+            "mean_s": 16.484722219493353,
+            "median_s": 16.161888886159886,
+            "maximum_s": 31.280888886160028
+          },
+          "dack_hold_completed": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "dack_hold_censored": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "failed_episodes_final_application_outcomes": {
+            "dropped": 10
+          },
+          "failed_episodes_matching_final_application_drop_time": 10
+        },
+        {
+          "node": 5,
+          "peer": 1,
+          "source": 7,
+          "local_at_node": false,
+          "episodes": 551,
+          "unique_applications": 551,
+          "completion_counts": {
+            "hop_ack": 543,
+            "hop_failed": 5,
+            "pending_at_stop": 3
+          },
+          "hop_sent_callbacks": 681,
+          "retry_requests": 157,
+          "retry_requests_per_episode": 0.2849364791288566,
+          "initial_admit_to_first_sent": {
+            "n": 549,
+            "mean_s": 22.963636242570292,
+            "median_s": 21.043888886158015,
+            "maximum_s": 63.891888886159904
+          },
+          "retry_next_sent_wait": {
+            "n": 132,
+            "mean_s": 24.03013633585658,
+            "median_s": 22.121499972219908,
+            "maximum_s": 71.78799997221995
+          },
+          "retry_wait_completion_counts": {
+            "next_observed_hop_sent": 132,
+            "terminal_before_next_hop_sent": 25
+          },
+          "capacity_retention_completed": {
+            "n": 548,
+            "mean_s": 30.117172861595996,
+            "median_s": 25.479999972219957,
+            "maximum_s": 106.5999999722203
+          },
+          "hop_service_to_ack_dack_or_failure": {
+            "n": 548,
+            "mean_s": 30.117172861595996,
+            "median_s": 25.479999972219957,
+            "maximum_s": 106.5999999722203
+          },
+          "capacity_retention_censored": {
+            "n": 3,
+            "mean_s": 12.435222219493275,
+            "median_s": 3.499888886160079,
+            "maximum_s": 33.555888886159664
+          },
+          "dack_hold_completed": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "dack_hold_censored": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "failed_episodes_final_application_outcomes": {
+            "dropped": 5
+          },
+          "failed_episodes_matching_final_application_drop_time": 5
+        },
+        {
+          "node": 5,
+          "peer": 1,
+          "source": 8,
+          "local_at_node": false,
+          "episodes": 488,
+          "unique_applications": 488,
+          "completion_counts": {
+            "hop_ack": 483,
+            "hop_failed": 3,
+            "pending_at_stop": 2
+          },
+          "hop_sent_callbacks": 608,
+          "retry_requests": 146,
+          "retry_requests_per_episode": 0.29918032786885246,
+          "initial_admit_to_first_sent": {
+            "n": 487,
+            "mean_s": 22.25858559800648,
+            "median_s": 20.679888886160143,
+            "maximum_s": 60.68088888615796
+          },
+          "retry_next_sent_wait": {
+            "n": 121,
+            "mean_s": 26.48966112924503,
+            "median_s": 25.416999972219855,
+            "maximum_s": 64.80699997221973
+          },
+          "retry_wait_completion_counts": {
+            "next_observed_hop_sent": 121,
+            "terminal_before_next_hop_sent": 24,
+            "censored_at_stop": 1
+          },
+          "capacity_retention_completed": {
+            "n": 486,
+            "mean_s": 30.253347637846797,
+            "median_s": 25.59049997222013,
+            "maximum_s": 111.98788891393997
+          },
+          "hop_service_to_ack_dack_or_failure": {
+            "n": 486,
+            "mean_s": 30.253347637846797,
+            "median_s": 25.59049997222013,
+            "maximum_s": 111.98788891393997
+          },
+          "capacity_retention_censored": {
+            "n": 2,
+            "mean_s": 24.897888886160217,
+            "median_s": 24.897888886160217,
+            "maximum_s": 46.295888886160355
+          },
+          "dack_hold_completed": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "dack_hold_censored": {
+            "n": 0,
+            "mean_s": null,
+            "median_s": null,
+            "maximum_s": null
+          },
+          "failed_episodes_final_application_outcomes": {
+            "dropped": 3
+          },
+          "failed_episodes_matching_final_application_drop_time": 3
+        }
+      ],
+      "custody": [
+        {
+          "node": 4,
+          "source": 2,
+          "local_at_node": false,
+          "episodes": 569,
+          "submitted": 557,
+          "released": 554,
+          "pending_at_stop": 15,
+          "enqueue_to_first_submit": {
+            "n": 557,
+            "mean_s": 186.5281011288362,
+            "median_s": 184.10847883989004,
+            "maximum_s": 308.93447883989006
+          },
+          "enqueue_to_release": {
+            "n": 554,
+            "mean_s": 193.93786904946987,
+            "median_s": 189.75483260376018,
+            "maximum_s": 313.66647881210497
+          },
+          "censored_enqueue_to_stop": {
+            "n": 15,
+            "mean_s": 137.77525303430667,
+            "median_s": 136.04018636763976,
+            "maximum_s": 220.77418636764014
+          }
+        },
+        {
+          "node": 4,
+          "source": 4,
+          "local_at_node": true,
+          "episodes": 512,
+          "submitted": 497,
+          "released": 496,
+          "pending_at_stop": 16,
+          "enqueue_to_first_submit": {
+            "n": 497,
+            "mean_s": 173.97305996727414,
+            "median_s": 161.88529247225006,
+            "maximum_s": 308.81329247225005
+          },
+          "enqueue_to_release": {
+            "n": 496,
+            "mean_s": 180.56085704090526,
+            "median_s": 165.96029244446981,
+            "maximum_s": 314.9550000277799
+          },
+          "censored_enqueue_to_stop": {
+            "n": 16,
+            "mean_s": 102.08249999999998,
+            "median_s": 103.84999999999991,
+            "maximum_s": 214.34000000000015
+          }
+        },
+        {
+          "node": 4,
+          "source": 7,
+          "local_at_node": false,
+          "episodes": 694,
+          "submitted": 669,
+          "released": 668,
+          "pending_at_stop": 26,
+          "enqueue_to_first_submit": {
+            "n": 669,
+            "mean_s": 190.66742008220604,
+            "median_s": 183.35447883988036,
+            "maximum_s": 309.5671864231999
+          },
+          "enqueue_to_release": {
+            "n": 668,
+            "mean_s": 198.49389348850224,
+            "median_s": 190.46333260376468,
+            "maximum_s": 313.3631863954149
+          },
+          "censored_enqueue_to_stop": {
+            "n": 26,
+            "mean_s": 96.79618636763962,
+            "median_s": 91.01468636764002,
+            "maximum_s": 212.5061863676401
+          }
+        },
+        {
+          "node": 4,
+          "source": 8,
+          "local_at_node": false,
+          "episodes": 594,
+          "submitted": 578,
+          "released": 578,
+          "pending_at_stop": 16,
+          "enqueue_to_first_submit": {
+            "n": 578,
+            "mean_s": 188.39107159882664,
+            "median_s": 179.91597883989016,
+            "maximum_s": 307.47847883988493
+          },
+          "enqueue_to_release": {
+            "n": 578,
+            "mean_s": 195.95881672603278,
+            "median_s": 187.6618326037651,
+            "maximum_s": 314.81918639541493
+          },
+          "censored_enqueue_to_stop": {
+            "n": 16,
+            "mean_s": 84.18562386763932,
+            "median_s": 73.84818636763976,
+            "maximum_s": 195.07318636764012
+          }
+        },
+        {
+          "node": 5,
+          "source": 2,
+          "local_at_node": false,
+          "episodes": 477,
+          "submitted": 471,
+          "released": 469,
+          "pending_at_stop": 8,
+          "enqueue_to_first_submit": {
+            "n": 471,
+            "mean_s": 69.7558731548508,
+            "median_s": 73.5072986693699,
+            "maximum_s": 127.74329866936978
+          },
+          "enqueue_to_release": {
+            "n": 469,
+            "mean_s": 98.6380648114208,
+            "median_s": 98.59729864158999,
+            "maximum_s": 199.1782986415899
+          },
+          "censored_enqueue_to_stop": {
+            "n": 8,
+            "mean_s": 56.16006255553009,
+            "median_s": 66.63318755553018,
+            "maximum_s": 83.24718755553022
+          }
+        },
+        {
+          "node": 5,
+          "source": 4,
+          "local_at_node": false,
+          "episodes": 438,
+          "submitted": 434,
+          "released": 430,
+          "pending_at_stop": 8,
+          "enqueue_to_first_submit": {
+            "n": 434,
+            "mean_s": 68.73835328073137,
+            "median_s": 71.51179866937014,
+            "maximum_s": 127.8472986693696
+          },
+          "enqueue_to_release": {
+            "n": 430,
+            "mean_s": 98.63422060602934,
+            "median_s": 97.74579864158977,
+            "maximum_s": 190.3571875833095
+          },
+          "censored_enqueue_to_stop": {
+            "n": 8,
+            "mean_s": 59.64081255553003,
+            "median_s": 49.408187555530276,
+            "maximum_s": 125.8611875555298
+          }
+        },
+        {
+          "node": 5,
+          "source": 5,
+          "local_at_node": true,
+          "episodes": 1277,
+          "submitted": 1267,
+          "released": 1261,
+          "pending_at_stop": 16,
+          "enqueue_to_first_submit": {
+            "n": 1267,
+            "mean_s": 41.84120643939476,
+            "median_s": 33.51611111384,
+            "maximum_s": 128.56411111384023
+          },
+          "enqueue_to_release": {
+            "n": 1261,
+            "mean_s": 71.53518013397257,
+            "median_s": 69.01811108605943,
+            "maximum_s": 189.45800002777798
+          },
+          "censored_enqueue_to_stop": {
+            "n": 16,
+            "mean_s": 60.799999999999955,
+            "median_s": 73.35999999999967,
+            "maximum_s": 87.38000000000011
+          }
+        },
+        {
+          "node": 5,
+          "source": 7,
+          "local_at_node": false,
+          "episodes": 562,
+          "submitted": 551,
+          "released": 548,
+          "pending_at_stop": 14,
+          "enqueue_to_first_submit": {
+            "n": 551,
+            "mean_s": 72.05270466089598,
+            "median_s": 74.69029866937035,
+            "maximum_s": 125.48129866937006
+          },
+          "enqueue_to_release": {
+            "n": 548,
+            "mean_s": 102.17707317573026,
+            "median_s": 101.56779864159,
+            "maximum_s": 189.72018758330978
+          },
+          "censored_enqueue_to_stop": {
+            "n": 14,
+            "mean_s": 44.6028304126729,
+            "median_s": 43.753187555530076,
+            "maximum_s": 90.93018755553021
+          }
+        },
+        {
+          "node": 5,
+          "source": 8,
+          "local_at_node": false,
+          "episodes": 498,
+          "submitted": 488,
+          "released": 486,
+          "pending_at_stop": 12,
+          "enqueue_to_first_submit": {
+            "n": 488,
+            "mean_s": 70.38339846717908,
+            "median_s": 72.35679866936994,
+            "maximum_s": 130.0962986693703
+          },
+          "enqueue_to_release": {
+            "n": 486,
+            "mean_s": 100.64887408773292,
+            "median_s": 98.89629864159019,
+            "maximum_s": 180.90029864158987
+          },
+          "censored_enqueue_to_stop": {
+            "n": 12,
+            "mean_s": 46.50052088886332,
+            "median_s": 57.20168755553004,
+            "maximum_s": 102.68218755552971
+          }
+        }
+      ],
+      "ownership": [
+        {
+          "node": 4,
+          "source": 2,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 0.7561621140227298,
+            "mean_active_300_to_6000s": 0.7959601200239261,
+            "peak_count": 7,
+            "end_count": 3
+          },
+          "nwk_custody": {
+            "mean_6000s": 18.25136804148682,
+            "mean_active_300_to_6000s": 19.211966359459808,
+            "peak_count": 36,
+            "end_count": 15
+          }
+        },
+        {
+          "node": 4,
+          "source": 3,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 0.0,
+            "mean_active_300_to_6000s": 0.0,
+            "peak_count": 0,
+            "end_count": 0
+          },
+          "nwk_custody": {
+            "mean_6000s": 0.0,
+            "mean_active_300_to_6000s": 0.0,
+            "peak_count": 0,
+            "end_count": 0
+          }
+        },
+        {
+          "node": 4,
+          "source": 4,
+          "local_at_node": true,
+          "hop_data_capacity": {
+            "mean_6000s": 0.6113190481663752,
+            "mean_active_300_to_6000s": 0.6434937349119739,
+            "peak_count": 6,
+            "end_count": 1
+          },
+          "nwk_custody": {
+            "mean_6000s": 15.198584182048167,
+            "mean_active_300_to_6000s": 15.998509665313861,
+            "peak_count": 16,
+            "end_count": 16
+          }
+        },
+        {
+          "node": 4,
+          "source": 5,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 0.0,
+            "mean_active_300_to_6000s": 0.0,
+            "peak_count": 0,
+            "end_count": 0
+          },
+          "nwk_custody": {
+            "mean_6000s": 0.0,
+            "mean_active_300_to_6000s": 0.0,
+            "peak_count": 0,
+            "end_count": 0
+          }
+        },
+        {
+          "node": 4,
+          "source": 7,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 1.3116538341245054,
+            "mean_active_300_to_6000s": 1.380688246446848,
+            "peak_count": 7,
+            "end_count": 1
+          },
+          "nwk_custody": {
+            "mean_6000s": 22.51843694931302,
+            "mean_active_300_to_6000s": 23.70361784138213,
+            "peak_count": 44,
+            "end_count": 26
+          }
+        },
+        {
+          "node": 4,
+          "source": 8,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 0.8323594473791958,
+            "mean_active_300_to_6000s": 0.8761678393465219,
+            "peak_count": 10,
+            "end_count": 0
+          },
+          "nwk_custody": {
+            "mean_6000s": 19.10186100825486,
+            "mean_active_300_to_6000s": 20.107222113952485,
+            "peak_count": 41,
+            "end_count": 16
+          }
+        },
+        {
+          "node": 5,
+          "source": 2,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 2.2620654192887812,
+            "mean_active_300_to_6000s": 2.3811214939881906,
+            "peak_count": 11,
+            "end_count": 2
+          },
+          "nwk_custody": {
+            "mean_6000s": 7.785088816166765,
+            "mean_active_300_to_6000s": 8.194830332807122,
+            "peak_count": 19,
+            "end_count": 8
+          }
+        },
+        {
+          "node": 5,
+          "source": 3,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 0.0,
+            "mean_active_300_to_6000s": 0.0,
+            "peak_count": 0,
+            "end_count": 0
+          },
+          "nwk_custody": {
+            "mean_6000s": 0.0,
+            "mean_active_300_to_6000s": 0.0,
+            "peak_count": 0,
+            "end_count": 0
+          }
+        },
+        {
+          "node": 5,
+          "source": 4,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 2.168481381162887,
+            "mean_active_300_to_6000s": 2.28261198017146,
+            "peak_count": 10,
+            "end_count": 4
+          },
+          "nwk_custody": {
+            "mean_6000s": 7.148306893506144,
+            "mean_active_300_to_6000s": 7.5245335721117295,
+            "peak_count": 20,
+            "end_count": 8
+          }
+        },
+        {
+          "node": 5,
+          "source": 5,
+          "local_at_node": true,
+          "hop_data_capacity": {
+            "mean_6000s": 6.280998931704375,
+            "mean_active_300_to_6000s": 6.61157782284671,
+            "peak_count": 16,
+            "end_count": 6
+          },
+          "nwk_custody": {
+            "mean_6000s": 15.196443691489902,
+            "mean_active_300_to_6000s": 15.996256517357793,
+            "peak_count": 16,
+            "end_count": 16
+          }
+        },
+        {
+          "node": 5,
+          "source": 7,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 2.7569193991355143,
+            "mean_active_300_to_6000s": 2.9020204201426467,
+            "peak_count": 9,
+            "end_count": 3
+          },
+          "nwk_custody": {
+            "mean_6000s": 9.436245954346267,
+            "mean_active_300_to_6000s": 9.932890478259228,
+            "peak_count": 24,
+            "end_count": 14
+          }
+        },
+        {
+          "node": 5,
+          "source": 8,
+          "local_at_node": false,
+          "hop_data_capacity": {
+            "mean_6000s": 2.4588204549609776,
+            "mean_active_300_to_6000s": 2.5882320578536606,
+            "peak_count": 9,
+            "end_count": 2
+          },
+          "nwk_custody": {
+            "mean_6000s": 8.245559842884093,
+            "mean_active_300_to_6000s": 8.679536676720097,
+            "peak_count": 19,
+            "end_count": 12
+          }
+        }
+      ],
+      "flow_timeline": [
+        {
+          "source": 4,
+          "start_s": 0.0,
+          "end_s": 300.0,
+          "attempts": 0,
+          "admitted": 0,
+          "blocked": 0,
+          "delivery_events": 0,
+          "drop_events": 0,
+          "delivered_at_end": 0,
+          "dropped_at_end": 0,
+          "pending_at_end": 0
+        },
+        {
+          "source": 4,
+          "start_s": 300.0,
+          "end_s": 600.0,
+          "attempts": 15000,
+          "admitted": 61,
+          "blocked": 14939,
+          "delivery_events": 33,
+          "drop_events": 4,
+          "delivered_at_end": 33,
+          "dropped_at_end": 4,
+          "pending_at_end": 24
+        },
+        {
+          "source": 4,
+          "start_s": 600.0,
+          "end_s": 900.0,
+          "attempts": 15000,
+          "admitted": 27,
+          "blocked": 14973,
+          "delivery_events": 20,
+          "drop_events": 2,
+          "delivered_at_end": 53,
+          "dropped_at_end": 6,
+          "pending_at_end": 29
+        },
+        {
+          "source": 4,
+          "start_s": 900.0,
+          "end_s": 1200.0,
+          "attempts": 15000,
+          "admitted": 16,
+          "blocked": 14984,
+          "delivery_events": 19,
+          "drop_events": 2,
+          "delivered_at_end": 72,
+          "dropped_at_end": 8,
+          "pending_at_end": 24
+        },
+        {
+          "source": 4,
+          "start_s": 1200.0,
+          "end_s": 1500.0,
+          "attempts": 15000,
+          "admitted": 16,
+          "blocked": 14984,
+          "delivery_events": 13,
+          "drop_events": 2,
+          "delivered_at_end": 85,
+          "dropped_at_end": 10,
+          "pending_at_end": 25
+        },
+        {
+          "source": 4,
+          "start_s": 1500.0,
+          "end_s": 1800.0,
+          "attempts": 15000,
+          "admitted": 26,
+          "blocked": 14974,
+          "delivery_events": 18,
+          "drop_events": 0,
+          "delivered_at_end": 103,
+          "dropped_at_end": 10,
+          "pending_at_end": 33
+        },
+        {
+          "source": 4,
+          "start_s": 1800.0,
+          "end_s": 2100.0,
+          "attempts": 15000,
+          "admitted": 16,
+          "blocked": 14984,
+          "delivery_events": 28,
+          "drop_events": 2,
+          "delivered_at_end": 131,
+          "dropped_at_end": 12,
+          "pending_at_end": 19
+        },
+        {
+          "source": 4,
+          "start_s": 2100.0,
+          "end_s": 2400.0,
+          "attempts": 15000,
+          "admitted": 28,
+          "blocked": 14972,
+          "delivery_events": 21,
+          "drop_events": 6,
+          "delivered_at_end": 152,
+          "dropped_at_end": 18,
+          "pending_at_end": 20
+        },
+        {
+          "source": 4,
+          "start_s": 2400.0,
+          "end_s": 2700.0,
+          "attempts": 15000,
+          "admitted": 28,
+          "blocked": 14972,
+          "delivery_events": 24,
+          "drop_events": 5,
+          "delivered_at_end": 176,
+          "dropped_at_end": 23,
+          "pending_at_end": 19
+        },
+        {
+          "source": 4,
+          "start_s": 2700.0,
+          "end_s": 3000.0,
+          "attempts": 15000,
+          "admitted": 32,
+          "blocked": 14968,
+          "delivery_events": 17,
+          "drop_events": 3,
+          "delivered_at_end": 193,
+          "dropped_at_end": 26,
+          "pending_at_end": 31
+        },
+        {
+          "source": 4,
+          "start_s": 3000.0,
+          "end_s": 3300.0,
+          "attempts": 15000,
+          "admitted": 19,
+          "blocked": 14981,
+          "delivery_events": 29,
+          "drop_events": 2,
+          "delivered_at_end": 222,
+          "dropped_at_end": 28,
+          "pending_at_end": 19
+        },
+        {
+          "source": 4,
+          "start_s": 3300.0,
+          "end_s": 3600.0,
+          "attempts": 15000,
+          "admitted": 23,
+          "blocked": 14977,
+          "delivery_events": 14,
+          "drop_events": 3,
+          "delivered_at_end": 236,
+          "dropped_at_end": 31,
+          "pending_at_end": 25
+        },
+        {
+          "source": 4,
+          "start_s": 3600.0,
+          "end_s": 3900.0,
+          "attempts": 15000,
+          "admitted": 26,
+          "blocked": 14974,
+          "delivery_events": 24,
+          "drop_events": 6,
+          "delivered_at_end": 260,
+          "dropped_at_end": 37,
+          "pending_at_end": 21
+        },
+        {
+          "source": 4,
+          "start_s": 3900.0,
+          "end_s": 4200.0,
+          "attempts": 15000,
+          "admitted": 34,
+          "blocked": 14966,
+          "delivery_events": 23,
+          "drop_events": 3,
+          "delivered_at_end": 283,
+          "dropped_at_end": 40,
+          "pending_at_end": 29
+        },
+        {
+          "source": 4,
+          "start_s": 4200.0,
+          "end_s": 4500.0,
+          "attempts": 15000,
+          "admitted": 34,
+          "blocked": 14966,
+          "delivery_events": 30,
+          "drop_events": 5,
+          "delivered_at_end": 313,
+          "dropped_at_end": 45,
+          "pending_at_end": 28
+        },
+        {
+          "source": 4,
+          "start_s": 4500.0,
+          "end_s": 4800.0,
+          "attempts": 15000,
+          "admitted": 26,
+          "blocked": 14974,
+          "delivery_events": 21,
+          "drop_events": 4,
+          "delivered_at_end": 334,
+          "dropped_at_end": 49,
+          "pending_at_end": 29
+        },
+        {
+          "source": 4,
+          "start_s": 4800.0,
+          "end_s": 5100.0,
+          "attempts": 15000,
+          "admitted": 32,
+          "blocked": 14968,
+          "delivery_events": 34,
+          "drop_events": 2,
+          "delivered_at_end": 368,
+          "dropped_at_end": 51,
+          "pending_at_end": 25
+        },
+        {
+          "source": 4,
+          "start_s": 5100.0,
+          "end_s": 5400.0,
+          "attempts": 15000,
+          "admitted": 17,
+          "blocked": 14983,
+          "delivery_events": 23,
+          "drop_events": 2,
+          "delivered_at_end": 391,
+          "dropped_at_end": 53,
+          "pending_at_end": 17
+        },
+        {
+          "source": 4,
+          "start_s": 5400.0,
+          "end_s": 5700.0,
+          "attempts": 15000,
+          "admitted": 31,
+          "blocked": 14969,
+          "delivery_events": 14,
+          "drop_events": 5,
+          "delivered_at_end": 405,
+          "dropped_at_end": 58,
+          "pending_at_end": 29
+        },
+        {
+          "source": 4,
+          "start_s": 5700.0,
+          "end_s": 6000.0,
+          "attempts": 15000,
+          "admitted": 20,
+          "blocked": 14980,
+          "delivery_events": 21,
+          "drop_events": 4,
+          "delivered_at_end": 426,
+          "dropped_at_end": 62,
+          "pending_at_end": 24
+        }
+      ],
+      "source4_hop_failures_by_link": {
+        "4->5": 58,
+        "5->1": 5
+      },
+      "source4_final_drop_reasons": {
+        "retry_exhausted": 62
+      },
+      "all_source4_final_drops_matched_to_hop_failure": true,
+      "node4_hop_failures_all_sources": {
+        "4": 58,
+        "2": 78,
+        "7": 106,
+        "8": 81
+      },
+      "native_node4_source4": {
+        "original_trace_hashes": {
+          "manifest_sha256": "11a9af7a7292e334346ea210c77651b0d51b604cd3631bb46714792ee6022879",
+          "trace_gzip_sha256": "404b719dcb8c2762cb60a2f60eb2489b0b5c41f198baa25b3fe93630c1b07930",
+          "trace_raw_sha256": "085701085c5d4065f7b7331f584dcf53f1b878f92da8f761b2c078637dc16af0",
+          "trace_raw_bytes": 1519621530,
+          "rows": 6289655,
+          "last_event_time_s": 5999.98
+        },
+        "events": [
+          {
+            "node": 4,
+            "source": 4,
+            "event": "hop_admission",
+            "reason": "admitted",
+            "count": 533
+          },
+          {
+            "node": 4,
+            "source": 4,
+            "event": "hop_capacity_release",
+            "reason": "dack_expiry",
+            "count": 8
+          },
+          {
+            "node": 4,
+            "source": 4,
+            "event": "hop_completion",
+            "reason": "ack",
+            "count": 463
+          },
+          {
+            "node": 4,
+            "source": 4,
+            "event": "hop_completion",
+            "reason": "dack",
+            "count": 10
+          },
+          {
+            "node": 4,
+            "source": 4,
+            "event": "hop_completion",
+            "reason": "no_ack",
+            "count": 60
+          },
+          {
+            "node": 4,
+            "source": 4,
+            "event": "nwk_admission",
+            "reason": "admitted",
+            "count": 533
+          },
+          {
+            "node": 4,
+            "source": 4,
+            "event": "nwk_admission",
+            "reason": "neighbor_flow_full",
+            "count": 94546
+          },
+          {
+            "node": 4,
+            "source": 4,
+            "event": "nwk_enqueue",
+            "reason": "local",
+            "count": 549
+          },
+          {
+            "node": 4,
+            "source": 4,
+            "event": "nwk_forward",
+            "reason": "local",
+            "count": 533
+          },
+          {
+            "node": 4,
+            "source": 4,
+            "event": "nwk_nsdp_release",
+            "reason": "hop_feedback",
+            "count": 533
+          }
+        ],
+        "residence": {
+          "node": 4,
+          "source": 4,
+          "nwk_queue_wait_s": {
+            "count": 533,
+            "mean": 164.78572194154597,
+            "p50": 130.3552924720002,
+            "p90": 342.700292472,
+            "max": 498.1922924720002
+          },
+          "hop_admission_to_nsdp_release_completion_s": {
+            "count": 533,
+            "mean": 5.3756370222288945,
+            "p50": 3.7179999720001433,
+            "p90": 12.427999971999725,
+            "max": 21.536707555999783
+          },
+          "enqueue_to_nsdp_release_completion_s": {
+            "count": 533,
+            "mean": 170.16135896377486,
+            "p50": 135.39829244400016,
+            "p90": 348.875292444,
+            "max": 514.7562924439999
+          }
+        },
+        "nsdp": {
+          "node": 4,
+          "source": 4,
+          "destination": 1,
+          "last": 16,
+          "maximum": 16,
+          "time_weighted_mean_300_6000": 15.998421811875772,
+          "seconds_at_or_above_16_300_6000": 5693.727413048004,
+          "observations": 1082
+        },
+        "comparison_scope": "native nwk_queue_wait_s vs MATLAB enqueue_to_first_submit; native hop_admission_to_nsdp_release_completion_s vs MATLAB hop_service_to_ack_dack_or_failure, excluding DACK capacity hold",
+        "warning": "Native no_ack completions are not application terminal drops; receiver may accept despite missing sender feedback.",
+        "completion_endpoint_join": {
+          "counts": [
+            {
+              "node": 4,
+              "source": 4,
+              "hop_completion_reason": "ack",
+              "unique_delivered_by_stop": false,
+              "count": 17
+            },
+            {
+              "node": 4,
+              "source": 4,
+              "hop_completion_reason": "ack",
+              "unique_delivered_by_stop": true,
+              "count": 446
+            },
+            {
+              "node": 4,
+              "source": 4,
+              "hop_completion_reason": "dack",
+              "unique_delivered_by_stop": false,
+              "count": 3
+            },
+            {
+              "node": 4,
+              "source": 4,
+              "hop_completion_reason": "dack",
+              "unique_delivered_by_stop": true,
+              "count": 7
+            },
+            {
+              "node": 4,
+              "source": 4,
+              "hop_completion_reason": "no_ack",
+              "unique_delivered_by_stop": false,
+              "count": 58
+            },
+            {
+              "node": 4,
+              "source": 4,
+              "hop_completion_reason": "no_ack",
+              "unique_delivered_by_stop": true,
+              "count": 2
+            }
+          ],
+          "no_ack_followed_by_unique_delivery": 2,
+          "all_first_deliveries_occurred_after_no_ack": true,
+          "delivered_after_no_ack_rows": [
+            {
+              "seed": "130",
+              "node": "4",
+              "peer": "5",
+              "source": "4",
+              "destination": "1",
+              "sequence": "2486",
+              "hop_sequence": "164",
+              "completion_s": "692.792000028",
+              "reason": "no_ack",
+              "resend_count": "2",
+              "capacity_released": "1",
+              "nsdp_released": "1",
+              "event_index": "426486",
+              "unique_delivered_by_stop": "True",
+              "first_delivery_s": "791.801811086",
+              "delivery_after_hop_completion": "True"
+            },
+            {
+              "seed": "130",
+              "node": "4",
+              "peer": "5",
+              "source": "4",
+              "destination": "1",
+              "sequence": "18271",
+              "hop_sequence": "1166",
+              "completion_s": "3625.204000028",
+              "reason": "no_ack",
+              "resend_count": "2",
+              "capacity_released": "1",
+              "nsdp_released": "1",
+              "event_index": "3621204",
+              "unique_delivered_by_stop": "True",
+              "first_delivery_s": "3747.780811086",
+              "delivery_after_hop_completion": "True"
+            }
+          ],
+          "scope": "Same native run and original source/destination/application sequence; no cross-engine identity join. Undelivered by stop does not classify terminal drops."
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "Finite-stop unique application deliveries; source identifiers never mean transmitter identifiers.",
+    "Native unmatched sends combine pending and lost applications unless separately attributed from native traces.",
+    "No cross-engine packet identity joins; identical seed numbers do not imply common RNG event histories.",
+    "MATLAB retry waits pair a request to the next observed owned hop_sent callback; not unique queued-retry lineage.",
+    "Completed waits are conditional on the corresponding completion; pending observations are right-censored at 6000 seconds.",
+    "Application drop callbacks can later be superseded by relay acceptance; endpoint outcomes take precedence.",
+    "Differences are descriptive decompositions and do not establish a causal model bug."
+  ],
+  "pooled_deliveries": {
+    "matlab": 1172,
+    "native": 1300,
+    "residual_percent": -9.846153846153847,
+    "within_ten_percent": true,
+    "scope": "ratio of three-seed sums; does not replace individual-seed gate"
+  }
+}

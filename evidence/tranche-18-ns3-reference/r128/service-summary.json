@@ -1,0 +1,159 @@
+{
+  "schema": "csr-tranche18-native-service-summary-v1",
+  "status": "passed",
+  "rows": 164945,
+  "max_records": 2000000,
+  "omitted_records": 0,
+  "window_s": [
+    0,
+    600
+  ],
+  "stop_endpoint": "exclusive",
+  "event_counts": {
+    "ack_queue_enqueue_after": 61,
+    "ack_queue_replace_after": 484,
+    "ack_queue_replace_before": 484,
+    "app_admission": 15000,
+    "app_send": 278,
+    "hop_admission": 537,
+    "hop_capacity_release": 178,
+    "hop_completion": 510,
+    "hop_feedback": 511,
+    "hop_retry": 17,
+    "mac_cancel_begin": 767,
+    "mac_cancel_end": 767,
+    "mac_cancel_frame_after": 6,
+    "mac_cancel_frame_before": 6,
+    "mac_holdoff_expired": 8,
+    "mac_holdoff_schedule_before": 763,
+    "mac_idle_rts_schedule": 3,
+    "mac_prepare_after": 1269,
+    "mac_receive_state_after": 5162,
+    "mac_receive_state_before": 5162,
+    "mac_schedule_request": 1152,
+    "mac_slot_tick": 80889,
+    "mac_state": 7694,
+    "mac_sync_change_before": 3808,
+    "nwk_admission": 4951,
+    "nwk_delivery": 248,
+    "nwk_enqueue": 541,
+    "nwk_forward": 537,
+    "nwk_nsdp_release": 510,
+    "reservation_advertise": 1266,
+    "reservation_holdoff": 8,
+    "reservation_prepare": 1269,
+    "reservation_tick": 21862,
+    "route_change": 14,
+    "rx_accept": 1818,
+    "rx_drop": 714,
+    "scenario_link": 3,
+    "scenario_node": 3,
+    "statistic_sample": 4419,
+    "tx_start": 1266
+  },
+  "forwarding": [
+    {
+      "src": "4",
+      "dst": "1",
+      "node": "4",
+      "ingress_peer": "",
+      "next_hop": "5",
+      "kind": "local",
+      "count": 274
+    },
+    {
+      "src": "4",
+      "dst": "1",
+      "node": "5",
+      "ingress_peer": "4",
+      "next_hop": "1",
+      "kind": "relay",
+      "count": 263
+    }
+  ],
+  "completions": [
+    {
+      "src": "4",
+      "dst": "1",
+      "node": "4",
+      "peer": "5",
+      "reason": "ack",
+      "count": 79
+    },
+    {
+      "src": "4",
+      "dst": "1",
+      "node": "4",
+      "peer": "5",
+      "reason": "dack",
+      "count": 183
+    },
+    {
+      "src": "4",
+      "dst": "1",
+      "node": "5",
+      "peer": "1",
+      "reason": "ack",
+      "count": 246
+    },
+    {
+      "src": "4",
+      "dst": "1",
+      "node": "5",
+      "peer": "1",
+      "reason": "no_ack",
+      "count": 2
+    }
+  ],
+  "retry_submissions": [
+    {
+      "src": "4",
+      "dst": "1",
+      "node": "4",
+      "peer": "5",
+      "count": 11
+    },
+    {
+      "src": "4",
+      "dst": "1",
+      "node": "5",
+      "peer": "1",
+      "count": 6
+    }
+  ],
+  "blocked_admission_observations": [
+    {
+      "src": "4",
+      "dst": "1",
+      "node": "4",
+      "peer": "",
+      "reason": "global_hop_full",
+      "count": 489
+    },
+    {
+      "src": "4",
+      "dst": "1",
+      "node": "4",
+      "peer": "5",
+      "reason": "neighbor_flow_full",
+      "count": 2786
+    },
+    {
+      "src": "4",
+      "dst": "1",
+      "node": "5",
+      "peer": "",
+      "reason": "global_hop_full",
+      "count": 278
+    },
+    {
+      "src": "4",
+      "dst": "1",
+      "node": "5",
+      "peer": "1",
+      "reason": "neighbor_flow_full",
+      "count": 861
+    }
+  ],
+  "scope": "Callback observations. Retry means MAC submission, not OTA. DACK is not application loss; no_ack is a custody completion, not proven end-to-end loss. NSDP release has no packet sequence. Finite-horizon unmatched lifetimes are censored."
+}

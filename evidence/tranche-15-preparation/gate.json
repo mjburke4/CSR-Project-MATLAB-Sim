@@ -1,0 +1,77 @@
+{
+  "Schema": "csr-tranche15-python-gate-preparation-v1",
+  "Status": "prepared_for_owner_matlab_execution",
+  "MATLABExecuted": false,
+  "NativeExecuted": false,
+  "OwnerT15EvidenceAvailable": false,
+  "NumericalParityEstablished": false,
+  "AcceptanceEstablished": false,
+  "PythonTests": {
+    "Passed": 28,
+    "Failed": 0,
+    "Log": "tests.log",
+    "LogSHA256": "45cde5eda866d46995351c1816afce0571551f57254bd850e0c752fdab6453b6"
+  },
+  "CandidateSHA256": "be665c0c733f2e71766cb3b066ca789ea6a2a3de1d8a198ccb0b0a5fe00a16f0",
+  "PlanSHA256": "d108193eec32f9767c5104a7e70e0db3413e4a1bd0e15ef7cb7e19a172e1ae4f",
+  "Baseline": {
+    "source_files": 285,
+    "matlab_files": 144,
+    "unchanged": true,
+    "snapshot_sha256": "3073c350f5fb999017a0a3a4f8ea168e1340a5ea183638eb14ea9fb4ba30030e",
+    "accepted_core": {
+      "source_files": 225,
+      "matlab_files": 124,
+      "unchanged": true
+    }
+  },
+  "NativeReferenceReverified": {
+    "source_pin": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+    "engine_pin": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+    "artifact_count": 47,
+    "event_count": 9962,
+    "draw_count": 1475,
+    "checkpoint_count": 264,
+    "disabled_seam_checkpoints": 255,
+    "self_tests": 25,
+    "dropped_groups": {
+      "ok": 0,
+      "data": 2,
+      "ack": 2,
+      "out": 2
+    },
+    "outcomes": {
+      "admitted": 384,
+      "delivered": 384,
+      "terminal_owners": 576,
+      "failed_identities": 0,
+      "delivered_with_failed_retirement": 0,
+      "genuine_undelivered_identities": 0,
+      "unexplained": 0
+    },
+    "scope": "Instrumented native fixture; controlled whole-addressed-group loss; no RF/campus parity claim"
+  },
+  "FileBindings": [
+    {
+      "Path": "scripts/analyze_tranche15_return.py",
+      "SHA256": "9334ef50efa55466decf04bcff53a0164a197137093cd4d4a384b6242a53f442",
+      "Bytes": 33678
+    },
+    {
+      "Path": "scripts/tests/test_tranche15_return.py",
+      "SHA256": "ec1b251e35e46f5b2c038c9f96299992f54f35743f72ce1a6e55904ea1f95670",
+      "Bytes": 12566
+    }
+  ],
+  "Checks": [
+    "Fresh T15 execution identity, closed inventory, source/reference before-after membership and hashes, exact source-selected117MATLABtests",
+    "Original T13 structural gate perbranch:528checks total",
+    "All8percase evidence families and case results reconstruct branch outputs",
+    "Continuous branch exactly matches parsedcells in all6reviewedT13owner tables",
+    "Binary64 decimal/hex selfconsistency, exact component ns rounding/integer sum and chosenbranchpolicy",
+    "Source airtime recomputation from segment byte accounting/preamble/exact operational rate",
+    "One timing record per emitted aggregate, fullprecision actual TX and allpassed/dropped arrival events close one-to-one",
+    "Application identity and hop retry/retirementmetrics, actualrelease node/source times/state; release app_id0 never mislabelledperapplication",
+    "Strictzerotolerance native comparison remains separate from inherited1ns comparison and functionalmetrics"
+  ]
+}

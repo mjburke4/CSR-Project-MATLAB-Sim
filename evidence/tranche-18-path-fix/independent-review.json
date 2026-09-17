@@ -1,0 +1,34 @@
+{
+  "schema": "csr-tranche18-path-repair-independent-review-v1",
+  "reviewed_utc": "2026-09-16T13:05:24.557684+00:00",
+  "status": "passed_static_review_matlab_rerun_pending",
+  "reviewer": "t18_path_repair_audit",
+  "matlab_executed_by_reviewer": false,
+  "original_candidate_sha256": "582802501a94338cc3e70e1cb79d7f66f9b83aa6fcc5dc10508003a7d1f4d892",
+  "reviewed_source": {
+    "path": "+csr/+scenario/tranche18Suite.m",
+    "sha256": "4591c50a5b1860aad5ed4afd3c85bdab5c6ab958b05522a43b9f1863c0327b08"
+  },
+  "freeze_script_sha256": "ea46a6a5232a9f6f0c18634bf325294cc738d272cccc4812f417192e26532809",
+  "changed_candidate_source_paths": [
+    "+csr/+scenario/tranche18Suite.m"
+  ],
+  "candidate_bound_source_membership_unchanged": true,
+  "original_return_source_entries_verified": 346,
+  "original_return_reference_entries_verified": 731,
+  "baseline_sources_unchanged": 313,
+  "baseline_matlab_sources_unchanged": 160,
+  "retained_reference_entries_unchanged": 731,
+  "prepared_matlab_test_names_unchanged": 186,
+  "all_ten_canonical_paths_satisfy_exact_guard": true,
+  "findings": [
+    "Original regex rejects the valid internal period in every shipped .recipe.json basename.",
+    "Exact scenario and recipe string comparisons bind the existing frozen case keys, accept all ten shipped paths, and preserve the reference-directory equality.",
+    "checkedPath traversal validation and existing file SHA-256 validation remain in place.",
+    "Only tranche18Suite.m changes among original candidate-bound source entries; source membership is unchanged.",
+    "freeze-repair.py checks the exact original candidate, all 313 baseline hashes, sole intended source change, old reference bytes/hashes, and frozen test names before refreezing.",
+    "No additional concrete blocker identified in adjacent historical CSV import, retained node/flow comparison, profile, or packet-count guards.",
+    "Owner archive failed before tests or simulations; this review establishes no MATLAB execution success or numerical parity."
+  ],
+  "blocking_findings": []
+}

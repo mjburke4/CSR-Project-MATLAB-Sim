@@ -1,0 +1,84 @@
+{
+  "schema": "csr-tranche21-readonly-source-semantics-v1",
+  "files": [
+    {
+      "path": "+csr/+sim/ApplicationGenerator.m",
+      "sha256": "bebc695221d77ad31fe899e71a609fa932b4dc2767feda6ed923ce688875fb29"
+    },
+    {
+      "path": "+csr/+nwk/Layer.m",
+      "sha256": "7ef09931c83c55697ce96b400ee1d90459a44af4c0527b396829d62ab9125300"
+    },
+    {
+      "path": "+csr/+hop/Layer.m",
+      "sha256": "67323b4106738c2d1fdfafebf1f408719f878513aa898fb9cf754e446d87d9f7"
+    },
+    {
+      "path": "+csr/+sim/NetworkSimulation.m",
+      "sha256": "80264e18c050d4dbf2c6e5729076c5dfa602401b4e76053577b6388a77894104"
+    },
+    {
+      "path": "evidence/tranche-18-source-audit/nwk-service-source-audit.md",
+      "sha256": "c655ba9d3d6de59faa2d606b371b113b2b8518c1aaa354f2bff8bbee48cb3287"
+    },
+    {
+      "path": "evidence/tranche-18-source-audit/hop_capacity_release_audit.md",
+      "sha256": "1e950d67ea8db1fff4b88135531765589bff3ecf5caf6feedce7a26abc884987"
+    }
+  ],
+  "current_ns3_main": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "production_source_changed": false,
+  "contracts": [
+    {
+      "topic": "Local admission capacity",
+      "source": "+csr/+sim/ApplicationGenerator.m",
+      "line_start": 81,
+      "description": "Local applications are admitted only while own source/destination NSDP count is below16; suppressed attempts have no generated packet identity."
+    },
+    {
+      "topic": "Relay versus local ownership",
+      "source": "+csr/+nwk/Layer.m",
+      "line_start": 348,
+      "description": "NSDP count selects matching original source and destination among retained owners. Relay-source7 custody at node8 does not directly increase source8 local-flow NSDP; both use shared downstream service."
+    },
+    {
+      "topic": "Queue service",
+      "source": "+csr/+nwk/Layer.m",
+      "line_start": 454,
+      "description": "DSCP-zero DATA appends; positive DSCP prepends. Eligible queue scan skips submitted and route/admission-blocked entries. There is no explicit local-versus-relay priority branch."
+    },
+    {
+      "topic": "Counter coverage",
+      "source": "+csr/+sim/NetworkSimulation.m",
+      "line_start": 342,
+      "description": "Admission counters continue after the first100000 detailed admission rows. Protocol traces remain separate and complete. Blocked-reason time series must not be invented beyond the detailed prefix."
+    },
+    {
+      "topic": "Known timing policy",
+      "source": "docs/tranche-19-retry-policy.md",
+      "description": "Keep actual-tx default. The native queued retry expiration distinction was already tested in T19, whose experiment was not promoted; do not assume it explains every T21 residual."
+    }
+  ],
+  "limitations": [
+    "Historical native source semantics cited from retained T18 source audit at the same unchanged pin.",
+    "Source contracts alone do not demonstrate a cause of a numerical discrepancy.",
+    "Unsubmitted custody time is not automatically route waiting or capacity blocking time."
+  ],
+  "fresh_native_source": {
+    "repository": "mjburke4/CSR-Project-NS3-part2",
+    "commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+    "repository_path": "model/csr-hop-layer.h",
+    "local_copy": "pinned-source/csr-hop-layer.h",
+    "sha256": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+    "matches_prior_t18_audit": true
+  },
+  "adaptive_window_contract": {
+    "initial_threshold": 0,
+    "effective_window": "threshold + 1",
+    "third_ack_growth": "Increment and test ACK accumulator first; increase threshold capped16; then reset accumulator if retried ACK.",
+    "dack": "Reset ACK accumulator; no decrease to threshold; retain HOP capacity until delayed hold expiry.",
+    "final_data_failure": "Reset ACK accumulator and decrease threshold toward0.",
+    "same_rules_in_matlab_and_native": true,
+    "controlled_counterfactual_executed": false
+  }
+}

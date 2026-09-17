@@ -1,0 +1,2762 @@
+{
+  "schema": "csr-t21-native-diagnosis-v1",
+  "seed": 129,
+  "duration_s": 6000,
+  "input": {
+    "manifest_sha256": "3d67117c5e401edfcc61c9abe673f6fb43b784e3195e7c03ddc13b3db32126d6",
+    "trace_gzip_sha256": "aa4ae4e40309ef956d5e89d20040828c3fab47062747eaa51a637506764c2643",
+    "trace_raw_sha256": "05a4d3429b00b20e68344491f9a0c8e2317c3637162fb975cdaebf72fdaa7194",
+    "trace_raw_bytes": 1178203351,
+    "rows": 5049318,
+    "last_event_time_s": 5999.994
+  },
+  "flows": [
+    {
+      "source": 2,
+      "admitted": 607,
+      "unique_delivered": 480,
+      "duplicate_delivery_events": 0,
+      "unmatched_sends": 127,
+      "first_delivery_delay_s": {
+        "count": 480,
+        "mean": 428.9726465026667,
+        "p50": 418.9928110860001,
+        "p90": 578.025811086,
+        "max": 710.3788110859999
+      }
+    },
+    {
+      "source": 3,
+      "admitted": 8557,
+      "unique_delivered": 8538,
+      "duplicate_delivery_events": 0,
+      "unmatched_sends": 19,
+      "first_delivery_delay_s": {
+        "count": 8538,
+        "mean": 10.437482059197237,
+        "p50": 9.803808077000213,
+        "p90": 12.39680807700006,
+        "max": 28.462808076999863
+      }
+    },
+    {
+      "source": 4,
+      "admitted": 501,
+      "unique_delivered": 426,
+      "duplicate_delivery_events": 1,
+      "unmatched_sends": 75,
+      "first_delivery_delay_s": {
+        "count": 426,
+        "mean": 276.50659277614085,
+        "p50": 264.55681108599947,
+        "p90": 357.7428110860001,
+        "max": 486.32981108600006
+      }
+    },
+    {
+      "source": 5,
+      "admitted": 1400,
+      "unique_delivered": 1371,
+      "duplicate_delivery_events": 0,
+      "unmatched_sends": 29,
+      "first_delivery_delay_s": {
+        "count": 1371,
+        "mean": 66.34614806630634,
+        "p50": 60.724811086000045,
+        "p90": 122.97381108599984,
+        "max": 175.02981108599988
+      }
+    },
+    {
+      "source": 7,
+      "admitted": 870,
+      "unique_delivered": 604,
+      "duplicate_delivery_events": 5,
+      "unmatched_sends": 266,
+      "first_delivery_delay_s": {
+        "count": 604,
+        "mean": 767.6681438674569,
+        "p50": 772.570811086,
+        "p90": 902.5138110860007,
+        "max": 957.8558110860001
+      }
+    },
+    {
+      "source": 8,
+      "admitted": 528,
+      "unique_delivered": 368,
+      "duplicate_delivery_events": 0,
+      "unmatched_sends": 160,
+      "first_delivery_delay_s": {
+        "count": 368,
+        "mean": 646.5877431512174,
+        "p50": 655.4238110859999,
+        "p90": 806.142811086,
+        "max": 864.7558110860001
+      }
+    }
+  ],
+  "event_counts": {
+    "mac_state": 264732,
+    "route_change": 93,
+    "scenario_node": 7,
+    "scenario_link": 21,
+    "statistic_sample": 162905,
+    "reservation_prepare": 48754,
+    "reservation_holdoff": 71,
+    "reservation_tick": 883110,
+    "reservation_advertise": 48751,
+    "tx_start": 48751,
+    "rx_drop": 210278,
+    "rx_accept": 82225,
+    "app_admission": 1710000,
+    "app_send": 12463,
+    "nwk_enqueue": 18366,
+    "nwk_admission": 1453524,
+    "nwk_forward": 18123,
+    "hop_admission": 18123,
+    "hop_feedback": 17733,
+    "nwk_nsdp_release": 18092,
+    "hop_completion": 18092,
+    "nwk_delivery": 11793,
+    "hop_capacity_release": 3311
+  },
+  "counts_by_node": [
+    {
+      "node": 1,
+      "event": "hop_feedback",
+      "count": 11821
+    },
+    {
+      "node": 1,
+      "event": "mac_state",
+      "count": 49287
+    },
+    {
+      "node": 1,
+      "event": "nwk_delivery",
+      "count": 11793
+    },
+    {
+      "node": 1,
+      "event": "reservation_advertise",
+      "count": 9035
+    },
+    {
+      "node": 1,
+      "event": "reservation_holdoff",
+      "count": 4
+    },
+    {
+      "node": 1,
+      "event": "reservation_prepare",
+      "count": 9036
+    },
+    {
+      "node": 1,
+      "event": "reservation_tick",
+      "count": 149276
+    },
+    {
+      "node": 1,
+      "event": "route_change",
+      "count": 12
+    },
+    {
+      "node": 1,
+      "event": "rx_accept",
+      "count": 15431
+    },
+    {
+      "node": 1,
+      "event": "rx_drop",
+      "count": 24284
+    },
+    {
+      "node": 1,
+      "event": "scenario_link",
+      "count": 6
+    },
+    {
+      "node": 1,
+      "event": "scenario_node",
+      "count": 1
+    },
+    {
+      "node": 1,
+      "event": "statistic_sample",
+      "count": 1234
+    },
+    {
+      "node": 1,
+      "event": "tx_start",
+      "count": 9035
+    },
+    {
+      "node": 2,
+      "event": "app_admission",
+      "count": 285000
+    },
+    {
+      "node": 2,
+      "event": "app_send",
+      "count": 607
+    },
+    {
+      "node": 2,
+      "event": "hop_admission",
+      "count": 1835
+    },
+    {
+      "node": 2,
+      "event": "hop_capacity_release",
+      "count": 1321
+    },
+    {
+      "node": 2,
+      "event": "hop_completion",
+      "count": 1834
+    },
+    {
+      "node": 2,
+      "event": "hop_feedback",
+      "count": 1312
+    },
+    {
+      "node": 2,
+      "event": "mac_state",
+      "count": 36534
+    },
+    {
+      "node": 2,
+      "event": "nwk_admission",
+      "count": 400057
+    },
+    {
+      "node": 2,
+      "event": "nwk_enqueue",
+      "count": 1919
+    },
+    {
+      "node": 2,
+      "event": "nwk_forward",
+      "count": 1835
+    },
+    {
+      "node": 2,
+      "event": "nwk_nsdp_release",
+      "count": 1834
+    },
+    {
+      "node": 2,
+      "event": "reservation_advertise",
+      "count": 6598
+    },
+    {
+      "node": 2,
+      "event": "reservation_holdoff",
+      "count": 4
+    },
+    {
+      "node": 2,
+      "event": "reservation_prepare",
+      "count": 6599
+    },
+    {
+      "node": 2,
+      "event": "reservation_tick",
+      "count": 131395
+    },
+    {
+      "node": 2,
+      "event": "route_change",
+      "count": 14
+    },
+    {
+      "node": 2,
+      "event": "rx_accept",
+      "count": 11497
+    },
+    {
+      "node": 2,
+      "event": "rx_drop",
+      "count": 30656
+    },
+    {
+      "node": 2,
+      "event": "scenario_link",
+      "count": 5
+    },
+    {
+      "node": 2,
+      "event": "scenario_node",
+      "count": 1
+    },
+    {
+      "node": 2,
+      "event": "statistic_sample",
+      "count": 16760
+    },
+    {
+      "node": 2,
+      "event": "tx_start",
+      "count": 6598
+    },
+    {
+      "node": 3,
+      "event": "app_admission",
+      "count": 285000
+    },
+    {
+      "node": 3,
+      "event": "app_send",
+      "count": 8557
+    },
+    {
+      "node": 3,
+      "event": "hop_admission",
+      "count": 8557
+    },
+    {
+      "node": 3,
+      "event": "hop_completion",
+      "count": 8541
+    },
+    {
+      "node": 3,
+      "event": "mac_state",
+      "count": 48011
+    },
+    {
+      "node": 3,
+      "event": "nwk_admission",
+      "count": 10265
+    },
+    {
+      "node": 3,
+      "event": "nwk_enqueue",
+      "count": 8557
+    },
+    {
+      "node": 3,
+      "event": "nwk_forward",
+      "count": 8557
+    },
+    {
+      "node": 3,
+      "event": "nwk_nsdp_release",
+      "count": 8541
+    },
+    {
+      "node": 3,
+      "event": "reservation_advertise",
+      "count": 9140
+    },
+    {
+      "node": 3,
+      "event": "reservation_holdoff",
+      "count": 3
+    },
+    {
+      "node": 3,
+      "event": "reservation_prepare",
+      "count": 9141
+    },
+    {
+      "node": 3,
+      "event": "reservation_tick",
+      "count": 152593
+    },
+    {
+      "node": 3,
+      "event": "route_change",
+      "count": 10
+    },
+    {
+      "node": 3,
+      "event": "rx_accept",
+      "count": 14671
+    },
+    {
+      "node": 3,
+      "event": "rx_drop",
+      "count": 24939
+    },
+    {
+      "node": 3,
+      "event": "scenario_link",
+      "count": 4
+    },
+    {
+      "node": 3,
+      "event": "scenario_node",
+      "count": 1
+    },
+    {
+      "node": 3,
+      "event": "statistic_sample",
+      "count": 70600
+    },
+    {
+      "node": 3,
+      "event": "tx_start",
+      "count": 9140
+    },
+    {
+      "node": 4,
+      "event": "app_admission",
+      "count": 285000
+    },
+    {
+      "node": 4,
+      "event": "app_send",
+      "count": 501
+    },
+    {
+      "node": 4,
+      "event": "hop_admission",
+      "count": 2232
+    },
+    {
+      "node": 4,
+      "event": "hop_capacity_release",
+      "count": 248
+    },
+    {
+      "node": 4,
+      "event": "hop_completion",
+      "count": 2232
+    },
+    {
+      "node": 4,
+      "event": "hop_feedback",
+      "count": 1790
+    },
+    {
+      "node": 4,
+      "event": "mac_state",
+      "count": 41363
+    },
+    {
+      "node": 4,
+      "event": "nwk_admission",
+      "count": 465548
+    },
+    {
+      "node": 4,
+      "event": "nwk_enqueue",
+      "count": 2291
+    },
+    {
+      "node": 4,
+      "event": "nwk_forward",
+      "count": 2232
+    },
+    {
+      "node": 4,
+      "event": "nwk_nsdp_release",
+      "count": 2232
+    },
+    {
+      "node": 4,
+      "event": "reservation_advertise",
+      "count": 9013
+    },
+    {
+      "node": 4,
+      "event": "reservation_holdoff",
+      "count": 6
+    },
+    {
+      "node": 4,
+      "event": "reservation_prepare",
+      "count": 9013
+    },
+    {
+      "node": 4,
+      "event": "reservation_tick",
+      "count": 167234
+    },
+    {
+      "node": 4,
+      "event": "route_change",
+      "count": 11
+    },
+    {
+      "node": 4,
+      "event": "rx_accept",
+      "count": 11478
+    },
+    {
+      "node": 4,
+      "event": "rx_drop",
+      "count": 28259
+    },
+    {
+      "node": 4,
+      "event": "scenario_link",
+      "count": 3
+    },
+    {
+      "node": 4,
+      "event": "scenario_node",
+      "count": 1
+    },
+    {
+      "node": 4,
+      "event": "statistic_sample",
+      "count": 24224
+    },
+    {
+      "node": 4,
+      "event": "tx_start",
+      "count": 9013
+    },
+    {
+      "node": 5,
+      "event": "app_admission",
+      "count": 285000
+    },
+    {
+      "node": 5,
+      "event": "app_send",
+      "count": 1400
+    },
+    {
+      "node": 5,
+      "event": "hop_admission",
+      "count": 3299
+    },
+    {
+      "node": 5,
+      "event": "hop_completion",
+      "count": 3285
+    },
+    {
+      "node": 5,
+      "event": "hop_feedback",
+      "count": 1961
+    },
+    {
+      "node": 5,
+      "event": "mac_state",
+      "count": 52267
+    },
+    {
+      "node": 5,
+      "event": "nwk_admission",
+      "count": 240145
+    },
+    {
+      "node": 5,
+      "event": "nwk_enqueue",
+      "count": 3352
+    },
+    {
+      "node": 5,
+      "event": "nwk_forward",
+      "count": 3299
+    },
+    {
+      "node": 5,
+      "event": "nwk_nsdp_release",
+      "count": 3285
+    },
+    {
+      "node": 5,
+      "event": "reservation_advertise",
+      "count": 8829
+    },
+    {
+      "node": 5,
+      "event": "reservation_holdoff",
+      "count": 3
+    },
+    {
+      "node": 5,
+      "event": "reservation_prepare",
+      "count": 8829
+    },
+    {
+      "node": 5,
+      "event": "reservation_tick",
+      "count": 145249
+    },
+    {
+      "node": 5,
+      "event": "route_change",
+      "count": 11
+    },
+    {
+      "node": 5,
+      "event": "rx_accept",
+      "count": 17136
+    },
+    {
+      "node": 5,
+      "event": "rx_drop",
+      "count": 22786
+    },
+    {
+      "node": 5,
+      "event": "scenario_link",
+      "count": 2
+    },
+    {
+      "node": 5,
+      "event": "scenario_node",
+      "count": 1
+    },
+    {
+      "node": 5,
+      "event": "statistic_sample",
+      "count": 30912
+    },
+    {
+      "node": 5,
+      "event": "tx_start",
+      "count": 8829
+    },
+    {
+      "node": 7,
+      "event": "app_admission",
+      "count": 285000
+    },
+    {
+      "node": 7,
+      "event": "app_send",
+      "count": 870
+    },
+    {
+      "node": 7,
+      "event": "hop_admission",
+      "count": 854
+    },
+    {
+      "node": 7,
+      "event": "hop_capacity_release",
+      "count": 797
+    },
+    {
+      "node": 7,
+      "event": "hop_completion",
+      "count": 854
+    },
+    {
+      "node": 7,
+      "event": "mac_state",
+      "count": 12750
+    },
+    {
+      "node": 7,
+      "event": "nwk_admission",
+      "count": 74705
+    },
+    {
+      "node": 7,
+      "event": "nwk_enqueue",
+      "count": 870
+    },
+    {
+      "node": 7,
+      "event": "nwk_forward",
+      "count": 854
+    },
+    {
+      "node": 7,
+      "event": "nwk_nsdp_release",
+      "count": 854
+    },
+    {
+      "node": 7,
+      "event": "reservation_advertise",
+      "count": 1052
+    },
+    {
+      "node": 7,
+      "event": "reservation_holdoff",
+      "count": 45
+    },
+    {
+      "node": 7,
+      "event": "reservation_prepare",
+      "count": 1052
+    },
+    {
+      "node": 7,
+      "event": "reservation_tick",
+      "count": 30135
+    },
+    {
+      "node": 7,
+      "event": "route_change",
+      "count": 17
+    },
+    {
+      "node": 7,
+      "event": "rx_accept",
+      "count": 5027
+    },
+    {
+      "node": 7,
+      "event": "rx_drop",
+      "count": 42672
+    },
+    {
+      "node": 7,
+      "event": "scenario_link",
+      "count": 1
+    },
+    {
+      "node": 7,
+      "event": "scenario_node",
+      "count": 1
+    },
+    {
+      "node": 7,
+      "event": "statistic_sample",
+      "count": 6633
+    },
+    {
+      "node": 7,
+      "event": "tx_start",
+      "count": 1052
+    },
+    {
+      "node": 8,
+      "event": "app_admission",
+      "count": 285000
+    },
+    {
+      "node": 8,
+      "event": "app_send",
+      "count": 528
+    },
+    {
+      "node": 8,
+      "event": "hop_admission",
+      "count": 1346
+    },
+    {
+      "node": 8,
+      "event": "hop_capacity_release",
+      "count": 945
+    },
+    {
+      "node": 8,
+      "event": "hop_completion",
+      "count": 1346
+    },
+    {
+      "node": 8,
+      "event": "hop_feedback",
+      "count": 849
+    },
+    {
+      "node": 8,
+      "event": "mac_state",
+      "count": 24520
+    },
+    {
+      "node": 8,
+      "event": "nwk_admission",
+      "count": 262804
+    },
+    {
+      "node": 8,
+      "event": "nwk_enqueue",
+      "count": 1377
+    },
+    {
+      "node": 8,
+      "event": "nwk_forward",
+      "count": 1346
+    },
+    {
+      "node": 8,
+      "event": "nwk_nsdp_release",
+      "count": 1346
+    },
+    {
+      "node": 8,
+      "event": "reservation_advertise",
+      "count": 5084
+    },
+    {
+      "node": 8,
+      "event": "reservation_holdoff",
+      "count": 6
+    },
+    {
+      "node": 8,
+      "event": "reservation_prepare",
+      "count": 5084
+    },
+    {
+      "node": 8,
+      "event": "reservation_tick",
+      "count": 107228
+    },
+    {
+      "node": 8,
+      "event": "route_change",
+      "count": 18
+    },
+    {
+      "node": 8,
+      "event": "rx_accept",
+      "count": 6985
+    },
+    {
+      "node": 8,
+      "event": "rx_drop",
+      "count": 36682
+    },
+    {
+      "node": 8,
+      "event": "scenario_node",
+      "count": 1
+    },
+    {
+      "node": 8,
+      "event": "statistic_sample",
+      "count": 12542
+    },
+    {
+      "node": 8,
+      "event": "tx_start",
+      "count": 5084
+    }
+  ],
+  "node_source_event_reasons": [
+    {
+      "node": 2,
+      "source": 7,
+      "event": "hop_feedback",
+      "reason": "ack",
+      "count": 102
+    },
+    {
+      "node": 2,
+      "source": 7,
+      "event": "hop_feedback",
+      "reason": "dack",
+      "count": 709
+    },
+    {
+      "node": 2,
+      "source": 8,
+      "event": "hop_feedback",
+      "reason": "ack",
+      "count": 258
+    },
+    {
+      "node": 2,
+      "source": 8,
+      "event": "hop_feedback",
+      "reason": "dack",
+      "count": 243
+    },
+    {
+      "node": 4,
+      "source": 2,
+      "event": "hop_admission",
+      "reason": "admitted",
+      "count": 566
+    },
+    {
+      "node": 4,
+      "source": 2,
+      "event": "hop_capacity_release",
+      "reason": "dack_expiry",
+      "count": 55
+    },
+    {
+      "node": 4,
+      "source": 2,
+      "event": "hop_completion",
+      "reason": "ack",
+      "count": 435
+    },
+    {
+      "node": 4,
+      "source": 2,
+      "event": "hop_completion",
+      "reason": "dack",
+      "count": 56
+    },
+    {
+      "node": 4,
+      "source": 2,
+      "event": "hop_completion",
+      "reason": "no_ack",
+      "count": 75
+    },
+    {
+      "node": 4,
+      "source": 2,
+      "event": "hop_feedback",
+      "reason": "ack",
+      "count": 164
+    },
+    {
+      "node": 4,
+      "source": 2,
+      "event": "hop_feedback",
+      "reason": "dack",
+      "count": 413
+    },
+    {
+      "node": 4,
+      "source": 2,
+      "event": "nwk_admission",
+      "reason": "admitted",
+      "count": 566
+    },
+    {
+      "node": 4,
+      "source": 2,
+      "event": "nwk_admission",
+      "reason": "neighbor_flow_full",
+      "count": 113469
+    },
+    {
+      "node": 4,
+      "source": 2,
+      "event": "nwk_enqueue",
+      "reason": "relay",
+      "count": 577
+    },
+    {
+      "node": 4,
+      "source": 2,
+      "event": "nwk_forward",
+      "reason": "relay",
+      "count": 566
+    },
+    {
+      "node": 4,
+      "source": 2,
+      "event": "nwk_nsdp_release",
+      "reason": "hop_feedback",
+      "count": 566
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "event": "hop_admission",
+      "reason": "admitted",
+      "count": 485
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "event": "hop_capacity_release",
+      "reason": "dack_expiry",
+      "count": 20
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "event": "hop_completion",
+      "reason": "ack",
+      "count": 399
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "event": "hop_completion",
+      "reason": "dack",
+      "count": 20
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "event": "hop_completion",
+      "reason": "no_ack",
+      "count": 66
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "event": "nwk_admission",
+      "reason": "admitted",
+      "count": 485
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "event": "nwk_admission",
+      "reason": "neighbor_flow_full",
+      "count": 95643
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "event": "nwk_enqueue",
+      "reason": "local",
+      "count": 501
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "event": "nwk_forward",
+      "reason": "local",
+      "count": 485
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "event": "nwk_nsdp_release",
+      "reason": "hop_feedback",
+      "count": 485
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "event": "hop_admission",
+      "reason": "admitted",
+      "count": 740
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "event": "hop_capacity_release",
+      "reason": "dack_expiry",
+      "count": 170
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "event": "hop_completion",
+      "reason": "ack",
+      "count": 449
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "event": "hop_completion",
+      "reason": "dack",
+      "count": 174
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "event": "hop_completion",
+      "reason": "no_ack",
+      "count": 117
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "event": "hop_feedback",
+      "reason": "ack",
+      "count": 61
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "event": "hop_feedback",
+      "reason": "dack",
+      "count": 694
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "event": "nwk_admission",
+      "reason": "admitted",
+      "count": 740
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "event": "nwk_admission",
+      "reason": "neighbor_flow_full",
+      "count": 157747
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "event": "nwk_enqueue",
+      "reason": "relay",
+      "count": 755
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "event": "nwk_forward",
+      "reason": "relay",
+      "count": 740
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "event": "nwk_nsdp_release",
+      "reason": "hop_feedback",
+      "count": 740
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "event": "hop_admission",
+      "reason": "admitted",
+      "count": 441
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "event": "hop_capacity_release",
+      "reason": "dack_expiry",
+      "count": 3
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "event": "hop_completion",
+      "reason": "ack",
+      "count": 376
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "event": "hop_completion",
+      "reason": "dack",
+      "count": 3
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "event": "hop_completion",
+      "reason": "no_ack",
+      "count": 62
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "event": "hop_feedback",
+      "reason": "ack",
+      "count": 241
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "event": "hop_feedback",
+      "reason": "dack",
+      "count": 217
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "event": "nwk_admission",
+      "reason": "admitted",
+      "count": 441
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "event": "nwk_admission",
+      "reason": "neighbor_flow_full",
+      "count": 96457
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "event": "nwk_enqueue",
+      "reason": "relay",
+      "count": 458
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "event": "nwk_forward",
+      "reason": "relay",
+      "count": 441
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "event": "nwk_nsdp_release",
+      "reason": "hop_feedback",
+      "count": 441
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "event": "hop_admission",
+      "reason": "admitted",
+      "count": 834
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "event": "hop_capacity_release",
+      "reason": "dack_expiry",
+      "count": 703
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "event": "hop_completion",
+      "reason": "ack",
+      "count": 102
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "event": "hop_completion",
+      "reason": "dack",
+      "count": 707
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "event": "hop_completion",
+      "reason": "no_ack",
+      "count": 25
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "event": "hop_feedback",
+      "reason": "ack",
+      "count": 50
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "event": "hop_feedback",
+      "reason": "dack",
+      "count": 799
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "event": "nwk_admission",
+      "reason": "admitted",
+      "count": 834
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "event": "nwk_admission",
+      "reason": "neighbor_flow_full",
+      "count": 167236
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "event": "nwk_enqueue",
+      "reason": "relay",
+      "count": 849
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "event": "nwk_forward",
+      "reason": "relay",
+      "count": 834
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "event": "nwk_nsdp_release",
+      "reason": "hop_feedback",
+      "count": 834
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "event": "hop_admission",
+      "reason": "admitted",
+      "count": 512
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "event": "hop_capacity_release",
+      "reason": "dack_expiry",
+      "count": 242
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "event": "hop_completion",
+      "reason": "ack",
+      "count": 258
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "event": "hop_completion",
+      "reason": "dack",
+      "count": 243
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "event": "hop_completion",
+      "reason": "no_ack",
+      "count": 11
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "event": "nwk_admission",
+      "reason": "admitted",
+      "count": 512
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "event": "nwk_admission",
+      "reason": "neighbor_flow_full",
+      "count": 94222
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "event": "nwk_enqueue",
+      "reason": "local",
+      "count": 528
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "event": "nwk_forward",
+      "reason": "local",
+      "count": 512
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "event": "nwk_nsdp_release",
+      "reason": "hop_feedback",
+      "count": 512
+    }
+  ],
+  "app_attempt_reasons": [
+    {
+      "node": 2,
+      "reason": "admitted",
+      "count": 607
+    },
+    {
+      "node": 2,
+      "reason": "nsdp_full",
+      "count": 284393
+    },
+    {
+      "node": 4,
+      "reason": "admitted",
+      "count": 501
+    },
+    {
+      "node": 4,
+      "reason": "nsdp_full",
+      "count": 284499
+    },
+    {
+      "node": 7,
+      "reason": "admitted",
+      "count": 870
+    },
+    {
+      "node": 7,
+      "reason": "nsdp_full",
+      "count": 284130
+    },
+    {
+      "node": 8,
+      "reason": "admitted",
+      "count": 528
+    },
+    {
+      "node": 8,
+      "reason": "nsdp_full",
+      "count": 284472
+    }
+  ],
+  "feedback": [
+    {
+      "node": 2,
+      "peer": 8,
+      "source": 7,
+      "reason": "ack",
+      "count": 102
+    },
+    {
+      "node": 2,
+      "peer": 8,
+      "source": 7,
+      "reason": "dack",
+      "count": 709
+    },
+    {
+      "node": 2,
+      "peer": 8,
+      "source": 8,
+      "reason": "ack",
+      "count": 258
+    },
+    {
+      "node": 2,
+      "peer": 8,
+      "source": 8,
+      "reason": "dack",
+      "count": 243
+    },
+    {
+      "node": 4,
+      "peer": 2,
+      "source": 2,
+      "reason": "ack",
+      "count": 164
+    },
+    {
+      "node": 4,
+      "peer": 2,
+      "source": 2,
+      "reason": "dack",
+      "count": 413
+    },
+    {
+      "node": 4,
+      "peer": 2,
+      "source": 7,
+      "reason": "ack",
+      "count": 61
+    },
+    {
+      "node": 4,
+      "peer": 2,
+      "source": 7,
+      "reason": "dack",
+      "count": 694
+    },
+    {
+      "node": 4,
+      "peer": 2,
+      "source": 8,
+      "reason": "ack",
+      "count": 241
+    },
+    {
+      "node": 4,
+      "peer": 2,
+      "source": 8,
+      "reason": "dack",
+      "count": 217
+    },
+    {
+      "node": 8,
+      "peer": 7,
+      "source": 7,
+      "reason": "ack",
+      "count": 50
+    },
+    {
+      "node": 8,
+      "peer": 7,
+      "source": 7,
+      "reason": "dack",
+      "count": 799
+    }
+  ],
+  "feedback_before_nsdp_histogram": [
+    {
+      "node": 4,
+      "source": 2,
+      "reason": "ack",
+      "histogram": {
+        "0": 1,
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": 2,
+        "6": 2,
+        "7": 4,
+        "8": 3,
+        "9": 4,
+        "10": 9,
+        "11": 13,
+        "12": 16,
+        "13": 17,
+        "14": 38,
+        "15": 51
+      }
+    },
+    {
+      "node": 4,
+      "source": 2,
+      "reason": "dack",
+      "histogram": {
+        "16": 60,
+        "17": 55,
+        "18": 54,
+        "19": 44,
+        "20": 34,
+        "21": 25,
+        "22": 16,
+        "23": 16,
+        "24": 18,
+        "25": 22,
+        "26": 16,
+        "27": 12,
+        "28": 19,
+        "29": 11,
+        "30": 9,
+        "31": 2
+      }
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "reason": "ack",
+      "histogram": {
+        "0": 1,
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": 1,
+        "6": 1,
+        "7": 1,
+        "8": 1,
+        "9": 1,
+        "10": 1,
+        "11": 1,
+        "12": 4,
+        "13": 10,
+        "14": 12,
+        "15": 23
+      }
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "reason": "dack",
+      "histogram": {
+        "16": 33,
+        "17": 43,
+        "18": 44,
+        "19": 32,
+        "20": 37,
+        "21": 29,
+        "22": 28,
+        "23": 21,
+        "24": 28,
+        "25": 31,
+        "26": 26,
+        "27": 23,
+        "28": 30,
+        "29": 25,
+        "30": 23,
+        "31": 29,
+        "32": 32,
+        "33": 24,
+        "34": 17,
+        "35": 11,
+        "36": 9,
+        "37": 9,
+        "38": 9,
+        "39": 8,
+        "40": 8,
+        "41": 7,
+        "42": 7,
+        "43": 13,
+        "44": 22,
+        "45": 11,
+        "46": 9,
+        "47": 9,
+        "48": 6,
+        "49": 1
+      }
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "reason": "ack",
+      "histogram": {
+        "0": 2,
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 9,
+        "6": 11,
+        "7": 14,
+        "8": 13,
+        "9": 21,
+        "10": 24,
+        "11": 20,
+        "12": 25,
+        "13": 24,
+        "14": 30,
+        "15": 40
+      }
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "reason": "dack",
+      "histogram": {
+        "16": 38,
+        "17": 22,
+        "18": 12,
+        "19": 11,
+        "20": 8,
+        "21": 12,
+        "22": 5,
+        "23": 4,
+        "24": 8,
+        "25": 8,
+        "26": 7,
+        "27": 7,
+        "28": 12,
+        "29": 8,
+        "30": 4,
+        "31": 5,
+        "32": 6,
+        "33": 7,
+        "34": 11,
+        "35": 6,
+        "36": 6,
+        "37": 7,
+        "38": 2,
+        "39": 1
+      }
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "reason": "ack",
+      "histogram": {
+        "0": 1,
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": 1,
+        "6": 1,
+        "7": 2,
+        "8": 2,
+        "9": 2,
+        "10": 2,
+        "11": 2,
+        "12": 2,
+        "13": 3,
+        "14": 8,
+        "15": 20
+      }
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "reason": "dack",
+      "histogram": {
+        "16": 41,
+        "17": 50,
+        "18": 44,
+        "19": 48,
+        "20": 44,
+        "21": 39,
+        "22": 26,
+        "23": 20,
+        "24": 14,
+        "25": 15,
+        "26": 18,
+        "27": 22,
+        "28": 20,
+        "29": 24,
+        "30": 20,
+        "31": 23,
+        "32": 31,
+        "33": 33,
+        "34": 30,
+        "35": 18,
+        "36": 17,
+        "37": 15,
+        "38": 18,
+        "39": 18,
+        "40": 23,
+        "41": 17,
+        "42": 13,
+        "43": 12,
+        "44": 11,
+        "45": 14,
+        "46": 12,
+        "47": 11,
+        "48": 6,
+        "49": 3,
+        "50": 2,
+        "51": 3,
+        "52": 8,
+        "53": 8,
+        "54": 5,
+        "55": 2,
+        "56": 1
+      }
+    }
+  ],
+  "nsdp_state": [
+    {
+      "node": 4,
+      "source": 2,
+      "destination": 1,
+      "last": 11,
+      "maximum": 32,
+      "time_weighted_mean_300_6000": 19.24329783621757,
+      "seconds_at_or_above_16_300_6000": 4574.059910419999,
+      "observations": 1143
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "destination": 1,
+      "last": 16,
+      "maximum": 16,
+      "time_weighted_mean_300_6000": 15.998534655418245,
+      "seconds_at_or_above_16_300_6000": 5694.357668292002,
+      "observations": 986
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "destination": 1,
+      "last": 15,
+      "maximum": 50,
+      "time_weighted_mean_300_6000": 26.89418366732074,
+      "seconds_at_or_above_16_300_6000": 5340.119012675998,
+      "observations": 1495
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "destination": 1,
+      "last": 17,
+      "maximum": 40,
+      "time_weighted_mean_300_6000": 16.40838775343088,
+      "seconds_at_or_above_16_300_6000": 2636.1343979559992,
+      "observations": 899
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "destination": 1,
+      "last": 15,
+      "maximum": 57,
+      "time_weighted_mean_300_6000": 29.60855834251857,
+      "seconds_at_or_above_16_300_6000": 5531.211658080002,
+      "observations": 1683
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "destination": 1,
+      "last": 16,
+      "maximum": 16,
+      "time_weighted_mean_300_6000": 15.998517889237563,
+      "seconds_at_or_above_16_300_6000": 5693.994108274003,
+      "observations": 1040
+    }
+  ],
+  "shared_nwk_queue": [
+    {
+      "node": 4,
+      "last": 59,
+      "maximum": 127,
+      "time_weighted_mean_300_6000": 76.1504629845509,
+      "seconds_at_or_above_16_300_6000": 5698.475726367999,
+      "observations": 467839
+    },
+    {
+      "node": 8,
+      "last": 31,
+      "maximum": 73,
+      "time_weighted_mean_300_6000": 45.07500331951897,
+      "seconds_at_or_above_16_300_6000": 5697.751482932,
+      "observations": 264181
+    }
+  ],
+  "residence": [
+    {
+      "node": 4,
+      "source": 2,
+      "nwk_queue_wait_s": {
+        "count": 566,
+        "mean": 185.43309572255126,
+        "p50": 173.99447883999983,
+        "p90": 287.3544788400004,
+        "max": 366.9144788399999
+      },
+      "hop_admission_to_nsdp_release_completion_s": {
+        "count": 566,
+        "mean": 5.987105013123661,
+        "p50": 4.1859999719999905,
+        "p90": 13.363999972000784,
+        "max": 27.67270755599975
+      },
+      "enqueue_to_nsdp_release_completion_s": {
+        "count": 566,
+        "mean": 191.4202007356749,
+        "p50": 177.7644788120001,
+        "p90": 292.6064788120002,
+        "max": 372.0191863960001
+      }
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "nwk_queue_wait_s": {
+        "count": 485,
+        "mean": 177.65640945744332,
+        "p50": 166.69629250000025,
+        "p90": 272.64029247200006,
+        "max": 371.8382924719999
+      },
+      "hop_admission_to_nsdp_release_completion_s": {
+        "count": 485,
+        "mean": 5.585049379430931,
+        "p50": 3.6529999720005435,
+        "p90": 13.558999972000038,
+        "max": 23.51829241600001
+      },
+      "enqueue_to_nsdp_release_completion_s": {
+        "count": 485,
+        "mean": 183.24145883687424,
+        "p50": 172.66829244400014,
+        "p90": 278.98100002799947,
+        "max": 376.37829244399995
+      }
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "nwk_queue_wait_s": {
+        "count": 740,
+        "mean": 198.36506457848108,
+        "p50": 184.58947883999917,
+        "p90": 298.33947883999997,
+        "max": 377.35347884
+      },
+      "hop_admission_to_nsdp_release_completion_s": {
+        "count": 740,
+        "mean": 6.4130382704486495,
+        "p50": 4.575999971999863,
+        "p90": 13.93599997199999,
+        "max": 27.975999971999954
+      },
+      "enqueue_to_nsdp_release_completion_s": {
+        "count": 740,
+        "mean": 204.77810284892976,
+        "p50": 190.54347881199988,
+        "p90": 304.605478812,
+        "max": 378.09447881200003
+      }
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "nwk_queue_wait_s": {
+        "count": 441,
+        "mean": 200.31837742452606,
+        "p50": 185.14847883999937,
+        "p90": 297.50747884,
+        "max": 371.4861864239999
+      },
+      "hop_admission_to_nsdp_release_completion_s": {
+        "count": 441,
+        "mean": 6.354568213342401,
+        "p50": 4.6409999720000314,
+        "p90": 14.555707556000016,
+        "max": 21.367707555999914
+      },
+      "enqueue_to_nsdp_release_completion_s": {
+        "count": 441,
+        "mean": 206.67294563786848,
+        "p50": 190.87918639600002,
+        "p90": 303.03247881200014,
+        "max": 379.45947881200004
+      }
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "nwk_queue_wait_s": {
+        "count": 834,
+        "mean": 198.98099299933332,
+        "p50": 192.20048296000004,
+        "p90": 319.763482932,
+        "max": 398.7384829319999
+      },
+      "hop_admission_to_nsdp_release_completion_s": {
+        "count": 834,
+        "mean": 2.21841076443886,
+        "p50": 1.1439999720000742,
+        "p90": 5.238999971999874,
+        "max": 23.035999972000013
+      },
+      "enqueue_to_nsdp_release_completion_s": {
+        "count": 834,
+        "mean": 201.19940376377218,
+        "p50": 193.88448290399992,
+        "p90": 323.4554829040003,
+        "max": 399.1544829039999
+      }
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "nwk_queue_wait_s": {
+        "count": 512,
+        "mean": 173.13373231727732,
+        "p50": 149.29129540199938,
+        "p90": 298.79129540200006,
+        "max": 400.48329540199984
+      },
+      "hop_admission_to_nsdp_release_completion_s": {
+        "count": 512,
+        "mean": 2.3098848090000272,
+        "p50": 1.143999972000529,
+        "p90": 5.401999944000636,
+        "max": 21.527999971999975
+      },
+      "enqueue_to_nsdp_release_completion_s": {
+        "count": 512,
+        "mean": 175.44361712627736,
+        "p50": 151.3052953460001,
+        "p90": 299.60429534599984,
+        "max": 403.84429534599985
+      }
+    }
+  ],
+  "unmatched_episode_events": [],
+  "nsdp_snapshot_mismatch_count": 0,
+  "nsdp_snapshot_mismatch_examples": [],
+  "queue_snapshot_mismatch_count": 0,
+  "queue_snapshot_mismatch_examples": [],
+  "pending_enqueues": [
+    {
+      "node": 4,
+      "source": 8,
+      "destination": 1,
+      "sequence": 28054,
+      "enqueue_s": 5753.849813632,
+      "event_index": 4835075,
+      "age_at_stop_s": 246.1501863679996
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "destination": 1,
+      "sequence": 27264,
+      "enqueue_s": 5763.547813632,
+      "event_index": 4843269,
+      "age_at_stop_s": 236.45218636800018
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "destination": 1,
+      "sequence": 27228,
+      "enqueue_s": 5764.496813632,
+      "event_index": 4844046,
+      "age_at_stop_s": 235.50318636799966
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "destination": 1,
+      "sequence": 27268,
+      "enqueue_s": 5767.772813632,
+      "event_index": 4846501,
+      "age_at_stop_s": 232.22718636799982
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "destination": 1,
+      "sequence": 28166,
+      "enqueue_s": 5770.489813632,
+      "event_index": 4848606,
+      "age_at_stop_s": 229.51018636800018
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "destination": 1,
+      "sequence": 28175,
+      "enqueue_s": 5777.834813632,
+      "event_index": 4854201,
+      "age_at_stop_s": 222.16518636799992
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "destination": 1,
+      "sequence": 28191,
+      "enqueue_s": 5786.557813632,
+      "event_index": 4861637,
+      "age_at_stop_s": 213.44218636799997
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "destination": 1,
+      "sequence": 27329,
+      "enqueue_s": 5788.351813632,
+      "event_index": 4863092,
+      "age_at_stop_s": 211.6481863680001
+    },
+    {
+      "node": 4,
+      "source": 2,
+      "destination": 1,
+      "sequence": 28813,
+      "enqueue_s": 5792.043813632,
+      "event_index": 4865713,
+      "age_at_stop_s": 207.9561863680001
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "destination": 1,
+      "sequence": 28309,
+      "enqueue_s": 5799.583813632,
+      "event_index": 4871973,
+      "age_at_stop_s": 200.41618636800013
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "destination": 1,
+      "sequence": 30093,
+      "enqueue_s": 5807.26,
+      "event_index": 4878321,
+      "age_at_stop_s": 192.73999999999978
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "destination": 1,
+      "sequence": 30098,
+      "enqueue_s": 5808.52,
+      "event_index": 4879567,
+      "age_at_stop_s": 191.47999999999956
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "destination": 1,
+      "sequence": 28320,
+      "enqueue_s": 5808.839813632,
+      "event_index": 4879841,
+      "age_at_stop_s": 191.1601863679998
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "destination": 1,
+      "sequence": 28315,
+      "enqueue_s": 5809.593813632,
+      "event_index": 4880585,
+      "age_at_stop_s": 190.4061863679999
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "destination": 1,
+      "sequence": 30114,
+      "enqueue_s": 5812.26,
+      "event_index": 4883006,
+      "age_at_stop_s": 187.73999999999978
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "destination": 1,
+      "sequence": 30149,
+      "enqueue_s": 5818.22,
+      "event_index": 4888030,
+      "age_at_stop_s": 181.77999999999975
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "destination": 1,
+      "sequence": 30153,
+      "enqueue_s": 5819.04,
+      "event_index": 4888934,
+      "age_at_stop_s": 180.96000000000004
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "destination": 1,
+      "sequence": 30167,
+      "enqueue_s": 5821.62,
+      "event_index": 4891651,
+      "age_at_stop_s": 178.3800000000001
+    },
+    {
+      "node": 4,
+      "source": 2,
+      "destination": 1,
+      "sequence": 28946,
+      "enqueue_s": 5823.568813632,
+      "event_index": 4893200,
+      "age_at_stop_s": 176.43118636800045
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "destination": 1,
+      "sequence": 30180,
+      "enqueue_s": 5823.98,
+      "event_index": 4893800,
+      "age_at_stop_s": 176.02000000000044
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "destination": 1,
+      "sequence": 30208,
+      "enqueue_s": 5828.86,
+      "event_index": 4898256,
+      "age_at_stop_s": 171.14000000000033
+    },
+    {
+      "node": 4,
+      "source": 2,
+      "destination": 1,
+      "sequence": 28956,
+      "enqueue_s": 5829.665813632,
+      "event_index": 4898874,
+      "age_at_stop_s": 170.3341863679998
+    },
+    {
+      "node": 4,
+      "source": 2,
+      "destination": 1,
+      "sequence": 28957,
+      "enqueue_s": 5830.588813632,
+      "event_index": 4899949,
+      "age_at_stop_s": 169.41118636800002
+    },
+    {
+      "node": 4,
+      "source": 2,
+      "destination": 1,
+      "sequence": 28969,
+      "enqueue_s": 5833.240813632,
+      "event_index": 4902182,
+      "age_at_stop_s": 166.75918636799997
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "destination": 1,
+      "sequence": 30266,
+      "enqueue_s": 5839.94,
+      "event_index": 4908185,
+      "age_at_stop_s": 160.0600000000004
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "destination": 1,
+      "sequence": 30284,
+      "enqueue_s": 5842.34,
+      "event_index": 4910483,
+      "age_at_stop_s": 157.65999999999985
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "destination": 1,
+      "sequence": 27444,
+      "enqueue_s": 5845.005813632,
+      "event_index": 4912798,
+      "age_at_stop_s": 154.99418636799965
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "destination": 1,
+      "sequence": 30314,
+      "enqueue_s": 5848.14,
+      "event_index": 4916011,
+      "age_at_stop_s": 151.85999999999967
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "destination": 1,
+      "sequence": 28363,
+      "enqueue_s": 5850.426813632,
+      "event_index": 4917943,
+      "age_at_stop_s": 149.57318636800028
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "destination": 1,
+      "sequence": 28370,
+      "enqueue_s": 5851.206813632,
+      "event_index": 4918759,
+      "age_at_stop_s": 148.79318636799962
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "destination": 1,
+      "sequence": 27563,
+      "enqueue_s": 5854.287813632,
+      "event_index": 4921129,
+      "age_at_stop_s": 145.7121863680004
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "destination": 1,
+      "sequence": 29695,
+      "enqueue_s": 5860.397812442,
+      "event_index": 4926461,
+      "age_at_stop_s": 139.60218755799997
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "destination": 1,
+      "sequence": 30390,
+      "enqueue_s": 5862.78,
+      "event_index": 4929117,
+      "age_at_stop_s": 137.22000000000025
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "destination": 1,
+      "sequence": 30404,
+      "enqueue_s": 5864.46,
+      "event_index": 4930745,
+      "age_at_stop_s": 135.53999999999996
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "destination": 1,
+      "sequence": 30415,
+      "enqueue_s": 5865.96,
+      "event_index": 4932331,
+      "age_at_stop_s": 134.03999999999996
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "destination": 1,
+      "sequence": 27510,
+      "enqueue_s": 5866.273813632,
+      "event_index": 4932624,
+      "age_at_stop_s": 133.72618636799962
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "destination": 1,
+      "sequence": 30423,
+      "enqueue_s": 5867.24,
+      "event_index": 4933813,
+      "age_at_stop_s": 132.76000000000022
+    },
+    {
+      "node": 4,
+      "source": 2,
+      "destination": 1,
+      "sequence": 29088,
+      "enqueue_s": 5874.606813632,
+      "event_index": 4940315,
+      "age_at_stop_s": 125.39318636799999
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "destination": 1,
+      "sequence": 28450,
+      "enqueue_s": 5875.685813632,
+      "event_index": 4941287,
+      "age_at_stop_s": 124.31418636800026
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "destination": 1,
+      "sequence": 28444,
+      "enqueue_s": 5877.596813632,
+      "event_index": 4943108,
+      "age_at_stop_s": 122.4031863680002
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "destination": 1,
+      "sequence": 29811,
+      "enqueue_s": 5880.885812442,
+      "event_index": 4945565,
+      "age_at_stop_s": 119.11418755799968
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "destination": 1,
+      "sequence": 29817,
+      "enqueue_s": 5881.457812442,
+      "event_index": 4946202,
+      "age_at_stop_s": 118.54218755799957
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "destination": 1,
+      "sequence": 30498,
+      "enqueue_s": 5883.3,
+      "event_index": 4948443,
+      "age_at_stop_s": 116.69999999999982
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "destination": 1,
+      "sequence": 30510,
+      "enqueue_s": 5884.94,
+      "event_index": 4949977,
+      "age_at_stop_s": 115.0600000000004
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "destination": 1,
+      "sequence": 28458,
+      "enqueue_s": 5887.242813632,
+      "event_index": 4952166,
+      "age_at_stop_s": 112.75718636799957
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "destination": 1,
+      "sequence": 30530,
+      "enqueue_s": 5888.06,
+      "event_index": 4953163,
+      "age_at_stop_s": 111.9399999999996
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "destination": 1,
+      "sequence": 28493,
+      "enqueue_s": 5896.147813632,
+      "event_index": 4959190,
+      "age_at_stop_s": 103.85218636799982
+    },
+    {
+      "node": 4,
+      "source": 2,
+      "destination": 1,
+      "sequence": 29196,
+      "enqueue_s": 5898.565813632,
+      "event_index": 4961133,
+      "age_at_stop_s": 101.43418636800016
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "destination": 1,
+      "sequence": 27625,
+      "enqueue_s": 5899.228813632,
+      "event_index": 4961799,
+      "age_at_stop_s": 100.77118636799969
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "destination": 1,
+      "sequence": 29926,
+      "enqueue_s": 5901.880812442,
+      "event_index": 4964029,
+      "age_at_stop_s": 98.1191875579998
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "destination": 1,
+      "sequence": 29927,
+      "enqueue_s": 5902.179812442,
+      "event_index": 4964284,
+      "age_at_stop_s": 97.82018755799982
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "destination": 1,
+      "sequence": 30607,
+      "enqueue_s": 5903.82,
+      "event_index": 4965622,
+      "age_at_stop_s": 96.18000000000029
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "destination": 1,
+      "sequence": 30615,
+      "enqueue_s": 5905.46,
+      "event_index": 4966947,
+      "age_at_stop_s": 94.53999999999996
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "destination": 1,
+      "sequence": 30629,
+      "enqueue_s": 5908.68,
+      "event_index": 4969398,
+      "age_at_stop_s": 91.31999999999971
+    },
+    {
+      "node": 4,
+      "source": 2,
+      "destination": 1,
+      "sequence": 29215,
+      "enqueue_s": 5911.695813632,
+      "event_index": 4972202,
+      "age_at_stop_s": 88.30418636800005
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "destination": 1,
+      "sequence": 30652,
+      "enqueue_s": 5912.38,
+      "event_index": 4973163,
+      "age_at_stop_s": 87.61999999999989
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "destination": 1,
+      "sequence": 30667,
+      "enqueue_s": 5915.12,
+      "event_index": 4975824,
+      "age_at_stop_s": 84.88000000000011
+    },
+    {
+      "node": 4,
+      "source": 2,
+      "destination": 1,
+      "sequence": 29217,
+      "enqueue_s": 5917.558813632,
+      "event_index": 4978014,
+      "age_at_stop_s": 82.44118636799976
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "destination": 1,
+      "sequence": 27796,
+      "enqueue_s": 5920.340813632,
+      "event_index": 4980526,
+      "age_at_stop_s": 79.65918636799961
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "destination": 1,
+      "sequence": 30033,
+      "enqueue_s": 5923.330812442,
+      "event_index": 4983165,
+      "age_at_stop_s": 76.66918755799998
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "destination": 1,
+      "sequence": 30034,
+      "enqueue_s": 5923.824812442,
+      "event_index": 4983632,
+      "age_at_stop_s": 76.17518755800029
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "destination": 1,
+      "sequence": 27688,
+      "enqueue_s": 5924.292813632,
+      "event_index": 4984144,
+      "age_at_stop_s": 75.7071863680003
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "destination": 1,
+      "sequence": 30729,
+      "enqueue_s": 5926.88,
+      "event_index": 4986856,
+      "age_at_stop_s": 73.11999999999989
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "destination": 1,
+      "sequence": 30736,
+      "enqueue_s": 5928.64,
+      "event_index": 4988474,
+      "age_at_stop_s": 71.35999999999967
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "destination": 1,
+      "sequence": 30739,
+      "enqueue_s": 5929.2,
+      "event_index": 4989071,
+      "age_at_stop_s": 70.80000000000018
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "destination": 1,
+      "sequence": 27867,
+      "enqueue_s": 5935.381813632,
+      "event_index": 4994336,
+      "age_at_stop_s": 64.61818636800035
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "destination": 1,
+      "sequence": 28571,
+      "enqueue_s": 5940.776813632,
+      "event_index": 4997914,
+      "age_at_stop_s": 59.223186367999915
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "destination": 1,
+      "sequence": 30133,
+      "enqueue_s": 5944.806812442,
+      "event_index": 5000837,
+      "age_at_stop_s": 55.19318755800032
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "destination": 1,
+      "sequence": 30136,
+      "enqueue_s": 5945.053812442,
+      "event_index": 5001169,
+      "age_at_stop_s": 54.94618755800002
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "destination": 1,
+      "sequence": 30834,
+      "enqueue_s": 5949.5,
+      "event_index": 5005452,
+      "age_at_stop_s": 50.5
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "destination": 1,
+      "sequence": 30854,
+      "enqueue_s": 5953.64,
+      "event_index": 5008880,
+      "age_at_stop_s": 46.35999999999967
+    },
+    {
+      "node": 4,
+      "source": 2,
+      "destination": 1,
+      "sequence": 29292,
+      "enqueue_s": 5956.727813632,
+      "event_index": 5011425,
+      "age_at_stop_s": 43.27218636799989
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "destination": 1,
+      "sequence": 28583,
+      "enqueue_s": 5959.821813632,
+      "event_index": 5014228,
+      "age_at_stop_s": 40.17818636799984
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "destination": 1,
+      "sequence": 30894,
+      "enqueue_s": 5963.18,
+      "event_index": 5016772,
+      "age_at_stop_s": 36.81999999999971
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "destination": 1,
+      "sequence": 27973,
+      "enqueue_s": 5963.708813632,
+      "event_index": 5017140,
+      "age_at_stop_s": 36.291186368000126
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "destination": 1,
+      "sequence": 27907,
+      "enqueue_s": 5965.060813632,
+      "event_index": 5018448,
+      "age_at_stop_s": 34.939186368000264
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "destination": 1,
+      "sequence": 30142,
+      "enqueue_s": 5966.217812442,
+      "event_index": 5019758,
+      "age_at_stop_s": 33.78218755800026
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "destination": 1,
+      "sequence": 30256,
+      "enqueue_s": 5966.815812442,
+      "event_index": 5020328,
+      "age_at_stop_s": 33.1841875580003
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "destination": 1,
+      "sequence": 30257,
+      "enqueue_s": 5967.634812442,
+      "event_index": 5021273,
+      "age_at_stop_s": 32.36518755799989
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "destination": 1,
+      "sequence": 30933,
+      "enqueue_s": 5969.6,
+      "event_index": 5023307,
+      "age_at_stop_s": 30.399999999999636
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "destination": 1,
+      "sequence": 30943,
+      "enqueue_s": 5972.28,
+      "event_index": 5025479,
+      "age_at_stop_s": 27.720000000000255
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "destination": 1,
+      "sequence": 28639,
+      "enqueue_s": 5980.959813632,
+      "event_index": 5032653,
+      "age_at_stop_s": 19.040186367999922
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "destination": 1,
+      "sequence": 30261,
+      "enqueue_s": 5987.654812442,
+      "event_index": 5037562,
+      "age_at_stop_s": 12.345187558000362
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "destination": 1,
+      "sequence": 28002,
+      "enqueue_s": 5987.875813632,
+      "event_index": 5037770,
+      "age_at_stop_s": 12.124186367999755
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "destination": 1,
+      "sequence": 30366,
+      "enqueue_s": 5988.148812442,
+      "event_index": 5038140,
+      "age_at_stop_s": 11.851187557999765
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "destination": 1,
+      "sequence": 28685,
+      "enqueue_s": 5988.343813632,
+      "event_index": 5038367,
+      "age_at_stop_s": 11.656186367999908
+    },
+    {
+      "node": 4,
+      "source": 2,
+      "destination": 1,
+      "sequence": 29430,
+      "enqueue_s": 5988.772813632,
+      "event_index": 5038858,
+      "age_at_stop_s": 11.22718636799982
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "destination": 1,
+      "sequence": 31028,
+      "enqueue_s": 5990.74,
+      "event_index": 5041050,
+      "age_at_stop_s": 9.260000000000218
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "destination": 1,
+      "sequence": 30371,
+      "enqueue_s": 5991.229812442,
+      "event_index": 5041429,
+      "age_at_stop_s": 8.770187557999634
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "destination": 1,
+      "sequence": 28102,
+      "enqueue_s": 5993.322813632,
+      "event_index": 5043368,
+      "age_at_stop_s": 6.677186367999639
+    }
+  ],
+  "pending_hop": [],
+  "processing_seconds": 57.936394691467285,
+  "limits": [
+    "Historical seed128 trace omits admission/custody/HOP observation events; missing observations are unavailable, not zero.",
+    "Failed nwk_admission counts are retry/pump observations, not unique blocked packets.",
+    "Delivery delay includes only applications delivered by stop; unmatched native sends cannot alone distinguish drops and pending.",
+    "NSDP is per original source/destination; shared NWK queue occupancy must not be called shared NSDP.",
+    "All causal interpretation is observational; no policy counterfactual was executed.",
+    "HOP admission-to-completion ends at NSDP release; a DACK can retain HOP capacity until a later expiry. This is not total HOP capacity residence."
+  ],
+  "full_custody_telemetry_available": true
+}

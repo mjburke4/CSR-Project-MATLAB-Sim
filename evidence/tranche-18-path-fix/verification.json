@@ -1,0 +1,27 @@
+{
+  "schema": "csr-tranche18-path-repair-verification-v1",
+  "status": "ready_for_owner_rerun",
+  "candidate_sha256": "a74c20d7398c315ca3bbfc02f00be5e4800f228ce1269a6dae66921bd5f975ec",
+  "source_files": 346,
+  "reference_files": 736,
+  "baseline": {
+    "source_files": 313,
+    "matlab_files": 160,
+    "all_unchanged": true,
+    "source_snapshot_sha256": "5ba7ff4b26a12192496d98cc36ccbcffe77199255da1cbda1025f83a14618891"
+  },
+  "existing_native_reference_review": "passed",
+  "native_cases_verified": 10,
+  "native_simulations_reexecuted_for_repair": false,
+  "prepared_matlab_tests": 186,
+  "planned_cases": 11,
+  "matlab_static_analysis": {
+    "tool": "MISS_HIT 0.9.44",
+    "files": 1,
+    "exit_code": 0
+  },
+  "matlab_repair_executed": false,
+  "production_behavior_changed": false,
+  "root_cause": "All shipped .recipe.json paths failed the original character-class expression; exact per-case identity now replaces the regex.",
+  "baseline_and_native_evidence_unchanged": true
+}

@@ -1,0 +1,1272 @@
+{
+  "schema": "csr-tranche18-relay-reference-case-v1",
+  "status": "completed",
+  "case": {
+    "case_id": "p128",
+    "storage_key": "p128",
+    "condition": "campus_prefix",
+    "scenario": "csr_t18_p128",
+    "scenario_file": "scenarios/t18/inputs/p128.csv",
+    "scenario_sha256": "de547e67b38fc8a3dd39f803f0a6dffb85a6f303a73e1fb1b6bc20b6d3492439",
+    "recipe_file": "scenarios/t18/inputs/p128.recipe.json",
+    "recipe_sha256": "80dcc0132ef90375608c6c5737be6fdc4475fab5cc06c34e126cfcf2a6d1b25e",
+    "profile_id": "hist-adb97c54-bare",
+    "seed": 128,
+    "duration_s": 900,
+    "bucket_width_s": 60,
+    "reference_directory": "evidence/tranche-18-ns3-reference/p128",
+    "observer_enabled": true,
+    "observer_max_records": 400000,
+    "service_window_seconds": [
+      0,
+      901
+    ],
+    "trace_limits": {
+      "protocol": 1500000,
+      "phy": 1500000,
+      "admission": 300000
+    },
+    "max_events": 12000000,
+    "flow_limit": 0,
+    "node_ids": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
+      8
+    ],
+    "flow_sources": [
+      2,
+      3,
+      4,
+      5,
+      7,
+      8
+    ],
+    "source_kind": "campus_prefix_diagnostic",
+    "parent_kind": "unchanged_campus_rows_with_explicit_derivation",
+    "opnet_available": false,
+    "expected_admission_attempts": 180000
+  },
+  "case_id": "p128",
+  "storage_key": "p128",
+  "scenario_sha256": "de547e67b38fc8a3dd39f803f0a6dffb85a6f303a73e1fb1b6bc20b6d3492439",
+  "started_utc": "2026-09-16T12:47:37.881180+00:00",
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "engine_commit": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+  "runner_sha256": "5e481d92d55baa960b2a82605a5229fd899c8e112b0a549ba6ab00126369ae0c",
+  "matlab_executed": false,
+  "opnet_executed": false,
+  "stages": {
+    "run_ns3": {
+      "command": [
+        "/tmp/csr-t18-final-20260916-runner/t18-observed",
+        "--scenario=/workspace/scratch/ab77b42f47ca/csr18/scenarios/t18/inputs/p128.csv",
+        "--trace=/tmp/csr-t18-final-20260916-reference/p128/ns3-trace.csv",
+        "--appDiagnostics=/tmp/csr-t18-final-20260916-reference/p128/app-admission-diagnostics.csv",
+        "--stop=900",
+        "--flowLimit=0",
+        "--dutyCycling=1",
+        "--opnetAlignedDutyCycle=1",
+        "--gatewayDiscovery=1",
+        "--opnetAppGating=1",
+        "--aggregateTraceOnly=0",
+        "--quietModelLogs=1",
+        "--feedbackDiagnostics=/tmp/csr-t18-final-20260916-reference/p128/ns3-link-decisions.csv",
+        "--admissionTrace=1",
+        "--serviceDiagnostics=/tmp/csr-t18-final-20260916-reference/p128/ns3-service.csv",
+        "--serviceStart=0",
+        "--serviceStop=900",
+        "--serviceLimit=2000000"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 23.43619234199923,
+      "log": "ns3-run.log"
+    },
+    "off-run_ns3": {
+      "command": [
+        "/tmp/csr-t18-final-20260916-runner/t18-observed",
+        "--scenario=/workspace/scratch/ab77b42f47ca/csr18/scenarios/t18/inputs/p128.csv",
+        "--trace=/tmp/csr-t18-final-20260916-reference/p128/off-ns3-trace.csv",
+        "--appDiagnostics=/tmp/csr-t18-final-20260916-reference/p128/off-app-admission-diagnostics.csv",
+        "--stop=900",
+        "--flowLimit=0",
+        "--dutyCycling=1",
+        "--opnetAlignedDutyCycle=1",
+        "--gatewayDiscovery=1",
+        "--opnetAppGating=1",
+        "--aggregateTraceOnly=0",
+        "--quietModelLogs=1",
+        "--admissionTrace=1"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 11.148527549000391,
+      "log": "off-ns3-run.log"
+    },
+    "aggregate_ns3": {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-I",
+        "/workspace/scratch/ab77b42f47ca/t18-native/csr/utils/aggregate-ns3-trace.py",
+        "/tmp/csr-t18-final-20260916-reference/p128/ns3-trace.csv",
+        "/tmp/csr-t18-final-20260916-reference/p128/ns3-aggregates.csv",
+        "--scenario",
+        "csr_t18_p128",
+        "--bucket-width",
+        "60",
+        "--stop-time",
+        "900",
+        "--legacy-trace-size-exclusion-bits",
+        "0",
+        "--require-zero-size-mismatches",
+        "--provenance",
+        "/tmp/csr-t18-final-20260916-reference/p128/ns3-aggregates.provenance.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 4.328407882000647,
+      "log": "ns3-aggregate.log"
+    },
+    "off-aggregate_ns3": {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-I",
+        "/workspace/scratch/ab77b42f47ca/t18-native/csr/utils/aggregate-ns3-trace.py",
+        "/tmp/csr-t18-final-20260916-reference/p128/off-aggregate/ns3-trace.csv",
+        "/tmp/csr-t18-final-20260916-reference/p128/off-aggregate/ns3-aggregates.csv",
+        "--scenario",
+        "csr_t18_p128",
+        "--bucket-width",
+        "60",
+        "--stop-time",
+        "900",
+        "--legacy-trace-size-exclusion-bits",
+        "0",
+        "--require-zero-size-mismatches",
+        "--provenance",
+        "/tmp/csr-t18-final-20260916-reference/p128/off-aggregate/ns3-aggregates.provenance.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 4.277832718999889,
+      "log": "off-ns3-aggregate.log"
+    }
+  },
+  "compressed_artifacts": [
+    {
+      "original_name": "ns3-link-decisions.csv",
+      "original_bytes": 1932331,
+      "original_sha256": "09578dca19ee803f42cd3c855f180b5efe1889f243953a7d26aed9ced4fd8954",
+      "path": "ns3-link-decisions.csv.gz",
+      "sha256": "f3971c04e12b500f03b758eadbf5a3858bfb58c953ae15a639d65dedceb6f866",
+      "bytes": 108987
+    },
+    {
+      "original_name": "ns3-service.csv",
+      "original_bytes": 199757655,
+      "original_sha256": "81c85e1a250c722853e485da40aa0ac5b46f67df5ad8a602b091fceafce5dd79",
+      "path": "ns3-service.csv.gz",
+      "sha256": "feace5f105d5c4e6d076867a8c858f3e99d7868c21dcb849f68855cef2764086",
+      "bytes": 12869678
+    },
+    {
+      "original_name": "ns3-trace.csv",
+      "original_bytes": 137796892,
+      "original_sha256": "201ba3e327992f835603380c70707fbd358f4c17caee3b997b32b5294ebbaa4a",
+      "path": "ns3-trace.csv.gz",
+      "sha256": "ccb3718969606dd438c6229908643430cb75437a86e8fdd8daed641f4d44b4bd",
+      "bytes": 7782514
+    }
+  ],
+  "control_compressed_artifacts": [
+    {
+      "original_name": "off-ns3-trace.csv",
+      "original_bytes": 137796892,
+      "original_sha256": "201ba3e327992f835603380c70707fbd358f4c17caee3b997b32b5294ebbaa4a",
+      "path": "off-ns3-trace.csv.gz",
+      "sha256": "ccb3718969606dd438c6229908643430cb75437a86e8fdd8daed641f4d44b4bd",
+      "bytes": 7782514
+    }
+  ],
+  "nonperturbation": {
+    "status": "passed",
+    "compared_files": [
+      {
+        "name": "ns3-trace.csv",
+        "first_path": "ns3-trace.csv",
+        "second_path": "off-ns3-trace.csv",
+        "first_sha256": "201ba3e327992f835603380c70707fbd358f4c17caee3b997b32b5294ebbaa4a",
+        "second_sha256": "201ba3e327992f835603380c70707fbd358f4c17caee3b997b32b5294ebbaa4a",
+        "equal": true
+      },
+      {
+        "name": "app-admission-diagnostics.csv",
+        "first_path": "app-admission-diagnostics.csv",
+        "second_path": "off-app-admission-diagnostics.csv",
+        "first_sha256": "00059490f2529ce1cac2bb5d3c2e71d7d54790f24e885afd9e7454af15b45fdf",
+        "second_sha256": "00059490f2529ce1cac2bb5d3c2e71d7d54790f24e885afd9e7454af15b45fdf",
+        "equal": true
+      }
+    ]
+  },
+  "aggregate_nonperturbation": {
+    "status": "passed",
+    "compared_files": [
+      {
+        "name": "ns3-aggregates.csv",
+        "first_path": "ns3-aggregates.csv",
+        "second_path": "off-ns3-aggregates.csv",
+        "first_sha256": "80a54e2693b68415cce6a27d7a8713c2b2e568ce5799e851d2900a88d6bb2b62",
+        "second_sha256": "80a54e2693b68415cce6a27d7a8713c2b2e568ce5799e851d2900a88d6bb2b62",
+        "equal": true
+      }
+    ]
+  },
+  "application_admission_totals": {
+    "attempts": 180000,
+    "admitted": 1606,
+    "blocked_discovery": 0,
+    "blocked_topology": 0,
+    "blocked_gateway_route": 0,
+    "blocked_destination": 0,
+    "blocked_nsdp": 178394
+  },
+  "exact_sequence_validation": {
+    "matched_count": 1245,
+    "matched_by_method": {
+      "exact_sequence": 1245
+    },
+    "source_exact_dack_retry_duplicate_proof_count": 0,
+    "source_exact_dack_retry_duplicate_delivery_count": 0,
+    "unmatched_delivery_count": 0,
+    "matched_size_compared_count": 1245,
+    "matched_size_mismatch_count": 0
+  },
+  "feedback_diagnostics": {
+    "schema": "csr-ns3-feedback-observation-summary-v1",
+    "status": "passed",
+    "rows": 8661,
+    "selection_count": 2235,
+    "ordinary_data_context_count": 2052,
+    "ota_feedback_member_count": 4374,
+    "ota_aggregates_containing_feedback": 3311,
+    "all_ota_members_linked_to_selection": true,
+    "distinct_decisions_transmitted": 1740,
+    "actual_vs_selected_rate_change_count": 0,
+    "actual_vs_selected_power_change_count": 0,
+    "selection_distribution": [
+      {
+        "frame_type": "ACK",
+        "rate_key_kbps": 8,
+        "power_dbm": 33.0,
+        "count": 1713
+      },
+      {
+        "frame_type": "DACK",
+        "rate_key_kbps": 8,
+        "power_dbm": 33.0,
+        "count": 522
+      }
+    ],
+    "ota_member_distribution": [
+      {
+        "frame_type": "ACK",
+        "rate_key_kbps": 8,
+        "power_dbm": 33.0,
+        "count": 3055
+      },
+      {
+        "frame_type": "DACK",
+        "rate_key_kbps": 8,
+        "power_dbm": 33.0,
+        "count": 1319
+      }
+    ],
+    "incoming_vs_selected_rate_difference_count": 0,
+    "incoming_vs_selected_power_difference_count": 0,
+    "scope": "Selection is feedback construction after ApplyLinkControl, not successful MAC admission; OTA rows count actual members including repeats. Control-exact incoming context is unavailable."
+  },
+  "service_diagnostics": {
+    "schema": "csr-tranche18-native-service-summary-v1",
+    "status": "passed",
+    "rows": 1082082,
+    "max_records": 2000000,
+    "omitted_records": 0,
+    "window_s": [
+      0,
+      900
+    ],
+    "stop_endpoint": "exclusive",
+    "event_counts": {
+      "ack_queue_enqueue_after": 447,
+      "ack_queue_exact_duplicate": 4,
+      "ack_queue_replace_after": 1784,
+      "ack_queue_replace_before": 1784,
+      "app_admission": 180000,
+      "app_send": 1606,
+      "hop_admission": 2128,
+      "hop_capacity_release": 506,
+      "hop_completion": 2096,
+      "hop_feedback": 2052,
+      "hop_retry": 617,
+      "mac_cancel_begin": 3853,
+      "mac_cancel_end": 3853,
+      "mac_cancel_frame_after": 136,
+      "mac_cancel_frame_before": 136,
+      "mac_holdoff_expired": 33,
+      "mac_holdoff_schedule_before": 1310,
+      "mac_idle_rts_schedule": 20,
+      "mac_prepare_after": 5933,
+      "mac_receive_state_after": 22264,
+      "mac_receive_state_before": 22264,
+      "mac_schedule_request": 5206,
+      "mac_slot_tick": 386705,
+      "mac_state": 34121,
+      "mac_sync_change_before": 24064,
+      "nwk_admission": 190140,
+      "nwk_delivery": 1245,
+      "nwk_enqueue": 2409,
+      "nwk_forward": 2128,
+      "nwk_nsdp_release": 2096,
+      "reservation_advertise": 5929,
+      "reservation_holdoff": 33,
+      "reservation_prepare": 5933,
+      "reservation_tick": 107517,
+      "route_change": 91,
+      "rx_accept": 9820,
+      "rx_drop": 25751,
+      "scenario_link": 21,
+      "scenario_node": 7,
+      "statistic_sample": 20111,
+      "tx_start": 5929
+    },
+    "forwarding": [
+      {
+        "src": "2",
+        "dst": "1",
+        "node": "2",
+        "ingress_peer": "",
+        "next_hop": "4",
+        "kind": "local",
+        "count": 69
+      },
+      {
+        "src": "2",
+        "dst": "1",
+        "node": "4",
+        "ingress_peer": "2",
+        "next_hop": "5",
+        "kind": "relay",
+        "count": 60
+      },
+      {
+        "src": "2",
+        "dst": "1",
+        "node": "5",
+        "ingress_peer": "4",
+        "next_hop": "1",
+        "kind": "relay",
+        "count": 47
+      },
+      {
+        "src": "3",
+        "dst": "1",
+        "node": "3",
+        "ingress_peer": "",
+        "next_hop": "1",
+        "kind": "local",
+        "count": 876
+      },
+      {
+        "src": "4",
+        "dst": "1",
+        "node": "4",
+        "ingress_peer": "",
+        "next_hop": "5",
+        "kind": "local",
+        "count": 48
+      },
+      {
+        "src": "4",
+        "dst": "1",
+        "node": "5",
+        "ingress_peer": "4",
+        "next_hop": "1",
+        "kind": "relay",
+        "count": 43
+      },
+      {
+        "src": "5",
+        "dst": "1",
+        "node": "5",
+        "ingress_peer": "",
+        "next_hop": "1",
+        "kind": "local",
+        "count": 244
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "2",
+        "ingress_peer": "8",
+        "next_hop": "4",
+        "kind": "relay",
+        "count": 75
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "4",
+        "ingress_peer": "2",
+        "next_hop": "5",
+        "kind": "relay",
+        "count": 48
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "5",
+        "ingress_peer": "4",
+        "next_hop": "1",
+        "kind": "relay",
+        "count": 41
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "7",
+        "ingress_peer": "",
+        "next_hop": "8",
+        "kind": "local",
+        "count": 172
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "8",
+        "ingress_peer": "7",
+        "next_hop": "2",
+        "kind": "relay",
+        "count": 145
+      },
+      {
+        "src": "8",
+        "dst": "1",
+        "node": "2",
+        "ingress_peer": "8",
+        "next_hop": "4",
+        "kind": "relay",
+        "count": 68
+      },
+      {
+        "src": "8",
+        "dst": "1",
+        "node": "4",
+        "ingress_peer": "2",
+        "next_hop": "5",
+        "kind": "relay",
+        "count": 41
+      },
+      {
+        "src": "8",
+        "dst": "1",
+        "node": "5",
+        "ingress_peer": "4",
+        "next_hop": "1",
+        "kind": "relay",
+        "count": 30
+      },
+      {
+        "src": "8",
+        "dst": "1",
+        "node": "8",
+        "ingress_peer": "",
+        "next_hop": "2",
+        "kind": "local",
+        "count": 121
+      }
+    ],
+    "completions": [
+      {
+        "src": "2",
+        "dst": "1",
+        "node": "2",
+        "peer": "4",
+        "reason": "ack",
+        "count": 26
+      },
+      {
+        "src": "2",
+        "dst": "1",
+        "node": "2",
+        "peer": "4",
+        "reason": "dack",
+        "count": 41
+      },
+      {
+        "src": "2",
+        "dst": "1",
+        "node": "2",
+        "peer": "4",
+        "reason": "no_ack",
+        "count": 2
+      },
+      {
+        "src": "2",
+        "dst": "1",
+        "node": "4",
+        "peer": "5",
+        "reason": "ack",
+        "count": 48
+      },
+      {
+        "src": "2",
+        "dst": "1",
+        "node": "4",
+        "peer": "5",
+        "reason": "no_ack",
+        "count": 12
+      },
+      {
+        "src": "2",
+        "dst": "1",
+        "node": "5",
+        "peer": "1",
+        "reason": "ack",
+        "count": 39
+      },
+      {
+        "src": "2",
+        "dst": "1",
+        "node": "5",
+        "peer": "1",
+        "reason": "no_ack",
+        "count": 6
+      },
+      {
+        "src": "3",
+        "dst": "1",
+        "node": "3",
+        "peer": "1",
+        "reason": "ack",
+        "count": 807
+      },
+      {
+        "src": "3",
+        "dst": "1",
+        "node": "3",
+        "peer": "1",
+        "reason": "no_ack",
+        "count": 53
+      },
+      {
+        "src": "4",
+        "dst": "1",
+        "node": "4",
+        "peer": "5",
+        "reason": "ack",
+        "count": 43
+      },
+      {
+        "src": "4",
+        "dst": "1",
+        "node": "4",
+        "peer": "5",
+        "reason": "no_ack",
+        "count": 5
+      },
+      {
+        "src": "4",
+        "dst": "1",
+        "node": "5",
+        "peer": "1",
+        "reason": "ack",
+        "count": 39
+      },
+      {
+        "src": "4",
+        "dst": "1",
+        "node": "5",
+        "peer": "1",
+        "reason": "no_ack",
+        "count": 4
+      },
+      {
+        "src": "5",
+        "dst": "1",
+        "node": "5",
+        "peer": "1",
+        "reason": "ack",
+        "count": 204
+      },
+      {
+        "src": "5",
+        "dst": "1",
+        "node": "5",
+        "peer": "1",
+        "reason": "no_ack",
+        "count": 36
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "2",
+        "peer": "4",
+        "reason": "ack",
+        "count": 15
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "2",
+        "peer": "4",
+        "reason": "dack",
+        "count": 58
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "2",
+        "peer": "4",
+        "reason": "no_ack",
+        "count": 2
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "4",
+        "peer": "5",
+        "reason": "ack",
+        "count": 34
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "4",
+        "peer": "5",
+        "reason": "dack",
+        "count": 9
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "4",
+        "peer": "5",
+        "reason": "no_ack",
+        "count": 4
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "5",
+        "peer": "1",
+        "reason": "ack",
+        "count": 30
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "5",
+        "peer": "1",
+        "reason": "no_ack",
+        "count": 7
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "7",
+        "peer": "8",
+        "reason": "ack",
+        "count": 33
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "7",
+        "peer": "8",
+        "reason": "dack",
+        "count": 137
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "7",
+        "peer": "8",
+        "reason": "no_ack",
+        "count": 2
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "8",
+        "peer": "2",
+        "reason": "ack",
+        "count": 16
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "8",
+        "peer": "2",
+        "reason": "dack",
+        "count": 125
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "8",
+        "peer": "2",
+        "reason": "no_ack",
+        "count": 4
+      },
+      {
+        "src": "8",
+        "dst": "1",
+        "node": "2",
+        "peer": "4",
+        "reason": "ack",
+        "count": 19
+      },
+      {
+        "src": "8",
+        "dst": "1",
+        "node": "2",
+        "peer": "4",
+        "reason": "dack",
+        "count": 45
+      },
+      {
+        "src": "8",
+        "dst": "1",
+        "node": "2",
+        "peer": "4",
+        "reason": "no_ack",
+        "count": 3
+      },
+      {
+        "src": "8",
+        "dst": "1",
+        "node": "4",
+        "peer": "5",
+        "reason": "ack",
+        "count": 30
+      },
+      {
+        "src": "8",
+        "dst": "1",
+        "node": "4",
+        "peer": "5",
+        "reason": "dack",
+        "count": 1
+      },
+      {
+        "src": "8",
+        "dst": "1",
+        "node": "4",
+        "peer": "5",
+        "reason": "no_ack",
+        "count": 10
+      },
+      {
+        "src": "8",
+        "dst": "1",
+        "node": "5",
+        "peer": "1",
+        "reason": "ack",
+        "count": 20
+      },
+      {
+        "src": "8",
+        "dst": "1",
+        "node": "5",
+        "peer": "1",
+        "reason": "no_ack",
+        "count": 6
+      },
+      {
+        "src": "8",
+        "dst": "1",
+        "node": "8",
+        "peer": "2",
+        "reason": "ack",
+        "count": 16
+      },
+      {
+        "src": "8",
+        "dst": "1",
+        "node": "8",
+        "peer": "2",
+        "reason": "dack",
+        "count": 105
+      }
+    ],
+    "retry_submissions": [
+      {
+        "src": "2",
+        "dst": "1",
+        "node": "2",
+        "peer": "4",
+        "count": 30
+      },
+      {
+        "src": "2",
+        "dst": "1",
+        "node": "4",
+        "peer": "5",
+        "count": 60
+      },
+      {
+        "src": "2",
+        "dst": "1",
+        "node": "5",
+        "peer": "1",
+        "count": 15
+      },
+      {
+        "src": "3",
+        "dst": "1",
+        "node": "3",
+        "peer": "1",
+        "count": 115
+      },
+      {
+        "src": "4",
+        "dst": "1",
+        "node": "4",
+        "peer": "5",
+        "count": 33
+      },
+      {
+        "src": "4",
+        "dst": "1",
+        "node": "5",
+        "peer": "1",
+        "count": 10
+      },
+      {
+        "src": "5",
+        "dst": "1",
+        "node": "5",
+        "peer": "1",
+        "count": 111
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "2",
+        "peer": "4",
+        "count": 25
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "4",
+        "peer": "5",
+        "count": 18
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "5",
+        "peer": "1",
+        "count": 16
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "7",
+        "peer": "8",
+        "count": 43
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "8",
+        "peer": "2",
+        "count": 30
+      },
+      {
+        "src": "8",
+        "dst": "1",
+        "node": "2",
+        "peer": "4",
+        "count": 32
+      },
+      {
+        "src": "8",
+        "dst": "1",
+        "node": "4",
+        "peer": "5",
+        "count": 31
+      },
+      {
+        "src": "8",
+        "dst": "1",
+        "node": "5",
+        "peer": "1",
+        "count": 13
+      },
+      {
+        "src": "8",
+        "dst": "1",
+        "node": "8",
+        "peer": "2",
+        "count": 35
+      }
+    ],
+    "blocked_admission_observations": [
+      {
+        "src": "2",
+        "dst": "1",
+        "node": "2",
+        "peer": "4",
+        "reason": "neighbor_flow_full",
+        "count": 14117
+      },
+      {
+        "src": "2",
+        "dst": "1",
+        "node": "4",
+        "peer": "5",
+        "reason": "neighbor_flow_full",
+        "count": 11866
+      },
+      {
+        "src": "2",
+        "dst": "1",
+        "node": "5",
+        "peer": "",
+        "reason": "global_hop_full",
+        "count": 5
+      },
+      {
+        "src": "2",
+        "dst": "1",
+        "node": "5",
+        "peer": "1",
+        "reason": "neighbor_flow_full",
+        "count": 2191
+      },
+      {
+        "src": "3",
+        "dst": "1",
+        "node": "3",
+        "peer": "1",
+        "reason": "neighbor_flow_full",
+        "count": 929
+      },
+      {
+        "src": "4",
+        "dst": "1",
+        "node": "4",
+        "peer": "5",
+        "reason": "neighbor_flow_full",
+        "count": 9547
+      },
+      {
+        "src": "4",
+        "dst": "1",
+        "node": "5",
+        "peer": "1",
+        "reason": "neighbor_flow_full",
+        "count": 2482
+      },
+      {
+        "src": "5",
+        "dst": "1",
+        "node": "5",
+        "peer": "",
+        "reason": "global_hop_full",
+        "count": 15
+      },
+      {
+        "src": "5",
+        "dst": "1",
+        "node": "5",
+        "peer": "1",
+        "reason": "neighbor_flow_full",
+        "count": 7998
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "2",
+        "peer": "4",
+        "reason": "neighbor_flow_full",
+        "count": 35636
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "4",
+        "peer": "5",
+        "reason": "neighbor_flow_full",
+        "count": 13518
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "5",
+        "peer": "",
+        "reason": "global_hop_full",
+        "count": 36
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "5",
+        "peer": "1",
+        "reason": "neighbor_flow_full",
+        "count": 2638
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "7",
+        "peer": "8",
+        "reason": "neighbor_flow_full",
+        "count": 9899
+      },
+      {
+        "src": "7",
+        "dst": "1",
+        "node": "8",
+        "peer": "2",
+        "reason": "neighbor_flow_full",
+        "count": 19283
+      },
+      {
+        "src": "8",
+        "dst": "1",
+        "node": "2",
+        "peer": "4",
+        "reason": "neighbor_flow_full",
+        "count": 29318
+      },
+      {
+        "src": "8",
+        "dst": "1",
+        "node": "4",
+        "peer": "5",
+        "reason": "neighbor_flow_full",
+        "count": 11213
+      },
+      {
+        "src": "8",
+        "dst": "1",
+        "node": "5",
+        "peer": "",
+        "reason": "global_hop_full",
+        "count": 3
+      },
+      {
+        "src": "8",
+        "dst": "1",
+        "node": "5",
+        "peer": "1",
+        "reason": "neighbor_flow_full",
+        "count": 1985
+      },
+      {
+        "src": "8",
+        "dst": "1",
+        "node": "8",
+        "peer": "2",
+        "reason": "neighbor_flow_full",
+        "count": 15333
+      }
+    ],
+    "scope": "Callback observations. Retry means MAC submission, not OTA. DACK is not application loss; no_ack is a custody completion, not proven end-to-end loss. NSDP release has no packet sequence. Finite-horizon unmatched lifetimes are censored."
+  },
+  "service_projection": {
+    "status": "passed",
+    "canonical_rows": 601669,
+    "shared_fields_equal": true,
+    "next_hop_and_route_cost_preserved": true
+  },
+  "application_metrics": {
+    "simulator": "ns3",
+    "case_id": "p128",
+    "base_case_id": "campus_prefix",
+    "seed": 128,
+    "duration_s": 900.0,
+    "attempts": 180000,
+    "admitted": 1606,
+    "admission_blocked": 178394,
+    "delivered": 1245,
+    "delivered_unique": 1245,
+    "duplicate_delivery_events": 0,
+    "unmatched_sends": 361,
+    "explicit_drops": null,
+    "pending": null,
+    "drop_reasons": null,
+    "network_bytes_sent": 308352,
+    "network_bytes_received": 239040,
+    "delay_samples": 1245,
+    "delay_sum_s": 70604.086128312,
+    "mean_packet_latency_s": 56.71010934000964,
+    "max_packet_latency_s": 573.860811086,
+    "populated_delay_buckets": 10,
+    "bucket_latency_mean_sum_s": 568.3538525917536,
+    "mean_populated_bucket_latency_s": 56.83538525917536,
+    "received_packet_rate_over_full_window": 1.3833333333333333,
+    "flows": [
+      {
+        "source": 2,
+        "destination": 1,
+        "admitted": 85,
+        "delivered": 44,
+        "delivered_unique": 44,
+        "delay_sum_s": 14124.459687784001,
+        "delay_samples": 44,
+        "mean_packet_latency_s": 321.0104474496364,
+        "unmatched_sends": 41
+      },
+      {
+        "source": 3,
+        "destination": 1,
+        "admitted": 876,
+        "delivered": 862,
+        "delivered_unique": 862,
+        "delay_sum_s": 9336.209022374002,
+        "delay_samples": 862,
+        "mean_packet_latency_s": 10.83086893546868,
+        "unmatched_sends": 14
+      },
+      {
+        "source": 4,
+        "destination": 1,
+        "admitted": 64,
+        "delivered": 43,
+        "delivered_unique": 43,
+        "delay_sum_s": 9173.260876698001,
+        "delay_samples": 43,
+        "mean_packet_latency_s": 213.33164829530236,
+        "unmatched_sends": 21
+      },
+      {
+        "source": 5,
+        "destination": 1,
+        "admitted": 256,
+        "delivered": 236,
+        "delivered_unique": 236,
+        "delay_sum_s": 9240.606876295999,
+        "delay_samples": 236,
+        "mean_packet_latency_s": 39.155113882610166,
+        "unmatched_sends": 20
+      },
+      {
+        "source": 7,
+        "destination": 1,
+        "admitted": 188,
+        "delivered": 35,
+        "delivered_unique": 35,
+        "delay_sum_s": 17312.381388010002,
+        "delay_samples": 35,
+        "mean_packet_latency_s": 494.6394682288572,
+        "unmatched_sends": 153
+      },
+      {
+        "source": 8,
+        "destination": 1,
+        "admitted": 137,
+        "delivered": 25,
+        "delivered_unique": 25,
+        "delay_sum_s": 11417.168277149996,
+        "delay_samples": 25,
+        "mean_packet_latency_s": 456.68673108599984,
+        "unmatched_sends": 112
+      }
+    ]
+  },
+  "completed_utc": "2026-09-16T12:48:59.284460+00:00",
+  "files": [
+    {
+      "path": "app-admission-diagnostics.csv",
+      "sha256": "00059490f2529ce1cac2bb5d3c2e71d7d54790f24e885afd9e7454af15b45fdf",
+      "bytes": 1001
+    },
+    {
+      "path": "feedback-summary.json",
+      "sha256": "844afb53151dd11c0f3349330989fbfd24eb54f771c7415a56cb88ade7c4b1af",
+      "bytes": 1241
+    },
+    {
+      "path": "ns3-aggregate.log",
+      "sha256": "6c710c95f0c19bdaf302a0ae64290b80756dfa49e3b19f3a06ec07a0d5ba1576",
+      "bytes": 180
+    },
+    {
+      "path": "ns3-aggregates.csv",
+      "sha256": "80a54e2693b68415cce6a27d7a8713c2b2e568ce5799e851d2900a88d6bb2b62",
+      "bytes": 45700
+    },
+    {
+      "path": "ns3-aggregates.provenance.json",
+      "sha256": "21ea210ecdd8b3d5d5b02b0712a0f4b66063fe94e445fd7a4e8b1d53c5adef93",
+      "bytes": 13496
+    },
+    {
+      "path": "ns3-benchmark.provenance.json",
+      "sha256": "e9d479f6bc302885e254d58a5acb14d43e1ae4dff97ef8a15f50b78583b756f3",
+      "bytes": 1298
+    },
+    {
+      "path": "ns3-link-decisions.csv.gz",
+      "sha256": "f3971c04e12b500f03b758eadbf5a3858bfb58c953ae15a639d65dedceb6f866",
+      "bytes": 108987
+    },
+    {
+      "path": "ns3-run.log",
+      "sha256": "bf0ddcb60ee41fe469dd04735f784b158d6f9f277a15adc2b35cd783e987aa6f",
+      "bytes": 297
+    },
+    {
+      "path": "ns3-service.csv.gz",
+      "sha256": "feace5f105d5c4e6d076867a8c858f3e99d7868c21dcb849f68855cef2764086",
+      "bytes": 12869678
+    },
+    {
+      "path": "ns3-trace.csv.gz",
+      "sha256": "ccb3718969606dd438c6229908643430cb75437a86e8fdd8daed641f4d44b4bd",
+      "bytes": 7782514
+    },
+    {
+      "path": "off-app-admission-diagnostics.csv",
+      "sha256": "00059490f2529ce1cac2bb5d3c2e71d7d54790f24e885afd9e7454af15b45fdf",
+      "bytes": 1001
+    },
+    {
+      "path": "off-ns3-aggregate.log",
+      "sha256": "34e257d31c55479bb5f79b2a96ea3839eb5df2d8ffc5f5494fafc9d6dc80878f",
+      "bytes": 208
+    },
+    {
+      "path": "off-ns3-aggregates.csv",
+      "sha256": "80a54e2693b68415cce6a27d7a8713c2b2e568ce5799e851d2900a88d6bb2b62",
+      "bytes": 45700
+    },
+    {
+      "path": "off-ns3-aggregates.provenance.json",
+      "sha256": "8d17bba3ad8786089aae4cb4cfece49d5008c43003d0b289dadd26122778de4d",
+      "bytes": 13524
+    },
+    {
+      "path": "off-ns3-run.log",
+      "sha256": "7f7102381c7bd41e4a927101f8bc690feb02e5ad05c00156b046e60de837113c",
+      "bytes": 301
+    },
+    {
+      "path": "off-ns3-trace.csv.gz",
+      "sha256": "ccb3718969606dd438c6229908643430cb75437a86e8fdd8daed641f4d44b4bd",
+      "bytes": 7782514
+    },
+    {
+      "path": "service-summary.json",
+      "sha256": "182067f3e47a0c4fb332a8f9d5f345853f155ca22914c838b4fd3d92aed63c08",
+      "bytes": 13987
+    }
+  ]
+}

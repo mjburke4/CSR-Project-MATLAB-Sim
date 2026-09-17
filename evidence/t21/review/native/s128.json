@@ -1,0 +1,837 @@
+{
+  "schema": "csr-t21-native-diagnosis-v1",
+  "seed": 128,
+  "duration_s": 6000,
+  "full_custody_telemetry_available": false,
+  "input": {
+    "manifest_sha256": "309f1343eb86c8d5ceb167546c351be7d753ba721930d6e677a4fd3d4e6faaa6",
+    "trace_gzip_sha256": "4a6bd194f83922add6c3b0b505e8f36596b639e314a12d0225347faca59e1ba5",
+    "trace_raw_sha256": "b5d4a7fd8da818c8581a73bef52ab8f98ced815f821745350e8f95c7c7f02722",
+    "trace_raw_bytes": 51686904,
+    "rows": 447584,
+    "last_event_time_s": 5999.916
+  },
+  "flows": [
+    {
+      "source": 2,
+      "admitted": 547,
+      "unique_delivered": 410,
+      "duplicate_delivery_events": 0,
+      "unmatched_sends": 137,
+      "first_delivery_delay_s": {
+        "count": 410,
+        "mean": 456.845567183561,
+        "p50": 448.966811086,
+        "p90": 571.8488110859998,
+        "max": 738.9428110860001
+      }
+    },
+    {
+      "source": 3,
+      "admitted": 8551,
+      "unique_delivered": 8535,
+      "duplicate_delivery_events": 0,
+      "unmatched_sends": 16,
+      "first_delivery_delay_s": {
+        "count": 8535,
+        "mean": 10.44845909750381,
+        "p50": 9.805808076999938,
+        "p90": 12.301808076999805,
+        "max": 29.437808076999772
+      }
+    },
+    {
+      "source": 4,
+      "admitted": 498,
+      "unique_delivered": 419,
+      "duplicate_delivery_events": 0,
+      "unmatched_sends": 79,
+      "first_delivery_delay_s": {
+        "count": 419,
+        "mean": 269.68891848456803,
+        "p50": 265.78181108599983,
+        "p90": 328.2988110860001,
+        "max": 434.3688110859998
+      }
+    },
+    {
+      "source": 5,
+      "admitted": 1397,
+      "unique_delivered": 1369,
+      "duplicate_delivery_events": 0,
+      "unmatched_sends": 28,
+      "first_delivery_delay_s": {
+        "count": 1369,
+        "mean": 67.30344765283712,
+        "p50": 68.98381108600006,
+        "p90": 113.20581108600004,
+        "max": 166.79181108600005
+      }
+    },
+    {
+      "source": 7,
+      "admitted": 803,
+      "unique_delivered": 574,
+      "duplicate_delivery_events": 0,
+      "unmatched_sends": 229,
+      "first_delivery_delay_s": {
+        "count": 574,
+        "mean": 777.8483145703206,
+        "p50": 773.2838110860002,
+        "p90": 965.4648110859999,
+        "max": 1020.080811086
+      }
+    },
+    {
+      "source": 8,
+      "admitted": 621,
+      "unique_delivered": 462,
+      "duplicate_delivery_events": 0,
+      "unmatched_sends": 159,
+      "first_delivery_delay_s": {
+        "count": 462,
+        "mean": 645.3700600037489,
+        "p50": 637.638811086,
+        "p90": 803.129811086,
+        "max": 941.9438110860001
+      }
+    }
+  ],
+  "event_counts": {
+    "route_change": 91,
+    "statistic_sample": 161956,
+    "rx_drop": 207557,
+    "app_send": 12417,
+    "nwk_enqueue": 18208,
+    "nwk_forward": 17988,
+    "hop_feedback": 17598,
+    "nwk_delivery": 11769
+  },
+  "counts_by_node": [
+    {
+      "node": 1,
+      "event": "hop_feedback",
+      "count": 11796
+    },
+    {
+      "node": 1,
+      "event": "nwk_delivery",
+      "count": 11769
+    },
+    {
+      "node": 1,
+      "event": "route_change",
+      "count": 12
+    },
+    {
+      "node": 1,
+      "event": "rx_drop",
+      "count": 23707
+    },
+    {
+      "node": 1,
+      "event": "statistic_sample",
+      "count": 1237
+    },
+    {
+      "node": 2,
+      "event": "app_send",
+      "count": 547
+    },
+    {
+      "node": 2,
+      "event": "hop_feedback",
+      "count": 1335
+    },
+    {
+      "node": 2,
+      "event": "nwk_enqueue",
+      "count": 1882
+    },
+    {
+      "node": 2,
+      "event": "nwk_forward",
+      "count": 1831
+    },
+    {
+      "node": 2,
+      "event": "route_change",
+      "count": 14
+    },
+    {
+      "node": 2,
+      "event": "rx_drop",
+      "count": 30315
+    },
+    {
+      "node": 2,
+      "event": "statistic_sample",
+      "count": 16713
+    },
+    {
+      "node": 3,
+      "event": "app_send",
+      "count": 8551
+    },
+    {
+      "node": 3,
+      "event": "nwk_enqueue",
+      "count": 8551
+    },
+    {
+      "node": 3,
+      "event": "nwk_forward",
+      "count": 8551
+    },
+    {
+      "node": 3,
+      "event": "route_change",
+      "count": 10
+    },
+    {
+      "node": 3,
+      "event": "rx_drop",
+      "count": 24419
+    },
+    {
+      "node": 3,
+      "event": "statistic_sample",
+      "count": 70595
+    },
+    {
+      "node": 4,
+      "event": "app_send",
+      "count": 498
+    },
+    {
+      "node": 4,
+      "event": "hop_feedback",
+      "count": 1794
+    },
+    {
+      "node": 4,
+      "event": "nwk_enqueue",
+      "count": 2289
+    },
+    {
+      "node": 4,
+      "event": "nwk_forward",
+      "count": 2188
+    },
+    {
+      "node": 4,
+      "event": "route_change",
+      "count": 11
+    },
+    {
+      "node": 4,
+      "event": "rx_drop",
+      "count": 27705
+    },
+    {
+      "node": 4,
+      "event": "statistic_sample",
+      "count": 24118
+    },
+    {
+      "node": 5,
+      "event": "app_send",
+      "count": 1397
+    },
+    {
+      "node": 5,
+      "event": "hop_feedback",
+      "count": 1898
+    },
+    {
+      "node": 5,
+      "event": "nwk_enqueue",
+      "count": 3287
+    },
+    {
+      "node": 5,
+      "event": "nwk_forward",
+      "count": 3268
+    },
+    {
+      "node": 5,
+      "event": "route_change",
+      "count": 11
+    },
+    {
+      "node": 5,
+      "event": "rx_drop",
+      "count": 22227
+    },
+    {
+      "node": 5,
+      "event": "statistic_sample",
+      "count": 30749
+    },
+    {
+      "node": 7,
+      "event": "app_send",
+      "count": 803
+    },
+    {
+      "node": 7,
+      "event": "nwk_enqueue",
+      "count": 803
+    },
+    {
+      "node": 7,
+      "event": "nwk_forward",
+      "count": 787
+    },
+    {
+      "node": 7,
+      "event": "route_change",
+      "count": 17
+    },
+    {
+      "node": 7,
+      "event": "rx_drop",
+      "count": 42661
+    },
+    {
+      "node": 7,
+      "event": "statistic_sample",
+      "count": 6274
+    },
+    {
+      "node": 8,
+      "event": "app_send",
+      "count": 621
+    },
+    {
+      "node": 8,
+      "event": "hop_feedback",
+      "count": 775
+    },
+    {
+      "node": 8,
+      "event": "nwk_enqueue",
+      "count": 1396
+    },
+    {
+      "node": 8,
+      "event": "nwk_forward",
+      "count": 1363
+    },
+    {
+      "node": 8,
+      "event": "route_change",
+      "count": 16
+    },
+    {
+      "node": 8,
+      "event": "rx_drop",
+      "count": 36523
+    },
+    {
+      "node": 8,
+      "event": "statistic_sample",
+      "count": 12270
+    }
+  ],
+  "node_source_event_reasons": [
+    {
+      "node": 2,
+      "source": 7,
+      "event": "hop_feedback",
+      "reason": "ack",
+      "count": 97
+    },
+    {
+      "node": 2,
+      "source": 7,
+      "event": "hop_feedback",
+      "reason": "dack",
+      "count": 641
+    },
+    {
+      "node": 2,
+      "source": 8,
+      "event": "hop_feedback",
+      "reason": "ack",
+      "count": 195
+    },
+    {
+      "node": 2,
+      "source": 8,
+      "event": "hop_feedback",
+      "reason": "dack",
+      "count": 402
+    },
+    {
+      "node": 4,
+      "source": 2,
+      "event": "hop_feedback",
+      "reason": "ack",
+      "count": 204
+    },
+    {
+      "node": 4,
+      "source": 2,
+      "event": "hop_feedback",
+      "reason": "dack",
+      "count": 315
+    },
+    {
+      "node": 4,
+      "source": 2,
+      "event": "nwk_enqueue",
+      "reason": "relay",
+      "count": 517
+    },
+    {
+      "node": 4,
+      "source": 2,
+      "event": "nwk_forward",
+      "reason": "relay",
+      "count": 487
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "event": "nwk_enqueue",
+      "reason": "local",
+      "count": 498
+    },
+    {
+      "node": 4,
+      "source": 4,
+      "event": "nwk_forward",
+      "reason": "local",
+      "count": 482
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "event": "hop_feedback",
+      "reason": "ack",
+      "count": 56
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "event": "hop_feedback",
+      "reason": "dack",
+      "count": 652
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "event": "nwk_enqueue",
+      "reason": "relay",
+      "count": 707
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "event": "nwk_forward",
+      "reason": "relay",
+      "count": 679
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "event": "hop_feedback",
+      "reason": "ack",
+      "count": 142
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "event": "hop_feedback",
+      "reason": "dack",
+      "count": 425
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "event": "nwk_enqueue",
+      "reason": "relay",
+      "count": 567
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "event": "nwk_forward",
+      "reason": "relay",
+      "count": 540
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "event": "hop_feedback",
+      "reason": "ack",
+      "count": 140
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "event": "hop_feedback",
+      "reason": "dack",
+      "count": 635
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "event": "nwk_enqueue",
+      "reason": "relay",
+      "count": 775
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "event": "nwk_forward",
+      "reason": "relay",
+      "count": 758
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "event": "nwk_enqueue",
+      "reason": "local",
+      "count": 621
+    },
+    {
+      "node": 8,
+      "source": 8,
+      "event": "nwk_forward",
+      "reason": "local",
+      "count": 605
+    }
+  ],
+  "app_attempt_reasons": [],
+  "feedback": [
+    {
+      "node": 2,
+      "peer": 8,
+      "source": 7,
+      "reason": "ack",
+      "count": 97
+    },
+    {
+      "node": 2,
+      "peer": 8,
+      "source": 7,
+      "reason": "dack",
+      "count": 641
+    },
+    {
+      "node": 2,
+      "peer": 8,
+      "source": 8,
+      "reason": "ack",
+      "count": 195
+    },
+    {
+      "node": 2,
+      "peer": 8,
+      "source": 8,
+      "reason": "dack",
+      "count": 402
+    },
+    {
+      "node": 4,
+      "peer": 2,
+      "source": 2,
+      "reason": "ack",
+      "count": 204
+    },
+    {
+      "node": 4,
+      "peer": 2,
+      "source": 2,
+      "reason": "dack",
+      "count": 315
+    },
+    {
+      "node": 4,
+      "peer": 2,
+      "source": 7,
+      "reason": "ack",
+      "count": 56
+    },
+    {
+      "node": 4,
+      "peer": 2,
+      "source": 7,
+      "reason": "dack",
+      "count": 652
+    },
+    {
+      "node": 4,
+      "peer": 2,
+      "source": 8,
+      "reason": "ack",
+      "count": 142
+    },
+    {
+      "node": 4,
+      "peer": 2,
+      "source": 8,
+      "reason": "dack",
+      "count": 425
+    },
+    {
+      "node": 8,
+      "peer": 7,
+      "source": 7,
+      "reason": "ack",
+      "count": 140
+    },
+    {
+      "node": 8,
+      "peer": 7,
+      "source": 7,
+      "reason": "dack",
+      "count": 635
+    }
+  ],
+  "feedback_before_nsdp_histogram": [
+    {
+      "node": 4,
+      "source": 2,
+      "reason": "ack",
+      "histogram": {
+        "0": 1,
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 6,
+        "5": 8,
+        "6": 8,
+        "7": 6,
+        "8": 4,
+        "9": 4,
+        "10": 11,
+        "11": 15,
+        "12": 17,
+        "13": 25,
+        "14": 44,
+        "15": 47,
+        "16": 2
+      }
+    },
+    {
+      "node": 4,
+      "source": 2,
+      "reason": "dack",
+      "histogram": {
+        "16": 54,
+        "17": 33,
+        "18": 23,
+        "19": 24,
+        "20": 27,
+        "21": 19,
+        "22": 18,
+        "23": 13,
+        "24": 11,
+        "25": 13,
+        "26": 16,
+        "27": 13,
+        "28": 17,
+        "29": 19,
+        "30": 10,
+        "31": 3,
+        "32": 2
+      }
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "reason": "ack",
+      "histogram": {
+        "0": 1,
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": 1,
+        "6": 1,
+        "7": 1,
+        "8": 1,
+        "9": 1,
+        "10": 1,
+        "11": 1,
+        "12": 4,
+        "13": 5,
+        "14": 10,
+        "15": 24,
+        "16": 1
+      }
+    },
+    {
+      "node": 4,
+      "source": 7,
+      "reason": "dack",
+      "histogram": {
+        "16": 41,
+        "17": 40,
+        "18": 42,
+        "19": 41,
+        "20": 48,
+        "21": 44,
+        "22": 38,
+        "23": 42,
+        "24": 46,
+        "25": 34,
+        "26": 28,
+        "27": 19,
+        "28": 17,
+        "29": 23,
+        "30": 13,
+        "31": 12,
+        "32": 11,
+        "33": 18,
+        "34": 15,
+        "35": 8,
+        "36": 7,
+        "37": 7,
+        "38": 5,
+        "39": 3,
+        "40": 5,
+        "41": 5,
+        "42": 4,
+        "43": 4,
+        "44": 3,
+        "45": 2,
+        "46": 2,
+        "47": 3,
+        "48": 3,
+        "49": 3,
+        "50": 6,
+        "51": 5,
+        "52": 3,
+        "53": 1,
+        "54": 1
+      }
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "reason": "ack",
+      "histogram": {
+        "0": 1,
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": 1,
+        "6": 1,
+        "7": 1,
+        "8": 1,
+        "9": 1,
+        "10": 4,
+        "11": 8,
+        "12": 15,
+        "13": 21,
+        "14": 34,
+        "15": 50
+      }
+    },
+    {
+      "node": 4,
+      "source": 8,
+      "reason": "dack",
+      "histogram": {
+        "16": 64,
+        "17": 59,
+        "18": 61,
+        "19": 59,
+        "20": 40,
+        "21": 31,
+        "22": 25,
+        "23": 22,
+        "24": 15,
+        "25": 11,
+        "26": 8,
+        "27": 9,
+        "28": 5,
+        "29": 3,
+        "30": 3,
+        "31": 3,
+        "32": 3,
+        "33": 3,
+        "34": 1
+      }
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "reason": "ack",
+      "histogram": {
+        "0": 1,
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": 1,
+        "6": 2,
+        "7": 2,
+        "8": 2,
+        "9": 2,
+        "10": 2,
+        "11": 2,
+        "12": 4,
+        "13": 9,
+        "14": 37,
+        "15": 72
+      }
+    },
+    {
+      "node": 8,
+      "source": 7,
+      "reason": "dack",
+      "histogram": {
+        "16": 122,
+        "17": 100,
+        "18": 64,
+        "19": 42,
+        "20": 34,
+        "21": 27,
+        "22": 25,
+        "23": 23,
+        "24": 21,
+        "25": 17,
+        "26": 19,
+        "27": 22,
+        "28": 14,
+        "29": 8,
+        "30": 7,
+        "31": 8,
+        "32": 6,
+        "33": 8,
+        "34": 4,
+        "35": 6,
+        "36": 21,
+        "37": 19,
+        "38": 11,
+        "39": 4,
+        "40": 2,
+        "41": 1
+      }
+    }
+  ],
+  "nsdp_state": [],
+  "shared_nwk_queue": [],
+  "residence": [],
+  "unmatched_episode_events": [],
+  "nsdp_snapshot_mismatch_count": 0,
+  "nsdp_snapshot_mismatch_examples": [],
+  "queue_snapshot_mismatch_count": 0,
+  "queue_snapshot_mismatch_examples": [],
+  "pending_enqueues": [],
+  "pending_hop": [],
+  "processing_seconds": 3.873236656188965,
+  "limits": [
+    "Historical seed128 trace omits admission/custody/HOP observation events; missing observations are unavailable, not zero.",
+    "Failed nwk_admission counts are retry/pump observations, not unique blocked packets.",
+    "Delivery delay includes only applications delivered by stop; unmatched native sends cannot alone distinguish drops and pending.",
+    "NSDP is per original source/destination; shared NWK queue occupancy must not be called shared NSDP.",
+    "All causal interpretation is observational; no policy counterfactual was executed."
+  ]
+}

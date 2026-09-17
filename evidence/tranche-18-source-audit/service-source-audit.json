@@ -1,0 +1,89 @@
+{
+  "schema": "csr-tranche18-read-only-service-source-audit-v1",
+  "native_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "production_edits": false,
+  "matlab_executed": false,
+  "native_executed": false,
+  "new_behavior_defect_established": false,
+  "files": [
+    {
+      "role": "matlab_nwk",
+      "path": "csr17/+csr/+nwk/Layer.m",
+      "sha256": "7ef09931c83c55697ce96b400ee1d90459a44af4c0527b396829d62ab9125300"
+    },
+    {
+      "role": "matlab_hop",
+      "path": "csr17/+csr/+hop/Layer.m",
+      "sha256": "a56cd54fcd8bd863958b1addfc861f16f434ab79e4993fb182936a8b2b454f67"
+    },
+    {
+      "role": "matlab_simulation",
+      "path": "csr17/+csr/+sim/NetworkSimulation.m",
+      "sha256": "80264e18c050d4dbf2c6e5729076c5dfa602401b4e76053577b6388a77894104"
+    },
+    {
+      "role": "native_nwk",
+      "path": "t18-design/native/csr-nwk-layer.h",
+      "sha256": "bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc"
+    },
+    {
+      "role": "native_hop",
+      "path": "t18-design/native/csr-hop-layer.h",
+      "sha256": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b"
+    }
+  ],
+  "equal_contracts": [
+    "zero_DSCP_tail_positive_DSCP_head_for_local_and_relay",
+    "no_explicit_local_over_relay_DATA_priority",
+    "per_original_flow_NSdp_counts",
+    "local_application_admission_below_16",
+    "NSDP_not_additional_NWK_forwarding_gate",
+    "global_pending_16_may_admit_17th",
+    "neighbor_outstanding_lte_threshold",
+    "ACK_capacity_before_NSdp_release",
+    "DACK_NSdp_release_with_capacity_retained_to_hold_expiry",
+    "final_expiry_releases_NSdp_and_capacity",
+    "two_pass_final_expiry_before_retry",
+    "non_scheduling_NSdp_release_HOP_owns_TIC_wake"
+  ],
+  "known_intentional_differences": [
+    "actual_TX_retry_timer_ownership_vs_native_provisional_queued_retry_timestamp",
+    "transactional_resend_MAC_overload_policy",
+    "bounded_retained_NWK_custody",
+    "explicit_relay_custody_refusal_and_late_delivery_accounting"
+  ],
+  "ordering_observations": [
+    {
+      "id": "nwk_enqueue_wake",
+      "matlab": "same_time_scheduled_pump",
+      "native": "TIC_delayed_CheckNwkQueue",
+      "causal_effect_established": false
+    },
+    {
+      "id": "hop_to_nwk_wake",
+      "matlab": "HOP_TIC_callback_then_same_time_NWK_event",
+      "native": "HOP_TIC_callback_invokes_CheckNwkQueue_directly",
+      "causal_effect_established": false
+    },
+    {
+      "id": "global_full_scan",
+      "matlab": "continues_and_performs_routeAvailable_before_admission",
+      "native": "breaks_before_route_lookup",
+      "causal_effect_established": false
+    },
+    {
+      "id": "dack_callback_snapshot_boundary",
+      "matlab": "resend_owner_removed_before_NSdp_callback",
+      "native": "NSdp_callback_before_resend_owner_removal",
+      "final_state_equivalent_under_current_callbacks": true
+    }
+  ],
+  "metric_warning": "Compare native unsent queue size with MATLAB unsubmitted owners; full PendingCustody includes HOP-held owners.",
+  "observation_warning": "Do not poll mutating native CanSendToHop/ShouldDack or MATLAB Routes.relay solely for observation.",
+  "retry_wait_report": "t17-retry-mac-waits.json",
+  "reports": [
+    "nwk-service-source-audit.md",
+    "hop_capacity_release_audit.md"
+  ],
+  "recommendation": "Bounded passive real-PHY multi-seed local/relay service diagnosis with accepted policies unchanged; do not patch to fit one-seed counts."
+}

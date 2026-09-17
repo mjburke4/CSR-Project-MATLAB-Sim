@@ -1,0 +1,56 @@
+{
+  "schema": "csr-tranche20-acceptance-v1",
+  "reviewed_utc": "2026-09-17T14:36:34.671607+00:00",
+  "status": "accepted_for_portable_regression_and_multi_seed_campus_validation",
+  "accepted": true,
+  "matlab_rerun_required": false,
+  "tests_passed": 716,
+  "new_full_campus_cases": 2,
+  "new_seeds": [
+    129,
+    130
+  ],
+  "reused_seed": 128,
+  "comparison_seeds": [
+    128,
+    129,
+    130
+  ],
+  "runtime": {
+    "Runtime": "MATLAB",
+    "Version": "25.1.0.2943329 (R2025a)",
+    "Release": "2025a",
+    "HasWirelessNetworkSimulator": false,
+    "HasWnetNode": false,
+    "HasWirelessPacket": false,
+    "DefaultBackend": "portable",
+    "WirelessAdapterImplemented": true,
+    "WirelessAdapterScope": "Optional R2026a wireless-clock candidate; runtime validation pending",
+    "NativePacketTransportIntegrated": false,
+    "ProbeScope": "Symbol discovery only; licenses and execution are not validated."
+  },
+  "owner_elapsed_minutes": 153.82636666666667,
+  "owner_archive_sha256": "41ee42fd72d3246b005cffa6eb0731aef1f465ac19747be82feb481571a72861",
+  "candidate_sha256": "ba4cedf3551a0bc1fe31385108e1f33011d1c97211bba993b6061a2de31389c1",
+  "source_snapshot_sha256": "3b0fd01057f1d498759331d9db024a1fce8df5d51e1b1ba9d8d0531e96c9a428",
+  "reference_snapshot_sha256": "39ffd244b7ea35c98ef89fb6e044f71c67cd59aedc576fb11785ec4c87610c38",
+  "source_bindings_verified": 376,
+  "reference_bindings_verified": 98,
+  "baseline_sources_unchanged": 358,
+  "default_policy": "actual-tx",
+  "default_policy_changed": false,
+  "whole_network_unique_delivery_within_5_percent_all_three_seeds": true,
+  "all_flow_unique_delivery_within_5_percent_all_three_seeds": false,
+  "numerical_equivalence_established": false,
+  "matlab_executed_by_reviewer": false,
+  "next_milestone": "Explain seed130 source7/source8 admission and delay redistribution using existing traces, and audit the persistent source4 deficit; require a demonstrated mechanism before changing the model or scheduling another full campus run.",
+  "limitations": [
+    "Hashes bind evidence claims; they do not independently prove MATLAB execution.",
+    "Three full-campus seeds provide a descriptive sample, not statistical equivalence or confidence intervals.",
+    "Seed128 retains its accepted T19 source identity; only seeds129 and130 execute under T20.",
+    "Engine random streams are not common random numbers. A seed label is not packet-level pairing.",
+    "The first100000 attempt records are retained; complete counters cover1710000 attempts.",
+    "Native unmatched sends do not separate dropped and pending applications.",
+    "The5% band is descriptive, never a structural acceptance gate. OPNET has no matched additional seeds."
+  ]
+}

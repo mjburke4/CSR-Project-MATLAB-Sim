@@ -22,6 +22,7 @@ classdef SignalEngine < handle
         OnReceive
         OnTrace
         OnState
+        TransportTiming = []
         Receivers
         NextSignalId = 1
         Outstanding = 0
@@ -31,13 +32,22 @@ classdef SignalEngine < handle
         CaptureMarginDb = 10.5
     end
     methods
-        function obj = SignalEngine(config, scheduler, streams, onReceive, onTrace, onState)
+        function obj = SignalEngine(config, scheduler, streams, onReceive, onTrace, onState, transportTiming)
             if nargin < 5, onTrace = []; end
             if nargin < 6, onState = []; end
             if ~isa(onReceive,'function_handle') || ...
                     (~isempty(onTrace) && ~isa(onTrace,'function_handle')) || ...
                     (~isempty(onState) && ~isa(onState,'function_handle'))
                 error('csr:phy:Callback','Receive and optional trace/state callbacks must be function handles.');
+            end
+            if nargin>6 && ~isempty(transportTiming)
+                if ~isa(transportTiming,'csr.sim.TransportTiming') || ~isscalar(transportTiming)
+                    error('csr:phy:TransportTiming','Expected one csr.sim.TransportTiming object.');
+                end
+                if ~isa(scheduler,'csr.sim.EventScheduler')
+                    error('csr:phy:TransportBackend','Optional transport timing is validated only for the portable scheduler.');
+                end
+                transportTiming.attach(); obj.TransportTiming=transportTiming;
             end
             obj.Config=config; obj.Scheduler=scheduler; obj.Streams=streams;
             obj.OnReceive=onReceive; obj.OnTrace=onTrace; obj.OnState=onState;
@@ -116,6 +126,29 @@ classdef SignalEngine < handle
             if obj.NextSignalId>=flintmax
                 error('csr:phy:SignalIdLimit','Signal identifier capacity exhausted.');
             end
+            % Preflight every optional receiver target and the observation
+            % budget before any PHY state, counter or event is changed.
+            timingPlans={}; timingFront=cell(1,numel(obj.Config.Nodes));
+            timingByReceiver=cell(1,numel(obj.Config.Nodes));
+            if ~isempty(obj.TransportTiming)
+                obj.TransportTiming.verifyCapacity(double(peers));
+                timingTx=obj.Config.Nodes(txIndex);
+                if isfield(frame,'TxPowerDbm') && ~isempty(frame.TxPowerDbm)
+                    timingTx.RadioProfile.TxPowerDbm=frame.TxPowerDbm;
+                end
+                if strcmp(frame.Preamble,'long'), timingBits=7888; else, timingBits=104; end
+                for timingIndex=1:numel(obj.Config.Nodes)
+                    if timingIndex==txIndex, continue; end
+                    timingRx=obj.Config.Nodes(timingIndex);
+                    timingFront{timingIndex}=csr.phy.Model.frontEnd(timingTx.RadioProfile, ...
+                        timingRx.RadioProfile,timingTx.PositionMeters,timingRx.PositionMeters);
+                    timingDelay=timingFront{timingIndex}.DistanceMeters/obj.Config.Channel.PropagationSpeedMps;
+                    timingByReceiver{timingIndex}=obj.TransportTiming.plan(now,timingDelay,duration, ...
+                        timingBits*0.000510/4,double(frame.SourceId),double(timingRx.Id),frame.Id);
+                    timingPlans{end+1}=timingByReceiver{timingIndex}; %#ok<AGROW>
+                end
+                obj.TransportTiming.record(timingPlans);
+            end
             id=obj.NextSignalId; obj.NextSignalId=id+1;
             obj.Outstanding=obj.Outstanding+peers;
             obj.cancelAcquisition(txIndex);
@@ -138,7 +171,11 @@ classdef SignalEngine < handle
             for index=1:numel(obj.Config.Nodes)
                 if index==txIndex, continue; end
                 rx=obj.Config.Nodes(index);
-                front=csr.phy.Model.frontEnd(tx.RadioProfile,rx.RadioProfile,tx.PositionMeters,rx.PositionMeters);
+                if isempty(obj.TransportTiming)
+                    front=csr.phy.Model.frontEnd(tx.RadioProfile,rx.RadioProfile,tx.PositionMeters,rx.PositionMeters);
+                else
+                    front=timingFront{index};
+                end
                 delay=front.DistanceMeters/obj.Config.Channel.PropagationSpeedMps;
                 signal=struct('Id',id,'Frame',frame,'FrontEnd',front,'StartSec',now+delay, ...
                     'EndSec',now+delay+duration,'PreambleEndSec',now+delay+preambleBits*0.000510/4, ...
@@ -151,12 +188,19 @@ classdef SignalEngine < handle
                     'RejectedDuringTrack',false,'Tracked',false,'Collided',false, ...
                     'MissedByState',false,'HalfDuplex',false,'CollisionCount',0,'CaptureCount',0, ...
                     'SameRateInterference',false,'JsrDb',-Inf,'TimeOffsetSeconds',0);
+                startCallback=signal.StartSec; endCallback=signal.EndSec;
+                if ~isempty(obj.TransportTiming)
+                    timing=timingByReceiver{index};
+                    startCallback=timing.StartSeconds; endCallback=timing.EndSeconds;
+                    signal.CallbackPreambleEndSec=timing.PreambleEndSeconds;
+                    signal.CallbackEndSec=timing.EndSeconds;
+                end
                 if front.Closure
-                    obj.Scheduler.scheduleAt(signal.StartSec,@()obj.beginSignal(index,signal));
+                    obj.Scheduler.scheduleAt(startCallback,@()obj.beginSignal(index,signal));
                 else
                     % Source emits closure immediately; the portable application
                     % accounting callback is intentionally completion-timed.
-                    obj.Scheduler.scheduleAt(signal.EndSec,@()obj.finishOccluded(index,signal));
+                    obj.Scheduler.scheduleAt(endCallback,@()obj.finishOccluded(index,signal));
                 end
             end
             obj.notifyState(txIndex,previous);
@@ -198,6 +242,9 @@ classdef SignalEngine < handle
             end
         end
         function beginSignal(obj,index,incoming)
+            % Native BeginReceiveSignal starts error intervals at the actual
+            % callback time while retaining continuous physical signal times.
+            if ~isempty(obj.TransportTiming), incoming.IntervalStartSec=obj.Scheduler.Now; end
             obj.closeIntervals(index,obj.Scheduler.Now);
             % Signals are appended in arrival order; pair overwrite order is
             % deliberately arrival order, independently of transmitter IDs.
@@ -238,13 +285,17 @@ classdef SignalEngine < handle
             end
             % mark_sync rejection never enters the SYNC table and therefore
             % never schedules clear_sync, which could cancel another acquisition.
+            preambleCallback=incoming.PreambleEndSec; endCallback=incoming.EndSec;
+            if ~isempty(obj.TransportTiming)
+                preambleCallback=incoming.CallbackPreambleEndSec; endCallback=incoming.CallbackEndSec;
+            end
             if incoming.SyncEligible
-                obj.Scheduler.scheduleAt(incoming.PreambleEndSec,@()obj.endPreamble(index,incoming.Id));
+                obj.Scheduler.scheduleAt(preambleCallback,@()obj.endPreamble(index,incoming.Id));
             else
                 incoming.PreambleActive=false;
             end
             obj.Receivers(index).Signals{end+1}=incoming;
-            obj.Scheduler.scheduleAt(incoming.EndSec,@()obj.endSignal(index,incoming.Id));
+            obj.Scheduler.scheduleAt(endCallback,@()obj.endSignal(index,incoming.Id));
             obj.emit('phy_signal_start',index,incoming,struct('SyncEligible',incoming.SyncEligible, ...
                 'SnrDb',obj.signalSnr(incoming),'ReceivedPowerDbm',incoming.FrontEnd.ReceivedPowerDbm));
             obj.scheduleAcquisition(index);

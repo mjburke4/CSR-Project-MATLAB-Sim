@@ -1,0 +1,53 @@
+{
+  "schema": "csr-tranche21-independent-threshold-replay-review-v1",
+  "passed": true,
+  "seeds": [
+    {
+      "seed": 128,
+      "callback_rows_checked": 2230,
+      "admission_histogram": {
+        "0": 23,
+        "1": 359,
+        "2": 268,
+        "3": 82
+      },
+      "state_transition_rule_and_endpoint_checks_passed": true
+    },
+    {
+      "seed": 129,
+      "callback_rows_checked": 2553,
+      "admission_histogram": {
+        "0": 31,
+        "1": 177,
+        "2": 322,
+        "3": 234,
+        "4": 37,
+        "5": 3,
+        "6": 18
+      },
+      "state_transition_rule_and_endpoint_checks_passed": true
+    },
+    {
+      "seed": 130,
+      "callback_rows_checked": 2433,
+      "admission_histogram": {
+        "0": 3,
+        "1": 314,
+        "2": 340,
+        "3": 89,
+        "4": 19,
+        "5": 22
+      },
+      "state_transition_rule_and_endpoint_checks_passed": true
+    }
+  ],
+  "source_review": "Layer.m flow initialization, admission, DATA ACK, DACK, failed and DACK-expiry paths independently inspected. Third ACK grows threshold before any retried-ACK reset. Controls do not alter this DATA state.",
+  "scope": "Threshold and AckCount are reconstructed from verified complete ordered callbacks, not directly observed raw fields. Final pending DATA/resend/DACK counters validate populations but no final exported per-neighbor threshold snapshot exists.",
+  "causality": "Distinct threshold histories do not establish a differing update rule or statistical equivalence between engines.",
+  "reviewed_sha256": {
+    "matlab_threshold_replay.json": "2c61022170f8ab093c2ae5a197317f801e86061f27e906d37ca5c291d9c5325b",
+    "matlab_threshold_timeline_300s.csv": "ce677c410b20a44c3b9b7b061875e59a306f9679b16617aff5bdb33710bc01cc",
+    "matlab_threshold_events.csv": "93b0bac11d6e2bc894fb70445403b23ed9b9a9930c3f895409dd8e60b8af31a6",
+    "replay_flow_threshold.py": "0791871b7183c70edb73fe0b7debb6d53066a243e42383ceeb9afa89e9b11634"
+  }
+}

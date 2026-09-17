@@ -1,0 +1,2582 @@
+{
+  "schema": "csr-tranche18-preparation-readiness-v1",
+  "status": "ready_for_owner_matlab_execution",
+  "verified_utc": "2026-09-16T12:52:25.062664+00:00",
+  "candidate_sha256": "582802501a94338cc3e70e1cb79d7f66f9b83aa6fcc5dc10508003a7d1f4d892",
+  "source_files": 346,
+  "matlab_files": 164,
+  "reference_files": 731,
+  "baseline": {
+    "source_files": 313,
+    "matlab_files": 160,
+    "all_unchanged": true,
+    "source_snapshot_sha256": "5ba7ff4b26a12192496d98cc36ccbcffe77199255da1cbda1025f83a14618891"
+  },
+  "planned_matlab_tests": 186,
+  "planned_cases": 11,
+  "planned_structural_checks": 132,
+  "planned_simulated_seconds": 6900,
+  "native_review": {
+    "schema": "csr-tranche18-native-review-v1",
+    "status": "passed",
+    "cases": [
+      {
+        "storage_key": "r128",
+        "status": "passed",
+        "application_metrics": {
+          "simulator": "ns3",
+          "case_id": "r128",
+          "base_case_id": "relay_only",
+          "seed": 128,
+          "duration_s": 600.0,
+          "attempts": 15000,
+          "admitted": 278,
+          "admission_blocked": 14722,
+          "delivered": 248,
+          "delivered_unique": 248,
+          "duplicate_delivery_events": 0,
+          "unmatched_sends": 30,
+          "explicit_drops": null,
+          "pending": null,
+          "drop_reasons": null,
+          "network_bytes_sent": 53376,
+          "network_bytes_received": 47616,
+          "delay_samples": 248,
+          "delay_sum_s": 10210.875989328,
+          "mean_packet_latency_s": 41.17288705374194,
+          "max_packet_latency_s": 64.35281108600003,
+          "populated_delay_buckets": 5,
+          "bucket_latency_mean_sum_s": 205.18608487396799,
+          "mean_populated_bucket_latency_s": 41.037216974793594,
+          "received_packet_rate_over_full_window": 0.41333333333333333,
+          "flows": [
+            {
+              "source": 4,
+              "destination": 1,
+              "admitted": 278,
+              "delivered": 248,
+              "delivered_unique": 248,
+              "delay_sum_s": 10210.875989327995,
+              "delay_samples": 248,
+              "mean_packet_latency_s": 41.17288705374192,
+              "unmatched_sends": 30
+            }
+          ]
+        },
+        "service_diagnostics": {
+          "schema": "csr-tranche18-native-service-summary-v1",
+          "status": "passed",
+          "rows": 164945,
+          "max_records": 2000000,
+          "omitted_records": 0,
+          "window_s": [
+            0,
+            600
+          ],
+          "stop_endpoint": "exclusive",
+          "event_counts": {
+            "ack_queue_enqueue_after": 61,
+            "ack_queue_replace_after": 484,
+            "ack_queue_replace_before": 484,
+            "app_admission": 15000,
+            "app_send": 278,
+            "hop_admission": 537,
+            "hop_capacity_release": 178,
+            "hop_completion": 510,
+            "hop_feedback": 511,
+            "hop_retry": 17,
+            "mac_cancel_begin": 767,
+            "mac_cancel_end": 767,
+            "mac_cancel_frame_after": 6,
+            "mac_cancel_frame_before": 6,
+            "mac_holdoff_expired": 8,
+            "mac_holdoff_schedule_before": 763,
+            "mac_idle_rts_schedule": 3,
+            "mac_prepare_after": 1269,
+            "mac_receive_state_after": 5162,
+            "mac_receive_state_before": 5162,
+            "mac_schedule_request": 1152,
+            "mac_slot_tick": 80889,
+            "mac_state": 7694,
+            "mac_sync_change_before": 3808,
+            "nwk_admission": 4951,
+            "nwk_delivery": 248,
+            "nwk_enqueue": 541,
+            "nwk_forward": 537,
+            "nwk_nsdp_release": 510,
+            "reservation_advertise": 1266,
+            "reservation_holdoff": 8,
+            "reservation_prepare": 1269,
+            "reservation_tick": 21862,
+            "route_change": 14,
+            "rx_accept": 1818,
+            "rx_drop": 714,
+            "scenario_link": 3,
+            "scenario_node": 3,
+            "statistic_sample": 4419,
+            "tx_start": 1266
+          },
+          "forwarding": [
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "ingress_peer": "",
+              "next_hop": "5",
+              "kind": "local",
+              "count": 274
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "ingress_peer": "4",
+              "next_hop": "1",
+              "kind": "relay",
+              "count": 263
+            }
+          ],
+          "completions": [
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "ack",
+              "count": 79
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "dack",
+              "count": 183
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "ack",
+              "count": 246
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "no_ack",
+              "count": 2
+            }
+          ],
+          "retry_submissions": [
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "count": 11
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "count": 6
+            }
+          ],
+          "blocked_admission_observations": [
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "",
+              "reason": "global_hop_full",
+              "count": 489
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "neighbor_flow_full",
+              "count": 2786
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "peer": "",
+              "reason": "global_hop_full",
+              "count": 278
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "neighbor_flow_full",
+              "count": 861
+            }
+          ],
+          "scope": "Callback observations. Retry means MAC submission, not OTA. DACK is not application loss; no_ack is a custody completion, not proven end-to-end loss. NSDP release has no packet sequence. Finite-horizon unmatched lifetimes are censored."
+        }
+      },
+      {
+        "storage_key": "l128",
+        "status": "passed",
+        "application_metrics": {
+          "simulator": "ns3",
+          "case_id": "l128",
+          "base_case_id": "local_only",
+          "seed": 128,
+          "duration_s": 600.0,
+          "attempts": 15000,
+          "admitted": 589,
+          "admission_blocked": 14411,
+          "delivered": 573,
+          "delivered_unique": 573,
+          "duplicate_delivery_events": 0,
+          "unmatched_sends": 16,
+          "explicit_drops": null,
+          "pending": null,
+          "drop_reasons": null,
+          "network_bytes_sent": 113088,
+          "network_bytes_received": 110016,
+          "delay_samples": 573,
+          "delay_sum_s": 4573.262212277999,
+          "mean_packet_latency_s": 7.981260405371727,
+          "max_packet_latency_s": 10.358811086000003,
+          "populated_delay_buckets": 5,
+          "bucket_latency_mean_sum_s": 39.932659358400734,
+          "mean_populated_bucket_latency_s": 7.986531871680147,
+          "received_packet_rate_over_full_window": 0.955,
+          "flows": [
+            {
+              "source": 5,
+              "destination": 1,
+              "admitted": 589,
+              "delivered": 573,
+              "delivered_unique": 573,
+              "delay_sum_s": 4573.262212277998,
+              "delay_samples": 573,
+              "mean_packet_latency_s": 7.9812604053717235,
+              "unmatched_sends": 16
+            }
+          ]
+        },
+        "service_diagnostics": {
+          "schema": "csr-tranche18-native-service-summary-v1",
+          "status": "passed",
+          "rows": 139511,
+          "max_records": 2000000,
+          "omitted_records": 0,
+          "window_s": [
+            0,
+            600
+          ],
+          "stop_endpoint": "exclusive",
+          "event_counts": {
+            "ack_queue_enqueue_after": 35,
+            "ack_queue_replace_after": 572,
+            "ack_queue_replace_before": 572,
+            "app_admission": 15000,
+            "app_send": 589,
+            "hop_admission": 589,
+            "hop_completion": 573,
+            "hop_feedback": 573,
+            "mac_cancel_begin": 745,
+            "mac_cancel_end": 745,
+            "mac_holdoff_expired": 6,
+            "mac_holdoff_schedule_before": 1046,
+            "mac_idle_rts_schedule": 2,
+            "mac_prepare_after": 1270,
+            "mac_receive_state_after": 4680,
+            "mac_receive_state_before": 4680,
+            "mac_schedule_request": 1249,
+            "mac_slot_tick": 59348,
+            "mac_state": 7217,
+            "mac_sync_change_before": 3756,
+            "nwk_admission": 1394,
+            "nwk_delivery": 573,
+            "nwk_enqueue": 589,
+            "nwk_forward": 589,
+            "nwk_nsdp_release": 573,
+            "reservation_advertise": 1269,
+            "reservation_holdoff": 6,
+            "reservation_prepare": 1270,
+            "reservation_tick": 21218,
+            "route_change": 14,
+            "rx_accept": 1293,
+            "rx_drop": 1243,
+            "scenario_link": 3,
+            "scenario_node": 3,
+            "statistic_sample": 4958,
+            "tx_start": 1269
+          },
+          "forwarding": [
+            {
+              "src": "5",
+              "dst": "1",
+              "node": "5",
+              "ingress_peer": "",
+              "next_hop": "1",
+              "kind": "local",
+              "count": 589
+            }
+          ],
+          "completions": [
+            {
+              "src": "5",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "ack",
+              "count": 573
+            }
+          ],
+          "retry_submissions": [],
+          "blocked_admission_observations": [
+            {
+              "src": "5",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "neighbor_flow_full",
+              "count": 805
+            }
+          ],
+          "scope": "Callback observations. Retry means MAC submission, not OTA. DACK is not application loss; no_ack is a custody completion, not proven end-to-end loss. NSDP release has no packet sequence. Finite-horizon unmatched lifetimes are censored."
+        }
+      },
+      {
+        "storage_key": "m128",
+        "status": "passed",
+        "application_metrics": {
+          "simulator": "ns3",
+          "case_id": "m128",
+          "base_case_id": "mixed",
+          "seed": 128,
+          "duration_s": 600.0,
+          "attempts": 30000,
+          "admitted": 391,
+          "admission_blocked": 29609,
+          "delivered": 335,
+          "delivered_unique": 335,
+          "duplicate_delivery_events": 0,
+          "unmatched_sends": 56,
+          "explicit_drops": null,
+          "pending": null,
+          "drop_reasons": null,
+          "network_bytes_sent": 75072,
+          "network_bytes_received": 64320,
+          "delay_samples": 335,
+          "delay_sum_s": 14154.138173809999,
+          "mean_packet_latency_s": 42.251158727791044,
+          "max_packet_latency_s": 74.226811086,
+          "populated_delay_buckets": 5,
+          "bucket_latency_mean_sum_s": 210.92675999699836,
+          "mean_populated_bucket_latency_s": 42.18535199939967,
+          "received_packet_rate_over_full_window": 0.5583333333333333,
+          "flows": [
+            {
+              "source": 4,
+              "destination": 1,
+              "admitted": 220,
+              "delivered": 180,
+              "delivered_unique": 180,
+              "delay_sum_s": 9644.527995480003,
+              "delay_samples": 180,
+              "mean_packet_latency_s": 53.580711086000015,
+              "unmatched_sends": 40
+            },
+            {
+              "source": 5,
+              "destination": 1,
+              "admitted": 171,
+              "delivered": 155,
+              "delivered_unique": 155,
+              "delay_sum_s": 4509.610178329998,
+              "delay_samples": 155,
+              "mean_packet_latency_s": 29.094259215032245,
+              "unmatched_sends": 16
+            }
+          ]
+        },
+        "service_diagnostics": {
+          "schema": "csr-tranche18-native-service-summary-v1",
+          "status": "passed",
+          "rows": 188689,
+          "max_records": 2000000,
+          "omitted_records": 0,
+          "window_s": [
+            0,
+            600
+          ],
+          "stop_endpoint": "exclusive",
+          "event_counts": {
+            "ack_queue_enqueue_after": 62,
+            "ack_queue_replace_after": 511,
+            "ack_queue_replace_before": 511,
+            "app_admission": 30000,
+            "app_send": 391,
+            "hop_admission": 555,
+            "hop_capacity_release": 140,
+            "hop_completion": 538,
+            "hop_feedback": 539,
+            "hop_retry": 14,
+            "mac_cancel_begin": 765,
+            "mac_cancel_end": 765,
+            "mac_cancel_frame_after": 4,
+            "mac_cancel_frame_before": 4,
+            "mac_holdoff_expired": 6,
+            "mac_holdoff_schedule_before": 757,
+            "mac_idle_rts_schedule": 3,
+            "mac_prepare_after": 1299,
+            "mac_receive_state_after": 5258,
+            "mac_receive_state_before": 5258,
+            "mac_schedule_request": 1195,
+            "mac_slot_tick": 81223,
+            "mac_state": 7852,
+            "mac_sync_change_before": 3912,
+            "nwk_admission": 11673,
+            "nwk_delivery": 335,
+            "nwk_enqueue": 595,
+            "nwk_forward": 555,
+            "nwk_nsdp_release": 538,
+            "reservation_advertise": 1297,
+            "reservation_holdoff": 6,
+            "reservation_prepare": 1299,
+            "reservation_tick": 22261,
+            "route_change": 14,
+            "rx_accept": 1872,
+            "rx_drop": 722,
+            "scenario_link": 3,
+            "scenario_node": 3,
+            "statistic_sample": 4657,
+            "tx_start": 1297
+          },
+          "forwarding": [
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "ingress_peer": "",
+              "next_hop": "5",
+              "kind": "local",
+              "count": 204
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "ingress_peer": "4",
+              "next_hop": "1",
+              "kind": "relay",
+              "count": 188
+            },
+            {
+              "src": "5",
+              "dst": "1",
+              "node": "5",
+              "ingress_peer": "",
+              "next_hop": "1",
+              "kind": "local",
+              "count": 163
+            }
+          ],
+          "completions": [
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "ack",
+              "count": 50
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "dack",
+              "count": 154
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "ack",
+              "count": 179
+            },
+            {
+              "src": "5",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "ack",
+              "count": 155
+            }
+          ],
+          "retry_submissions": [
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "count": 14
+            }
+          ],
+          "blocked_admission_observations": [
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "neighbor_flow_full",
+              "count": 7512
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "peer": "",
+              "reason": "global_hop_full",
+              "count": 316
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "neighbor_flow_full",
+              "count": 1653
+            },
+            {
+              "src": "5",
+              "dst": "1",
+              "node": "5",
+              "peer": "",
+              "reason": "global_hop_full",
+              "count": 259
+            },
+            {
+              "src": "5",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "neighbor_flow_full",
+              "count": 1378
+            }
+          ],
+          "scope": "Callback observations. Retry means MAC submission, not OTA. DACK is not application loss; no_ack is a custody completion, not proven end-to-end loss. NSDP release has no packet sequence. Finite-horizon unmatched lifetimes are censored."
+        }
+      },
+      {
+        "storage_key": "r129",
+        "status": "passed",
+        "application_metrics": {
+          "simulator": "ns3",
+          "case_id": "r129",
+          "base_case_id": "relay_only",
+          "seed": 129,
+          "duration_s": 600.0,
+          "attempts": 15000,
+          "admitted": 292,
+          "admission_blocked": 14708,
+          "delivered": 252,
+          "delivered_unique": 252,
+          "duplicate_delivery_events": 0,
+          "unmatched_sends": 40,
+          "explicit_drops": null,
+          "pending": null,
+          "drop_reasons": null,
+          "network_bytes_sent": 56064,
+          "network_bytes_received": 48384,
+          "delay_samples": 252,
+          "delay_sum_s": 9819.814853672,
+          "mean_packet_latency_s": 38.967519260603176,
+          "max_packet_latency_s": 59.745811086,
+          "populated_delay_buckets": 5,
+          "bucket_latency_mean_sum_s": 194.05523278849554,
+          "mean_populated_bucket_latency_s": 38.81104655769911,
+          "received_packet_rate_over_full_window": 0.42,
+          "flows": [
+            {
+              "source": 4,
+              "destination": 1,
+              "admitted": 292,
+              "delivered": 252,
+              "delivered_unique": 252,
+              "delay_sum_s": 9819.814853671998,
+              "delay_samples": 252,
+              "mean_packet_latency_s": 38.96751926060317,
+              "unmatched_sends": 40
+            }
+          ]
+        },
+        "service_diagnostics": {
+          "schema": "csr-tranche18-native-service-summary-v1",
+          "status": "passed",
+          "rows": 164710,
+          "max_records": 2000000,
+          "omitted_records": 0,
+          "window_s": [
+            0,
+            600
+          ],
+          "stop_endpoint": "exclusive",
+          "event_counts": {
+            "ack_queue_enqueue_after": 59,
+            "ack_queue_replace_after": 503,
+            "ack_queue_replace_before": 503,
+            "app_admission": 15000,
+            "app_send": 292,
+            "hop_admission": 545,
+            "hop_capacity_release": 166,
+            "hop_completion": 528,
+            "hop_feedback": 528,
+            "hop_retry": 17,
+            "mac_cancel_begin": 746,
+            "mac_cancel_end": 746,
+            "mac_cancel_frame_after": 6,
+            "mac_cancel_frame_before": 6,
+            "mac_holdoff_expired": 6,
+            "mac_holdoff_schedule_before": 761,
+            "mac_idle_rts_schedule": 2,
+            "mac_prepare_after": 1265,
+            "mac_receive_state_after": 5124,
+            "mac_receive_state_before": 5124,
+            "mac_schedule_request": 1177,
+            "mac_slot_tick": 80843,
+            "mac_state": 7651,
+            "mac_sync_change_before": 3776,
+            "nwk_admission": 4059,
+            "nwk_delivery": 252,
+            "nwk_enqueue": 568,
+            "nwk_forward": 545,
+            "nwk_nsdp_release": 528,
+            "reservation_advertise": 1264,
+            "reservation_holdoff": 6,
+            "reservation_prepare": 1265,
+            "reservation_tick": 22509,
+            "route_change": 14,
+            "rx_accept": 1800,
+            "rx_drop": 726,
+            "scenario_link": 3,
+            "scenario_node": 3,
+            "statistic_sample": 4530,
+            "tx_start": 1264
+          },
+          "forwarding": [
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "ingress_peer": "",
+              "next_hop": "5",
+              "kind": "local",
+              "count": 276
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "ingress_peer": "4",
+              "next_hop": "1",
+              "kind": "relay",
+              "count": 269
+            }
+          ],
+          "completions": [
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "ack",
+              "count": 93
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "dack",
+              "count": 183
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "ack",
+              "count": 252
+            }
+          ],
+          "retry_submissions": [
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "count": 17
+            }
+          ],
+          "blocked_admission_observations": [
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "",
+              "reason": "global_hop_full",
+              "count": 516
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "neighbor_flow_full",
+              "count": 1971
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "peer": "",
+              "reason": "global_hop_full",
+              "count": 288
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "neighbor_flow_full",
+              "count": 739
+            }
+          ],
+          "scope": "Callback observations. Retry means MAC submission, not OTA. DACK is not application loss; no_ack is a custody completion, not proven end-to-end loss. NSDP release has no packet sequence. Finite-horizon unmatched lifetimes are censored."
+        }
+      },
+      {
+        "storage_key": "l129",
+        "status": "passed",
+        "application_metrics": {
+          "simulator": "ns3",
+          "case_id": "l129",
+          "base_case_id": "local_only",
+          "seed": 129,
+          "duration_s": 600.0,
+          "attempts": 15000,
+          "admitted": 596,
+          "admission_blocked": 14404,
+          "delivered": 580,
+          "delivered_unique": 580,
+          "duplicate_delivery_events": 0,
+          "unmatched_sends": 16,
+          "explicit_drops": null,
+          "pending": null,
+          "drop_reasons": null,
+          "network_bytes_sent": 114432,
+          "network_bytes_received": 111360,
+          "delay_samples": 580,
+          "delay_sum_s": 4547.710889880001,
+          "mean_packet_latency_s": 7.840880844620691,
+          "max_packet_latency_s": 10.254811085999961,
+          "populated_delay_buckets": 5,
+          "bucket_latency_mean_sum_s": 39.23815430998168,
+          "mean_populated_bucket_latency_s": 7.847630861996336,
+          "received_packet_rate_over_full_window": 0.9666666666666667,
+          "flows": [
+            {
+              "source": 5,
+              "destination": 1,
+              "admitted": 596,
+              "delivered": 580,
+              "delivered_unique": 580,
+              "delay_sum_s": 4547.710889880002,
+              "delay_samples": 580,
+              "mean_packet_latency_s": 7.840880844620692,
+              "unmatched_sends": 16
+            }
+          ]
+        },
+        "service_diagnostics": {
+          "schema": "csr-tranche18-native-service-summary-v1",
+          "status": "passed",
+          "rows": 139529,
+          "max_records": 2000000,
+          "omitted_records": 0,
+          "window_s": [
+            0,
+            600
+          ],
+          "stop_endpoint": "exclusive",
+          "event_counts": {
+            "ack_queue_enqueue_after": 35,
+            "ack_queue_replace_after": 579,
+            "ack_queue_replace_before": 579,
+            "app_admission": 15000,
+            "app_send": 596,
+            "hop_admission": 596,
+            "hop_completion": 580,
+            "hop_feedback": 580,
+            "mac_cancel_begin": 715,
+            "mac_cancel_end": 715,
+            "mac_holdoff_expired": 6,
+            "mac_holdoff_schedule_before": 1048,
+            "mac_idle_rts_schedule": 2,
+            "mac_prepare_after": 1247,
+            "mac_receive_state_after": 4654,
+            "mac_receive_state_before": 4654,
+            "mac_schedule_request": 1263,
+            "mac_slot_tick": 59164,
+            "mac_state": 7145,
+            "mac_sync_change_before": 3742,
+            "nwk_admission": 1362,
+            "nwk_delivery": 580,
+            "nwk_enqueue": 596,
+            "nwk_forward": 596,
+            "nwk_nsdp_release": 580,
+            "reservation_advertise": 1246,
+            "reservation_holdoff": 6,
+            "reservation_prepare": 1247,
+            "reservation_tick": 21646,
+            "route_change": 14,
+            "rx_accept": 1278,
+            "rx_drop": 1212,
+            "scenario_link": 3,
+            "scenario_node": 3,
+            "statistic_sample": 5014,
+            "tx_start": 1246
+          },
+          "forwarding": [
+            {
+              "src": "5",
+              "dst": "1",
+              "node": "5",
+              "ingress_peer": "",
+              "next_hop": "1",
+              "kind": "local",
+              "count": 596
+            }
+          ],
+          "completions": [
+            {
+              "src": "5",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "ack",
+              "count": 580
+            }
+          ],
+          "retry_submissions": [],
+          "blocked_admission_observations": [
+            {
+              "src": "5",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "neighbor_flow_full",
+              "count": 766
+            }
+          ],
+          "scope": "Callback observations. Retry means MAC submission, not OTA. DACK is not application loss; no_ack is a custody completion, not proven end-to-end loss. NSDP release has no packet sequence. Finite-horizon unmatched lifetimes are censored."
+        }
+      },
+      {
+        "storage_key": "m129",
+        "status": "passed",
+        "application_metrics": {
+          "simulator": "ns3",
+          "case_id": "m129",
+          "base_case_id": "mixed",
+          "seed": 129,
+          "duration_s": 600.0,
+          "attempts": 30000,
+          "admitted": 388,
+          "admission_blocked": 29612,
+          "delivered": 327,
+          "delivered_unique": 327,
+          "duplicate_delivery_events": 0,
+          "unmatched_sends": 61,
+          "explicit_drops": null,
+          "pending": null,
+          "drop_reasons": null,
+          "network_bytes_sent": 74496,
+          "network_bytes_received": 62784,
+          "delay_samples": 327,
+          "delay_sum_s": 13759.469685122001,
+          "mean_packet_latency_s": 42.077888945327224,
+          "max_packet_latency_s": 76.94881108600003,
+          "populated_delay_buckets": 5,
+          "bucket_latency_mean_sum_s": 210.52442015511156,
+          "mean_populated_bucket_latency_s": 42.10488403102231,
+          "received_packet_rate_over_full_window": 0.545,
+          "flows": [
+            {
+              "source": 4,
+              "destination": 1,
+              "admitted": 214,
+              "delivered": 169,
+              "delivered_unique": 169,
+              "delay_sum_s": 9357.906073533999,
+              "delay_samples": 169,
+              "mean_packet_latency_s": 55.372225287183426,
+              "unmatched_sends": 45
+            },
+            {
+              "source": 5,
+              "destination": 1,
+              "admitted": 174,
+              "delivered": 158,
+              "delivered_unique": 158,
+              "delay_sum_s": 4401.563611588001,
+              "delay_samples": 158,
+              "mean_packet_latency_s": 27.857997541696207,
+              "unmatched_sends": 16
+            }
+          ]
+        },
+        "service_diagnostics": {
+          "schema": "csr-tranche18-native-service-summary-v1",
+          "status": "passed",
+          "rows": 190011,
+          "max_records": 2000000,
+          "omitted_records": 0,
+          "window_s": [
+            0,
+            600
+          ],
+          "stop_endpoint": "exclusive",
+          "event_counts": {
+            "ack_queue_enqueue_after": 62,
+            "ack_queue_replace_after": 497,
+            "ack_queue_replace_before": 497,
+            "app_admission": 30000,
+            "app_send": 388,
+            "hop_admission": 543,
+            "hop_capacity_release": 130,
+            "hop_completion": 525,
+            "hop_feedback": 525,
+            "hop_retry": 18,
+            "mac_cancel_begin": 780,
+            "mac_cancel_end": 780,
+            "mac_cancel_frame_after": 5,
+            "mac_cancel_frame_before": 5,
+            "mac_holdoff_expired": 6,
+            "mac_holdoff_schedule_before": 745,
+            "mac_idle_rts_schedule": 3,
+            "mac_prepare_after": 1307,
+            "mac_receive_state_after": 5266,
+            "mac_receive_state_before": 5266,
+            "mac_schedule_request": 1173,
+            "mac_slot_tick": 82081,
+            "mac_state": 7876,
+            "mac_sync_change_before": 3916,
+            "nwk_admission": 11093,
+            "nwk_delivery": 327,
+            "nwk_enqueue": 586,
+            "nwk_forward": 543,
+            "nwk_nsdp_release": 525,
+            "reservation_advertise": 1305,
+            "reservation_holdoff": 6,
+            "reservation_prepare": 1307,
+            "reservation_tick": 23410,
+            "route_change": 14,
+            "rx_accept": 1888,
+            "rx_drop": 722,
+            "scenario_link": 3,
+            "scenario_node": 3,
+            "statistic_sample": 4580,
+            "tx_start": 1305
+          },
+          "forwarding": [
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "ingress_peer": "",
+              "next_hop": "5",
+              "kind": "local",
+              "count": 199
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "ingress_peer": "4",
+              "next_hop": "1",
+              "kind": "relay",
+              "count": 181
+            },
+            {
+              "src": "5",
+              "dst": "1",
+              "node": "5",
+              "ingress_peer": "",
+              "next_hop": "1",
+              "kind": "local",
+              "count": 163
+            }
+          ],
+          "completions": [
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "ack",
+              "count": 55
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "dack",
+              "count": 143
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "ack",
+              "count": 169
+            },
+            {
+              "src": "5",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "ack",
+              "count": 158
+            }
+          ],
+          "retry_submissions": [
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "count": 18
+            }
+          ],
+          "blocked_admission_observations": [
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "neighbor_flow_full",
+              "count": 7215
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "peer": "",
+              "reason": "global_hop_full",
+              "count": 341
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "neighbor_flow_full",
+              "count": 1300
+            },
+            {
+              "src": "5",
+              "dst": "1",
+              "node": "5",
+              "peer": "",
+              "reason": "global_hop_full",
+              "count": 238
+            },
+            {
+              "src": "5",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "neighbor_flow_full",
+              "count": 1456
+            }
+          ],
+          "scope": "Callback observations. Retry means MAC submission, not OTA. DACK is not application loss; no_ack is a custody completion, not proven end-to-end loss. NSDP release has no packet sequence. Finite-horizon unmatched lifetimes are censored."
+        }
+      },
+      {
+        "storage_key": "r130",
+        "status": "passed",
+        "application_metrics": {
+          "simulator": "ns3",
+          "case_id": "r130",
+          "base_case_id": "relay_only",
+          "seed": 130,
+          "duration_s": 600.0,
+          "attempts": 15000,
+          "admitted": 287,
+          "admission_blocked": 14713,
+          "delivered": 249,
+          "delivered_unique": 249,
+          "duplicate_delivery_events": 0,
+          "unmatched_sends": 38,
+          "explicit_drops": null,
+          "pending": null,
+          "drop_reasons": null,
+          "network_bytes_sent": 55104,
+          "network_bytes_received": 47808,
+          "delay_samples": 249,
+          "delay_sum_s": 9760.687260413999,
+          "mean_packet_latency_s": 39.19954723057831,
+          "max_packet_latency_s": 58.90381108599996,
+          "populated_delay_buckets": 5,
+          "bucket_latency_mean_sum_s": 193.84134037374233,
+          "mean_populated_bucket_latency_s": 38.76826807474846,
+          "received_packet_rate_over_full_window": 0.415,
+          "flows": [
+            {
+              "source": 4,
+              "destination": 1,
+              "admitted": 287,
+              "delivered": 249,
+              "delivered_unique": 249,
+              "delay_sum_s": 9760.687260413999,
+              "delay_samples": 249,
+              "mean_packet_latency_s": 39.19954723057831,
+              "unmatched_sends": 38
+            }
+          ]
+        },
+        "service_diagnostics": {
+          "schema": "csr-tranche18-native-service-summary-v1",
+          "status": "passed",
+          "rows": 165047,
+          "max_records": 2000000,
+          "omitted_records": 0,
+          "window_s": [
+            0,
+            600
+          ],
+          "stop_endpoint": "exclusive",
+          "event_counts": {
+            "ack_queue_enqueue_after": 70,
+            "ack_queue_exact_duplicate": 2,
+            "ack_queue_replace_after": 484,
+            "ack_queue_replace_before": 484,
+            "app_admission": 15000,
+            "app_send": 287,
+            "hop_admission": 536,
+            "hop_capacity_release": 161,
+            "hop_completion": 519,
+            "hop_feedback": 520,
+            "hop_retry": 35,
+            "mac_cancel_begin": 759,
+            "mac_cancel_end": 759,
+            "mac_cancel_frame_after": 14,
+            "mac_cancel_frame_before": 14,
+            "mac_holdoff_expired": 7,
+            "mac_holdoff_schedule_before": 762,
+            "mac_idle_rts_schedule": 2,
+            "mac_prepare_after": 1298,
+            "mac_receive_state_after": 5174,
+            "mac_receive_state_before": 5174,
+            "mac_schedule_request": 1181,
+            "mac_slot_tick": 80781,
+            "mac_state": 7766,
+            "mac_sync_change_before": 3868,
+            "nwk_admission": 4343,
+            "nwk_delivery": 249,
+            "nwk_enqueue": 558,
+            "nwk_forward": 536,
+            "nwk_nsdp_release": 519,
+            "reservation_advertise": 1296,
+            "reservation_holdoff": 7,
+            "reservation_prepare": 1298,
+            "reservation_tick": 22145,
+            "route_change": 14,
+            "rx_accept": 1825,
+            "rx_drop": 767,
+            "scenario_link": 3,
+            "scenario_node": 3,
+            "statistic_sample": 4531,
+            "tx_start": 1296
+          },
+          "forwarding": [
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "ingress_peer": "",
+              "next_hop": "5",
+              "kind": "local",
+              "count": 271
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "ingress_peer": "4",
+              "next_hop": "1",
+              "kind": "relay",
+              "count": 265
+            }
+          ],
+          "completions": [
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "ack",
+              "count": 93
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "dack",
+              "count": 178
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "ack",
+              "count": 248
+            }
+          ],
+          "retry_submissions": [
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "count": 25
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "count": 10
+            }
+          ],
+          "blocked_admission_observations": [
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "",
+              "reason": "global_hop_full",
+              "count": 516
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "neighbor_flow_full",
+              "count": 2075
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "peer": "",
+              "reason": "global_hop_full",
+              "count": 260
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "neighbor_flow_full",
+              "count": 956
+            }
+          ],
+          "scope": "Callback observations. Retry means MAC submission, not OTA. DACK is not application loss; no_ack is a custody completion, not proven end-to-end loss. NSDP release has no packet sequence. Finite-horizon unmatched lifetimes are censored."
+        }
+      },
+      {
+        "storage_key": "l130",
+        "status": "passed",
+        "application_metrics": {
+          "simulator": "ns3",
+          "case_id": "l130",
+          "base_case_id": "local_only",
+          "seed": 130,
+          "duration_s": 600.0,
+          "attempts": 15000,
+          "admitted": 603,
+          "admission_blocked": 14397,
+          "delivered": 587,
+          "delivered_unique": 587,
+          "duplicate_delivery_events": 0,
+          "unmatched_sends": 16,
+          "explicit_drops": null,
+          "pending": null,
+          "drop_reasons": null,
+          "network_bytes_sent": 115776,
+          "network_bytes_received": 112704,
+          "delay_samples": 587,
+          "delay_sum_s": 4559.472567482,
+          "mean_packet_latency_s": 7.767414936085179,
+          "max_packet_latency_s": 10.337811085999988,
+          "populated_delay_buckets": 5,
+          "bucket_latency_mean_sum_s": 38.859500093656166,
+          "mean_populated_bucket_latency_s": 7.771900018731233,
+          "received_packet_rate_over_full_window": 0.9783333333333334,
+          "flows": [
+            {
+              "source": 5,
+              "destination": 1,
+              "admitted": 603,
+              "delivered": 587,
+              "delivered_unique": 587,
+              "delay_sum_s": 4559.472567482,
+              "delay_samples": 587,
+              "mean_packet_latency_s": 7.767414936085179,
+              "unmatched_sends": 16
+            }
+          ]
+        },
+        "service_diagnostics": {
+          "schema": "csr-tranche18-native-service-summary-v1",
+          "status": "passed",
+          "rows": 140091,
+          "max_records": 2000000,
+          "omitted_records": 0,
+          "window_s": [
+            0,
+            600
+          ],
+          "stop_endpoint": "exclusive",
+          "event_counts": {
+            "ack_queue_enqueue_after": 37,
+            "ack_queue_exact_duplicate": 2,
+            "ack_queue_replace_after": 584,
+            "ack_queue_replace_before": 584,
+            "app_admission": 15000,
+            "app_send": 603,
+            "hop_admission": 603,
+            "hop_completion": 587,
+            "hop_feedback": 587,
+            "mac_cancel_begin": 740,
+            "mac_cancel_end": 740,
+            "mac_holdoff_expired": 6,
+            "mac_holdoff_schedule_before": 1047,
+            "mac_idle_rts_schedule": 2,
+            "mac_prepare_after": 1285,
+            "mac_receive_state_after": 4729,
+            "mac_receive_state_before": 4729,
+            "mac_schedule_request": 1280,
+            "mac_slot_tick": 59253,
+            "mac_state": 7295,
+            "mac_sync_change_before": 3832,
+            "nwk_admission": 1449,
+            "nwk_delivery": 587,
+            "nwk_enqueue": 603,
+            "nwk_forward": 603,
+            "nwk_nsdp_release": 587,
+            "reservation_advertise": 1283,
+            "reservation_holdoff": 6,
+            "reservation_prepare": 1285,
+            "reservation_tick": 21213,
+            "route_change": 14,
+            "rx_accept": 1317,
+            "rx_drop": 1249,
+            "scenario_link": 3,
+            "scenario_node": 3,
+            "statistic_sample": 5081,
+            "tx_start": 1283
+          },
+          "forwarding": [
+            {
+              "src": "5",
+              "dst": "1",
+              "node": "5",
+              "ingress_peer": "",
+              "next_hop": "1",
+              "kind": "local",
+              "count": 603
+            }
+          ],
+          "completions": [
+            {
+              "src": "5",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "ack",
+              "count": 587
+            }
+          ],
+          "retry_submissions": [],
+          "blocked_admission_observations": [
+            {
+              "src": "5",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "neighbor_flow_full",
+              "count": 846
+            }
+          ],
+          "scope": "Callback observations. Retry means MAC submission, not OTA. DACK is not application loss; no_ack is a custody completion, not proven end-to-end loss. NSDP release has no packet sequence. Finite-horizon unmatched lifetimes are censored."
+        }
+      },
+      {
+        "storage_key": "m130",
+        "status": "passed",
+        "application_metrics": {
+          "simulator": "ns3",
+          "case_id": "m130",
+          "base_case_id": "mixed",
+          "seed": 130,
+          "duration_s": 600.0,
+          "attempts": 30000,
+          "admitted": 398,
+          "admission_blocked": 29602,
+          "delivered": 338,
+          "delivered_unique": 338,
+          "duplicate_delivery_events": 0,
+          "unmatched_sends": 60,
+          "explicit_drops": null,
+          "pending": null,
+          "drop_reasons": null,
+          "network_bytes_sent": 76416,
+          "network_bytes_received": 64896,
+          "delay_samples": 338,
+          "delay_sum_s": 13799.942607067998,
+          "mean_packet_latency_s": 40.82823256528994,
+          "max_packet_latency_s": 77.66981108599998,
+          "populated_delay_buckets": 5,
+          "bucket_latency_mean_sum_s": 203.2879467155464,
+          "mean_populated_bucket_latency_s": 40.65758934310928,
+          "received_packet_rate_over_full_window": 0.5633333333333334,
+          "flows": [
+            {
+              "source": 4,
+              "destination": 1,
+              "admitted": 225,
+              "delivered": 181,
+              "delivered_unique": 181,
+              "delay_sum_s": 9391.363806566,
+              "delay_samples": 181,
+              "mean_packet_latency_s": 51.88598788158011,
+              "unmatched_sends": 44
+            },
+            {
+              "source": 5,
+              "destination": 1,
+              "admitted": 173,
+              "delivered": 157,
+              "delivered_unique": 157,
+              "delay_sum_s": 4408.5788005019995,
+              "delay_samples": 157,
+              "mean_packet_latency_s": 28.08011974842038,
+              "unmatched_sends": 16
+            }
+          ]
+        },
+        "service_diagnostics": {
+          "schema": "csr-tranche18-native-service-summary-v1",
+          "status": "passed",
+          "rows": 190701,
+          "max_records": 2000000,
+          "omitted_records": 0,
+          "window_s": [
+            0,
+            600
+          ],
+          "stop_endpoint": "exclusive",
+          "event_counts": {
+            "ack_queue_enqueue_after": 69,
+            "ack_queue_exact_duplicate": 2,
+            "ack_queue_replace_after": 512,
+            "ack_queue_replace_before": 512,
+            "app_admission": 30000,
+            "app_send": 398,
+            "hop_admission": 564,
+            "hop_capacity_release": 134,
+            "hop_completion": 547,
+            "hop_feedback": 547,
+            "hop_retry": 28,
+            "mac_cancel_begin": 775,
+            "mac_cancel_end": 775,
+            "mac_cancel_frame_after": 9,
+            "mac_cancel_frame_before": 9,
+            "mac_holdoff_expired": 6,
+            "mac_holdoff_schedule_before": 744,
+            "mac_idle_rts_schedule": 3,
+            "mac_prepare_after": 1345,
+            "mac_receive_state_after": 5322,
+            "mac_receive_state_before": 5322,
+            "mac_schedule_request": 1229,
+            "mac_slot_tick": 82170,
+            "mac_state": 8010,
+            "mac_sync_change_before": 4002,
+            "nwk_admission": 11051,
+            "nwk_delivery": 338,
+            "nwk_enqueue": 607,
+            "nwk_forward": 564,
+            "nwk_nsdp_release": 547,
+            "reservation_advertise": 1344,
+            "reservation_holdoff": 6,
+            "reservation_prepare": 1345,
+            "reservation_tick": 23022,
+            "route_change": 14,
+            "rx_accept": 1917,
+            "rx_drop": 771,
+            "scenario_link": 3,
+            "scenario_node": 3,
+            "statistic_sample": 4791,
+            "tx_start": 1344
+          },
+          "forwarding": [
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "ingress_peer": "",
+              "next_hop": "5",
+              "kind": "local",
+              "count": 209
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "ingress_peer": "4",
+              "next_hop": "1",
+              "kind": "relay",
+              "count": 193
+            },
+            {
+              "src": "5",
+              "dst": "1",
+              "node": "5",
+              "ingress_peer": "",
+              "next_hop": "1",
+              "kind": "local",
+              "count": 162
+            }
+          ],
+          "completions": [
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "ack",
+              "count": 61
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "dack",
+              "count": 148
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "ack",
+              "count": 181
+            },
+            {
+              "src": "5",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "ack",
+              "count": 157
+            }
+          ],
+          "retry_submissions": [
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "count": 26
+            },
+            {
+              "src": "5",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "count": 2
+            }
+          ],
+          "blocked_admission_observations": [
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "neighbor_flow_full",
+              "count": 7028
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "peer": "",
+              "reason": "global_hop_full",
+              "count": 345
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "neighbor_flow_full",
+              "count": 1469
+            },
+            {
+              "src": "5",
+              "dst": "1",
+              "node": "5",
+              "peer": "",
+              "reason": "global_hop_full",
+              "count": 243
+            },
+            {
+              "src": "5",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "neighbor_flow_full",
+              "count": 1402
+            }
+          ],
+          "scope": "Callback observations. Retry means MAC submission, not OTA. DACK is not application loss; no_ack is a custody completion, not proven end-to-end loss. NSDP release has no packet sequence. Finite-horizon unmatched lifetimes are censored."
+        }
+      },
+      {
+        "storage_key": "p128",
+        "status": "passed",
+        "application_metrics": {
+          "simulator": "ns3",
+          "case_id": "p128",
+          "base_case_id": "campus_prefix",
+          "seed": 128,
+          "duration_s": 900.0,
+          "attempts": 180000,
+          "admitted": 1606,
+          "admission_blocked": 178394,
+          "delivered": 1245,
+          "delivered_unique": 1245,
+          "duplicate_delivery_events": 0,
+          "unmatched_sends": 361,
+          "explicit_drops": null,
+          "pending": null,
+          "drop_reasons": null,
+          "network_bytes_sent": 308352,
+          "network_bytes_received": 239040,
+          "delay_samples": 1245,
+          "delay_sum_s": 70604.086128312,
+          "mean_packet_latency_s": 56.71010934000964,
+          "max_packet_latency_s": 573.860811086,
+          "populated_delay_buckets": 10,
+          "bucket_latency_mean_sum_s": 568.3538525917536,
+          "mean_populated_bucket_latency_s": 56.83538525917536,
+          "received_packet_rate_over_full_window": 1.3833333333333333,
+          "flows": [
+            {
+              "source": 2,
+              "destination": 1,
+              "admitted": 85,
+              "delivered": 44,
+              "delivered_unique": 44,
+              "delay_sum_s": 14124.459687784001,
+              "delay_samples": 44,
+              "mean_packet_latency_s": 321.0104474496364,
+              "unmatched_sends": 41
+            },
+            {
+              "source": 3,
+              "destination": 1,
+              "admitted": 876,
+              "delivered": 862,
+              "delivered_unique": 862,
+              "delay_sum_s": 9336.209022374002,
+              "delay_samples": 862,
+              "mean_packet_latency_s": 10.83086893546868,
+              "unmatched_sends": 14
+            },
+            {
+              "source": 4,
+              "destination": 1,
+              "admitted": 64,
+              "delivered": 43,
+              "delivered_unique": 43,
+              "delay_sum_s": 9173.260876698001,
+              "delay_samples": 43,
+              "mean_packet_latency_s": 213.33164829530236,
+              "unmatched_sends": 21
+            },
+            {
+              "source": 5,
+              "destination": 1,
+              "admitted": 256,
+              "delivered": 236,
+              "delivered_unique": 236,
+              "delay_sum_s": 9240.606876295999,
+              "delay_samples": 236,
+              "mean_packet_latency_s": 39.155113882610166,
+              "unmatched_sends": 20
+            },
+            {
+              "source": 7,
+              "destination": 1,
+              "admitted": 188,
+              "delivered": 35,
+              "delivered_unique": 35,
+              "delay_sum_s": 17312.381388010002,
+              "delay_samples": 35,
+              "mean_packet_latency_s": 494.6394682288572,
+              "unmatched_sends": 153
+            },
+            {
+              "source": 8,
+              "destination": 1,
+              "admitted": 137,
+              "delivered": 25,
+              "delivered_unique": 25,
+              "delay_sum_s": 11417.168277149996,
+              "delay_samples": 25,
+              "mean_packet_latency_s": 456.68673108599984,
+              "unmatched_sends": 112
+            }
+          ]
+        },
+        "service_diagnostics": {
+          "schema": "csr-tranche18-native-service-summary-v1",
+          "status": "passed",
+          "rows": 1082082,
+          "max_records": 2000000,
+          "omitted_records": 0,
+          "window_s": [
+            0,
+            900
+          ],
+          "stop_endpoint": "exclusive",
+          "event_counts": {
+            "ack_queue_enqueue_after": 447,
+            "ack_queue_exact_duplicate": 4,
+            "ack_queue_replace_after": 1784,
+            "ack_queue_replace_before": 1784,
+            "app_admission": 180000,
+            "app_send": 1606,
+            "hop_admission": 2128,
+            "hop_capacity_release": 506,
+            "hop_completion": 2096,
+            "hop_feedback": 2052,
+            "hop_retry": 617,
+            "mac_cancel_begin": 3853,
+            "mac_cancel_end": 3853,
+            "mac_cancel_frame_after": 136,
+            "mac_cancel_frame_before": 136,
+            "mac_holdoff_expired": 33,
+            "mac_holdoff_schedule_before": 1310,
+            "mac_idle_rts_schedule": 20,
+            "mac_prepare_after": 5933,
+            "mac_receive_state_after": 22264,
+            "mac_receive_state_before": 22264,
+            "mac_schedule_request": 5206,
+            "mac_slot_tick": 386705,
+            "mac_state": 34121,
+            "mac_sync_change_before": 24064,
+            "nwk_admission": 190140,
+            "nwk_delivery": 1245,
+            "nwk_enqueue": 2409,
+            "nwk_forward": 2128,
+            "nwk_nsdp_release": 2096,
+            "reservation_advertise": 5929,
+            "reservation_holdoff": 33,
+            "reservation_prepare": 5933,
+            "reservation_tick": 107517,
+            "route_change": 91,
+            "rx_accept": 9820,
+            "rx_drop": 25751,
+            "scenario_link": 21,
+            "scenario_node": 7,
+            "statistic_sample": 20111,
+            "tx_start": 5929
+          },
+          "forwarding": [
+            {
+              "src": "2",
+              "dst": "1",
+              "node": "2",
+              "ingress_peer": "",
+              "next_hop": "4",
+              "kind": "local",
+              "count": 69
+            },
+            {
+              "src": "2",
+              "dst": "1",
+              "node": "4",
+              "ingress_peer": "2",
+              "next_hop": "5",
+              "kind": "relay",
+              "count": 60
+            },
+            {
+              "src": "2",
+              "dst": "1",
+              "node": "5",
+              "ingress_peer": "4",
+              "next_hop": "1",
+              "kind": "relay",
+              "count": 47
+            },
+            {
+              "src": "3",
+              "dst": "1",
+              "node": "3",
+              "ingress_peer": "",
+              "next_hop": "1",
+              "kind": "local",
+              "count": 876
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "ingress_peer": "",
+              "next_hop": "5",
+              "kind": "local",
+              "count": 48
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "ingress_peer": "4",
+              "next_hop": "1",
+              "kind": "relay",
+              "count": 43
+            },
+            {
+              "src": "5",
+              "dst": "1",
+              "node": "5",
+              "ingress_peer": "",
+              "next_hop": "1",
+              "kind": "local",
+              "count": 244
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "2",
+              "ingress_peer": "8",
+              "next_hop": "4",
+              "kind": "relay",
+              "count": 75
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "4",
+              "ingress_peer": "2",
+              "next_hop": "5",
+              "kind": "relay",
+              "count": 48
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "5",
+              "ingress_peer": "4",
+              "next_hop": "1",
+              "kind": "relay",
+              "count": 41
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "7",
+              "ingress_peer": "",
+              "next_hop": "8",
+              "kind": "local",
+              "count": 172
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "8",
+              "ingress_peer": "7",
+              "next_hop": "2",
+              "kind": "relay",
+              "count": 145
+            },
+            {
+              "src": "8",
+              "dst": "1",
+              "node": "2",
+              "ingress_peer": "8",
+              "next_hop": "4",
+              "kind": "relay",
+              "count": 68
+            },
+            {
+              "src": "8",
+              "dst": "1",
+              "node": "4",
+              "ingress_peer": "2",
+              "next_hop": "5",
+              "kind": "relay",
+              "count": 41
+            },
+            {
+              "src": "8",
+              "dst": "1",
+              "node": "5",
+              "ingress_peer": "4",
+              "next_hop": "1",
+              "kind": "relay",
+              "count": 30
+            },
+            {
+              "src": "8",
+              "dst": "1",
+              "node": "8",
+              "ingress_peer": "",
+              "next_hop": "2",
+              "kind": "local",
+              "count": 121
+            }
+          ],
+          "completions": [
+            {
+              "src": "2",
+              "dst": "1",
+              "node": "2",
+              "peer": "4",
+              "reason": "ack",
+              "count": 26
+            },
+            {
+              "src": "2",
+              "dst": "1",
+              "node": "2",
+              "peer": "4",
+              "reason": "dack",
+              "count": 41
+            },
+            {
+              "src": "2",
+              "dst": "1",
+              "node": "2",
+              "peer": "4",
+              "reason": "no_ack",
+              "count": 2
+            },
+            {
+              "src": "2",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "ack",
+              "count": 48
+            },
+            {
+              "src": "2",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "no_ack",
+              "count": 12
+            },
+            {
+              "src": "2",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "ack",
+              "count": 39
+            },
+            {
+              "src": "2",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "no_ack",
+              "count": 6
+            },
+            {
+              "src": "3",
+              "dst": "1",
+              "node": "3",
+              "peer": "1",
+              "reason": "ack",
+              "count": 807
+            },
+            {
+              "src": "3",
+              "dst": "1",
+              "node": "3",
+              "peer": "1",
+              "reason": "no_ack",
+              "count": 53
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "ack",
+              "count": 43
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "no_ack",
+              "count": 5
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "ack",
+              "count": 39
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "no_ack",
+              "count": 4
+            },
+            {
+              "src": "5",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "ack",
+              "count": 204
+            },
+            {
+              "src": "5",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "no_ack",
+              "count": 36
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "2",
+              "peer": "4",
+              "reason": "ack",
+              "count": 15
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "2",
+              "peer": "4",
+              "reason": "dack",
+              "count": 58
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "2",
+              "peer": "4",
+              "reason": "no_ack",
+              "count": 2
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "ack",
+              "count": 34
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "dack",
+              "count": 9
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "no_ack",
+              "count": 4
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "ack",
+              "count": 30
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "no_ack",
+              "count": 7
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "7",
+              "peer": "8",
+              "reason": "ack",
+              "count": 33
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "7",
+              "peer": "8",
+              "reason": "dack",
+              "count": 137
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "7",
+              "peer": "8",
+              "reason": "no_ack",
+              "count": 2
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "8",
+              "peer": "2",
+              "reason": "ack",
+              "count": 16
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "8",
+              "peer": "2",
+              "reason": "dack",
+              "count": 125
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "8",
+              "peer": "2",
+              "reason": "no_ack",
+              "count": 4
+            },
+            {
+              "src": "8",
+              "dst": "1",
+              "node": "2",
+              "peer": "4",
+              "reason": "ack",
+              "count": 19
+            },
+            {
+              "src": "8",
+              "dst": "1",
+              "node": "2",
+              "peer": "4",
+              "reason": "dack",
+              "count": 45
+            },
+            {
+              "src": "8",
+              "dst": "1",
+              "node": "2",
+              "peer": "4",
+              "reason": "no_ack",
+              "count": 3
+            },
+            {
+              "src": "8",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "ack",
+              "count": 30
+            },
+            {
+              "src": "8",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "dack",
+              "count": 1
+            },
+            {
+              "src": "8",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "no_ack",
+              "count": 10
+            },
+            {
+              "src": "8",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "ack",
+              "count": 20
+            },
+            {
+              "src": "8",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "no_ack",
+              "count": 6
+            },
+            {
+              "src": "8",
+              "dst": "1",
+              "node": "8",
+              "peer": "2",
+              "reason": "ack",
+              "count": 16
+            },
+            {
+              "src": "8",
+              "dst": "1",
+              "node": "8",
+              "peer": "2",
+              "reason": "dack",
+              "count": 105
+            }
+          ],
+          "retry_submissions": [
+            {
+              "src": "2",
+              "dst": "1",
+              "node": "2",
+              "peer": "4",
+              "count": 30
+            },
+            {
+              "src": "2",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "count": 60
+            },
+            {
+              "src": "2",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "count": 15
+            },
+            {
+              "src": "3",
+              "dst": "1",
+              "node": "3",
+              "peer": "1",
+              "count": 115
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "count": 33
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "count": 10
+            },
+            {
+              "src": "5",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "count": 111
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "2",
+              "peer": "4",
+              "count": 25
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "count": 18
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "count": 16
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "7",
+              "peer": "8",
+              "count": 43
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "8",
+              "peer": "2",
+              "count": 30
+            },
+            {
+              "src": "8",
+              "dst": "1",
+              "node": "2",
+              "peer": "4",
+              "count": 32
+            },
+            {
+              "src": "8",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "count": 31
+            },
+            {
+              "src": "8",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "count": 13
+            },
+            {
+              "src": "8",
+              "dst": "1",
+              "node": "8",
+              "peer": "2",
+              "count": 35
+            }
+          ],
+          "blocked_admission_observations": [
+            {
+              "src": "2",
+              "dst": "1",
+              "node": "2",
+              "peer": "4",
+              "reason": "neighbor_flow_full",
+              "count": 14117
+            },
+            {
+              "src": "2",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "neighbor_flow_full",
+              "count": 11866
+            },
+            {
+              "src": "2",
+              "dst": "1",
+              "node": "5",
+              "peer": "",
+              "reason": "global_hop_full",
+              "count": 5
+            },
+            {
+              "src": "2",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "neighbor_flow_full",
+              "count": 2191
+            },
+            {
+              "src": "3",
+              "dst": "1",
+              "node": "3",
+              "peer": "1",
+              "reason": "neighbor_flow_full",
+              "count": 929
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "neighbor_flow_full",
+              "count": 9547
+            },
+            {
+              "src": "4",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "neighbor_flow_full",
+              "count": 2482
+            },
+            {
+              "src": "5",
+              "dst": "1",
+              "node": "5",
+              "peer": "",
+              "reason": "global_hop_full",
+              "count": 15
+            },
+            {
+              "src": "5",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "neighbor_flow_full",
+              "count": 7998
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "2",
+              "peer": "4",
+              "reason": "neighbor_flow_full",
+              "count": 35636
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "neighbor_flow_full",
+              "count": 13518
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "5",
+              "peer": "",
+              "reason": "global_hop_full",
+              "count": 36
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "neighbor_flow_full",
+              "count": 2638
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "7",
+              "peer": "8",
+              "reason": "neighbor_flow_full",
+              "count": 9899
+            },
+            {
+              "src": "7",
+              "dst": "1",
+              "node": "8",
+              "peer": "2",
+              "reason": "neighbor_flow_full",
+              "count": 19283
+            },
+            {
+              "src": "8",
+              "dst": "1",
+              "node": "2",
+              "peer": "4",
+              "reason": "neighbor_flow_full",
+              "count": 29318
+            },
+            {
+              "src": "8",
+              "dst": "1",
+              "node": "4",
+              "peer": "5",
+              "reason": "neighbor_flow_full",
+              "count": 11213
+            },
+            {
+              "src": "8",
+              "dst": "1",
+              "node": "5",
+              "peer": "",
+              "reason": "global_hop_full",
+              "count": 3
+            },
+            {
+              "src": "8",
+              "dst": "1",
+              "node": "5",
+              "peer": "1",
+              "reason": "neighbor_flow_full",
+              "count": 1985
+            },
+            {
+              "src": "8",
+              "dst": "1",
+              "node": "8",
+              "peer": "2",
+              "reason": "neighbor_flow_full",
+              "count": 15333
+            }
+          ],
+          "scope": "Callback observations. Retry means MAC submission, not OTA. DACK is not application loss; no_ack is a custody completion, not proven end-to-end loss. NSDP release has no packet sequence. Finite-horizon unmatched lifetimes are censored."
+        }
+      }
+    ],
+    "scope": "Exact native inputs, complete inventory, passive on/off equality and descriptive application/cohort evidence. No MATLAB runtime or full numerical parity claim."
+  },
+  "python_tests": {
+    "return_checker_and_metrics": 58,
+    "independent_native_reviewer": 21,
+    "failed": 0
+  },
+  "matlab_static_analysis": {
+    "tool": "MISS_HIT 0.9.44",
+    "files": 4,
+    "passed": true
+  },
+  "independent_source_review": "passed; no unresolved concrete blocker",
+  "matlab_executed": false,
+  "owner_return_review_pending": true,
+  "numerical_parity_established": false,
+  "production_behavior_changed": false,
+  "default_timing_policy": "continuous"
+}

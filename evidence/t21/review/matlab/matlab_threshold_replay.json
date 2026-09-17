@@ -1,0 +1,832 @@
+{
+  "schema": "csr-tranche21-matlab-flow-threshold-replay-v1",
+  "status": "completed",
+  "matlab_executed": false,
+  "source_modified": false,
+  "analysis_script_sha256": "0791871b7183c70edb73fe0b7debb6d53066a243e42383ceeb9afa89e9b11634",
+  "helper_sha256": "895cacda422af904c5ef1ff2805b8151695047c937e2524df43aeb590f3e32a1",
+  "source_sha256": "67323b4106738c2d1fdfafebf1f408719f878513aa898fb9cf754e446d87d9f7",
+  "source": "csr20/+csr/+hop/Layer.m",
+  "t20_metadata_sha256": "7f056b5c77010da21a4c2bde87ae937cd6f307aea9acea57370fe3e781b52f8d",
+  "rules": [
+    "Initial Threshold=0, AckCount=0, Outstanding=0.",
+    "DATA ACK releases outstanding, increments AckCount, grows threshold on third ACK up to FlowThresholdMax; then any retried ACK resets AckCount.",
+    "DATA DACK resets AckCount and retains outstanding through DACK expiry.",
+    "DATA failure releases outstanding, resets AckCount, decrements threshold to floor zero.",
+    "hop_retry counts queued resend requests; it does not prove a distinct radio transmission."
+  ],
+  "limitations": [
+    "Threshold and AckCount are source-derived state; neither is an exported raw column. Replay is conditional on the accepted source and complete callbacks.",
+    "No final per-neighbor threshold/AckCount snapshot exists; final DATA/resend/DACK populations and all event counters provide independent endpoint checks.",
+    "Every DATA admission satisfies reconstructed neighbor/global DATA limits. Shared DATA/control resend-table limit is not reconstructed by this supplement.",
+    "Different engines and seeds need not share packet, callback, or random-number histories; threshold differences do not alone prove an implementation defect."
+  ],
+  "results": [
+    {
+      "seed": 128,
+      "node": 7,
+      "peer": 8,
+      "state_kind": "source-derived replay; not exported threshold observations",
+      "receipt_sha256": "bfd35e22f4ac2c7eea3d69d3303c333c9bfe4135fcd232a02fc27fe64cb4cbee",
+      "verified_artifacts": {
+        "raw/summary.json": {
+          "sha256": "3a36cec2219aa4efd65641b8b3b8e83b261007f972ed95e6496eec0ae65b64c5",
+          "bytes": 20674
+        },
+        "raw/hop_nodes.csv": {
+          "sha256": "f43ec8934d900f41966bfc7b39411021cbc2b2f8ce0833b567d7d6e536eec0ef",
+          "bytes": 1451
+        },
+        "raw/protocol_trace.csv": {
+          "sha256": "a8d220785b8f003a573f3776902fb81bb91f0c6b9e9db96be474672bd5e8b26b",
+          "bytes": 31743686
+        }
+      },
+      "threshold_at_admission_histogram": {
+        "0": 23,
+        "1": 359,
+        "2": 268,
+        "3": 82
+      },
+      "threshold_seconds_300_to_6000": {
+        "0": 172.31187727028208,
+        "1": 3384.1482923863923,
+        "2": 1769.4127075858194,
+        "3": 374.12712275750624
+      },
+      "threshold_growth_count": 10,
+      "threshold_decrease_count": 9,
+      "ack_retry_request_histogram": {
+        "0": 81,
+        "1": 12,
+        "2": 2
+      },
+      "dack_retry_request_histogram": {
+        "0": 529,
+        "1": 91,
+        "2": 7
+      },
+      "event_counts": {
+        "hop_admit": 732,
+        "hop_retry": 141,
+        "hop_ack": 95,
+        "hop_failed": 10,
+        "hop_dack": 627,
+        "hop_dack_expired": 625
+      },
+      "all_admissions_neighbor_and_global_data_thresholds_satisfied": true,
+      "pending_endpoint_verified": true,
+      "pending_data_at_stop": 2,
+      "pending_controls_at_stop": 0,
+      "source_derived_threshold_at_stop": 1,
+      "source_derived_ack_count_at_stop": 0,
+      "mean_data_outstanding_300_to_6000": 2.4114657992147293,
+      "threshold_transitions": [
+        {
+          "seed": 128,
+          "row": 9522,
+          "time_s": 306.436292441945,
+          "event": "hop_ack",
+          "threshold_before": 0,
+          "threshold_after": 1,
+          "ack_count_before": 2,
+          "retry_requests_before": 0
+        },
+        {
+          "seed": 128,
+          "row": 9801,
+          "time_s": 308.061292441945,
+          "event": "hop_ack",
+          "threshold_before": 1,
+          "threshold_after": 2,
+          "ack_count_before": 2,
+          "retry_requests_before": 0
+        },
+        {
+          "seed": 128,
+          "row": 11773,
+          "time_s": 322.396000027778,
+          "event": "hop_failed",
+          "threshold_before": 2,
+          "threshold_after": 1,
+          "ack_count_before": 1,
+          "retry_requests_before": 2
+        },
+        {
+          "seed": 128,
+          "row": 11845,
+          "time_s": 323.007000027778,
+          "event": "hop_failed",
+          "threshold_before": 1,
+          "threshold_after": 0,
+          "ack_count_before": 0,
+          "retry_requests_before": 2
+        },
+        {
+          "seed": 128,
+          "row": 15187,
+          "time_s": 348.426292441945,
+          "event": "hop_ack",
+          "threshold_before": 0,
+          "threshold_after": 1,
+          "ack_count_before": 2,
+          "retry_requests_before": 0
+        },
+        {
+          "seed": 128,
+          "row": 15518,
+          "time_s": 350.363292441945,
+          "event": "hop_ack",
+          "threshold_before": 1,
+          "threshold_after": 2,
+          "ack_count_before": 2,
+          "retry_requests_before": 0
+        },
+        {
+          "seed": 128,
+          "row": 15955,
+          "time_s": 353.821292441945,
+          "event": "hop_ack",
+          "threshold_before": 2,
+          "threshold_after": 3,
+          "ack_count_before": 2,
+          "retry_requests_before": 0
+        },
+        {
+          "seed": 128,
+          "row": 27643,
+          "time_s": 452.617000027778,
+          "event": "hop_failed",
+          "threshold_before": 3,
+          "threshold_after": 2,
+          "ack_count_before": 0,
+          "retry_requests_before": 2
+        },
+        {
+          "seed": 128,
+          "row": 29517,
+          "time_s": 467.766292441945,
+          "event": "hop_ack",
+          "threshold_before": 2,
+          "threshold_after": 3,
+          "ack_count_before": 2,
+          "retry_requests_before": 0
+        },
+        {
+          "seed": 128,
+          "row": 46315,
+          "time_s": 607.057000027778,
+          "event": "hop_failed",
+          "threshold_before": 3,
+          "threshold_after": 2,
+          "ack_count_before": 0,
+          "retry_requests_before": 2
+        },
+        {
+          "seed": 128,
+          "row": 46490,
+          "time_s": 608.357000027778,
+          "event": "hop_failed",
+          "threshold_before": 2,
+          "threshold_after": 1,
+          "ack_count_before": 0,
+          "retry_requests_before": 2
+        },
+        {
+          "seed": 128,
+          "row": 174469,
+          "time_s": 1871.79229244195,
+          "event": "hop_ack",
+          "threshold_before": 1,
+          "threshold_after": 2,
+          "ack_count_before": 2,
+          "retry_requests_before": 0
+        },
+        {
+          "seed": 128,
+          "row": 175600,
+          "time_s": 1880.13400002778,
+          "event": "hop_failed",
+          "threshold_before": 2,
+          "threshold_after": 1,
+          "ack_count_before": 0,
+          "retry_requests_before": 2
+        },
+        {
+          "seed": 128,
+          "row": 191352,
+          "time_s": 2031.35000002778,
+          "event": "hop_failed",
+          "threshold_before": 1,
+          "threshold_after": 0,
+          "ack_count_before": 0,
+          "retry_requests_before": 2
+        },
+        {
+          "seed": 128,
+          "row": 205855,
+          "time_s": 2171.80629244195,
+          "event": "hop_ack",
+          "threshold_before": 0,
+          "threshold_after": 1,
+          "ack_count_before": 2,
+          "retry_requests_before": 0
+        },
+        {
+          "seed": 128,
+          "row": 243846,
+          "time_s": 2536.30029244195,
+          "event": "hop_ack",
+          "threshold_before": 1,
+          "threshold_after": 2,
+          "ack_count_before": 2,
+          "retry_requests_before": 0
+        },
+        {
+          "seed": 128,
+          "row": 263553,
+          "time_s": 2708.08229244194,
+          "event": "hop_ack",
+          "threshold_before": 2,
+          "threshold_after": 3,
+          "ack_count_before": 2,
+          "retry_requests_before": 0
+        },
+        {
+          "seed": 128,
+          "row": 278181,
+          "time_s": 2844.12300002778,
+          "event": "hop_failed",
+          "threshold_before": 3,
+          "threshold_after": 2,
+          "ack_count_before": 0,
+          "retry_requests_before": 2
+        },
+        {
+          "seed": 128,
+          "row": 442464,
+          "time_s": 4399.17000002778,
+          "event": "hop_failed",
+          "threshold_before": 2,
+          "threshold_after": 1,
+          "ack_count_before": 0,
+          "retry_requests_before": 2
+        }
+      ]
+    },
+    {
+      "seed": 129,
+      "node": 7,
+      "peer": 8,
+      "state_kind": "source-derived replay; not exported threshold observations",
+      "receipt_sha256": "4bd93bd7fa16613ba54900fdb39a997e14907af9f59c7dff9e4113be77fd7d62",
+      "verified_artifacts": {
+        "raw/summary.json": {
+          "sha256": "ad3c1013b3909e102f82d1c748a1cc957175195cc7880159fcf26585f6d19f1c",
+          "bytes": 20674
+        },
+        "raw/hop_nodes.csv": {
+          "sha256": "28b7d50870ef3289740843b2055fc8f1619416e93a623c5f0dea6703f33d5042",
+          "bytes": 1451
+        },
+        "raw/protocol_trace.csv": {
+          "sha256": "9c4d336e9dd8b92f9c0904b0d187dd9655e6e7b6a0c994cd0e0473a68f6ebf0c",
+          "bytes": 32291384
+        }
+      },
+      "threshold_at_admission_histogram": {
+        "0": 31,
+        "1": 177,
+        "2": 322,
+        "3": 234,
+        "4": 37,
+        "5": 3,
+        "6": 18
+      },
+      "threshold_seconds_300_to_6000": {
+        "0": 485.9498772702751,
+        "1": 1635.2482924141598,
+        "2": 2141.4394151438896,
+        "3": 1255.8260000000096,
+        "4": 125.57570758583302,
+        "5": 3.7180000000000177,
+        "6": 52.24270758583299
+      },
+      "threshold_growth_count": 13,
+      "threshold_decrease_count": 11,
+      "ack_retry_request_histogram": {
+        "0": 67,
+        "1": 12,
+        "2": 5
+      },
+      "dack_retry_request_histogram": {
+        "0": 608,
+        "1": 96,
+        "2": 22
+      },
+      "event_counts": {
+        "hop_admit": 822,
+        "hop_ack": 84,
+        "hop_retry": 186,
+        "hop_dack": 726,
+        "hop_dack_expired": 723,
+        "hop_failed": 12
+      },
+      "all_admissions_neighbor_and_global_data_thresholds_satisfied": true,
+      "pending_endpoint_verified": true,
+      "pending_data_at_stop": 3,
+      "pending_controls_at_stop": 0,
+      "source_derived_threshold_at_stop": 2,
+      "source_derived_ack_count_at_stop": 0,
+      "mean_data_outstanding_300_to_6000": 2.8456059957462014,
+      "threshold_transitions": [
+        {
+          "seed": 129,
+          "row": 7653,
+          "time_s": 302.497292441945,
+          "event": "hop_ack",
+          "threshold_before": 0,
+          "threshold_after": 1,
+          "ack_count_before": 2,
+          "retry_requests_before": 0
+        },
+        {
+          "seed": 129,
+          "row": 8023,
+          "time_s": 304.733292441945,
+          "event": "hop_ack",
+          "threshold_before": 1,
+          "threshold_after": 2,
+          "ack_count_before": 2,
+          "retry_requests_before": 0
+        },
+        {
+          "seed": 129,
+          "row": 12956,
+          "time_s": 340.353292441945,
+          "event": "hop_ack",
+          "threshold_before": 2,
+          "threshold_after": 3,
+          "ack_count_before": 2,
+          "retry_requests_before": 1
+        },
+        {
+          "seed": 129,
+          "row": 13147,
+          "time_s": 341.432292441945,
+          "event": "hop_ack",
+          "threshold_before": 3,
+          "threshold_after": 4,
+          "ack_count_before": 2,
+          "retry_requests_before": 0
+        },
+        {
+          "seed": 129,
+          "row": 13505,
+          "time_s": 343.824292441945,
+          "event": "hop_ack",
+          "threshold_before": 4,
+          "threshold_after": 5,
+          "ack_count_before": 2,
+          "retry_requests_before": 0
+        },
+        {
+          "seed": 129,
+          "row": 13679,
+          "time_s": 345.306292441945,
+          "event": "hop_ack",
+          "threshold_before": 5,
+          "threshold_after": 6,
+          "ack_count_before": 2,
+          "retry_requests_before": 0
+        },
+        {
+          "seed": 129,
+          "row": 20153,
+          "time_s": 397.549000027778,
+          "event": "hop_failed",
+          "threshold_before": 6,
+          "threshold_after": 5,
+          "ack_count_before": 0,
+          "retry_requests_before": 2
+        },
+        {
+          "seed": 129,
+          "row": 20462,
+          "time_s": 399.785000027778,
+          "event": "hop_failed",
+          "threshold_before": 5,
+          "threshold_after": 4,
+          "ack_count_before": 0,
+          "retry_requests_before": 2
+        },
+        {
+          "seed": 129,
+          "row": 20657,
+          "time_s": 401.319000027778,
+          "event": "hop_failed",
+          "threshold_before": 4,
+          "threshold_after": 3,
+          "ack_count_before": 0,
+          "retry_requests_before": 2
+        },
+        {
+          "seed": 129,
+          "row": 24998,
+          "time_s": 436.917292441945,
+          "event": "hop_ack",
+          "threshold_before": 3,
+          "threshold_after": 4,
+          "ack_count_before": 2,
+          "retry_requests_before": 2
+        },
+        {
+          "seed": 129,
+          "row": 39533,
+          "time_s": 558.567000027778,
+          "event": "hop_failed",
+          "threshold_before": 4,
+          "threshold_after": 3,
+          "ack_count_before": 0,
+          "retry_requests_before": 2
+        },
+        {
+          "seed": 129,
+          "row": 171007,
+          "time_s": 1771.12900002778,
+          "event": "hop_failed",
+          "threshold_before": 3,
+          "threshold_after": 2,
+          "ack_count_before": 0,
+          "retry_requests_before": 2
+        },
+        {
+          "seed": 129,
+          "row": 238519,
+          "time_s": 2437.69100002778,
+          "event": "hop_failed",
+          "threshold_before": 2,
+          "threshold_after": 1,
+          "ack_count_before": 0,
+          "retry_requests_before": 2
+        },
+        {
+          "seed": 129,
+          "row": 252620,
+          "time_s": 2572.63100002778,
+          "event": "hop_failed",
+          "threshold_before": 1,
+          "threshold_after": 0,
+          "ack_count_before": 0,
+          "retry_requests_before": 2
+        },
+        {
+          "seed": 129,
+          "row": 300737,
+          "time_s": 3040.63529244195,
+          "event": "hop_ack",
+          "threshold_before": 0,
+          "threshold_after": 1,
+          "ack_count_before": 2,
+          "retry_requests_before": 0
+        },
+        {
+          "seed": 129,
+          "row": 303353,
+          "time_s": 3064.54229244194,
+          "event": "hop_ack",
+          "threshold_before": 1,
+          "threshold_after": 2,
+          "ack_count_before": 2,
+          "retry_requests_before": 1
+        },
+        {
+          "seed": 129,
+          "row": 358943,
+          "time_s": 3590.94700002778,
+          "event": "hop_failed",
+          "threshold_before": 2,
+          "threshold_after": 1,
+          "ack_count_before": 0,
+          "retry_requests_before": 2
+        },
+        {
+          "seed": 129,
+          "row": 425840,
+          "time_s": 4225.08700002778,
+          "event": "hop_failed",
+          "threshold_before": 1,
+          "threshold_after": 0,
+          "ack_count_before": 0,
+          "retry_requests_before": 2
+        },
+        {
+          "seed": 129,
+          "row": 427562,
+          "time_s": 4240.53529244194,
+          "event": "hop_ack",
+          "threshold_before": 0,
+          "threshold_after": 1,
+          "ack_count_before": 2,
+          "retry_requests_before": 0
+        },
+        {
+          "seed": 129,
+          "row": 427832,
+          "time_s": 4242.57629244195,
+          "event": "hop_ack",
+          "threshold_before": 1,
+          "threshold_after": 2,
+          "ack_count_before": 2,
+          "retry_requests_before": 0
+        },
+        {
+          "seed": 129,
+          "row": 526379,
+          "time_s": 5140.30000002778,
+          "event": "hop_failed",
+          "threshold_before": 2,
+          "threshold_after": 1,
+          "ack_count_before": 0,
+          "retry_requests_before": 2
+        },
+        {
+          "seed": 129,
+          "row": 612620,
+          "time_s": 5978.28429244194,
+          "event": "hop_ack",
+          "threshold_before": 1,
+          "threshold_after": 2,
+          "ack_count_before": 2,
+          "retry_requests_before": 0
+        },
+        {
+          "seed": 129,
+          "row": 613066,
+          "time_s": 5981.43029244194,
+          "event": "hop_ack",
+          "threshold_before": 2,
+          "threshold_after": 3,
+          "ack_count_before": 2,
+          "retry_requests_before": 0
+        },
+        {
+          "seed": 129,
+          "row": 613934,
+          "time_s": 5988.01700002778,
+          "event": "hop_failed",
+          "threshold_before": 3,
+          "threshold_after": 2,
+          "ack_count_before": 0,
+          "retry_requests_before": 2
+        }
+      ]
+    },
+    {
+      "seed": 130,
+      "node": 7,
+      "peer": 8,
+      "state_kind": "source-derived replay; not exported threshold observations",
+      "receipt_sha256": "0f84f1ea05c29250680f0a05b9994aaeeac1a1e0d4329aa3836f17a052cc1e9c",
+      "verified_artifacts": {
+        "raw/summary.json": {
+          "sha256": "5b5a2b883fae1a7ae583bcfb14232ee27857ffda73cb1de2852d6c6537d94e79",
+          "bytes": 20673
+        },
+        "raw/hop_nodes.csv": {
+          "sha256": "241f4c1b954646cfd8db934436ffd930de9ae5b611316a2dbe01c914de39bb9f",
+          "bytes": 1452
+        },
+        "raw/protocol_trace.csv": {
+          "sha256": "d7e57f8ce3259d6597b1113021c50703fb4ba458f2fb9c19bff4e6e7531e48d4",
+          "bytes": 32843451
+        }
+      },
+      "threshold_at_admission_histogram": {
+        "0": 3,
+        "1": 314,
+        "2": 340,
+        "3": 89,
+        "4": 19,
+        "5": 22
+      },
+      "threshold_seconds_300_to_6000": {
+        "0": 5.734292441945001,
+        "1": 2749.9981696566465,
+        "2": 2339.9018303155754,
+        "3": 453.19729241416707,
+        "4": 77.55370758583291,
+        "5": 73.614707585833
+      },
+      "threshold_growth_count": 10,
+      "threshold_decrease_count": 8,
+      "ack_retry_request_histogram": {
+        "0": 92,
+        "1": 9,
+        "2": 2
+      },
+      "dack_retry_request_histogram": {
+        "0": 542,
+        "1": 108,
+        "2": 25
+      },
+      "event_counts": {
+        "hop_admit": 787,
+        "hop_ack": 103,
+        "hop_retry": 187,
+        "hop_failed": 8,
+        "hop_dack": 675,
+        "hop_dack_expired": 673
+      },
+      "all_admissions_neighbor_and_global_data_thresholds_satisfied": true,
+      "pending_endpoint_verified": true,
+      "pending_data_at_stop": 3,
+      "pending_controls_at_stop": 0,
+      "source_derived_threshold_at_stop": 2,
+      "source_derived_ack_count_at_stop": 0,
+      "mean_data_outstanding_300_to_6000": 2.6609968515734215,
+      "threshold_transitions": [
+        {
+          "seed": 130,
+          "row": 9096,
+          "time_s": 305.734292441945,
+          "event": "hop_ack",
+          "threshold_before": 0,
+          "threshold_after": 1,
+          "ack_count_before": 2,
+          "retry_requests_before": 1
+        },
+        {
+          "seed": 130,
+          "row": 10782,
+          "time_s": 317.616292441945,
+          "event": "hop_ack",
+          "threshold_before": 1,
+          "threshold_after": 2,
+          "ack_count_before": 2,
+          "retry_requests_before": 0
+        },
+        {
+          "seed": 130,
+          "row": 10981,
+          "time_s": 318.886000027778,
+          "event": "hop_failed",
+          "threshold_before": 2,
+          "threshold_after": 1,
+          "ack_count_before": 0,
+          "retry_requests_before": 2
+        },
+        {
+          "seed": 130,
+          "row": 11187,
+          "time_s": 320.060292441945,
+          "event": "hop_ack",
+          "threshold_before": 1,
+          "threshold_after": 2,
+          "ack_count_before": 2,
+          "retry_requests_before": 0
+        },
+        {
+          "seed": 130,
+          "row": 11419,
+          "time_s": 321.568292441945,
+          "event": "hop_ack",
+          "threshold_before": 2,
+          "threshold_after": 3,
+          "ack_count_before": 2,
+          "retry_requests_before": 0
+        },
+        {
+          "seed": 130,
+          "row": 17207,
+          "time_s": 367.952292441945,
+          "event": "hop_ack",
+          "threshold_before": 3,
+          "threshold_after": 4,
+          "ack_count_before": 2,
+          "retry_requests_before": 0
+        },
+        {
+          "seed": 130,
+          "row": 17370,
+          "time_s": 369.135292441945,
+          "event": "hop_ack",
+          "threshold_before": 4,
+          "threshold_after": 5,
+          "ack_count_before": 2,
+          "retry_requests_before": 0
+        },
+        {
+          "seed": 130,
+          "row": 26489,
+          "time_s": 442.750000027778,
+          "event": "hop_failed",
+          "threshold_before": 5,
+          "threshold_after": 4,
+          "ack_count_before": 0,
+          "retry_requests_before": 2
+        },
+        {
+          "seed": 130,
+          "row": 32065,
+          "time_s": 487.340000027778,
+          "event": "hop_failed",
+          "threshold_before": 4,
+          "threshold_after": 3,
+          "ack_count_before": 0,
+          "retry_requests_before": 2
+        },
+        {
+          "seed": 130,
+          "row": 39693,
+          "time_s": 547.326292441945,
+          "event": "hop_ack",
+          "threshold_before": 3,
+          "threshold_after": 4,
+          "ack_count_before": 2,
+          "retry_requests_before": 0
+        },
+        {
+          "seed": 130,
+          "row": 43755,
+          "time_s": 579.107000027778,
+          "event": "hop_failed",
+          "threshold_before": 4,
+          "threshold_after": 3,
+          "ack_count_before": 0,
+          "retry_requests_before": 2
+        },
+        {
+          "seed": 130,
+          "row": 85714,
+          "time_s": 925.934000027778,
+          "event": "hop_failed",
+          "threshold_before": 3,
+          "threshold_after": 2,
+          "ack_count_before": 0,
+          "retry_requests_before": 2
+        },
+        {
+          "seed": 130,
+          "row": 118501,
+          "time_s": 1222.39900002778,
+          "event": "hop_failed",
+          "threshold_before": 2,
+          "threshold_after": 1,
+          "ack_count_before": 0,
+          "retry_requests_before": 2
+        },
+        {
+          "seed": 130,
+          "row": 303379,
+          "time_s": 3004.27429244194,
+          "event": "hop_ack",
+          "threshold_before": 1,
+          "threshold_after": 2,
+          "ack_count_before": 2,
+          "retry_requests_before": 1
+        },
+        {
+          "seed": 130,
+          "row": 332119,
+          "time_s": 3273.86400002778,
+          "event": "hop_failed",
+          "threshold_before": 2,
+          "threshold_after": 1,
+          "ack_count_before": 0,
+          "retry_requests_before": 2
+        },
+        {
+          "seed": 130,
+          "row": 430204,
+          "time_s": 4194.61929244194,
+          "event": "hop_ack",
+          "threshold_before": 1,
+          "threshold_after": 2,
+          "ack_count_before": 2,
+          "retry_requests_before": 0
+        },
+        {
+          "seed": 130,
+          "row": 446293,
+          "time_s": 4339.99400002778,
+          "event": "hop_failed",
+          "threshold_before": 2,
+          "threshold_after": 1,
+          "ack_count_before": 0,
+          "retry_requests_before": 2
+        },
+        {
+          "seed": 130,
+          "row": 450064,
+          "time_s": 4374.30529244194,
+          "event": "hop_ack",
+          "threshold_before": 1,
+          "threshold_after": 2,
+          "ack_count_before": 2,
+          "retry_requests_before": 0
+        }
+      ]
+    }
+  ]
+}

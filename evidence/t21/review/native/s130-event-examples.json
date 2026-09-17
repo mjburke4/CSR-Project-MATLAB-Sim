@@ -1,0 +1,1156 @@
+[
+  {
+    "node": 4,
+    "event": "nwk_enqueue",
+    "reason": "local",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "24252",
+        "time_s": "300",
+        "event": "nwk_enqueue",
+        "node": "4",
+        "packet_type": "data",
+        "src": "4",
+        "dst": "1",
+        "sequence": "956",
+        "size_bytes": "192",
+        "success": "1",
+        "reason": "local",
+        "detail": "nsdp_count=1;nsdp_limit=16;queue_after=1"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "24330",
+        "time_s": "300.01999999999998",
+        "event": "nwk_enqueue",
+        "node": "4",
+        "packet_type": "data",
+        "src": "4",
+        "dst": "1",
+        "sequence": "962",
+        "size_bytes": "192",
+        "success": "1",
+        "reason": "local",
+        "detail": "nsdp_count=2;nsdp_limit=16;queue_after=1"
+      }
+    ]
+  },
+  {
+    "node": 8,
+    "event": "nwk_enqueue",
+    "reason": "local",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "24264",
+        "time_s": "300",
+        "event": "nwk_enqueue",
+        "node": "8",
+        "packet_type": "data",
+        "src": "8",
+        "dst": "1",
+        "sequence": "959",
+        "size_bytes": "192",
+        "success": "1",
+        "reason": "local",
+        "detail": "nsdp_count=1;nsdp_limit=16;queue_after=1"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "24342",
+        "time_s": "300.01999999999998",
+        "event": "nwk_enqueue",
+        "node": "8",
+        "packet_type": "data",
+        "src": "8",
+        "dst": "1",
+        "sequence": "965",
+        "size_bytes": "192",
+        "success": "1",
+        "reason": "local",
+        "detail": "nsdp_count=2;nsdp_limit=16;queue_after=1"
+      }
+    ]
+  },
+  {
+    "node": 4,
+    "event": "nwk_admission",
+    "reason": "admitted",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "24279",
+        "time_s": "300.00000002799999",
+        "event": "nwk_admission",
+        "node": "4",
+        "peer": "5",
+        "packet_type": "data",
+        "src": "4",
+        "dst": "1",
+        "sequence": "956",
+        "success": "1",
+        "reason": "admitted",
+        "next_hop": "5",
+        "detail": "queue_before=1;queue_after=0;nsdp_count=1;nsdp_limit=16;pending=0;pending_limit=16;global_spad=17;outstanding=0;threshold=0;neighbor_spad=1;route_known=1"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "27160",
+        "time_s": "302.56229247200002",
+        "event": "nwk_admission",
+        "node": "4",
+        "peer": "5",
+        "packet_type": "data",
+        "src": "4",
+        "dst": "1",
+        "sequence": "962",
+        "success": "1",
+        "reason": "admitted",
+        "next_hop": "5",
+        "detail": "queue_before=16;queue_after=15;nsdp_count=15;nsdp_limit=16;pending=0;pending_limit=16;global_spad=17;outstanding=0;threshold=0;neighbor_spad=1;route_known=1"
+      }
+    ]
+  },
+  {
+    "node": 4,
+    "event": "nwk_forward",
+    "reason": "local",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "24282",
+        "time_s": "300.00000002799999",
+        "event": "nwk_forward",
+        "node": "4",
+        "packet_type": "data",
+        "src": "4",
+        "dst": "1",
+        "sequence": "956",
+        "size_bytes": "192",
+        "success": "1",
+        "reason": "local",
+        "route_cost": "14900",
+        "next_hop": "5",
+        "detail": "num_hop=2;path=5>1"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "27163",
+        "time_s": "302.56229247200002",
+        "event": "nwk_forward",
+        "node": "4",
+        "packet_type": "data",
+        "src": "4",
+        "dst": "1",
+        "sequence": "962",
+        "size_bytes": "192",
+        "success": "1",
+        "reason": "local",
+        "route_cost": "14900",
+        "next_hop": "5",
+        "detail": "num_hop=2;path=5>1"
+      }
+    ]
+  },
+  {
+    "node": 4,
+    "event": "hop_admission",
+    "reason": "admitted",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "24284",
+        "time_s": "300.00000002799999",
+        "event": "hop_admission",
+        "node": "4",
+        "peer": "5",
+        "packet_type": "data",
+        "src": "4",
+        "dst": "1",
+        "sequence": "956",
+        "success": "1",
+        "reason": "admitted",
+        "next_hop": "5",
+        "detail": "hop_sequence=17;pending_before=0;pending_after=1;pending_limit=16;global_spad_before=17;global_spad_after=16;outstanding_before=0;outstanding_after=1;threshold=0;neighbor_spad_before=1;neighbor_spad_after=0;resend_queue_before=0;resend_queue_after=1;resend_tracked=1;resend_overflow=0"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "27165",
+        "time_s": "302.56229247200002",
+        "event": "hop_admission",
+        "node": "4",
+        "peer": "5",
+        "packet_type": "data",
+        "src": "4",
+        "dst": "1",
+        "sequence": "962",
+        "success": "1",
+        "reason": "admitted",
+        "next_hop": "5",
+        "detail": "hop_sequence=18;pending_before=0;pending_after=1;pending_limit=16;global_spad_before=17;global_spad_after=16;outstanding_before=0;outstanding_after=1;threshold=0;neighbor_spad_before=1;neighbor_spad_after=0;resend_queue_before=0;resend_queue_after=1;resend_tracked=1;resend_overflow=0"
+      }
+    ]
+  },
+  {
+    "node": 8,
+    "event": "nwk_admission",
+    "reason": "admitted",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "24300",
+        "time_s": "300.00000002799999",
+        "event": "nwk_admission",
+        "node": "8",
+        "peer": "2",
+        "packet_type": "data",
+        "src": "8",
+        "dst": "1",
+        "sequence": "959",
+        "success": "1",
+        "reason": "admitted",
+        "next_hop": "2",
+        "detail": "queue_before=1;queue_after=0;nsdp_count=1;nsdp_limit=16;pending=0;pending_limit=16;global_spad=17;outstanding=0;threshold=0;neighbor_spad=1;route_known=1"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "42945",
+        "time_s": "319.38429537399998",
+        "event": "nwk_admission",
+        "node": "8",
+        "peer": "2",
+        "packet_type": "data",
+        "src": "8",
+        "dst": "1",
+        "sequence": "965",
+        "success": "1",
+        "reason": "admitted",
+        "next_hop": "2",
+        "detail": "queue_before=36;queue_after=35;nsdp_count=15;nsdp_limit=16;pending=0;pending_limit=16;global_spad=17;outstanding=0;threshold=0;neighbor_spad=1;route_known=1"
+      }
+    ]
+  },
+  {
+    "node": 8,
+    "event": "nwk_forward",
+    "reason": "local",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "24303",
+        "time_s": "300.00000002799999",
+        "event": "nwk_forward",
+        "node": "8",
+        "packet_type": "data",
+        "src": "8",
+        "dst": "1",
+        "sequence": "959",
+        "size_bytes": "192",
+        "success": "1",
+        "reason": "local",
+        "route_cost": "29800",
+        "next_hop": "2",
+        "detail": "num_hop=4;path=2>4>5>1"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "42948",
+        "time_s": "319.38429537399998",
+        "event": "nwk_forward",
+        "node": "8",
+        "packet_type": "data",
+        "src": "8",
+        "dst": "1",
+        "sequence": "965",
+        "size_bytes": "192",
+        "success": "1",
+        "reason": "local",
+        "route_cost": "29800",
+        "next_hop": "2",
+        "detail": "num_hop=4;path=2>4>5>1"
+      }
+    ]
+  },
+  {
+    "node": 8,
+    "event": "hop_admission",
+    "reason": "admitted",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "24305",
+        "time_s": "300.00000002799999",
+        "event": "hop_admission",
+        "node": "8",
+        "peer": "2",
+        "packet_type": "data",
+        "src": "8",
+        "dst": "1",
+        "sequence": "959",
+        "success": "1",
+        "reason": "admitted",
+        "next_hop": "2",
+        "detail": "hop_sequence=14;pending_before=0;pending_after=1;pending_limit=16;global_spad_before=17;global_spad_after=16;outstanding_before=0;outstanding_after=1;threshold=0;neighbor_spad_before=1;neighbor_spad_after=0;resend_queue_before=0;resend_queue_after=1;resend_tracked=1;resend_overflow=0"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "42950",
+        "time_s": "319.38429537399998",
+        "event": "hop_admission",
+        "node": "8",
+        "peer": "2",
+        "packet_type": "data",
+        "src": "8",
+        "dst": "1",
+        "sequence": "965",
+        "success": "1",
+        "reason": "admitted",
+        "next_hop": "2",
+        "detail": "hop_sequence=15;pending_before=0;pending_after=1;pending_limit=16;global_spad_before=17;global_spad_after=16;outstanding_before=0;outstanding_after=1;threshold=0;neighbor_spad_before=1;neighbor_spad_after=0;resend_queue_before=0;resend_queue_after=1;resend_tracked=1;resend_overflow=0"
+      }
+    ]
+  },
+  {
+    "node": 4,
+    "event": "nwk_admission",
+    "reason": "neighbor_flow_full",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "24345",
+        "time_s": "300.02000002800003",
+        "event": "nwk_admission",
+        "node": "4",
+        "peer": "5",
+        "packet_type": "data",
+        "src": "4",
+        "dst": "1",
+        "sequence": "962",
+        "success": "0",
+        "reason": "neighbor_flow_full",
+        "next_hop": "5",
+        "detail": "queue_before=1;queue_after=1;nsdp_count=2;nsdp_limit=16;pending=1;pending_limit=16;global_spad=16;outstanding=1;threshold=0;neighbor_spad=0;route_known=1"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "24381",
+        "time_s": "300.04000002800001",
+        "event": "nwk_admission",
+        "node": "4",
+        "peer": "5",
+        "packet_type": "data",
+        "src": "4",
+        "dst": "1",
+        "sequence": "962",
+        "success": "0",
+        "reason": "neighbor_flow_full",
+        "next_hop": "5",
+        "detail": "queue_before=2;queue_after=2;nsdp_count=3;nsdp_limit=16;pending=1;pending_limit=16;global_spad=16;outstanding=1;threshold=0;neighbor_spad=0;route_known=1"
+      }
+    ]
+  },
+  {
+    "node": 8,
+    "event": "nwk_admission",
+    "reason": "neighbor_flow_full",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "24348",
+        "time_s": "300.02000002800003",
+        "event": "nwk_admission",
+        "node": "8",
+        "peer": "2",
+        "packet_type": "data",
+        "src": "8",
+        "dst": "1",
+        "sequence": "965",
+        "success": "0",
+        "reason": "neighbor_flow_full",
+        "next_hop": "2",
+        "detail": "queue_before=1;queue_after=1;nsdp_count=2;nsdp_limit=16;pending=1;pending_limit=16;global_spad=16;outstanding=1;threshold=0;neighbor_spad=0;route_known=1"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "24387",
+        "time_s": "300.04000002800001",
+        "event": "nwk_admission",
+        "node": "8",
+        "peer": "2",
+        "packet_type": "data",
+        "src": "8",
+        "dst": "1",
+        "sequence": "965",
+        "success": "0",
+        "reason": "neighbor_flow_full",
+        "next_hop": "2",
+        "detail": "queue_before=2;queue_after=2;nsdp_count=3;nsdp_limit=16;pending=1;pending_limit=16;global_spad=16;outstanding=1;threshold=0;neighbor_spad=0;route_known=1"
+      }
+    ]
+  },
+  {
+    "node": 8,
+    "event": "nwk_enqueue",
+    "reason": "relay",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "25517",
+        "time_s": "300.427812442",
+        "event": "nwk_enqueue",
+        "node": "8",
+        "peer": "7",
+        "packet_type": "data",
+        "src": "7",
+        "dst": "1",
+        "sequence": "958",
+        "size_bytes": "192",
+        "success": "1",
+        "reason": "relay",
+        "detail": "nsdp_count=1;nsdp_limit=16;queue_after=16"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "26038",
+        "time_s": "301.259812442",
+        "event": "nwk_enqueue",
+        "node": "8",
+        "peer": "7",
+        "packet_type": "data",
+        "src": "7",
+        "dst": "1",
+        "sequence": "964",
+        "size_bytes": "192",
+        "success": "1",
+        "reason": "relay",
+        "detail": "nsdp_count=2;nsdp_limit=16;queue_after=17"
+      }
+    ]
+  },
+  {
+    "node": 8,
+    "event": "hop_feedback",
+    "reason": "ack",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "25519",
+        "time_s": "300.427812442",
+        "event": "hop_feedback",
+        "node": "8",
+        "peer": "7",
+        "packet_type": "data",
+        "src": "7",
+        "dst": "1",
+        "sequence": "958",
+        "success": "1",
+        "reason": "ack",
+        "detail": "hop_sequence=12;first_reception=1;ackable=1;nsdp_count_before=0;nsdp_count_after=1;nsdp_state_valid=1;nsdp_limit=16"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "26039",
+        "time_s": "301.259812442",
+        "event": "hop_feedback",
+        "node": "8",
+        "peer": "7",
+        "packet_type": "data",
+        "src": "7",
+        "dst": "1",
+        "sequence": "964",
+        "success": "1",
+        "reason": "ack",
+        "detail": "hop_sequence=13;first_reception=1;ackable=1;nsdp_count_before=1;nsdp_count_after=2;nsdp_state_valid=1;nsdp_limit=16"
+      }
+    ]
+  },
+  {
+    "node": 4,
+    "event": "nwk_enqueue",
+    "reason": "relay",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "26562",
+        "time_s": "302.05281363199998",
+        "event": "nwk_enqueue",
+        "node": "4",
+        "peer": "2",
+        "packet_type": "data",
+        "src": "2",
+        "dst": "1",
+        "sequence": "954",
+        "size_bytes": "192",
+        "success": "1",
+        "reason": "relay",
+        "detail": "nsdp_count=1;nsdp_limit=16;queue_after=16"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "27663",
+        "time_s": "303.05381363200001",
+        "event": "nwk_enqueue",
+        "node": "4",
+        "peer": "2",
+        "packet_type": "data",
+        "src": "2",
+        "dst": "1",
+        "sequence": "960",
+        "size_bytes": "192",
+        "success": "1",
+        "reason": "relay",
+        "detail": "nsdp_count=2;nsdp_limit=16;queue_after=17"
+      }
+    ]
+  },
+  {
+    "node": 4,
+    "event": "hop_feedback",
+    "reason": "ack",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "26564",
+        "time_s": "302.05281363199998",
+        "event": "hop_feedback",
+        "node": "4",
+        "peer": "2",
+        "packet_type": "data",
+        "src": "2",
+        "dst": "1",
+        "sequence": "954",
+        "success": "1",
+        "reason": "ack",
+        "detail": "hop_sequence=14;first_reception=1;ackable=1;nsdp_count_before=0;nsdp_count_after=1;nsdp_state_valid=1;nsdp_limit=16"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "27664",
+        "time_s": "303.05381363200001",
+        "event": "hop_feedback",
+        "node": "4",
+        "peer": "2",
+        "packet_type": "data",
+        "src": "2",
+        "dst": "1",
+        "sequence": "960",
+        "success": "1",
+        "reason": "ack",
+        "detail": "hop_sequence=15;first_reception=1;ackable=1;nsdp_count_before=1;nsdp_count_after=2;nsdp_state_valid=1;nsdp_limit=16"
+      }
+    ]
+  },
+  {
+    "node": 4,
+    "event": "nwk_nsdp_release",
+    "reason": "hop_feedback",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "27156",
+        "time_s": "302.56229244399998",
+        "event": "nwk_nsdp_release",
+        "node": "4",
+        "packet_type": "data",
+        "src": "4",
+        "dst": "1",
+        "success": "1",
+        "reason": "hop_feedback",
+        "detail": "count_before=16;count_after=15;nsdp_limit=16;nwk_queue=16"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "41242",
+        "time_s": "317.44729244400003",
+        "event": "nwk_nsdp_release",
+        "node": "4",
+        "packet_type": "data",
+        "src": "4",
+        "dst": "1",
+        "success": "1",
+        "reason": "hop_feedback",
+        "detail": "count_before=16;count_after=15;nsdp_limit=16;nwk_queue=36"
+      }
+    ]
+  },
+  {
+    "node": 4,
+    "event": "hop_completion",
+    "reason": "ack",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "27157",
+        "time_s": "302.56229244399998",
+        "event": "hop_completion",
+        "node": "4",
+        "peer": "5",
+        "packet_type": "data",
+        "src": "4",
+        "dst": "1",
+        "sequence": "956",
+        "success": "1",
+        "reason": "ack",
+        "next_hop": "5",
+        "detail": "hop_sequence=17;resend_count=1;pending_before=1;pending_after=0;pending_limit=16;outstanding_before=1;outstanding_after=0;threshold_before=0;threshold_after=0;resend_queue_before=1;resend_queue_after=0;nsdp_released=1;capacity_released=1"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "41243",
+        "time_s": "317.44729244400003",
+        "event": "hop_completion",
+        "node": "4",
+        "peer": "5",
+        "packet_type": "data",
+        "src": "4",
+        "dst": "1",
+        "sequence": "962",
+        "success": "1",
+        "reason": "ack",
+        "next_hop": "5",
+        "detail": "hop_sequence=18;resend_count=0;pending_before=1;pending_after=0;pending_limit=16;outstanding_before=1;outstanding_after=0;threshold_before=0;threshold_after=0;resend_queue_before=1;resend_queue_after=0;nsdp_released=1;capacity_released=1"
+      }
+    ]
+  },
+  {
+    "node": 4,
+    "event": "hop_feedback",
+    "reason": "dack",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "36405",
+        "time_s": "312.01081363200001",
+        "event": "hop_feedback",
+        "node": "4",
+        "peer": "2",
+        "packet_type": "data",
+        "src": "2",
+        "dst": "1",
+        "sequence": "1058",
+        "success": "1",
+        "reason": "dack",
+        "detail": "hop_sequence=30;first_reception=1;ackable=1;nsdp_count_before=16;nsdp_count_after=17;nsdp_state_valid=1;nsdp_limit=16"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "37283",
+        "time_s": "313.01181363199998",
+        "event": "hop_feedback",
+        "node": "4",
+        "peer": "2",
+        "packet_type": "data",
+        "src": "2",
+        "dst": "1",
+        "sequence": "1071",
+        "success": "1",
+        "reason": "dack",
+        "detail": "hop_sequence=32;first_reception=1;ackable=1;nsdp_count_before=17;nsdp_count_after=18;nsdp_state_valid=1;nsdp_limit=16"
+      }
+    ]
+  },
+  {
+    "node": 8,
+    "event": "hop_feedback",
+    "reason": "dack",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "36715",
+        "time_s": "312.42681244200003",
+        "event": "hop_feedback",
+        "node": "8",
+        "peer": "7",
+        "packet_type": "data",
+        "src": "7",
+        "dst": "1",
+        "sequence": "1060",
+        "success": "1",
+        "reason": "dack",
+        "detail": "hop_sequence=30;first_reception=1;ackable=1;nsdp_count_before=16;nsdp_count_after=17;nsdp_state_valid=1;nsdp_limit=16"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "37037",
+        "time_s": "312.80381244199998",
+        "event": "hop_feedback",
+        "node": "8",
+        "peer": "7",
+        "packet_type": "data",
+        "src": "7",
+        "dst": "1",
+        "sequence": "1066",
+        "success": "1",
+        "reason": "dack",
+        "detail": "hop_sequence=31;first_reception=1;ackable=1;nsdp_count_before=17;nsdp_count_after=18;nsdp_state_valid=1;nsdp_limit=16"
+      }
+    ]
+  },
+  {
+    "node": 2,
+    "event": "hop_feedback",
+    "reason": "ack",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "42642",
+        "time_s": "318.99181534600001",
+        "event": "hop_feedback",
+        "node": "2",
+        "peer": "8",
+        "packet_type": "data",
+        "src": "8",
+        "dst": "1",
+        "sequence": "959",
+        "success": "1",
+        "reason": "ack",
+        "detail": "hop_sequence=14;first_reception=1;ackable=1;nsdp_count_before=0;nsdp_count_after=1;nsdp_state_valid=1;nsdp_limit=16"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "44926",
+        "time_s": "322.17681534600001",
+        "event": "hop_feedback",
+        "node": "2",
+        "peer": "8",
+        "packet_type": "data",
+        "src": "8",
+        "dst": "1",
+        "sequence": "965",
+        "success": "1",
+        "reason": "ack",
+        "detail": "hop_sequence=15;first_reception=1;ackable=1;nsdp_count_before=1;nsdp_count_after=2;nsdp_state_valid=1;nsdp_limit=16"
+      }
+    ]
+  },
+  {
+    "node": 8,
+    "event": "nwk_nsdp_release",
+    "reason": "hop_feedback",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "42941",
+        "time_s": "319.38429534599999",
+        "event": "nwk_nsdp_release",
+        "node": "8",
+        "packet_type": "data",
+        "src": "8",
+        "dst": "1",
+        "success": "1",
+        "reason": "hop_feedback",
+        "detail": "count_before=16;count_after=15;nsdp_limit=16;nwk_queue=36"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "45047",
+        "time_s": "322.34829534599999",
+        "event": "nwk_nsdp_release",
+        "node": "8",
+        "packet_type": "data",
+        "src": "8",
+        "dst": "1",
+        "success": "1",
+        "reason": "hop_feedback",
+        "detail": "count_before=16;count_after=15;nsdp_limit=16;nwk_queue=36"
+      }
+    ]
+  },
+  {
+    "node": 8,
+    "event": "hop_completion",
+    "reason": "ack",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "42942",
+        "time_s": "319.38429534599999",
+        "event": "hop_completion",
+        "node": "8",
+        "peer": "2",
+        "packet_type": "data",
+        "src": "8",
+        "dst": "1",
+        "sequence": "959",
+        "success": "1",
+        "reason": "ack",
+        "next_hop": "2",
+        "detail": "hop_sequence=14;resend_count=0;pending_before=1;pending_after=0;pending_limit=16;outstanding_before=1;outstanding_after=0;threshold_before=0;threshold_after=0;resend_queue_before=1;resend_queue_after=0;nsdp_released=1;capacity_released=1"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "45048",
+        "time_s": "322.34829534599999",
+        "event": "hop_completion",
+        "node": "8",
+        "peer": "2",
+        "packet_type": "data",
+        "src": "8",
+        "dst": "1",
+        "sequence": "965",
+        "success": "1",
+        "reason": "ack",
+        "next_hop": "2",
+        "detail": "hop_sequence=15;resend_count=1;pending_before=1;pending_after=0;pending_limit=16;outstanding_before=1;outstanding_after=0;threshold_before=0;threshold_after=0;resend_queue_before=1;resend_queue_after=0;nsdp_released=1;capacity_released=1"
+      }
+    ]
+  },
+  {
+    "node": 8,
+    "event": "nwk_forward",
+    "reason": "relay",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "60646",
+        "time_s": "339.91129537400002",
+        "event": "nwk_forward",
+        "node": "8",
+        "peer": "7",
+        "packet_type": "data",
+        "src": "7",
+        "dst": "1",
+        "sequence": "958",
+        "size_bytes": "192",
+        "success": "1",
+        "reason": "relay",
+        "route_cost": "29800",
+        "next_hop": "2",
+        "detail": "num_hop=4;path=2>4>5>1"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "61658",
+        "time_s": "341.15929537400001",
+        "event": "nwk_forward",
+        "node": "8",
+        "peer": "7",
+        "packet_type": "data",
+        "src": "7",
+        "dst": "1",
+        "sequence": "964",
+        "size_bytes": "192",
+        "success": "1",
+        "reason": "relay",
+        "route_cost": "29800",
+        "next_hop": "2",
+        "detail": "num_hop=4;path=2>4>5>1"
+      }
+    ]
+  },
+  {
+    "node": 4,
+    "event": "hop_completion",
+    "reason": "no_ack",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "66473",
+        "time_s": "346.94000002799999",
+        "event": "hop_completion",
+        "node": "4",
+        "peer": "5",
+        "packet_type": "data",
+        "src": "4",
+        "dst": "1",
+        "sequence": "992",
+        "success": "0",
+        "reason": "no_ack",
+        "next_hop": "5",
+        "detail": "hop_sequence=23;resend_count=2;pending_before=1;pending_after=0;pending_limit=16;outstanding_before=1;outstanding_after=0;threshold_before=0;threshold_after=0;resend_queue_before=1;resend_queue_after=0;nsdp_released=1;capacity_released=1"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "73732",
+        "time_s": "356.10500002800001",
+        "event": "hop_completion",
+        "node": "4",
+        "peer": "5",
+        "packet_type": "data",
+        "src": "4",
+        "dst": "1",
+        "sequence": "998",
+        "success": "0",
+        "reason": "no_ack",
+        "next_hop": "5",
+        "detail": "hop_sequence=24;resend_count=2;pending_before=1;pending_after=0;pending_limit=16;outstanding_before=1;outstanding_after=0;threshold_before=0;threshold_after=0;resend_queue_before=1;resend_queue_after=0;nsdp_released=1;capacity_released=1"
+      }
+    ]
+  },
+  {
+    "node": 2,
+    "event": "hop_feedback",
+    "reason": "dack",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "68770",
+        "time_s": "349.87981534599999",
+        "event": "hop_feedback",
+        "node": "2",
+        "peer": "8",
+        "packet_type": "data",
+        "src": "7",
+        "dst": "1",
+        "sequence": "1066",
+        "success": "1",
+        "reason": "dack",
+        "detail": "hop_sequence=47;first_reception=1;ackable=1;nsdp_count_before=16;nsdp_count_after=17;nsdp_state_valid=1;nsdp_limit=16"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "69188",
+        "time_s": "350.412815346",
+        "event": "hop_feedback",
+        "node": "2",
+        "peer": "8",
+        "packet_type": "data",
+        "src": "7",
+        "dst": "1",
+        "sequence": "1048",
+        "success": "1",
+        "reason": "dack",
+        "detail": "hop_sequence=48;first_reception=1;ackable=1;nsdp_count_before=17;nsdp_count_after=18;nsdp_state_valid=1;nsdp_limit=16"
+      }
+    ]
+  },
+  {
+    "node": 8,
+    "event": "hop_completion",
+    "reason": "dack",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "68972",
+        "time_s": "350.14229534600003",
+        "event": "hop_completion",
+        "node": "8",
+        "peer": "2",
+        "packet_type": "data",
+        "src": "7",
+        "dst": "1",
+        "sequence": "1066",
+        "success": "0",
+        "reason": "dack",
+        "next_hop": "2",
+        "detail": "hop_sequence=47;resend_count=0;pending_before=10;pending_after=10;pending_limit=16;outstanding_before=10;outstanding_after=10;threshold_before=9;threshold_after=9;resend_queue_before=10;resend_queue_after=9;dack_hold_seconds=20;dack_scheduled_timer_offset_seconds=2.7999999999952976e-08;nwk_wake_nominal_delay_seconds=2.7999999999952976e-08;nsdp_released=1;capacity_released=0"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "69392",
+        "time_s": "350.64929534599997",
+        "event": "hop_completion",
+        "node": "8",
+        "peer": "2",
+        "packet_type": "data",
+        "src": "7",
+        "dst": "1",
+        "sequence": "1048",
+        "success": "0",
+        "reason": "dack",
+        "next_hop": "2",
+        "detail": "hop_sequence=48;resend_count=0;pending_before=10;pending_after=10;pending_limit=16;outstanding_before=10;outstanding_after=10;threshold_before=9;threshold_after=9;resend_queue_before=9;resend_queue_after=8;dack_hold_seconds=20;dack_scheduled_timer_offset_seconds=2.7999999999952976e-08;nwk_wake_nominal_delay_seconds=2.7999999999952976e-08;nsdp_released=1;capacity_released=0"
+      }
+    ]
+  },
+  {
+    "node": 4,
+    "event": "nwk_forward",
+    "reason": "relay",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "85532",
+        "time_s": "367.78329247200003",
+        "event": "nwk_forward",
+        "node": "4",
+        "peer": "2",
+        "packet_type": "data",
+        "src": "2",
+        "dst": "1",
+        "sequence": "954",
+        "size_bytes": "192",
+        "success": "1",
+        "reason": "relay",
+        "route_cost": "14900",
+        "next_hop": "5",
+        "detail": "num_hop=2;path=5>1"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "86384",
+        "time_s": "368.693292472",
+        "event": "nwk_forward",
+        "node": "4",
+        "peer": "2",
+        "packet_type": "data",
+        "src": "2",
+        "dst": "1",
+        "sequence": "960",
+        "size_bytes": "192",
+        "success": "1",
+        "reason": "relay",
+        "route_cost": "14900",
+        "next_hop": "5",
+        "detail": "num_hop=2;path=5>1"
+      }
+    ]
+  },
+  {
+    "node": 8,
+    "event": "hop_capacity_release",
+    "reason": "dack_expiry",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "87570",
+        "time_s": "370.14229537400001",
+        "event": "hop_capacity_release",
+        "node": "8",
+        "peer": "2",
+        "packet_type": "data",
+        "src": "7",
+        "dst": "1",
+        "sequence": "1066",
+        "success": "1",
+        "reason": "dack_expiry",
+        "next_hop": "2",
+        "detail": "hop_sequence=47;resend_count=0;pending_before=10;pending_after=9;pending_limit=16;outstanding_before=10;outstanding_after=9;threshold_before=9;threshold_after=9;dack_hold_seconds=20;dack_scheduled_timer_offset_seconds=2.7999999999952976e-08;dack_effective_timer_offset_seconds=2.7999999999952976e-08;nwk_wake_nominal_delay_seconds=2.7999999999952976e-08;nsdp_released=0;capacity_released=1"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "87969",
+        "time_s": "370.64929537400002",
+        "event": "hop_capacity_release",
+        "node": "8",
+        "peer": "2",
+        "packet_type": "data",
+        "src": "7",
+        "dst": "1",
+        "sequence": "1048",
+        "success": "1",
+        "reason": "dack_expiry",
+        "next_hop": "2",
+        "detail": "hop_sequence=48;resend_count=0;pending_before=10;pending_after=9;pending_limit=16;outstanding_before=10;outstanding_after=9;threshold_before=9;threshold_after=9;dack_hold_seconds=20;dack_scheduled_timer_offset_seconds=2.7999999999952976e-08;dack_effective_timer_offset_seconds=2.7999999999952976e-08;nwk_wake_nominal_delay_seconds=2.7999999999952976e-08;nsdp_released=0;capacity_released=1"
+      }
+    ]
+  },
+  {
+    "node": 8,
+    "event": "hop_completion",
+    "reason": "no_ack",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "227946",
+        "time_s": "513.39200002799998",
+        "event": "hop_completion",
+        "node": "8",
+        "peer": "2",
+        "packet_type": "data",
+        "src": "8",
+        "dst": "1",
+        "sequence": "1784",
+        "success": "0",
+        "reason": "no_ack",
+        "next_hop": "2",
+        "detail": "hop_sequence=115;resend_count=2;pending_before=10;pending_after=9;pending_limit=16;outstanding_before=10;outstanding_after=9;threshold_before=9;threshold_after=8;resend_queue_before=3;resend_queue_after=2;nsdp_released=1;capacity_released=1"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "234492",
+        "time_s": "519.08600002799994",
+        "event": "hop_completion",
+        "node": "8",
+        "peer": "2",
+        "packet_type": "data",
+        "src": "7",
+        "dst": "1",
+        "sequence": "1564",
+        "success": "0",
+        "reason": "no_ack",
+        "next_hop": "2",
+        "detail": "hop_sequence=120;resend_count=2;pending_before=9;pending_after=8;pending_limit=16;outstanding_before=9;outstanding_after=8;threshold_before=8;threshold_after=7;resend_queue_before=1;resend_queue_after=0;nsdp_released=1;capacity_released=1"
+      }
+    ]
+  },
+  {
+    "node": 4,
+    "event": "hop_completion",
+    "reason": "dack",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "258432",
+        "time_s": "541.47629244400002",
+        "event": "hop_completion",
+        "node": "4",
+        "peer": "5",
+        "packet_type": "data",
+        "src": "2",
+        "dst": "1",
+        "sequence": "1199",
+        "success": "0",
+        "reason": "dack",
+        "next_hop": "5",
+        "detail": "hop_sequence=85;resend_count=2;pending_before=6;pending_after=6;pending_limit=16;outstanding_before=6;outstanding_after=6;threshold_before=7;threshold_after=7;resend_queue_before=6;resend_queue_after=5;dack_hold_seconds=40;dack_scheduled_timer_offset_seconds=2.7999999999952976e-08;nwk_wake_nominal_delay_seconds=2.7999999999952976e-08;nsdp_released=1;capacity_released=0"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "266659",
+        "time_s": "549.52329244400005",
+        "event": "hop_completion",
+        "node": "4",
+        "peer": "5",
+        "packet_type": "data",
+        "src": "2",
+        "dst": "1",
+        "sequence": "1313",
+        "success": "0",
+        "reason": "dack",
+        "next_hop": "5",
+        "detail": "hop_sequence=99;resend_count=0;pending_before=9;pending_after=9;pending_limit=16;outstanding_before=9;outstanding_after=9;threshold_before=8;threshold_after=8;resend_queue_before=8;resend_queue_after=7;dack_hold_seconds=20;dack_scheduled_timer_offset_seconds=2.7999999999952976e-08;nwk_wake_nominal_delay_seconds=2.7999999999952976e-08;nsdp_released=1;capacity_released=0"
+      }
+    ]
+  },
+  {
+    "node": 4,
+    "event": "hop_capacity_release",
+    "reason": "dack_expiry",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "287468",
+        "time_s": "569.52329247199998",
+        "event": "hop_capacity_release",
+        "node": "4",
+        "peer": "5",
+        "packet_type": "data",
+        "src": "2",
+        "dst": "1",
+        "sequence": "1313",
+        "success": "1",
+        "reason": "dack_expiry",
+        "next_hop": "5",
+        "detail": "hop_sequence=99;resend_count=0;pending_before=7;pending_after=6;pending_limit=16;outstanding_before=7;outstanding_after=6;threshold_before=6;threshold_after=6;dack_hold_seconds=20;dack_scheduled_timer_offset_seconds=2.7999999999952976e-08;dack_effective_timer_offset_seconds=2.7999999999952976e-08;nwk_wake_nominal_delay_seconds=2.7999999999952976e-08;nsdp_released=0;capacity_released=1"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "290963",
+        "time_s": "572.79929247200005",
+        "event": "hop_capacity_release",
+        "node": "4",
+        "peer": "5",
+        "packet_type": "data",
+        "src": "2",
+        "dst": "1",
+        "sequence": "1305",
+        "success": "1",
+        "reason": "dack_expiry",
+        "next_hop": "5",
+        "detail": "hop_sequence=98;resend_count=1;pending_before=8;pending_after=7;pending_limit=16;outstanding_before=8;outstanding_after=7;threshold_before=7;threshold_after=7;dack_hold_seconds=20;dack_scheduled_timer_offset_seconds=2.7999999999952976e-08;dack_effective_timer_offset_seconds=2.7999999999952976e-08;nwk_wake_nominal_delay_seconds=2.7999999999952976e-08;nsdp_released=0;capacity_released=1"
+      }
+    ]
+  }
+]

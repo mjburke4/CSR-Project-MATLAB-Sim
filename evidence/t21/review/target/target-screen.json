@@ -1,0 +1,936 @@
+{
+  "schema": "csr-tranche21-target-screen-v1",
+  "target_percent": 10,
+  "previous_descriptive_target_percent": 5,
+  "target_basis": "Owner requested \u00b110% as the T21 working parity goal; no retroactive change to T20 acceptance or results.",
+  "band_is_structural_gate": false,
+  "statistical_equivalence_established": false,
+  "input_sha256": {
+    "acceptance.json": "69d9bafef93c64a674e8226a434c7c1a5d3b7ebb6f6f2fb76e64461fc497bc28",
+    "analysis/review.json": "2d4dfbb66aa657cbfa230f3cf088c4be3815e0558e5573fbc9ba143aa4800b79",
+    "independent-findings/comparisons.csv": "fa0145a1c175b4d26458edfcab2985c51ac2225159d6986eb1988d6677037883"
+  },
+  "comparisons": [
+    {
+      "seed": 128,
+      "source": "total",
+      "metric": "admitted",
+      "matlab": 12484.0,
+      "ns3": 12417.0,
+      "difference_percent": 0.5395828299911412,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 128,
+      "source": "total",
+      "metric": "unique_delivered",
+      "matlab": 11825.0,
+      "ns3": 11769.0,
+      "difference_percent": 0.47582632339196196,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 128,
+      "source": "total",
+      "metric": "mean_delivered_delay_s",
+      "matlab": 98.97012338799513,
+      "ns3": 104.19477083093882,
+      "difference_percent": -5.014308684858035,
+      "within_5_percent": false,
+      "within_10_percent": true
+    },
+    {
+      "seed": 128,
+      "source": "2",
+      "metric": "admitted",
+      "matlab": 551.0,
+      "ns3": 547.0,
+      "difference_percent": 0.7312614259597806,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 128,
+      "source": "2",
+      "metric": "unique_delivered",
+      "matlab": 411.0,
+      "ns3": 410.0,
+      "difference_percent": 0.24390243902439024,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 128,
+      "source": "2",
+      "metric": "mean_delivered_delay_s",
+      "matlab": 487.3300714266931,
+      "ns3": 456.845567183561,
+      "difference_percent": 6.672824786517716,
+      "within_5_percent": false,
+      "within_10_percent": true
+    },
+    {
+      "seed": 128,
+      "source": "3",
+      "metric": "admitted",
+      "matlab": 8489.0,
+      "ns3": 8551.0,
+      "difference_percent": -0.7250613963279149,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 128,
+      "source": "3",
+      "metric": "unique_delivered",
+      "matlab": 8472.0,
+      "ns3": 8535.0,
+      "difference_percent": -0.7381370826010545,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 128,
+      "source": "3",
+      "metric": "mean_delivered_delay_s",
+      "matlab": 10.328367385680105,
+      "ns3": 10.44845909750381,
+      "difference_percent": -1.149372464427744,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 128,
+      "source": "4",
+      "metric": "admitted",
+      "matlab": 439.0,
+      "ns3": 498.0,
+      "difference_percent": -11.847389558232932,
+      "within_5_percent": false,
+      "within_10_percent": false
+    },
+    {
+      "seed": 128,
+      "source": "4",
+      "metric": "unique_delivered",
+      "matlab": 348.0,
+      "ns3": 419.0,
+      "difference_percent": -16.94510739856802,
+      "within_5_percent": false,
+      "within_10_percent": false
+    },
+    {
+      "seed": 128,
+      "source": "4",
+      "metric": "mean_delivered_delay_s",
+      "matlab": 299.1536214308882,
+      "ns3": 269.68891848456803,
+      "difference_percent": 10.925440730708479,
+      "within_5_percent": false,
+      "within_10_percent": false
+    },
+    {
+      "seed": 128,
+      "source": "5",
+      "metric": "admitted",
+      "matlab": 1669.0,
+      "ns3": 1397.0,
+      "difference_percent": 19.470293486041516,
+      "within_5_percent": false,
+      "within_10_percent": false
+    },
+    {
+      "seed": 128,
+      "source": "5",
+      "metric": "unique_delivered",
+      "matlab": 1644.0,
+      "ns3": 1369.0,
+      "difference_percent": 20.087655222790357,
+      "within_5_percent": false,
+      "within_10_percent": false
+    },
+    {
+      "seed": 128,
+      "source": "5",
+      "metric": "mean_delivered_delay_s",
+      "matlab": 53.46351789871244,
+      "ns3": 67.30344765283712,
+      "difference_percent": -20.563478152729182,
+      "within_5_percent": false,
+      "within_10_percent": false
+    },
+    {
+      "seed": 128,
+      "source": "7",
+      "metric": "admitted",
+      "matlab": 748.0,
+      "ns3": 803.0,
+      "difference_percent": -6.8493150684931505,
+      "within_5_percent": false,
+      "within_10_percent": true
+    },
+    {
+      "seed": 128,
+      "source": "7",
+      "metric": "unique_delivered",
+      "matlab": 533.0,
+      "ns3": 574.0,
+      "difference_percent": -7.142857142857143,
+      "within_5_percent": false,
+      "within_10_percent": true
+    },
+    {
+      "seed": 128,
+      "source": "7",
+      "metric": "mean_delivered_delay_s",
+      "matlab": 784.5565033937527,
+      "ns3": 777.8483145703206,
+      "difference_percent": 0.8624032086689927,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 128,
+      "source": "8",
+      "metric": "admitted",
+      "matlab": 588.0,
+      "ns3": 621.0,
+      "difference_percent": -5.314009661835748,
+      "within_5_percent": false,
+      "within_10_percent": true
+    },
+    {
+      "seed": 128,
+      "source": "8",
+      "metric": "unique_delivered",
+      "matlab": 417.0,
+      "ns3": 462.0,
+      "difference_percent": -9.74025974025974,
+      "within_5_percent": false,
+      "within_10_percent": true
+    },
+    {
+      "seed": 128,
+      "source": "8",
+      "metric": "mean_delivered_delay_s",
+      "matlab": 653.1391396232308,
+      "ns3": 645.3700600037489,
+      "difference_percent": 1.2038177940012829,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 129,
+      "source": "total",
+      "metric": "admitted",
+      "matlab": 12551.0,
+      "ns3": 12463.0,
+      "difference_percent": 0.706090026478376,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 129,
+      "source": "total",
+      "metric": "unique_delivered",
+      "matlab": 11851.0,
+      "ns3": 11787.0,
+      "difference_percent": 0.5429710698226861,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 129,
+      "source": "total",
+      "metric": "mean_delivered_delay_s",
+      "matlab": 103.0414246755,
+      "ns3": 102.26438602187496,
+      "difference_percent": 0.7598330991385683,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 129,
+      "source": "2",
+      "metric": "admitted",
+      "matlab": 616.0,
+      "ns3": 607.0,
+      "difference_percent": 1.4827018121911038,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 129,
+      "source": "2",
+      "metric": "unique_delivered",
+      "matlab": 466.0,
+      "ns3": 480.0,
+      "difference_percent": -2.9166666666666665,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 129,
+      "source": "2",
+      "metric": "mean_delivered_delay_s",
+      "matlab": 434.4137510002236,
+      "ns3": 428.9726465026667,
+      "difference_percent": 1.26840360146905,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 129,
+      "source": "3",
+      "metric": "admitted",
+      "matlab": 8599.0,
+      "ns3": 8557.0,
+      "difference_percent": 0.4908262241439757,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 129,
+      "source": "3",
+      "metric": "unique_delivered",
+      "matlab": 8579.0,
+      "ns3": 8538.0,
+      "difference_percent": 0.48020613726868117,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 129,
+      "source": "3",
+      "metric": "mean_delivered_delay_s",
+      "matlab": 10.183659745396952,
+      "ns3": 10.437482059197237,
+      "difference_percent": -2.4318347314103717,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 129,
+      "source": "4",
+      "metric": "admitted",
+      "matlab": 503.0,
+      "ns3": 501.0,
+      "difference_percent": 0.3992015968063872,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 129,
+      "source": "4",
+      "metric": "unique_delivered",
+      "matlab": 398.0,
+      "ns3": 426.0,
+      "difference_percent": -6.572769953051643,
+      "within_5_percent": false,
+      "within_10_percent": true
+    },
+    {
+      "seed": 129,
+      "source": "4",
+      "metric": "mean_delivered_delay_s",
+      "matlab": 271.1764367142011,
+      "ns3": 276.50659277614085,
+      "difference_percent": -1.9276777484488565,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 129,
+      "source": "5",
+      "metric": "admitted",
+      "matlab": 1469.0,
+      "ns3": 1400.0,
+      "difference_percent": 4.928571428571429,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 129,
+      "source": "5",
+      "metric": "unique_delivered",
+      "matlab": 1440.0,
+      "ns3": 1371.0,
+      "difference_percent": 5.032822757111598,
+      "within_5_percent": false,
+      "within_10_percent": true
+    },
+    {
+      "seed": 129,
+      "source": "5",
+      "metric": "mean_delivered_delay_s",
+      "matlab": 61.06266455828287,
+      "ns3": 66.34614806630634,
+      "difference_percent": -7.963512068165825,
+      "within_5_percent": false,
+      "within_10_percent": true
+    },
+    {
+      "seed": 129,
+      "source": "7",
+      "metric": "admitted",
+      "matlab": 838.0,
+      "ns3": 870.0,
+      "difference_percent": -3.67816091954023,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 129,
+      "source": "7",
+      "metric": "unique_delivered",
+      "matlab": 608.0,
+      "ns3": 604.0,
+      "difference_percent": 0.6622516556291391,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 129,
+      "source": "7",
+      "metric": "mean_delivered_delay_s",
+      "matlab": 821.6631022044813,
+      "ns3": 767.6681438674569,
+      "difference_percent": 7.033632796718863,
+      "within_5_percent": false,
+      "within_10_percent": true
+    },
+    {
+      "seed": 129,
+      "source": "8",
+      "metric": "admitted",
+      "matlab": 526.0,
+      "ns3": 528.0,
+      "difference_percent": -0.3787878787878788,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 129,
+      "source": "8",
+      "metric": "unique_delivered",
+      "matlab": 360.0,
+      "ns3": 368.0,
+      "difference_percent": -2.1739130434782608,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 129,
+      "source": "8",
+      "metric": "mean_delivered_delay_s",
+      "matlab": 655.3107610860604,
+      "ns3": 646.5877431512174,
+      "difference_percent": 1.349084950532843,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 130,
+      "source": "total",
+      "metric": "admitted",
+      "matlab": 12454.0,
+      "ns3": 12661.0,
+      "difference_percent": -1.6349419477134508,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 130,
+      "source": "total",
+      "metric": "unique_delivered",
+      "matlab": 11758.0,
+      "ns3": 11765.0,
+      "difference_percent": -0.05949851253718657,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 130,
+      "source": "total",
+      "metric": "mean_delivered_delay_s",
+      "matlab": 99.13992284565688,
+      "ns3": 156.01851986033412,
+      "difference_percent": -36.456311126136995,
+      "within_5_percent": false,
+      "within_10_percent": false
+    },
+    {
+      "seed": 130,
+      "source": "2",
+      "metric": "admitted",
+      "matlab": 601.0,
+      "ns3": 513.0,
+      "difference_percent": 17.153996101364523,
+      "within_5_percent": false,
+      "within_10_percent": false
+    },
+    {
+      "seed": 130,
+      "source": "2",
+      "metric": "unique_delivered",
+      "matlab": 463.0,
+      "ns3": 422.0,
+      "difference_percent": 9.71563981042654,
+      "within_5_percent": false,
+      "within_10_percent": true
+    },
+    {
+      "seed": 130,
+      "source": "2",
+      "metric": "mean_delivered_delay_s",
+      "matlab": 440.8535994229936,
+      "ns3": 453.04337980637916,
+      "difference_percent": -2.690643087775653,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 130,
+      "source": "3",
+      "metric": "admitted",
+      "matlab": 8608.0,
+      "ns3": 8570.0,
+      "difference_percent": 0.44340723453908987,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 130,
+      "source": "3",
+      "metric": "unique_delivered",
+      "matlab": 8592.0,
+      "ns3": 8551.0,
+      "difference_percent": 0.4794760846684598,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 130,
+      "source": "3",
+      "metric": "mean_delivered_delay_s",
+      "matlab": 10.189931734260496,
+      "ns3": 10.408345377900483,
+      "difference_percent": -2.0984473104028063,
+      "within_5_percent": true,
+      "within_10_percent": true
+    },
+    {
+      "seed": 130,
+      "source": "4",
+      "metric": "admitted",
+      "matlab": 512.0,
+      "ns3": 549.0,
+      "difference_percent": -6.739526411657559,
+      "within_5_percent": false,
+      "within_10_percent": true
+    },
+    {
+      "seed": 130,
+      "source": "4",
+      "metric": "unique_delivered",
+      "matlab": 426.0,
+      "ns3": 455.0,
+      "difference_percent": -6.373626373626373,
+      "within_5_percent": false,
+      "within_10_percent": true
+    },
+    {
+      "seed": 130,
+      "source": "4",
+      "metric": "mean_delivered_delay_s",
+      "matlab": 277.1538768137601,
+      "ns3": 260.9899231739121,
+      "difference_percent": 6.193324800926167,
+      "within_5_percent": false,
+      "within_10_percent": true
+    },
+    {
+      "seed": 130,
+      "source": "5",
+      "metric": "admitted",
+      "matlab": 1277.0,
+      "ns3": 1467.0,
+      "difference_percent": -12.951601908657123,
+      "within_5_percent": false,
+      "within_10_percent": false
+    },
+    {
+      "seed": 130,
+      "source": "5",
+      "metric": "unique_delivered",
+      "matlab": 1251.0,
+      "ns3": 1433.0,
+      "difference_percent": -12.70062805303559,
+      "within_5_percent": false,
+      "within_10_percent": false
+    },
+    {
+      "seed": 130,
+      "source": "5",
+      "metric": "mean_delivered_delay_s",
+      "matlab": 70.38961880788298,
+      "ns3": 63.68024304692114,
+      "difference_percent": 10.536039813821393,
+      "within_5_percent": false,
+      "within_10_percent": false
+    },
+    {
+      "seed": 130,
+      "source": "7",
+      "metric": "admitted",
+      "matlab": 802.0,
+      "ns3": 1381.0,
+      "difference_percent": -41.92614047791456,
+      "within_5_percent": false,
+      "within_10_percent": false
+    },
+    {
+      "seed": 130,
+      "source": "7",
+      "metric": "unique_delivered",
+      "matlab": 543.0,
+      "ns3": 771.0,
+      "difference_percent": -29.571984435797667,
+      "within_5_percent": false,
+      "within_10_percent": false
+    },
+    {
+      "seed": 130,
+      "source": "7",
+      "metric": "mean_delivered_delay_s",
+      "matlab": 708.3573690971101,
+      "ns3": 1563.0184064167393,
+      "difference_percent": -54.680164597610975,
+      "within_5_percent": false,
+      "within_10_percent": false
+    },
+    {
+      "seed": 130,
+      "source": "8",
+      "metric": "admitted",
+      "matlab": 654.0,
+      "ns3": 181.0,
+      "difference_percent": 261.3259668508287,
+      "within_5_percent": false,
+      "within_10_percent": false
+    },
+    {
+      "seed": 130,
+      "source": "8",
+      "metric": "unique_delivered",
+      "matlab": 483.0,
+      "ns3": 133.0,
+      "difference_percent": 263.1578947368421,
+      "within_5_percent": false,
+      "within_10_percent": false
+    },
+    {
+      "seed": 130,
+      "source": "8",
+      "metric": "mean_delivered_delay_s",
+      "matlab": 586.4535957651494,
+      "ns3": 1054.7400291311128,
+      "difference_percent": -44.39828018585152,
+      "within_5_percent": false,
+      "within_10_percent": false
+    }
+  ],
+  "summaries": [
+    {
+      "metric": "admitted",
+      "group": "whole_network",
+      "comparisons": 3,
+      "within_5_percent": 3,
+      "within_10_percent": 3
+    },
+    {
+      "metric": "admitted",
+      "group": "individual_flows",
+      "comparisons": 18,
+      "within_5_percent": 9,
+      "within_10_percent": 12
+    },
+    {
+      "metric": "unique_delivered",
+      "group": "whole_network",
+      "comparisons": 3,
+      "within_5_percent": 3,
+      "within_10_percent": 3
+    },
+    {
+      "metric": "unique_delivered",
+      "group": "individual_flows",
+      "comparisons": 18,
+      "within_5_percent": 7,
+      "within_10_percent": 13
+    },
+    {
+      "metric": "mean_delivered_delay_s",
+      "group": "whole_network",
+      "comparisons": 3,
+      "within_5_percent": 1,
+      "within_10_percent": 2
+    },
+    {
+      "metric": "mean_delivered_delay_s",
+      "group": "individual_flows",
+      "comparisons": 18,
+      "within_5_percent": 9,
+      "within_10_percent": 13
+    }
+  ],
+  "pooled_counts": [
+    {
+      "source": "total",
+      "metric": "admitted",
+      "matlab_sum": 37489.0,
+      "ns3_sum": 37541.0,
+      "ratio_of_sums_percent": -0.13851522335579766,
+      "mean_per_seed_difference_percent": -0.12975636374797786,
+      "matlab_range": [
+        12454.0,
+        12551.0
+      ],
+      "ns3_range": [
+        12417.0,
+        12661.0
+      ],
+      "all_seeds_within_10_percent": true
+    },
+    {
+      "source": "total",
+      "metric": "unique_delivered",
+      "matlab_sum": 35434.0,
+      "ns3_sum": 35321.0,
+      "ratio_of_sums_percent": 0.3199229919877693,
+      "mean_per_seed_difference_percent": 0.3197662935591538,
+      "matlab_range": [
+        11758.0,
+        11851.0
+      ],
+      "ns3_range": [
+        11765.0,
+        11787.0
+      ],
+      "all_seeds_within_10_percent": true
+    },
+    {
+      "source": "2",
+      "metric": "admitted",
+      "matlab_sum": 1768.0,
+      "ns3_sum": 1667.0,
+      "ratio_of_sums_percent": 6.05878824235153,
+      "mean_per_seed_difference_percent": 6.455986446505136,
+      "matlab_range": [
+        551.0,
+        616.0
+      ],
+      "ns3_range": [
+        513.0,
+        607.0
+      ],
+      "all_seeds_within_10_percent": false
+    },
+    {
+      "source": "2",
+      "metric": "unique_delivered",
+      "matlab_sum": 1340.0,
+      "ns3_sum": 1312.0,
+      "ratio_of_sums_percent": 2.1341463414634148,
+      "mean_per_seed_difference_percent": 2.347625194261421,
+      "matlab_range": [
+        411.0,
+        466.0
+      ],
+      "ns3_range": [
+        410.0,
+        480.0
+      ],
+      "all_seeds_within_10_percent": true
+    },
+    {
+      "source": "3",
+      "metric": "admitted",
+      "matlab_sum": 25696.0,
+      "ns3_sum": 25678.0,
+      "ratio_of_sums_percent": 0.0700989173611652,
+      "mean_per_seed_difference_percent": 0.06972402078505023,
+      "matlab_range": [
+        8489.0,
+        8608.0
+      ],
+      "ns3_range": [
+        8551.0,
+        8570.0
+      ],
+      "all_seeds_within_10_percent": true
+    },
+    {
+      "source": "3",
+      "metric": "unique_delivered",
+      "matlab_sum": 25643.0,
+      "ns3_sum": 25624.0,
+      "ratio_of_sums_percent": 0.07414923509210115,
+      "mean_per_seed_difference_percent": 0.0738483797786955,
+      "matlab_range": [
+        8472.0,
+        8592.0
+      ],
+      "ns3_range": [
+        8535.0,
+        8551.0
+      ],
+      "all_seeds_within_10_percent": true
+    },
+    {
+      "source": "4",
+      "metric": "admitted",
+      "matlab_sum": 1454.0,
+      "ns3_sum": 1548.0,
+      "ratio_of_sums_percent": -6.072351421188631,
+      "mean_per_seed_difference_percent": -6.062571457694701,
+      "matlab_range": [
+        439.0,
+        512.0
+      ],
+      "ns3_range": [
+        498.0,
+        549.0
+      ],
+      "all_seeds_within_10_percent": false
+    },
+    {
+      "source": "4",
+      "metric": "unique_delivered",
+      "matlab_sum": 1172.0,
+      "ns3_sum": 1300.0,
+      "ratio_of_sums_percent": -9.846153846153847,
+      "mean_per_seed_difference_percent": -9.963834575082013,
+      "matlab_range": [
+        348.0,
+        426.0
+      ],
+      "ns3_range": [
+        419.0,
+        455.0
+      ],
+      "all_seeds_within_10_percent": false
+    },
+    {
+      "source": "5",
+      "metric": "admitted",
+      "matlab_sum": 4415.0,
+      "ns3_sum": 4264.0,
+      "ratio_of_sums_percent": 3.541275797373358,
+      "mean_per_seed_difference_percent": 3.815754335318607,
+      "matlab_range": [
+        1277.0,
+        1669.0
+      ],
+      "ns3_range": [
+        1397.0,
+        1467.0
+      ],
+      "all_seeds_within_10_percent": false
+    },
+    {
+      "source": "5",
+      "metric": "unique_delivered",
+      "matlab_sum": 4335.0,
+      "ns3_sum": 4173.0,
+      "ratio_of_sums_percent": 3.882099209202013,
+      "mean_per_seed_difference_percent": 4.139949975622121,
+      "matlab_range": [
+        1251.0,
+        1644.0
+      ],
+      "ns3_range": [
+        1369.0,
+        1433.0
+      ],
+      "all_seeds_within_10_percent": false
+    },
+    {
+      "source": "7",
+      "metric": "admitted",
+      "matlab_sum": 2388.0,
+      "ns3_sum": 3054.0,
+      "ratio_of_sums_percent": -21.807465618860512,
+      "mean_per_seed_difference_percent": -17.484538821982646,
+      "matlab_range": [
+        748.0,
+        838.0
+      ],
+      "ns3_range": [
+        803.0,
+        1381.0
+      ],
+      "all_seeds_within_10_percent": false
+    },
+    {
+      "source": "7",
+      "metric": "unique_delivered",
+      "matlab_sum": 1684.0,
+      "ns3_sum": 1949.0,
+      "ratio_of_sums_percent": -13.596716264751155,
+      "mean_per_seed_difference_percent": -12.01752997434189,
+      "matlab_range": [
+        533.0,
+        608.0
+      ],
+      "ns3_range": [
+        574.0,
+        771.0
+      ],
+      "all_seeds_within_10_percent": false
+    },
+    {
+      "source": "8",
+      "metric": "admitted",
+      "matlab_sum": 1768.0,
+      "ns3_sum": 1330.0,
+      "ratio_of_sums_percent": 32.932330827067666,
+      "mean_per_seed_difference_percent": 85.21105643673503,
+      "matlab_range": [
+        526.0,
+        654.0
+      ],
+      "ns3_range": [
+        181.0,
+        621.0
+      ],
+      "all_seeds_within_10_percent": false
+    },
+    {
+      "source": "8",
+      "metric": "unique_delivered",
+      "matlab_sum": 1260.0,
+      "ns3_sum": 963.0,
+      "ratio_of_sums_percent": 30.8411214953271,
+      "mean_per_seed_difference_percent": 83.74790731770136,
+      "matlab_range": [
+        360.0,
+        483.0
+      ],
+      "ns3_range": [
+        133.0,
+        462.0
+      ],
+      "all_seeds_within_10_percent": false
+    }
+  ],
+  "limitations": [
+    "Only three seeds.",
+    "Engine seeds do not establish common random draws.",
+    "Delay means are conditioned on different delivered populations.",
+    "Native duplicate delivery events are separate from unique delivered applications.",
+    "No new OPNET runs."
+  ]
+}

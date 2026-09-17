@@ -1,0 +1,480 @@
+[
+  {
+    "node": 4,
+    "event": "nwk_enqueue",
+    "reason": "local",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "3525",
+        "time_s": "300",
+        "event": "nwk_enqueue",
+        "src": "4",
+        "dst": "1",
+        "sequence": "852",
+        "size_bytes": "192",
+        "reason": "local",
+        "node": "4"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "3573",
+        "time_s": "300.01999999999998",
+        "event": "nwk_enqueue",
+        "src": "4",
+        "dst": "1",
+        "sequence": "858",
+        "size_bytes": "192",
+        "reason": "local",
+        "node": "4"
+      }
+    ]
+  },
+  {
+    "node": 8,
+    "event": "nwk_enqueue",
+    "reason": "local",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "3534",
+        "time_s": "300",
+        "event": "nwk_enqueue",
+        "src": "8",
+        "dst": "1",
+        "sequence": "855",
+        "size_bytes": "192",
+        "reason": "local",
+        "node": "8"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "3582",
+        "time_s": "300.01999999999998",
+        "event": "nwk_enqueue",
+        "src": "8",
+        "dst": "1",
+        "sequence": "861",
+        "size_bytes": "192",
+        "reason": "local",
+        "node": "8"
+      }
+    ]
+  },
+  {
+    "node": 4,
+    "event": "nwk_forward",
+    "reason": "local",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "3547",
+        "time_s": "300.00000002799999",
+        "event": "nwk_forward",
+        "src": "4",
+        "dst": "1",
+        "sequence": "852",
+        "size_bytes": "192",
+        "reason": "local",
+        "node": "4",
+        "next_hop": "5",
+        "route_cost": "14900",
+        "detail": "num_hop=2;path=5>1"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "5780",
+        "time_s": "318.16229247199999",
+        "event": "nwk_forward",
+        "src": "4",
+        "dst": "1",
+        "sequence": "858",
+        "size_bytes": "192",
+        "reason": "local",
+        "node": "4",
+        "next_hop": "5",
+        "route_cost": "14900",
+        "detail": "num_hop=2;path=5>1"
+      }
+    ]
+  },
+  {
+    "node": 8,
+    "event": "nwk_forward",
+    "reason": "local",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "3562",
+        "time_s": "300.00000002799999",
+        "event": "nwk_forward",
+        "src": "8",
+        "dst": "1",
+        "sequence": "855",
+        "size_bytes": "192",
+        "reason": "local",
+        "node": "8",
+        "next_hop": "2",
+        "route_cost": "29800",
+        "detail": "num_hop=4;path=2>4>5>1"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "5900",
+        "time_s": "319.68329537400001",
+        "event": "nwk_forward",
+        "src": "8",
+        "dst": "1",
+        "sequence": "861",
+        "size_bytes": "192",
+        "reason": "local",
+        "node": "8",
+        "next_hop": "2",
+        "route_cost": "29800",
+        "detail": "num_hop=4;path=2>4>5>1"
+      }
+    ]
+  },
+  {
+    "node": 8,
+    "event": "nwk_enqueue",
+    "reason": "relay",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "3831",
+        "time_s": "300.28481244199997",
+        "event": "nwk_enqueue",
+        "src": "7",
+        "dst": "1",
+        "sequence": "854",
+        "size_bytes": "192",
+        "reason": "relay",
+        "node": "8",
+        "peer": "7"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "3910",
+        "time_s": "301.94881244200002",
+        "event": "nwk_enqueue",
+        "src": "7",
+        "dst": "1",
+        "sequence": "860",
+        "size_bytes": "192",
+        "reason": "relay",
+        "node": "8",
+        "peer": "7"
+      }
+    ]
+  },
+  {
+    "node": 8,
+    "event": "hop_feedback",
+    "reason": "ack",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "3833",
+        "time_s": "300.28481244199997",
+        "event": "hop_feedback",
+        "src": "7",
+        "dst": "1",
+        "sequence": "854",
+        "reason": "ack",
+        "node": "8",
+        "peer": "7",
+        "detail": "hop_sequence=12;first_reception=1;ackable=1;nsdp_count_before=0;nsdp_count_after=1;nsdp_state_valid=1;nsdp_limit=16"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "3911",
+        "time_s": "301.94881244200002",
+        "event": "hop_feedback",
+        "src": "7",
+        "dst": "1",
+        "sequence": "860",
+        "reason": "ack",
+        "node": "8",
+        "peer": "7",
+        "detail": "hop_sequence=13;first_reception=1;ackable=1;nsdp_count_before=1;nsdp_count_after=2;nsdp_state_valid=1;nsdp_limit=16"
+      }
+    ]
+  },
+  {
+    "node": 4,
+    "event": "nwk_enqueue",
+    "reason": "relay",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "3858",
+        "time_s": "301.38127363199999",
+        "event": "nwk_enqueue",
+        "src": "2",
+        "dst": "1",
+        "sequence": "850",
+        "size_bytes": "192",
+        "reason": "relay",
+        "node": "4",
+        "peer": "2"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "3913",
+        "time_s": "302.14381363199999",
+        "event": "nwk_enqueue",
+        "src": "2",
+        "dst": "1",
+        "sequence": "856",
+        "size_bytes": "192",
+        "reason": "relay",
+        "node": "4",
+        "peer": "2"
+      }
+    ]
+  },
+  {
+    "node": 4,
+    "event": "hop_feedback",
+    "reason": "ack",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "3860",
+        "time_s": "301.38127363199999",
+        "event": "hop_feedback",
+        "src": "2",
+        "dst": "1",
+        "sequence": "850",
+        "reason": "ack",
+        "node": "4",
+        "peer": "2",
+        "detail": "hop_sequence=14;first_reception=1;ackable=1;nsdp_count_before=0;nsdp_count_after=1;nsdp_state_valid=1;nsdp_limit=16"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "3914",
+        "time_s": "302.14381363199999",
+        "event": "hop_feedback",
+        "src": "2",
+        "dst": "1",
+        "sequence": "856",
+        "reason": "ack",
+        "node": "4",
+        "peer": "2",
+        "detail": "hop_sequence=15;first_reception=1;ackable=1;nsdp_count_before=1;nsdp_count_after=2;nsdp_state_valid=1;nsdp_limit=16"
+      }
+    ]
+  },
+  {
+    "node": 4,
+    "event": "hop_feedback",
+    "reason": "dack",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "5124",
+        "time_s": "311.65981363200001",
+        "event": "hop_feedback",
+        "src": "2",
+        "dst": "1",
+        "sequence": "958",
+        "reason": "dack",
+        "node": "4",
+        "peer": "2",
+        "detail": "hop_sequence=32;first_reception=1;ackable=1;nsdp_count_before=16;nsdp_count_after=17;nsdp_state_valid=1;nsdp_limit=16"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "5256",
+        "time_s": "312.907813632",
+        "event": "hop_feedback",
+        "src": "2",
+        "dst": "1",
+        "sequence": "941",
+        "reason": "dack",
+        "node": "4",
+        "peer": "2",
+        "detail": "hop_sequence=29;first_reception=1;ackable=1;nsdp_count_before=17;nsdp_count_after=18;nsdp_state_valid=1;nsdp_limit=16"
+      }
+    ]
+  },
+  {
+    "node": 8,
+    "event": "hop_feedback",
+    "reason": "dack",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "5133",
+        "time_s": "311.81581244199998",
+        "event": "hop_feedback",
+        "src": "7",
+        "dst": "1",
+        "sequence": "938",
+        "reason": "dack",
+        "node": "8",
+        "peer": "7",
+        "detail": "hop_sequence=26;first_reception=1;ackable=1;nsdp_count_before=16;nsdp_count_after=17;nsdp_state_valid=1;nsdp_limit=16"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "5315",
+        "time_s": "313.32381244200002",
+        "event": "hop_feedback",
+        "src": "7",
+        "dst": "1",
+        "sequence": "954",
+        "reason": "dack",
+        "node": "8",
+        "peer": "7",
+        "detail": "hop_sequence=29;first_reception=1;ackable=1;nsdp_count_before=17;nsdp_count_after=18;nsdp_state_valid=1;nsdp_limit=16"
+      }
+    ]
+  },
+  {
+    "node": 2,
+    "event": "hop_feedback",
+    "reason": "ack",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "5876",
+        "time_s": "319.52481534600003",
+        "event": "hop_feedback",
+        "src": "8",
+        "dst": "1",
+        "sequence": "855",
+        "reason": "ack",
+        "node": "2",
+        "peer": "8",
+        "detail": "hop_sequence=13;first_reception=1;ackable=1;nsdp_count_before=0;nsdp_count_after=1;nsdp_state_valid=1;nsdp_limit=16"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "5929",
+        "time_s": "320.16181534600003",
+        "event": "hop_feedback",
+        "src": "8",
+        "dst": "1",
+        "sequence": "861",
+        "reason": "ack",
+        "node": "2",
+        "peer": "8",
+        "detail": "hop_sequence=14;first_reception=1;ackable=1;nsdp_count_before=1;nsdp_count_after=2;nsdp_state_valid=1;nsdp_limit=16"
+      }
+    ]
+  },
+  {
+    "node": 8,
+    "event": "nwk_forward",
+    "reason": "relay",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "6674",
+        "time_s": "327.96429537400002",
+        "event": "nwk_forward",
+        "src": "7",
+        "dst": "1",
+        "sequence": "854",
+        "size_bytes": "192",
+        "reason": "relay",
+        "node": "8",
+        "peer": "7",
+        "next_hop": "2",
+        "route_cost": "29800",
+        "detail": "num_hop=4;path=2>4>5>1"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "6684",
+        "time_s": "327.96429537400002",
+        "event": "nwk_forward",
+        "src": "7",
+        "dst": "1",
+        "sequence": "860",
+        "size_bytes": "192",
+        "reason": "relay",
+        "node": "8",
+        "peer": "7",
+        "next_hop": "2",
+        "route_cost": "29800",
+        "detail": "num_hop=4;path=2>4>5>1"
+      }
+    ]
+  },
+  {
+    "node": 2,
+    "event": "hop_feedback",
+    "reason": "dack",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "8440",
+        "time_s": "346.35681534600002",
+        "event": "hop_feedback",
+        "src": "7",
+        "dst": "1",
+        "sequence": "973",
+        "reason": "dack",
+        "node": "2",
+        "peer": "8",
+        "detail": "hop_sequence=47;first_reception=1;ackable=1;nsdp_count_before=16;nsdp_count_after=17;nsdp_state_valid=1;nsdp_limit=16"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "8476",
+        "time_s": "346.74681534600001",
+        "event": "hop_feedback",
+        "src": "7",
+        "dst": "1",
+        "sequence": "945",
+        "reason": "dack",
+        "node": "2",
+        "peer": "8",
+        "detail": "hop_sequence=48;first_reception=1;ackable=1;nsdp_count_before=17;nsdp_count_after=18;nsdp_state_valid=1;nsdp_limit=16"
+      }
+    ]
+  },
+  {
+    "node": 4,
+    "event": "nwk_forward",
+    "reason": "relay",
+    "examples": [
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "8881",
+        "time_s": "350.79229247199999",
+        "event": "nwk_forward",
+        "src": "2",
+        "dst": "1",
+        "sequence": "850",
+        "size_bytes": "192",
+        "reason": "relay",
+        "node": "4",
+        "peer": "2",
+        "next_hop": "5",
+        "route_cost": "14900",
+        "detail": "num_hop=2;path=5>1"
+      },
+      {
+        "schema": "csr-differential-trace-v1",
+        "event_index": "9198",
+        "time_s": "354.67929247199999",
+        "event": "nwk_forward",
+        "src": "2",
+        "dst": "1",
+        "sequence": "856",
+        "size_bytes": "192",
+        "reason": "relay",
+        "node": "4",
+        "peer": "2",
+        "next_hop": "5",
+        "route_cost": "14900",
+        "detail": "num_hop=2;path=5>1"
+      }
+    ]
+  }
+]

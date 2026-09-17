@@ -1,0 +1,57 @@
+{
+  "scope": "Independent final frozen-input schema review; no MATLAB execution. Full synthetic checker replay is separately executed by the checker author.",
+  "status": "passed",
+  "candidate_sha256": "37b87a253a217824b0160f14b23f2b498e9df7a99cdc46648f3d9785a2fda777",
+  "source_files": 358,
+  "matlab_files": 170,
+  "reference_files": 60,
+  "planned_matlab_tests": 700,
+  "planned_cases": 2,
+  "files_reviewed": [
+    {
+      "path": "run_tranche19_validation.m",
+      "sha256": "9534da1db3f9a4765e560e2a79f92afb44f327024de72844b081b0f798fd3da2"
+    },
+    {
+      "path": "+csr/+scenario/tranche19Suite.m",
+      "sha256": "1dec9e70a65c565adb9e1fc1950d3673d2bc135b201dc1307f52ce82ee96d146"
+    },
+    {
+      "path": "+csr/+validation/RetryPolicyCheckpoint.m",
+      "sha256": "11ecdb3e91d927f022bdec73c8be1084e97d0cb1f703331ecf3cd839cf7452d8"
+    },
+    {
+      "path": "+csr/+validation/retryPolicyContract.m",
+      "sha256": "a8d487a0bd559063078272f537ace303c25abb705a24d37c8688f3405af34845"
+    },
+    {
+      "path": "tests/TestRetryPolicySuite.m",
+      "sha256": "a1bb2b374c644fd4ba4e1a3ecd1b96c2c4666d612bf6abb227b0da02c743e45a"
+    },
+    {
+      "path": "scripts/analyze_tranche19_return.py",
+      "sha256": "77b2ed112de3514792468c0361d4b354b3dc0c3c914566eb855053df99977a9e"
+    },
+    {
+      "path": "scripts/tranche19_metrics.py",
+      "sha256": "9f761932c12529c8ace2169864d41f3be575b7f3e8145e2038fe5dbb23038662"
+    },
+    {
+      "path": "scripts/tests/test_tranche19_return.py",
+      "sha256": "a798764d1a26b56101fbc36f18327e35de5080c6ebd295c14794f36b3a02456f"
+    },
+    {
+      "path": "scripts/tests/test_tranche19_metrics.py",
+      "sha256": "1c0ce054dd099ee829942c15a87881e4b80b82b986819f6b06e30231cebbfbc5"
+    }
+  ],
+  "schema_fixture_audit": {
+    "scope": "FullSchemaIntegrationFixture source read against actual runner definitions.",
+    "no_bypass_or_mock_of_review": true,
+    "uses_original_t17_bytes_for_both_policies": true,
+    "explicitly_labeled_synthetic": true,
+    "temporary_directory_only": true,
+    "matlab_serialization_not_executed": true,
+    "notes": "Fixture simplifies inventories by omitting optional local MAT descriptors and raw CSV row_count annotations, which are separately handled by scalar/scientific-count inventory tests. Actual runner adds metadata fields; no conflict found. No fake result has been accepted as T19 runtime evidence."
+  }
+}
