@@ -13,13 +13,17 @@ import io
 import json
 import os
 import re
+import subprocess
 import sys
+import tempfile
 import urllib.error
 import urllib.request
 
 REPOSITORY = 'mjburke4/CSR-Project-MATLAB-Sim'
 BRANCH = 'agent/t15-t21-checkpoint'
 BASE_COMMIT = 'ec829f04f4ab8c8af4f6e9a53e07c1273cab2590'
+STAGING_PARENT = 'fca38e97ab2a2758f3c2f1fc1119ecd56fcd24bb'
+REMOTE_URL = 'https://github.com/mjburke4/CSR-Project-MATLAB-Sim.git'
 CHUNK_BYTES = 8 * 1024 * 1024
 STATUS_PATH = '.checkpoint-transport/status.json'
 EXPECTED = {'evidence/t16/owner.zip': {'bytes': 23215583,
@@ -134,6 +138,7 @@ class GitHub:
         self.token = token
 
     def request(self, method, suffix, payload=None):
+        require(method == 'GET' and payload is None, 'Bridge REST access is read-only')
         require(suffix.startswith('git/'), 'Unexpected API path')
         url = f'https://api.github.com/repos/{REPOSITORY}/{suffix}'
         data = None if payload is None else compact_json(payload)
@@ -170,16 +175,93 @@ class GitHub:
         require(len(data) == result['size'] and git_blob_sha(data) == sha, 'Downloaded Git blob mismatch')
         return data
 
-    def create_blob(self, data, expected):
-        result = self.request('POST', 'git/blobs', {
-            'encoding': 'base64', 'content': base64.b64encode(data).decode('ascii')})
-        require(result.get('sha') == expected, 'Created Git blob SHA mismatch')
-        return result['sha']
-
     def head(self):
         result = self.request('GET', 'git/ref/heads/' + BRANCH)
         require(result.get('ref') == 'refs/heads/' + BRANCH, 'Unexpected branch response')
         return result['object']['sha']
+
+
+class NativeGit:
+    """Write exact Git objects and push one child commit using the normal job token."""
+    def __init__(self, token, staging_head):
+        self.temp = tempfile.TemporaryDirectory(prefix='csr-checkpoint-git-')
+        self.directory = self.temp.name
+        # No credential is written to config, argv, URL, filesystem, or output.
+        # Remove inherited Git tracing/config variables before installing this
+        # one fixed authentication context for the child Git processes.
+        self.environment = {k: v for k, v in os.environ.items()
+                            if not k.startswith('GIT_') and k != 'GH_TOKEN'}
+        self.environment.update({
+            'GIT_TERMINAL_PROMPT': '0', 'GIT_CONFIG_GLOBAL': os.devnull,
+            'GIT_CONFIG_SYSTEM': os.devnull,
+            'GIT_AUTHOR_NAME': 'github-actions[bot]',
+            'GIT_AUTHOR_EMAIL': '41898282+github-actions[bot]@users.noreply.github.com',
+            'GIT_COMMITTER_NAME': 'github-actions[bot]',
+            'GIT_COMMITTER_EMAIL': '41898282+github-actions[bot]@users.noreply.github.com'})
+        header = 'AUTHORIZATION: basic ' + base64.b64encode(('x-access-token:' + token).encode()).decode()
+        settings = [('http.' + REMOTE_URL + '.extraheader', header),
+                    ('http.followRedirects', 'false'), ('credential.helper', ''),
+                    ('core.hooksPath', os.devnull), ('gc.auto', '0'),
+                    ('commit.gpgSign', 'false')]
+        self.environment['GIT_CONFIG_COUNT'] = str(len(settings))
+        for index, (key, value) in enumerate(settings):
+            self.environment[f'GIT_CONFIG_KEY_{index}'] = key
+            self.environment[f'GIT_CONFIG_VALUE_{index}'] = value
+        self.run(['init', '--bare', self.directory], 'initialize temporary object store')
+        self.run(['remote', 'add', 'origin', REMOTE_URL], 'set fixed repository remote')
+        self.run(['config', 'remote.origin.promisor', 'true'], 'set partial-fetch metadata')
+        self.run(['config', 'remote.origin.partialclonefilter', 'blob:none'], 'set partial-fetch filter')
+        self.run(['fetch', '--no-tags', '--depth=1', '--filter=blob:none', 'origin',
+                  'refs/heads/' + BRANCH], 'fetch checkpoint parent', timeout=400)
+        require(self.run(['rev-parse', 'FETCH_HEAD'], 'verify fetched checkpoint') == staging_head,
+                'Git fetched a different checkpoint head')
+        self.run(['read-tree', 'FETCH_HEAD^{tree}'], 'initialize checkpoint index')
+
+    def run(self, arguments, label, data=None, timeout=180):
+        try:
+            result = subprocess.run(['git', '-C', self.directory, *arguments], input=data,
+                                    stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                    env=self.environment, timeout=timeout, check=False)
+        except (OSError, subprocess.TimeoutExpired):
+            raise BridgeError('Native Git failed to ' + label) from None
+        # Never include raw stderr, Git configuration, or environment in errors.
+        require(result.returncode == 0, 'Native Git failed to ' + label)
+        return result.stdout.decode('utf-8', errors='strict').strip()
+
+    def add_blob(self, path, data, expected_sha):
+        require(path in EXPECTED or path == STATUS_PATH, 'Unapproved native Git target path')
+        sha = self.run(['hash-object', '-w', '--stdin'], 'write a verified blob', data)
+        require(sha == expected_sha, 'Native Git blob SHA mismatch')
+        self.run(['update-index', '--add', '--cacheinfo', '100644,' + sha + ',' + path],
+                 'attach verified blob to checkpoint index')
+        return sha
+
+    def attach(self, api, staging_head):
+        # Existing promisor blobs are already on the remote parent. The ten new
+        # blobs and status were locally written and individually hash-verified.
+        tree = self.run(['write-tree', '--missing-ok'], 'write checkpoint tree')
+        require(re.fullmatch('[0-9a-f]{40}', tree) is not None, 'Invalid native Git tree SHA')
+        commit = self.run(['commit-tree', tree, '-p', staging_head], 'write checkpoint commit',
+                          b'Stage verified oversized Tranches 15-21 checkpoint blobs\n')
+        require(re.fullmatch('[0-9a-f]{40}', commit) is not None, 'Invalid native Git commit SHA')
+        require(api.head() == staging_head, 'Checkpoint branch advanced before native Git push')
+        advertised = self.run(['ls-remote', '--refs', 'origin', 'refs/heads/' + BRANCH],
+                              'verify remote checkpoint immediately before push')
+        require(advertised == staging_head + '\trefs/heads/' + BRANCH, 'Remote checkpoint head changed')
+        # Explicit single-branch refspec. No --force, leading +, wildcard, tag,
+        # main ref, credential in URL, or shell evaluation is used.
+        self.run(['push', '--porcelain', 'origin', commit + ':refs/heads/' + BRANCH],
+                 'push checkpoint child commit', timeout=400)
+        require(api.head() == commit, 'Native Git branch verification failed')
+        remote = api.request('GET', 'git/commits/' + commit)
+        require(remote.get('sha') == commit and remote['tree']['sha'] == tree and
+                [p['sha'] for p in remote.get('parents', [])] == [staging_head],
+                'Native Git remote commit identity mismatch')
+        return commit, tree
+
+    def close(self):
+        self.environment.clear()
+        self.temp.cleanup()
 
 
 def main():
@@ -196,40 +278,38 @@ def main():
     require(api.head() == staging_head, 'Checkpoint branch advanced before job started')
     commit = api.request('GET', 'git/commits/' + staging_head)
     require(commit.get('sha') == staging_head, 'Wrong staging commit')
-    require([p['sha'] for p in commit.get('parents', [])] == [BASE_COMMIT], 'Staging parent is not the approved main checkpoint')
+    require([p['sha'] for p in commit.get('parents', [])] == [STAGING_PARENT], 'Staging parent is not the approved transport repair parent')
+    prior = api.request('GET', 'git/commits/' + STAGING_PARENT)
+    require(prior.get('sha') == STAGING_PARENT and [p['sha'] for p in prior.get('parents', [])] == [BASE_COMMIT],
+            'Transport repair parent does not descend directly from the approved main checkpoint')
     manifest_bytes = api.blob(manifest_sha, 256 * 1024)
     require(digest(manifest_bytes) == manifest_digest, 'Manifest SHA-256 mismatch')
     manifest = json.loads(manifest_bytes)
     records = validate_manifest(manifest)
-    receipts = []
-    for record in records:
-        require(api.head() == staging_head, 'Checkpoint branch advanced during upload')
-        original = reconstruct(record, lambda chunk: api.blob(chunk['sha'], CHUNK_BYTES))
-        sha = api.create_blob(original, record['sha'])
-        receipts.append({k: record[k] for k in ('path', 'bytes', 'sha', 'sha256')})
-        print(json.dumps({'verified_blob': record['path'], 'bytes': len(original), 'sha': sha}), flush=True)
-        del original
-    status = {
-        'schema': 'csr-checkpoint-oversized-blob-transport-status-v1', 'passed': True,
-        'repository': REPOSITORY, 'branch': BRANCH, 'base_commit': BASE_COMMIT,
-        'staging_commit': staging_head, 'transport_manifest_sha256': manifest_digest,
-        'verified_blobs': receipts, 'production_simulations_executed': 0,
-        'main_modified': False}
-    status_bytes = compact_json(status) + b'\n'
-    status_sha = api.create_blob(status_bytes, git_blob_sha(status_bytes))
-    entries = [{'path': r['path'], 'mode': '100644', 'type': 'blob', 'sha': r['sha']} for r in receipts]
-    entries.append({'path': STATUS_PATH, 'mode': '100644', 'type': 'blob', 'sha': status_sha})
-    tree = api.request('POST', 'git/trees', {'base_tree': commit['tree']['sha'], 'tree': entries})
-    require(re.fullmatch('[0-9a-f]{40}', tree.get('sha', '')) is not None, 'Invalid new tree SHA')
-    new_commit = api.request('POST', 'git/commits', {
-        'message': 'Stage verified oversized Tranches 15–21 checkpoint blobs',
-        'tree': tree['sha'], 'parents': [staging_head]})
-    require(re.fullmatch('[0-9a-f]{40}', new_commit.get('sha', '')) is not None, 'Invalid new commit SHA')
-    require(api.head() == staging_head, 'Checkpoint branch advanced before attachment')
-    updated = api.request('PATCH', 'git/refs/heads/' + BRANCH, {'sha': new_commit['sha'], 'force': False})
-    require(updated.get('ref') == 'refs/heads/' + BRANCH and updated['object']['sha'] == new_commit['sha'], 'Wrong updated ref')
-    require(api.head() == new_commit['sha'], 'Final branch verification failed')
-    print(json.dumps({'passed': True, 'branch': BRANCH, 'commit': new_commit['sha'], 'tree': tree['sha'], 'blobs': len(receipts)}), flush=True)
+    native = NativeGit(os.environ['GH_TOKEN'], staging_head)
+    try:
+        receipts = []
+        for record in records:
+            require(api.head() == staging_head, 'Checkpoint branch advanced during upload')
+            original = reconstruct(record, lambda chunk: api.blob(chunk['sha'], CHUNK_BYTES))
+            sha = native.add_blob(record['path'], original, record['sha'])
+            receipts.append({k: record[k] for k in ('path', 'bytes', 'sha', 'sha256')})
+            print(json.dumps({'verified_blob': record['path'], 'bytes': len(original), 'sha': sha}), flush=True)
+            del original
+        status = {
+            'schema': 'csr-checkpoint-oversized-blob-transport-status-v1', 'passed': True,
+            'repository': REPOSITORY, 'branch': BRANCH, 'base_commit': BASE_COMMIT,
+            'staging_parent': STAGING_PARENT, 'staging_commit': staging_head,
+            'transport_manifest_sha256': manifest_digest, 'transport_method': 'git_https_pack',
+            'verified_blobs': receipts, 'production_simulations_executed': 0,
+            'main_modified': False}
+        status_bytes = compact_json(status) + b'\n'
+        native.add_blob(STATUS_PATH, status_bytes, git_blob_sha(status_bytes))
+        new_commit, tree = native.attach(api, staging_head)
+        print(json.dumps({'passed': True, 'branch': BRANCH, 'commit': new_commit,
+                          'tree': tree, 'blobs': len(receipts), 'transport_method': 'git_https_pack'}), flush=True)
+    finally:
+        native.close()
 
 
 if __name__ == '__main__':
