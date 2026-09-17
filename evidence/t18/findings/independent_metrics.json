@@ -1,0 +1,2195 @@
+[
+  {
+    "case": "r128",
+    "duration": 600,
+    "matlab": {
+      "applications": {
+        "4": {
+          "admitted": 297,
+          "delivered": 251,
+          "dropped": 0,
+          "pending": 46,
+          "latency_s": {
+            "n": 251,
+            "mean": 38.585619213553876,
+            "median": 38.6578110860639,
+            "max": 86.5618110860638
+          },
+          "admission": {
+            "Attempts": 15000,
+            "Admitted": 297,
+            "BlockedNsdp": 14703
+          }
+        }
+      },
+      "node5_events": {
+        "4": {
+          "network_enqueue": 281,
+          "hop_receive": 281,
+          "mac_enqueue": 273,
+          "hop_admit": 267,
+          "network_submit": 267,
+          "hop_sent": 255,
+          "network_custody_release": 250,
+          "hop_ack": 250,
+          "hop_retry": 6
+        }
+      },
+      "node5_enqueue_to_submit_s": {
+        "4": {
+          "n": 267,
+          "mean": 7.257558333949935,
+          "median": 9.18047866937303,
+          "max": 24.988478669372967
+        }
+      },
+      "node5_unsubmitted_at_stop_ages": {
+        "4": {
+          "n": 14,
+          "mean": 7.279258984102422,
+          "median": 7.429687555531018,
+          "max": 10.491187555531042
+        }
+      },
+      "link45_events": {
+        "mac_enqueue": 289,
+        "hop_admit": 281,
+        "network_submit": 281,
+        "hop_sent": 289,
+        "hop_ack": 97,
+        "hop_dack": 184,
+        "hop_dack_expired": 167,
+        "hop_retry": 8
+      },
+      "link45_by_source": {
+        "4": {
+          "mac_enqueue": 289,
+          "hop_admit": 281,
+          "network_submit": 281,
+          "hop_sent": 289,
+          "hop_ack": 97,
+          "hop_dack": 184,
+          "hop_dack_expired": 167,
+          "hop_retry": 8
+        }
+      },
+      "link45_retry_wait_s": {
+        "n": 8,
+        "mean": 2.2071249722220045,
+        "median": 2.1729999722219873,
+        "max": 3.654999972222072
+      },
+      "link45_retry_cancel_wait_s": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "max": null
+      },
+      "link45_pending_retry_wait_s": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "max": null
+      },
+      "link45_actual_repeat_transmissions": 8
+    },
+    "ns3": {
+      "applications": {
+        "4": {
+          "admitted": 278,
+          "delivered": 248,
+          "unmatched_sends": 30,
+          "latency_s": {
+            "n": 248,
+            "mean": 41.17288705374194,
+            "median": 40.308311086,
+            "max": 64.35281108600003
+          },
+          "admission": {
+            "Attempts": 15000,
+            "Admitted": 278,
+            "BlockedNsdp": 14722
+          }
+        }
+      },
+      "node5_events": {
+        "4": {
+          "rx_accept": 263,
+          "nwk_enqueue": 263,
+          "hop_feedback": 263,
+          "nwk_admission": 1402,
+          "nwk_forward": 263,
+          "hop_admission": 263,
+          "nwk_nsdp_release": 248,
+          "hop_completion": 248,
+          "hop_retry": 6,
+          "rx_drop": 8
+        },
+        "5": {
+          "tx_start": 250
+        }
+      },
+      "node5_enqueue_to_submit_s": {
+        "4": {
+          "n": 263,
+          "mean": 7.778417571087451,
+          "median": 9.687478669999962,
+          "max": 14.757478670000012
+        }
+      },
+      "node5_unsubmitted_at_stop_ages": {},
+      "link45_events": {
+        "nwk_admission": 3060,
+        "hop_admission": 274,
+        "tx_start": 271,
+        "hop_completion:ack": 79,
+        "hop_completion:dack": 183,
+        "rx_accept": 249,
+        "hop_capacity_release": 178,
+        "hop_retry": 11,
+        "rx_drop": 1
+      },
+      "link45_by_source": {
+        "4": {
+          "nwk_admission": 3060,
+          "hop_admission": 274,
+          "tx_start": 271,
+          "hop_completion:ack": 79,
+          "hop_completion:dack": 183,
+          "hop_capacity_release": 178,
+          "hop_retry": 11
+        },
+        "5": {
+          "rx_accept": 249,
+          "rx_drop": 1
+        }
+      }
+    }
+  },
+  {
+    "case": "l128",
+    "duration": 600,
+    "matlab": {
+      "applications": {
+        "5": {
+          "admitted": 599,
+          "delivered": 583,
+          "dropped": 0,
+          "pending": 16,
+          "latency_s": {
+            "n": 583,
+            "mean": 7.82227156633828,
+            "median": 7.86781108606397,
+            "max": 10.2158110860638
+          },
+          "admission": {
+            "Attempts": 15000,
+            "Admitted": 599,
+            "BlockedNsdp": 14401
+          }
+        }
+      },
+      "node5_events": {
+        "5": {
+          "application_attempt": 599,
+          "network_enqueue": 599,
+          "mac_enqueue": 599,
+          "hop_admit": 599,
+          "network_submit": 599,
+          "hop_sent": 583,
+          "network_custody_release": 583,
+          "hop_ack": 583
+        }
+      },
+      "node5_enqueue_to_submit_s": {
+        "5": {
+          "n": 599,
+          "mean": 0.36309614939731893,
+          "median": 0.0,
+          "max": 7.787291113842002
+        }
+      },
+      "node5_unsubmitted_at_stop_ages": {},
+      "link45_events": {},
+      "link45_by_source": {},
+      "link45_retry_wait_s": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "max": null
+      },
+      "link45_retry_cancel_wait_s": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "max": null
+      },
+      "link45_pending_retry_wait_s": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "max": null
+      },
+      "link45_actual_repeat_transmissions": 0
+    },
+    "ns3": {
+      "applications": {
+        "5": {
+          "admitted": 589,
+          "delivered": 573,
+          "unmatched_sends": 16,
+          "latency_s": {
+            "n": 573,
+            "mean": 7.981260405371727,
+            "median": 8.015811085999985,
+            "max": 10.358811086000003
+          },
+          "admission": {
+            "Attempts": 15000,
+            "Admitted": 589,
+            "BlockedNsdp": 14411
+          }
+        }
+      },
+      "node5_events": {
+        "5": {
+          "app_admission": 15000,
+          "app_send": 589,
+          "nwk_enqueue": 589,
+          "nwk_admission": 1394,
+          "nwk_forward": 589,
+          "hop_admission": 589,
+          "tx_start": 574,
+          "nwk_nsdp_release": 573,
+          "hop_completion": 573
+        }
+      },
+      "node5_enqueue_to_submit_s": {
+        "5": {
+          "n": 589,
+          "mean": 0.3729251264516119,
+          "median": 2.7999988105875673e-08,
+          "max": 8.047291113999961
+        }
+      },
+      "node5_unsubmitted_at_stop_ages": {},
+      "link45_events": {
+        "rx_accept": 7,
+        "rx_drop": 566
+      },
+      "link45_by_source": {
+        "5": {
+          "rx_accept": 7,
+          "rx_drop": 566
+        }
+      }
+    }
+  },
+  {
+    "case": "m128",
+    "duration": 600,
+    "matlab": {
+      "applications": {
+        "4": {
+          "admitted": 215,
+          "delivered": 171,
+          "dropped": 0,
+          "pending": 44,
+          "latency_s": {
+            "n": 171,
+            "mean": 52.52726722641471,
+            "median": 54.0218110860638,
+            "max": 87.5318110860638
+          },
+          "admission": {
+            "Attempts": 15000,
+            "Admitted": 215,
+            "BlockedNsdp": 14785
+          }
+        },
+        "5": {
+          "admitted": 194,
+          "delivered": 178,
+          "dropped": 0,
+          "pending": 16,
+          "latency_s": {
+            "n": 178,
+            "mean": 25.655746254603166,
+            "median": 24.987311086063798,
+            "max": 36.2618110860638
+          },
+          "admission": {
+            "Attempts": 15000,
+            "Admitted": 194,
+            "BlockedNsdp": 14806
+          }
+        }
+      },
+      "node5_events": {
+        "5": {
+          "application_attempt": 194,
+          "network_enqueue": 194,
+          "mac_enqueue": 181,
+          "hop_admit": 181,
+          "network_submit": 181,
+          "hop_sent": 178,
+          "network_custody_release": 178,
+          "hop_ack": 178
+        },
+        "4": {
+          "network_enqueue": 199,
+          "hop_receive": 199,
+          "mac_enqueue": 187,
+          "hop_admit": 185,
+          "network_submit": 185,
+          "hop_sent": 174,
+          "network_custody_release": 171,
+          "hop_ack": 171,
+          "hop_retry": 2
+        }
+      },
+      "node5_enqueue_to_submit_s": {
+        "5": {
+          "n": 181,
+          "mean": 15.454549173986518,
+          "median": 15.50529111384202,
+          "max": 23.634291113841982
+        },
+        "4": {
+          "n": 185,
+          "mean": 15.60168158829192,
+          "median": 15.108478669372971,
+          "max": 24.62447866937299
+        }
+      },
+      "node5_unsubmitted_at_stop_ages": {
+        "5": {
+          "n": 13,
+          "mean": 9.358461538461537,
+          "median": 11.940000000000055,
+          "max": 14.120000000000005
+        },
+        "4": {
+          "n": 14,
+          "mean": 6.782473269816721,
+          "median": 6.773187555530967,
+          "max": 10.270187555531038
+        }
+      },
+      "link45_events": {
+        "mac_enqueue": 213,
+        "hop_admit": 199,
+        "network_submit": 199,
+        "hop_sent": 213,
+        "hop_ack": 56,
+        "hop_dack": 143,
+        "hop_dack_expired": 131,
+        "hop_retry": 14
+      },
+      "link45_by_source": {
+        "4": {
+          "mac_enqueue": 213,
+          "hop_admit": 199,
+          "network_submit": 199,
+          "hop_sent": 213,
+          "hop_ack": 56,
+          "hop_dack": 143,
+          "hop_dack_expired": 131,
+          "hop_retry": 14
+        }
+      },
+      "link45_retry_wait_s": {
+        "n": 14,
+        "mean": 2.0680714007934364,
+        "median": 1.8999999722220196,
+        "max": 4.070999972222012
+      },
+      "link45_retry_cancel_wait_s": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "max": null
+      },
+      "link45_pending_retry_wait_s": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "max": null
+      },
+      "link45_actual_repeat_transmissions": 14
+    },
+    "ns3": {
+      "applications": {
+        "4": {
+          "admitted": 220,
+          "delivered": 180,
+          "unmatched_sends": 40,
+          "latency_s": {
+            "n": 180,
+            "mean": 53.580711085999994,
+            "median": 55.87331108599997,
+            "max": 74.226811086
+          },
+          "admission": {
+            "Attempts": 15000,
+            "Admitted": 220,
+            "BlockedNsdp": 14780
+          }
+        },
+        "5": {
+          "admitted": 171,
+          "delivered": 155,
+          "unmatched_sends": 16,
+          "latency_s": {
+            "n": 155,
+            "mean": 29.09425921503226,
+            "median": 27.178811086000053,
+            "max": 43.92681108599993
+          },
+          "admission": {
+            "Attempts": 15000,
+            "Admitted": 171,
+            "BlockedNsdp": 14829
+          }
+        }
+      },
+      "node5_events": {
+        "5": {
+          "app_admission": 15000,
+          "app_send": 171,
+          "nwk_enqueue": 171,
+          "nwk_admission": 1800,
+          "nwk_forward": 163,
+          "hop_admission": 163,
+          "tx_start": 335,
+          "nwk_nsdp_release": 155,
+          "hop_completion": 155
+        },
+        "4": {
+          "rx_accept": 204,
+          "nwk_enqueue": 204,
+          "hop_feedback": 204,
+          "nwk_admission": 2157,
+          "nwk_forward": 188,
+          "hop_admission": 188,
+          "nwk_nsdp_release": 179,
+          "hop_completion": 179,
+          "rx_drop": 10
+        }
+      },
+      "node5_enqueue_to_submit_s": {
+        "5": {
+          "n": 163,
+          "mean": 17.59273104598773,
+          "median": 17.540291113999956,
+          "max": 26.540291113999956
+        },
+        "4": {
+          "n": 188,
+          "mean": 17.443476223191492,
+          "median": 15.836478669999991,
+          "max": 28.459478669999953
+        }
+      },
+      "node5_unsubmitted_at_stop_ages": {
+        "5": {
+          "n": 8,
+          "mean": 5.654999999999987,
+          "median": 4.240000000000009,
+          "max": 17.799999999999955
+        },
+        "4": {
+          "n": 16,
+          "mean": 12.78731255600001,
+          "median": 12.870187556000019,
+          "max": 17.433187556000007
+        }
+      },
+      "link45_events": {
+        "nwk_admission": 7716,
+        "hop_admission": 204,
+        "tx_start": 214,
+        "hop_completion:ack": 50,
+        "hop_completion:dack": 154,
+        "rx_accept": 334,
+        "hop_capacity_release": 140,
+        "hop_retry": 14,
+        "rx_drop": 1
+      },
+      "link45_by_source": {
+        "4": {
+          "nwk_admission": 7716,
+          "hop_admission": 204,
+          "tx_start": 214,
+          "hop_completion:ack": 50,
+          "hop_completion:dack": 154,
+          "hop_capacity_release": 140,
+          "hop_retry": 14
+        },
+        "5": {
+          "rx_accept": 334,
+          "rx_drop": 1
+        }
+      }
+    }
+  },
+  {
+    "case": "r129",
+    "duration": 600,
+    "matlab": {
+      "applications": {
+        "4": {
+          "admitted": 298,
+          "delivered": 251,
+          "dropped": 0,
+          "pending": 47,
+          "latency_s": {
+            "n": 251,
+            "mean": 38.427085667737146,
+            "median": 39.1338110860639,
+            "max": 52.5468110860638
+          },
+          "admission": {
+            "Attempts": 15000,
+            "Admitted": 298,
+            "BlockedNsdp": 14702
+          }
+        }
+      },
+      "node5_events": {
+        "4": {
+          "network_enqueue": 282,
+          "hop_receive": 282,
+          "mac_enqueue": 268,
+          "hop_admit": 268,
+          "network_submit": 268,
+          "hop_sent": 251,
+          "network_custody_release": 251,
+          "hop_ack": 251
+        }
+      },
+      "node5_enqueue_to_submit_s": {
+        "4": {
+          "n": 268,
+          "mean": 6.798209394872712,
+          "median": 9.32997866937302,
+          "max": 13.65247866937301
+        }
+      },
+      "node5_unsubmitted_at_stop_ages": {
+        "4": {
+          "n": 14,
+          "mean": 4.141616126959581,
+          "median": 4.199187555531012,
+          "max": 7.462187555531045
+        }
+      },
+      "link45_events": {
+        "mac_enqueue": 293,
+        "hop_admit": 284,
+        "network_submit": 284,
+        "hop_sent": 292,
+        "hop_ack": 99,
+        "hop_dack": 183,
+        "hop_dack_expired": 168,
+        "hop_retry": 9
+      },
+      "link45_by_source": {
+        "4": {
+          "mac_enqueue": 293,
+          "hop_admit": 284,
+          "network_submit": 284,
+          "hop_sent": 292,
+          "hop_ack": 99,
+          "hop_dack": 183,
+          "hop_dack_expired": 168,
+          "hop_retry": 9
+        }
+      },
+      "link45_retry_wait_s": {
+        "n": 9,
+        "mean": 2.031444416666457,
+        "median": 1.665999972222039,
+        "max": 3.9669999722220837
+      },
+      "link45_retry_cancel_wait_s": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "max": null
+      },
+      "link45_pending_retry_wait_s": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "max": null
+      },
+      "link45_actual_repeat_transmissions": 9
+    },
+    "ns3": {
+      "applications": {
+        "4": {
+          "admitted": 292,
+          "delivered": 252,
+          "unmatched_sends": 40,
+          "latency_s": {
+            "n": 252,
+            "mean": 38.967519260603176,
+            "median": 39.42331108600001,
+            "max": 59.745811086
+          },
+          "admission": {
+            "Attempts": 15000,
+            "Admitted": 292,
+            "BlockedNsdp": 14708
+          }
+        }
+      },
+      "node5_events": {
+        "4": {
+          "rx_accept": 276,
+          "nwk_enqueue": 276,
+          "hop_feedback": 276,
+          "nwk_admission": 1296,
+          "nwk_forward": 269,
+          "hop_admission": 269,
+          "nwk_nsdp_release": 252,
+          "hop_completion": 252,
+          "rx_drop": 11
+        },
+        "5": {
+          "tx_start": 253
+        }
+      },
+      "node5_enqueue_to_submit_s": {
+        "4": {
+          "n": 269,
+          "mean": 7.044340199204462,
+          "median": 9.388478669999984,
+          "max": 14.549478670000042
+        }
+      },
+      "node5_unsubmitted_at_stop_ages": {
+        "4": {
+          "n": 7,
+          "mean": 6.873473270285705,
+          "median": 6.695187555999951,
+          "max": 8.32018755599995
+        }
+      },
+      "link45_events": {
+        "nwk_admission": 2247,
+        "hop_admission": 276,
+        "tx_start": 287,
+        "hop_completion:ack": 93,
+        "hop_completion:dack": 183,
+        "rx_accept": 249,
+        "hop_capacity_release": 166,
+        "rx_drop": 3,
+        "hop_retry": 17
+      },
+      "link45_by_source": {
+        "4": {
+          "nwk_admission": 2247,
+          "hop_admission": 276,
+          "tx_start": 287,
+          "hop_completion:ack": 93,
+          "hop_completion:dack": 183,
+          "hop_capacity_release": 166,
+          "hop_retry": 17
+        },
+        "5": {
+          "rx_accept": 249,
+          "rx_drop": 3
+        }
+      }
+    }
+  },
+  {
+    "case": "l129",
+    "duration": 600,
+    "matlab": {
+      "applications": {
+        "5": {
+          "admitted": 595,
+          "delivered": 579,
+          "dropped": 0,
+          "pending": 16,
+          "latency_s": {
+            "n": 579,
+            "mean": 7.891962139604427,
+            "median": 7.93881108606382,
+            "max": 10.0208110860638
+          },
+          "admission": {
+            "Attempts": 15000,
+            "Admitted": 595,
+            "BlockedNsdp": 14405
+          }
+        }
+      },
+      "node5_events": {
+        "5": {
+          "application_attempt": 595,
+          "network_enqueue": 595,
+          "mac_enqueue": 595,
+          "hop_admit": 595,
+          "network_submit": 595,
+          "hop_sent": 579,
+          "network_custody_release": 579,
+          "hop_ack": 579
+        }
+      },
+      "node5_enqueue_to_submit_s": {
+        "5": {
+          "n": 595,
+          "mean": 0.35829175376301514,
+          "median": 0.0,
+          "max": 7.87829111384201
+        }
+      },
+      "node5_unsubmitted_at_stop_ages": {},
+      "link45_events": {},
+      "link45_by_source": {},
+      "link45_retry_wait_s": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "max": null
+      },
+      "link45_retry_cancel_wait_s": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "max": null
+      },
+      "link45_pending_retry_wait_s": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "max": null
+      },
+      "link45_actual_repeat_transmissions": 0
+    },
+    "ns3": {
+      "applications": {
+        "5": {
+          "admitted": 596,
+          "delivered": 580,
+          "unmatched_sends": 16,
+          "latency_s": {
+            "n": 580,
+            "mean": 7.840880844620691,
+            "median": 7.943311086000023,
+            "max": 10.254811085999961
+          },
+          "admission": {
+            "Attempts": 15000,
+            "Admitted": 596,
+            "BlockedNsdp": 14404
+          }
+        }
+      },
+      "node5_events": {
+        "5": {
+          "app_admission": 15000,
+          "app_send": 596,
+          "nwk_enqueue": 596,
+          "nwk_admission": 1362,
+          "nwk_forward": 596,
+          "hop_admission": 596,
+          "tx_start": 581,
+          "nwk_nsdp_release": 580,
+          "hop_completion": 580
+        }
+      },
+      "node5_enqueue_to_submit_s": {
+        "5": {
+          "n": 596,
+          "mean": 0.36424263186241684,
+          "median": 2.7999988105875673e-08,
+          "max": 7.904291113999989
+        }
+      },
+      "node5_unsubmitted_at_stop_ages": {},
+      "link45_events": {
+        "rx_accept": 7,
+        "rx_drop": 573
+      },
+      "link45_by_source": {
+        "5": {
+          "rx_accept": 7,
+          "rx_drop": 573
+        }
+      }
+    }
+  },
+  {
+    "case": "m129",
+    "duration": 600,
+    "matlab": {
+      "applications": {
+        "4": {
+          "admitted": 218,
+          "delivered": 187,
+          "dropped": 0,
+          "pending": 31,
+          "latency_s": {
+            "n": 187,
+            "mean": 52.82252766360395,
+            "median": 55.2548110860638,
+            "max": 73.1088110860638
+          },
+          "admission": {
+            "Attempts": 15000,
+            "Admitted": 218,
+            "BlockedNsdp": 14782
+          }
+        },
+        "5": {
+          "admitted": 172,
+          "delivered": 156,
+          "dropped": 0,
+          "pending": 16,
+          "latency_s": {
+            "n": 156,
+            "mean": 27.875147368115115,
+            "median": 28.1483110860638,
+            "max": 42.8148110860639
+          },
+          "admission": {
+            "Attempts": 15000,
+            "Admitted": 172,
+            "BlockedNsdp": 14828
+          }
+        }
+      },
+      "node5_events": {
+        "5": {
+          "application_attempt": 172,
+          "network_enqueue": 172,
+          "mac_enqueue": 171,
+          "hop_admit": 171,
+          "network_submit": 171,
+          "hop_sent": 156,
+          "network_custody_release": 156,
+          "hop_ack": 156
+        },
+        "4": {
+          "network_enqueue": 202,
+          "hop_receive": 202,
+          "mac_enqueue": 189,
+          "hop_admit": 188,
+          "network_submit": 188,
+          "hop_sent": 188,
+          "network_custody_release": 186,
+          "hop_ack": 186,
+          "hop_retry": 1
+        }
+      },
+      "node5_enqueue_to_submit_s": {
+        "5": {
+          "n": 171,
+          "mean": 16.96561689680199,
+          "median": 16.523291113841992,
+          "max": 27.08229111384196
+        },
+        "4": {
+          "n": 188,
+          "mean": 16.44229249916023,
+          "median": 15.732478669372995,
+          "max": 27.159478669373016
+        }
+      },
+      "node5_unsubmitted_at_stop_ages": {
+        "4": {
+          "n": 14,
+          "mean": 13.45704469838814,
+          "median": 13.546187555530992,
+          "max": 16.770187555531038
+        },
+        "5": {
+          "n": 1,
+          "mean": 16.279999999999973,
+          "median": 16.279999999999973,
+          "max": 16.279999999999973
+        }
+      },
+      "link45_events": {
+        "mac_enqueue": 211,
+        "hop_admit": 202,
+        "network_submit": 202,
+        "hop_sent": 211,
+        "hop_ack": 50,
+        "hop_dack": 152,
+        "hop_dack_expired": 138,
+        "hop_retry": 9
+      },
+      "link45_by_source": {
+        "4": {
+          "mac_enqueue": 211,
+          "hop_admit": 202,
+          "network_submit": 202,
+          "hop_sent": 211,
+          "hop_ack": 50,
+          "hop_dack": 152,
+          "hop_dack_expired": 138,
+          "hop_retry": 9
+        }
+      },
+      "link45_retry_wait_s": {
+        "n": 9,
+        "mean": 1.8263333055553328,
+        "median": 1.8349999722220218,
+        "max": 2.6149999722219945
+      },
+      "link45_retry_cancel_wait_s": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "max": null
+      },
+      "link45_pending_retry_wait_s": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "max": null
+      },
+      "link45_actual_repeat_transmissions": 9
+    },
+    "ns3": {
+      "applications": {
+        "4": {
+          "admitted": 214,
+          "delivered": 169,
+          "unmatched_sends": 45,
+          "latency_s": {
+            "n": 169,
+            "mean": 55.37222528718344,
+            "median": 57.41381108600001,
+            "max": 76.94881108600003
+          },
+          "admission": {
+            "Attempts": 15000,
+            "Admitted": 214,
+            "BlockedNsdp": 14786
+          }
+        },
+        "5": {
+          "admitted": 174,
+          "delivered": 158,
+          "unmatched_sends": 16,
+          "latency_s": {
+            "n": 158,
+            "mean": 27.857997541696207,
+            "median": 29.580311086000023,
+            "max": 42.66181108599994
+          },
+          "admission": {
+            "Attempts": 15000,
+            "Admitted": 174,
+            "BlockedNsdp": 14826
+          }
+        }
+      },
+      "node5_events": {
+        "5": {
+          "app_admission": 15000,
+          "app_send": 174,
+          "nwk_enqueue": 174,
+          "nwk_admission": 1857,
+          "nwk_forward": 163,
+          "hop_admission": 163,
+          "tx_start": 327,
+          "nwk_nsdp_release": 158,
+          "hop_completion": 158
+        },
+        "4": {
+          "rx_drop": 13,
+          "rx_accept": 198,
+          "nwk_enqueue": 198,
+          "hop_feedback": 198,
+          "nwk_admission": 1822,
+          "nwk_forward": 181,
+          "hop_admission": 181,
+          "nwk_nsdp_release": 169,
+          "hop_completion": 169
+        }
+      },
+      "node5_enqueue_to_submit_s": {
+        "5": {
+          "n": 163,
+          "mean": 16.599786260711653,
+          "median": 16.757291113999997,
+          "max": 25.45229111399999
+        },
+        "4": {
+          "n": 181,
+          "mean": 16.981699664475137,
+          "median": 16.59047867000004,
+          "max": 28.823478669999986
+        }
+      },
+      "node5_unsubmitted_at_stop_ages": {
+        "4": {
+          "n": 17,
+          "mean": 6.799952261882375,
+          "median": 5.0311875559999635,
+          "max": 25.42818755600001
+        },
+        "5": {
+          "n": 11,
+          "mean": 14.33272727272727,
+          "median": 11.32000000000005,
+          "max": 22.059999999999945
+        }
+      },
+      "link45_events": {
+        "nwk_admission": 7414,
+        "hop_admission": 199,
+        "rx_accept": 320,
+        "tx_start": 211,
+        "rx_drop": 7,
+        "hop_retry": 18,
+        "hop_completion:ack": 55,
+        "hop_completion:dack": 143,
+        "hop_capacity_release": 130
+      },
+      "link45_by_source": {
+        "4": {
+          "nwk_admission": 7414,
+          "hop_admission": 199,
+          "tx_start": 211,
+          "hop_retry": 18,
+          "hop_completion:ack": 55,
+          "hop_completion:dack": 143,
+          "hop_capacity_release": 130
+        },
+        "5": {
+          "rx_accept": 320,
+          "rx_drop": 7
+        }
+      }
+    }
+  },
+  {
+    "case": "r130",
+    "duration": 600,
+    "matlab": {
+      "applications": {
+        "4": {
+          "admitted": 295,
+          "delivered": 253,
+          "dropped": 0,
+          "pending": 42,
+          "latency_s": {
+            "n": 253,
+            "mean": 39.09995519673577,
+            "median": 39.4368110860638,
+            "max": 63.1368110860638
+          },
+          "admission": {
+            "Attempts": 15000,
+            "Admitted": 295,
+            "BlockedNsdp": 14705
+          }
+        }
+      },
+      "node5_events": {
+        "4": {
+          "network_enqueue": 279,
+          "hop_receive": 279,
+          "mac_enqueue": 272,
+          "hop_admit": 270,
+          "network_submit": 270,
+          "hop_sent": 255,
+          "network_custody_release": 253,
+          "hop_ack": 253,
+          "hop_retry": 2
+        }
+      },
+      "node5_enqueue_to_submit_s": {
+        "4": {
+          "n": 270,
+          "mean": 7.461346021667567,
+          "median": 9.30397866937301,
+          "max": 16.837478669372956
+        }
+      },
+      "node5_unsubmitted_at_stop_ages": {
+        "4": {
+          "n": 9,
+          "mean": 6.500187555530981,
+          "median": 6.604187555530984,
+          "max": 8.398187555530967
+        }
+      },
+      "link45_events": {
+        "mac_enqueue": 288,
+        "hop_admit": 279,
+        "network_submit": 279,
+        "hop_sent": 288,
+        "hop_ack": 95,
+        "hop_dack": 184,
+        "hop_dack_expired": 167,
+        "hop_retry": 9
+      },
+      "link45_by_source": {
+        "4": {
+          "mac_enqueue": 288,
+          "hop_admit": 279,
+          "network_submit": 279,
+          "hop_sent": 288,
+          "hop_ack": 95,
+          "hop_dack": 184,
+          "hop_dack_expired": 167,
+          "hop_retry": 9
+        }
+      },
+      "link45_retry_wait_s": {
+        "n": 9,
+        "mean": 2.7493333055553344,
+        "median": 2.5759999722220073,
+        "max": 6.488999972222018
+      },
+      "link45_retry_cancel_wait_s": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "max": null
+      },
+      "link45_pending_retry_wait_s": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "max": null
+      },
+      "link45_actual_repeat_transmissions": 9
+    },
+    "ns3": {
+      "applications": {
+        "4": {
+          "admitted": 287,
+          "delivered": 249,
+          "unmatched_sends": 38,
+          "latency_s": {
+            "n": 249,
+            "mean": 39.19954723057831,
+            "median": 39.23081108600002,
+            "max": 58.90381108599996
+          },
+          "admission": {
+            "Attempts": 15000,
+            "Admitted": 287,
+            "BlockedNsdp": 14713
+          }
+        }
+      },
+      "node5_events": {
+        "4": {
+          "rx_accept": 271,
+          "nwk_enqueue": 271,
+          "hop_feedback": 271,
+          "nwk_admission": 1481,
+          "nwk_forward": 265,
+          "hop_admission": 265,
+          "nwk_nsdp_release": 248,
+          "hop_completion": 248,
+          "hop_retry": 10,
+          "rx_drop": 18
+        },
+        "5": {
+          "tx_start": 252
+        }
+      },
+      "node5_enqueue_to_submit_s": {
+        "4": {
+          "n": 265,
+          "mean": 7.36522245056604,
+          "median": 9.115478670000016,
+          "max": 17.682478670000023
+        }
+      },
+      "node5_unsubmitted_at_stop_ages": {
+        "4": {
+          "n": 6,
+          "mean": 8.363520889333339,
+          "median": 8.450187556000003,
+          "max": 9.607187555999985
+        }
+      },
+      "link45_events": {
+        "nwk_admission": 2346,
+        "hop_admission": 271,
+        "tx_start": 289,
+        "hop_completion:ack": 93,
+        "hop_completion:dack": 178,
+        "rx_accept": 250,
+        "hop_capacity_release": 161,
+        "hop_retry": 25,
+        "rx_drop": 2
+      },
+      "link45_by_source": {
+        "4": {
+          "nwk_admission": 2346,
+          "hop_admission": 271,
+          "tx_start": 289,
+          "hop_completion:ack": 93,
+          "hop_completion:dack": 178,
+          "hop_capacity_release": 161,
+          "hop_retry": 25
+        },
+        "5": {
+          "rx_accept": 250,
+          "rx_drop": 2
+        }
+      }
+    }
+  },
+  {
+    "case": "l130",
+    "duration": 600,
+    "matlab": {
+      "applications": {
+        "5": {
+          "admitted": 589,
+          "delivered": 574,
+          "dropped": 0,
+          "pending": 15,
+          "latency_s": {
+            "n": 574,
+            "mean": 7.957789239373944,
+            "median": 7.94881108606384,
+            "max": 10.7618110860638
+          },
+          "admission": {
+            "Attempts": 15000,
+            "Admitted": 589,
+            "BlockedNsdp": 14411
+          }
+        }
+      },
+      "node5_events": {
+        "5": {
+          "application_attempt": 589,
+          "network_enqueue": 589,
+          "mac_enqueue": 589,
+          "hop_admit": 589,
+          "network_submit": 589,
+          "hop_sent": 575,
+          "network_custody_release": 573,
+          "hop_ack": 573
+        }
+      },
+      "node5_enqueue_to_submit_s": {
+        "5": {
+          "n": 589,
+          "mean": 0.3864928733024649,
+          "median": 0.0,
+          "max": 9.373291113842015
+        }
+      },
+      "node5_unsubmitted_at_stop_ages": {},
+      "link45_events": {},
+      "link45_by_source": {},
+      "link45_retry_wait_s": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "max": null
+      },
+      "link45_retry_cancel_wait_s": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "max": null
+      },
+      "link45_pending_retry_wait_s": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "max": null
+      },
+      "link45_actual_repeat_transmissions": 0
+    },
+    "ns3": {
+      "applications": {
+        "5": {
+          "admitted": 603,
+          "delivered": 587,
+          "unmatched_sends": 16,
+          "latency_s": {
+            "n": 587,
+            "mean": 7.767414936085179,
+            "median": 7.848811086000069,
+            "max": 10.337811085999988
+          },
+          "admission": {
+            "Attempts": 15000,
+            "Admitted": 603,
+            "BlockedNsdp": 14397
+          }
+        }
+      },
+      "node5_events": {
+        "5": {
+          "app_admission": 15000,
+          "app_send": 603,
+          "nwk_enqueue": 603,
+          "nwk_admission": 1449,
+          "nwk_forward": 603,
+          "hop_admission": 603,
+          "tx_start": 587,
+          "nwk_nsdp_release": 587,
+          "hop_completion": 587
+        }
+      },
+      "node5_enqueue_to_submit_s": {
+        "5": {
+          "n": 603,
+          "mean": 0.3598844406301805,
+          "median": 2.7999988105875673e-08,
+          "max": 8.398291114000017
+        }
+      },
+      "node5_unsubmitted_at_stop_ages": {},
+      "link45_events": {
+        "rx_accept": 8,
+        "rx_drop": 579
+      },
+      "link45_by_source": {
+        "5": {
+          "rx_accept": 8,
+          "rx_drop": 579
+        }
+      }
+    }
+  },
+  {
+    "case": "m130",
+    "duration": 600,
+    "matlab": {
+      "applications": {
+        "4": {
+          "admitted": 214,
+          "delivered": 171,
+          "dropped": 0,
+          "pending": 43,
+          "latency_s": {
+            "n": 171,
+            "mean": 54.65909178781823,
+            "median": 56.8408110860639,
+            "max": 75.9418110860639
+          },
+          "admission": {
+            "Attempts": 15000,
+            "Admitted": 214,
+            "BlockedNsdp": 14786
+          }
+        },
+        "5": {
+          "admitted": 173,
+          "delivered": 157,
+          "dropped": 0,
+          "pending": 16,
+          "latency_s": {
+            "n": 157,
+            "mean": 28.940635672051094,
+            "median": 30.0898110860638,
+            "max": 40.3198110860639
+          },
+          "admission": {
+            "Attempts": 15000,
+            "Admitted": 173,
+            "BlockedNsdp": 14827
+          }
+        }
+      },
+      "node5_events": {
+        "5": {
+          "application_attempt": 173,
+          "network_enqueue": 173,
+          "mac_enqueue": 164,
+          "hop_admit": 164,
+          "network_submit": 164,
+          "hop_sent": 157,
+          "network_custody_release": 157,
+          "hop_ack": 157
+        },
+        "4": {
+          "network_enqueue": 198,
+          "hop_receive": 198,
+          "mac_enqueue": 181,
+          "hop_admit": 181,
+          "network_submit": 181,
+          "hop_sent": 172,
+          "network_custody_release": 171,
+          "hop_ack": 171
+        }
+      },
+      "node5_enqueue_to_submit_s": {
+        "5": {
+          "n": 164,
+          "mean": 17.870783241196623,
+          "median": 16.915291113841988,
+          "max": 26.61829111384202
+        },
+        "4": {
+          "n": 181,
+          "mean": 16.981603199759743,
+          "median": 15.927478669372988,
+          "max": 28.732478669372995
+        }
+      },
+      "node5_unsubmitted_at_stop_ages": {
+        "5": {
+          "n": 9,
+          "mean": 5.048888888888895,
+          "median": 4.1200000000000045,
+          "max": 17.539999999999964
+        },
+        "4": {
+          "n": 17,
+          "mean": 11.705540496707485,
+          "median": 11.830187555530983,
+          "max": 17.303187555531053
+        }
+      },
+      "link45_events": {
+        "mac_enqueue": 210,
+        "hop_admit": 198,
+        "network_submit": 198,
+        "hop_sent": 210,
+        "hop_ack": 51,
+        "hop_dack": 147,
+        "hop_dack_expired": 133,
+        "hop_retry": 12
+      },
+      "link45_by_source": {
+        "4": {
+          "mac_enqueue": 210,
+          "hop_admit": 198,
+          "network_submit": 198,
+          "hop_sent": 210,
+          "hop_ack": 51,
+          "hop_dack": 147,
+          "hop_dack_expired": 133,
+          "hop_retry": 12
+        }
+      },
+      "link45_retry_wait_s": {
+        "n": 12,
+        "mean": 1.895666638888675,
+        "median": 1.8024999722219945,
+        "max": 3.758999972222
+      },
+      "link45_retry_cancel_wait_s": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "max": null
+      },
+      "link45_pending_retry_wait_s": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "max": null
+      },
+      "link45_actual_repeat_transmissions": 12
+    },
+    "ns3": {
+      "applications": {
+        "4": {
+          "admitted": 225,
+          "delivered": 181,
+          "unmatched_sends": 44,
+          "latency_s": {
+            "n": 181,
+            "mean": 51.88598788158011,
+            "median": 55.739811085999975,
+            "max": 77.66981108599998
+          },
+          "admission": {
+            "Attempts": 15000,
+            "Admitted": 225,
+            "BlockedNsdp": 14775
+          }
+        },
+        "5": {
+          "admitted": 173,
+          "delivered": 157,
+          "unmatched_sends": 16,
+          "latency_s": {
+            "n": 157,
+            "mean": 28.08011974842038,
+            "median": 27.757811086000004,
+            "max": 38.94581108599999
+          },
+          "admission": {
+            "Attempts": 15000,
+            "Admitted": 173,
+            "BlockedNsdp": 14827
+          }
+        }
+      },
+      "node5_events": {
+        "5": {
+          "app_admission": 15000,
+          "app_send": 173,
+          "nwk_enqueue": 173,
+          "nwk_admission": 1807,
+          "nwk_forward": 162,
+          "hop_admission": 162,
+          "tx_start": 338,
+          "nwk_nsdp_release": 157,
+          "hop_completion": 157,
+          "hop_retry": 2
+        },
+        "4": {
+          "rx_drop": 19,
+          "rx_accept": 209,
+          "nwk_enqueue": 209,
+          "hop_feedback": 209,
+          "nwk_admission": 2007,
+          "nwk_forward": 193,
+          "hop_admission": 193,
+          "nwk_nsdp_release": 181,
+          "hop_completion": 181
+        }
+      },
+      "node5_enqueue_to_submit_s": {
+        "5": {
+          "n": 162,
+          "mean": 16.340931292481475,
+          "median": 16.800791113999992,
+          "max": 26.86929111400002
+        },
+        "4": {
+          "n": 193,
+          "mean": 16.388540846165803,
+          "median": 15.615478669999959,
+          "max": 28.03047866999998
+        }
+      },
+      "node5_unsubmitted_at_stop_ages": {
+        "4": {
+          "n": 16,
+          "mean": 6.294625056000001,
+          "median": 4.264187555999968,
+          "max": 22.516187555999977
+        },
+        "5": {
+          "n": 11,
+          "mean": 15.629090909090927,
+          "median": 17.17999999999995,
+          "max": 19.940000000000055
+        }
+      },
+      "link45_events": {
+        "nwk_admission": 7237,
+        "hop_admission": 209,
+        "tx_start": 228,
+        "rx_drop": 7,
+        "hop_retry": 26,
+        "rx_accept": 331,
+        "hop_completion:ack": 61,
+        "hop_completion:dack": 148,
+        "hop_capacity_release": 134
+      },
+      "link45_by_source": {
+        "4": {
+          "nwk_admission": 7237,
+          "hop_admission": 209,
+          "tx_start": 228,
+          "hop_retry": 26,
+          "hop_completion:ack": 61,
+          "hop_completion:dack": 148,
+          "hop_capacity_release": 134
+        },
+        "5": {
+          "rx_drop": 7,
+          "rx_accept": 331
+        }
+      }
+    }
+  },
+  {
+    "case": "p128",
+    "duration": 900,
+    "matlab": {
+      "applications": {
+        "2": {
+          "admitted": 102,
+          "delivered": 45,
+          "dropped": 16,
+          "pending": 41,
+          "latency_s": {
+            "n": 45,
+            "mean": 270.583611086064,
+            "median": 264.690811086064,
+            "max": 466.015811086064
+          },
+          "admission": {
+            "Attempts": 30000,
+            "Admitted": 102,
+            "BlockedNsdp": 29898
+          }
+        },
+        "3": {
+          "admitted": 930,
+          "delivered": 917,
+          "dropped": 0,
+          "pending": 13,
+          "latency_s": {
+            "n": 917,
+            "mean": 10.016649364177914,
+            "median": 9.61180807737321,
+            "max": 26.5018080773731
+          },
+          "admission": {
+            "Attempts": 30000,
+            "Admitted": 930,
+            "BlockedNsdp": 29070
+          }
+        },
+        "4": {
+          "admitted": 82,
+          "delivered": 51,
+          "dropped": 7,
+          "pending": 24,
+          "latency_s": {
+            "n": 51,
+            "mean": 190.85445814488747,
+            "median": 200.823811086064,
+            "max": 313.043811086064
+          },
+          "admission": {
+            "Attempts": 30000,
+            "Admitted": 82,
+            "BlockedNsdp": 29918
+          }
+        },
+        "5": {
+          "admitted": 150,
+          "delivered": 133,
+          "dropped": 1,
+          "pending": 16,
+          "latency_s": {
+            "n": 133,
+            "mean": 63.065683266514995,
+            "median": 42.4728110860639,
+            "max": 185.918811086064
+          },
+          "admission": {
+            "Attempts": 30000,
+            "Admitted": 150,
+            "BlockedNsdp": 29850
+          }
+        },
+        "7": {
+          "admitted": 143,
+          "delivered": 34,
+          "dropped": 13,
+          "pending": 96,
+          "latency_s": {
+            "n": 34,
+            "mean": 454.1482816742993,
+            "median": 491.818311086064,
+            "max": 548.919811086064
+          },
+          "admission": {
+            "Attempts": 30000,
+            "Admitted": 143,
+            "BlockedNsdp": 29857
+          }
+        },
+        "8": {
+          "admitted": 129,
+          "delivered": 44,
+          "dropped": 15,
+          "pending": 70,
+          "latency_s": {
+            "n": 44,
+            "mean": 392.73499290424576,
+            "median": 382.389311086064,
+            "max": 512.275811086064
+          },
+          "admission": {
+            "Attempts": 30000,
+            "Admitted": 129,
+            "BlockedNsdp": 29871
+          }
+        }
+      },
+      "node5_events": {
+        "5": {
+          "application_attempt": 150,
+          "network_enqueue": 150,
+          "mac_enqueue": 186,
+          "hop_admit": 139,
+          "network_submit": 139,
+          "hop_sent": 176,
+          "hop_retry": 47,
+          "network_custody_release": 134,
+          "hop_ack": 133,
+          "hop_failed": 1
+        },
+        "4": {
+          "network_enqueue": 60,
+          "hop_receive": 60,
+          "mac_enqueue": 67,
+          "hop_admit": 56,
+          "network_submit": 56,
+          "hop_sent": 61,
+          "hop_retry": 11,
+          "network_custody_release": 52,
+          "hop_ack": 51,
+          "hop_failed": 1
+        },
+        "2": {
+          "network_enqueue": 53,
+          "hop_receive": 54,
+          "mac_enqueue": 68,
+          "hop_admit": 47,
+          "network_submit": 47,
+          "hop_sent": 64,
+          "network_custody_release": 46,
+          "hop_ack": 45,
+          "hop_retry": 21,
+          "hop_failed": 1
+        },
+        "8": {
+          "network_enqueue": 53,
+          "hop_receive": 53,
+          "mac_enqueue": 63,
+          "hop_admit": 47,
+          "network_submit": 47,
+          "hop_sent": 61,
+          "hop_retry": 16,
+          "network_custody_release": 45,
+          "hop_ack": 44,
+          "hop_failed": 1
+        },
+        "7": {
+          "network_enqueue": 46,
+          "hop_receive": 47,
+          "mac_enqueue": 46,
+          "hop_admit": 39,
+          "network_submit": 39,
+          "hop_sent": 39,
+          "network_custody_release": 34,
+          "hop_ack": 34,
+          "hop_retry": 7
+        }
+      },
+      "node5_enqueue_to_submit_s": {
+        "5": {
+          "n": 139,
+          "mean": 40.37426858784313,
+          "median": 23.66611111384202,
+          "max": 121.47311111384204
+        },
+        "4": {
+          "n": 56,
+          "mean": 62.53777259794443,
+          "median": 31.159798669373032,
+          "max": 128.91329866937303
+        },
+        "2": {
+          "n": 47,
+          "mean": 65.1120646268198,
+          "median": 59.68829866937301,
+          "max": 130.05729866937293
+        },
+        "8": {
+          "n": 47,
+          "mean": 94.13221356299002,
+          "median": 100.52129866937298,
+          "max": 129.39429866937303
+        },
+        "7": {
+          "n": 39,
+          "mean": 107.94429866937298,
+          "median": 106.12429866937305,
+          "max": 129.81029866937297
+        }
+      },
+      "node5_unsubmitted_at_stop_ages": {
+        "7": {
+          "n": 7,
+          "mean": 73.16133041267385,
+          "median": 77.40118755553101,
+          "max": 93.24818755553099
+        },
+        "5": {
+          "n": 11,
+          "mean": 34.567272727272716,
+          "median": 29.860000000000014,
+          "max": 90.36000000000001
+        },
+        "4": {
+          "n": 4,
+          "mean": 84.79493755553099,
+          "median": 85.630187555531,
+          "max": 90.11518755553095
+        },
+        "8": {
+          "n": 6,
+          "mean": 38.76952088886433,
+          "median": 37.387187555531,
+          "max": 77.06318755553104
+        },
+        "2": {
+          "n": 6,
+          "mean": 57.736520888864334,
+          "median": 57.49818755553099,
+          "max": 70.47218755553104
+        }
+      },
+      "link45_events": {
+        "mac_enqueue": 412,
+        "hop_admit": 241,
+        "network_submit": 241,
+        "hop_sent": 408,
+        "hop_ack": 175,
+        "hop_retry": 171,
+        "hop_failed": 28,
+        "hop_dack": 37,
+        "hop_dack_expired": 37
+      },
+      "link45_by_source": {
+        "4": {
+          "mac_enqueue": 113,
+          "hop_admit": 66,
+          "network_submit": 66,
+          "hop_sent": 112,
+          "hop_ack": 60,
+          "hop_retry": 47,
+          "hop_failed": 6
+        },
+        "2": {
+          "mac_enqueue": 113,
+          "hop_admit": 64,
+          "network_submit": 64,
+          "hop_sent": 113,
+          "hop_retry": 49,
+          "hop_ack": 53,
+          "hop_failed": 10
+        },
+        "8": {
+          "mac_enqueue": 106,
+          "hop_admit": 62,
+          "network_submit": 62,
+          "hop_sent": 105,
+          "hop_retry": 44,
+          "hop_ack": 35,
+          "hop_failed": 9,
+          "hop_dack": 18,
+          "hop_dack_expired": 18
+        },
+        "7": {
+          "mac_enqueue": 80,
+          "hop_admit": 49,
+          "network_submit": 49,
+          "hop_sent": 78,
+          "hop_ack": 27,
+          "hop_retry": 31,
+          "hop_failed": 3,
+          "hop_dack": 19,
+          "hop_dack_expired": 19
+        }
+      },
+      "link45_retry_wait_s": {
+        "n": 167,
+        "mean": 2.3082933853956527,
+        "median": 0.8339999722220455,
+        "max": 16.823999972222055
+      },
+      "link45_retry_cancel_wait_s": {
+        "n": 4,
+        "mean": 0.49954241669097144,
+        "median": 0.5807924166909402,
+        "max": 0.678292416691022
+      },
+      "link45_pending_retry_wait_s": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "max": null
+      },
+      "link45_actual_repeat_transmissions": 167
+    },
+    "ns3": {
+      "applications": {
+        "2": {
+          "admitted": 85,
+          "delivered": 44,
+          "unmatched_sends": 41,
+          "latency_s": {
+            "n": 44,
+            "mean": 321.01044744963633,
+            "median": 331.529311086,
+            "max": 464.34381108599996
+          },
+          "admission": {
+            "Attempts": 30000,
+            "Admitted": 85,
+            "BlockedNsdp": 29915
+          }
+        },
+        "3": {
+          "admitted": 876,
+          "delivered": 862,
+          "unmatched_sends": 14,
+          "latency_s": {
+            "n": 862,
+            "mean": 10.83086893546868,
+            "median": 10.262808077000017,
+            "max": 28.48680807700009
+          },
+          "admission": {
+            "Attempts": 30000,
+            "Admitted": 876,
+            "BlockedNsdp": 29124
+          }
+        },
+        "4": {
+          "admitted": 64,
+          "delivered": 43,
+          "unmatched_sends": 21,
+          "latency_s": {
+            "n": 43,
+            "mean": 213.3316482953023,
+            "median": 261.269811086,
+            "max": 335.226811086
+          },
+          "admission": {
+            "Attempts": 30000,
+            "Admitted": 64,
+            "BlockedNsdp": 29936
+          }
+        },
+        "5": {
+          "admitted": 256,
+          "delivered": 236,
+          "unmatched_sends": 20,
+          "latency_s": {
+            "n": 236,
+            "mean": 39.15511388261017,
+            "median": 31.973811085999984,
+            "max": 115.43081108599995
+          },
+          "admission": {
+            "Attempts": 30000,
+            "Admitted": 256,
+            "BlockedNsdp": 29744
+          }
+        },
+        "7": {
+          "admitted": 188,
+          "delivered": 35,
+          "unmatched_sends": 153,
+          "latency_s": {
+            "n": 35,
+            "mean": 494.6394682288571,
+            "median": 482.72181108600006,
+            "max": 573.860811086
+          },
+          "admission": {
+            "Attempts": 30000,
+            "Admitted": 188,
+            "BlockedNsdp": 29812
+          }
+        },
+        "8": {
+          "admitted": 137,
+          "delivered": 25,
+          "unmatched_sends": 112,
+          "latency_s": {
+            "n": 25,
+            "mean": 456.686731086,
+            "median": 462.335811086,
+            "max": 533.625811086
+          },
+          "admission": {
+            "Attempts": 30000,
+            "Admitted": 137,
+            "BlockedNsdp": 29863
+          }
+        }
+      },
+      "node5_events": {
+        "5": {
+          "app_admission": 30000,
+          "app_send": 256,
+          "nwk_enqueue": 256,
+          "nwk_admission": 8257,
+          "nwk_forward": 244,
+          "hop_admission": 244,
+          "tx_start": 484,
+          "hop_retry": 111,
+          "nwk_nsdp_release": 240,
+          "hop_completion": 240
+        },
+        "7": {
+          "rx_drop": 214,
+          "nwk_enqueue": 43,
+          "hop_feedback": 43,
+          "nwk_admission": 2715,
+          "nwk_forward": 41,
+          "hop_admission": 41,
+          "hop_retry": 16,
+          "nwk_nsdp_release": 37,
+          "hop_completion": 37
+        },
+        "2": {
+          "rx_drop": 293,
+          "nwk_enqueue": 48,
+          "hop_feedback": 48,
+          "nwk_admission": 2243,
+          "nwk_forward": 47,
+          "hop_admission": 47,
+          "nwk_nsdp_release": 45,
+          "hop_completion": 45,
+          "hop_retry": 15
+        },
+        "3": {
+          "rx_accept": 573,
+          "rx_drop": 350
+        },
+        "8": {
+          "rx_drop": 326,
+          "nwk_enqueue": 31,
+          "hop_feedback": 31,
+          "nwk_admission": 2018,
+          "nwk_forward": 30,
+          "hop_admission": 30,
+          "nwk_nsdp_release": 26,
+          "hop_completion": 26,
+          "hop_retry": 13
+        },
+        "4": {
+          "rx_accept": 165,
+          "nwk_enqueue": 43,
+          "hop_feedback": 43,
+          "nwk_admission": 2525,
+          "rx_drop": 168,
+          "nwk_forward": 43,
+          "hop_admission": 43,
+          "nwk_nsdp_release": 43,
+          "hop_completion": 43,
+          "hop_retry": 10
+        }
+      },
+      "node5_enqueue_to_submit_s": {
+        "5": {
+          "n": 244,
+          "mean": 23.28499180627049,
+          "median": 16.468611114000026,
+          "max": 91.03711111400003
+        },
+        "4": {
+          "n": 43,
+          "mean": 40.06797308860465,
+          "median": 30.087298669999996,
+          "max": 73.41629867000006
+        },
+        "2": {
+          "n": 47,
+          "mean": 36.82185186148935,
+          "median": 31.23129867,
+          "max": 86.68929866999997
+        },
+        "8": {
+          "n": 30,
+          "mean": 56.50719867000001,
+          "median": 53.22729866999998,
+          "max": 95.24329867000006
+        },
+        "7": {
+          "n": 41,
+          "mean": 58.48088403585366,
+          "median": 60.351298670000006,
+          "max": 73.14329867000004
+        }
+      },
+      "node5_unsubmitted_at_stop_ages": {
+        "5": {
+          "n": 12,
+          "mean": 15.779999999999982,
+          "median": 17.110000000000014,
+          "max": 32.059999999999945
+        },
+        "8": {
+          "n": 1,
+          "mean": 29.88618755599998,
+          "median": 29.88618755599998,
+          "max": 29.88618755599998
+        },
+        "7": {
+          "n": 2,
+          "mean": 16.002187555999967,
+          "median": 16.002187555999967,
+          "max": 29.22318755599997
+        },
+        "2": {
+          "n": 1,
+          "mean": 3.8991875560000153,
+          "median": 3.8991875560000153,
+          "max": 3.8991875560000153
+        }
+      },
+      "link45_events": {
+        "nwk_admission": 46341,
+        "hop_admission": 197,
+        "rx_accept": 364,
+        "rx_drop": 120,
+        "tx_start": 333,
+        "hop_completion:ack": 155,
+        "hop_retry": 142,
+        "hop_completion:no_ack": 31,
+        "hop_completion:dack": 10,
+        "hop_capacity_release": 10
+      },
+      "link45_by_source": {
+        "4": {
+          "nwk_admission": 9595,
+          "hop_admission": 48,
+          "tx_start": 333,
+          "hop_completion:ack": 43,
+          "hop_retry": 33,
+          "hop_completion:no_ack": 5
+        },
+        "2": {
+          "nwk_admission": 11926,
+          "hop_admission": 60,
+          "hop_retry": 60,
+          "hop_completion:no_ack": 12,
+          "hop_completion:ack": 48
+        },
+        "5": {
+          "rx_accept": 364,
+          "rx_drop": 120
+        },
+        "8": {
+          "nwk_admission": 11254,
+          "hop_admission": 41,
+          "hop_retry": 31,
+          "hop_completion:no_ack": 10,
+          "hop_completion:ack": 30,
+          "hop_completion:dack": 1,
+          "hop_capacity_release": 1
+        },
+        "7": {
+          "nwk_admission": 13566,
+          "hop_admission": 48,
+          "hop_completion:ack": 34,
+          "hop_retry": 18,
+          "hop_completion:no_ack": 4,
+          "hop_completion:dack": 9,
+          "hop_capacity_release": 9
+        }
+      }
+    }
+  }
+]

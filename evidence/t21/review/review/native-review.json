@@ -1,0 +1,61 @@
+{
+  "schema": "csr-tranche21-independent-native-diagnostic-review-v1",
+  "passed": true,
+  "seeds": [
+    {
+      "seed": 128,
+      "application_flows_and_120_bins_match_accepted": true,
+      "nsdp_and_queue_conservation_passed": true,
+      "historical_telemetry_available": false,
+      "last_raw_event_time_s": 5999.916,
+      "native_node8_relay7_nsdp": null
+    },
+    {
+      "seed": 129,
+      "application_flows_and_120_bins_match_accepted": true,
+      "nsdp_and_queue_conservation_passed": true,
+      "historical_telemetry_available": true,
+      "last_raw_event_time_s": 5999.994,
+      "native_node8_relay7_nsdp": {
+        "node": 8,
+        "source": 7,
+        "destination": 1,
+        "last": 15,
+        "maximum": 57,
+        "time_weighted_mean_300_6000": 29.60855834251857,
+        "seconds_at_or_above_16_300_6000": 5531.211658080002,
+        "observations": 1683
+      }
+    },
+    {
+      "seed": 130,
+      "application_flows_and_120_bins_match_accepted": true,
+      "nsdp_and_queue_conservation_passed": true,
+      "historical_telemetry_available": true,
+      "last_raw_event_time_s": 5999.98,
+      "native_node8_relay7_nsdp": {
+        "node": 8,
+        "source": 7,
+        "destination": 1,
+        "last": 318,
+        "maximum": 361,
+        "time_weighted_mean_300_6000": 237.1933014547207,
+        "seconds_at_or_above_16_300_6000": 5671.312670462,
+        "observations": 2404
+      }
+    }
+  ],
+  "review_method": "Independent recomputation of counts/conservation from derived full-trace output, authenticated against raw-gzip/provenance hashes and accepted T20 application counts. Large raw traces were not reparsed by this reviewer.",
+  "metrics": "Native admission to NSDP release/completion ends at ACK/no_ack/DACK feedback; delayed DACK capacity release is a separate endpoint. Queue waits and delivery delays are completed-only populations.",
+  "separate_capacity_review": "See native-capacity-review.json for actual-capacity-release and terminal-outcome join validation.",
+  "source_files_sha256": {
+    "join_outcomes.py": "561f8484452345cebd9ae5d52d501cffcb3dabc114205c0230c8151aac7b82e1",
+    "audit_native.py": "958b6da81468084fe4b80c0fa1e5ee3fb834d75740f0fc62e394471ceb88716b",
+    "analyze_native.py": "de3b8537362145a46f94fc8e1b803e897b8156099af5cd18ce1acb69cca9076c"
+  },
+  "output_json_sha256": {
+    "s128.json": "ae579c53348caf602344dbe1affccfd927bef43e46ec12059c3851d1758a5fd9",
+    "s129.json": "6f8d529021f97e5b8dd743bd0075932f086e21e072a4e2a9be5acf7ccc8b35d2",
+    "s130.json": "b7ae133af818d09916050e5bb91329d768035a49122fea133721cb314bc60cdd"
+  }
+}

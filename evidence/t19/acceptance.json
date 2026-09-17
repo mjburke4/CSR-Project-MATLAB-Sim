@@ -1,0 +1,71 @@
+{
+  "schema": "csr-tranche19-acceptance-v1",
+  "status": "accepted_for_portable_regression_and_policy_experiment",
+  "owner_evidence_sha256": "525758669b8f84fa5dada46e293b8482980ef389efc5408ff056aac0e804ee30",
+  "candidate_sha256": "37b87a253a217824b0160f14b23f2b498e9df7a99cdc46648f3d9785a2fda777",
+  "source_snapshot_sha256": "2c8565557d765dd580deccbc92f1b164f607f62fd75a4d703f39661c60578e74",
+  "reference_snapshot_sha256": "b6f85ea0920f2b81620ed9033538c5c78bc81755cbdec03f7d61f7674d4f2576",
+  "review_sha256": "01c7b4ae2bc633c4ffb25ee91d7501c04a432c01d60171a38ee0a965e1228fa6",
+  "independent_integrity_report_sha256": "fba4a2b9fff33ef7ecfd40d6ae25f0545f71dd7c5600666be9cb6498c4da1e06",
+  "runtime": {
+    "Runtime": "MATLAB",
+    "Version": "25.1.0.2943329 (R2025a)",
+    "Release": "2025a",
+    "HasWirelessNetworkSimulator": false,
+    "HasWnetNode": false,
+    "HasWirelessPacket": false,
+    "DefaultBackend": "portable",
+    "WirelessAdapterImplemented": true,
+    "WirelessAdapterScope": "Optional R2026a wireless-clock candidate; runtime validation pending",
+    "NativePacketTransportIntegrated": false,
+    "ProbeScope": "Symbol discovery only; licenses and execution are not validated."
+  },
+  "tests_passed": 700,
+  "test_classes": 60,
+  "completed_cases": 2,
+  "simulated_seconds": 12000,
+  "source_bindings_verified": 358,
+  "matlab_files_verified": 170,
+  "reference_files_verified": 60,
+  "independent_integrity_checks_passed": 48,
+  "default_reproduces_t17_statistics_and_12_core_csvs": true,
+  "all_other_344_t18_source_bindings_unchanged": true,
+  "checker_repaired_for_return": false,
+  "matlab_executed_by_reviewer": false,
+  "owner_matlab_execution_evidence_verified": true,
+  "numerical_parity_established": false,
+  "practical_band_percent": 5,
+  "band_role": "Descriptive totals and per-flow engineering target; no statistical equivalence claim.",
+  "default_policy": "actual-tx",
+  "default_policy_changed": false,
+  "experimental_policy": "native-provisional",
+  "experimental_policy_promoted": false,
+  "rerun_required": false,
+  "decision": "Retain actual-tx. The experimental policy increases admissions and failure-driven capacity turnover, with much higher terminal loss and worse important per-flow residuals in this full-campus seed.",
+  "unmatched_data_sent_indications_observed": 0,
+  "cases": {
+    "a128": {
+      "attempts": 1710000,
+      "admitted": 12484,
+      "blocked": 1697516,
+      "delivered": 11825,
+      "dropped": 402,
+      "pending": 257
+    },
+    "p128": {
+      "attempts": 1710000,
+      "admitted": 13812,
+      "blocked": 1696188,
+      "delivered": 11889,
+      "dropped": 1519,
+      "pending": 404
+    }
+  },
+  "scope_limits": [
+    "One full-campus seed; subsequent event histories and random draw consumption can diverge.",
+    "Original complete protocol/PHY and admitted-application evidence; only the first 100000 of 1710000 offered attempts are retained individually.",
+    "HOP failure events, final application drops and pending custody owners are different quantities.",
+    "No PHY/ECC change, new default selection, native execution or repository publication in this review."
+  ],
+  "recommended_next_milestone": "Quantify full-campus variation across a small additional seed set using the unchanged actual-tx default and matched pinned native cases before selecting another behavior change. Reuse this accepted seed128 result; report every flow, totals, delay, drops and pending work."
+}

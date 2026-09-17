@@ -1,0 +1,226 @@
+{
+  "scope": "Read-only review of owner T17 ZIP, pinned ns3/OPNET aggregates, and archived T10 evidence; no MATLAB execution or source changes.",
+  "archive_sha256": "19921afa83c57db2779e4302e5b39afef5120afb129a87fddb1f6d1bdbec2bd1",
+  "t10_reproduction": {
+    "analysis/aggregates.csv": {
+      "identical": true,
+      "bytes": 185736,
+      "sha256": "cb279cbed41517f46a1c85051627a58e3f8f79f69729fc330ee58f087528f273"
+    },
+    "analysis/applications.csv": {
+      "identical": true,
+      "bytes": 1055775,
+      "sha256": "7299ce08e0f8e7272c24497a0a20a3e34e8f6eba5e519274284be3b539dded69"
+    },
+    "raw/protocol_trace.csv": {
+      "identical": true,
+      "bytes": 31743686,
+      "sha256": "a8d220785b8f003a573f3776902fb81bb91f0c6b9e9db96be474672bd5e8b26b"
+    },
+    "raw/phy_trace.csv": {
+      "identical": true,
+      "bytes": 93235588,
+      "sha256": "00a978f1e790daac0b55a01ac73dbbd57a6a31968599fd725656f31d98ee86b3"
+    },
+    "raw/trace.csv": {
+      "identical": true,
+      "bytes": 31743686,
+      "sha256": "a8d220785b8f003a573f3776902fb81bb91f0c6b9e9db96be474672bd5e8b26b"
+    },
+    "raw/nwk_nodes.csv": {
+      "identical": true,
+      "bytes": 891,
+      "sha256": "577c8f0217f6c22e6d5bc885465c1f994b33326f0af9cce4a90320cfea79b880"
+    },
+    "raw/hop_nodes.csv": {
+      "identical": true,
+      "bytes": 1451,
+      "sha256": "f43ec8934d900f41966bfc7b39411021cbc2b2f8ce0833b567d7d6e536eec0ef"
+    },
+    "raw/mac_nodes.csv": {
+      "identical": true,
+      "bytes": 799,
+      "sha256": "4ccf52c2ecdcf060da4294cce22ca86e4218010fb4befb4659070f2d9b3d5ca1"
+    }
+  },
+  "totals": {
+    "matlab": {
+      "generated": 12484,
+      "received": 11825,
+      "unresolved": 659,
+      "delivery_fraction": 0.9472124319128484,
+      "all_series_bins": 100,
+      "delay_observed_bins": 95,
+      "delay_missing_bins": [
+        60,
+        120,
+        180,
+        240,
+        300
+      ],
+      "received_count_missing_bins": [],
+      "unweighted_populated_delay_bucket_mean_s": 98.09146890252902,
+      "packet_count_weighted_delay_mean_s": 98.97012338799816,
+      "weighted_delay_packet_denominator": 11825.0,
+      "receive_count_vs_60_times_rate_max_error": 1.4210854715202004e-14
+    },
+    "ns3": {
+      "generated": 12417,
+      "received": 11769,
+      "unresolved": 648,
+      "delivery_fraction": 0.9478134815172747,
+      "all_series_bins": 100,
+      "delay_observed_bins": 95,
+      "delay_missing_bins": [
+        60,
+        120,
+        180,
+        240,
+        300
+      ],
+      "received_count_missing_bins": [],
+      "unweighted_populated_delay_bucket_mean_s": 103.18100582955141,
+      "packet_count_weighted_delay_mean_s": 104.19477083093884,
+      "weighted_delay_packet_denominator": 11769.0,
+      "receive_count_vs_60_times_rate_max_error": 1.4210854715202004e-14
+    },
+    "opnet": {
+      "generated": 12072,
+      "received": 11410,
+      "unresolved": 662,
+      "delivery_fraction": 0.9451623591782637,
+      "all_series_bins": 100,
+      "delay_observed_bins": 95,
+      "delay_missing_bins": [
+        60,
+        120,
+        180,
+        240,
+        300
+      ],
+      "received_count_missing_bins": [
+        60,
+        120,
+        180,
+        240,
+        300
+      ],
+      "unweighted_populated_delay_bucket_mean_s": 112.74800745492433,
+      "packet_count_weighted_delay_mean_s": 113.27494314367226,
+      "weighted_delay_packet_denominator": 11410.0,
+      "receive_count_vs_60_times_rate_max_error": 1.4210854715202004e-14
+    }
+  },
+  "per_flow": [
+    {
+      "source": 2,
+      "destination": 1,
+      "matlab_generated": 551,
+      "matlab_delivered": 411,
+      "matlab_dropped": 97,
+      "matlab_pending": 43,
+      "matlab_packet_mean_latency_s": 487.3300714266966,
+      "ns3_generated": 547,
+      "ns3_delivered": 410,
+      "ns3_packet_mean_latency_s": 456.845567183561,
+      "delivered_delta": 1,
+      "delivered_relative_delta_pct": 0.24390243902439024,
+      "latency_relative_delta_pct": 6.672824786518472,
+      "matlab_delivery_pct": 74.59165154264973,
+      "ns3_delivery_pct": 74.95429616087752
+    },
+    {
+      "source": 3,
+      "destination": 1,
+      "matlab_generated": 8489,
+      "matlab_delivered": 8472,
+      "matlab_dropped": 1,
+      "matlab_pending": 16,
+      "matlab_packet_mean_latency_s": 10.328367385682965,
+      "ns3_generated": 8551,
+      "ns3_delivered": 8535,
+      "ns3_packet_mean_latency_s": 10.44845909750381,
+      "delivered_delta": -63,
+      "delivered_relative_delta_pct": -0.7381370826010545,
+      "latency_relative_delta_pct": -1.1493724644003778,
+      "matlab_delivery_pct": 99.79974084108846,
+      "ns3_delivery_pct": 99.8128873815928
+    },
+    {
+      "source": 4,
+      "destination": 1,
+      "matlab_generated": 439,
+      "matlab_delivered": 348,
+      "matlab_dropped": 62,
+      "matlab_pending": 29,
+      "matlab_packet_mean_latency_s": 299.1536214308915,
+      "ns3_generated": 498,
+      "ns3_delivered": 419,
+      "ns3_packet_mean_latency_s": 269.68891848456803,
+      "delivered_delta": -71,
+      "delivered_relative_delta_pct": -16.94510739856802,
+      "latency_relative_delta_pct": 10.925440730709713,
+      "matlab_delivery_pct": 79.27107061503416,
+      "ns3_delivery_pct": 84.13654618473896
+    },
+    {
+      "source": 5,
+      "destination": 1,
+      "matlab_generated": 1669,
+      "matlab_delivered": 1644,
+      "matlab_dropped": 9,
+      "matlab_pending": 16,
+      "matlab_packet_mean_latency_s": 53.46351789871596,
+      "ns3_generated": 1397,
+      "ns3_delivered": 1369,
+      "ns3_packet_mean_latency_s": 67.30344765283712,
+      "delivered_delta": 275,
+      "delivered_relative_delta_pct": 20.087655222790357,
+      "latency_relative_delta_pct": -20.563478152723945,
+      "matlab_delivery_pct": 98.50209706411025,
+      "ns3_delivery_pct": 97.99570508231926
+    },
+    {
+      "source": 7,
+      "destination": 1,
+      "matlab_generated": 748,
+      "matlab_delivered": 533,
+      "matlab_dropped": 127,
+      "matlab_pending": 88,
+      "matlab_packet_mean_latency_s": 784.5565033937563,
+      "ns3_generated": 803,
+      "ns3_delivered": 574,
+      "ns3_packet_mean_latency_s": 777.8483145703206,
+      "delivered_delta": -41,
+      "delivered_relative_delta_pct": -7.142857142857143,
+      "latency_relative_delta_pct": 0.86240320866946,
+      "matlab_delivery_pct": 71.2566844919786,
+      "ns3_delivery_pct": 71.48194271481943
+    },
+    {
+      "source": 8,
+      "destination": 1,
+      "matlab_generated": 588,
+      "matlab_delivered": 417,
+      "matlab_dropped": 106,
+      "matlab_pending": 65,
+      "matlab_packet_mean_latency_s": 653.1391396232342,
+      "ns3_generated": 621,
+      "ns3_delivered": 462,
+      "ns3_packet_mean_latency_s": 645.3700600037489,
+      "delivered_delta": -45,
+      "delivered_relative_delta_pct": -9.74025974025974,
+      "latency_relative_delta_pct": 1.2038177940018047,
+      "matlab_delivery_pct": 70.91836734693878,
+      "ns3_delivery_pct": 74.39613526570048
+    }
+  ],
+  "interpretation": [
+    "The complete default real-PHY campus simulation is numerically unchanged from T10, proven bytewise for both full traces, application observations, and aggregates.",
+    "Network totals conceal opposing per-flow differences: flow5 contributes+275 deliveries while flows3,4,7,8 contribute-220; flow2 contributes+1, net+56 versus ns3.",
+    "OPNET packet-weighted delay is reconstructable from global Sink bucket-mean delays and corresponding global bucket-sum receive counts for all95 populated bins; report it as reconstructed from archived aggregates. Per-flow OPNET delivery and packet latency distributions are unavailable in the aggregate-only archive.",
+    "Observed missing values at early bucket ends60,120,180,240,300 are not missing file coverage. All100 axis bins exist. No generation before300; endpoint semantics exclude t300 from the bin ending300.",
+    "Per-flow MATLAB/ns3 figures here are single-seed descriptive comparisons, not event-equivalence or confidence intervals. Equal seed numbers do not imply matched PRNG draws.",
+    "Suggested next bounded diagnosis is autonomous multi-hop service/admission fairness under saturated offered traffic, focusing on flows4 and5 and gateway-link service for local vs relay traffic, with flow8 as secondary. Trace first divergence and distinguish admitted-load shifts from conditional delivery failure before changing protocol. Do not repeat controlled ACK-boundary fixtures or adjust PHY/ECC to improve a single seed."
+  ]
+}

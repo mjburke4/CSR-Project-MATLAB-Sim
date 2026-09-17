@@ -1,0 +1,109 @@
+{
+  "schema": "csr-tranche16-independent-gate-review-v1",
+  "status": "no_remaining_blocking_findings",
+  "reviewer_scope": "Read-only independent Python evidence gate and MATLAB export interface review; no MATLAB execution.",
+  "reviewed_utc": "2026-09-15T15:04:09.010162+00:00",
+  "findings": [],
+  "resolved_findings": [
+    "Decimal/float arithmetic and timestamp comparison boundaries",
+    "JSON Boolean passed to a parser restricted to CSV strings",
+    "Missing a128/a130 configuration in the T9 archive; complete T8 configuration archive selected",
+    "Actual PHY start/end callbacks were not joined to timing targets",
+    "Retained ACK power and input context checks were missing",
+    "Planned MATLAB test count now requires exactly 129"
+  ],
+  "checks": [
+    "Candidate source snapshots and stable reference inventories bind the declared code. The T15 baseline contains 294 source files and 149 MATLAB files, with exactly two allowed integration changes.",
+    "All 12 workloads compare complete configurations against the hash-pinned T8 owner archive, permitting only canonical input path relocation. Six scenarios and three seeds remain unchanged.",
+    "Decimal and hexadecimal values preserve binary64 arithmetic. Component nanosecond sums and every receiver attempt bind to the actual transmitted frame ID and source.",
+    "Actual PHY start and end observations join the scheduled targets at legacy CSV precision. Every due end is required, and completed nonclosure receivers require starts. Future completions remain pending; preamble execution is not exported.",
+    "The gate requires 192 structural check identities and exactly 129 selected MATLAB test identities, with all tests successful and complete.",
+    "Application identities, ACK/DACK rate and power choices, and service callbacks within [300,320) seconds are reconstructed from retained observations.",
+    "Native aggregate comparisons use hash-pinned traces, named case/statistic/time keys, explicit difference signs and retained missing samples. Native unmatched sends are not reclassified as drops.",
+    "Closed ZIP inventories, hashes, sizes, CSV row counts and omission counters reject malformed or incomplete evidence. Synthetic checker tests do not impersonate MATLAB returns.",
+    "The review emits summaries rather than complete timing rows. Returned evidence excludes local MAT files and duplicate native archives."
+  ],
+  "validation": {
+    "python_t16_tests": {
+      "passed": 44,
+      "failed": 0,
+      "seconds": 2.553
+    },
+    "genuine_retained_helper_smoke": {
+      "archive": "Tranche9 accepted owner evidence",
+      "cases": [
+        "a129",
+        "c129"
+      ],
+      "actual_feedback_members": [
+        2081,
+        402
+      ],
+      "checks": [
+        "verify_feedback",
+        "validate_applications"
+      ]
+    },
+    "matlab_executed_by_reviewer": false
+  },
+  "files": [
+    {
+      "path": "scripts/analyze_tranche16_return.py",
+      "sha256": "9cd51150ab533bf66f0f087a2cd9982c5cad90ca7ba4df58be089ee61b9c83d0",
+      "bytes": 50998
+    },
+    {
+      "path": "scripts/tests/test_tranche16_return.py",
+      "sha256": "0e2163826dddb8a076b535427cd79742ee72a563854f949124afb4797f832925",
+      "bytes": 16873
+    },
+    {
+      "path": "+csr/+validation/networkTimingContract.m",
+      "sha256": "dd07e667e5652075eff1b281c98c416e0503595bcb6b1ca1b04965c17bae39d5",
+      "bytes": 15881
+    },
+    {
+      "path": "run_tranche16_validation.m",
+      "sha256": "56694ca9c9a09f5f82cbb6def8740dc1d7f62bb22de3ac5f099d50f054ab99b6",
+      "bytes": 15836
+    },
+    {
+      "path": "+csr/+scenario/tranche16Suite.m",
+      "sha256": "7e8d8e9598dd2700b87f1db42afa7be335e75e2a34144b7062b68bb78e51de72",
+      "bytes": 5116
+    },
+    {
+      "path": "scenarios/t16/plan.json",
+      "sha256": "6c102ee35a1b1797d578392e9ecd51ad587eba0a1db9c0806aa219ef9108a570",
+      "bytes": 31551
+    }
+  ],
+  "candidate_preparation": {
+    "status": "prepared_for_owner_matlab_execution",
+    "source_files": 304,
+    "baseline": {
+      "source_files": 294,
+      "matlab_files": 149,
+      "unchanged_source_files": 292,
+      "unchanged_matlab_files": 147,
+      "allowed_changes": [
+        {
+          "path": "+csr/+phy/SignalEngine.m",
+          "baseline_sha256": "65d84b1e97eb1a6ffb9977cb41bc314a80362dfd70c01780b698068fb51e0b29",
+          "candidate_sha256": "289c764bac0de95fefa75812e1b5090dcdf1953e35960cf7f02c4e298f4e294e"
+        },
+        {
+          "path": "+csr/+sim/NetworkSimulation.m",
+          "baseline_sha256": "37ac08896bf2373093370664133da1a715da14ed84ce1344fb602ef4026abc29",
+          "candidate_sha256": "80264e18c050d4dbf2c6e5729076c5dfa602401b4e76053577b6388a77894104"
+        }
+      ]
+    },
+    "planned_matlab_tests": 129,
+    "planned_cases": 12,
+    "native_reference_reused": true,
+    "matlab_executed": false,
+    "native_executed": false
+  },
+  "candidate_sha256": "f22a893457fd7927342ed7fa176c1e227d387f6a6be3631fd0204f9a53bc1a36"
+}

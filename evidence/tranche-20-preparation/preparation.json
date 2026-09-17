@@ -1,0 +1,51 @@
+{
+  "schema": "csr-tranche20-preparation-v1",
+  "status": "passed",
+  "candidate_sha256": "ba4cedf3551a0bc1fe31385108e1f33011d1c97211bba993b6061a2de31389c1",
+  "matlab_executed": false,
+  "matlab_execution_pending": true,
+  "python_tests_passed": 23,
+  "full_synthetic_schema_replay_passed": true,
+  "synthetic_scope": "Temporary seed129/130 envelopes use accepted seed128 raw bytes and synthetic test rows. The actual checker executes without mocks and authenticates archived parent128 and all native references. Fixture bytes are destroyed. This does not validate fresh MATLAB simulation or numerical results.",
+  "independent_source_review_passed": true,
+  "matlab_static_analysis": "Five new files passed MISS_HIT; reviewed hashes unchanged.",
+  "prior_source_files_unchanged": 358,
+  "prior_matlab_files_unchanged": 170,
+  "source_bindings": 376,
+  "matlab_files": 175,
+  "reference_files": 98,
+  "planned_matlab_tests": 716,
+  "fresh_matlab_seeds": [
+    129,
+    130
+  ],
+  "reused_matlab_seed": 128,
+  "native_runs_completed": [
+    129,
+    130
+  ],
+  "native_seed128_control_reproduction_passed": true,
+  "native_counts": {
+    "129": {
+      "admitted": 12463,
+      "unique_delivered": 11787,
+      "delivery_events": 11793,
+      "source_proven_duplicates": 6
+    },
+    "130": {
+      "admitted": 12661,
+      "unique_delivered": 11765,
+      "delivery_events": 11769,
+      "source_proven_duplicates": 4
+    }
+  },
+  "default_policy": "actual-tx",
+  "simulator_changed": false,
+  "comparison_band_percent": 5,
+  "limitations": [
+    "Fresh MATLAB execution pending.",
+    "Three seeds are a descriptive variability screen, not statistical equivalence.",
+    "Archived OPNET aggregate context only."
+  ],
+  "package_gate": "Clean overlay verification recorded separately in t20-package-verification.json."
+}

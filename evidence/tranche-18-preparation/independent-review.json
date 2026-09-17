@@ -1,0 +1,78 @@
+{
+  "schema": "csr-tranche18-independent-preparation-review-v1",
+  "reviewed_utc": "2026-09-16T12:48:42.552949+00:00",
+  "status": "source_and_focused_checker_review_passed_native_freeze_pending",
+  "reviewer": "independent design audit",
+  "matlab_executed": false,
+  "native_suite_reexecuted_by_reviewer": false,
+  "baseline_source_files_verified": 313,
+  "baseline_matlab_files_verified": 160,
+  "all_baseline_sources_unchanged": true,
+  "changed_baseline_paths": [],
+  "scenario_derivations_verified": 10,
+  "planned_simulations": 11,
+  "planned_simulated_seconds": 6900,
+  "plan_sha256": "068e47ddc8881117ad867e330259b6d1b89c3c4790450d77e54562cafb8dbcff",
+  "independent_python_tests": {
+    "command": "python -B -m unittest discover -s scripts/tests -p 'test_tranche18*.py' -q",
+    "passed": 58,
+    "failed": 0,
+    "return_checker_tests": 18,
+    "cohort_metrics_tests": 40
+  },
+  "review_findings_resolved": [
+    {
+      "finding": "Plan wording omitted existing MAC snapshot reads",
+      "resolution": "Explicit six public MAC scalar reads per cancellation snapshot; no added HOP/NWK polling."
+    },
+    {
+      "finding": "Inherited checker excluded callbacks/deliveries exactly at simulation stop",
+      "resolution": "T18-local inclusive PHY/outcome validation; original strict and quotient-snapped aggregate window preserved."
+    },
+    {
+      "finding": "Cohort helper rejected actual H+1 observer windows and would censor after H",
+      "resolution": "Accept configured H+1 window, require actual row times <=H, and censor HOP/NWK intervals at min(window end,H); three integration fixtures added."
+    }
+  ],
+  "unresolved_concrete_source_blockers": [],
+  "confirmed_semantics": [
+    "All retained parent CSV field values preserved except declared run name/duration/seed",
+    "No production changes or new timing policy",
+    "Exact m128 observer-on/off core configuration, statistics, metadata except RuntimeSeconds, and twelve canonical CSVs",
+    "Strict pre900 protocol/PHY prefix and exactly common first100000 T17 admission rows; all180000 current attempts required",
+    "Finite-stop pending work and absent reduced-case DACK are measurements",
+    "Native next_hop distinct from relay ingress peer; retry hook means MAC submission, not OTA"
+  ],
+  "t17_prefix_coverage": {
+    "link4_to5_dacks_before900": 37,
+    "original_application_source_counts": {
+      "7": 19,
+      "8": 18
+    }
+  },
+  "p128_pre_stop_service_budget_bound": {
+    "protocol_rows": 77899,
+    "application_attempts": 180000,
+    "cancellation_pairs_upper_bound": 2463,
+    "service_rows_upper_bound": 262825,
+    "planned_max_records": 400000,
+    "scope": "Strictly before900s; exact-stop callback rows excluded from this bound"
+  },
+  "pending_gate": "Root will freeze candidate and run verify_preparation against final native evidence; not duplicated by reviewer. Owner MATLAB execution and return review remain pending.",
+  "audited_files_sha256": {
+    "+csr/+scenario/tranche18Suite.m": "c925a25d8ac6672d49e2d53f1c63680ae7448f8bb3707a2b9edcfd539e1c31a8",
+    "+csr/+validation/relayServiceContract.m": "9d5a66393de68a1b1eacb7ee305f5792888c40b8edb739cf31db4d940b1674b1",
+    "run_tranche18_validation.m": "3d38dbf2028e5a454beb6762ae3459b08fe1e1da156c348a13c71076b4d093ed",
+    "tests/TestRelayServiceSuite.m": "af4da7716b532b02f02455f6f08235e4cdca0ce7b19ce77a6503551af6270e85",
+    "scripts/prepare_tranche18_scenarios.py": "054e773cb1bd4e876ee551af42925b1962e369e23ed36f68f7953a2c92c91631",
+    "scenarios/t18/plan.json": "068e47ddc8881117ad867e330259b6d1b89c3c4790450d77e54562cafb8dbcff",
+    "scripts/analyze_tranche18_return.py": "ecc1a080da4d534fb23139bc09f616449bdfe558575b7161776abe03fac84ae3",
+    "scripts/tranche18_metrics.py": "e7429b627c3e4b75494bd2839ed27d05367e5d93e7875879f61abf6db7fc96d8",
+    "scripts/tests/test_tranche18_return.py": "211fffacffbf01dd3636ea935810e0ed31d2fc843bb83518f5613563664882ed",
+    "scripts/tests/test_tranche18_metrics.py": "2e10f7a4603a9ffc16efe6fb139255dd88bd4cbe8317b9917ab816c67be4d8ab",
+    "scripts/run_tranche18_ns3_reference.py": "1504679bfca8a57547e05e53ef5f525d5f972f23faf26ba22f8e7185e4225b53",
+    "scripts/ns3/tranche18-relay-observer.h": "c1e6be4b114baa081a6c234133fee5122981ada1c621921789c7b391786c9ae9",
+    "T18.md": "d5cad0d4f9ad0dd702fa52b2e1cb26d53f5256b652da17f76c6c6e2a65aa4646",
+    "docs/tranche-18-spec.md": "b7bab42068a7ca9f63d4cce7196d64fc5c4b2081485b663d7c3dd59d1e075cb0"
+  }
+}

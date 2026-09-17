@@ -1,0 +1,57 @@
+{
+  "schema": "csr-tranche19-checker-preparation-qa-v1",
+  "created_utc": "2026-09-16T14:09:23.026796+00:00",
+  "status": "passed",
+  "command": "CSR_T19_FULL_FIXTURE=1 python -m unittest discover -s csr19/scripts/tests -p 'test_tranche19*.py' -v",
+  "python_tests_passed": 32,
+  "duration_seconds": 45.833,
+  "candidate_sha256": "37b87a253a217824b0160f14b23f2b498e9df7a99cdc46648f3d9785a2fda777",
+  "files": [
+    {
+      "path": "scripts/analyze_tranche19_return.py",
+      "sha256": "77b2ed112de3514792468c0361d4b354b3dc0c3c914566eb855053df99977a9e"
+    },
+    {
+      "path": "scripts/tranche19_metrics.py",
+      "sha256": "9f761932c12529c8ace2169864d41f3be575b7f3e8145e2038fe5dbb23038662"
+    },
+    {
+      "path": "scripts/tests/test_tranche19_return.py",
+      "sha256": "a798764d1a26b56101fbc36f18327e35de5080c6ebd295c14794f36b3a02456f"
+    },
+    {
+      "path": "scripts/tests/test_tranche19_metrics.py",
+      "sha256": "1c0ce054dd099ee829942c15a87881e4b80b82b986819f6b06e30231cebbfbc5"
+    }
+  ],
+  "matlab_executed": false,
+  "experimental_policy_runtime_evidence": false,
+  "full_schema_fixture_scope": "Temporary explicitly-labelled synthetic T19 envelope. Reused accepted T17 outputs for BOTH cases and synthetic test rows. Exercises exact checker/runner output schemas, integrity and data-accounting code. NOT MATLAB execution, NOT experimental policy results. All fixture bytes destroyed after test.",
+  "authentic_t17_metrics": {
+    "attempts": 1710000,
+    "admitted": 12484,
+    "delivered": 11825,
+    "dropped": 402,
+    "pending": 257,
+    "hop_and_nwk_lineage_and_endpoints_verified": true,
+    "native_admitted": 12417,
+    "native_delivered": 11769
+  },
+  "coverage": [
+    "scalar JSON structs and scientific integer inventory counters",
+    "unsigned broadcast IDs and bool/ambiguous-float rejection",
+    "DACK release delay distinct from custody release",
+    "overlapping retry requests preserve nonbijective next-confirmation observations",
+    "right-censored waits and actual finite-stop bins",
+    "unowned DATA transmitted remainder has no fabricated packet/link attribution",
+    "per-source admission schedules, attempts, endpoint/drop/payload mutations",
+    "default T17 statistics and all 12 original CSV hashes",
+    "exact policy-only configuration delta",
+    "complete source/reference/candidate/stage/case/test artifacts",
+    "allthree historical aggregate sources through T19 adapter",
+    "immutable receipt/hash mutation failure",
+    "malformed owner return cannot create false acceptance"
+  ],
+  "test_count": 32,
+  "output_summary": "Ran 32 tests in 45.833s; OK. Expected negative-fixture diagnostics: missing candidate produces review_failed; review output inside owner evidence rejected without modifications."
+}

@@ -1,0 +1,528 @@
+{
+  "schema": "csr-tranche18-native-preparation-report-v1",
+  "status": "native_preparation_reviewed",
+  "native_suite_manifest_sha256": "9e8e15dc026a4bbfcff93d1a39f095a91aebe761a46a94ce0a372583a8017250",
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "engine_commit": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+  "plan_sha256": "068e47ddc8881117ad867e330259b6d1b89c3c4790450d77e54562cafb8dbcff",
+  "fresh_required_debug_modules": [
+    "csr",
+    "spectrum",
+    "buildings",
+    "propagation",
+    "mobility",
+    "antenna",
+    "network",
+    "stats",
+    "core"
+  ],
+  "native_simulations": 21,
+  "observed_cases": 10,
+  "observer_on_off_byte_equal_cases": 10,
+  "pristine_runner_control": "m128",
+  "observer_max_records": 2000000,
+  "observer_omitted_records": 0,
+  "independent_reviewer_mutation_tests": 21,
+  "matlab_executed": false,
+  "opnet_executed": false,
+  "engine_unit_suite_executed": false,
+  "production_source_changed": false,
+  "files": 189,
+  "bytes": 61181484,
+  "cases": [
+    {
+      "case": "r128",
+      "attempts": 15000,
+      "admitted": 278,
+      "delivered": 248,
+      "delivered_unique": 248,
+      "unmatched_sends": 30,
+      "duplicate_delivery_events": 0,
+      "mean_packet_latency_s": 41.17288705374194,
+      "service_rows": 164945,
+      "canonical_trace_rows": 64137,
+      "dack_completions": 183,
+      "no_ack_completions": 2,
+      "retry_submissions": 17,
+      "forwarding_coverage": [
+        {
+          "src": "4",
+          "dst": "1",
+          "node": "4",
+          "ingress_peer": "",
+          "next_hop": "5",
+          "kind": "local",
+          "count": 274
+        },
+        {
+          "src": "4",
+          "dst": "1",
+          "node": "5",
+          "ingress_peer": "4",
+          "next_hop": "1",
+          "kind": "relay",
+          "count": 263
+        }
+      ]
+    },
+    {
+      "case": "l128",
+      "attempts": 15000,
+      "admitted": 589,
+      "delivered": 573,
+      "delivered_unique": 573,
+      "unmatched_sends": 16,
+      "duplicate_delivery_events": 0,
+      "mean_packet_latency_s": 7.981260405371727,
+      "service_rows": 139511,
+      "canonical_trace_rows": 60805,
+      "dack_completions": 0,
+      "no_ack_completions": 0,
+      "retry_submissions": 0,
+      "forwarding_coverage": [
+        {
+          "src": "5",
+          "dst": "1",
+          "node": "5",
+          "ingress_peer": "",
+          "next_hop": "1",
+          "kind": "local",
+          "count": 589
+        }
+      ]
+    },
+    {
+      "case": "m128",
+      "attempts": 30000,
+      "admitted": 391,
+      "delivered": 335,
+      "delivered_unique": 335,
+      "unmatched_sends": 56,
+      "duplicate_delivery_events": 0,
+      "mean_packet_latency_s": 42.251158727791044,
+      "service_rows": 188689,
+      "canonical_trace_rows": 87142,
+      "dack_completions": 154,
+      "no_ack_completions": 0,
+      "retry_submissions": 14,
+      "forwarding_coverage": [
+        {
+          "src": "4",
+          "dst": "1",
+          "node": "4",
+          "ingress_peer": "",
+          "next_hop": "5",
+          "kind": "local",
+          "count": 204
+        },
+        {
+          "src": "4",
+          "dst": "1",
+          "node": "5",
+          "ingress_peer": "4",
+          "next_hop": "1",
+          "kind": "relay",
+          "count": 188
+        },
+        {
+          "src": "5",
+          "dst": "1",
+          "node": "5",
+          "ingress_peer": "",
+          "next_hop": "1",
+          "kind": "local",
+          "count": 163
+        }
+      ]
+    },
+    {
+      "case": "r129",
+      "attempts": 15000,
+      "admitted": 292,
+      "delivered": 252,
+      "delivered_unique": 252,
+      "unmatched_sends": 40,
+      "duplicate_delivery_events": 0,
+      "mean_packet_latency_s": 38.967519260603176,
+      "service_rows": 164710,
+      "canonical_trace_rows": 64046,
+      "dack_completions": 183,
+      "no_ack_completions": 0,
+      "retry_submissions": 17,
+      "forwarding_coverage": [
+        {
+          "src": "4",
+          "dst": "1",
+          "node": "4",
+          "ingress_peer": "",
+          "next_hop": "5",
+          "kind": "local",
+          "count": 276
+        },
+        {
+          "src": "4",
+          "dst": "1",
+          "node": "5",
+          "ingress_peer": "4",
+          "next_hop": "1",
+          "kind": "relay",
+          "count": 269
+        }
+      ]
+    },
+    {
+      "case": "l129",
+      "attempts": 15000,
+      "admitted": 596,
+      "delivered": 580,
+      "delivered_unique": 580,
+      "unmatched_sends": 16,
+      "duplicate_delivery_events": 0,
+      "mean_packet_latency_s": 7.840880844620691,
+      "service_rows": 139529,
+      "canonical_trace_rows": 61126,
+      "dack_completions": 0,
+      "no_ack_completions": 0,
+      "retry_submissions": 0,
+      "forwarding_coverage": [
+        {
+          "src": "5",
+          "dst": "1",
+          "node": "5",
+          "ingress_peer": "",
+          "next_hop": "1",
+          "kind": "local",
+          "count": 596
+        }
+      ]
+    },
+    {
+      "case": "m129",
+      "attempts": 30000,
+      "admitted": 388,
+      "delivered": 327,
+      "delivered_unique": 327,
+      "unmatched_sends": 61,
+      "duplicate_delivery_events": 0,
+      "mean_packet_latency_s": 42.077888945327224,
+      "service_rows": 190011,
+      "canonical_trace_rows": 87604,
+      "dack_completions": 143,
+      "no_ack_completions": 0,
+      "retry_submissions": 18,
+      "forwarding_coverage": [
+        {
+          "src": "4",
+          "dst": "1",
+          "node": "4",
+          "ingress_peer": "",
+          "next_hop": "5",
+          "kind": "local",
+          "count": 199
+        },
+        {
+          "src": "4",
+          "dst": "1",
+          "node": "5",
+          "ingress_peer": "4",
+          "next_hop": "1",
+          "kind": "relay",
+          "count": 181
+        },
+        {
+          "src": "5",
+          "dst": "1",
+          "node": "5",
+          "ingress_peer": "",
+          "next_hop": "1",
+          "kind": "local",
+          "count": 163
+        }
+      ]
+    },
+    {
+      "case": "r130",
+      "attempts": 15000,
+      "admitted": 287,
+      "delivered": 249,
+      "delivered_unique": 249,
+      "unmatched_sends": 38,
+      "duplicate_delivery_events": 0,
+      "mean_packet_latency_s": 39.19954723057831,
+      "service_rows": 165047,
+      "canonical_trace_rows": 64179,
+      "dack_completions": 178,
+      "no_ack_completions": 0,
+      "retry_submissions": 35,
+      "forwarding_coverage": [
+        {
+          "src": "4",
+          "dst": "1",
+          "node": "4",
+          "ingress_peer": "",
+          "next_hop": "5",
+          "kind": "local",
+          "count": 271
+        },
+        {
+          "src": "4",
+          "dst": "1",
+          "node": "5",
+          "ingress_peer": "4",
+          "next_hop": "1",
+          "kind": "relay",
+          "count": 265
+        }
+      ]
+    },
+    {
+      "case": "l130",
+      "attempts": 15000,
+      "admitted": 603,
+      "delivered": 587,
+      "delivered_unique": 587,
+      "unmatched_sends": 16,
+      "duplicate_delivery_events": 0,
+      "mean_packet_latency_s": 7.767414936085179,
+      "service_rows": 140091,
+      "canonical_trace_rows": 61241,
+      "dack_completions": 0,
+      "no_ack_completions": 0,
+      "retry_submissions": 0,
+      "forwarding_coverage": [
+        {
+          "src": "5",
+          "dst": "1",
+          "node": "5",
+          "ingress_peer": "",
+          "next_hop": "1",
+          "kind": "local",
+          "count": 603
+        }
+      ]
+    },
+    {
+      "case": "m130",
+      "attempts": 30000,
+      "admitted": 398,
+      "delivered": 338,
+      "delivered_unique": 338,
+      "unmatched_sends": 60,
+      "duplicate_delivery_events": 0,
+      "mean_packet_latency_s": 40.82823256528994,
+      "service_rows": 190701,
+      "canonical_trace_rows": 87867,
+      "dack_completions": 148,
+      "no_ack_completions": 0,
+      "retry_submissions": 28,
+      "forwarding_coverage": [
+        {
+          "src": "4",
+          "dst": "1",
+          "node": "4",
+          "ingress_peer": "",
+          "next_hop": "5",
+          "kind": "local",
+          "count": 209
+        },
+        {
+          "src": "4",
+          "dst": "1",
+          "node": "5",
+          "ingress_peer": "4",
+          "next_hop": "1",
+          "kind": "relay",
+          "count": 193
+        },
+        {
+          "src": "5",
+          "dst": "1",
+          "node": "5",
+          "ingress_peer": "",
+          "next_hop": "1",
+          "kind": "local",
+          "count": 162
+        }
+      ]
+    },
+    {
+      "case": "p128",
+      "attempts": 180000,
+      "admitted": 1606,
+      "delivered": 1245,
+      "delivered_unique": 1245,
+      "unmatched_sends": 361,
+      "duplicate_delivery_events": 0,
+      "mean_packet_latency_s": 56.71010934000964,
+      "service_rows": 1082082,
+      "canonical_trace_rows": 601669,
+      "dack_completions": 521,
+      "no_ack_completions": 156,
+      "retry_submissions": 617,
+      "forwarding_coverage": [
+        {
+          "src": "2",
+          "dst": "1",
+          "node": "2",
+          "ingress_peer": "",
+          "next_hop": "4",
+          "kind": "local",
+          "count": 69
+        },
+        {
+          "src": "2",
+          "dst": "1",
+          "node": "4",
+          "ingress_peer": "2",
+          "next_hop": "5",
+          "kind": "relay",
+          "count": 60
+        },
+        {
+          "src": "2",
+          "dst": "1",
+          "node": "5",
+          "ingress_peer": "4",
+          "next_hop": "1",
+          "kind": "relay",
+          "count": 47
+        },
+        {
+          "src": "3",
+          "dst": "1",
+          "node": "3",
+          "ingress_peer": "",
+          "next_hop": "1",
+          "kind": "local",
+          "count": 876
+        },
+        {
+          "src": "4",
+          "dst": "1",
+          "node": "4",
+          "ingress_peer": "",
+          "next_hop": "5",
+          "kind": "local",
+          "count": 48
+        },
+        {
+          "src": "4",
+          "dst": "1",
+          "node": "5",
+          "ingress_peer": "4",
+          "next_hop": "1",
+          "kind": "relay",
+          "count": 43
+        },
+        {
+          "src": "5",
+          "dst": "1",
+          "node": "5",
+          "ingress_peer": "",
+          "next_hop": "1",
+          "kind": "local",
+          "count": 244
+        },
+        {
+          "src": "7",
+          "dst": "1",
+          "node": "2",
+          "ingress_peer": "8",
+          "next_hop": "4",
+          "kind": "relay",
+          "count": 75
+        },
+        {
+          "src": "7",
+          "dst": "1",
+          "node": "4",
+          "ingress_peer": "2",
+          "next_hop": "5",
+          "kind": "relay",
+          "count": 48
+        },
+        {
+          "src": "7",
+          "dst": "1",
+          "node": "5",
+          "ingress_peer": "4",
+          "next_hop": "1",
+          "kind": "relay",
+          "count": 41
+        },
+        {
+          "src": "7",
+          "dst": "1",
+          "node": "7",
+          "ingress_peer": "",
+          "next_hop": "8",
+          "kind": "local",
+          "count": 172
+        },
+        {
+          "src": "7",
+          "dst": "1",
+          "node": "8",
+          "ingress_peer": "7",
+          "next_hop": "2",
+          "kind": "relay",
+          "count": 145
+        },
+        {
+          "src": "8",
+          "dst": "1",
+          "node": "2",
+          "ingress_peer": "8",
+          "next_hop": "4",
+          "kind": "relay",
+          "count": 68
+        },
+        {
+          "src": "8",
+          "dst": "1",
+          "node": "4",
+          "ingress_peer": "2",
+          "next_hop": "5",
+          "kind": "relay",
+          "count": 41
+        },
+        {
+          "src": "8",
+          "dst": "1",
+          "node": "5",
+          "ingress_peer": "4",
+          "next_hop": "1",
+          "kind": "relay",
+          "count": 30
+        },
+        {
+          "src": "8",
+          "dst": "1",
+          "node": "8",
+          "ingress_peer": "",
+          "next_hop": "2",
+          "kind": "local",
+          "count": 121
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Native and MATLAB RNG draws are not paired; these are descriptive comparisons, not per-event numerical equality.",
+    "Unmatched native sends are not classified as terminal application drops or pending state. A no_ack custody completion may coexist with onward custody or delivery.",
+    "DACK releases NSDP while retaining HOP capacity until the declared hold expires; dack success=0 is not application loss.",
+    "hop_retry means submitted to MAC; it does not prove an actual OTA retransmission.",
+    "MAC packet type uses DACK before ACK because native DACK sets both header flags.",
+    "nwk_forward.peer is ingress; next_hop is egress. Canonical projection checks all shared fields and complete event order.",
+    "The nine required debug modules were rebuilt at pinned commits; the full native engine test suite was not run.",
+    "Finite-stop work is censored; no drain, default timing promotion, PHY/ECC or production-policy change was performed."
+  ],
+  "failed_pilot_handling": "Failed provisional scratch outputs remain excluded from curated evidence. Gates rejected an incomplete gzip and a raw-trace size/hash change; writer ownership was not established. The final suite ran in isolated /tmp paths with closed outputs readonly and complete post-run bindings.",
+  "independent_reference_review": "passed",
+  "canonical_trace_rows_verified": 1239816,
+  "service_observations_verified": 2565316,
+  "independent_review_file": "native-independent-review.json",
+  "independent_review_sha256": "91797e7315efa3010c92c601972a17bef037458fc03832d39e61bec29bc46d03",
+  "csr_tracked_clean_after_final_review": true,
+  "engine_tracked_clean_after_final_review": true
+}

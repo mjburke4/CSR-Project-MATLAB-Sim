@@ -1,0 +1,52 @@
+{
+  "schema": "csr-tranche16-transport-interface-v1",
+  "constructor": "timing = csr.sim.TransportTiming(mode,maxRecords)",
+  "modes": [
+    "continuous",
+    "nanoseconds"
+  ],
+  "integration": "simulation = csr.sim.NetworkSimulation(config,linkObserver,timing); result = simulation.run(); audit = timing.snapshot();",
+  "result_field": "TransportTiming (only when a nonempty timing object is supplied)",
+  "snapshot_fields": [
+    "Mode",
+    "Records",
+    "Count",
+    "Omitted",
+    "MaxRecords",
+    "MaxAbsShiftSeconds",
+    "PolicyScope"
+  ],
+  "record_columns": [
+    "Ordinal",
+    "SourceId",
+    "ReceiverId",
+    "FrameId",
+    "TxSeconds",
+    "PropagationSeconds",
+    "DurationSeconds",
+    "PreambleSeconds",
+    "PhysicalStartSeconds",
+    "PhysicalPreambleEndSeconds",
+    "PhysicalEndSeconds",
+    "StartSeconds",
+    "PreambleEndSeconds",
+    "EndSeconds",
+    "TxNanoseconds",
+    "PropagationNanoseconds",
+    "DurationNanoseconds",
+    "PreambleNanoseconds",
+    "StartNanoseconds",
+    "PreambleEndNanoseconds",
+    "EndNanoseconds",
+    "StartShiftSeconds",
+    "PreambleEndShiftSeconds",
+    "EndShiftSeconds"
+  ],
+  "identity": "FrameId is the actual frame.Id passed to SignalEngine; NetworkSimulation assigns this monotonically at actual aggregate transmission, distinct from application identity. Ordinal is only an audit row index. FrameId and Ordinal are uint64; time components/sums are exact integer-valued doubles within flintmax.",
+  "policy_scope": "Receiver callback start/preamble/end only; physical signal fields and PHY/header/ECC formulas, TX/MAC completion, acquisition and scheduler defaults unchanged. Optional mode initializes interval start from actual receive callback Now.",
+  "causality": "nanoseconds mode rejects scheduled receive start before actual TX; preflight every receiver and record capacity before engine state or event mutation. No clamp.",
+  "arithmetic": "continuous old operation order: tx+propagation, tx+propagation+preamble, tx+propagation+duration. nanoseconds independently rounds four components then sums exact integer nanoseconds; sum limited to flintmax.",
+  "backend": "portable only",
+  "bounded": "Omitted always 0; record overflow is an explicit failure before PHY state/event mutation.",
+  "record_scope": "Preflighted scheduled targets for every non-self receiver attempt, including targets beyond the run horizon. Occluded observations schedule completion only. Records do not claim every target was executed; actual execution is in the normal PHY trace."
+}

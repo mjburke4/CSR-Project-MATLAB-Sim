@@ -1,0 +1,49 @@
+{
+  "schema": "csr-tranche20-native-baseline-reproduction-v1",
+  "status": "passed",
+  "seed": 128,
+  "duration_s": 6000,
+  "fresh_manifest_sha256": "6764a4c589af8e1126c91353766f1beae37ac13be60a7afa7effd200fdf46454",
+  "accepted_trace_sha256": "4a6bd194f83922add6c3b0b505e8f36596b639e314a12d0225347faca59e1ba5",
+  "fresh_trace_sha256": "43693dd0d7f25aa96281d94ea9ce6e2b97391098e87f751d3a6f2e5d552c23d1",
+  "projection_fields": [
+    "schema",
+    "time_s",
+    "event",
+    "src",
+    "dst",
+    "sequence",
+    "size_bytes",
+    "reason",
+    "node",
+    "statistic",
+    "value",
+    "peer",
+    "next_hop",
+    "route_cost",
+    "detail"
+  ],
+  "excluded_admission_only_detail_event": "nwk_enqueue",
+  "projection_events": [
+    "app_send",
+    "hop_feedback",
+    "nwk_delivery",
+    "nwk_enqueue",
+    "nwk_forward",
+    "route_change",
+    "rx_drop",
+    "statistic_sample"
+  ],
+  "accepted_projection": {
+    "rows": 447584,
+    "sha256": "ed9b77b21a75de96a01bc1b16eaf37dfe207eadf23983413147c8d5f31d89a49"
+  },
+  "fresh_projection": {
+    "rows": 447584,
+    "sha256": "ed9b77b21a75de96a01bc1b16eaf37dfe207eadf23983413147c8d5f31d89a49"
+  },
+  "admission_diagnostics_byte_identical": true,
+  "application_metrics_identical": true,
+  "aggregate_statistics_identical": true,
+  "scope": "Native executable/provenance gate only; no new MATLAB seed128 run."
+}

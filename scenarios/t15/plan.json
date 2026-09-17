@@ -1,0 +1,104 @@
+{
+  "schema": "csr-tranche15-loss-timing-input-v1",
+  "source_pin": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "scope": "Paired local transport-time conversion in the accepted continued-traffic controlled DATA/ACK loss and relay-link blackout fixture. The production scheduler, MAC/HOP/NWK, PHY/ECC, startup phase, source offers, prescribed draws, loss policies and 64-second horizon remain unchanged. This is a diagnostic experiment, not a production policy promotion or full-network parity claim.",
+  "modes": [
+    "continuous",
+    "nanoseconds"
+  ],
+  "mode_directories": [
+    "c",
+    "n"
+  ],
+  "cases": [
+    "ok",
+    "data",
+    "ack",
+    "out"
+  ],
+  "case_directories": [
+    "c1",
+    "c2",
+    "c3",
+    "c4"
+  ],
+  "case_count_per_mode": 4,
+  "total_case_count": 8,
+  "duration_seconds": 64,
+  "input_directory": "scenarios/loss",
+  "input_bindings": [
+    {
+      "Path": "scenarios/loss/plan.json",
+      "SHA256": "06ede1b0b67d28b5690e6912284b3a57518ed1c884b725475ba14a881ea5a142"
+    },
+    {
+      "Path": "scenarios/loss/cases.csv",
+      "SHA256": "d14be63f6d623222325a61f74e1302431fe5cbdac194749e579ba704c22ba8ce"
+    },
+    {
+      "Path": "scenarios/loss/offers.csv",
+      "SHA256": "fb0cc72507d08c3376676dc9100da07d2dc83fbaa7851d5bd20f7eaf2f086059"
+    },
+    {
+      "Path": "scenarios/loss/draws.csv",
+      "SHA256": "5c975f831e8f8e4a352567ac45abd57654279a22531e2c6b4fc8e51745a609d4"
+    }
+  ],
+  "native_reference_directory": "evidence/tranche-13-loss-reference",
+  "native_reference_manifest_sha256": "5060717c9fa32c73ed78f5ab392783d3835c00b90209df0af1352b19989a1a13",
+  "continuous_rule": "arrival = (actual_tx_seconds + actual_duration_seconds) + propagation_seconds; preserve binary64 operation order exactly.",
+  "nanoseconds_rule": "arrival = (round(actual_tx_seconds*1e9) + round(actual_duration_seconds*1e9) + round(propagation_seconds*1e9))/1e9; component-wise positive nearest nanoseconds, integer sum bounded by flintmax, then one division by1e9.",
+  "conversion_scope": "This is the explicitly declared local policy tested at actual TX times in a64-second fixture, not a universal implementation of native ns-3 Time at arbitrary half-nanosecond or extreme values. No tolerance increase, startup offset, global-clock quantization, private-state forcing or reference-output injection is allowed.",
+  "input_safety": "Helper accepts real finite nonnegative scalar doubles, bounds every rounded nanosecond component and their exact sum by flintmax, and rejects a selected arrival earlier than actual TX. It changes only scheduled addressed aggregate ingress; production TX-completion timing remains untouched.",
+  "loss_decision_scope": "Cache exactly one decision per actual addressed receiver group at actual TX start using unchanged T13 inputs and1us boundary guard. Apply all affected segments at selected ingress. Conversion never changes or recomputes the cached decision.",
+  "timing_schema": [
+    "case",
+    "tx_id",
+    "sender",
+    "tx_seconds",
+    "tx_hex",
+    "duration_seconds",
+    "duration_hex",
+    "propagation_seconds",
+    "propagation_hex",
+    "continuous_seconds",
+    "continuous_hex",
+    "nanoseconds_seconds",
+    "nanoseconds_hex",
+    "arrival_seconds",
+    "arrival_hex",
+    "delta_seconds",
+    "delta_hex",
+    "tx_ns",
+    "duration_ns",
+    "propagation_ns",
+    "sum_ns",
+    "wire_payload_bytes",
+    "segment_count",
+    "preamble",
+    "rate_kbps",
+    "power_dbm"
+  ],
+  "timing_rule": "One row per actual emitted aggregate, keyed by case and tx_id. Decimal fields use%.17g and hex fields num2hex on actual binary64 operands and results. delta is selected arrival minus unchanged continuous result. Nanosecond components/sum remain uint64. Envelope bytes/segment count/preamble/rate/power are observed actual production selections, not recomputed or prescribed timing.",
+  "precision_schema": [
+    "case",
+    "order",
+    "time_ns",
+    "event",
+    "node",
+    "peer",
+    "app_source",
+    "app_id",
+    "hop_seq",
+    "ack_bits",
+    "dack_bits",
+    "time_seconds",
+    "time_hex"
+  ],
+  "precision_rule": "One row for every original semantic event with identical case/order/rounded ns/type/identity/bitmap columns and actual scheduler.Now in%.17g and num2hex. app_id/ack_bits/dack_bits stay uint64. Preserve legacy release app_id0; release metrics are counts/timing/real NSDP and custody state, not per-application release latency.",
+  "partial_evidence_rule": "Save eight tables and result.json for each c1..c4 before cross-case aggregation. The root runner archives partial outputs after errors. No incomplete/empty run establishes parity.",
+  "comparison_rule": "Retain each mode's original whole-trajectory comparisons and1ns legacy tolerance for compatibility, but compare exact seconds/hex and changed functional outcomes separately in the return gate. Require continuous output to reproduce accepted T13 baseline. Structural completion and numerical correspondence remain distinct.",
+  "checkpoint_count_per_mode": 264,
+  "total_checkpoint_count": 528,
+  "engine_pin": "6b5cd24ea80713ce16d88575869aedd6f432bdae"
+}

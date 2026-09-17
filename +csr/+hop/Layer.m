@@ -21,6 +21,8 @@ classdef Layer < handle
         DackHolds
         DackOrder = {}
         WakePending = false
+        LastResendTimerSerial = uint64(0)
+        LastResendTimerPending = false
         Counters
     end
     methods
@@ -181,13 +183,25 @@ classdef Layer < handle
                 return
             end
             key=entryKey(frame.DestinationId,frame.Sequence);
-            if ~isKey(obj.Resends,key), return; end
+            if ~isKey(obj.Resends,key)
+                % Native HOP retains only the latest installed timer handle.
+                % An unmatched DATA sent indication may restart the shared
+                % scan after that handle has fired; it never restores custody.
+                if ~isControl && obj.nativeProvisional() && ~obj.LastResendTimerPending
+                    obj.scheduleResendScan(obj.Config.ResendSeconds);
+                end
+                return
+            end
             e=obj.Resends(key); e.LastTxSeconds=obj.Scheduler.Now; e.Confirmed=true;
             obj.Resends(key)=e;
             wait=obj.Config.ResendSeconds;
             if e.ResendCount>=obj.Config.MaxResends, wait=2*wait; end
-            obj.Scheduler.scheduleAt(obj.Scheduler.Now+wait+obj.Config.TicSeconds, ...
-                @()obj.checkResends());
+            if obj.nativeProvisional()
+                obj.scheduleResendScan(wait);
+            else
+                obj.Scheduler.scheduleAt(obj.Scheduler.Now+wait+obj.Config.TicSeconds, ...
+                    @()obj.checkResends());
+            end
             obj.emit('hop_sent',frame,struct('ResendCount',e.ResendCount, ...
                 'AckWaitSeconds',wait));
         end
@@ -481,7 +495,12 @@ classdef Layer < handle
                 end
                 e.ResendCount=e.ResendCount+1;
                 e.Frame.RetryCount=e.ResendCount;
-                e.LastTxSeconds=obj.Scheduler.Now; e.Confirmed=false;
+                e.LastTxSeconds=obj.Scheduler.Now;
+                % Source DATA keeps initial-TX confirmation after handing a
+                % retry to MAC. A later list-wide scan can use this provisional
+                % time even if that retry is still queued. No new timer is
+                % installed here; actual MAC sent indications drive scans.
+                e.Confirmed=strcmp(e.Frame.Kind,'DATA') && obj.nativeProvisional();
                 obj.Resends(key)=e;
                 if strcmp(e.Frame.Kind,'CONTROL'), obj.increment('ControlRetransmissions');
                 else, obj.increment('Retransmissions'); end
@@ -491,6 +510,22 @@ classdef Layer < handle
                     obj.failEntry(key,e,'mac_queue_full');
                 end
             end
+        end
+        function enabled = nativeProvisional(obj)
+            enabled=strcmp(obj.Config.DataQueuedRetryPolicy,'native-provisional');
+        end
+        function scheduleResendScan(obj,wait)
+            obj.LastResendTimerSerial=obj.LastResendTimerSerial+uint64(1);
+            serial=obj.LastResendTimerSerial;
+            obj.LastResendTimerPending=true;
+            obj.Scheduler.scheduleAt(obj.Scheduler.Now+wait+obj.Config.TicSeconds, ...
+                @()obj.runResendScan(serial));
+        end
+        function runResendScan(obj,serial)
+            % Older timers remain independent, exactly as in the native list
+            % scan. Firing an older timer does not clear the latest handle.
+            if serial==obj.LastResendTimerSerial, obj.LastResendTimerPending=false; end
+            obj.checkResends();
         end
         function failEntry(obj,key,e,reason)
             if strcmp(e.Frame.Kind,'CONTROL')
@@ -698,5 +733,16 @@ for name={'PendingThreshold','ResendQueueLimit','FlowThresholdMax','NsdpLimit','
 end
 if c.ResendSeconds<=0 || c.DackHoldSeconds<=0 || c.TicSeconds<=0 || c.ResendQueueLimit<1
     error('csr:hop:InvalidConfig','Retry, hold and TIC durations and queue limit must be positive.');
+end
+c.DataQueuedRetryPolicy='actual-tx';
+if isfield(overrides,'DataQueuedRetryPolicy')
+    policy=overrides.DataQueuedRetryPolicy;
+    if isstring(policy) && isscalar(policy), policy=char(policy); end
+    if ~ischar(policy) || ~isrow(policy) || ...
+            ~any(strcmp(policy,{'actual-tx','native-provisional'}))
+        error('csr:hop:InvalidConfig', ...
+            'DataQueuedRetryPolicy must be actual-tx or native-provisional.');
+    end
+    c.DataQueuedRetryPolicy=policy;
 end
 end

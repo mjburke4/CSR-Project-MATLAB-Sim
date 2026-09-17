@@ -1,0 +1,61 @@
+{
+  "schema": "csr-tranche16-independent-runner-review-v1",
+  "status": "no-open-blocking-findings-static-review",
+  "matlab_executed": false,
+  "native_executed": false,
+  "reviewed_files": [
+    {
+      "path": "run_tranche16_validation.m",
+      "sha256": "56694ca9c9a09f5f82cbb6def8740dc1d7f62bb22de3ac5f099d50f054ab99b6",
+      "bytes": 15836
+    },
+    {
+      "path": "+csr/+validation/networkTimingContract.m",
+      "sha256": "dd07e667e5652075eff1b281c98c416e0503595bcb6b1ca1b04965c17bae39d5",
+      "bytes": 15881
+    },
+    {
+      "path": "tests/TestNetworkTimingSuite.m",
+      "sha256": "8ef31880ff45ce2ec5846a51f4f0b30561dc9360a9503b8d842afcf836ee31f3",
+      "bytes": 3182
+    }
+  ],
+  "open_findings": [],
+  "resolved_findings": [
+    {
+      "id": "R1",
+      "severity_when_observed": "high",
+      "file": "run_tranche16_validation.m",
+      "method": "verifyBaseline",
+      "issue": "An earlier read expected bytes on unchanged T15 source bindings, whose actual schema contains only path and sha256.",
+      "resolution": "Current file uses expectedBytes=[] for unchanged records and a conditional byte check only for the two modified integration files. The original 294-entry owner snapshot remains untouched. Current runner SHA is recorded above.",
+      "status": "verified_closed"
+    },
+    {
+      "id": "R2",
+      "severity_when_observed": "low",
+      "file": "+csr/+validation/networkTimingContract.m",
+      "method": "case catch block",
+      "issue": "researchSummary can reject a completed simulation before exportResearchCase writes its raw observations.",
+      "resolution": "Current catch tracks completedResult, exports the completed raw result without asserting structural success, and retains counters in partial.json if normal export also fails. Original failure is rethrown.",
+      "status": "verified_closed"
+    }
+  ],
+  "verified_by_inspection": [
+    "Checks and aggregate summaries use edgeRecordTable scalar string columns. Unequal Mode, CaseId and Scenario character lengths do not become incompatible table variables at vertical concatenation. Raw research and performance tables remain one-record exports; application text columns are normalized by stableText.",
+    "exportResearchCase, performanceSummary and benchmarkAggregates arguments and consumed fields match the actual retained helper schemas, including SharedScenario.SourceSHA256, ProfileID option spelling and Metadata.Backend.",
+    "Result Config is compared against the unmodified factory Config; short outer CaseId and StorageKey do not replace the retained long Config.Benchmark.CaseId or native case identity.",
+    "Six workloads multiplied by two timing policies and sixteen named structural checks yield 12 runs, 9360 simulated seconds and 192 checks. Research/performance checks enforce conservation and trace completeness but do not require final custody or pending work to drain.",
+    "Timing audits are recorded at transmission for all non-self receivers. Their count equals PhysicalAttempts and PhysicalTransmissions*(nodes-1), including arrivals scheduled after the observation horizon; PhysicalPending accounts for those unfinished receptions.",
+    "Timing operands and targets are checked for schema, finite values, exact component arithmetic, causal order, policy selection and bounded shifts. uint64 ordinal/frame identities and decimal/hex exports retain explicit types.",
+    "AckServiceDiagnostics is instantiated with [300 320]; its retained implementation uses time>=start and time<end. The window applies only to detailed service callbacks; inherited feedback and admission observations cover the complete run.",
+    "Runner verifies loaded package paths, candidate identity, full sourceSnapshot excluding the candidate self-reference, allowed integration changes, selected baseline identities and source/reference stability. Candidate.SourceFiles must use the existing path/sha256 schema, as coordinated with root freeze.",
+    "The three TestNetworkTimingSuite methods inspect exact fixture membership, unchanged Config/trace limits and scenario/recipe hashes without rerunning the long cases. Combined with nine core timing methods and 117 retained methods the prepared total is 129.",
+    "Failure paths retain metadata, tests completed so far, case failure details and timing audit; fully executed results rejected during export additionally retain raw observations. Top-level packaging inventories non-MAT files, includes metadata separately and rethrows the original failure after writing t16.zip."
+  ],
+  "limitations": [
+    "No MATLAB execution was performed. Runtime success, exact test membership after final candidate freezing and the returned evidence gate remain owner-run checks.",
+    "The candidate and final package were still being frozen during this review. Root must preserve matching source hashes and the path/sha256-only SourceFiles shape before delivery.",
+    "A simulation that throws before returning a complete result preserves timing and failure evidence; the new fallback cannot fabricate a complete NetworkSimulation result for an interrupted run."
+  ]
+}

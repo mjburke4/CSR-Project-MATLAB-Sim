@@ -1,0 +1,38 @@
+{
+  "schema": "csr-benchmark-source-provenance-v1",
+  "source": "ns3",
+  "scenario": "csr_t18_l130",
+  "scenario_sha256": "fbf325d917ace741c7fbd657fb15dd1b4e7615dab63656f45faf7b1a9ca7a9ee",
+  "profile_id": "hist-adb97c54-bare",
+  "source_file_sha256": "730ee116fdfd45253dd7043e44870d617150b57f13c93471a79234623921eb9c",
+  "source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "window": {
+    "start_time_s": 0,
+    "stop_time_s": 600,
+    "bucket_width_s": 60,
+    "bucket_count": 10,
+    "start_endpoint": "inclusive",
+    "stop_endpoint": "exclusive"
+  },
+  "output": {
+    "path": "ns3-aggregates.csv",
+    "sha256": "a4b0cea4ebe2bdce21ee9199d1e522ba2d4f6e8fde5dfc3ad89b844f5bf0dc93"
+  },
+  "upstream_provenance": {
+    "path": "ns3-aggregates.provenance.json",
+    "sha256": "25047c5b1153e853367cdf23486ff00bb4507de24264fc0ff681b00ab707fe5b",
+    "bytes": 11751
+  },
+  "excluded_extra_statistics": [
+    "ECC.Traffic Dropped (packets/sec)",
+    "HOP.Resend Queue Size (packets)",
+    "MAC.ACK Queue Size (packets)",
+    "MAC.Tx Queue Size (packets)",
+    "MAC.Tx Queuing Delay (sec)",
+    "NWK.Network Queue Size (packets)",
+    "NWK.Network Queuing Delay (sec)"
+  ],
+  "opnet_runtime_executed": false,
+  "matlab_runtime_executed": false,
+  "source_kind": "synthetic_relay_service_diagnostic"
+}

@@ -1,0 +1,59 @@
+{
+  "schema": "csr-tranche19-independent-core-review-v1",
+  "status": "reviewed-no-source-blocker",
+  "native_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "matlab_executed": false,
+  "files": [
+    {
+      "path": "+csr/+hop/Layer.m",
+      "sha256": "67323b4106738c2d1fdfafebf1f408719f878513aa898fb9cf754e446d87d9f7"
+    },
+    {
+      "path": "+csr/+hop/validateConfig.m",
+      "sha256": "db33b72d7df9a204882894ade3fbdba57a49ba5599b87bbd096c056c47c032ef"
+    },
+    {
+      "path": "tests/TestQueuedRetryPolicy.m",
+      "sha256": "603eef79184d92c5b217039b234c98815c1b68409321da8c18441a4e7c74ccee"
+    },
+    {
+      "path": "docs/tranche-19-retry-policy.md",
+      "sha256": "f45f72d7718a151b34e8baacd40a40cdaa2d980a84ccf63e1e15cf20ed1d999c"
+    }
+  ],
+  "deterministic_test_methods": 16,
+  "resolved_findings": [
+    {
+      "severity": "blocker",
+      "location": "tests/TestQueuedRetryPolicy.m harness enqueue labels",
+      "finding": "DATA HOP frame.Id is zero by design; test ordering searched application IDs",
+      "resolution": "Label DATA using frame.App.Id and CONTROL using frame.Control.Id; manually rechecked ordering expectations."
+    },
+    {
+      "severity": "documentation",
+      "finding": "Policy notes mentioned observer-on/off runtime comparisons despite no observer in T19",
+      "resolution": "Reworded to runtime default-policy baseline comparisons."
+    }
+  ],
+  "default_behavior_review": {
+    "scheduling_unchanged": true,
+    "callback_event_names_unchanged": true,
+    "counters_unchanged": true,
+    "release_paths_unchanged": true,
+    "new_normalized_configuration_field": "Hop.DataQueuedRetryPolicy"
+  },
+  "experimental_scope": [
+    "DATA queued retry retains initial confirmation and provisional enqueue timestamp",
+    "No retry enqueue timer installed",
+    "Actual MAC sent replaces timestamp and installs independent list-wide scan",
+    "Native-inspired unmatched ACK-required DATA fallback follows last installed handle, not latest deadline",
+    "CONTROL actual-TX gating unchanged; matching CONTROL scans share marker",
+    "Accepted MATLAB terminal cancellation and transactional overload remain"
+  ],
+  "runtime_requirements": [
+    "Execute full portable regression including16 new mechanism tests",
+    "Fresh default full6000 raw coreCSV+statistics equality against accepted T17",
+    "Full6000 experimental case and structural/ownership return checks"
+  ],
+  "review_limit": "Line-by-line/manual deterministic trace review, not MATLAB test execution or numerical acceptance."
+}

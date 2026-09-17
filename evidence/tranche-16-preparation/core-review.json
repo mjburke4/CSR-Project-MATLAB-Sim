@@ -1,0 +1,55 @@
+{
+  "schema": "csr-tranche16-independent-core-review-v1",
+  "status": "no-blocking-findings-static-review",
+  "matlab_executed": false,
+  "native_executed": false,
+  "source_pin": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "files": [
+    {
+      "path": "+csr/+sim/TransportTiming.m",
+      "sha256": "3e160d63bf38ffc647617a1f212d4e08c7be7cf6d71977cc63a22f1ee9e46131",
+      "bytes": 8449
+    },
+    {
+      "path": "+csr/+phy/SignalEngine.m",
+      "sha256": "289c764bac0de95fefa75812e1b5090dcdf1953e35960cf7f02c4e298f4e294e",
+      "bytes": 34155
+    },
+    {
+      "path": "+csr/+sim/NetworkSimulation.m",
+      "sha256": "80264e18c050d4dbf2c6e5729076c5dfa602401b4e76053577b6388a77894104",
+      "bytes": 45099
+    },
+    {
+      "path": "tests/TestNetworkTransportTiming.m",
+      "sha256": "f7d5bbbfe228b48ce14f49107ca9c31ed3060e6ffa0c04a832ccf0c52fc65526",
+      "bytes": 10540
+    }
+  ],
+  "findings": [
+    {
+      "id": "C1",
+      "severity": "low",
+      "blocking": false,
+      "file": "+csr/+phy/SignalEngine.m",
+      "method": "transmit",
+      "finding": "The optional preflight is transactional for timing inputs, causality and timing-record capacity, not for every malformed frame accepted with an explicit duration. A missing WirePayloadBytes field can still fail while constructing the signal after timing.record, Tx state and finishTx scheduling. This gap predates T16 and does not affect validated packet constructors.",
+      "recommendation": "Keep preflight documentation scoped to timing inputs/capacity. Do not claim arbitrary malformed-frame transactionality or broaden this timing tranche into frame API hardening."
+    }
+  ],
+  "verified_by_inspection": [
+    "No-argument/default path retains the original arithmetic, physical fields, event insertion order, receive callbacks and RNG calls; extra empty locals have no simulator-state effect.",
+    "Explicit continuous computes physical and callback start/end/preamble in the original SignalEngine operand order. Front-end preprocessing is deterministic for retained fixtures and consumes no random streams.",
+    "Nanosecond callback targets preserve original physical StartSec, EndSec and PreambleEndSec and therefore retain header/payload allocation formulas. IntervalStartSec is initialized to actual receiver callback Now, matching pinned native BeginReceiveSignal.",
+    "Pinned native keeps physical targets and rounds relative callback durations. T16 uses its separately disclosed component-rounding experiment; exact arbitrary-input ns-3 Time equivalence is not claimed.",
+    "Optional timing verifies capacity and all receiver plans before timing observations, PHY state, counters or scheduled events. Off-grid receive start before actual TX, nonfinite/negative times, invalid ordering and exact-integer sum overflow are rejected before these mutations.",
+    "Physical end bounds remain in interferencePair and closeIntervals. End-callback shifts can alter state/event order as the experiment intends; PHY formulas and physical endpoint comparisons are not silently changed.",
+    "Double nanosecond components and guarded sums remain within flintmax; wide frame IDs are retained as uint64 through table construction. Empty and populated timing tables have fixed column types and aligned heights.",
+    "Nine prepared MATLAB methods cover input guards, wide identities, exact continuous arithmetic, timing failure before PHY mutation, same/different-rate interference, half duplex, equal-time FIFO, closure accounting, portable-only/single-use injection and actual 20-second NetworkSimulation execution."
+  ],
+  "limitations": [
+    "No MATLAB runtime is available in this review; R2025a execution and the default-versus-explicit-continuous integration assertions remain pending owner execution.",
+    "Existing nanosecond interference tests check half duplex, callback starts and final accounting. They do not directly assert error-allocation intervals at both sides of a sub-nanosecond physical end boundary. This is a coverage limit, not a detected implementation failure.",
+    "The 20-second integration fixture uses the retained routedNetwork closure delegate; it covers actual stack/PHY execution and application generation but does not prove completed discovery, end-to-end delivery or the full-geometry benchmark outcome."
+  ]
+}

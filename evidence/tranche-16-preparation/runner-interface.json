@@ -1,0 +1,103 @@
+{
+  "schema": "csr-tranche16-runner-interface-v1",
+  "root_files": [
+    "metadata.json",
+    "source.json",
+    "references.json",
+    "tests.csv",
+    "run.log"
+  ],
+  "archive": "t16.zip",
+  "directory": "results/t16/rYYMMDD_HHMM_xxxx",
+  "contract_directory": "network",
+  "contract_schema": "csr-tranche16-network-timing-contract-v1",
+  "contract_files": [
+    "network/summary.json",
+    "network/summary.csv",
+    "network/checks.csv",
+    "network/source.json"
+  ],
+  "case_directory": "network/{c,n}/{a128,c128,a129,c129,a130,c130}",
+  "case_schema": "csr-tranche16-network-case-v1",
+  "case_files": [
+    "case.json",
+    "timing.json",
+    "timing.csv",
+    "raw/case_manifest.json",
+    "raw/research_summary.csv",
+    "raw/summary.json",
+    "analysis/performance_summary.csv",
+    "analysis/applications.csv",
+    "analysis/aggregates.csv",
+    "analysis/aggregate_provenance.json"
+  ],
+  "raw_exports": "csr.analysis.exportResults standard tables including link_decisions.csv, actual_feedback.csv and service_trace.csv; results.mat retained locally only",
+  "timing_schema": "csr-tranche16-transport-audit-v1",
+  "timing_json": "TransportTiming snapshot without Records, with Schema; PolicyScope retained",
+  "timing_csv": "24 original columns in t16w/interface.json order, followed by Decimal+Hex columns for each of the 13 names ending Seconds in original order. Decimal sprintf %.17g; Hex num2hex. Ordinal and FrameId uint64; ns fields exact integer-valued doubles.",
+  "checks_columns": [
+    "PolicyKey",
+    "CaseId",
+    "Check",
+    "Passed"
+  ],
+  "checks_per_case": 16,
+  "structural_check_count": 192,
+  "check_names": [
+    "research_accounting",
+    "performance_accounting",
+    "complete_protocol_trace",
+    "complete_phy_trace",
+    "complete_admission_trace",
+    "complete_feedback_trace",
+    "complete_service_trace",
+    "timing_mode",
+    "timing_coverage",
+    "timing_schema",
+    "finite_timing",
+    "causal_callbacks",
+    "physical_operands",
+    "timing_policy",
+    "timing_shift_bound",
+    "scenario_identity"
+  ],
+  "runner_candidate_fields": [
+    "Schema",
+    "SourceCommit",
+    "TestFiles",
+    "ExpectedTestNames",
+    "ExpectedStructuralCheckCount",
+    "BaselineSourceSnapshot",
+    "BaseSourceSnapshotSHA256",
+    "AllowedModifiedSourceFiles",
+    "ReferenceRoots",
+    "ReferenceFiles",
+    "Plan",
+    "PlanSHA256",
+    "BaselineOwnerEvidence",
+    "BaselineOwnerEvidenceSHA256",
+    "BaselineCandidate",
+    "BaselineCandidateSHA256",
+    "SourceFiles"
+  ],
+  "candidate_schema": "csr-tranche-16-candidate-v1",
+  "modified_allowlist_schema": "struct array path,sha256,bytes; exactly +csr/+phy/SignalEngine.m and +csr/+sim/NetworkSimulation.m with current candidate hashes",
+  "baseline_counts": {
+    "source": 294,
+    "matlab": 149,
+    "unchanged_source": 292,
+    "unchanged_matlab": 147,
+    "allowed_modified": 2
+  },
+  "service_window_seconds": [
+    300,
+    320
+  ],
+  "service_limit": 100000,
+  "timing_limit": 100000,
+  "run_order": "adjacent c,n pair for each six-case fixture in factory order",
+  "preflight_test_class": "TestNetworkTransportTiming",
+  "source_final": "SourceFilesFinal and ReferenceFilesFinal embedded root metadata; initial snapshots separate files",
+  "claims": "Structural diagnostic only; loss, backlog and independent-RNG native numerical differences remain measurements. No forced delivery, campus/fullnetwork acceptance or default-policy promotion.",
+  "candidate_source_files": "Complete sourceSnapshot inventory excluding only evidence/tranche-16-candidate.json itself. Full execution source snapshot includes candidate hash separately."
+}

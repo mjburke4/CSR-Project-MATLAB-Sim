@@ -1,0 +1,99 @@
+{
+  "schema": "csr-tranche18-independent-design-review-v1",
+  "plan_sha256": "068e47ddc8881117ad867e330259b6d1b89c3c4790450d77e54562cafb8dbcff",
+  "row_derivation": [
+    {
+      "case_id": "r128",
+      "rows": 5,
+      "sha256": "baa7886dc40c6a3dfa529dd2203fc3dcfc1f99ea4042bd2a8a472eba85ef1b53",
+      "exact_parent_row_derivation": true
+    },
+    {
+      "case_id": "l128",
+      "rows": 5,
+      "sha256": "e64297e9ca11912bb0a66ca431aca4e76f49019f69e7c6d2a1ec39496e21e807",
+      "exact_parent_row_derivation": true
+    },
+    {
+      "case_id": "m128",
+      "rows": 6,
+      "sha256": "999e97252ac4681afc142dc97cb691ce58f25f4d8d756131a310a4e1c48c5087",
+      "exact_parent_row_derivation": true
+    },
+    {
+      "case_id": "r129",
+      "rows": 5,
+      "sha256": "5a10d727a16574086e75d7955918959b4d1189747b283535b9e61032f20cb4d4",
+      "exact_parent_row_derivation": true
+    },
+    {
+      "case_id": "l129",
+      "rows": 5,
+      "sha256": "86b42092d18bd5e240f855840792b2906e1eec17be8bded81805a4b0e7175e0f",
+      "exact_parent_row_derivation": true
+    },
+    {
+      "case_id": "m129",
+      "rows": 6,
+      "sha256": "bb3b8cc8dad451454f4daa98d6c65f7a63308c16174041227bec3ff5847dee41",
+      "exact_parent_row_derivation": true
+    },
+    {
+      "case_id": "r130",
+      "rows": 5,
+      "sha256": "96b0cb4b34d17651b54b45f4a592e15dd3eb0ed581692341683ba60acec403cd",
+      "exact_parent_row_derivation": true
+    },
+    {
+      "case_id": "l130",
+      "rows": 5,
+      "sha256": "fbf325d917ace741c7fbd657fb15dd1b4e7615dab63656f45faf7b1a9ca7a9ee",
+      "exact_parent_row_derivation": true
+    },
+    {
+      "case_id": "m130",
+      "rows": 6,
+      "sha256": "02f4c02304a9e251b2cc8d2ff378f2e13f03dea6edcb06f1072798eb1f814a2c",
+      "exact_parent_row_derivation": true
+    },
+    {
+      "case_id": "p128",
+      "rows": 14,
+      "sha256": "de547e67b38fc8a3dd39f803f0a6dffb85a6f303a73e1fb1b6bc20b6d3492439",
+      "exact_parent_row_derivation": true
+    }
+  ],
+  "planned_execution_count": 11,
+  "planned_simulated_seconds": 6900,
+  "all_original_retained_fields_preserved": true,
+  "matlab_executed": false,
+  "runtime_validation_pending": true,
+  "prefix_service_budget": {
+    "scope": "T17 protocol events strictly before900s; current case endpoint callbacks are outside this bound",
+    "protocol_rows": 77899,
+    "known_application_attempts": 180000,
+    "cancellation_upper_bound_event_counts": {
+      "hop_ack": 1565,
+      "hop_dack": 450,
+      "hop_failed": 52,
+      "hop_control_ack": 178,
+      "hop_control_failed": 0,
+      "hop_control_admit": 218
+    },
+    "cancellation_callback_pairs_upper_bound": 2463,
+    "service_rows_upper_bound": 262825,
+    "planned_max_records": 400000,
+    "pre_stop_headroom_at_least": 137175
+  },
+  "matlab_source_review": "No concrete blocker found in tranche18Suite,relayServiceContract,run_tranche18_validation,TestRelayServiceSuite",
+  "open_review": "Return-checker and native-final-evidence integration still under review",
+  "accepted_scope": [
+    "Unchanged production implementation",
+    "No timing quantization promotion",
+    "Three seeds are descriptive, not common random numbers",
+    "No OPNET acceptance or fullcampus acceptance",
+    "DACK optional in reduced cases",
+    "Finite-stop pending work is censored, not forced-drained"
+  ],
+  "wording_correction_verified": "Existing six MAC scalar reads per cancellation snapshot now explicit in plan"
+}

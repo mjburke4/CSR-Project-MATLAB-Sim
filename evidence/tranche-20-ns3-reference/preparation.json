@@ -1,0 +1,36 @@
+{
+  "schema": "csr-tranche20-native-preparation-v1",
+  "status": "passed",
+  "matlab_executed": false,
+  "opnet_executed": false,
+  "source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "engine_commit": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+  "seeds": {
+    "129": {
+      "attempts": 1710000,
+      "admitted": 12463,
+      "blocked": 1697537,
+      "delivered": 11787,
+      "unique_delivered": 11787,
+      "delivery_events": 11793,
+      "duplicate_delivery_events": 6,
+      "unmatched_sends": 676
+    },
+    "130": {
+      "attempts": 1710000,
+      "admitted": 12661,
+      "blocked": 1697339,
+      "delivered": 11765,
+      "unique_delivered": 11765,
+      "delivery_events": 11769,
+      "duplicate_delivery_events": 4,
+      "unmatched_sends": 896
+    }
+  },
+  "tests": {
+    "passed": 5,
+    "log": "native-parser-tests.log"
+  },
+  "baseline_reproduction": "baseline-reproduction.json",
+  "scope": "Full native6000s seed129/130 with run.seed-only input overrides; source and binary unchanged. Delivered is unique applications; source-proven DACK delivery events reported separately."
+}

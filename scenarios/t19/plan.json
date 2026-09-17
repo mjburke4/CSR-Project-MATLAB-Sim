@@ -1,0 +1,89 @@
+{
+  "schema": "csr-tranche19-queued-retry-plan-v1",
+  "tranche": 19,
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "engine_commit": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+  "scenario_file": "scenarios/benchmarks/campus_multihop_6000.csv",
+  "scenario_sha256": "90b143d93c13c6c2761bc5f2875ccc3fff98f85af6f2550370e435df2aaabcfc",
+  "baseline_owner_evidence": "evidence/t17/owner.zip",
+  "baseline_owner_evidence_sha256": "19921afa83c57db2779e4302e5b39afef5120afb129a87fddb1f6d1bdbec2bd1",
+  "accepted_parent_owner_evidence": "evidence/t18/owner.zip",
+  "accepted_parent_owner_evidence_sha256": "85d63854fff84e8aaf62b5c9814603cbc277cffa6c67c648ba3892d90107965d",
+  "native_reference_directory": "evidence/tranche-7-ns3-reference/campus_multihop_6000",
+  "native_reference_reused": true,
+  "native_reference_reason": "Current upstream main and engine pins unchanged; exact T17 native original-campus evidence retained. No native code or input changed.",
+  "cases": [
+    {
+      "case_id": "a128",
+      "policy": "actual-tx",
+      "seed": 128,
+      "duration_s": 6000,
+      "scenario": "blue_radio_campus-multihop",
+      "scenario_file": "scenarios/benchmarks/campus_multihop_6000.csv",
+      "scenario_sha256": "90b143d93c13c6c2761bc5f2875ccc3fff98f85af6f2550370e435df2aaabcfc",
+      "reference_directory": "evidence/tranche-7-ns3-reference/campus_multihop_6000",
+      "bucket_width_s": 60
+    },
+    {
+      "case_id": "p128",
+      "policy": "native-provisional",
+      "seed": 128,
+      "duration_s": 6000,
+      "scenario": "blue_radio_campus-multihop",
+      "scenario_file": "scenarios/benchmarks/campus_multihop_6000.csv",
+      "scenario_sha256": "90b143d93c13c6c2761bc5f2875ccc3fff98f85af6f2550370e435df2aaabcfc",
+      "reference_directory": "evidence/tranche-7-ns3-reference/campus_multihop_6000",
+      "bucket_width_s": 60
+    }
+  ],
+  "execution_order": [
+    "a128",
+    "p128"
+  ],
+  "planned_simulated_seconds": 12000,
+  "comparison_band_percent": 5.0,
+  "comparison_band_role": "Descriptive practical target for total and per-flow admitted/delivered applications; not a structural pass threshold, confidence interval, or statistical equivalence claim.",
+  "trace_limits": {
+    "protocol": 1500000,
+    "phy": 1500000,
+    "admission": 100000
+  },
+  "max_events": 12000000,
+  "expected_admission_attempts": 1710000,
+  "seed": 128,
+  "duration_s": 6000,
+  "node_ids": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    7,
+    8
+  ],
+  "flow_sources": [
+    2,
+    3,
+    4,
+    5,
+    7,
+    8
+  ],
+  "timing_policy": "continuous",
+  "default_policy_changed": false,
+  "phy_ecc_changed": false,
+  "observer_enabled": false,
+  "post_horizon_drain": false,
+  "full_portable_regression": true,
+  "numerical_parity_required": false,
+  "common_random_numbers_claimed": false,
+  "single_seed_scope": true,
+  "extra_seed_confirmation_deferred": true,
+  "native_execution_required": false,
+  "native_tests_included": false,
+  "finite_stop_pending_is_failure": false,
+  "policy_scope": "DATA retry confirmation/provisional timestamp and native-inspired DATA unmatched-sent fallback scan; CONTROL and default policy unchanged. MATLAB terminal cancellation and transactional overload remain accepted differences.",
+  "observation_scope": "Complete protocol/PHY and admitted-application traces; 100000-row historical admission prefix plus complete attempt/admission/blocked counters. Post-callback ownership reconstructed; no hidden-queue polling.",
+  "causal_scope": "Deterministic MATLAB mechanism tests plus same-engine same-input seed128 policy intervention. Subsequent event ordering and RNG consumption may diverge; no packet-level shared random-stream claim.",
+  "timeline_bucket_width_s": 300
+}

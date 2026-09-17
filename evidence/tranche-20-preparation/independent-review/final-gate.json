@@ -1,0 +1,30 @@
+{
+  "status": "passed_frozen_candidate_and_source_review",
+  "candidate_sha256": "ba4cedf3551a0bc1fe31385108e1f33011d1c97211bba993b6061a2de31389c1",
+  "source_bindings_verified": 376,
+  "matlab_source_files_verified": 175,
+  "prior_source_bindings_unchanged": 358,
+  "reference_files_verified": 98,
+  "planned_matlab_test_names_verified": 716,
+  "previous_review_source_changes": {
+    "runner-review.json": [],
+    "checker-review.json": [
+      "scripts/tranche20_native_metrics.py"
+    ]
+  },
+  "integration_fixture_source_review": "passed: real reviewer called without mocks; full source/native verification; only temporary synthetic envelopes; cleanup guaranteed; mutation checks accounting and inventory",
+  "integration_execution_result": "pending root executing offline gate",
+  "matlab_executed": false,
+  "remaining_source_blockers": [],
+  "release_remaining": [
+    "Root full-schema fixture execution success",
+    "Package clean overlay verification"
+  ],
+  "subsequent_source_changes_reviewed": {
+    "scripts/tranche20_native_metrics.py": {
+      "sha256": "5d28b79e6a253c65b6b1a0be808f036da3c4db9071498b17eb990ee5ada78280",
+      "status": "passed",
+      "changes": "First-delivery-only delay summaries added; upstream output row_count compared before direct exact aggregate rows check. Unique/event accounting remains intact."
+    }
+  }
+}

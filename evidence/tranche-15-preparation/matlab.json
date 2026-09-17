@@ -1,0 +1,45 @@
+{
+  "Schema": "csr-tranche15-matlab-implementation-v1",
+  "MATLABExecuted": false,
+  "StaticLint": {
+    "Tool": "MISS_HIT",
+    "FileCount": 4,
+    "ExitCode": 0,
+    "Result": "All four new MATLAB files parsed without findings"
+  },
+  "MethodCount": 8,
+  "TotalFocusedMethodsWithRetainedTests": 117,
+  "ExpectedModes": 2,
+  "ExpectedCases": 8,
+  "ExpectedCheckpoints": 528,
+  "ExistingMATLABChanges": [],
+  "OriginalLossContractSHA256": "283d5d83990aeb05523b6e6f3c0e81343b9e51f532891c340f75751cfdef401b",
+  "Scope": "Only new local validation transport helper, mechanically derived controlled-loss fixture, paired wrapper, independent tests and explicit plan. No production edits or reference outputs injected. Continuous branch retains original order tx+duration+propagation. Rounding policy and bounded fixture scope are explicit; not universal native Time equivalence.",
+  "ChangedFiles": [
+    {
+      "Path": "+csr/+validation/transportArrival.m",
+      "SHA256": "d0b5d6011b55ad22668453d5a7fe719fa61ba8f9f643b32371c9482cbd784086",
+      "Bytes": 2445
+    },
+    {
+      "Path": "+csr/+validation/lossTimingRun.m",
+      "SHA256": "1a504574f7355a7ef47460d260fef094027a60db74c05c8be15b0bb412d5bb5a",
+      "Bytes": 43383
+    },
+    {
+      "Path": "+csr/+validation/lossTimingContract.m",
+      "SHA256": "db92f6d00b76bd703573cdee40f392b30354bda836a44d4aa40dd40b38996c1d",
+      "Bytes": 3117
+    },
+    {
+      "Path": "tests/TestTransportArrival.m",
+      "SHA256": "66544053034adf951fb694f626904cf922434117750adfdc3986dd02e66b7182",
+      "Bytes": 5379
+    },
+    {
+      "Path": "scenarios/t15/plan.json",
+      "SHA256": "d108193eec32f9767c5104a7e70e0db3413e4a1bd0e15ef7cb7e19a172e1ae4f",
+      "Bytes": 5117
+    }
+  ]
+}

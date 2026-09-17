@@ -1,0 +1,114 @@
+{
+  "schema": "csr-tranche18-path-failure-review-v1",
+  "status": "confirmed_preflight_path_guard_defect",
+  "failed_candidate_sha256": "582802501a94338cc3e70e1cb79d7f66f9b83aa6fcc5dc10508003a7d1f4d892",
+  "owner_archive_sha256": "5be7fc792a0fcb998198dc99d48d3c6b7c6f378a4389694b418aae0263f187ce",
+  "runtime": {
+    "Runtime": "MATLAB",
+    "Version": "25.1.0.2943329 (R2025a)",
+    "Release": "2025a",
+    "HasWirelessNetworkSimulator": false,
+    "HasWnetNode": false,
+    "HasWirelessPacket": false,
+    "DefaultBackend": "portable",
+    "WirelessAdapterImplemented": true,
+    "WirelessAdapterScope": "Optional R2026a wireless-clock candidate; runtime validation pending",
+    "NativePacketTransportIntegrated": false,
+    "ProbeScope": "Symbol discovery only; licenses and execution are not validated."
+  },
+  "source_files_verified": 346,
+  "reference_files_verified": 731,
+  "source_hashes_match_issued_candidate": true,
+  "reference_hashes_match_issued_candidate": true,
+  "baseline_sources_unchanged": 313,
+  "tests_executed": false,
+  "simulation_cases": 0,
+  "failure": {
+    "identifier": "csr:t18:Path",
+    "message": "Scenario, recipe and reference paths must be canonical."
+  },
+  "cause": "Recipe path character class excludes the literal dot before recipe.json, rejecting all ten shipped recipes. Installation location is not part of this predicate.",
+  "reproduction": "Python regular expression evaluation of the two patterns extracted verbatim from original-suite.m; not MATLAB runtime execution.",
+  "path_checks": [
+    {
+      "case_id": "r128",
+      "scenario_path": "scenarios/t18/inputs/r128.csv",
+      "recipe_path": "scenarios/t18/inputs/r128.recipe.json",
+      "old_scenario_match": true,
+      "old_recipe_match": false,
+      "expected_exact_paths_match": true
+    },
+    {
+      "case_id": "l128",
+      "scenario_path": "scenarios/t18/inputs/l128.csv",
+      "recipe_path": "scenarios/t18/inputs/l128.recipe.json",
+      "old_scenario_match": true,
+      "old_recipe_match": false,
+      "expected_exact_paths_match": true
+    },
+    {
+      "case_id": "m128",
+      "scenario_path": "scenarios/t18/inputs/m128.csv",
+      "recipe_path": "scenarios/t18/inputs/m128.recipe.json",
+      "old_scenario_match": true,
+      "old_recipe_match": false,
+      "expected_exact_paths_match": true
+    },
+    {
+      "case_id": "r129",
+      "scenario_path": "scenarios/t18/inputs/r129.csv",
+      "recipe_path": "scenarios/t18/inputs/r129.recipe.json",
+      "old_scenario_match": true,
+      "old_recipe_match": false,
+      "expected_exact_paths_match": true
+    },
+    {
+      "case_id": "l129",
+      "scenario_path": "scenarios/t18/inputs/l129.csv",
+      "recipe_path": "scenarios/t18/inputs/l129.recipe.json",
+      "old_scenario_match": true,
+      "old_recipe_match": false,
+      "expected_exact_paths_match": true
+    },
+    {
+      "case_id": "m129",
+      "scenario_path": "scenarios/t18/inputs/m129.csv",
+      "recipe_path": "scenarios/t18/inputs/m129.recipe.json",
+      "old_scenario_match": true,
+      "old_recipe_match": false,
+      "expected_exact_paths_match": true
+    },
+    {
+      "case_id": "r130",
+      "scenario_path": "scenarios/t18/inputs/r130.csv",
+      "recipe_path": "scenarios/t18/inputs/r130.recipe.json",
+      "old_scenario_match": true,
+      "old_recipe_match": false,
+      "expected_exact_paths_match": true
+    },
+    {
+      "case_id": "l130",
+      "scenario_path": "scenarios/t18/inputs/l130.csv",
+      "recipe_path": "scenarios/t18/inputs/l130.recipe.json",
+      "old_scenario_match": true,
+      "old_recipe_match": false,
+      "expected_exact_paths_match": true
+    },
+    {
+      "case_id": "m130",
+      "scenario_path": "scenarios/t18/inputs/m130.csv",
+      "recipe_path": "scenarios/t18/inputs/m130.recipe.json",
+      "old_scenario_match": true,
+      "old_recipe_match": false,
+      "expected_exact_paths_match": true
+    },
+    {
+      "case_id": "p128",
+      "scenario_path": "scenarios/t18/inputs/p128.csv",
+      "recipe_path": "scenarios/t18/inputs/p128.recipe.json",
+      "old_scenario_match": true,
+      "old_recipe_match": false,
+      "expected_exact_paths_match": true
+    }
+  ]
+}

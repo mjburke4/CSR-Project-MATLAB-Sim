@@ -1,0 +1,122 @@
+{
+  "schema": "csr-tranche21-offline-diagnostic-v1",
+  "created_utc": "2026-09-17T14:56:39.456195+00:00",
+  "status": "diagnostic_completed",
+  "independent_review_file": "review/final-review.json",
+  "working_numerical_band_percent": 10,
+  "target_change_is_simulator_change": false,
+  "matlab_simulations_executed": 0,
+  "native_simulations_executed": 0,
+  "accepted_source_bindings_unchanged": 376,
+  "accepted_matlab_sources_unchanged": 175,
+  "accepted_matlab_tests_reused": 716,
+  "new_matlab_tests_executed": 0,
+  "matlab_rerun_required": false,
+  "default_policy": "actual-tx",
+  "production_change_justified": false,
+  "numerical_equivalence_established": false,
+  "target_summary": [
+    {
+      "metric": "admitted",
+      "group": "whole_network",
+      "comparisons": 3,
+      "within_5_percent": 3,
+      "within_10_percent": 3
+    },
+    {
+      "metric": "admitted",
+      "group": "individual_flows",
+      "comparisons": 18,
+      "within_5_percent": 9,
+      "within_10_percent": 12
+    },
+    {
+      "metric": "unique_delivered",
+      "group": "whole_network",
+      "comparisons": 3,
+      "within_5_percent": 3,
+      "within_10_percent": 3
+    },
+    {
+      "metric": "unique_delivered",
+      "group": "individual_flows",
+      "comparisons": 18,
+      "within_5_percent": 7,
+      "within_10_percent": 13
+    },
+    {
+      "metric": "mean_delivered_delay_s",
+      "group": "whole_network",
+      "comparisons": 3,
+      "within_5_percent": 1,
+      "within_10_percent": 2
+    },
+    {
+      "metric": "mean_delivered_delay_s",
+      "group": "individual_flows",
+      "comparisons": 18,
+      "within_5_percent": 9,
+      "within_10_percent": 13
+    }
+  ],
+  "node8_comparison": [
+    {
+      "seed": 129,
+      "source": 7,
+      "matlab_mean_custody_apps": 35.3039816701827,
+      "ns3_mean_nsdp_apps": 29.60855834251857,
+      "matlab_completed_first_submit_mean_s": 250.43418986919906,
+      "ns3_completed_first_admission_mean_s": 198.98099299933332,
+      "matlab_pending_custody_apps_at_stop": 16,
+      "ns3_nsdp_apps_at_stop": 15
+    },
+    {
+      "seed": 129,
+      "source": 8,
+      "matlab_mean_custody_apps": 15.998532996916245,
+      "ns3_mean_nsdp_apps": 15.998517889237563,
+      "matlab_completed_first_submit_mean_s": 175.73470657952672,
+      "ns3_completed_first_admission_mean_s": 173.13373231727732,
+      "matlab_pending_custody_apps_at_stop": 16,
+      "ns3_nsdp_apps_at_stop": 16
+    },
+    {
+      "seed": 130,
+      "source": 7,
+      "matlab_mean_custody_apps": 19.47245034705502,
+      "ns3_mean_nsdp_apps": 237.1933014547207,
+      "matlab_completed_first_submit_mean_s": 141.84865585720786,
+      "ns3_completed_first_admission_mean_s": 1029.1197351126482,
+      "matlab_pending_custody_apps_at_stop": 31,
+      "ns3_nsdp_apps_at_stop": 318
+    },
+    {
+      "seed": 130,
+      "source": 8,
+      "matlab_mean_custody_apps": 15.99833468515494,
+      "ns3_mean_nsdp_apps": 15.999241428325266,
+      "matlab_completed_first_submit_mean_s": 138.23815653766246,
+      "ns3_completed_first_admission_mean_s": 480.8779845097455,
+      "matlab_pending_custody_apps_at_stop": 16,
+      "ns3_nsdp_apps_at_stop": 16
+    }
+  ],
+  "engineering_decision": "Retain the accepted default, PHY/ECC and continuous timing. The larger native seed130 relay backlog and upstream adaptive admission window are observed; differing seed histories do not alone establish a code defect.",
+  "next_bounded_question": "Audit the early 7-to-8 ACK/retry sequence that establishes the adaptive outstanding window, preserving actual event order and the known queued-retry policy distinction; use a controlled source-contract comparison before any production change.",
+  "input_provenance": {
+    "t20_acceptance_sha256": "69d9bafef93c64a674e8226a434c7c1a5d3b7ebb6f6f2fb76e64461fc497bc28",
+    "t20_original_return_sha256": "41ee42fd72d3246b005cffa6eb0731aef1f465ac19747be82feb481571a72861",
+    "t20_candidate_sha256": "ba4cedf3551a0bc1fe31385108e1f33011d1c97211bba993b6061a2de31389c1",
+    "t20_update_archive_sha256": "f808b63f7901c5278cf586ccb7df25674293003a4d12a79e62536277194f5fc0"
+  },
+  "result_files": {
+    "target/target-screen.json": "ab1578ed746f828076a79c94e835da729613235fd762ac668f1d4acb30c92582",
+    "matlab/matlab_node8.json": "51bd13e9dffc0fdd8d767da9cb35f27b522c4cee5f7222f21908dfa2c53ae073",
+    "matlab/matlab_threshold_replay.json": "2c61022170f8ab093c2ae5a197317f801e86061f27e906d37ca5c291d9c5325b",
+    "native/s129.json": "6f8d529021f97e5b8dd743bd0075932f086e21e072a4e2a9be5acf7ccc8b35d2",
+    "native/s130.json": "b7ae133af818d09916050e5bb91329d768035a49122fea133721cb314bc60cdd",
+    "native/s129-outcome-joins.json": "090b8130e2fbea431a03f2675bb29ef8dc6f053f226e3fa5a5f0cc6d8b8283b7",
+    "native/s130-outcome-joins.json": "2a8d26c2d966cadd615b68246c2fec6f2f5ac1a9adb7ff20568ecf88a77f0cc6",
+    "source4/source4.json": "99ef771ac5d5c8ac7969b982920cfcb8c12f86676aaaae98888c60f74851d282"
+  }
+}

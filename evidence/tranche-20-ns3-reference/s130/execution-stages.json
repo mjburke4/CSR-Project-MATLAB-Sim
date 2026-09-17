@@ -1,0 +1,46 @@
+{
+  "run_ns3": {
+    "command": [
+      "/workspace/scratch/ab77b42f47ca/t18-native/runner-v3/t18-pristine",
+      "--scenario=/workspace/scratch/ab77b42f47ca/csr20/evidence/tranche-20-ns3-reference/s130/scenario.csv",
+      "--trace=/workspace/scratch/ab77b42f47ca/csr20/evidence/tranche-20-ns3-reference/s130/ns3-trace.csv",
+      "--appDiagnostics=/workspace/scratch/ab77b42f47ca/csr20/evidence/tranche-20-ns3-reference/s130/app-admission-diagnostics.csv",
+      "--stop=6000",
+      "--flowLimit=0",
+      "--dutyCycling=1",
+      "--opnetAlignedDutyCycle=1",
+      "--gatewayDiscovery=1",
+      "--opnetAppGating=1",
+      "--aggregateTraceOnly=0",
+      "--quietModelLogs=1",
+      "--admissionTrace=1"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": null,
+    "log": "ns3-run.log"
+  },
+  "aggregate_ns3": {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "-B",
+      "-I",
+      "/workspace/scratch/ab77b42f47ca/t18-native/csr/utils/aggregate-ns3-trace.py",
+      "/workspace/scratch/ab77b42f47ca/csr20/evidence/tranche-20-ns3-reference/s130/ns3-trace.csv",
+      "/workspace/scratch/ab77b42f47ca/csr20/evidence/tranche-20-ns3-reference/s130/ns3-aggregates.csv",
+      "--scenario",
+      "blue_radio_campus-multihop",
+      "--bucket-width",
+      "60",
+      "--stop-time",
+      "6000",
+      "--legacy-trace-size-exclusion-bits",
+      "0",
+      "--require-zero-size-mismatches",
+      "--provenance",
+      "/workspace/scratch/ab77b42f47ca/csr20/evidence/tranche-20-ns3-reference/s130/ns3-aggregates.provenance.json"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": null,
+    "log": "ns3-aggregate.log"
+  }
+}

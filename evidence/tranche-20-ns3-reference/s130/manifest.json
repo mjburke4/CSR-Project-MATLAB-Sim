@@ -1,0 +1,185 @@
+{
+  "schema": "csr-tranche20-native-reference-v1",
+  "status": "completed",
+  "case": {
+    "case_id": "s130",
+    "scenario": "blue_radio_campus-multihop",
+    "seed": 130,
+    "duration_s": 6000,
+    "bucket_width_s": 60,
+    "profile_id": "hist-adb97c54-bare",
+    "source_kind": "archived_opnet_seed_override",
+    "scenario_sha256": "34718f59d786b36a73ee5024a3ac2b95b8c8e35b134ecce70f99f3c04f4ae2c9"
+  },
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "engine_commit": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+  "runner_sha256": "92243d06772edeac54027b46fd64ebfb097f30301fd8d8f3eb5591ee33a06bc6",
+  "build_sha256": "cb82002d65be1697b64a010d76dc558e7e38844687ad607262288280777cc586",
+  "observer_enabled": false,
+  "stages": {
+    "run_ns3": {
+      "command": [
+        "/workspace/scratch/ab77b42f47ca/t18-native/runner-v3/t18-pristine",
+        "--scenario=/workspace/scratch/ab77b42f47ca/csr20/evidence/tranche-20-ns3-reference/s130/scenario.csv",
+        "--trace=/workspace/scratch/ab77b42f47ca/csr20/evidence/tranche-20-ns3-reference/s130/ns3-trace.csv",
+        "--appDiagnostics=/workspace/scratch/ab77b42f47ca/csr20/evidence/tranche-20-ns3-reference/s130/app-admission-diagnostics.csv",
+        "--stop=6000",
+        "--flowLimit=0",
+        "--dutyCycling=1",
+        "--opnetAlignedDutyCycle=1",
+        "--gatewayDiscovery=1",
+        "--opnetAppGating=1",
+        "--aggregateTraceOnly=0",
+        "--quietModelLogs=1",
+        "--admissionTrace=1"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": null,
+      "log": "ns3-run.log"
+    },
+    "aggregate_ns3": {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-B",
+        "-I",
+        "/workspace/scratch/ab77b42f47ca/t18-native/csr/utils/aggregate-ns3-trace.py",
+        "/workspace/scratch/ab77b42f47ca/csr20/evidence/tranche-20-ns3-reference/s130/ns3-trace.csv",
+        "/workspace/scratch/ab77b42f47ca/csr20/evidence/tranche-20-ns3-reference/s130/ns3-aggregates.csv",
+        "--scenario",
+        "blue_radio_campus-multihop",
+        "--bucket-width",
+        "60",
+        "--stop-time",
+        "6000",
+        "--legacy-trace-size-exclusion-bits",
+        "0",
+        "--require-zero-size-mismatches",
+        "--provenance",
+        "/workspace/scratch/ab77b42f47ca/csr20/evidence/tranche-20-ns3-reference/s130/ns3-aggregates.provenance.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": null,
+      "log": "ns3-aggregate.log"
+    }
+  },
+  "seed_recipe": {
+    "parent_sha256": "90b143d93c13c6c2761bc5f2875ccc3fff98f85af6f2550370e435df2aaabcfc",
+    "scenario_sha256": "34718f59d786b36a73ee5024a3ac2b95b8c8e35b134ecce70f99f3c04f4ae2c9",
+    "field_changes": [
+      [
+        0,
+        "seed",
+        "128",
+        "130"
+      ]
+    ],
+    "only_run_seed_changed": true,
+    "seed": 130,
+    "duration_s": 6000,
+    "scenario": "blue_radio_campus-multihop"
+  },
+  "application_admission_totals": {
+    "attempts": 1710000,
+    "admitted": 12661,
+    "blocked_discovery": 0,
+    "blocked_topology": 0,
+    "blocked_gateway_route": 0,
+    "blocked_destination": 0,
+    "blocked_nsdp": 1697339
+  },
+  "exact_sequence_validation": {
+    "matched_count": 11769,
+    "matched_by_method": {
+      "exact_sequence": 11765,
+      "source_exact_dack_retry_duplicate": 4
+    },
+    "unmatched_delivery_count": 0,
+    "matched_size_compared_count": 11769,
+    "matched_size_mismatch_count": 0,
+    "source_exact_dack_retry_duplicate_delivery_count": 4,
+    "source_exact_dack_retry_duplicate_proof_count": 5
+  },
+  "compressed_artifacts": [
+    {
+      "original_name": "ns3-trace.csv",
+      "original_sha256": "085701085c5d4065f7b7331f584dcf53f1b878f92da8f761b2c078637dc16af0",
+      "original_bytes": 1519621530,
+      "path": "ns3-trace.csv.gz",
+      "sha256": "404b719dcb8c2762cb60a2f60eb2489b0b5c41f198baa25b3fe93630c1b07930",
+      "bytes": 77193119
+    }
+  ],
+  "summary_recovery": {
+    "reason": "T19 unique-delivery-only summary rejected source-proven DACK duplicate deliveries after successful run and aggregation.",
+    "simulator_rerun": false,
+    "original_child_exit_codes": {
+      "run_ns3": 0,
+      "aggregate_ns3": 0
+    },
+    "elapsed_seconds_available": false,
+    "completion_log_verified": true,
+    "repair": "T20 native metrics independently regenerate upstream aggregate and exact duplicate proofs from retained complete trace."
+  },
+  "files": [
+    {
+      "path": "app-admission-diagnostics.csv",
+      "sha256": "f8fa47a054ef087e23346bcb717f48c38ae6815acd94686b1fb739b0c549dff1",
+      "bytes": 1114
+    },
+    {
+      "path": "execution-stages.json",
+      "sha256": "da531871b86b3976cce203730c8a6e1fa31115e3c85c5cfe6b6b72dec65c5bf1",
+      "bytes": 1683
+    },
+    {
+      "path": "native-applications.json",
+      "sha256": "7275ba9170f595fc92900d3b72748753f92ab44b3285be380c2218c3b9f0e44b",
+      "bytes": 28886
+    },
+    {
+      "path": "ns3-aggregate.log",
+      "sha256": "57e7edef6179738210cc3fbcd1794a30a584e06ebd562ba3b69835a38501528f",
+      "bytes": 249
+    },
+    {
+      "path": "ns3-aggregates.csv",
+      "sha256": "0c731dee6d2c1a9b33f6fc3caf37a4548759b8e79b03853bca25509261afc0ad",
+      "bytes": 330686
+    },
+    {
+      "path": "ns3-aggregates.provenance.json",
+      "sha256": "7dfe20ef7ad62075396bfcbf9eab438340893d28222678406e9d9e1230c681f8",
+      "bytes": 16454
+    },
+    {
+      "path": "ns3-benchmark.provenance.json",
+      "sha256": "48eaa3a9a861e0efc9169b98fd0ab16709350c13a2d417a429edc5d6dafcd9d1",
+      "bytes": 1318
+    },
+    {
+      "path": "ns3-run.log",
+      "sha256": "2befd194a14f6129a58f265f840524037be282ae6fad2374473c743353f4b87a",
+      "bytes": 346
+    },
+    {
+      "path": "ns3-trace.csv.gz",
+      "sha256": "404b719dcb8c2762cb60a2f60eb2489b0b5c41f198baa25b3fe93630c1b07930",
+      "bytes": 77193119
+    },
+    {
+      "path": "scenario.csv",
+      "sha256": "34718f59d786b36a73ee5024a3ac2b95b8c8e35b134ecce70f99f3c04f4ae2c9",
+      "bytes": 2408
+    },
+    {
+      "path": "seed-recipe.json",
+      "sha256": "6e2963a71caf529dcb34bc0d1f63735425b083100d8a65461eced95c8cecb1d2",
+      "bytes": 379
+    },
+    {
+      "path": "summary-recovery.json",
+      "sha256": "8776cd68a7c942d3679df88414b619cd0cb5b3aad730eb31866b51fae9a5e8b1",
+      "bytes": 453
+    }
+  ]
+}

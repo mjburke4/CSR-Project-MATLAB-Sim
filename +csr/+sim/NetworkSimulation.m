@@ -30,12 +30,13 @@ classdef NetworkSimulation < handle
         AdmissionRows
         AdmissionCount = 0
         LinkObserver = []
+        TransportTiming = []
         FeedbackContext = []
         FeedbackQueueEvent = ''
         HasRun = false
     end
     methods
-        function obj = NetworkSimulation(config,linkObserver)
+        function obj = NetworkSimulation(config,linkObserver,transportTiming)
             obj.Config = csr.scenario.validate(config);
             config = obj.Config;
             if ~strcmp(config.Stack,'network') || ~strcmp(config.Channel.Model,'csr-phy')
@@ -49,6 +50,15 @@ classdef NetworkSimulation < handle
                 end
                 linkObserver.attach(config.Mac.AckTransmissions);
                 obj.LinkObserver = linkObserver;
+            end
+            if nargin>2 && ~isempty(transportTiming)
+                if ~isa(transportTiming,'csr.sim.TransportTiming') || ~isscalar(transportTiming)
+                    error('csr:sim:TransportTiming','Expected one csr.sim.TransportTiming object.');
+                end
+                if ~strcmp(config.Backend,'portable')
+                    error('csr:sim:TransportBackend','Optional transport timing requires the portable backend.');
+                end
+                obj.TransportTiming=transportTiming;
             end
             if strcmp(config.Backend,'portable')
                 obj.Scheduler = csr.sim.EventScheduler(config.MaxEvents);
@@ -100,7 +110,7 @@ classdef NetworkSimulation < handle
             obj.Engine = csr.phy.SignalEngine(config,obj.Scheduler,obj.Streams, ...
                 @(frame,nodeId,decision)obj.receive(frame,nodeId,decision), ...
                 @(event,frame,nodeId,details)obj.recordPhy(event,frame,nodeId,details), ...
-                @(nodeId,state)obj.receiverChanged(nodeId,state));
+                @(nodeId,state)obj.receiverChanged(nodeId,state),obj.TransportTiming);
             for k = 1:n
                 nodeId = config.Nodes(k).Id;
                 macCallbacks = struct('Transmit',@(frame,duration)obj.transmit(frame,duration), ...
@@ -274,6 +284,9 @@ classdef NetworkSimulation < handle
                 'Trace',trace,'ProtocolTrace',trace, ...
                 'PhyTrace',struct2table(obj.PhyRows(1:obj.PhyCount),'AsArray',true), ...
                 'Metadata',metadata);
+            if ~isempty(obj.TransportTiming)
+                result.TransportTiming=obj.TransportTiming.snapshot();
+            end
             if ~isempty(obj.LinkObserver)
                 observed = obj.LinkObserver.snapshot();
                 result.LinkDecisionTrace = observed.LinkDecisionTrace;

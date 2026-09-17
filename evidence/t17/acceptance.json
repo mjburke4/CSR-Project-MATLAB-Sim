@@ -1,0 +1,141 @@
+{
+  "schema": "csr-tranche17-portable-acceptance-v1",
+  "disposition": "accepted_with_documented_numerical_residuals",
+  "scope": "All 660 top-level portable tests and one unchanged seed128 6000-second campus structural gate.",
+  "portable_regression_and_campus_gate_accepted": true,
+  "full_protocol_parity_established": false,
+  "numerical_parity_established": false,
+  "native_matlab_adapter_validated": false,
+  "matlab_executed_by_reviewer": false,
+  "matlab_rerun_required": false,
+  "reviewer_repairs_required": false,
+  "source_modified": false,
+  "owner_evidence_modified": false,
+  "owner_archive": {
+    "path": "owner/t17.zip",
+    "sha256": "19921afa83c57db2779e4302e5b39afef5120afb129a87fddb1f6d1bdbec2bd1",
+    "bytes": 15449392
+  },
+  "candidate_sha256": "6210329add45cd50c8173e2e1390f2aa157a154c6977a10bee5917ee01a1052c",
+  "source_snapshot_sha256": "5ba7ff4b26a12192496d98cc36ccbcffe77199255da1cbda1025f83a14618891",
+  "reference_snapshot_sha256": "6cce3c1bcfc836fb369890ffeae76aab499eb8732036ba81ff3777d91f92601c",
+  "upstream_ns3_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "runtime": {
+    "Runtime": "MATLAB",
+    "Version": "25.1.0.2943329 (R2025a)",
+    "Release": "2025a",
+    "HasWirelessNetworkSimulator": false,
+    "HasWnetNode": false,
+    "HasWirelessPacket": false,
+    "DefaultBackend": "portable",
+    "WirelessAdapterImplemented": true,
+    "WirelessAdapterScope": "Optional R2026a wireless-clock candidate; runtime validation pending",
+    "NativePacketTransportIntegrated": false,
+    "ProbeScope": "Symbol discovery only; licenses and execution are not validated."
+  },
+  "started_utc": "2026-09-15T18:53:40.516Z",
+  "completed_utc": "2026-09-15T20:00:38.790Z",
+  "elapsed_minutes": 66.97123333333333,
+  "matlab_tests": {
+    "passed": 660,
+    "failed": 0,
+    "incomplete": 0
+  },
+  "source_files": 313,
+  "matlab_source_files": 160,
+  "reference_files": 520,
+  "all_304_t16_sources_unchanged": true,
+  "all_155_t16_matlab_sources_unchanged": true,
+  "campus_counts": {
+    "Generated": 12484,
+    "Received": 11825,
+    "Dropped": 402,
+    "Pending": 257
+  },
+  "admission_counts": {
+    "attempts": 1710000,
+    "admitted": 12484,
+    "blocked": 1697516,
+    "trace_records": 100000,
+    "omitted_trace_records": 1610000,
+    "all_flows_made_progress": true
+  },
+  "per_flow_delivery": [
+    {
+      "source": 2,
+      "matlab_delivered": 411,
+      "ns3_delivered": 410,
+      "difference": 1,
+      "difference_percent": 0.24390243902439046
+    },
+    {
+      "source": 3,
+      "matlab_delivered": 8472,
+      "ns3_delivered": 8535,
+      "difference": -63,
+      "difference_percent": -0.7381370826010536
+    },
+    {
+      "source": 4,
+      "matlab_delivered": 348,
+      "ns3_delivered": 419,
+      "difference": -71,
+      "difference_percent": -16.945107398568016
+    },
+    {
+      "source": 5,
+      "matlab_delivered": 1644,
+      "ns3_delivered": 1369,
+      "difference": 275,
+      "difference_percent": 20.087655222790367
+    },
+    {
+      "source": 7,
+      "matlab_delivered": 533,
+      "ns3_delivered": 574,
+      "difference": -41,
+      "difference_percent": -7.14285714285714
+    },
+    {
+      "source": 8,
+      "matlab_delivered": 417,
+      "ns3_delivered": 462,
+      "difference": -45,
+      "difference_percent": -9.740259740259738
+    }
+  ],
+  "ns3_delivered": 11769,
+  "ns3_total_delivery_difference_percent": 0.47582632339195907,
+  "t10_comparison": {
+    "all_statistics_equal": true,
+    "all_11_retained_raw_csv_bytes_equal": true,
+    "scenario_applications_aggregates_csv_bytes_equal": true,
+    "summary_csv_differences": [
+      "RuntimeSeconds"
+    ]
+  },
+  "default_timing_policy": "continuous",
+  "next_recommended_tranche": {
+    "tranche": 18,
+    "objective": "Real-PHY relay/local service allocation at node5 and 4-to-5 feedback/retry behavior; establish differences against native reference before changing policy.",
+    "keep_phy_ecc_unchanged": true,
+    "keep_default_continuous_timing": true,
+    "multi_seed_measurement_recommended": true,
+    "implementation_started": false
+  },
+  "limitations": [
+    "Hashes bind candidate inputs and owner-returned records; they are not independent proof of MATLAB execution.",
+    "One seed and one unchanged campus case do not establish statistical or full-network numerical parity.",
+    "Seed 128 identifies each experiment; MATLAB and ns-3 do not share random streams.",
+    "Pending applications, receiver observations and HOP/NWK ownership are censored at 6,000 seconds; no forced drain is required.",
+    "Admission counters cover every scheduled attempt; only the separately declared 100,000-record admission trace may be truncated.",
+    "OPNET supplies archived aggregates, not packet/path/retry/PHY event truth. No PHY/ECC tuning or timing-policy promotion follows automatically.",
+    "Control-drain flags cover exported HOP/NWK ownership; current MAC feedback queue depth is unavailable."
+  ],
+  "independent_integrity_audit_passed": true,
+  "independent_campus_audit_passed": true,
+  "transported_artifact_count": 35,
+  "zip_member_count": 36,
+  "independent_integrity_report_sha256": "69db53eb4f0a26f8db8afb792e0d0efe52e17883db29073c154918c217965af1",
+  "independent_ledger_sha256": "c5e730e471f5b6034a7f33de02fa663691ba6c54887daf01fef1bb4c13cfbd54"
+}

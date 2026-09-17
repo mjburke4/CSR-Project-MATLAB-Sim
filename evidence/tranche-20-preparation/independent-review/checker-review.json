@@ -1,0 +1,23 @@
+{
+  "status": "passed_source_and_representative_integration_review",
+  "matlab_executed": false,
+  "source_sha256": {
+    "scripts/analyze_tranche20_return.py": "4e75bf754cadfaf0481656a9c46cc357f26b419c1d09629821dd7a8af1451e7b",
+    "scripts/tranche20_metrics.py": "ba6147d1364bc1468641f053799bc3338bfa22a4ad8a125a23d23e585b9a4704",
+    "scripts/tranche20_native_metrics.py": "9e78ba323bf25116a687843a20ec970b671c3285243bfbc45c1cb74ac0fedec9",
+    "scripts/ns3/tranche20-aggregate-upstream.py": "fac6ceb6c5b7d95d41567a2f1018194b59d03366b581bdeb6415674d51985f2e"
+  },
+  "findings": [
+    "Exact parent source and runtime identities distinguish reused128 from new129/130",
+    "Original MATLAB CSV128 and derived native129130 hashes remain honest; only execution seed changes",
+    "Application comparisons use unique delivered apps; aggregate receive events remain separate including proven duplicates",
+    "All3seeds6flows, mean/range and signed residual consistency retained; meanpercent and pooledcounts ratio separate",
+    "Five percent descriptive only; no statistical equivalence claim",
+    "Representative authentic seed128 aggregate adapter and seed-only config relocation checks passed"
+  ],
+  "remaining_release_gates": [
+    "Root full-schema synthetic integration replay",
+    "Final frozen candidate/native references and clean overlay install"
+  ],
+  "remaining_source_blockers": []
+}

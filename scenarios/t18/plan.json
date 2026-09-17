@@ -1,0 +1,489 @@
+{
+  "schema": "csr-tranche18-relay-service-plan-v1",
+  "tranche": 18,
+  "ns3_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "engine_commit": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+  "parent_scenario": "scenarios/benchmarks/campus_multihop_6000.csv",
+  "parent_scenario_sha256": "90b143d93c13c6c2761bc5f2875ccc3fff98f85af6f2550370e435df2aaabcfc",
+  "seeds": [
+    128,
+    129,
+    130
+  ],
+  "case_count": 10,
+  "observed_case_count": 10,
+  "execution_count": 11,
+  "case_order": [
+    "r128",
+    "l128",
+    "m128",
+    "r129",
+    "l129",
+    "m129",
+    "r130",
+    "l130",
+    "m130",
+    "p128"
+  ],
+  "execution_order": [
+    "r128",
+    "l128",
+    "m128",
+    "m128_off",
+    "r129",
+    "l129",
+    "m129",
+    "r130",
+    "l130",
+    "m130",
+    "p128"
+  ],
+  "planned_simulated_seconds": 6900,
+  "conditions": [
+    "relay_only",
+    "local_only",
+    "mixed",
+    "campus_prefix"
+  ],
+  "control": {
+    "case_id": "m128_off",
+    "base_case_id": "m128",
+    "observer_enabled": false,
+    "duration_s": 600,
+    "configuration_must_match_exactly": true,
+    "core_statistics_and_raw_csvs_must_match": true
+  },
+  "timing_policy": "continuous",
+  "phy_ecc_changed": false,
+  "production_source_changed": false,
+  "default_policy_changed": false,
+  "full_portable_regression": false,
+  "full_campus_acceptance": false,
+  "native_tests_included": false,
+  "post_horizon_drain": false,
+  "native_reference_reused": false,
+  "opnet_available": false,
+  "all_protocol_phy_admission_and_observer_traces_complete_required": true,
+  "finite_stop_pending_is_failure": false,
+  "dack_required_in_every_case": false,
+  "numerical_parity_required": false,
+  "common_random_numbers_claimed": false,
+  "known_policy_difference": "MATLAB queued DATA retry waits for actual MAC transmission before its next timeout; native can time out a provisionally queued retry. Accepted prior distinction remains unchanged.",
+  "observer": "Existing csr.sim.AckServiceDiagnostics; no added HOP/NWK state polling or scheduled work. Existing six public MAC scalar reads per cancellation snapshot are retained.",
+  "observation_semantics": "Callback order and directly supplied snapshots; reconstructed lifecycle is not hidden instantaneous queue state.",
+  "prefix_comparison": "Compare p128 pre-stop protocol/PHY and common captured admission prefix against the exact T17 owner return; added admission capacity records the remainder.",
+  "cases": [
+    {
+      "case_id": "r128",
+      "storage_key": "r128",
+      "condition": "relay_only",
+      "scenario": "csr_t18_r128",
+      "scenario_file": "scenarios/t18/inputs/r128.csv",
+      "scenario_sha256": "baa7886dc40c6a3dfa529dd2203fc3dcfc1f99ea4042bd2a8a472eba85ef1b53",
+      "recipe_file": "scenarios/t18/inputs/r128.recipe.json",
+      "recipe_sha256": "f13c3ab939225206e19c7069eaa56815f3ccedcf61047b5071958a59e56391d3",
+      "profile_id": "hist-adb97c54-bare",
+      "seed": 128,
+      "duration_s": 600,
+      "bucket_width_s": 60,
+      "reference_directory": "evidence/tranche-18-ns3-reference/r128",
+      "observer_enabled": true,
+      "observer_max_records": 100000,
+      "service_window_seconds": [
+        0,
+        601
+      ],
+      "trace_limits": {
+        "protocol": 300000,
+        "phy": 500000,
+        "admission": 50000
+      },
+      "max_events": 12000000,
+      "flow_limit": 0,
+      "node_ids": [
+        1,
+        4,
+        5
+      ],
+      "flow_sources": [
+        4
+      ],
+      "source_kind": "synthetic_relay_service_diagnostic",
+      "parent_kind": "unchanged_campus_rows_with_explicit_derivation",
+      "opnet_available": false,
+      "expected_admission_attempts": 15000
+    },
+    {
+      "case_id": "l128",
+      "storage_key": "l128",
+      "condition": "local_only",
+      "scenario": "csr_t18_l128",
+      "scenario_file": "scenarios/t18/inputs/l128.csv",
+      "scenario_sha256": "e64297e9ca11912bb0a66ca431aca4e76f49019f69e7c6d2a1ec39496e21e807",
+      "recipe_file": "scenarios/t18/inputs/l128.recipe.json",
+      "recipe_sha256": "0904a20dc2a30fb188d5f6b08993da149cde3cb6e18e3a6d28125186fd2f7f47",
+      "profile_id": "hist-adb97c54-bare",
+      "seed": 128,
+      "duration_s": 600,
+      "bucket_width_s": 60,
+      "reference_directory": "evidence/tranche-18-ns3-reference/l128",
+      "observer_enabled": true,
+      "observer_max_records": 100000,
+      "service_window_seconds": [
+        0,
+        601
+      ],
+      "trace_limits": {
+        "protocol": 300000,
+        "phy": 500000,
+        "admission": 50000
+      },
+      "max_events": 12000000,
+      "flow_limit": 0,
+      "node_ids": [
+        1,
+        4,
+        5
+      ],
+      "flow_sources": [
+        5
+      ],
+      "source_kind": "synthetic_relay_service_diagnostic",
+      "parent_kind": "unchanged_campus_rows_with_explicit_derivation",
+      "opnet_available": false,
+      "expected_admission_attempts": 15000
+    },
+    {
+      "case_id": "m128",
+      "storage_key": "m128",
+      "condition": "mixed",
+      "scenario": "csr_t18_m128",
+      "scenario_file": "scenarios/t18/inputs/m128.csv",
+      "scenario_sha256": "999e97252ac4681afc142dc97cb691ce58f25f4d8d756131a310a4e1c48c5087",
+      "recipe_file": "scenarios/t18/inputs/m128.recipe.json",
+      "recipe_sha256": "aec26a7b9ac7104af588b99e027e1c5bb2287cc9f1ef72747fd91f2580aeb166",
+      "profile_id": "hist-adb97c54-bare",
+      "seed": 128,
+      "duration_s": 600,
+      "bucket_width_s": 60,
+      "reference_directory": "evidence/tranche-18-ns3-reference/m128",
+      "observer_enabled": true,
+      "observer_max_records": 100000,
+      "service_window_seconds": [
+        0,
+        601
+      ],
+      "trace_limits": {
+        "protocol": 300000,
+        "phy": 500000,
+        "admission": 50000
+      },
+      "max_events": 12000000,
+      "flow_limit": 0,
+      "node_ids": [
+        1,
+        4,
+        5
+      ],
+      "flow_sources": [
+        4,
+        5
+      ],
+      "source_kind": "synthetic_relay_service_diagnostic",
+      "parent_kind": "unchanged_campus_rows_with_explicit_derivation",
+      "opnet_available": false,
+      "expected_admission_attempts": 30000
+    },
+    {
+      "case_id": "r129",
+      "storage_key": "r129",
+      "condition": "relay_only",
+      "scenario": "csr_t18_r129",
+      "scenario_file": "scenarios/t18/inputs/r129.csv",
+      "scenario_sha256": "5a10d727a16574086e75d7955918959b4d1189747b283535b9e61032f20cb4d4",
+      "recipe_file": "scenarios/t18/inputs/r129.recipe.json",
+      "recipe_sha256": "ac6305ccf66362d0c570cbdc48e19dbd657e525d2bb2017f44ea795c4d9d7811",
+      "profile_id": "hist-adb97c54-bare",
+      "seed": 129,
+      "duration_s": 600,
+      "bucket_width_s": 60,
+      "reference_directory": "evidence/tranche-18-ns3-reference/r129",
+      "observer_enabled": true,
+      "observer_max_records": 100000,
+      "service_window_seconds": [
+        0,
+        601
+      ],
+      "trace_limits": {
+        "protocol": 300000,
+        "phy": 500000,
+        "admission": 50000
+      },
+      "max_events": 12000000,
+      "flow_limit": 0,
+      "node_ids": [
+        1,
+        4,
+        5
+      ],
+      "flow_sources": [
+        4
+      ],
+      "source_kind": "synthetic_relay_service_diagnostic",
+      "parent_kind": "unchanged_campus_rows_with_explicit_derivation",
+      "opnet_available": false,
+      "expected_admission_attempts": 15000
+    },
+    {
+      "case_id": "l129",
+      "storage_key": "l129",
+      "condition": "local_only",
+      "scenario": "csr_t18_l129",
+      "scenario_file": "scenarios/t18/inputs/l129.csv",
+      "scenario_sha256": "86b42092d18bd5e240f855840792b2906e1eec17be8bded81805a4b0e7175e0f",
+      "recipe_file": "scenarios/t18/inputs/l129.recipe.json",
+      "recipe_sha256": "2ff88bbbde922ca204c71fab9505d7a97ef50e8047c4c7f87a4fb80081aa0656",
+      "profile_id": "hist-adb97c54-bare",
+      "seed": 129,
+      "duration_s": 600,
+      "bucket_width_s": 60,
+      "reference_directory": "evidence/tranche-18-ns3-reference/l129",
+      "observer_enabled": true,
+      "observer_max_records": 100000,
+      "service_window_seconds": [
+        0,
+        601
+      ],
+      "trace_limits": {
+        "protocol": 300000,
+        "phy": 500000,
+        "admission": 50000
+      },
+      "max_events": 12000000,
+      "flow_limit": 0,
+      "node_ids": [
+        1,
+        4,
+        5
+      ],
+      "flow_sources": [
+        5
+      ],
+      "source_kind": "synthetic_relay_service_diagnostic",
+      "parent_kind": "unchanged_campus_rows_with_explicit_derivation",
+      "opnet_available": false,
+      "expected_admission_attempts": 15000
+    },
+    {
+      "case_id": "m129",
+      "storage_key": "m129",
+      "condition": "mixed",
+      "scenario": "csr_t18_m129",
+      "scenario_file": "scenarios/t18/inputs/m129.csv",
+      "scenario_sha256": "bb3b8cc8dad451454f4daa98d6c65f7a63308c16174041227bec3ff5847dee41",
+      "recipe_file": "scenarios/t18/inputs/m129.recipe.json",
+      "recipe_sha256": "939f73a06bcf004177b4af593eeeeda1742826c8bb280e0fb03f434055ae081d",
+      "profile_id": "hist-adb97c54-bare",
+      "seed": 129,
+      "duration_s": 600,
+      "bucket_width_s": 60,
+      "reference_directory": "evidence/tranche-18-ns3-reference/m129",
+      "observer_enabled": true,
+      "observer_max_records": 100000,
+      "service_window_seconds": [
+        0,
+        601
+      ],
+      "trace_limits": {
+        "protocol": 300000,
+        "phy": 500000,
+        "admission": 50000
+      },
+      "max_events": 12000000,
+      "flow_limit": 0,
+      "node_ids": [
+        1,
+        4,
+        5
+      ],
+      "flow_sources": [
+        4,
+        5
+      ],
+      "source_kind": "synthetic_relay_service_diagnostic",
+      "parent_kind": "unchanged_campus_rows_with_explicit_derivation",
+      "opnet_available": false,
+      "expected_admission_attempts": 30000
+    },
+    {
+      "case_id": "r130",
+      "storage_key": "r130",
+      "condition": "relay_only",
+      "scenario": "csr_t18_r130",
+      "scenario_file": "scenarios/t18/inputs/r130.csv",
+      "scenario_sha256": "96b0cb4b34d17651b54b45f4a592e15dd3eb0ed581692341683ba60acec403cd",
+      "recipe_file": "scenarios/t18/inputs/r130.recipe.json",
+      "recipe_sha256": "9603f61beeee3d56e2e4a9cbd1cd3135ad1579846e7179142372f8ee14745957",
+      "profile_id": "hist-adb97c54-bare",
+      "seed": 130,
+      "duration_s": 600,
+      "bucket_width_s": 60,
+      "reference_directory": "evidence/tranche-18-ns3-reference/r130",
+      "observer_enabled": true,
+      "observer_max_records": 100000,
+      "service_window_seconds": [
+        0,
+        601
+      ],
+      "trace_limits": {
+        "protocol": 300000,
+        "phy": 500000,
+        "admission": 50000
+      },
+      "max_events": 12000000,
+      "flow_limit": 0,
+      "node_ids": [
+        1,
+        4,
+        5
+      ],
+      "flow_sources": [
+        4
+      ],
+      "source_kind": "synthetic_relay_service_diagnostic",
+      "parent_kind": "unchanged_campus_rows_with_explicit_derivation",
+      "opnet_available": false,
+      "expected_admission_attempts": 15000
+    },
+    {
+      "case_id": "l130",
+      "storage_key": "l130",
+      "condition": "local_only",
+      "scenario": "csr_t18_l130",
+      "scenario_file": "scenarios/t18/inputs/l130.csv",
+      "scenario_sha256": "fbf325d917ace741c7fbd657fb15dd1b4e7615dab63656f45faf7b1a9ca7a9ee",
+      "recipe_file": "scenarios/t18/inputs/l130.recipe.json",
+      "recipe_sha256": "5e8a28f6b97702cb36001e8e3bd1e2e1b3bb5153f1f23fd932cb847d2cabadf2",
+      "profile_id": "hist-adb97c54-bare",
+      "seed": 130,
+      "duration_s": 600,
+      "bucket_width_s": 60,
+      "reference_directory": "evidence/tranche-18-ns3-reference/l130",
+      "observer_enabled": true,
+      "observer_max_records": 100000,
+      "service_window_seconds": [
+        0,
+        601
+      ],
+      "trace_limits": {
+        "protocol": 300000,
+        "phy": 500000,
+        "admission": 50000
+      },
+      "max_events": 12000000,
+      "flow_limit": 0,
+      "node_ids": [
+        1,
+        4,
+        5
+      ],
+      "flow_sources": [
+        5
+      ],
+      "source_kind": "synthetic_relay_service_diagnostic",
+      "parent_kind": "unchanged_campus_rows_with_explicit_derivation",
+      "opnet_available": false,
+      "expected_admission_attempts": 15000
+    },
+    {
+      "case_id": "m130",
+      "storage_key": "m130",
+      "condition": "mixed",
+      "scenario": "csr_t18_m130",
+      "scenario_file": "scenarios/t18/inputs/m130.csv",
+      "scenario_sha256": "02f4c02304a9e251b2cc8d2ff378f2e13f03dea6edcb06f1072798eb1f814a2c",
+      "recipe_file": "scenarios/t18/inputs/m130.recipe.json",
+      "recipe_sha256": "6fed36c8429fbdcba4e7550fbbec7a1c1d99215ddc006a8802c3abe865793ea0",
+      "profile_id": "hist-adb97c54-bare",
+      "seed": 130,
+      "duration_s": 600,
+      "bucket_width_s": 60,
+      "reference_directory": "evidence/tranche-18-ns3-reference/m130",
+      "observer_enabled": true,
+      "observer_max_records": 100000,
+      "service_window_seconds": [
+        0,
+        601
+      ],
+      "trace_limits": {
+        "protocol": 300000,
+        "phy": 500000,
+        "admission": 50000
+      },
+      "max_events": 12000000,
+      "flow_limit": 0,
+      "node_ids": [
+        1,
+        4,
+        5
+      ],
+      "flow_sources": [
+        4,
+        5
+      ],
+      "source_kind": "synthetic_relay_service_diagnostic",
+      "parent_kind": "unchanged_campus_rows_with_explicit_derivation",
+      "opnet_available": false,
+      "expected_admission_attempts": 30000
+    },
+    {
+      "case_id": "p128",
+      "storage_key": "p128",
+      "condition": "campus_prefix",
+      "scenario": "csr_t18_p128",
+      "scenario_file": "scenarios/t18/inputs/p128.csv",
+      "scenario_sha256": "de547e67b38fc8a3dd39f803f0a6dffb85a6f303a73e1fb1b6bc20b6d3492439",
+      "recipe_file": "scenarios/t18/inputs/p128.recipe.json",
+      "recipe_sha256": "80dcc0132ef90375608c6c5737be6fdc4475fab5cc06c34e126cfcf2a6d1b25e",
+      "profile_id": "hist-adb97c54-bare",
+      "seed": 128,
+      "duration_s": 900,
+      "bucket_width_s": 60,
+      "reference_directory": "evidence/tranche-18-ns3-reference/p128",
+      "observer_enabled": true,
+      "observer_max_records": 400000,
+      "service_window_seconds": [
+        0,
+        901
+      ],
+      "trace_limits": {
+        "protocol": 1500000,
+        "phy": 1500000,
+        "admission": 300000
+      },
+      "max_events": 12000000,
+      "flow_limit": 0,
+      "node_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        8
+      ],
+      "flow_sources": [
+        2,
+        3,
+        4,
+        5,
+        7,
+        8
+      ],
+      "source_kind": "campus_prefix_diagnostic",
+      "parent_kind": "unchanged_campus_rows_with_explicit_derivation",
+      "opnet_available": false,
+      "expected_admission_attempts": 180000
+    }
+  ]
+}

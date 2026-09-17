@@ -1,0 +1,98 @@
+{
+  "schema": "csr-tranche21-independent-input-target-review-v1",
+  "passed": true,
+  "source_bindings_unchanged": 376,
+  "reference_bindings_unchanged": 98,
+  "matlab_sources_unchanged": 175,
+  "accepted_t20_inputs_verified": {
+    "owner_archive": "41ee42fd72d3246b005cffa6eb0731aef1f465ac19747be82feb481571a72861",
+    "candidate": "ba4cedf3551a0bc1fe31385108e1f33011d1c97211bba993b6061a2de31389c1",
+    "source_snapshot": "3b0fd01057f1d498759331d9db024a1fce8df5d51e1b1ba9d8d0531e96c9a428",
+    "reference_snapshot": "39ffd244b7ea35c98ef89fb6e044f71c67cd59aedc576fb11785ec4c87610c38"
+  },
+  "target_math_comparisons_verified": 63,
+  "scope": "Existing accepted evidence; T21 descriptive target revised to \u00b110%. No MATLAB or native simulator execution by reviewer.",
+  "summary": [
+    {
+      "metric": "admitted",
+      "group": "whole_network",
+      "comparisons": 3,
+      "within_5_percent": 3,
+      "within_10_percent": 3
+    },
+    {
+      "metric": "admitted",
+      "group": "individual_flows",
+      "comparisons": 18,
+      "within_5_percent": 9,
+      "within_10_percent": 12
+    },
+    {
+      "metric": "unique_delivered",
+      "group": "whole_network",
+      "comparisons": 3,
+      "within_5_percent": 3,
+      "within_10_percent": 3
+    },
+    {
+      "metric": "unique_delivered",
+      "group": "individual_flows",
+      "comparisons": 18,
+      "within_5_percent": 7,
+      "within_10_percent": 13
+    },
+    {
+      "metric": "mean_delivered_delay_s",
+      "group": "whole_network",
+      "comparisons": 3,
+      "within_5_percent": 1,
+      "within_10_percent": 2
+    },
+    {
+      "metric": "mean_delivered_delay_s",
+      "group": "individual_flows",
+      "comparisons": 18,
+      "within_5_percent": 9,
+      "within_10_percent": 13
+    }
+  ],
+  "flow_deliveries_outside_10_percent": [
+    {
+      "seed": 128,
+      "source": 4,
+      "difference_percent": -16.94510739856802
+    },
+    {
+      "seed": 128,
+      "source": 5,
+      "difference_percent": 20.087655222790357
+    },
+    {
+      "seed": 130,
+      "source": 5,
+      "difference_percent": -12.70062805303559
+    },
+    {
+      "seed": 130,
+      "source": 7,
+      "difference_percent": -29.571984435797667
+    },
+    {
+      "seed": 130,
+      "source": 8,
+      "difference_percent": 263.1578947368421
+    }
+  ],
+  "assessment": [
+    "13 of 18 individual flow delivery comparisons meet \u00b110%; all three whole-network delivery comparisons meet the target.",
+    "Source 4 pooled delivery residual is within \u00b110% but seed 128 remains outside; do not claim every seed meets the target.",
+    "Seeds 128 and 129 source 7 and 8 delivery comparisons are within \u00b110%; seed 130 remains substantially outside in opposing directions.",
+    "Three seeds are a descriptive sample and do not establish statistical equivalence.",
+    "Mean delivered delay is conditional on different delivered populations, and its agreement should not be inferred from delivery-count agreement."
+  ],
+  "checked_code_sha256": {
+    "compare_target.py": "2c8c43be966ec973bf031c5e7ca5c4213285e002993b706ea1795c8ce73efb59",
+    "review/audit_inputs.py": "5691fd407b44f2283deb69b04faaf638da63218ff7d289c9c70f8dd4fca0e940"
+  },
+  "remaining_gate": "Review conservation, event identities, bounded observation windows, and causal wording in forthcoming diagnostic outputs."
+}

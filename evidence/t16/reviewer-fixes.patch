@@ -1,0 +1,75 @@
+--- a/scripts/analyze_tranche11_return.py
++++ b/scripts/analyze_tranche11_return.py
+@@ -247,7 +247,7 @@
+ 
+ def verify_references(root, metadata, source_root, candidate):
+     roots, files = candidate.get("ReferenceRoots"), candidate.get("ReferenceFiles")
+-    require(isinstance(roots, list) and roots and isinstance(files, list), "Candidate reference membership missing")
++    require(isinstance(roots, list) and isinstance(files, list) and (roots or files), "Candidate reference membership missing")
+     require(len(set(roots)) == len(roots) and len(set(files)) == len(files), "Duplicate reference declarations")
+     expected = set()
+     for name in roots:
+--- a/scripts/analyze_tranche16_return.py
++++ b/scripts/analyze_tranche16_return.py
+@@ -426,15 +426,41 @@
+     return list(metrics.csv_rows(path))
+ 
+ 
+-def bucket_differences(left,right):
++def bucket_differences(left,right,*,bucket_width_s=None,duration_s=None):
++    # Declared bin identity tolerates only serialization-scale binary64 error.
++    # Values and missing-sample states remain untouched.
++    grid = None
++    if bucket_width_s is not None or duration_s is not None:
++        width = number(bucket_width_s,'bucket width',minimum=0)
++        duration = number(duration_s,'bucket duration',minimum=0)
++        require(math.isfinite(width) and math.isfinite(duration) and width > 0 and duration > 0,
++                'Invalid declared aggregate grid')
++        quotient = duration/width
++        count = round(quotient)
++        require(count >= 1 and abs(quotient-count) <= 4*math.ulp(quotient),
++                'Invalid declared aggregate bucket count')
++        grid = width,count
+     def mapping(rows):
+         out = {}
+         for row in rows:
+             if row['statistic'] not in aggregate.CORE_SERIES: continue
+-            key = row['statistic'],float(row['time_s'])
++            time = number(row['time_s'],'bucket time',minimum=0)
++            require(math.isfinite(time) and time > 0,'Invalid aggregate bucket time')
++            identity = time
++            if grid is not None:
++                width,count = grid
++                identity = round(time/width)
++                target = identity*width
++                require(1 <= identity <= count
++                        and abs(time-target) <= 4*max(math.ulp(time),math.ulp(target)),
++                        'Aggregate time is off the declared bucket grid')
++            key = row['statistic'],identity
+             require(key not in out,'Duplicate aggregate identity')
+             out[key] = metrics.optional_number(row['value'],'bucket value')
+         require(out,'No aggregate observations')
++        if grid is not None:
++            expected = {(name,index) for name in aggregate.CORE_SERIES for index in range(1,grid[1]+1)}
++            require(set(out) == expected,'Aggregate bucket grid is incomplete')
+         return out
+     a,b = mapping(left),mapping(right)
+     require(a.keys() == b.keys(),'Aggregate bucket grids differ')
+@@ -600,12 +626,14 @@
+     paired = []
+     for key in CASES:
+         a,b = results['c',key],results['n',key]
++        declared_case = next(case for case in plan['cases'] if case['case_id'] == key)
++        grid = {'bucket_width_s':declared_case['bucket_width_s'],'duration_s':declared_case['duration_s']}
+         paired.append({'case_id':key,'nanoseconds_minus_continuous':scalar_differences(a['applications'],b['applications']),
+             'continuous_minus_native':scalar_differences(native[key]['applications'],a['applications']),
+             'nanoseconds_minus_native':scalar_differences(native[key]['applications'],b['applications']),
+-            'nanoseconds_minus_continuous_buckets':bucket_differences(bucket_sets['c',key],bucket_sets['n',key]),
+-            'continuous_minus_native_buckets':bucket_differences(bucket_sets['native',key],bucket_sets['c',key]),
+-            'nanoseconds_minus_native_buckets':bucket_differences(bucket_sets['native',key],bucket_sets['n',key]),
++            'nanoseconds_minus_continuous_buckets':bucket_differences(bucket_sets['c',key],bucket_sets['n',key],**grid),
++            'continuous_minus_native_buckets':bucket_differences(bucket_sets['native',key],bucket_sets['c',key],**grid),
++            'nanoseconds_minus_native_buckets':bucket_differences(bucket_sets['native',key],bucket_sets['n',key],**grid),
+             'ack_feedback_members_change':b['feedback']['actual_feedback_member_count']-a['feedback']['actual_feedback_member_count'],
+             'physical_transmissions_change':b['timing']['transmissions']-a['timing']['transmissions']})
+     return {'case_count':12,'checkpoint_count':192,'simulated_seconds':9360,

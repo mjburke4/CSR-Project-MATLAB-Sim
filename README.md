@@ -1,3 +1,13 @@
+> **Current published checkpoint: Tranches 15–21.** The portable T20 baseline passed 716/716 MATLAB tests and three-seed campus validation; T21 is completed offline analysis. See [checkpoint status and evidence](CHECKPOINT_T15_T21.md). Historical tranche handoff files retain their original status text.
+
+# Tranche 18 candidate: relay/local service and 4-to-5 retries
+
+**T18 path-check repair:** apply `t18fix.zip` over the original T18 update
+before running. See [T18fix.md](T18fix.md). The original candidate stopped
+before tests because its recipe-path check rejected the shipped filenames.
+
+Real-PHY isolation cases compare relay-only, local-only and mixed traffic across three seeds, with an original-campus prefix and an observer-off control. Production MATLAB source, PHY/ECC and continuous timing remain unchanged. Start with [T18.md](T18.md). MATLAB execution of T18 is pending; [T17 acceptance](docs/tranche-17-portable-acceptance.md) remains the validated portable baseline. Historical sections below retain original handoff wording; consult acceptance records and the parity ledger for current dispositions.
+
 # CSR MATLAB Network Simulator
 
 Behavioral port of `mjburke4/CSR-Project-NS3-part2`, currently pinned to main

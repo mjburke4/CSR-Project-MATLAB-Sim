@@ -1,0 +1,84 @@
+{
+  "schema": "csr-tranche18-native-service-summary-v1",
+  "status": "passed",
+  "rows": 140091,
+  "max_records": 2000000,
+  "omitted_records": 0,
+  "window_s": [
+    0,
+    600
+  ],
+  "stop_endpoint": "exclusive",
+  "event_counts": {
+    "ack_queue_enqueue_after": 37,
+    "ack_queue_exact_duplicate": 2,
+    "ack_queue_replace_after": 584,
+    "ack_queue_replace_before": 584,
+    "app_admission": 15000,
+    "app_send": 603,
+    "hop_admission": 603,
+    "hop_completion": 587,
+    "hop_feedback": 587,
+    "mac_cancel_begin": 740,
+    "mac_cancel_end": 740,
+    "mac_holdoff_expired": 6,
+    "mac_holdoff_schedule_before": 1047,
+    "mac_idle_rts_schedule": 2,
+    "mac_prepare_after": 1285,
+    "mac_receive_state_after": 4729,
+    "mac_receive_state_before": 4729,
+    "mac_schedule_request": 1280,
+    "mac_slot_tick": 59253,
+    "mac_state": 7295,
+    "mac_sync_change_before": 3832,
+    "nwk_admission": 1449,
+    "nwk_delivery": 587,
+    "nwk_enqueue": 603,
+    "nwk_forward": 603,
+    "nwk_nsdp_release": 587,
+    "reservation_advertise": 1283,
+    "reservation_holdoff": 6,
+    "reservation_prepare": 1285,
+    "reservation_tick": 21213,
+    "route_change": 14,
+    "rx_accept": 1317,
+    "rx_drop": 1249,
+    "scenario_link": 3,
+    "scenario_node": 3,
+    "statistic_sample": 5081,
+    "tx_start": 1283
+  },
+  "forwarding": [
+    {
+      "src": "5",
+      "dst": "1",
+      "node": "5",
+      "ingress_peer": "",
+      "next_hop": "1",
+      "kind": "local",
+      "count": 603
+    }
+  ],
+  "completions": [
+    {
+      "src": "5",
+      "dst": "1",
+      "node": "5",
+      "peer": "1",
+      "reason": "ack",
+      "count": 587
+    }
+  ],
+  "retry_submissions": [],
+  "blocked_admission_observations": [
+    {
+      "src": "5",
+      "dst": "1",
+      "node": "5",
+      "peer": "1",
+      "reason": "neighbor_flow_full",
+      "count": 846
+    }
+  ],
+  "scope": "Callback observations. Retry means MAC submission, not OTA. DACK is not application loss; no_ack is a custody completion, not proven end-to-end loss. NSDP release has no packet sequence. Finite-horizon unmatched lifetimes are censored."
+}

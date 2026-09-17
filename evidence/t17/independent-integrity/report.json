@@ -1,0 +1,79 @@
+{
+  "schema": "csr-tranche17-independent-integrity-audit-v1",
+  "status": "passed",
+  "owner_archive_sha256": "19921afa83c57db2779e4302e5b39afef5120afb129a87fddb1f6d1bdbec2bd1",
+  "candidate_sha256": "6210329add45cd50c8173e2e1390f2aa157a154c6977a10bee5917ee01a1052c",
+  "archive_file_count": 36,
+  "returned_artifacts_verified": 35,
+  "all_archive_crcs_read": true,
+  "source_files": 313,
+  "matlab_files": 160,
+  "reference_files": 520,
+  "baseline_source_files_unchanged": 304,
+  "baseline_matlab_files_unchanged": 155,
+  "stage_receipts_verified": 2,
+  "stage_artifact_counts": {
+    "tests": 3,
+    "campus": 23
+  },
+  "matlab_test_count": 660,
+  "matlab_test_classes": 57,
+  "all_exact_test_identities_passed": true,
+  "owner_runtime": {
+    "Runtime": "MATLAB",
+    "Version": "25.1.0.2943329 (R2025a)",
+    "Release": "2025a",
+    "HasWirelessNetworkSimulator": false,
+    "HasWnetNode": false,
+    "HasWirelessPacket": false,
+    "DefaultBackend": "portable",
+    "WirelessAdapterImplemented": true,
+    "WirelessAdapterScope": "Optional R2026a wireless-clock candidate; runtime validation pending",
+    "NativePacketTransportIntegrated": false,
+    "ProbeScope": "Symbol discovery only; licenses and execution are not validated."
+  },
+  "matlab_executed_by_auditor": false,
+  "campus_case": "campus_multihop_6000",
+  "campus_seconds": 6000,
+  "timing_policy": "continuous",
+  "application_outcomes": {
+    "Generated": 12484,
+    "Received": 11825,
+    "Dropped": 402,
+    "Pending": 257
+  },
+  "admission_observations": {
+    "Attempts": 1710000.0,
+    "Admitted": 12484,
+    "Blocked": 1697516.0,
+    "TraceRecords": 100000,
+    "OmittedTraceRecords": 1610000.0,
+    "CountsComplete": true
+  },
+  "protocol_trace_omitted": 0,
+  "phy_trace_omitted": 0,
+  "local_mat_artifacts_not_returned": [
+    "campus/c/raw/results.mat"
+  ],
+  "source_snapshot_sha256": "5ba7ff4b26a12192496d98cc36ccbcffe77199255da1cbda1025f83a14618891",
+  "reference_snapshot_sha256": "6cce3c1bcfc836fb369890ffeae76aab499eb8732036ba81ff3777d91f92601c",
+  "scope": "Independent exported-evidence integrity, full portable test membership, stage provenance and finite-stop accounting; official semantic/aggregate review is separate.",
+  "full_numerical_parity_established": false,
+  "limitations": [
+    "Owner execution is supported by hash-bound returned artifacts; this auditor did not run MATLAB.",
+    "One seed and one campus configuration do not establish statistical parity or every-network acceptance.",
+    "1,610,000 admission attempt trace rows were deliberately omitted; complete per-flow counters remain exported.",
+    "Pending applications and physical receiver outcomes remain censored at 6,000 seconds, with no forced drain.",
+    "Local results.mat is declared but absent from the returned ZIP; exported artifacts are audited.",
+    "OPNET comparison uses archived aggregates, not packet-level event truth.",
+    "Control-drain flags cover exported HOP/NWK ownership only; current MAC feedback queue depth is unavailable."
+  ],
+  "acceptance_scope_supported": "portable_regression_and_campus_structural",
+  "official_review": {
+    "path": "../return/review.json",
+    "sha256": "6fdaa144d3fa5ecca23e274c0c1bd935a07d1bfc5be181af7b2ef69c067685a2",
+    "status": "structural_review_completed",
+    "full_structural_gate_completed": true,
+    "numerical_parity_established": false
+  }
+}

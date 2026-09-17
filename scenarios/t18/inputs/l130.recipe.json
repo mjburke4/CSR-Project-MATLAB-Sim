@@ -1,0 +1,34 @@
+{
+  "schema": "csr-tranche18-scenario-derivation-v1",
+  "case_id": "l130",
+  "parent_scenario": "scenarios/benchmarks/campus_multihop_6000.csv",
+  "parent_scenario_sha256": "90b143d93c13c6c2761bc5f2875ccc3fff98f85af6f2550370e435df2aaabcfc",
+  "scenario_file": "scenarios/t18/inputs/l130.csv",
+  "scenario_sha256": "fbf325d917ace741c7fbd657fb15dd1b4e7615dab63656f45faf7b1a9ca7a9ee",
+  "run_overrides": {
+    "scenario": "csr_t18_l130",
+    "duration_s": 600,
+    "seed": 130
+  },
+  "retained_node_ids": [
+    1,
+    4,
+    5
+  ],
+  "retained_flow_sources": [
+    5
+  ],
+  "retained_rows_otherwise_byte_value_equal": true,
+  "application_start_s": 300,
+  "application_interval_s": 0.02,
+  "retained_geometry_radio_phy_ecc_and_profiles_unchanged": true,
+  "routes": "autonomous",
+  "forced_loss": false,
+  "fixed_routes": false,
+  "opnet_equivalence_claimed": false,
+  "limitations": [
+    "Reduced cases remove upstream nodes and interferers.",
+    "The prefix case retains every original node/flow but stops at 900 seconds.",
+    "Matching seed labels do not align MATLAB and ns-3 random streams."
+  ]
+}

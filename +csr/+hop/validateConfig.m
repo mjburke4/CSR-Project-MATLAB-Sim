@@ -35,6 +35,14 @@ for name = {'MaxResends','PendingThreshold','FlowThresholdMax','NsdpLimit'}
     hop.(name{1}) = numeric(hop.(name{1}),0,flintmax,true,name{1});
 end
 hop.ResendQueueLimit = numeric(hop.ResendQueueLimit,1,flintmax,true,'ResendQueueLimit');
+policy=hop.DataQueuedRetryPolicy;
+if isstring(policy) && isscalar(policy), policy=char(policy); end
+if ~ischar(policy) || ~isrow(policy) || ...
+        ~any(strcmp(policy,{'actual-tx','native-provisional'}))
+    error('csr:hop:InvalidConfig', ...
+        'DataQueuedRetryPolicy must be actual-tx or native-provisional.');
+end
+hop.DataQueuedRetryPolicy=policy;
 config.Mac = mac;
 config.Hop = hop;
 end
