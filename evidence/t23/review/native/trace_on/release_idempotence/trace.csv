@@ -1,0 +1,36 @@
+schema,event_index,time_s,event,node,peer,packet_type,src,dst,sequence,rate_kbps,size_bytes,success,reason,pathloss_db,rx_power_dbm,noise_dbm,snr_db,jsr_db,header_errors,payload_errors,total_errors,route_cost,next_hop,security_count,reservation_slot,reservation_counter,detail,statistic,value
+csr-differential-trace-v1,0,0.10000000000000001,statistic_sample,8,,,,,,,,,,,,,,,,,,,,,,,,NWK.Network Queue Size (packets),1
+csr-differential-trace-v1,1,0.10000000000000001,nwk_enqueue,8,,data,8,1,1,,23,1,local,,,,,,,,,,,,,,nsdp_count=1;nsdp_limit=16;queue_after=1,,
+csr-differential-trace-v1,2,0.100000028,nwk_admission,8,2,data,8,1,1,,,1,admitted,,,,,,,,,,2,,,,queue_before=1;queue_after=0;nsdp_count=1;nsdp_limit=16;pending=0;pending_limit=16;global_spad=17;outstanding=0;threshold=0;neighbor_spad=1;route_known=1,,
+csr-differential-trace-v1,3,0.100000028,statistic_sample,8,,,,,,,,,,,,,,,,,,,,,,,,NWK.Network Queue Size (packets),0
+csr-differential-trace-v1,4,0.100000028,statistic_sample,8,,,,,,,,,,,,,,,,,,,,,,,,NWK.Network Queuing Delay (sec),2.7999999999952976e-08
+csr-differential-trace-v1,5,0.100000028,nwk_forward,8,,data,8,1,1,,23,1,local,,,,,,,,,1,2,,,,num_hop=2;path=2>1,,
+csr-differential-trace-v1,6,0.100000028,statistic_sample,8,,,,,,,,,,,,,,,,,,,,,,,,HOP.Resend Queue Size (packets),1
+csr-differential-trace-v1,7,0.100000028,hop_admission,8,2,data,8,1,1,,,1,admitted,,,,,,,,,,2,,,,hop_sequence=1;pending_before=0;pending_after=1;pending_limit=16;global_spad_before=17;global_spad_after=16;outstanding_before=0;outstanding_after=1;threshold=0;neighbor_spad_before=1;neighbor_spad_after=0;resend_queue_before=0;resend_queue_after=1;resend_tracked=1;resend_overflow=0,,
+csr-differential-trace-v1,8,0.100000028,statistic_sample,8,,,,,,,,,,,,,,,,,,,,,,,,MAC.Tx Queue Size (packets),1
+csr-differential-trace-v1,9,0.10000100000000001,t23_checkpoint,8,,,,,1,,,,,,,,,,,,,,,,,,,,
+csr-differential-trace-v1,10,0.11,statistic_sample,8,,,,,,,,,,,,,,,,,,,,,,,,NWK.Network Queue Size (packets),1
+csr-differential-trace-v1,11,0.11,nwk_enqueue,8,,data,8,1,2,,23,1,local,,,,,,,,,,,,,,nsdp_count=2;nsdp_limit=16;queue_after=1,,
+csr-differential-trace-v1,12,0.110000028,nwk_admission,8,2,data,8,1,2,,,0,neighbor_flow_full,,,,,,,,,,2,,,,queue_before=1;queue_after=1;nsdp_count=2;nsdp_limit=16;pending=1;pending_limit=16;global_spad=16;outstanding=1;threshold=0;neighbor_spad=0;route_known=1,,
+csr-differential-trace-v1,13,0.110001,t23_checkpoint,8,,,,,2,,,,,,,,,,,,,,,,,,,,
+csr-differential-trace-v1,14,0.120001,t23_checkpoint,8,,,,,3,,,,,,,,,,,,,,,,,,,,
+csr-differential-trace-v1,15,0.13,nwk_nsdp_release,8,,data,8,1,,,,1,hop_feedback,,,,,,,,,,,,,,count_before=2;count_after=1;nsdp_limit=16;nwk_queue=1,,
+csr-differential-trace-v1,16,0.13,hop_completion,8,2,data,8,1,1,,,1,ack,,,,,,,,,,2,,,,hop_sequence=1;resend_count=0;pending_before=1;pending_after=0;pending_limit=16;outstanding_before=1;outstanding_after=0;threshold_before=0;threshold_after=0;resend_queue_before=1;resend_queue_after=0;nsdp_released=1;capacity_released=1,,
+csr-differential-trace-v1,17,0.13,statistic_sample,8,,,,,,,,,,,,,,,,,,,,,,,,HOP.Resend Queue Size (packets),0
+csr-differential-trace-v1,18,0.13000002799999999,nwk_admission,8,2,data,8,1,2,,,1,admitted,,,,,,,,,,2,,,,queue_before=1;queue_after=0;nsdp_count=1;nsdp_limit=16;pending=0;pending_limit=16;global_spad=17;outstanding=0;threshold=0;neighbor_spad=1;route_known=1,,
+csr-differential-trace-v1,19,0.13000002799999999,statistic_sample,8,,,,,,,,,,,,,,,,,,,,,,,,NWK.Network Queue Size (packets),0
+csr-differential-trace-v1,20,0.13000002799999999,statistic_sample,8,,,,,,,,,,,,,,,,,,,,,,,,NWK.Network Queuing Delay (sec),0.020000028
+csr-differential-trace-v1,21,0.13000002799999999,nwk_forward,8,,data,8,1,2,,23,1,local,,,,,,,,,1,2,,,,num_hop=2;path=2>1,,
+csr-differential-trace-v1,22,0.13000002799999999,statistic_sample,8,,,,,,,,,,,,,,,,,,,,,,,,HOP.Resend Queue Size (packets),1
+csr-differential-trace-v1,23,0.13000002799999999,hop_admission,8,2,data,8,1,2,,,1,admitted,,,,,,,,,,2,,,,hop_sequence=2;pending_before=0;pending_after=1;pending_limit=16;global_spad_before=17;global_spad_after=16;outstanding_before=0;outstanding_after=1;threshold=0;neighbor_spad_before=1;neighbor_spad_after=0;resend_queue_before=0;resend_queue_after=1;resend_tracked=1;resend_overflow=0,,
+csr-differential-trace-v1,24,0.13000002799999999,statistic_sample,8,,,,,,,,,,,,,,,,,,,,,,,,MAC.Tx Queue Size (packets),1
+csr-differential-trace-v1,25,0.13000100000000001,t23_checkpoint,8,,,,,4,,,,,,,,,,,,,,,,,,,,
+csr-differential-trace-v1,26,0.14000099999999999,t23_checkpoint,8,,,,,5,,,,,,,,,,,,,,,,,,,,
+csr-differential-trace-v1,27,0.150001,t23_checkpoint,8,,,,,6,,,,,,,,,,,,,,,,,,,,
+csr-differential-trace-v1,28,0.16,nwk_nsdp_release,8,,data,8,1,,,,1,hop_feedback,,,,,,,,,,,,,,count_before=1;count_after=0;nsdp_limit=16;nwk_queue=0,,
+csr-differential-trace-v1,29,0.16,hop_completion,8,2,data,8,1,2,,,0,dack,,,,,,,,,,2,,,,hop_sequence=2;resend_count=0;pending_before=1;pending_after=1;pending_limit=16;outstanding_before=1;outstanding_after=1;threshold_before=0;threshold_after=0;resend_queue_before=1;resend_queue_after=0;dack_hold_seconds=20;dack_scheduled_timer_offset_seconds=2.7999999999952976e-08;nwk_wake_nominal_delay_seconds=2.7999999999952976e-08;nsdp_released=1;capacity_released=0,,
+csr-differential-trace-v1,30,0.160001,t23_checkpoint,8,,,,,7,,,,,,,,,,,,,,,,,,,,
+csr-differential-trace-v1,31,0.17000100000000001,t23_checkpoint,8,,,,,8,,,,,,,,,,,,,,,,,,,,
+csr-differential-trace-v1,32,0.40000002800000001,reservation_holdoff,8,,,,,,,,,,,,,,,,,,,,,,-1,,,
+csr-differential-trace-v1,33,20.160000027999999,hop_capacity_release,8,2,data,8,1,2,,,1,dack_expiry,,,,,,,,,,2,,,,hop_sequence=2;resend_count=0;pending_before=1;pending_after=0;pending_limit=16;outstanding_before=1;outstanding_after=0;threshold_before=0;threshold_after=0;dack_hold_seconds=20;dack_scheduled_timer_offset_seconds=2.7999999999952976e-08;dack_effective_timer_offset_seconds=2.7999999999952976e-08;nwk_wake_nominal_delay_seconds=2.7999999999952976e-08;nsdp_released=0;capacity_released=1,,
+csr-differential-trace-v1,34,20.170000999999999,t23_checkpoint,8,,,,,9,,,,,,,,,,,,,,,,,,,,

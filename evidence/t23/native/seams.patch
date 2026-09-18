@@ -1,0 +1,20 @@
+--- pinned/csr-hop-layer.h
++++ overlay/csr-hop-layer.h
+@@ -28,6 +28,7 @@
+ 
+ class CsrHopLayer : public Object
+ {
++  friend struct CsrTranche23Access; // Fixture-only decoded ingress / read-only observation.
+ public:
+   static TypeId GetTypeId (void)
+   {
+--- pinned/csr-mac-core.h
++++ overlay/csr-mac-core.h
+@@ -4,6 +4,7 @@
+ 
+ class CsrMacCore
+ {
++  friend struct CsrTranche23Access; // Fixture-only decoded ingress / read-only observation.
+   public:
+   CsrMacCore ()
+     : m_nodeId (0),

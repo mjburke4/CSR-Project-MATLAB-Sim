@@ -1,0 +1,52 @@
+{
+  "schema": "csr-tranche22-independent-findings-v1",
+  "passed": true,
+  "owner_sha256": "37863a70ef46c2889b3f945bcc2d3cfbe548115f1c349136488cc56357a9f6af",
+  "native_checkpoints_sha256": "dc0d8e6d12f8a841353be6aa51bd2200cd26fee6f2ae96589303d069bef9bb0a",
+  "issued_inputs_equal_returned_inputs": true,
+  "cases": 9,
+  "case_checkpoint_counts": {
+    "clean_growth_boundary": 17,
+    "retried_third_ack": 16,
+    "retried_second_ack": 18,
+    "dack_hold_20": 24,
+    "dack_hold_40": 14,
+    "final_failure_floor": 21,
+    "ceiling_global_capacity": 196,
+    "grouped_feedback_order": 28,
+    "seed130_feedback_motif": 30
+  },
+  "matched_checkpoints": 364,
+  "discrete_state_fields_per_checkpoint": 15,
+  "discrete_state_field_comparisons": 5460,
+  "max_time_delta_seconds": "2E-15",
+  "milestones_checked": 38,
+  "milestone_field_checks": 142,
+  "conservation_and_range_checks": 1820,
+  "test_count": 89,
+  "test_classes": {
+    "TestAdaptiveWindowContract": 15,
+    "TestEventScheduler": 7,
+    "TestHopLayer": 21,
+    "TestHopControls": 27,
+    "TestQueuedRetryPolicy": 16,
+    "TestMacHopCustody": 3
+  },
+  "runtime": {
+    "Runtime": "MATLAB",
+    "Version": "25.1.0.2943329 (R2025a)",
+    "Release": "2025a",
+    "HasWirelessNetworkSimulator": false,
+    "HasWnetNode": false,
+    "HasWirelessPacket": false,
+    "DefaultBackend": "portable",
+    "WirelessAdapterImplemented": true,
+    "WirelessAdapterScope": "Optional R2026a wireless-clock candidate; runtime validation pending",
+    "NativePacketTransportIntegrated": false,
+    "ProbeScope": "Symbol discovery only; licenses and execution are not validated."
+  },
+  "started_utc": "2026-09-17T16:53:21.171Z",
+  "completed_utc": "2026-09-17T16:54:17.781Z",
+  "mismatches": [],
+  "scope": "Independent analysis of owner MATLAB evidence and retained native reference; no simulation executed by reviewer."
+}

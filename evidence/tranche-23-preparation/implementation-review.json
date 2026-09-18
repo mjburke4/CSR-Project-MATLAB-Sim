@@ -1,0 +1,51 @@
+{
+  "schema": "csr-t23-independent-implementation-review-v1",
+  "gate": "pre-freeze implementation review",
+  "matlab_executed": false,
+  "baseline_files": 390,
+  "baseline_mismatches": [],
+  "native_artifacts": 56,
+  "native_hash_mismatches": [],
+  "native_checkpoints": 123,
+  "native_feedback": 91,
+  "native_milestones": {
+    "milestones": 20,
+    "field_assertions": 85
+  },
+  "focused_python_tests_passed": 56,
+  "reviewed_files_sha256": {
+    "+csr/+validation/receiverFeedbackContract.m": "e91445bd007339fce8b9389cbe90ef805302411389cdfdc18d5509ab5efa5da6",
+    "tests/TestReceiverFeedbackContract.m": "82277fe25c017c55c0eb79a52584b8ffa1bcd174dbcae37c4ac62c11cf7783f7",
+    "run_tranche23_validation.m": "fca3a106f0ae992d333f8e4e428825881a4e00a559b62b37f8b0f28e55f59c53",
+    "scripts/ns3/tranche23_receiver.cc": "1ff22969a06b1ba76d661940b675f5c390bdb8a53c686b0cd655a67f0576af6e",
+    "scripts/run_tranche23_ns3_reference.py": "730c0f91a3f9129239949756325516af3251e9f58a1b060e7ab094a020524b69",
+    "scripts/analyze_tranche23_return.py": "93c01a79353b23af56ea10e569ee723dff5831960e9ffe64be5f89488737511e",
+    "scripts/tests/test_tranche23_return.py": "3ef9a8ce7fbb79ae048de73d4612e2d593951a02ae99681aa99775af176ffad0"
+  },
+  "blockers": [
+    {
+      "issue": "Runner asserts nonexistent csr.nwk.ApplicationGenerator instead of csr.sim.ApplicationGenerator",
+      "present": false,
+      "resolution": "Runner now asserts existing csr.sim.ApplicationGenerator; overlay docstring corrected."
+    }
+  ],
+  "assessed_design": [
+    "Real NWK pending ownership and production HOP feedback callbacks used.",
+    "No congestion or NSDP state manually assigned.",
+    "Seven frozen cases cover threshold, local/relay independence, ACK replay, DACK pressure and release reassessment, idempotent release and local destination bypass.",
+    "Native ownership18 and15 on DACK replay remain exact native observations; MATLAB common milestones do not impose native counts.",
+    "One-microsecond observation settling is explicit; same-tick wake-order parity not claimed.",
+    "No runtime, full-campus or acceptance claim before owner evidence.",
+    "Completed return checker independently binds native raw events and retained build provenance, owner source/reference/test identity, and truthful mismatch receipts.",
+    "Generic feedback test checks actual emitted-record/counter consistency; sparse hand-derived behavioral milestones remain blocking by design."
+  ],
+  "pending": [
+    "Full return checker and frozen candidate review",
+    "Final handoff package overlay audit"
+  ],
+  "limitations": [
+    "No MATLAB executable used; runtime validation remains owner task."
+  ],
+  "status": "implementation_review_passed_pending_frozen_candidate_gate",
+  "native_raw_trace_events_verified": 1678
+}

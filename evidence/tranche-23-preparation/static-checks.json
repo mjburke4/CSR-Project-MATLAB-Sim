@@ -1,0 +1,36 @@
+{
+  "schema": "csr-tranche23-preparation-static-v1",
+  "passed": true,
+  "MATLABExecuted": false,
+  "commands": [
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "miss_hit_core.mh_style",
+        "--no-style",
+        "/workspace/scratch/ab77b42f47ca/csr23/run_tranche23_validation.m",
+        "/workspace/scratch/ab77b42f47ca/csr23/+csr/+validation/receiverFeedbackContract.m",
+        "/workspace/scratch/ab77b42f47ca/csr23/tests/TestReceiverFeedbackContract.m"
+      ],
+      "exit_code": 0,
+      "log": "matlab-static.log"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/workspace/scratch/ab77b42f47ca/csr23/scripts/tests",
+        "-p",
+        "test_tranche23_return.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": "checker-tests.log"
+    }
+  ],
+  "note": "Python tests may use explicitly synthetic rows; no MATLAB results are asserted."
+}

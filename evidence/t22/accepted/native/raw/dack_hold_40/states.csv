@@ -1,0 +1,15 @@
+case_id,step,time_s,action,packet,peer,accepted,threshold,ack_count,outstanding,global_pending,dack_holds,resend,can_send,nsdp_release_total,live_retry_sum,tx_total
+dack_hold_40,1,0,SEND,w1,8,1,0,0,1,1,0,1,0,0,0,0
+dack_hold_40,2,0,TX,w1,8,-1,0,0,1,1,0,1,0,0,0,1
+dack_hold_40,3,0.002,FEEDBACK,,8,-1,0,1,0,0,0,0,1,1,0,1
+dack_hold_40,4,0.01,SEND,w2,8,1,0,1,1,1,0,1,0,1,0,1
+dack_hold_40,5,0.01,TX,w2,8,-1,0,1,1,1,0,1,0,1,0,2
+dack_hold_40,6,0.012,FEEDBACK,,8,-1,0,2,0,0,0,0,1,2,0,2
+dack_hold_40,7,0.10000000000000001,SEND,held,8,1,0,2,1,1,0,1,0,2,0,2
+dack_hold_40,8,0.10000000000000001,TX,held,8,-1,0,2,1,1,0,1,0,2,0,3
+dack_hold_40,9,2.1099999999999999,TX,held,8,-1,0,2,1,1,0,1,0,2,1,4
+dack_hold_40,10,4.1200000000000001,TX,held,8,-1,0,2,1,1,0,1,0,2,2,5
+dack_hold_40,11,4.1299999999999999,FEEDBACK,,8,-1,0,0,1,1,1,0,0,3,0,5
+dack_hold_40,12,24.131,PROBE,,8,-1,0,0,1,1,1,0,0,3,0,5
+dack_hold_40,13,44.128999999999998,PROBE,,8,-1,0,0,1,1,1,0,0,3,0,5
+dack_hold_40,14,44.131,PROBE,,8,-1,0,0,0,0,0,0,1,3,0,5

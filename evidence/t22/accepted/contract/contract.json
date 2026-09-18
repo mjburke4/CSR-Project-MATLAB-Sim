@@ -1,0 +1,510 @@
+{
+  "schema": "csr-tranche22-controlled-hop-contract-v1",
+  "case_count": 9,
+  "action_count": 364,
+  "action_columns": [
+    "case_id",
+    "step",
+    "time_s",
+    "action",
+    "packet",
+    "peer",
+    "ack_packets",
+    "dack_packets",
+    "note"
+  ],
+  "state_columns": [
+    "case_id",
+    "step",
+    "time_s",
+    "action",
+    "packet",
+    "peer",
+    "accepted",
+    "threshold",
+    "ack_count",
+    "outstanding",
+    "global_pending",
+    "dack_holds",
+    "resend",
+    "can_send",
+    "ack_total",
+    "dack_total",
+    "fail_total",
+    "nsdp_release_total",
+    "retry_total",
+    "tx_total",
+    "dack_expired_total"
+  ],
+  "configuration_columns": [
+    "case_id",
+    "resend_seconds",
+    "max_resends",
+    "dack_seconds",
+    "tic_seconds",
+    "pending_threshold",
+    "flow_threshold_max",
+    "policy",
+    "scope"
+  ],
+  "paths": {
+    "cases": "scenarios/t22/cases.csv",
+    "actions": "scenarios/t22/actions.csv",
+    "seed130_provenance": "scenarios/t22/seed130-provenance.json"
+  },
+  "input_hashes": {
+    "cases.csv": "e6848c55416c0e71b29499c8dac56edb8638c68a6bc94d8da6859fe5a35ff53d",
+    "actions.csv": "2bf9e34cfc5dea28c554095059082c7a643ef4f2fb879f83fcaa6862c788045b",
+    "seed130-provenance.json": "dbf2caa85aff4b6362201da79d2aaa4a3a729d5f56b50a63afe3dec9fb55b7cd"
+  },
+  "execution": [
+    "Every case creates fresh real production HOP and scheduler objects; no threshold or ACK accumulator state is assigned.",
+    "Advance scheduler through time_s before each row, then execute action; equal-time rows execute in CSV order. No action is placed on a natural timer boundary.",
+    "SEND first checks the actual public admission gate, then invokes the real DATA send method if permitted. Rejected aliases receive no frame or sequence.",
+    "TX confirms the latest queued original/retry copy using the real HOP sent-notification method. No PHY or MAC transmission occurs; the MAC enqueue/cancel boundary is a controlled adapter.",
+    "FEEDBACK constructs one cumulative DATA feedback frame using the highest listed sequence and semicolon-separated alias bitmaps. ACK wins overlapping bits. It calls the real production receive method once.",
+    "PROBE mutates no model state. Every action produces a post-action state row.",
+    "Rows use node 7 and original source 7, final destination 1, with peer 8 unless explicitly peer 9.",
+    "Default actual-tx remains unchanged. Explicit retry transmissions avoid leaving queued retries unconfirmed across later retry scans."
+  ],
+  "state_semantics": {
+    "accepted": "-1 except SEND, where 0/1 indicates public admission outcome.",
+    "threshold": "Adaptive threshold for current row peer; effective neighbor window is threshold+1.",
+    "ack_count": "Current row peer ACK accumulator.",
+    "outstanding": "Current row peer capacity, including DACK holds.",
+    "global_pending": "Global DATA capacity, including DACK holds.",
+    "dack_holds": "Global delayed DACK capacity owners.",
+    "resend": "Global active reliable DATA resend entries.",
+    "nsdp_release_total": "One notification for ACK, DACK or final failure; no extra notification at DACK capacity expiry.",
+    "retry_total": "Natural retry enqueue count, not manually constructed retransmissions.",
+    "tx_total": "Actual sent-notification count across original and retry copies.",
+    "dack_expired_total": "DACK capacity release count."
+  },
+  "milestones": [
+    {
+      "case_id": "clean_growth_boundary",
+      "step": 1,
+      "rationale": "Fresh DATA flow has one available slot.",
+      "equals": {
+        "threshold": 0,
+        "ack_count": 0,
+        "outstanding": 0,
+        "global_pending": 0,
+        "can_send": 1
+      }
+    },
+    {
+      "case_id": "clean_growth_boundary",
+      "step": 4,
+      "rationale": "Threshold zero permits one outstanding DATA.",
+      "equals": {
+        "accepted": 0,
+        "outstanding": 1,
+        "can_send": 0
+      }
+    },
+    {
+      "case_id": "clean_growth_boundary",
+      "step": 11,
+      "rationale": "The third ACK raises threshold from zero to one.",
+      "equals": {
+        "threshold": 1,
+        "ack_count": 0,
+        "outstanding": 0,
+        "ack_total": 3
+      }
+    },
+    {
+      "case_id": "clean_growth_boundary",
+      "step": 14,
+      "rationale": "Threshold one permits two DATA entries.",
+      "equals": {
+        "accepted": 1,
+        "outstanding": 2,
+        "can_send": 0
+      }
+    },
+    {
+      "case_id": "clean_growth_boundary",
+      "step": 16,
+      "rationale": "The third concurrent DATA is blocked.",
+      "equals": {
+        "accepted": 0,
+        "outstanding": 2
+      }
+    },
+    {
+      "case_id": "clean_growth_boundary",
+      "step": 17,
+      "rationale": "Both admitted entries release exactly once.",
+      "equals": {
+        "global_pending": 0,
+        "resend": 0,
+        "ack_total": 5,
+        "ack_count": 2
+      }
+    },
+    {
+      "case_id": "retried_third_ack",
+      "step": 9,
+      "rationale": "Retry has not yet become due.",
+      "equals": {
+        "retry_total": 0
+      }
+    },
+    {
+      "case_id": "retried_third_ack",
+      "step": 10,
+      "rationale": "The natural retry timer enqueues one retry.",
+      "equals": {
+        "retry_total": 1,
+        "resend": 1
+      }
+    },
+    {
+      "case_id": "retried_third_ack",
+      "step": 12,
+      "rationale": "Increment/test precedes reset after a retried third ACK.",
+      "equals": {
+        "threshold": 1,
+        "ack_count": 0,
+        "ack_total": 3,
+        "retry_total": 1
+      }
+    },
+    {
+      "case_id": "retried_third_ack",
+      "step": 16,
+      "rationale": "The following clean ACK begins a fresh accumulator.",
+      "equals": {
+        "threshold": 1,
+        "ack_count": 1
+      }
+    },
+    {
+      "case_id": "retried_second_ack",
+      "step": 7,
+      "rationale": "A retried second ACK cannot grow the window.",
+      "equals": {
+        "threshold": 0,
+        "ack_count": 0,
+        "ack_total": 2,
+        "retry_total": 1
+      }
+    },
+    {
+      "case_id": "retried_second_ack",
+      "step": 14,
+      "rationale": "Two subsequent clean ACKs are insufficient after reset.",
+      "equals": {
+        "threshold": 0,
+        "ack_count": 2
+      }
+    },
+    {
+      "case_id": "retried_second_ack",
+      "step": 18,
+      "rationale": "Three new clean ACKs restore growth.",
+      "equals": {
+        "threshold": 1,
+        "ack_count": 0
+      }
+    },
+    {
+      "case_id": "dack_hold_20",
+      "step": 18,
+      "rationale": "DACK completes ownership but retains one HOP capacity slot.",
+      "equals": {
+        "threshold": 1,
+        "ack_count": 0,
+        "outstanding": 1,
+        "global_pending": 1,
+        "dack_holds": 1,
+        "resend": 0,
+        "dack_total": 1,
+        "nsdp_release_total": 6
+      }
+    },
+    {
+      "case_id": "dack_hold_20",
+      "step": 21,
+      "rationale": "DACK-held capacity participates in admission.",
+      "equals": {
+        "accepted": 0,
+        "outstanding": 2
+      }
+    },
+    {
+      "case_id": "dack_hold_20",
+      "step": 23,
+      "rationale": "Capacity remains occupied immediately before hold expiry.",
+      "equals": {
+        "global_pending": 1,
+        "dack_holds": 1,
+        "nsdp_release_total": 7
+      }
+    },
+    {
+      "case_id": "dack_hold_20",
+      "step": 24,
+      "rationale": "Hold expiry releases capacity without another NSDP release.",
+      "equals": {
+        "global_pending": 0,
+        "dack_holds": 0,
+        "dack_expired_total": 1,
+        "nsdp_release_total": 7,
+        "threshold": 1,
+        "ack_count": 1
+      }
+    },
+    {
+      "case_id": "dack_hold_40",
+      "step": 11,
+      "rationale": "At the retry limit, DACK still releases NSDP immediately.",
+      "equals": {
+        "threshold": 0,
+        "ack_count": 0,
+        "dack_holds": 1,
+        "global_pending": 1,
+        "resend": 0,
+        "retry_total": 2,
+        "nsdp_release_total": 3
+      }
+    },
+    {
+      "case_id": "dack_hold_40",
+      "step": 12,
+      "rationale": "The ordinary 20-second deadline is insufficient at maximum retry.",
+      "equals": {
+        "dack_holds": 1,
+        "dack_expired_total": 0
+      }
+    },
+    {
+      "case_id": "dack_hold_40",
+      "step": 13,
+      "rationale": "Capacity persists until the doubled deadline.",
+      "equals": {
+        "dack_holds": 1,
+        "global_pending": 1
+      }
+    },
+    {
+      "case_id": "dack_hold_40",
+      "step": 14,
+      "rationale": "The doubled hold releases capacity once.",
+      "equals": {
+        "dack_holds": 0,
+        "global_pending": 0,
+        "dack_expired_total": 1,
+        "nsdp_release_total": 3
+      }
+    },
+    {
+      "case_id": "final_failure_floor",
+      "step": 14,
+      "rationale": "Final attempt retains capacity for twice the retry interval.",
+      "equals": {
+        "fail_total": 0,
+        "outstanding": 1
+      }
+    },
+    {
+      "case_id": "final_failure_floor",
+      "step": 15,
+      "rationale": "Final DATA failure lowers threshold and releases ownership.",
+      "equals": {
+        "threshold": 0,
+        "ack_count": 0,
+        "fail_total": 1,
+        "global_pending": 0,
+        "nsdp_release_total": 4
+      }
+    },
+    {
+      "case_id": "final_failure_floor",
+      "step": 20,
+      "rationale": "A second failure cannot make threshold negative.",
+      "equals": {
+        "threshold": 0,
+        "fail_total": 2,
+        "global_pending": 0,
+        "nsdp_release_total": 5
+      }
+    },
+    {
+      "case_id": "final_failure_floor",
+      "step": 21,
+      "rationale": "Failure capacity release admits the next packet.",
+      "equals": {
+        "accepted": 1,
+        "outstanding": 1,
+        "global_pending": 1
+      }
+    },
+    {
+      "case_id": "ceiling_global_capacity",
+      "step": 153,
+      "rationale": "Fifty-one clean ACKs exercise one growth cycle beyond the ceiling.",
+      "equals": {
+        "threshold": 16,
+        "ack_count": 0,
+        "ack_total": 51
+      }
+    },
+    {
+      "case_id": "ceiling_global_capacity",
+      "step": 188,
+      "rationale": "Threshold sixteen allows seventeen outstanding, then blocks.",
+      "equals": {
+        "accepted": 0,
+        "threshold": 16,
+        "outstanding": 17,
+        "global_pending": 17,
+        "can_send": 0
+      }
+    },
+    {
+      "case_id": "ceiling_global_capacity",
+      "step": 189,
+      "rationale": "Global capacity blocks a fresh peer with its own available slot.",
+      "equals": {
+        "threshold": 0,
+        "outstanding": 0,
+        "global_pending": 17,
+        "can_send": 0
+      }
+    },
+    {
+      "case_id": "ceiling_global_capacity",
+      "step": 191,
+      "rationale": "One global release permits a fresh peer.",
+      "equals": {
+        "accepted": 1,
+        "threshold": 0,
+        "outstanding": 1,
+        "global_pending": 17
+      }
+    },
+    {
+      "case_id": "ceiling_global_capacity",
+      "step": 193,
+      "rationale": "The original peer has spare neighbor capacity but global capacity is full.",
+      "equals": {
+        "accepted": 0,
+        "threshold": 16,
+        "outstanding": 16,
+        "global_pending": 17,
+        "can_send": 0
+      }
+    },
+    {
+      "case_id": "ceiling_global_capacity",
+      "step": 195,
+      "rationale": "An occupied fresh peer remains blocked despite abundant global space.",
+      "equals": {
+        "global_pending": 1,
+        "outstanding": 1,
+        "threshold": 0,
+        "can_send": 0
+      }
+    },
+    {
+      "case_id": "ceiling_global_capacity",
+      "step": 196,
+      "rationale": "All capacity is released exactly once.",
+      "equals": {
+        "global_pending": 0,
+        "resend": 0,
+        "nsdp_release_total": 69
+      }
+    },
+    {
+      "case_id": "grouped_feedback_order",
+      "step": 20,
+      "rationale": "An overlapping ACK wins, so both complete as positive ACKs.",
+      "equals": {
+        "threshold": 2,
+        "ack_count": 1,
+        "ack_total": 7,
+        "dack_total": 0,
+        "dack_holds": 0
+      }
+    },
+    {
+      "case_id": "grouped_feedback_order",
+      "step": 25,
+      "rationale": "Newer DACK resets before older ACK begins new progress.",
+      "equals": {
+        "threshold": 2,
+        "ack_count": 1,
+        "ack_total": 8,
+        "dack_total": 1,
+        "dack_holds": 1,
+        "nsdp_release_total": 9
+      }
+    },
+    {
+      "case_id": "grouped_feedback_order",
+      "step": 26,
+      "rationale": "Repeated bitmap feedback cannot release an identity twice.",
+      "equals": {
+        "ack_total": 8,
+        "dack_total": 1,
+        "dack_holds": 1,
+        "nsdp_release_total": 9
+      }
+    },
+    {
+      "case_id": "grouped_feedback_order",
+      "step": 27,
+      "rationale": "An ACK cannot complete an already DACK-completed resend entry.",
+      "equals": {
+        "ack_total": 8,
+        "dack_total": 1,
+        "dack_holds": 1,
+        "nsdp_release_total": 9
+      }
+    },
+    {
+      "case_id": "grouped_feedback_order",
+      "step": 28,
+      "rationale": "The retained DACK capacity still expires normally.",
+      "equals": {
+        "global_pending": 0,
+        "dack_holds": 0,
+        "dack_expired_total": 1
+      }
+    },
+    {
+      "case_id": "seed130_feedback_motif",
+      "step": 30,
+      "rationale": "Observed newer clean ninth ACK grows to three, then older retried ACK resets progress.",
+      "equals": {
+        "threshold": 3,
+        "ack_count": 0,
+        "ack_total": 10,
+        "retry_total": 1,
+        "global_pending": 0,
+        "nsdp_release_total": 10
+      }
+    }
+  ],
+  "structural_invariants": [
+    "Global pending equals resend entries plus DACK holds in these DATA-only cases.",
+    "Cumulative accepted SEND equals ACK total plus DACK total plus failure total plus resend depth.",
+    "NSDP releases equal ACK total plus DACK total plus failure total.",
+    "Threshold remains between 0 and 16; ACK accumulator between 0 and 2.",
+    "One native and one MATLAB state row must correspond to every exact action row; integer states match exactly."
+  ],
+  "comparison": {
+    "integer_tolerance": 0,
+    "time_absolute_tolerance_seconds": 1e-09,
+    "campus_percent_target_applies": false
+  },
+  "limitations": [
+    "Controlled HOP unit contract with real production methods; no PHY, radio contention, NWK routing or whole-network numerical parity test.",
+    "MATLAB execution remains pending until owner return; native reference execution is recorded separately.",
+    "Historical motif is transformed and reduced; independently selected synthetic cases cover timer and counter edge conditions."
+  ]
+}

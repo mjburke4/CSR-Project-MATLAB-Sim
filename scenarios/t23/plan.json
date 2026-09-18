@@ -1,0 +1,118 @@
+{
+  "schema": "csr-tranche23-receiver-feedback-plan-v1",
+  "tranche": 23,
+  "source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "engine_commit": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+  "case_order": [
+    "relay_boundary",
+    "local_relay_independence",
+    "ack_duplicate",
+    "dack_duplicate_pressure",
+    "dack_reassessment_after_release",
+    "release_idempotence",
+    "local_delivery_bypass"
+  ],
+  "case_count": 7,
+  "action_count": 123,
+  "checkpoint_count": 123,
+  "milestone_count": 18,
+  "native_milestone_count": 2,
+  "timing_policy": "continuous",
+  "default_policy": "actual-tx",
+  "working_campus_band_percent": 10,
+  "production_source_changed": false,
+  "phy_ecc_changed": false,
+  "full_campus_run": false,
+  "native_reference": "evidence/t23/native",
+  "action_columns": [
+    "case_id",
+    "step",
+    "time_s",
+    "observe_s",
+    "action",
+    "packet",
+    "sequence",
+    "nwk_source",
+    "destination",
+    "ack_packets",
+    "dack_packets",
+    "note"
+  ],
+  "configuration_columns": [
+    "case_id",
+    "resend_seconds",
+    "max_resends",
+    "dack_seconds",
+    "tic_seconds",
+    "pending_threshold",
+    "flow_threshold_max",
+    "policy",
+    "scope"
+  ],
+  "state_columns": [
+    "case_id",
+    "step",
+    "time_s",
+    "action",
+    "packet",
+    "accepted",
+    "nsdp_relay",
+    "nsdp_local",
+    "nwk_waiting",
+    "nwk_owned",
+    "hop_pending",
+    "hop_outstanding",
+    "hop_resend",
+    "hop_holds",
+    "rx_highest",
+    "rx_ack_hex",
+    "rx_dack_hex",
+    "ack_generated",
+    "dack_generated",
+    "rx_received",
+    "rx_delivered",
+    "rx_duplicates",
+    "nsdp_releases",
+    "ack_completed",
+    "dack_completed",
+    "dack_expired",
+    "data_tx"
+  ],
+  "feedback_columns": [
+    "case_id",
+    "step",
+    "time_s",
+    "kind",
+    "sequence",
+    "ack_hex",
+    "dack_hex",
+    "relay_nsdp",
+    "local_nsdp",
+    "nwk_owned"
+  ],
+  "comparison": {
+    "integer_tolerance": 0,
+    "time_absolute_tolerance_seconds": "1e-9",
+    "campus_percent_target_applies": false
+  },
+  "input_files": [
+    {
+      "path": "scenarios/t23/cases.csv",
+      "sha256": "6e6a9ac773a92798f78cc5a51dca6fe775850acb858958be3eed0634477cb37f"
+    },
+    {
+      "path": "scenarios/t23/actions.csv",
+      "sha256": "93d0d6047f51cc906e98a2d6a055dea9389581ae2cfed223c5045bfa13f819f2"
+    },
+    {
+      "path": "scenarios/t23/contract.json",
+      "sha256": "2db36e9336633bf0f80041748d3af6f5c24159d540c05bb11409e5220ee7a0f6"
+    }
+  ],
+  "cases_file": "scenarios/t23/cases.csv",
+  "cases_sha256": "6e6a9ac773a92798f78cc5a51dca6fe775850acb858958be3eed0634477cb37f",
+  "actions_file": "scenarios/t23/actions.csv",
+  "actions_sha256": "93d0d6047f51cc906e98a2d6a055dea9389581ae2cfed223c5045bfa13f819f2",
+  "contract_file": "scenarios/t23/contract.json",
+  "contract_sha256": "2db36e9336633bf0f80041748d3af6f5c24159d540c05bb11409e5220ee7a0f6"
+}

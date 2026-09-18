@@ -1,0 +1,10 @@
+case_id,resend_seconds,max_resends,dack_seconds,tic_seconds,pending_threshold,flow_threshold_max,policy,scope
+clean_growth_boundary,2,2,20,2.7777777777777777e-08,16,16,actual-tx,Three clean ACKs grow the per-peer window; threshold+1 admission boundary.
+retried_third_ack,2,2,20,2.7777777777777777e-08,16,16,actual-tx,A retried third ACK grows the window before resetting the accumulator.
+retried_second_ack,2,2,20,2.7777777777777777e-08,16,16,actual-tx,A retried second ACK resets partial progress without growing the window.
+dack_hold_20,2,2,20,2.7777777777777777e-08,16,16,actual-tx,"DACK releases NSDP immediately, retaining HOP capacity for the ordinary 20-second hold."
+dack_hold_40,2,2,20,2.7777777777777777e-08,16,16,actual-tx,A DACK after the maximum two retries holds capacity for 40 seconds.
+final_failure_floor,2,2,20,2.7777777777777777e-08,16,16,actual-tx,Natural final retry expiration lowers threshold once and never below zero.
+ceiling_global_capacity,2,2,20,2.7777777777777777e-08,16,16,actual-tx,Window ceiling and global capacity remain separate from per-peer capacity.
+grouped_feedback_order,2,2,20,2.7777777777777777e-08,16,16,actual-tx,"Cumulative newest-first ACK/DACK processing, overlap precedence and duplicate idempotence."
+seed130_feedback_motif,2,2,20,2.7777777777777777e-08,16,16,actual-tx,Reduced ordered feedback motif from native seed 130 startup; times and surrounding traffic are controlled.

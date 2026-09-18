@@ -1,0 +1,54 @@
+{
+  "schema": "csr-t22-independent-design-review-v1",
+  "status": "source_design_review_passed_matlab_execution_pending",
+  "scope": "independent production-source contract review",
+  "source_bindings": {
+    "csr22/+csr/+hop/Layer.m": "67323b4106738c2d1fdfafebf1f408719f878513aa898fb9cf754e446d87d9f7",
+    "t22-work/native/CSR-Project-NS3-part2-486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b/model/csr-hop-layer.h": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b"
+  },
+  "required_checks": [
+    "public canSend gates SEND and threshold+1 admission",
+    "increment/test ACK accumulator before retry reset",
+    "DACK releases NSDP once but retains HOP capacity until timer scan",
+    "DACK final retry hold doubles to 40 seconds",
+    "final failure releases capacity and decreases threshold to floor zero",
+    "unknown or repeated feedback never releases capacity twice",
+    "same-time command/timer ordering explicitly equal",
+    "MATLAB default actual-tx and accepted native provisional distinction unchanged",
+    "native instrumentation getters observational only",
+    "no MATLAB runtime claim without actual execution"
+  ],
+  "design_risks": [
+    {
+      "risk": "Native prescheduling all CSV commands could reorder exact-time timer/command events",
+      "status": "Resolved by native MapScheduler observation subclass draining all callbacks at each target time; contract avoids natural timer boundary ties."
+    },
+    {
+      "risk": "DACK timer scans all nominally expired entries, so sub-TIC expiries can coalesce",
+      "status": "Explicitly outside bounded test scope; timer probes use millisecond guards and do not claim sub-TIC coalescence coverage."
+    }
+  ],
+  "source_review": {
+    "matlab_harness": "Real csr.hop.Layer public methods; no threshold, ACK count or capacity assignments",
+    "native_harness": "Actual pinned CsrHopLayer methods; single friend declaration; private access observes counters and calls actual ProtectAckFrame",
+    "runner": "Exact source/reference bindings, portable test membership, failure packaging, input stability, no full acceptance or numerical parity claim",
+    "scope": "Controlled HOP callback seam; MATLAB decoded bare feedback versus native authenticated Pairwise16; no RF/security parity claim"
+  },
+  "cross_file_findings": [
+    {
+      "issue": "FailedRows vector was treated as count by Python return checker",
+      "status": "Resolved: exact one-based failed-row vector, including scalar MATLAB encoding, is checked; mutation coverage passes."
+    },
+    {
+      "issue": "Native reference path mismatch between MATLAB and checker",
+      "status": "Resolved: MATLAB, plan and Python checker all use evidence/t22/native."
+    },
+    {
+      "issue": "Time tolerance mismatch 1e-8 vs1e-9",
+      "status": "Resolved: 1e-9 seconds for action timestamps and exact discrete states."
+    }
+  ],
+  "passed": true,
+  "remaining_blockers": [],
+  "matlab_execution_claimed": false
+}

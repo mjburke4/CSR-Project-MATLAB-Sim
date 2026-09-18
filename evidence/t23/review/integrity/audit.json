@@ -1,0 +1,163 @@
+{
+  "schema": "csr-tranche23-independent-return-integrity-audit-v1",
+  "verdict": "PASS: diagnostic return integrity verified; cross-engine mismatches retained",
+  "return_integrity_verified": true,
+  "all_original_source_reference_bytes_verified": true,
+  "cross_engine_contract_passed": false,
+  "acceptance_established": false,
+  "owner_archive_sha256": "569cf1bbd7ca31e90518128d32dfd7a51c2f94b15e1ec5c5131aa1d5a426804c",
+  "issued_update_sha256": "933fe4b6d09253786e38fbb43091ea62702bb01264ef9147a029cea45b71db64",
+  "candidate_sha256": "b40afd3755ceb47576ea2c9854b4af15a14cebcf87024331e67bf53e069f0818",
+  "owner_archive_files": 12,
+  "closed_inventory_artifacts_verified": 11,
+  "source_snapshot_entries": 404,
+  "matlab_source_snapshot_entries": 181,
+  "reference_snapshot_entries": 293,
+  "initial_final_snapshot_records_identical": true,
+  "baseline_sources_unchanged": 390,
+  "baseline_matlab_sources_unchanged": 178,
+  "original_byte_verification": {
+    "source": {
+      "verified": 404,
+      "missing_count": 0,
+      "unavailable_paths": []
+    },
+    "reference": {
+      "verified": 293,
+      "missing_count": 0,
+      "unavailable_paths": []
+    }
+  },
+  "tests_passed": 79,
+  "test_declarations_verified": 79,
+  "test_source_files_verified": [
+    "tests/TestReceiverFeedbackContract.m",
+    "tests/TestHopLayer.m",
+    "tests/TestNwkLayer.m",
+    "tests/TestRelayContract.m",
+    "tests/TestMacHopCustody.m"
+  ],
+  "missing_test_source_files": [],
+  "runtime": {
+    "Runtime": "MATLAB",
+    "Version": "25.1.0.2943329 (R2025a)",
+    "Release": "2025a",
+    "HasWirelessNetworkSimulator": false,
+    "HasWnetNode": false,
+    "HasWirelessPacket": false,
+    "DefaultBackend": "portable",
+    "WirelessAdapterImplemented": true,
+    "WirelessAdapterScope": "Optional R2026a wireless-clock candidate; runtime validation pending",
+    "NativePacketTransportIntegrated": false,
+    "ProbeScope": "Symbol discovery only; licenses and execution are not validated."
+  },
+  "elapsed_seconds": 72.141,
+  "shared_milestones_verified": 18,
+  "shared_assertions_verified": 81,
+  "state_comparison": {
+    "actual_rows": 123,
+    "reference_rows": 123,
+    "matched_rows": 121,
+    "unmatched_rows": 2,
+    "failed_rows": [
+      71,
+      95
+    ],
+    "differences": [
+      {
+        "row": 71,
+        "case_id": "dack_duplicate_pressure",
+        "step": 18,
+        "fields": [
+          "nsdp_relay",
+          "nwk_waiting",
+          "nwk_owned"
+        ],
+        "matlab": {
+          "nsdp_relay": "17",
+          "nwk_waiting": "16",
+          "nwk_owned": "17"
+        },
+        "native": {
+          "nsdp_relay": "18",
+          "nwk_waiting": "17",
+          "nwk_owned": "18"
+        }
+      },
+      {
+        "row": 95,
+        "case_id": "dack_reassessment_after_release",
+        "step": 24,
+        "fields": [
+          "nsdp_relay",
+          "nwk_waiting",
+          "nwk_owned"
+        ],
+        "matlab": {
+          "nsdp_relay": "14",
+          "nwk_waiting": "12",
+          "nwk_owned": "14"
+        },
+        "native": {
+          "nsdp_relay": "15",
+          "nwk_waiting": "13",
+          "nwk_owned": "15"
+        }
+      }
+    ],
+    "maximum_time_difference_seconds": "1E-15"
+  },
+  "feedback_comparison": {
+    "actual_rows": 91,
+    "reference_rows": 91,
+    "matched_rows": 89,
+    "unmatched_rows": 2,
+    "failed_rows": [
+      54,
+      72
+    ],
+    "differences": [
+      {
+        "row": 54,
+        "case_id": "dack_duplicate_pressure",
+        "step": 18,
+        "fields": [
+          "relay_nsdp",
+          "nwk_owned"
+        ],
+        "matlab": {
+          "relay_nsdp": "17",
+          "nwk_owned": "17"
+        },
+        "native": {
+          "relay_nsdp": "18",
+          "nwk_owned": "18"
+        }
+      },
+      {
+        "row": 72,
+        "case_id": "dack_reassessment_after_release",
+        "step": 24,
+        "fields": [
+          "relay_nsdp",
+          "nwk_owned"
+        ],
+        "matlab": {
+          "relay_nsdp": "14",
+          "nwk_owned": "14"
+        },
+        "native": {
+          "relay_nsdp": "15",
+          "nwk_owned": "15"
+        }
+      }
+    ],
+    "maximum_time_difference_seconds": "3E-17"
+  },
+  "comparison_receipts_truthful": true,
+  "limitations": [
+    "Owner-returned hashes and logs do not independently prove MATLAB execution.",
+    "Controlled receiver/HOP behavior does not establish an effect on full-campus traffic or the +/-10% parity target.",
+    "No MATLAB, native simulation, or broad regression was re-executed by this independent audit."
+  ]
+}

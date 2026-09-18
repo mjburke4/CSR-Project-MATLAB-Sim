@@ -1,0 +1,358 @@
+{
+  "schema": "csr-t22-t24-publication-input-audit-v1",
+  "status": "pass",
+  "scope": "Read-only byte and acceptance-boundary verification; no simulations and no remote writes.",
+  "checks": {
+    "t20_baseline_source": {
+      "checked": 376,
+      "failures": []
+    },
+    "t22_source": {
+      "checked": 390,
+      "failures": []
+    },
+    "t23_source": {
+      "checked": 404,
+      "failures": []
+    },
+    "t23_references": {
+      "checked": 293,
+      "failures": []
+    },
+    "t22_review_package": {
+      "checked": 64,
+      "failures": [],
+      "unlisted": [],
+      "missing": [],
+      "manifest_sha256": "ccdd4aae891a4bc083044f1ce2933dd194dbd91de2e4b74a3a79fc767f61d9e3"
+    },
+    "t23_review_package": {
+      "checked": 92,
+      "failures": [],
+      "unlisted": [],
+      "missing": [],
+      "manifest_sha256": "84d52955c052091acbae500bcd8fed1067696c2f44f77dc1d3983cec92f9fcb0"
+    },
+    "t24_review_package": {
+      "checked": 66,
+      "failures": [],
+      "unlisted": [],
+      "missing": [],
+      "manifest_sha256": "f1f06f0a9d83871270abd11ec52a8043d4114dd4d4056411bf7270f44a0f336b"
+    },
+    "t23_review_archive": {
+      "archive_sha256": "b2b8be64e5a705253d48b59888dbde3e008c8110b0b021b75d84427c4a59e2c3",
+      "archive_bytes": 2111977,
+      "members": 93,
+      "member_byte_mismatches": []
+    },
+    "t24_review_archive": {
+      "archive_sha256": "8fe2d62fae97838e1710b305ba5cd5622a68c23417fe583590f9bfdafa465dbf",
+      "archive_bytes": 2984676,
+      "members": 67,
+      "member_byte_mismatches": []
+    }
+  },
+  "original_hash_bindings": {
+    "t22_candidate": {
+      "path": "t23-return-review/issued-overlay/evidence/tranche-22-candidate.json",
+      "sha256": "333686e6ee7822baf9f53ad06a0aa1d6475fced46947281596704ff147b5ba06",
+      "expected_sha256": "333686e6ee7822baf9f53ad06a0aa1d6475fced46947281596704ff147b5ba06",
+      "matches": true
+    },
+    "t22_owner": {
+      "path": "t23-return-review/issued-overlay/evidence/t22/accepted/owner.zip",
+      "sha256": "37863a70ef46c2889b3f945bcc2d3cfbe548115f1c349136488cc56357a9f6af",
+      "expected_sha256": "37863a70ef46c2889b3f945bcc2d3cfbe548115f1c349136488cc56357a9f6af",
+      "matches": true
+    },
+    "t22_snapshot": {
+      "path": "t23-return-review/issued-overlay/evidence/tranche-23-baseline.json",
+      "sha256": "c5ca0672545bb213bd262d3d02f1008fd99d6c64e5355b8248ac102257477fd2",
+      "expected_sha256": "c5ca0672545bb213bd262d3d02f1008fd99d6c64e5355b8248ac102257477fd2",
+      "matches": true
+    },
+    "t23_candidate": {
+      "path": "t23-return-review/issued-overlay/evidence/tranche-23-candidate.json",
+      "sha256": "b40afd3755ceb47576ea2c9854b4af15a14cebcf87024331e67bf53e069f0818",
+      "expected_sha256": "b40afd3755ceb47576ea2c9854b4af15a14cebcf87024331e67bf53e069f0818",
+      "matches": true
+    },
+    "t23_owner": {
+      "path": "upload/t23.zip",
+      "sha256": "569cf1bbd7ca31e90518128d32dfd7a51c2f94b15e1ec5c5131aa1d5a426804c",
+      "expected_sha256": "569cf1bbd7ca31e90518128d32dfd7a51c2f94b15e1ec5c5131aa1d5a426804c",
+      "matches": true
+    },
+    "t23_snapshot": {
+      "path": "t23-return-review/package/returned/source.json",
+      "sha256": "ff654a8774b23965b2d8a45866a807cdc88a31594920542c60536a4fcf5b7364",
+      "expected_sha256": "ff654a8774b23965b2d8a45866a807cdc88a31594920542c60536a4fcf5b7364",
+      "matches": true
+    },
+    "t24_independent_gate": {
+      "path": "t24/package/review/independent-review.json",
+      "sha256": "53d8ad7d013119cbc30584421ba1f3b5d7228af55d3a94e099db0494bb9720be",
+      "expected_sha256": "53d8ad7d013119cbc30584421ba1f3b5d7228af55d3a94e099db0494bb9720be",
+      "matches": true
+    },
+    "t24_input_verification": {
+      "path": "t24/package/input-verification.json",
+      "sha256": "52792cc06b2bdd4ab28d4d3836e2f25d16090abc95e34f6623a9bb9287d557b4",
+      "expected_sha256": "52792cc06b2bdd4ab28d4d3836e2f25d16090abc95e34f6623a9bb9287d557b4",
+      "matches": true
+    }
+  },
+  "source_additions": {
+    "T22": {
+      "added": [
+        "+csr/+validation/adaptiveWindowContract.m",
+        "evidence/tranche-22-candidate.json",
+        "run_tranche22_validation.m",
+        "scenarios/t22/actions.csv",
+        "scenarios/t22/cases.csv",
+        "scenarios/t22/contract.json",
+        "scenarios/t22/plan.json",
+        "scenarios/t22/seed130-provenance.json",
+        "scripts/analyze_tranche22_return.py",
+        "scripts/generate_tranche22_contract.py",
+        "scripts/ns3/tranche22_window.cc",
+        "scripts/run_tranche22_ns3_reference.py",
+        "scripts/tests/test_tranche22_return.py",
+        "tests/TestAdaptiveWindowContract.m"
+      ],
+      "changed": [],
+      "removed": []
+    },
+    "T23": {
+      "added": [
+        "+csr/+validation/receiverFeedbackContract.m",
+        "evidence/tranche-23-candidate.json",
+        "evidence/tranche-23-parent-candidate.json",
+        "run_tranche23_validation.m",
+        "scenarios/t23/actions.csv",
+        "scenarios/t23/cases.csv",
+        "scenarios/t23/contract.json",
+        "scenarios/t23/plan.json",
+        "scripts/analyze_tranche23_return.py",
+        "scripts/generate_tranche23_contract.py",
+        "scripts/ns3/tranche23_receiver.cc",
+        "scripts/run_tranche23_ns3_reference.py",
+        "scripts/tests/test_tranche23_return.py",
+        "tests/TestReceiverFeedbackContract.m"
+      ],
+      "changed": [],
+      "removed": []
+    }
+  },
+  "t25_paths_in_bound_t23_inputs": [],
+  "t22_acceptance": {
+    "schema": "csr-matlab-tranche22-focused-contract-acceptance-v1",
+    "accepted": true,
+    "accepted_scope": "Controlled production HOP adaptive-window contract only",
+    "reviewed_utc": "2026-09-17T18:29:52.633775+00:00",
+    "owner_archive_sha256": "37863a70ef46c2889b3f945bcc2d3cfbe548115f1c349136488cc56357a9f6af",
+    "issued_update_sha256": "ff78c4659a755b4a5cea5bd23f7c35b72be00926d96f9a074c6adc7a92f4f049",
+    "candidate_sha256": "333686e6ee7822baf9f53ad06a0aa1d6475fced46947281596704ff147b5ba06",
+    "source_snapshot_sha256": "c5ca0672545bb213bd262d3d02f1008fd99d6c64e5355b8248ac102257477fd2",
+    "reference_snapshot_sha256": "457c88a80ad29243cebeec0033e8109a4021553fb95a1352c4aabd0eef435216",
+    "native_source_pin": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+    "native_engine_pin": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+    "runtime": {
+      "Runtime": "MATLAB",
+      "Version": "25.1.0.2943329 (R2025a)",
+      "Release": "2025a",
+      "HasWirelessNetworkSimulator": false,
+      "HasWnetNode": false,
+      "HasWirelessPacket": false,
+      "DefaultBackend": "portable",
+      "WirelessAdapterImplemented": true,
+      "WirelessAdapterScope": "Optional R2026a wireless-clock candidate; runtime validation pending",
+      "NativePacketTransportIntegrated": false,
+      "ProbeScope": "Symbol discovery only; licenses and execution are not validated."
+    },
+    "owner_elapsed_seconds": 56.61,
+    "tests_passed": 89,
+    "tests_failed": 0,
+    "tests_incomplete": 0,
+    "cases": 9,
+    "matched_checkpoints": 364,
+    "state_field_comparisons": 5460,
+    "integer_comparisons_including_step_and_peer": 6188,
+    "milestones": 38,
+    "milestone_integer_assertions": 142,
+    "source_files_verified": 390,
+    "reference_files_verified": 157,
+    "baseline_source_files_unchanged": 376,
+    "baseline_matlab_files_unchanged": 175,
+    "maximum_action_time_delta_s": "2E-15",
+    "action_time_tolerance_s": "1E-9",
+    "focused_structural_gate_completed": true,
+    "full_portable_regression_rerun": false,
+    "full_campus_run": false,
+    "numerical_parity_established": false,
+    "production_source_changed": false,
+    "matlab_executed_by_reviewer": false,
+    "rerun_required": false,
+    "working_campus_band_percent": 10,
+    "decision": "Retain actual-tx, continuous timing, window rules and PHY/ECC unchanged",
+    "next_useful_test": "Integrated receiver pressure to ACK/DACK generation with identical arrivals and natural NWK/HOP capacity releases",
+    "new_tranche_built": false,
+    "repository_published_by_this_review": false,
+    "evidence": {
+      "review.json": "0cb727386417d3a15b8f90af2ad5721463b4f30b0453bd1ee8b2a95edcf1d3d9",
+      "independent/integrity/audit.json": "3d45877c047349d66c21e2e7abd0ce09ac5eae89de5d6da5499e9d0958dcb733",
+      "independent/findings/independent-checks.json": "a295bc7780d282a0022d7772ae43b5ddc27d9a2cbfaf925e1c93de4c3eb584c3"
+    }
+  },
+  "t23_acceptance": {
+    "schema": "csr-tranche23-diagnostic-acceptance-v1",
+    "reviewed_utc": "2026-09-18T11:57:43.135148+00:00",
+    "status": "accepted_controlled_diagnostic_with_confirmed_custody_difference",
+    "diagnostic_accepted": true,
+    "rerun_required": false,
+    "cross_engine_contract_passed": false,
+    "full_acceptance_established": false,
+    "numerical_parity_established": false,
+    "owner_archive_sha256": "569cf1bbd7ca31e90518128d32dfd7a51c2f94b15e1ec5c5131aa1d5a426804c",
+    "issued_update_sha256": "933fe4b6d09253786e38fbb43091ea62702bb01264ef9147a029cea45b71db64",
+    "candidate_sha256": "b40afd3755ceb47576ea2c9854b4af15a14cebcf87024331e67bf53e069f0818",
+    "source_snapshot_sha256": "ff654a8774b23965b2d8a45866a807cdc88a31594920542c60536a4fcf5b7364",
+    "reference_snapshot_sha256": "254ae5bec0f5cc54d2560c4fa077b4d55a53146672de953278f6e9c2c6e1381e",
+    "source_files_verified": 404,
+    "matlab_source_files_verified": 181,
+    "reference_files_verified": 293,
+    "baseline_sources_unchanged": 390,
+    "baseline_matlab_sources_unchanged": 178,
+    "tests_passed": 79,
+    "test_failures": 0,
+    "test_incomplete": 0,
+    "cases_completed": 7,
+    "shared_milestones_passed": 18,
+    "shared_assertions_passed": 81,
+    "state_checkpoints": 123,
+    "state_checkpoints_matched": 121,
+    "feedback_records": 91,
+    "feedback_records_matched_including_occupancy": 89,
+    "feedback_control_fields_matched": 91,
+    "feedback_time_tolerance_seconds": 1e-09,
+    "runtime": {
+      "Runtime": "MATLAB",
+      "Version": "25.1.0.2943329 (R2025a)",
+      "Release": "2025a",
+      "HasWirelessNetworkSimulator": false,
+      "HasWnetNode": false,
+      "HasWirelessPacket": false,
+      "DefaultBackend": "portable",
+      "WirelessAdapterImplemented": true,
+      "WirelessAdapterScope": "Optional R2026a wireless-clock candidate; runtime validation pending",
+      "NativePacketTransportIntegrated": false,
+      "ProbeScope": "Symbol discovery only; licenses and execution are not validated."
+    },
+    "runtime_seconds": 72.141,
+    "native_source_pin": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+    "native_engine_pin": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+    "findings": [
+      {
+        "case": "dack_duplicate_pressure",
+        "matlab_custody": 17,
+        "native_custody": 18
+      },
+      {
+        "case": "dack_reassessment_after_release",
+        "matlab_custody": 14,
+        "native_custody": 15
+      }
+    ],
+    "production_change": false,
+    "working_campus_band_percent": 10,
+    "matlab_executed_by_reviewer": false,
+    "native_executed_by_reviewer": false,
+    "next_recommendation": "Offline census of same-app repeated relay custody after DACK in accepted campus traces, followed by bounded lineage replay only if needed; quantify effects before model changes."
+  },
+  "t24_acceptance": {
+    "schema": "csr-tranche24-offline-diagnostic-acceptance-v1",
+    "created_utc": "2026-09-18T12:48:07.912010+00:00",
+    "status": "accepted_offline_custody_diagnostic",
+    "diagnostic_accepted": true,
+    "numerical_parity_established": false,
+    "working_campus_band_percent": 10,
+    "matlab_simulations_executed": 0,
+    "native_simulations_executed": 0,
+    "opnet_simulations_executed": 0,
+    "new_matlab_tests_executed": 0,
+    "matlab_rerun_required": false,
+    "production_files_modified": [],
+    "source_bindings_verified": 404,
+    "default_retry_policy": "actual-tx",
+    "timing": "continuous",
+    "PHY_ECC_changed": false,
+    "independent_review_sha256": "53d8ad7d013119cbc30584421ba1f3b5d7228af55d3a94e099db0494bb9720be",
+    "input_verification_sha256": "52792cc06b2bdd4ab28d4d3836e2f25d16090abc95e34f6623a9bb9287d557b4",
+    "results": [
+      {
+        "seed": 129,
+        "trace_rows": 5049318,
+        "node8_source7": {
+          "entries": 849,
+          "distinct_applications": 849,
+          "repeated_entries": 0,
+          "waiting_at_stop": 15
+        },
+        "totals": {
+          "all_instances": {
+            "enqueues": 18366,
+            "forwards": 18123,
+            "nsdp_owner_seconds": 1474516.089386176,
+            "hop_capacity_owner_seconds": 256444.69198191198
+          },
+          "repeated_instances": {
+            "enqueues": 10,
+            "forwards": 10,
+            "nsdp_owner_seconds": 1640.5637060479999,
+            "hop_capacity_owner_seconds": 158.82099972
+          }
+        },
+        "repeat_capacity_share_percent": 0.06193187251900782
+      },
+      {
+        "seed": 130,
+        "trace_rows": 6289655,
+        "node8_source7": {
+          "entries": 1361,
+          "distinct_applications": 1361,
+          "repeated_entries": 0,
+          "waiting_at_stop": 318
+        },
+        "totals": {
+          "all_instances": {
+            "enqueues": 18642,
+            "forwards": 18137,
+            "nsdp_owner_seconds": 2689340.531668345,
+            "hop_capacity_owner_seconds": 264246.14430325
+          },
+          "repeated_instances": {
+            "enqueues": 9,
+            "forwards": 9,
+            "nsdp_owner_seconds": 1706.565295686,
+            "hop_capacity_owner_seconds": 120.466707332
+          }
+        },
+        "repeat_capacity_share_percent": 0.0455888231215786
+      }
+    ],
+    "decision": "Keep the current default. Repeats contribute no direct node8/source7 custody and do not account for its observed backlog. Rare downstream repeats remain a documented difference; no causal performance bound is claimed.",
+    "recommended_next_tranche": "Two predefined unchanged campus seeds131 and132, preserving all accepted128-130 results and existing per-seed10percent flags, with pooled comparisons and uncertainty.",
+    "next_tranche_prepared_or_executed": false
+  },
+  "publication_requirements": [
+    "Use frozen T23 source and references; do not copy csr25.",
+    "Preserve all T20 baseline source paths, hashes, all T22 and T23 source additions.",
+    "Add exact accepted T23 and T24 review packages and original review archives; T22 acceptance and owner already reside in frozen tree.",
+    "Promote exact T24 parity-ledger.csv to root docs/parity-ledger.csv, but preserve issued T23 root ledger and label the documented reference exception.",
+    "Do not rewrite candidate files that historically say MATLAB pending; add accepted-review status via publication documentation.",
+    "Preserve original T23 source/reference snapshot files for reconstruction of accepted owner environment.",
+    "Exclude all T25 source, references, candidates, owner evidence, and packages.",
+    "Keep model/PHY/ECC/default behavior unchanged; T23 custody disagreement and incomplete numerical parity remain open."
+  ]
+}

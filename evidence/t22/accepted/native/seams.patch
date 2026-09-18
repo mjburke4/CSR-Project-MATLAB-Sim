@@ -1,0 +1,10 @@
+--- pinned/csr-hop-layer.h
++++ overlay/csr-hop-layer.h
+@@ -28,6 +28,7 @@
+ 
+ class CsrHopLayer : public Object
+ {
++  friend struct CsrTranche22Access; // T22 fixture-only observation and protected-feedback adapter.
+ public:
+   static TypeId GetTypeId (void)
+   {

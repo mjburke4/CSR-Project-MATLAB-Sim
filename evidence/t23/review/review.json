@@ -1,0 +1,243 @@
+{
+  "schema": "csr-matlab-tranche-23-return-review-v1",
+  "status": "controlled_receiver_review_completed",
+  "evidence_integrity_verified": true,
+  "focused_structural_gate_completed": true,
+  "cross_engine_contract_passed": false,
+  "full_structural_gate_completed": false,
+  "acceptance_established": false,
+  "numerical_parity_established": false,
+  "working_campus_band_percent": 10,
+  "matlab_executed_by_reviewer": false,
+  "runtime": {
+    "Runtime": "MATLAB",
+    "Version": "25.1.0.2943329 (R2025a)",
+    "Release": "2025a",
+    "HasWirelessNetworkSimulator": false,
+    "HasWnetNode": false,
+    "HasWirelessPacket": false,
+    "DefaultBackend": "portable",
+    "WirelessAdapterImplemented": true,
+    "WirelessAdapterScope": "Optional R2026a wireless-clock candidate; runtime validation pending",
+    "NativePacketTransportIntegrated": false,
+    "ProbeScope": "Symbol discovery only; licenses and execution are not validated."
+  },
+  "source": {
+    "count": 404,
+    "sha256": "ff654a8774b23965b2d8a45866a807cdc88a31594920542c60536a4fcf5b7364"
+  },
+  "references": {
+    "count": 293,
+    "sha256": "254ae5bec0f5cc54d2560c4fa077b4d55a53146672de953278f6e9c2c6e1381e"
+  },
+  "baseline": {
+    "source_files": 390,
+    "matlab_files": 178,
+    "all_unchanged": true,
+    "source_snapshot_sha256": "c5ca0672545bb213bd262d3d02f1008fd99d6c64e5355b8248ac102257477fd2"
+  },
+  "tests": {
+    "status": "passed",
+    "count": 79,
+    "names": [
+      "TestReceiverFeedbackContract/allControlledActionsComplete",
+      "TestReceiverFeedbackContract/commonHandDerivedMilestonesHold",
+      "TestReceiverFeedbackContract/everyCheckpointConservesRealOwnership",
+      "TestReceiverFeedbackContract/localQuotaDoesNotCountRelayedOwnership",
+      "TestReceiverFeedbackContract/feedbackUsesPreEnqueueRelayPressure",
+      "TestReceiverFeedbackContract/ackReplayAvoidsRepeatedNetworkDelivery",
+      "TestReceiverFeedbackContract/dackReplayReachesNetworkForReassessment",
+      "TestReceiverFeedbackContract/actualFeedbackRecordsPreserveExactWindows",
+      "TestReceiverFeedbackContract/emittedFeedbackRecordsMatchCounters",
+      "TestReceiverFeedbackContract/comparisonReportsDifferencesWithoutRewritingThem",
+      "TestReceiverFeedbackContract/savedEvidenceRetainsInputBindings",
+      "TestReceiverFeedbackContract/productionPolicyAndPressureLimitRemainUnchanged",
+      "TestHopLayer/timerStartsAtActualTransmit",
+      "TestHopLayer/retryKeepsSequenceAndDscpAndWaitsForSent",
+      "TestHopLayer/finalTimeoutHasDoubleGrace",
+      "TestHopLayer/ackReleasesCustodyAndCancelsQueuedCopy",
+      "TestHopLayer/ackWakeRunsOnlyAtNextTic",
+      "TestHopLayer/thirdAckGrowsBeforeRetryStreakReset",
+      "TestHopLayer/globalThresholdSixteenAdmitsSeventeenth",
+      "TestHopLayer/dackReleasesNsdpAndHoldsCapacity",
+      "TestHopLayer/lastRetryDackDoublesHold",
+      "TestHopLayer/unknownFeedbackAndSingleDackStillCoalesceWake",
+      "TestHopLayer/duplicateIsAckedWithoutRedelivery",
+      "TestHopLayer/sequenceWindowWrapAndOutOfOrder",
+      "TestHopLayer/relayCountFifteenStillAcksTheSixteenth",
+      "TestHopLayer/relayDackUsesPreenqueueCountAndCanBeReassessed",
+      "TestHopLayer/ackBitmapWinsOverlappingDack",
+      "TestHopLayer/localDeliveryNeverDacks",
+      "TestHopLayer/relayDeliveryPrecedesFeedback",
+      "TestHopLayer/noRouteFirstReceptionSuppressedAndRetryAcked",
+      "TestHopLayer/custodyRefusalAllowsFreshRetry",
+      "TestHopLayer/macRejectionRollsBackAdmission",
+      "TestHopLayer/queueBoundRefusesBeforeLosingCustody",
+      "TestNwkLayer/noRouteRetainsCustodyWithoutStartingDiscovery",
+      "TestNwkLayer/hopCustodyReleaseDoesNotScheduleSameTimePump",
+      "TestNwkLayer/noRouteAtQueueHeadDoesNotBlockAnotherDestination",
+      "TestNwkLayer/hopBusyPeerDoesNotBlockOtherPeer",
+      "TestNwkLayer/packetEnvelopeCannotDowngradeScenarioProfile",
+      "TestNwkLayer/boundedLocalQueueReportsOneDropWithoutTakingCustody",
+      "TestNwkLayer/localDeliveryAndDuplicateUseSameApplicationIdentity",
+      "TestNwkLayer/inactivePeerCannotDeliverApplication",
+      "TestNwkLayer/relayCustodyChecksRouteAndRecordsTraversal",
+      "TestNwkLayer/configuredLeafAndRevisitedPacketRefuseTransit",
+      "TestNwkLayer/ordinaryCapabilityAloneDoesNotDisableTransit",
+      "TestNwkLayer/positiveDscpPacketsPushFrontWithoutNumericalPrioritySorting",
+      "TestNwkLayer/gatewayTrafficWaitsForSelfUpdateCapability",
+      "TestNwkLayer/submittedDataIsNotRepeatedUntilTransportReleasesIt",
+      "TestNwkLayer/routingPartialAckRetryWaitsForLaterEventAndKeepsBytes",
+      "TestNwkLayer/groupedRoutingAdmissionChecksAllRecipients",
+      "TestNwkLayer/routingBacklogPressureRestoresDirtyChanges",
+      "TestNwkLayer/simultaneousActivationsUseIndependentForwardSnapshots",
+      "TestNwkLayer/sameTimeRequestUsesProcessedChangesUntilClearEvent",
+      "TestNwkLayer/requestBeforeRoutesProcessExcludesPendingChanges",
+      "TestNwkLayer/repeatedRequestsWaitForEverySnapshotSectionAck",
+      "TestNwkLayer/outboundWatchdogAllowsRestartAndIgnoresOldSectionAck",
+      "TestNwkLayer/routeRequestRetryPreservesUnrelatedReassembly",
+      "TestNwkLayer/discoveryCompletionRefreshesLinksAndRequestsSnapshots",
+      "TestNwkLayer/remoteActiveDiscoveryCheckAloneStartsRouteRequest",
+      "TestNwkLayer/gatewayStartupOccursAtTenSeconds",
+      "TestNwkLayer/completeDiscoveryAllowsExplicitRecoveryScan",
+      "TestNwkLayer/freshMetricObservationCannotReleaseInactiveCachedTransit",
+      "TestNwkLayer/staleInactiveReporterLosesItsCachedTransit",
+      "TestNwkLayer/incompleteRoutingStreamDoesNotChangeLiveRoutes",
+      "TestNwkLayer/routingPrevalidationIsPureAndRejectsMalformedRecords",
+      "TestRelayContract/everyBoundedRelayCaseCompletes",
+      "TestRelayContract/allApplicationsArriveExactlyOnceAtGateway",
+      "TestRelayContract/relayPreservesSourceIdentityAcrossBothHops",
+      "TestRelayContract/mixedRelayServesBothOriginalAndTransitTraffic",
+      "TestRelayContract/applicationAdmissionHonorsRealPairCapacity",
+      "TestRelayContract/networkCustodyAccountsForBothOriginalSources",
+      "TestRelayContract/dackHeldCapacityIsVisibleThenDrains",
+      "TestRelayContract/feedbackUsesFixedRadioAndActualHopBitmaps",
+      "TestRelayContract/everyDrawRetainsRawSupportAndProductionResolution",
+      "TestRelayContract/releaseObserversPreserveHopCallbackOrdering",
+      "TestRelayContract/wholeTrajectoriesAndInputsRemainIndependentlyPinned",
+      "TestRelayContract/evidenceRetainsFailuresAndScopeWithoutInventingParity",
+      "TestMacHopCustody/macDequeueAdmitsAnotherPeerBeforeFeedbackArrives",
+      "TestMacHopCustody/dackRetryCannotMoveOnwardCustodyBackToEarlierRelay",
+      "TestMacHopCustody/longFinalAttemptCanArriveAfterSenderExpiration"
+    ],
+    "runtime_scope": "Owner-returned MATLAB execution"
+  },
+  "contract": {
+    "case_count": 7,
+    "checkpoint_count": 123,
+    "feedback_count": 91,
+    "matches_native": false,
+    "native_comparison": {
+      "matches_native": false,
+      "actual_rows": 123,
+      "reference_rows": 123,
+      "matched_rows": 121,
+      "unmatched_rows": 2,
+      "nonzero_time_differences": 82,
+      "maximum_time_difference_s": "1E-15",
+      "time_tolerance_s": "1E-9",
+      "differences": [
+        {
+          "row": 71,
+          "case_id": "dack_duplicate_pressure",
+          "step": 18,
+          "fields": [
+            "nsdp_relay",
+            "nwk_waiting",
+            "nwk_owned"
+          ],
+          "matlab": {
+            "nsdp_relay": 17,
+            "nwk_waiting": 16,
+            "nwk_owned": 17
+          },
+          "native": {
+            "nsdp_relay": 18,
+            "nwk_waiting": 17,
+            "nwk_owned": 18
+          }
+        },
+        {
+          "row": 95,
+          "case_id": "dack_reassessment_after_release",
+          "step": 24,
+          "fields": [
+            "nsdp_relay",
+            "nwk_waiting",
+            "nwk_owned"
+          ],
+          "matlab": {
+            "nsdp_relay": 14,
+            "nwk_waiting": 12,
+            "nwk_owned": 14
+          },
+          "native": {
+            "nsdp_relay": 15,
+            "nwk_waiting": 13,
+            "nwk_owned": 15
+          }
+        }
+      ]
+    },
+    "native_feedback_comparison": {
+      "matches_native": false,
+      "actual_rows": 91,
+      "reference_rows": 91,
+      "matched_rows": 89,
+      "unmatched_rows": 2,
+      "nonzero_time_differences": 59,
+      "maximum_time_difference_s": "3E-17",
+      "time_tolerance_s": "1E-9",
+      "differences": [
+        {
+          "row": 54,
+          "case_id": "dack_duplicate_pressure",
+          "step": 18,
+          "fields": [
+            "relay_nsdp",
+            "nwk_owned"
+          ],
+          "matlab": {
+            "relay_nsdp": 17,
+            "nwk_owned": 17
+          },
+          "native": {
+            "relay_nsdp": 18,
+            "nwk_owned": 18
+          }
+        },
+        {
+          "row": 72,
+          "case_id": "dack_reassessment_after_release",
+          "step": 24,
+          "fields": [
+            "relay_nsdp",
+            "nwk_owned"
+          ],
+          "matlab": {
+            "relay_nsdp": 14,
+            "nwk_owned": 14
+          },
+          "native": {
+            "relay_nsdp": 15,
+            "nwk_owned": 15
+          }
+        }
+      ]
+    },
+    "common_milestones": {
+      "milestones": 18,
+      "field_assertions": 81
+    },
+    "scope": "Controlled production NWK/HOP receiver replay; no PHY, security-ingress or campus run"
+  },
+  "metadata_sha256": "c7994d4a4d1345a042bbf4b79cf59dcd175802737b2704a3dcb609112905daaa",
+  "limitations": [
+    "Owner-returned hashes and rows bind evidence claims; they do not independently prove MATLAB execution.",
+    "This is controlled production NWK/HOP replay, not real-PHY or full-campus simulation.",
+    "Exact deterministic state and feedback comparisons do not use the descriptive +/-10% campus target.",
+    "Production sources, actual-tx retry expiration, continuous timing and PHY/ECC remain unchanged.",
+    "Matched or mismatched controlled transitions do not establish the cause of stochastic campus histories.",
+    "The accepted T22 native engine libraries are reverified and reused; only the T23 fixture is freshly compiled."
+  ]
+}

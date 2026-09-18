@@ -1,0 +1,163 @@
+{
+  "schema": "csr-tranche22-native-build-v1",
+  "status": "passed",
+  "source_pin": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "engine_pin": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+  "source_tree": "b611b233fb369569b98f0914ece24d029ccc2f42",
+  "engine_tree": "f30343185fb057e3a9cdd54f496cca0cef49ae23",
+  "engine_rebuilt": true,
+  "reused_historical_libraries": false,
+  "production_source_unchanged": true,
+  "engine_source_unchanged": true,
+  "created_utc": "2026-09-17T16:20:21.014801+00:00",
+  "archives": {
+    "source": {
+      "path": "t22-work/native/source.tar.gz",
+      "bytes": 1090344,
+      "sha256": "c579abb2f5fb60fe95a8eddec26cec54bd499f2ed023f36c2112447ce6047319",
+      "git_tree_sha": "b611b233fb369569b98f0914ece24d029ccc2f42",
+      "git_tree_verified": true
+    },
+    "engine": {
+      "path": "t22-work/native-engine.tar.gz",
+      "bytes": 50734374,
+      "sha256": "9ac263f793006770eb59b0388e54c8757a7438d286657c07c0a2eeb43acc11eb",
+      "git_tree_sha": "f30343185fb057e3a9cdd54f496cca0cef49ae23",
+      "git_tree_verified": true
+    }
+  },
+  "tracked_source_verification": "tracked-source-verification.json",
+  "tracked_source_verification_sha256": "67769582097bb4d0fb36cdc36c927d8887f8532cba50ddb38e5edf4cb11ce684",
+  "archive_tree_verifier": "verify_archive_trees.py",
+  "archive_tree_verifier_sha256": "0d75266c647da726fd63071197d503a93f50544417f7be2a96390135e094dbb1",
+  "toolchain": {
+    "compiler": {
+      "path": "/usr/bin/x86_64-linux-gnu-g++-13",
+      "sha256": "52f1ddb33fe78b9441e0f42e9cd22c571f1101938e046c8a26582494e041cc73",
+      "version": "x86_64-linux-gnu-g++-13 (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE."
+    },
+    "linker": {
+      "path": "/usr/bin/x86_64-linux-gnu-ld.bfd",
+      "sha256": "5b674ea1d7017c2929f3c52c43487478bb240ecdd7197a25cce3813a70329a5c",
+      "version": "GNU ld (GNU Binutils for Ubuntu) 2.42\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis program is free software; you may redistribute it under the terms of\nthe GNU General Public License version 3 or (at your option) a later version.\nThis program has absolutely no warranty."
+    },
+    "cmake": {
+      "path": "/workspace/scratch/ab77b42f47ca/t22-work/native/tools/cmake/data/bin/cmake",
+      "sha256": "84962dbf5de6a863507ae89347aa9414d978c0c610055b16c7c8f4233d8a339c",
+      "version": "cmake version 4.4.3\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake)."
+    },
+    "ninja": {
+      "path": "/workspace/scratch/ab77b42f47ca/t22-work/native/tools/bin/ninja",
+      "sha256": "08639e194fffa7f08b259fc4abfa4803aff66b64de52549cee42ec527d55cea6",
+      "version": "1.13.2.git.kitware.jobserver-pipe-1"
+    }
+  },
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "build_profile": "Debug",
+  "assertions": true,
+  "logging": true,
+  "cxx_standard": 23,
+  "configure": {
+    "argv": [
+      "/workspace/scratch/ab77b42f47ca/t22-work/native/tools/cmake/data/bin/cmake",
+      "-S",
+      "/workspace/scratch/ab77b42f47ca/t22-work/native/ns-3-dev-git-6b5cd24ea80713ce16d88575869aedd6f432bdae",
+      "-B",
+      "/workspace/scratch/ab77b42f47ca/t22-work/native/ns-3-dev-git-6b5cd24ea80713ce16d88575869aedd6f432bdae/cmake-cache",
+      "-G",
+      "Ninja",
+      "-DCMAKE_MAKE_PROGRAM=/workspace/scratch/ab77b42f47ca/t22-work/native/tools/bin/ninja",
+      "-DCMAKE_BUILD_TYPE=Debug",
+      "-DNS3_ASSERT=ON",
+      "-DNS3_LOG=ON",
+      "-DNS3_EXAMPLES=OFF",
+      "-DNS3_TESTS=OFF",
+      "-DNS3_ENABLED_MODULES=csr;spectrum;buildings;propagation;mobility;antenna;network;stats;core"
+    ],
+    "exit_code": 0,
+    "log": "configure.log",
+    "log_sha256": "7bde041d6f013804f13d57322e240dade797d0127e15d142094758416617a182"
+  },
+  "build_attempts": [
+    {
+      "argv": [
+        "/workspace/scratch/ab77b42f47ca/t22-work/native/tools/cmake/data/bin/cmake",
+        "--build",
+        "/workspace/scratch/ab77b42f47ca/t22-work/native/ns-3-dev-git-6b5cd24ea80713ce16d88575869aedd6f432bdae/cmake-cache",
+        "-j",
+        "4"
+      ],
+      "exit_code": 1,
+      "log": "build.log",
+      "log_sha256": "8c188be142c0ce9fe5011a6702b6aa1658ffb0ddedbe66bdcb9704d2cf055bb0",
+      "note": "Interrupted initial build left zero-byte packet-socket object and mobility shared library; no complete result claimed."
+    },
+    {
+      "argv": [
+        "/workspace/scratch/ab77b42f47ca/t22-work/native/tools/cmake/data/bin/cmake",
+        "--build",
+        "/workspace/scratch/ab77b42f47ca/t22-work/native/ns-3-dev-git-6b5cd24ea80713ce16d88575869aedd6f432bdae/cmake-cache",
+        "-j",
+        "2"
+      ],
+      "exit_code": 1,
+      "log": "build-resume.log",
+      "log_sha256": "965b861a3ba9c5a7f05a1de0c641024272e8fcfc77a5465666958f893836d44e"
+    },
+    {
+      "argv": [
+        "/workspace/scratch/ab77b42f47ca/t22-work/native/tools/cmake/data/bin/cmake",
+        "--build",
+        "/workspace/scratch/ab77b42f47ca/t22-work/native/ns-3-dev-git-6b5cd24ea80713ce16d88575869aedd6f432bdae/cmake-cache",
+        "-j",
+        "2"
+      ],
+      "exit_code": 1,
+      "log": "build-repair.log",
+      "log_sha256": "0340fa5b4e89af3033fd24b31fd702e1ffd1aaeaf846b4d37703a7b3b6a7e290",
+      "note": "Zero-byte generated outputs removed; dependent libraries required relink."
+    },
+    {
+      "argv": [
+        "/workspace/scratch/ab77b42f47ca/t22-work/native/tools/cmake/data/bin/cmake",
+        "--build",
+        "/workspace/scratch/ab77b42f47ca/t22-work/native/ns-3-dev-git-6b5cd24ea80713ce16d88575869aedd6f432bdae/cmake-cache",
+        "-j",
+        "1"
+      ],
+      "exit_code": 0,
+      "log": "build-final.log",
+      "log_sha256": "fad2b52a60a86fd3d669f5ebcc2292c0d3983c1bc8bca48baa90baae3c2b242a",
+      "note": "Complete serial relink after regeneration; actual native harness linked afterward."
+    },
+    {
+      "argv": [
+        "/workspace/scratch/ab77b42f47ca/t22-work/native/tools/cmake/data/bin/cmake",
+        "--build",
+        "/workspace/scratch/ab77b42f47ca/t22-work/native/ns-3-dev-git-6b5cd24ea80713ce16d88575869aedd6f432bdae/cmake-cache",
+        "--target",
+        "csr",
+        "-j",
+        "1"
+      ],
+      "exit_code": 0,
+      "log": "csr-rebuild.log",
+      "log_sha256": "d5cd5d2201516b492984d61b0e424a58a1f3ea1dd7cae1c2bef8fdf2967115ed",
+      "note": "Final zero-byte CSR library identified and regenerated serially; all nine libraries verified as nonempty ELF shared objects with defined symbols; actual harness execution followed."
+    }
+  ],
+  "libraries": {
+    "libns3-dev-antenna-debug.so": "e5b048a15ed67e28a04764125512861a3058fb94c0998ead63f23efe1a6f3e8a",
+    "libns3-dev-buildings-debug.so": "c1e7957ab43d818aeb9926b0005c55443ee0bd8ff097048060d77225d1d44f73",
+    "libns3-dev-core-debug.so": "692a056013fca84ca15876e25f471981fec30fecc89dff8b0eaa447350bf8b59",
+    "libns3-dev-csr-debug.so": "76abbe8ce7ac56de08e0795f97ab27b9b48ae47ad6f17818d12b9bfafbeaf473",
+    "libns3-dev-mobility-debug.so": "b1868b669c75edf04c8cf7c1179c4e8298e4360f13a294453c10bc140f161077",
+    "libns3-dev-network-debug.so": "4f2d4265fb5435b811314be8e86bda8934d87e183447c39147f2a8bc8a84949c",
+    "libns3-dev-propagation-debug.so": "d4940f3f0bf3556808b4173ab3c786b384eaebe38538bbeb8964c0562580290c",
+    "libns3-dev-spectrum-debug.so": "f9992071da845685669e9e5dd676ac81030de81ec3291e50ce78eff9bebede40",
+    "libns3-dev-stats-debug.so": "5cdb0ebbf7c6f6ecc1eedebd20361fa2ab3234c4e8fd652b92446a24a1b2010a"
+  },
+  "elf_verification": "elf-verification.json",
+  "elf_verification_sha256": "e803a94a43c252aaecf85fe0cc75200de5b7efe8fd958672cd42cc57972ad204",
+  "linked_libraries_verified_elf": true
+}

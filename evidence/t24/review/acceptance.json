@@ -1,0 +1,75 @@
+{
+  "schema": "csr-tranche24-offline-diagnostic-acceptance-v1",
+  "created_utc": "2026-09-18T12:48:07.912010+00:00",
+  "status": "accepted_offline_custody_diagnostic",
+  "diagnostic_accepted": true,
+  "numerical_parity_established": false,
+  "working_campus_band_percent": 10,
+  "matlab_simulations_executed": 0,
+  "native_simulations_executed": 0,
+  "opnet_simulations_executed": 0,
+  "new_matlab_tests_executed": 0,
+  "matlab_rerun_required": false,
+  "production_files_modified": [],
+  "source_bindings_verified": 404,
+  "default_retry_policy": "actual-tx",
+  "timing": "continuous",
+  "PHY_ECC_changed": false,
+  "independent_review_sha256": "53d8ad7d013119cbc30584421ba1f3b5d7228af55d3a94e099db0494bb9720be",
+  "input_verification_sha256": "52792cc06b2bdd4ab28d4d3836e2f25d16090abc95e34f6623a9bb9287d557b4",
+  "results": [
+    {
+      "seed": 129,
+      "trace_rows": 5049318,
+      "node8_source7": {
+        "entries": 849,
+        "distinct_applications": 849,
+        "repeated_entries": 0,
+        "waiting_at_stop": 15
+      },
+      "totals": {
+        "all_instances": {
+          "enqueues": 18366,
+          "forwards": 18123,
+          "nsdp_owner_seconds": 1474516.089386176,
+          "hop_capacity_owner_seconds": 256444.69198191198
+        },
+        "repeated_instances": {
+          "enqueues": 10,
+          "forwards": 10,
+          "nsdp_owner_seconds": 1640.5637060479999,
+          "hop_capacity_owner_seconds": 158.82099972
+        }
+      },
+      "repeat_capacity_share_percent": 0.06193187251900782
+    },
+    {
+      "seed": 130,
+      "trace_rows": 6289655,
+      "node8_source7": {
+        "entries": 1361,
+        "distinct_applications": 1361,
+        "repeated_entries": 0,
+        "waiting_at_stop": 318
+      },
+      "totals": {
+        "all_instances": {
+          "enqueues": 18642,
+          "forwards": 18137,
+          "nsdp_owner_seconds": 2689340.531668345,
+          "hop_capacity_owner_seconds": 264246.14430325
+        },
+        "repeated_instances": {
+          "enqueues": 9,
+          "forwards": 9,
+          "nsdp_owner_seconds": 1706.565295686,
+          "hop_capacity_owner_seconds": 120.466707332
+        }
+      },
+      "repeat_capacity_share_percent": 0.0455888231215786
+    }
+  ],
+  "decision": "Keep the current default. Repeats contribute no direct node8/source7 custody and do not account for its observed backlog. Rare downstream repeats remain a documented difference; no causal performance bound is claimed.",
+  "recommended_next_tranche": "Two predefined unchanged campus seeds131 and132, preserving all accepted128-130 results and existing per-seed10percent flags, with pooled comparisons and uncertainty.",
+  "next_tranche_prepared_or_executed": false
+}
