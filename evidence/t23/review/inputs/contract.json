@@ -1,0 +1,295 @@
+{
+  "schema": "csr-tranche23-receiver-feedback-contract-v1",
+  "case_count": 7,
+  "action_count": 123,
+  "action_columns": [
+    "case_id",
+    "step",
+    "time_s",
+    "observe_s",
+    "action",
+    "packet",
+    "sequence",
+    "nwk_source",
+    "destination",
+    "ack_packets",
+    "dack_packets",
+    "note"
+  ],
+  "configuration_columns": [
+    "case_id",
+    "resend_seconds",
+    "max_resends",
+    "dack_seconds",
+    "tic_seconds",
+    "pending_threshold",
+    "flow_threshold_max",
+    "policy",
+    "scope"
+  ],
+  "state_columns": [
+    "case_id",
+    "step",
+    "time_s",
+    "action",
+    "packet",
+    "accepted",
+    "nsdp_relay",
+    "nsdp_local",
+    "nwk_waiting",
+    "nwk_owned",
+    "hop_pending",
+    "hop_outstanding",
+    "hop_resend",
+    "hop_holds",
+    "rx_highest",
+    "rx_ack_hex",
+    "rx_dack_hex",
+    "ack_generated",
+    "dack_generated",
+    "rx_received",
+    "rx_delivered",
+    "rx_duplicates",
+    "nsdp_releases",
+    "ack_completed",
+    "dack_completed",
+    "dack_expired",
+    "data_tx"
+  ],
+  "feedback_columns": [
+    "case_id",
+    "step",
+    "time_s",
+    "kind",
+    "sequence",
+    "ack_hex",
+    "dack_hex",
+    "relay_nsdp",
+    "local_nsdp",
+    "nwk_owned"
+  ],
+  "comparison": {
+    "integer_tolerance": 0,
+    "time_absolute_tolerance_seconds": "1e-9",
+    "campus_percent_target_applies": false
+  },
+  "milestones": [
+    {
+      "case_id": "relay_boundary",
+      "step": 15,
+      "equals": {
+        "nsdp_relay": 15,
+        "nsdp_local": 0,
+        "nwk_owned": 15,
+        "ack_generated": 15,
+        "dack_generated": 0
+      }
+    },
+    {
+      "case_id": "relay_boundary",
+      "step": 16,
+      "equals": {
+        "nsdp_relay": 16,
+        "nwk_owned": 16,
+        "ack_generated": 16,
+        "dack_generated": 0
+      }
+    },
+    {
+      "case_id": "relay_boundary",
+      "step": 17,
+      "equals": {
+        "nsdp_relay": 17,
+        "nwk_owned": 17,
+        "ack_generated": 16,
+        "dack_generated": 1
+      }
+    },
+    {
+      "case_id": "local_relay_independence",
+      "step": 16,
+      "equals": {
+        "accepted": 1,
+        "nsdp_local": 16,
+        "nsdp_relay": 0,
+        "nwk_owned": 16
+      }
+    },
+    {
+      "case_id": "local_relay_independence",
+      "step": 17,
+      "equals": {
+        "accepted": 0,
+        "nsdp_local": 16,
+        "nsdp_relay": 0,
+        "nwk_owned": 16
+      }
+    },
+    {
+      "case_id": "local_relay_independence",
+      "step": 33,
+      "equals": {
+        "nsdp_local": 16,
+        "nsdp_relay": 16,
+        "nwk_owned": 32,
+        "ack_generated": 16,
+        "dack_generated": 0
+      }
+    },
+    {
+      "case_id": "local_relay_independence",
+      "step": 34,
+      "equals": {
+        "nsdp_local": 16,
+        "nsdp_relay": 17,
+        "nwk_owned": 33,
+        "ack_generated": 16,
+        "dack_generated": 1
+      }
+    },
+    {
+      "case_id": "ack_duplicate",
+      "step": 2,
+      "equals": {
+        "nsdp_relay": 1,
+        "nwk_owned": 1,
+        "ack_generated": 2,
+        "dack_generated": 0,
+        "rx_delivered": 1
+      }
+    },
+    {
+      "case_id": "dack_duplicate_pressure",
+      "step": 17,
+      "equals": {
+        "nsdp_relay": 17,
+        "nwk_owned": 17,
+        "ack_generated": 16,
+        "dack_generated": 1
+      }
+    },
+    {
+      "case_id": "dack_duplicate_pressure",
+      "step": 18,
+      "equals": {
+        "ack_generated": 16,
+        "dack_generated": 2,
+        "rx_delivered": 18
+      }
+    },
+    {
+      "case_id": "dack_reassessment_after_release",
+      "step": 23,
+      "equals": {
+        "nsdp_relay": 14,
+        "nwk_owned": 14,
+        "nsdp_releases": 3,
+        "ack_completed": 3
+      }
+    },
+    {
+      "case_id": "dack_reassessment_after_release",
+      "step": 24,
+      "equals": {
+        "ack_generated": 17,
+        "dack_generated": 1,
+        "rx_delivered": 18,
+        "nsdp_releases": 3
+      }
+    },
+    {
+      "case_id": "release_idempotence",
+      "step": 4,
+      "equals": {
+        "nsdp_local": 1,
+        "nwk_owned": 1,
+        "nsdp_releases": 1,
+        "ack_completed": 1,
+        "hop_holds": 0
+      }
+    },
+    {
+      "case_id": "release_idempotence",
+      "step": 5,
+      "equals": {
+        "nsdp_local": 1,
+        "nwk_owned": 1,
+        "nsdp_releases": 1,
+        "ack_completed": 1,
+        "hop_holds": 0
+      }
+    },
+    {
+      "case_id": "release_idempotence",
+      "step": 8,
+      "equals": {
+        "nsdp_local": 0,
+        "nwk_owned": 0,
+        "nsdp_releases": 2,
+        "ack_completed": 1,
+        "dack_completed": 1,
+        "hop_holds": 1
+      }
+    },
+    {
+      "case_id": "release_idempotence",
+      "step": 9,
+      "equals": {
+        "nsdp_local": 0,
+        "nwk_owned": 0,
+        "nsdp_releases": 2,
+        "hop_pending": 0,
+        "hop_holds": 0,
+        "dack_expired": 1
+      }
+    },
+    {
+      "case_id": "local_delivery_bypass",
+      "step": 18,
+      "equals": {
+        "nsdp_relay": 17,
+        "nwk_owned": 17,
+        "ack_generated": 17,
+        "dack_generated": 1
+      }
+    },
+    {
+      "case_id": "local_delivery_bypass",
+      "step": 19,
+      "equals": {
+        "nsdp_relay": 17,
+        "nwk_owned": 17,
+        "ack_generated": 18,
+        "dack_generated": 1
+      }
+    }
+  ],
+  "native_milestones": [
+    {
+      "case_id": "dack_duplicate_pressure",
+      "step": 18,
+      "equals": {
+        "nsdp_relay": 18,
+        "nwk_owned": 18
+      }
+    },
+    {
+      "case_id": "dack_reassessment_after_release",
+      "step": 24,
+      "equals": {
+        "nsdp_relay": 15,
+        "nwk_owned": 15
+      }
+    }
+  ],
+  "input_hashes": {
+    "actions.csv": "93d0d6047f51cc906e98a2d6a055dea9389581ae2cfed223c5045bfa13f819f2",
+    "cases.csv": "6e6a9ac773a92798f78cc5a51dca6fe775850acb858958be3eed0634477cb37f"
+  },
+  "semantics": {
+    "observation": "Action at time_s; drain callbacks through observe_s one microsecond later; checkpoint time_s is observe_s. No same-tick wake-order parity claim.",
+    "feedback": "Capture actual MAC-enqueued ACK/DACK frames; bitmaps are exact uppercase sixteen-digit hexadecimal strings.",
+    "duplicates": "Reused RX alias means the same application identity and incoming HOP sequence. Never normalize custody differences.",
+    "completion": "Intact diagnostic differences are review-required, not cross-engine acceptance. Source, membership, invariant or test failures remain blocking."
+  }
+}

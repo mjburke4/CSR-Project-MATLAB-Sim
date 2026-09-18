@@ -1,0 +1,181 @@
+{
+  "schema": "csr-tranche22-native-reference-v1",
+  "status": "passed",
+  "created_utc": "2026-09-17T16:21:04.176545+00:00",
+  "source_pin": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "engine_pin": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+  "native_executed": true,
+  "matlab_executed": false,
+  "production_source_unchanged": true,
+  "engine_source_unchanged": true,
+  "case_count": 9,
+  "checkpoint_count": 364,
+  "milestone_count": 38,
+  "cases": {
+    "clean_growth_boundary": {
+      "checkpoints": 17,
+      "ack": 5,
+      "dack": 0,
+      "failed": 0,
+      "dack_expired": 0
+    },
+    "retried_third_ack": {
+      "checkpoints": 16,
+      "ack": 4,
+      "dack": 0,
+      "failed": 0,
+      "dack_expired": 0
+    },
+    "retried_second_ack": {
+      "checkpoints": 18,
+      "ack": 5,
+      "dack": 0,
+      "failed": 0,
+      "dack_expired": 0
+    },
+    "dack_hold_20": {
+      "checkpoints": 24,
+      "ack": 6,
+      "dack": 1,
+      "failed": 0,
+      "dack_expired": 1
+    },
+    "dack_hold_40": {
+      "checkpoints": 14,
+      "ack": 2,
+      "dack": 1,
+      "failed": 0,
+      "dack_expired": 1
+    },
+    "final_failure_floor": {
+      "checkpoints": 21,
+      "ack": 3,
+      "dack": 0,
+      "failed": 2,
+      "dack_expired": 0
+    },
+    "ceiling_global_capacity": {
+      "checkpoints": 196,
+      "ack": 69,
+      "dack": 0,
+      "failed": 0,
+      "dack_expired": 0
+    },
+    "grouped_feedback_order": {
+      "checkpoints": 28,
+      "ack": 8,
+      "dack": 1,
+      "failed": 0,
+      "dack_expired": 1
+    },
+    "seed130_feedback_motif": {
+      "checkpoints": 30,
+      "ack": 10,
+      "dack": 0,
+      "failed": 0,
+      "dack_expired": 0
+    }
+  },
+  "model_sources": {
+    "model/csr-arl-routing-message.cc": "046d7b1c91d4339f7cb67cda7066532ae4659b8e324b1bd482b6aba0a5562c3f",
+    "model/csr-arl-routing-message.h": "0eddd945d264965c90bcea60d73b14cab2159bc0664e0e526d38e50b0d363a8c",
+    "model/csr-common.h": "f1e0a962862ef1cc5a6994f24988858a2bea70385ce02b1264285de194fe6ae1",
+    "model/csr-differential-trace.h": "78b443af6e91e927c398450ef71245e815ba4bd02ad9369a06fd95f98e2dff84",
+    "model/csr-hello-header.cc": "e6a1a9e95312d089404873fd7d9d4c87bf024d754af224064328106d5c886a4f",
+    "model/csr-hello-header.h": "741ccff278e1694ea40c4c6c5b1cb14a3a6034864d0328c6a2e04420935fb7d4",
+    "model/csr-hop-layer.h": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+    "model/csr-hop-security.cc": "2b390e6496c98e87a771ed10613e69ecd702922a0b9f54e8058170653271cc6a",
+    "model/csr-hop-security.h": "9bca9c9a6e4ae04a20a3309ac8a8787589ac4ad65785cbf57fbe20c5e8e37d5e",
+    "model/csr-legacy-crypto.cc": "c3f32f583813dead77c42d51736f73fb300a59b33f9fa75da4fc939c7e6553e0",
+    "model/csr-legacy-crypto.h": "ce2e76387addc44e63601b8638d066b484dbd13f301bc09882bd21959a118306",
+    "model/csr-mac-core.h": "64a71ad280ba14ab2b00d5d2b9dac708fabea939dfa385ad62dd73e5e40203e9",
+    "model/csr-module.cc": "34b32e33586f4adaddd47c41d1795c8f81205c00b8f4981355cad8674c23ad8e",
+    "model/csr-net-device.h": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+    "model/csr-nwk-layer.h": "bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc",
+    "model/csr-opnet-ber-tables-data.inc": "d10a9ba3ded2301598b79d6bf28a6ea318da34b5ce79709ba2a06a0b8fce95b8",
+    "model/csr-opnet-ber-tables.cc": "0af0b66c23ea95bbf74f32099ab0562a8a781e1b1048f5eb0b45faea83b73cf6",
+    "model/csr-opnet-ber-tables.h": "8034348552990ce6a0aa0fd673a319299762fbd75c402de59a64ac160eb7cfb5",
+    "model/csr-opnet-envelope.h": "e67b526126907f43f2ee4199552c583ac9c2a0f927cf942fe76aa328900e001a",
+    "model/csr-opnet-packet-model.cc": "16af5d39e7f12c17e1f27a49f80c1ea313618bce87d3c5b75b07bc38cebf2056",
+    "model/csr-opnet-packet-model.h": "59eb4ccd19d109f623fb8ea4d9ad23b2d936f081268261c100231c26cb2dccc6",
+    "model/csr-phy-model.h": "d690b4c572491a9ea8c48735b1726770938b118dcbcd931e92920e602cae18fc",
+    "model/csr-wire-format.h": "eb9097e1588c8e235a06cec5f0b28c13a22a3f3c88c6b8581e4186d69fc94c2f"
+  },
+  "libraries": {
+    "csr": "76abbe8ce7ac56de08e0795f97ab27b9b48ae47ad6f17818d12b9bfafbeaf473",
+    "spectrum": "f9992071da845685669e9e5dd676ac81030de81ec3291e50ce78eff9bebede40",
+    "buildings": "c1e7957ab43d818aeb9926b0005c55443ee0bd8ff097048060d77225d1d44f73",
+    "propagation": "d4940f3f0bf3556808b4173ab3c786b384eaebe38538bbeb8964c0562580290c",
+    "mobility": "b1868b669c75edf04c8cf7c1179c4e8298e4360f13a294453c10bc140f161077",
+    "antenna": "e5b048a15ed67e28a04764125512861a3058fb94c0998ead63f23efe1a6f3e8a",
+    "network": "4f2d4265fb5435b811314be8e86bda8934d87e183447c39147f2a8bc8a84949c",
+    "stats": "5cdb0ebbf7c6f6ecc1eedebd20361fa2ab3234c4e8fd652b92446a24a1b2010a",
+    "core": "692a056013fca84ca15876e25f471981fec30fecc89dff8b0eaa447350bf8b59"
+  },
+  "input_bindings": {
+    "scenarios/t22/actions.csv": "2bf9e34cfc5dea28c554095059082c7a643ef4f2fb879f83fcaa6862c788045b",
+    "scenarios/t22/cases.csv": "e6848c55416c0e71b29499c8dac56edb8638c68a6bc94d8da6859fe5a35ff53d",
+    "scenarios/t22/contract.json": "eff28b24e80cac165c42b9382658897059379b235027cacb6a15bf37da8e3992",
+    "scenarios/t22/plan.json": "f9e46be3b81871e5dfb244d76db7315bf707dfa25ae3ec95a7cc09de75fdfa5c",
+    "scenarios/t22/seed130-provenance.json": "dbf2caa85aff4b6362201da79d2aaa4a3a729d5f56b50a63afe3dec9fb55b7cd"
+  },
+  "fixture_sources": {
+    "scripts/ns3/tranche22_window.cc": "731aff63b06694a72f754b0748e78240ffea64700e5f1265bf6cf66df6e17f92",
+    "scripts/run_tranche22_ns3_reference.py": "8710b491d177e11076f80304236edb15ae042375cdcc72ccb634e82245679f6e"
+  },
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/g++",
+        "-std=c++23",
+        "-g",
+        "-DNS3_ASSERT_ENABLE",
+        "-DNS3_BUILD_PROFILE_DEBUG",
+        "-DNS3_LOG_ENABLE",
+        "-DSTACKTRACE_LIBRARY_IS_LINKED=1",
+        "-D__LINUX__",
+        "-I/workspace/scratch/ab77b42f47ca/t22-work/native/final/overlay",
+        "-I/workspace/scratch/ab77b42f47ca/t22-work/native/ns-3-dev-git-6b5cd24ea80713ce16d88575869aedd6f432bdae/build/include",
+        "/workspace/scratch/ab77b42f47ca/csr22/scripts/ns3/tranche22_window.cc",
+        "-L/workspace/scratch/ab77b42f47ca/t22-work/native/ns-3-dev-git-6b5cd24ea80713ce16d88575869aedd6f432bdae/build/lib",
+        "-Wl,-rpath,/workspace/scratch/ab77b42f47ca/t22-work/native/ns-3-dev-git-6b5cd24ea80713ce16d88575869aedd6f432bdae/build/lib",
+        "-Wl,--no-as-needed",
+        "-lns3-dev-csr-debug",
+        "-lns3-dev-spectrum-debug",
+        "-lns3-dev-buildings-debug",
+        "-lns3-dev-propagation-debug",
+        "-lns3-dev-mobility-debug",
+        "-lns3-dev-antenna-debug",
+        "-lns3-dev-network-debug",
+        "-lns3-dev-stats-debug",
+        "-lns3-dev-core-debug",
+        "-lstdc++exp",
+        "-o",
+        "/workspace/scratch/ab77b42f47ca/t22-work/native/final/tranche22-window"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 13.219540819998656,
+      "log": "compile.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/workspace/scratch/ab77b42f47ca/t22-work/native/final/tranche22-window",
+        "/workspace/scratch/ab77b42f47ca/csr22/scenarios/t22/actions.csv",
+        "/workspace/scratch/ab77b42f47ca/csr22/evidence/t22/native/raw"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.182705243001692,
+      "log": "run.log",
+      "log_sha256": "43d85a56c4287bd1a7c5715515250cc306234b5e35402286af397a25d05afeec"
+    }
+  ],
+  "build_manifest": "build.json",
+  "build_manifest_sha256": "1b12072a5f6cfd881a07a978ac0bf86aed111d0bf1aedd7b7579e409867761eb",
+  "binary_sha256": "4e09ea7a75001333086048b223a5fa3b8f0f10a50fe8d501959e66c18cbd80b1",
+  "overlay_header_sha256": "a0d5858dd17261ce09f04c6686b94c5dd15d458d636cad278a3af9d1ac87fa61",
+  "seams_sha256": "0317782b1b357ee2de54367cde6c1f83a6daa78a7b9ca2892ce582c651f91e46",
+  "time_resolution_seconds": 1e-09,
+  "native_tic_seconds": 2.8e-08,
+  "scope": "Controlled HOP callbacks with production Pairwise16 feedback; no actual radio transmissions, PHY test, campus rerun, or numerical-parity claim. Existing queued-retry timestamp difference is not changed. MapScheduler observation subclass drains all existing callbacks through each input time."
+}

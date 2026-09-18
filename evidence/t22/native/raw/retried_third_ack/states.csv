@@ -1,0 +1,17 @@
+case_id,step,time_s,action,packet,peer,accepted,threshold,ack_count,outstanding,global_pending,dack_holds,resend,can_send,nsdp_release_total,live_retry_sum,tx_total
+retried_third_ack,1,0,SEND,w1,8,1,0,0,1,1,0,1,0,0,0,0
+retried_third_ack,2,0,TX,w1,8,-1,0,0,1,1,0,1,0,0,0,1
+retried_third_ack,3,0.002,FEEDBACK,,8,-1,0,1,0,0,0,0,1,1,0,1
+retried_third_ack,4,0.01,SEND,w2,8,1,0,1,1,1,0,1,0,1,0,1
+retried_third_ack,5,0.01,TX,w2,8,-1,0,1,1,1,0,1,0,1,0,2
+retried_third_ack,6,0.012,FEEDBACK,,8,-1,0,2,0,0,0,0,1,2,0,2
+retried_third_ack,7,0.10000000000000001,SEND,retry,8,1,0,2,1,1,0,1,0,2,0,2
+retried_third_ack,8,0.10000000000000001,TX,retry,8,-1,0,2,1,1,0,1,0,2,0,3
+retried_third_ack,9,2.0990000000000002,PROBE,,8,-1,0,2,1,1,0,1,0,2,0,3
+retried_third_ack,10,2.101,PROBE,,8,-1,0,2,1,1,0,1,0,2,1,3
+retried_third_ack,11,2.1099999999999999,TX,retry,8,-1,0,2,1,1,0,1,0,2,1,4
+retried_third_ack,12,2.1200000000000001,FEEDBACK,,8,-1,1,0,0,0,0,0,1,3,0,4
+retried_third_ack,13,2.2000000000000002,SEND,after1,8,1,1,0,1,1,0,1,1,3,0,4
+retried_third_ack,14,2.2000000000000002,TX,after1,8,-1,1,0,1,1,0,1,1,3,0,5
+retried_third_ack,15,2.202,FEEDBACK,,8,-1,1,1,0,0,0,0,1,4,0,5
+retried_third_ack,16,2.21,PROBE,,8,-1,1,1,0,0,0,0,1,4,0,5

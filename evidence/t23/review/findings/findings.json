@@ -1,0 +1,213 @@
+{
+  "schema": "csr-t23-independent-behavioral-findings-v1",
+  "owner_archive_sha256": "569cf1bbd7ca31e90518128d32dfd7a51c2f94b15e1ec5c5131aa1d5a426804c",
+  "status": "completed_diagnostic_with_confirmed_custody_difference",
+  "runtime": {
+    "Runtime": "MATLAB",
+    "Version": "25.1.0.2943329 (R2025a)",
+    "Release": "2025a",
+    "HasWirelessNetworkSimulator": false,
+    "HasWnetNode": false,
+    "HasWirelessPacket": false,
+    "DefaultBackend": "portable",
+    "WirelessAdapterImplemented": true,
+    "WirelessAdapterScope": "Optional R2026a wireless-clock candidate; runtime validation pending",
+    "NativePacketTransportIntegrated": false,
+    "ProbeScope": "Symbol discovery only; licenses and execution are not validated."
+  },
+  "owner_runtime_seconds": 72.141,
+  "tests": {
+    "total": 79,
+    "passed": 79,
+    "failed": 0,
+    "incomplete": 0
+  },
+  "case_count": 7,
+  "state_checkpoints": {
+    "total": 123,
+    "matched": 121,
+    "mismatched": 2,
+    "differences": [
+      {
+        "row": 71,
+        "case_id": "dack_duplicate_pressure",
+        "step": 18,
+        "differences": {
+          "nsdp_relay": {
+            "matlab": "17",
+            "ns3": "18"
+          },
+          "nwk_waiting": {
+            "matlab": "16",
+            "ns3": "17"
+          },
+          "nwk_owned": {
+            "matlab": "17",
+            "ns3": "18"
+          }
+        }
+      },
+      {
+        "row": 95,
+        "case_id": "dack_reassessment_after_release",
+        "step": 24,
+        "differences": {
+          "nsdp_relay": {
+            "matlab": "14",
+            "ns3": "15"
+          },
+          "nwk_waiting": {
+            "matlab": "12",
+            "ns3": "13"
+          },
+          "nwk_owned": {
+            "matlab": "14",
+            "ns3": "15"
+          }
+        }
+      }
+    ],
+    "timestamp_tolerance_s": 1e-09,
+    "max_absolute_timestamp_difference_s": 1e-15,
+    "max_absolute_timestamp_difference_decimal_s": "1E-15"
+  },
+  "feedback_records": {
+    "total": 91,
+    "matched_including_occupancy_metadata": 89,
+    "mismatched_including_occupancy_metadata": 2,
+    "captured_control_field_matches": 91,
+    "control_field_mismatches": 0,
+    "timestamp_tolerance_s": 1e-09,
+    "max_absolute_timestamp_difference_s": 3e-17,
+    "max_absolute_timestamp_difference_decimal_s": "3E-17",
+    "differences": [
+      {
+        "row": 54,
+        "case_id": "dack_duplicate_pressure",
+        "step": 18,
+        "differences": {
+          "relay_nsdp": {
+            "matlab": "17",
+            "ns3": "18"
+          },
+          "nwk_owned": {
+            "matlab": "17",
+            "ns3": "18"
+          }
+        }
+      },
+      {
+        "row": 72,
+        "case_id": "dack_reassessment_after_release",
+        "step": 24,
+        "differences": {
+          "relay_nsdp": {
+            "matlab": "14",
+            "ns3": "15"
+          },
+          "nwk_owned": {
+            "matlab": "14",
+            "ns3": "15"
+          }
+        }
+      }
+    ],
+    "scope": "Captured ACK/DACK kind, HOP sequence, ACK/DACK bitmap and enqueue time; no RF or full serialized protected-frame comparison."
+  },
+  "common_milestones": 18,
+  "common_assertions": {
+    "total": 81,
+    "passed": 81,
+    "failed": 0
+  },
+  "key_observations": [
+    {
+      "case_id": "dack_duplicate_pressure",
+      "step": 18,
+      "settled_time_s": 0.270001,
+      "matlab_custody": 17,
+      "ns3_custody": 18,
+      "matlab_waiting": 16,
+      "ns3_waiting": 17,
+      "feedback_time_s": "0.27",
+      "feedback_equal_fields": {
+        "kind": "DACK",
+        "sequence": "17",
+        "ack_hex": "000000000001FFFE",
+        "dack_hex": "0000000000000001"
+      }
+    },
+    {
+      "case_id": "dack_reassessment_after_release",
+      "step": 24,
+      "settled_time_s": 0.330001,
+      "matlab_custody": 14,
+      "ns3_custody": 15,
+      "matlab_waiting": 12,
+      "ns3_waiting": 13,
+      "feedback_time_s": "0.33",
+      "feedback_equal_fields": {
+        "kind": "ACK",
+        "sequence": "17",
+        "ack_hex": "000000000001FFFF",
+        "dack_hex": "0000000000000001"
+      }
+    }
+  ],
+  "source_cause": {
+    "matlab": "NWK.receiveData returns accepted at Seen(SourceId,Id) before queue insertion. enqueueApplication also prevents another pending owner for the same app identity.",
+    "ns3": "HOP CheckReceivedSeq regards a DACK-marked replay as a new admissible pass; NWK ReceiveFromHop adds a relay queue entry and increments NSDP for each callback.",
+    "feedback": "Both implementations choose feedback from pre-enqueue pressure. The replay under pressure remains DACK; the replay after three releases is ACK. All captured control fields match.",
+    "ack_dack_overlap": "After reassessment the ACK bitmap ends in 1FFFF and DACK retains bit 0. This is equal in both returns; native ACK-window processing masks DACK bits covered by ACK."
+  },
+  "source_provenance": {
+    "csr-nwk-layer.h": {
+      "sha256": "bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc",
+      "native_reference_match": true,
+      "source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+      "url": "https://github.com/mjburke4/CSR-Project-NS3-part2/blob/486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b/model/csr-nwk-layer.h"
+    },
+    "csr-hop-layer.h": {
+      "sha256": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+      "native_reference_match": true,
+      "source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+      "url": "https://github.com/mjburke4/CSR-Project-NS3-part2/blob/486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b/model/csr-hop-layer.h"
+    },
+    "+csr/+nwk/Layer.m": {
+      "sha256": "7ef09931c83c55697ce96b400ee1d90459a44af4c0527b396829d62ab9125300",
+      "owner_source_snapshot_match": true
+    }
+  },
+  "accepted_for_behavioral_review": true,
+  "requires_matlab_rerun_for_behavioral_evidence": false,
+  "cross_engine_exact_contract_passed": false,
+  "campus_parity_established": false,
+  "production_change_recommended_now": false,
+  "next_experiment": [
+    "First census accepted campus traces for repeated relay admissions of the same source/application identity after a DACK and before prior custody ends, especially node 8 / 8-to-2.",
+    "If existing traces cannot resolve identity/custody lineage, use a bounded observer-only replay covering DACK loss/retry and subsequent queue drain; count extra owners, their lifetime, outgoing duplicate traffic, admission decisions and per-flow completions.",
+    "Only if material incidence is demonstrated, evaluate a narrowly scoped optional custody model with distinct ownership tokens and completion bookkeeping; changing the Seen guard alone is insufficient.",
+    "Judge any future behavioral variant against matched per-flow delivery and delay at the existing plus/minus 10 percent campus goal before changing the default."
+  ],
+  "limitations": [
+    "Decoded-packet controlled callback experiment; autonomous MAC/RF transmission, PHY/ECC, security ingress, routing convergence and stochastic campus throughput are not exercised.",
+    "State snapshots are taken one microsecond after each action; same-tick callback ordering is not compared.",
+    "The two replay cases end immediately after the occupancy divergence, so subsequent downstream service, admission or throughput impact is not measured.",
+    "Local-origin admission was not attempted after these divergent replay events; T23 does not establish that the extra relay owner changes the independent local quota.",
+    "Full provenance/candidate/source inventory acceptance is a separate independent integrity check."
+  ],
+  "artifact_sha256": {
+    "candidate.json": "b40afd3755ceb47576ea2c9854b4af15a14cebcf87024331e67bf53e069f0818",
+    "contract/actions.csv": "93d0d6047f51cc906e98a2d6a055dea9389581ae2cfed223c5045bfa13f819f2",
+    "contract/cases.csv": "6e6a9ac773a92798f78cc5a51dca6fe775850acb858958be3eed0634477cb37f",
+    "contract/checkpoints.csv": "343e7af17e4484a4cc1afd1b59a212778c7c765c32088981175457e94e361153",
+    "contract/feedback.csv": "5a7cac7fe304785990591c8615b66f995fae0892dd6223c352b13c5298081cf2",
+    "contract/summary.json": "a486155e6167e1cd5e90ab57695fff5ac51e54070ff99f8e55482ae17b8cdd06",
+    "plan.json": "4a8981f70a7820c8f41afdd064f5abd0188eee15b8305ad71fe0d3a487da52bb",
+    "references.json": "254ae5bec0f5cc54d2560c4fa077b4d55a53146672de953278f6e9c2c6e1381e",
+    "run.log": "75c75426ae547408480abf372fcd4d9de75b7484035699fd16d0b6ebf4972c6e",
+    "source.json": "ff654a8774b23965b2d8a45866a807cdc88a31594920542c60536a4fcf5b7364",
+    "tests.csv": "9c0aef738d5dcf473ddd649c08040ef88ab4c783a2e8b0b542dff9841a53e397",
+    "metadata.json": "c7994d4a4d1345a042bbf4b79cf59dcd175802737b2704a3dcb609112905daaa"
+  }
+}

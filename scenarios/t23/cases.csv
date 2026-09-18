@@ -1,0 +1,8 @@
+case_id,resend_seconds,max_resends,dack_seconds,tic_seconds,pending_threshold,flow_threshold_max,policy,scope
+relay_boundary,2,2,20,2.7777777777777778e-08,16,16,actual-tx,Unique relay DATA crosses pre-enqueue NSDP fifteen and sixteen.
+local_relay_independence,2,2,20,2.7777777777777778e-08,16,16,actual-tx,Local sixteen-owner quota remains separate from relay pressure.
+ack_duplicate,2,2,20,2.7777777777777778e-08,16,16,actual-tx,ACK-marked replay retains one custody owner.
+dack_duplicate_pressure,2,2,20,2.7777777777777778e-08,16,16,actual-tx,DACK-marked replay under pressure exposes native and MATLAB custody semantics.
+dack_reassessment_after_release,2,2,20,2.7777777777777778e-08,16,16,actual-tx,Three downstream ACKs reduce pressure before a DACK-marked replay.
+release_idempotence,2,2,20,2.7777777777777778e-08,16,16,actual-tx,Repeated downstream ACK and DACK cannot release the same owner twice.
+local_delivery_bypass,2,2,20,2.7777777777777778e-08,16,16,actual-tx,Locally addressed DATA remains ACK eligible while relay pressure is high.

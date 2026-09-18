@@ -1,0 +1,202 @@
+{
+  "schema": "csr-tranche23-native-reference-v1",
+  "status": "passed",
+  "created_utc": "2026-09-17T18:49:30.671753+00:00",
+  "source_pin": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "engine_pin": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+  "native_executed": true,
+  "matlab_executed": false,
+  "production_source_unchanged": true,
+  "engine_source_unchanged": true,
+  "engine_rebuilt_for_t23": false,
+  "reused_accepted_t22_libraries": true,
+  "fresh_fixture_compile": true,
+  "observer_on_off_identical": true,
+  "actual_mac_transmissions": 0,
+  "case_count": 7,
+  "checkpoint_count": 123,
+  "feedback_count": 91,
+  "milestone_count": 20,
+  "cases": {
+    "relay_boundary": {
+      "checkpoints": 17,
+      "feedback_frames": 17,
+      "ack_completed": 0,
+      "dack_completed": 0,
+      "nsdp_releases": 0,
+      "dack_expired": 0,
+      "actual_mac_transmissions": 0
+    },
+    "local_relay_independence": {
+      "checkpoints": 34,
+      "feedback_frames": 17,
+      "ack_completed": 0,
+      "dack_completed": 0,
+      "nsdp_releases": 0,
+      "dack_expired": 0,
+      "actual_mac_transmissions": 0
+    },
+    "ack_duplicate": {
+      "checkpoints": 2,
+      "feedback_frames": 2,
+      "ack_completed": 0,
+      "dack_completed": 0,
+      "nsdp_releases": 0,
+      "dack_expired": 0,
+      "actual_mac_transmissions": 0
+    },
+    "dack_duplicate_pressure": {
+      "checkpoints": 18,
+      "feedback_frames": 18,
+      "ack_completed": 0,
+      "dack_completed": 0,
+      "nsdp_releases": 0,
+      "dack_expired": 0,
+      "actual_mac_transmissions": 0
+    },
+    "dack_reassessment_after_release": {
+      "checkpoints": 24,
+      "feedback_frames": 18,
+      "ack_completed": 3,
+      "dack_completed": 0,
+      "nsdp_releases": 3,
+      "dack_expired": 0,
+      "actual_mac_transmissions": 0
+    },
+    "release_idempotence": {
+      "checkpoints": 9,
+      "feedback_frames": 0,
+      "ack_completed": 1,
+      "dack_completed": 1,
+      "nsdp_releases": 2,
+      "dack_expired": 1,
+      "actual_mac_transmissions": 0
+    },
+    "local_delivery_bypass": {
+      "checkpoints": 19,
+      "feedback_frames": 19,
+      "ack_completed": 0,
+      "dack_completed": 0,
+      "nsdp_releases": 0,
+      "dack_expired": 0,
+      "actual_mac_transmissions": 0
+    }
+  },
+  "model_sources": {
+    "model/csr-arl-routing-message.cc": "046d7b1c91d4339f7cb67cda7066532ae4659b8e324b1bd482b6aba0a5562c3f",
+    "model/csr-arl-routing-message.h": "0eddd945d264965c90bcea60d73b14cab2159bc0664e0e526d38e50b0d363a8c",
+    "model/csr-common.h": "f1e0a962862ef1cc5a6994f24988858a2bea70385ce02b1264285de194fe6ae1",
+    "model/csr-differential-trace.h": "78b443af6e91e927c398450ef71245e815ba4bd02ad9369a06fd95f98e2dff84",
+    "model/csr-hello-header.cc": "e6a1a9e95312d089404873fd7d9d4c87bf024d754af224064328106d5c886a4f",
+    "model/csr-hello-header.h": "741ccff278e1694ea40c4c6c5b1cb14a3a6034864d0328c6a2e04420935fb7d4",
+    "model/csr-hop-layer.h": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+    "model/csr-hop-security.cc": "2b390e6496c98e87a771ed10613e69ecd702922a0b9f54e8058170653271cc6a",
+    "model/csr-hop-security.h": "9bca9c9a6e4ae04a20a3309ac8a8787589ac4ad65785cbf57fbe20c5e8e37d5e",
+    "model/csr-legacy-crypto.cc": "c3f32f583813dead77c42d51736f73fb300a59b33f9fa75da4fc939c7e6553e0",
+    "model/csr-legacy-crypto.h": "ce2e76387addc44e63601b8638d066b484dbd13f301bc09882bd21959a118306",
+    "model/csr-mac-core.h": "64a71ad280ba14ab2b00d5d2b9dac708fabea939dfa385ad62dd73e5e40203e9",
+    "model/csr-module.cc": "34b32e33586f4adaddd47c41d1795c8f81205c00b8f4981355cad8674c23ad8e",
+    "model/csr-net-device.h": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+    "model/csr-nwk-layer.h": "bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc",
+    "model/csr-opnet-ber-tables-data.inc": "d10a9ba3ded2301598b79d6bf28a6ea318da34b5ce79709ba2a06a0b8fce95b8",
+    "model/csr-opnet-ber-tables.cc": "0af0b66c23ea95bbf74f32099ab0562a8a781e1b1048f5eb0b45faea83b73cf6",
+    "model/csr-opnet-ber-tables.h": "8034348552990ce6a0aa0fd673a319299762fbd75c402de59a64ac160eb7cfb5",
+    "model/csr-opnet-envelope.h": "e67b526126907f43f2ee4199552c583ac9c2a0f927cf942fe76aa328900e001a",
+    "model/csr-opnet-packet-model.cc": "16af5d39e7f12c17e1f27a49f80c1ea313618bce87d3c5b75b07bc38cebf2056",
+    "model/csr-opnet-packet-model.h": "59eb4ccd19d109f623fb8ea4d9ad23b2d936f081268261c100231c26cb2dccc6",
+    "model/csr-phy-model.h": "d690b4c572491a9ea8c48735b1726770938b118dcbcd931e92920e602cae18fc",
+    "model/csr-wire-format.h": "eb9097e1588c8e235a06cec5f0b28c13a22a3f3c88c6b8581e4186d69fc94c2f"
+  },
+  "libraries": {
+    "libns3-dev-csr-debug.so": "76abbe8ce7ac56de08e0795f97ab27b9b48ae47ad6f17818d12b9bfafbeaf473",
+    "libns3-dev-spectrum-debug.so": "f9992071da845685669e9e5dd676ac81030de81ec3291e50ce78eff9bebede40",
+    "libns3-dev-buildings-debug.so": "c1e7957ab43d818aeb9926b0005c55443ee0bd8ff097048060d77225d1d44f73",
+    "libns3-dev-propagation-debug.so": "d4940f3f0bf3556808b4173ab3c786b384eaebe38538bbeb8964c0562580290c",
+    "libns3-dev-mobility-debug.so": "b1868b669c75edf04c8cf7c1179c4e8298e4360f13a294453c10bc140f161077",
+    "libns3-dev-antenna-debug.so": "e5b048a15ed67e28a04764125512861a3058fb94c0998ead63f23efe1a6f3e8a",
+    "libns3-dev-network-debug.so": "4f2d4265fb5435b811314be8e86bda8934d87e183447c39147f2a8bc8a84949c",
+    "libns3-dev-stats-debug.so": "5cdb0ebbf7c6f6ecc1eedebd20361fa2ab3234c4e8fd652b92446a24a1b2010a",
+    "libns3-dev-core-debug.so": "692a056013fca84ca15876e25f471981fec30fecc89dff8b0eaa447350bf8b59"
+  },
+  "input_bindings": {
+    "scenarios/t23/actions.csv": "93d0d6047f51cc906e98a2d6a055dea9389581ae2cfed223c5045bfa13f819f2",
+    "scenarios/t23/cases.csv": "6e6a9ac773a92798f78cc5a51dca6fe775850acb858958be3eed0634477cb37f",
+    "scenarios/t23/contract.json": "2db36e9336633bf0f80041748d3af6f5c24159d540c05bb11409e5220ee7a0f6",
+    "scenarios/t23/plan.json": "4a8981f70a7820c8f41afdd064f5abd0188eee15b8305ad71fe0d3a487da52bb"
+  },
+  "fixture_sources": {
+    "scripts/ns3/tranche23_receiver.cc": "1ff22969a06b1ba76d661940b675f5c390bdb8a53c686b0cd655a67f0576af6e",
+    "scripts/run_tranche23_ns3_reference.py": "730c0f91a3f9129239949756325516af3251e9f58a1b060e7ab094a020524b69"
+  },
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/g++",
+        "-std=c++23",
+        "-g",
+        "-DNS3_ASSERT_ENABLE",
+        "-DNS3_BUILD_PROFILE_DEBUG",
+        "-DNS3_LOG_ENABLE",
+        "-DSTACKTRACE_LIBRARY_IS_LINKED=1",
+        "-D__LINUX__",
+        "-I/workspace/scratch/ab77b42f47ca/t23-work/native/overlay",
+        "-I/workspace/scratch/ab77b42f47ca/t22-work/native/ns-3-dev-git-6b5cd24ea80713ce16d88575869aedd6f432bdae/build/include",
+        "/workspace/scratch/ab77b42f47ca/csr23/scripts/ns3/tranche23_receiver.cc",
+        "-L/workspace/scratch/ab77b42f47ca/t22-work/native/ns-3-dev-git-6b5cd24ea80713ce16d88575869aedd6f432bdae/build/lib",
+        "-Wl,-rpath,/workspace/scratch/ab77b42f47ca/t22-work/native/ns-3-dev-git-6b5cd24ea80713ce16d88575869aedd6f432bdae/build/lib",
+        "-Wl,--no-as-needed",
+        "-lns3-dev-csr-debug",
+        "-lns3-dev-spectrum-debug",
+        "-lns3-dev-buildings-debug",
+        "-lns3-dev-propagation-debug",
+        "-lns3-dev-mobility-debug",
+        "-lns3-dev-antenna-debug",
+        "-lns3-dev-network-debug",
+        "-lns3-dev-stats-debug",
+        "-lns3-dev-core-debug",
+        "-lstdc++exp",
+        "-o",
+        "/workspace/scratch/ab77b42f47ca/t23-work/native/tranche23-receiver"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 23.077123849005147,
+      "log": "compile.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "/workspace/scratch/ab77b42f47ca/t23-work/native/tranche23-receiver",
+        "/workspace/scratch/ab77b42f47ca/csr23/scenarios/t23/actions.csv",
+        "/workspace/scratch/ab77b42f47ca/csr23/evidence/t23/native/trace_on",
+        "trace_on"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.16002718299569096,
+      "log": "trace_on.log",
+      "log_sha256": "dd19bf7326093ffbca4b353417b173f951e0a2fda0bbdd215492e1566f3d2378"
+    },
+    {
+      "argv": [
+        "/workspace/scratch/ab77b42f47ca/t23-work/native/tranche23-receiver",
+        "/workspace/scratch/ab77b42f47ca/csr23/scenarios/t23/actions.csv",
+        "/workspace/scratch/ab77b42f47ca/csr23/evidence/t23/native/trace_off",
+        "trace_off"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.12107121699955314,
+      "log": "trace_off.log",
+      "log_sha256": "23aad4c13b55f13e9e1697c1e24321ebbfb92bf6dc63b456312fda291c349e9e"
+    }
+  ],
+  "build_manifest": "build.json",
+  "build_manifest_sha256": "d9d99b703e00376daab540665d6773e898ef90d952a31b269df47e95cf12b9a0",
+  "binary_sha256": "ebdb6bf304c9c800d799361f78626896114c76db797d0779395e3e9cb70a130e",
+  "overlay_headers": {
+    "csr-hop-layer.h": "e6782f8011ef73b58bab0b11c5d9c32169dc94b521747869c6e84c6299b38719",
+    "csr-mac-core.h": "426ff04f8c42a7a3b49d85416a81ded011f1e7b40e2cd3f3e1c3fd170cee80d6"
+  },
+  "seams_sha256": "3297365acbd9ba53e439f95b08e38898109bbfa5370f1f8b7b2cdef788688d10",
+  "time_resolution_seconds": 1e-09,
+  "native_tic_seconds": 2.8e-08,
+  "scope": "Controlled post-security decoded ingress, real NWK ownership, production receiver feedback generation and Pairwise16 downstream feedback. No actual RF, security-ingress or campus execution claim. Settled states observed one microsecond after inputs; no same-tick wake-order equivalence claim."
+}

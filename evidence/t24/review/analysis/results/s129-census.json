@@ -1,0 +1,2284 @@
+{
+  "schema": "csr-tranche24-native-custody-census-v1",
+  "seed": 129,
+  "duration_s": 6000,
+  "occupancy_window_s": [
+    300,
+    6000
+  ],
+  "input": {
+    "path": "/workspace/scratch/ab77b42f47ca/t23-return-review/issued-overlay/evidence/tranche-20-ns3-reference/s129/ns3-trace.csv.gz",
+    "gzip_sha256": "aa4ae4e40309ef956d5e89d20040828c3fab47062747eaa51a637506764c2643",
+    "raw_sha256": "05a4d3429b00b20e68344491f9a0c8e2317c3637162fb975cdaebf72fdaa7194",
+    "raw_bytes": 1178203351,
+    "rows": 5049318,
+    "last_event_s": 5999.994,
+    "scenario_sha256": "14e7189aa09542430502a75c50f43f78c40e9b7b1b8f60ed15ddee6ce90e0118",
+    "all_flow_dscp": [
+      "0"
+    ]
+  },
+  "event_counts": {
+    "mac_state": 264732,
+    "route_change": 93,
+    "scenario_node": 7,
+    "scenario_link": 21,
+    "statistic_sample": 162905,
+    "reservation_prepare": 48754,
+    "reservation_holdoff": 71,
+    "reservation_tick": 883110,
+    "reservation_advertise": 48751,
+    "tx_start": 48751,
+    "rx_drop": 210278,
+    "rx_accept": 82225,
+    "app_admission": 1710000,
+    "app_send": 12463,
+    "nwk_enqueue": 18366,
+    "nwk_admission": 1453524,
+    "nwk_forward": 18123,
+    "hop_admission": 18123,
+    "hop_feedback": 17733,
+    "nwk_nsdp_release": 18092,
+    "hop_completion": 18092,
+    "nwk_delivery": 11793,
+    "hop_capacity_release": 3311
+  },
+  "flows": [
+    {
+      "seed": 129,
+      "node": 2,
+      "source": 2,
+      "destination": 1,
+      "origin": "local",
+      "distinct_application_identities": 607,
+      "identities_enqueued_more_than_once": 0,
+      "repeat_enqueue_count": 0,
+      "repeat_while_same_app_nsdp_owned": 0,
+      "repeat_after_same_app_nsdp_released": 0,
+      "maximum_simultaneous_owners_of_one_identity": 1,
+      "maximum_enqueues_of_one_identity": 1,
+      "nsdp": {
+        "at_stop": 16,
+        "peak": 16,
+        "area_owner_seconds": 91190.568426056,
+        "mean_300_6000": 15.998345337904562
+      },
+      "simultaneous_extra_owners": {
+        "at_stop": 0,
+        "peak": 0,
+        "area_owner_seconds": 0.0,
+        "mean_300_6000": 0.0
+      },
+      "all_instances": {
+        "enqueues": 607,
+        "forwards": 591,
+        "completion_counts": {
+          "ack": 164,
+          "no_ack": 14,
+          "dack": 413
+        },
+        "waiting_at_stop": 16,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 91190.568426056,
+        "nwk_wait_owner_seconds": 89371.067271748,
+        "hop_capacity_owner_seconds": 10679.501165872,
+        "dack_hold_owner_seconds": 8860.000011564,
+        "completed_nwk_wait_s": {
+          "count": 591,
+          "mean": 146.59436086590188,
+          "median": 139.386293688,
+          "max": 376.63529366
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 591,
+          "mean": 149.67304302209138,
+          "median": 143.958293632,
+          "max": 377.324293632
+        },
+        "completed_hop_capacity_s": {
+          "count": 591,
+          "mean": 18.07022193886971,
+          "median": 21.033999972,
+          "max": 63.887999972
+        },
+        "receiver_feedback_counts": {},
+        "ingress_same_hop_replays": 0
+      },
+      "first_instances": {
+        "enqueues": 607,
+        "forwards": 591,
+        "completion_counts": {
+          "ack": 164,
+          "no_ack": 14,
+          "dack": 413
+        },
+        "waiting_at_stop": 16,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 91190.568426056,
+        "nwk_wait_owner_seconds": 89371.067271748,
+        "hop_capacity_owner_seconds": 10679.501165872,
+        "dack_hold_owner_seconds": 8860.000011564,
+        "completed_nwk_wait_s": {
+          "count": 591,
+          "mean": 146.59436086590188,
+          "median": 139.386293688,
+          "max": 376.63529366
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 591,
+          "mean": 149.67304302209138,
+          "median": 143.958293632,
+          "max": 377.324293632
+        },
+        "completed_hop_capacity_s": {
+          "count": 591,
+          "mean": 18.07022193886971,
+          "median": 21.033999972,
+          "max": 63.887999972
+        },
+        "receiver_feedback_counts": {},
+        "ingress_same_hop_replays": 0
+      },
+      "repeated_instances": {
+        "enqueues": 0,
+        "forwards": 0,
+        "completion_counts": {},
+        "waiting_at_stop": 0,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 0.0,
+        "nwk_wait_owner_seconds": 0.0,
+        "hop_capacity_owner_seconds": 0.0,
+        "dack_hold_owner_seconds": 0.0,
+        "completed_nwk_wait_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "completed_hop_capacity_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "receiver_feedback_counts": {},
+        "ingress_same_hop_replays": 0
+      },
+      "unique_apps_delivered_by_stop": 480
+    },
+    {
+      "seed": 129,
+      "node": 2,
+      "source": 7,
+      "destination": 1,
+      "origin": "relay",
+      "distinct_application_identities": 809,
+      "identities_enqueued_more_than_once": 2,
+      "repeat_enqueue_count": 2,
+      "repeat_while_same_app_nsdp_owned": 2,
+      "repeat_after_same_app_nsdp_released": 0,
+      "maximum_simultaneous_owners_of_one_identity": 2,
+      "maximum_enqueues_of_one_identity": 2,
+      "nsdp": {
+        "at_stop": 37,
+        "peak": 45,
+        "area_owner_seconds": 134117.282859878,
+        "mean_300_6000": 23.529347870154034
+      },
+      "simultaneous_extra_owners": {
+        "at_stop": 0,
+        "peak": 1,
+        "area_owner_seconds": 350.068956572,
+        "mean_300_6000": 0.06141560641614035
+      },
+      "all_instances": {
+        "enqueues": 811,
+        "forwards": 775,
+        "completion_counts": {
+          "ack": 60,
+          "no_ack": 21,
+          "dack": 693
+        },
+        "waiting_at_stop": 36,
+        "active_hop_at_stop": 1,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 134117.282859878,
+        "nwk_wait_owner_seconds": 131886.753355902,
+        "hop_capacity_owner_seconds": 16830.52952338,
+        "dack_hold_owner_seconds": 14600.000019404,
+        "completed_nwk_wait_s": {
+          "count": 775,
+          "mean": 163.62429381723612,
+          "median": 149.300478342,
+          "max": 379.920478342
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 774,
+          "mean": 166.32157626315245,
+          "median": 151.920478286,
+          "max": 380.616478286
+        },
+        "completed_hop_capacity_s": {
+          "count": 774,
+          "mean": 21.73722069385013,
+          "median": 21.430499972,
+          "max": 59.877
+        },
+        "receiver_feedback_counts": {
+          "ack": 102,
+          "dack": 709
+        },
+        "ingress_same_hop_replays": 2
+      },
+      "first_instances": {
+        "enqueues": 809,
+        "forwards": 773,
+        "completion_counts": {
+          "ack": 60,
+          "no_ack": 21,
+          "dack": 691
+        },
+        "waiting_at_stop": 36,
+        "active_hop_at_stop": 1,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 133763.001903306,
+        "nwk_wait_owner_seconds": 131540.000399218,
+        "hop_capacity_owner_seconds": 16783.001523436,
+        "dack_hold_owner_seconds": 14560.000019348,
+        "completed_nwk_wait_s": {
+          "count": 773,
+          "mean": 163.59906177448124,
+          "median": 149.300478342,
+          "max": 379.920478342
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 772,
+          "mean": 166.29354801956995,
+          "median": 151.920478286,
+          "max": 380.616478286
+        },
+        "completed_hop_capacity_s": {
+          "count": 772,
+          "mean": 21.73196997033161,
+          "median": 21.430499972,
+          "max": 59.877
+        },
+        "receiver_feedback_counts": {
+          "ack": 102,
+          "dack": 707
+        },
+        "ingress_same_hop_replays": 0
+      },
+      "repeated_instances": {
+        "enqueues": 2,
+        "forwards": 2,
+        "completion_counts": {
+          "dack": 2
+        },
+        "waiting_at_stop": 0,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 354.280956572,
+        "nwk_wait_owner_seconds": 346.752956684,
+        "hop_capacity_owner_seconds": 47.527999944,
+        "dack_hold_owner_seconds": 40.000000056,
+        "completed_nwk_wait_s": {
+          "count": 2,
+          "mean": 173.37647834199998,
+          "median": 173.37647834199998,
+          "max": 230.927478342
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 2,
+          "mean": 177.14047828600002,
+          "median": 177.14047828600002,
+          "max": 232.351478286
+        },
+        "completed_hop_capacity_s": {
+          "count": 2,
+          "mean": 23.763999972,
+          "median": 23.763999972,
+          "max": 26.103999972
+        },
+        "receiver_feedback_counts": {
+          "dack": 2
+        },
+        "ingress_same_hop_replays": 2
+      },
+      "unique_apps_delivered_by_stop": 604
+    },
+    {
+      "seed": 129,
+      "node": 2,
+      "source": 8,
+      "destination": 1,
+      "origin": "relay",
+      "distinct_application_identities": 501,
+      "identities_enqueued_more_than_once": 0,
+      "repeat_enqueue_count": 0,
+      "repeat_while_same_app_nsdp_owned": 0,
+      "repeat_after_same_app_nsdp_released": 0,
+      "maximum_simultaneous_owners_of_one_identity": 1,
+      "maximum_enqueues_of_one_identity": 1,
+      "nsdp": {
+        "at_stop": 32,
+        "peak": 34,
+        "area_owner_seconds": 83704.216995418,
+        "mean_300_6000": 14.684950350073333
+      },
+      "simultaneous_extra_owners": {
+        "at_stop": 0,
+        "peak": 0,
+        "area_owner_seconds": 0.0,
+        "mean_300_6000": 0.0
+      },
+      "all_instances": {
+        "enqueues": 501,
+        "forwards": 469,
+        "completion_counts": {
+          "ack": 241,
+          "dack": 217,
+          "no_ack": 11
+        },
+        "waiting_at_stop": 32,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 2,
+        "nsdp_owner_seconds": 83704.216995418,
+        "nwk_wait_owner_seconds": 82398.744247854,
+        "hop_capacity_owner_seconds": 5855.64416632,
+        "dack_hold_owner_seconds": 4550.171418756,
+        "completed_nwk_wait_s": {
+          "count": 469,
+          "mean": 164.74328430474628,
+          "median": 150.483478342,
+          "max": 381.142478342
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 469,
+          "mean": 167.52680828675906,
+          "median": 153.610478286,
+          "max": 381.812478286
+        },
+        "completed_hop_capacity_s": {
+          "count": 467,
+          "mean": 12.470055147040686,
+          "median": 8.53070634,
+          "max": 51.342999972
+        },
+        "receiver_feedback_counts": {
+          "ack": 258,
+          "dack": 243
+        },
+        "ingress_same_hop_replays": 0
+      },
+      "first_instances": {
+        "enqueues": 501,
+        "forwards": 469,
+        "completion_counts": {
+          "ack": 241,
+          "dack": 217,
+          "no_ack": 11
+        },
+        "waiting_at_stop": 32,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 2,
+        "nsdp_owner_seconds": 83704.216995418,
+        "nwk_wait_owner_seconds": 82398.744247854,
+        "hop_capacity_owner_seconds": 5855.64416632,
+        "dack_hold_owner_seconds": 4550.171418756,
+        "completed_nwk_wait_s": {
+          "count": 469,
+          "mean": 164.74328430474628,
+          "median": 150.483478342,
+          "max": 381.142478342
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 469,
+          "mean": 167.52680828675906,
+          "median": 153.610478286,
+          "max": 381.812478286
+        },
+        "completed_hop_capacity_s": {
+          "count": 467,
+          "mean": 12.470055147040686,
+          "median": 8.53070634,
+          "max": 51.342999972
+        },
+        "receiver_feedback_counts": {
+          "ack": 258,
+          "dack": 243
+        },
+        "ingress_same_hop_replays": 0
+      },
+      "repeated_instances": {
+        "enqueues": 0,
+        "forwards": 0,
+        "completion_counts": {},
+        "waiting_at_stop": 0,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 0.0,
+        "nwk_wait_owner_seconds": 0.0,
+        "hop_capacity_owner_seconds": 0.0,
+        "dack_hold_owner_seconds": 0.0,
+        "completed_nwk_wait_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "completed_hop_capacity_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "receiver_feedback_counts": {},
+        "ingress_same_hop_replays": 0
+      },
+      "unique_apps_delivered_by_stop": 368
+    },
+    {
+      "seed": 129,
+      "node": 3,
+      "source": 3,
+      "destination": 1,
+      "origin": "local",
+      "distinct_application_identities": 8557,
+      "identities_enqueued_more_than_once": 0,
+      "repeat_enqueue_count": 0,
+      "repeat_while_same_app_nsdp_owned": 0,
+      "repeat_after_same_app_nsdp_released": 0,
+      "maximum_simultaneous_owners_of_one_identity": 1,
+      "maximum_enqueues_of_one_identity": 1,
+      "nsdp": {
+        "at_stop": 16,
+        "peak": 16,
+        "area_owner_seconds": 91046.088942872,
+        "mean_300_6000": 15.972998060152982
+      },
+      "simultaneous_extra_owners": {
+        "at_stop": 0,
+        "peak": 0,
+        "area_owner_seconds": 0.0,
+        "mean_300_6000": 0.0
+      },
+      "all_instances": {
+        "enqueues": 8557,
+        "forwards": 8557,
+        "completion_counts": {
+          "ack": 8076,
+          "no_ack": 465
+        },
+        "waiting_at_stop": 0,
+        "active_hop_at_stop": 16,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 91046.088942872,
+        "nwk_wait_owner_seconds": 684.80918655,
+        "hop_capacity_owner_seconds": 90361.279756322,
+        "dack_hold_owner_seconds": 0.0,
+        "completed_nwk_wait_s": {
+          "count": 8557,
+          "mean": 0.08002912078415333,
+          "median": 2.8e-08,
+          "max": 9.194108105
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 8541,
+          "mean": 10.649554963455333,
+          "median": 10.197108077,
+          "max": 24.732000028
+        },
+        "completed_hop_capacity_s": {
+          "count": 8541,
+          "mean": 10.56937592281583,
+          "median": 10.138288049,
+          "max": 23.29
+        },
+        "receiver_feedback_counts": {},
+        "ingress_same_hop_replays": 0
+      },
+      "first_instances": {
+        "enqueues": 8557,
+        "forwards": 8557,
+        "completion_counts": {
+          "ack": 8076,
+          "no_ack": 465
+        },
+        "waiting_at_stop": 0,
+        "active_hop_at_stop": 16,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 91046.088942872,
+        "nwk_wait_owner_seconds": 684.80918655,
+        "hop_capacity_owner_seconds": 90361.279756322,
+        "dack_hold_owner_seconds": 0.0,
+        "completed_nwk_wait_s": {
+          "count": 8557,
+          "mean": 0.08002912078415333,
+          "median": 2.8e-08,
+          "max": 9.194108105
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 8541,
+          "mean": 10.649554963455333,
+          "median": 10.197108077,
+          "max": 24.732000028
+        },
+        "completed_hop_capacity_s": {
+          "count": 8541,
+          "mean": 10.56937592281583,
+          "median": 10.138288049,
+          "max": 23.29
+        },
+        "receiver_feedback_counts": {},
+        "ingress_same_hop_replays": 0
+      },
+      "repeated_instances": {
+        "enqueues": 0,
+        "forwards": 0,
+        "completion_counts": {},
+        "waiting_at_stop": 0,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 0.0,
+        "nwk_wait_owner_seconds": 0.0,
+        "hop_capacity_owner_seconds": 0.0,
+        "dack_hold_owner_seconds": 0.0,
+        "completed_nwk_wait_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "completed_hop_capacity_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "receiver_feedback_counts": {},
+        "ingress_same_hop_replays": 0
+      },
+      "unique_apps_delivered_by_stop": 8538
+    },
+    {
+      "seed": 129,
+      "node": 4,
+      "source": 2,
+      "destination": 1,
+      "origin": "relay",
+      "distinct_application_identities": 577,
+      "identities_enqueued_more_than_once": 0,
+      "repeat_enqueue_count": 0,
+      "repeat_while_same_app_nsdp_owned": 0,
+      "repeat_after_same_app_nsdp_released": 0,
+      "maximum_simultaneous_owners_of_one_identity": 1,
+      "maximum_enqueues_of_one_identity": 1,
+      "nsdp": {
+        "at_stop": 11,
+        "peak": 32,
+        "area_owner_seconds": 109686.79766644,
+        "mean_300_6000": 19.243297836217543
+      },
+      "simultaneous_extra_owners": {
+        "at_stop": 0,
+        "peak": 0,
+        "area_owner_seconds": 0.0,
+        "mean_300_6000": 0.0
+      },
+      "all_instances": {
+        "enqueues": 577,
+        "forwards": 566,
+        "completion_counts": {
+          "ack": 435,
+          "no_ack": 75,
+          "dack": 56
+        },
+        "waiting_at_stop": 11,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 1,
+        "nsdp_owner_seconds": 109686.79766644,
+        "nwk_wait_owner_seconds": 106298.096229012,
+        "hop_capacity_owner_seconds": 4686.478146524,
+        "dack_hold_owner_seconds": 1297.776709096,
+        "completed_nwk_wait_s": {
+          "count": 566,
+          "mean": 185.43309572255126,
+          "median": 174.05947884,
+          "max": 366.91447884
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 566,
+          "mean": 191.4202007356749,
+          "median": 177.965978812,
+          "max": 372.019186396
+        },
+        "completed_hop_capacity_s": {
+          "count": 565,
+          "mean": 8.259622015922124,
+          "median": 5.147999972,
+          "max": 53.052
+        },
+        "receiver_feedback_counts": {
+          "ack": 164,
+          "dack": 413
+        },
+        "ingress_same_hop_replays": 0
+      },
+      "first_instances": {
+        "enqueues": 577,
+        "forwards": 566,
+        "completion_counts": {
+          "ack": 435,
+          "no_ack": 75,
+          "dack": 56
+        },
+        "waiting_at_stop": 11,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 1,
+        "nsdp_owner_seconds": 109686.79766644,
+        "nwk_wait_owner_seconds": 106298.096229012,
+        "hop_capacity_owner_seconds": 4686.478146524,
+        "dack_hold_owner_seconds": 1297.776709096,
+        "completed_nwk_wait_s": {
+          "count": 566,
+          "mean": 185.43309572255126,
+          "median": 174.05947884,
+          "max": 366.91447884
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 566,
+          "mean": 191.4202007356749,
+          "median": 177.965978812,
+          "max": 372.019186396
+        },
+        "completed_hop_capacity_s": {
+          "count": 565,
+          "mean": 8.259622015922124,
+          "median": 5.147999972,
+          "max": 53.052
+        },
+        "receiver_feedback_counts": {
+          "ack": 164,
+          "dack": 413
+        },
+        "ingress_same_hop_replays": 0
+      },
+      "repeated_instances": {
+        "enqueues": 0,
+        "forwards": 0,
+        "completion_counts": {},
+        "waiting_at_stop": 0,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 0.0,
+        "nwk_wait_owner_seconds": 0.0,
+        "hop_capacity_owner_seconds": 0.0,
+        "dack_hold_owner_seconds": 0.0,
+        "completed_nwk_wait_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "completed_hop_capacity_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "receiver_feedback_counts": {},
+        "ingress_same_hop_replays": 0
+      },
+      "unique_apps_delivered_by_stop": 480
+    },
+    {
+      "seed": 129,
+      "node": 4,
+      "source": 4,
+      "destination": 1,
+      "origin": "local",
+      "distinct_application_identities": 501,
+      "identities_enqueued_more_than_once": 0,
+      "repeat_enqueue_count": 0,
+      "repeat_while_same_app_nsdp_owned": 0,
+      "repeat_after_same_app_nsdp_released": 0,
+      "maximum_simultaneous_owners_of_one_identity": 1,
+      "maximum_enqueues_of_one_identity": 1,
+      "nsdp": {
+        "at_stop": 16,
+        "peak": 16,
+        "area_owner_seconds": 91191.647535884,
+        "mean_300_6000": 15.998534655418245
+      },
+      "simultaneous_extra_owners": {
+        "at_stop": 0,
+        "peak": 0,
+        "area_owner_seconds": 0.0,
+        "mean_300_6000": 0.0
+      },
+      "all_instances": {
+        "enqueues": 501,
+        "forwards": 485,
+        "completion_counts": {
+          "ack": 399,
+          "no_ack": 66,
+          "dack": 20
+        },
+        "waiting_at_stop": 16,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 91191.647535884,
+        "nwk_wait_owner_seconds": 88482.89858686,
+        "hop_capacity_owner_seconds": 3188.748949584,
+        "dack_hold_owner_seconds": 480.00000056,
+        "completed_nwk_wait_s": {
+          "count": 485,
+          "mean": 177.65640945744332,
+          "median": 166.6962925,
+          "max": 371.838292472
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 485,
+          "mean": 183.24145883687424,
+          "median": 172.668292444,
+          "max": 376.378292444
+        },
+        "completed_hop_capacity_s": {
+          "count": 485,
+          "mean": 6.574740102235052,
+          "median": 4.082999944,
+          "max": 52.174999972
+        },
+        "receiver_feedback_counts": {},
+        "ingress_same_hop_replays": 0
+      },
+      "first_instances": {
+        "enqueues": 501,
+        "forwards": 485,
+        "completion_counts": {
+          "ack": 399,
+          "no_ack": 66,
+          "dack": 20
+        },
+        "waiting_at_stop": 16,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 91191.647535884,
+        "nwk_wait_owner_seconds": 88482.89858686,
+        "hop_capacity_owner_seconds": 3188.748949584,
+        "dack_hold_owner_seconds": 480.00000056,
+        "completed_nwk_wait_s": {
+          "count": 485,
+          "mean": 177.65640945744332,
+          "median": 166.6962925,
+          "max": 371.838292472
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 485,
+          "mean": 183.24145883687424,
+          "median": 172.668292444,
+          "max": 376.378292444
+        },
+        "completed_hop_capacity_s": {
+          "count": 485,
+          "mean": 6.574740102235052,
+          "median": 4.082999944,
+          "max": 52.174999972
+        },
+        "receiver_feedback_counts": {},
+        "ingress_same_hop_replays": 0
+      },
+      "repeated_instances": {
+        "enqueues": 0,
+        "forwards": 0,
+        "completion_counts": {},
+        "waiting_at_stop": 0,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 0.0,
+        "nwk_wait_owner_seconds": 0.0,
+        "hop_capacity_owner_seconds": 0.0,
+        "dack_hold_owner_seconds": 0.0,
+        "completed_nwk_wait_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "completed_hop_capacity_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "receiver_feedback_counts": {},
+        "ingress_same_hop_replays": 0
+      },
+      "unique_apps_delivered_by_stop": 426
+    },
+    {
+      "seed": 129,
+      "node": 4,
+      "source": 7,
+      "destination": 1,
+      "origin": "relay",
+      "distinct_application_identities": 753,
+      "identities_enqueued_more_than_once": 2,
+      "repeat_enqueue_count": 2,
+      "repeat_while_same_app_nsdp_owned": 2,
+      "repeat_after_same_app_nsdp_released": 0,
+      "maximum_simultaneous_owners_of_one_identity": 2,
+      "maximum_enqueues_of_one_identity": 2,
+      "nsdp": {
+        "at_stop": 15,
+        "peak": 50,
+        "area_owner_seconds": 153296.846903728,
+        "mean_300_6000": 26.8941836673207
+      },
+      "simultaneous_extra_owners": {
+        "at_stop": 0,
+        "peak": 1,
+        "area_owner_seconds": 617.673957624,
+        "mean_300_6000": 0.10836385221473684
+      },
+      "all_instances": {
+        "enqueues": 755,
+        "forwards": 740,
+        "completion_counts": {
+          "ack": 449,
+          "no_ack": 117,
+          "dack": 174
+        },
+        "waiting_at_stop": 15,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 4,
+        "nsdp_owner_seconds": 153296.846903728,
+        "nwk_wait_owner_seconds": 148551.198583596,
+        "hop_capacity_owner_seconds": 9005.900155116,
+        "dack_hold_owner_seconds": 4260.251834984,
+        "completed_nwk_wait_s": {
+          "count": 740,
+          "mean": 198.36506457848108,
+          "median": 184.64147884,
+          "max": 377.35347884
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 740,
+          "mean": 204.7781028489297,
+          "median": 190.586832604,
+          "max": 378.094478812
+        },
+        "completed_hop_capacity_s": {
+          "count": 736,
+          "mean": 12.122202887309781,
+          "median": 8.213853764,
+          "max": 60.28
+        },
+        "receiver_feedback_counts": {
+          "ack": 61,
+          "dack": 694
+        },
+        "ingress_same_hop_replays": 0
+      },
+      "first_instances": {
+        "enqueues": 753,
+        "forwards": 738,
+        "completion_counts": {
+          "ack": 447,
+          "no_ack": 117,
+          "dack": 174
+        },
+        "waiting_at_stop": 15,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 4,
+        "nsdp_owner_seconds": 152674.739946104,
+        "nwk_wait_owner_seconds": 147933.524625916,
+        "hop_capacity_owner_seconds": 9001.467155172,
+        "dack_hold_owner_seconds": 4260.251834984,
+        "completed_nwk_wait_s": {
+          "count": 738,
+          "mean": 198.06568269701353,
+          "median": 184.58297884,
+          "max": 377.35347884
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 738,
+          "mean": 204.4900936999783,
+          "median": 190.491478812,
+          "max": 378.094478812
+        },
+        "completed_hop_capacity_s": {
+          "count": 734,
+          "mean": 12.149193903427792,
+          "median": 8.274499972000001,
+          "max": 60.28
+        },
+        "receiver_feedback_counts": {
+          "ack": 61,
+          "dack": 692
+        },
+        "ingress_same_hop_replays": 0
+      },
+      "repeated_instances": {
+        "enqueues": 2,
+        "forwards": 2,
+        "completion_counts": {
+          "ack": 2
+        },
+        "waiting_at_stop": 0,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 622.106957624,
+        "nwk_wait_owner_seconds": 617.67395768,
+        "hop_capacity_owner_seconds": 4.432999944,
+        "dack_hold_owner_seconds": 0.0,
+        "completed_nwk_wait_s": {
+          "count": 2,
+          "mean": 308.83697884000003,
+          "median": 308.83697884000003,
+          "max": 370.74947884
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 2,
+          "mean": 311.053478812,
+          "median": 311.053478812,
+          "max": 371.659478812
+        },
+        "completed_hop_capacity_s": {
+          "count": 2,
+          "mean": 2.2164999720000003,
+          "median": 2.2164999720000003,
+          "max": 3.522999972
+        },
+        "receiver_feedback_counts": {
+          "dack": 2
+        },
+        "ingress_same_hop_replays": 0
+      },
+      "unique_apps_delivered_by_stop": 604
+    },
+    {
+      "seed": 129,
+      "node": 4,
+      "source": 8,
+      "destination": 1,
+      "origin": "relay",
+      "distinct_application_identities": 458,
+      "identities_enqueued_more_than_once": 0,
+      "repeat_enqueue_count": 0,
+      "repeat_while_same_app_nsdp_owned": 0,
+      "repeat_after_same_app_nsdp_released": 0,
+      "maximum_simultaneous_owners_of_one_identity": 1,
+      "maximum_enqueues_of_one_identity": 1,
+      "nsdp": {
+        "at_stop": 17,
+        "peak": 40,
+        "area_owner_seconds": 93527.810194556,
+        "mean_300_6000": 16.408387753430876
+      },
+      "simultaneous_extra_owners": {
+        "at_stop": 0,
+        "peak": 0,
+        "area_owner_seconds": 0.0,
+        "mean_300_6000": 0.0
+      },
+      "all_instances": {
+        "enqueues": 458,
+        "forwards": 441,
+        "completion_counts": {
+          "ack": 376,
+          "no_ack": 62,
+          "dack": 3
+        },
+        "waiting_at_stop": 17,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 93527.810194556,
+        "nwk_wait_owner_seconds": 90725.445612472,
+        "hop_capacity_owner_seconds": 2902.364582168,
+        "dack_hold_owner_seconds": 100.000000084,
+        "completed_nwk_wait_s": {
+          "count": 441,
+          "mean": 200.31837742452606,
+          "median": 185.14847884,
+          "max": 371.486186424
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 441,
+          "mean": 206.67294563786848,
+          "median": 190.879186396,
+          "max": 379.459478812
+        },
+        "completed_hop_capacity_s": {
+          "count": 441,
+          "mean": 6.581325583147393,
+          "median": 4.640999972,
+          "max": 52.207
+        },
+        "receiver_feedback_counts": {
+          "ack": 241,
+          "dack": 217
+        },
+        "ingress_same_hop_replays": 0
+      },
+      "first_instances": {
+        "enqueues": 458,
+        "forwards": 441,
+        "completion_counts": {
+          "ack": 376,
+          "no_ack": 62,
+          "dack": 3
+        },
+        "waiting_at_stop": 17,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 93527.810194556,
+        "nwk_wait_owner_seconds": 90725.445612472,
+        "hop_capacity_owner_seconds": 2902.364582168,
+        "dack_hold_owner_seconds": 100.000000084,
+        "completed_nwk_wait_s": {
+          "count": 441,
+          "mean": 200.31837742452606,
+          "median": 185.14847884,
+          "max": 371.486186424
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 441,
+          "mean": 206.67294563786848,
+          "median": 190.879186396,
+          "max": 379.459478812
+        },
+        "completed_hop_capacity_s": {
+          "count": 441,
+          "mean": 6.581325583147393,
+          "median": 4.640999972,
+          "max": 52.207
+        },
+        "receiver_feedback_counts": {
+          "ack": 241,
+          "dack": 217
+        },
+        "ingress_same_hop_replays": 0
+      },
+      "repeated_instances": {
+        "enqueues": 0,
+        "forwards": 0,
+        "completion_counts": {},
+        "waiting_at_stop": 0,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 0.0,
+        "nwk_wait_owner_seconds": 0.0,
+        "hop_capacity_owner_seconds": 0.0,
+        "dack_hold_owner_seconds": 0.0,
+        "completed_nwk_wait_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "completed_hop_capacity_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "receiver_feedback_counts": {},
+        "ingress_same_hop_replays": 0
+      },
+      "unique_apps_delivered_by_stop": 368
+    },
+    {
+      "seed": 129,
+      "node": 5,
+      "source": 2,
+      "destination": 1,
+      "origin": "relay",
+      "distinct_application_identities": 500,
+      "identities_enqueued_more_than_once": 0,
+      "repeat_enqueue_count": 0,
+      "repeat_while_same_app_nsdp_owned": 0,
+      "repeat_after_same_app_nsdp_released": 0,
+      "maximum_simultaneous_owners_of_one_identity": 1,
+      "maximum_enqueues_of_one_identity": 1,
+      "nsdp": {
+        "at_stop": 15,
+        "peak": 20,
+        "area_owner_seconds": 46782.197881128,
+        "mean_300_6000": 8.20740313704
+      },
+      "simultaneous_extra_owners": {
+        "at_stop": 0,
+        "peak": 0,
+        "area_owner_seconds": 0.0,
+        "mean_300_6000": 0.0
+      },
+      "all_instances": {
+        "enqueues": 500,
+        "forwards": 489,
+        "completion_counts": {
+          "ack": 406,
+          "no_ack": 79
+        },
+        "waiting_at_stop": 11,
+        "active_hop_at_stop": 4,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 46782.197881128,
+        "nwk_wait_owner_seconds": 36419.503112746,
+        "hop_capacity_owner_seconds": 10362.694768382,
+        "dack_hold_owner_seconds": 0.0,
+        "completed_nwk_wait_s": {
+          "count": 489,
+          "mean": 73.28938251458078,
+          "median": 76.04229867,
+          "max": 133.45029867
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 485,
+          "mean": 94.31969498512989,
+          "median": 97.986298642,
+          "max": 158.481187584
+        },
+        "completed_hop_capacity_s": {
+          "count": 485,
+          "mean": 21.242173634717524,
+          "median": 18.771999972,
+          "max": 67.711888914
+        },
+        "receiver_feedback_counts": {
+          "ack": 442,
+          "dack": 58
+        },
+        "ingress_same_hop_replays": 0
+      },
+      "first_instances": {
+        "enqueues": 500,
+        "forwards": 489,
+        "completion_counts": {
+          "ack": 406,
+          "no_ack": 79
+        },
+        "waiting_at_stop": 11,
+        "active_hop_at_stop": 4,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 46782.197881128,
+        "nwk_wait_owner_seconds": 36419.503112746,
+        "hop_capacity_owner_seconds": 10362.694768382,
+        "dack_hold_owner_seconds": 0.0,
+        "completed_nwk_wait_s": {
+          "count": 489,
+          "mean": 73.28938251458078,
+          "median": 76.04229867,
+          "max": 133.45029867
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 485,
+          "mean": 94.31969498512989,
+          "median": 97.986298642,
+          "max": 158.481187584
+        },
+        "completed_hop_capacity_s": {
+          "count": 485,
+          "mean": 21.242173634717524,
+          "median": 18.771999972,
+          "max": 67.711888914
+        },
+        "receiver_feedback_counts": {
+          "ack": 442,
+          "dack": 58
+        },
+        "ingress_same_hop_replays": 0
+      },
+      "repeated_instances": {
+        "enqueues": 0,
+        "forwards": 0,
+        "completion_counts": {},
+        "waiting_at_stop": 0,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 0.0,
+        "nwk_wait_owner_seconds": 0.0,
+        "hop_capacity_owner_seconds": 0.0,
+        "dack_hold_owner_seconds": 0.0,
+        "completed_nwk_wait_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "completed_hop_capacity_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "receiver_feedback_counts": {},
+        "ingress_same_hop_replays": 0
+      },
+      "unique_apps_delivered_by_stop": 480
+    },
+    {
+      "seed": 129,
+      "node": 5,
+      "source": 4,
+      "destination": 1,
+      "origin": "relay",
+      "distinct_application_identities": 430,
+      "identities_enqueued_more_than_once": 1,
+      "repeat_enqueue_count": 1,
+      "repeat_while_same_app_nsdp_owned": 1,
+      "repeat_after_same_app_nsdp_released": 0,
+      "maximum_simultaneous_owners_of_one_identity": 2,
+      "maximum_enqueues_of_one_identity": 2,
+      "nsdp": {
+        "at_stop": 3,
+        "peak": 22,
+        "area_owner_seconds": 40144.414606906,
+        "mean_300_6000": 7.042879755597544
+      },
+      "simultaneous_extra_owners": {
+        "at_stop": 0,
+        "peak": 1,
+        "area_owner_seconds": 140.782298642,
+        "mean_300_6000": 0.024698648884561403
+      },
+      "all_instances": {
+        "enqueues": 431,
+        "forwards": 428,
+        "completion_counts": {
+          "ack": 367,
+          "no_ack": 61
+        },
+        "waiting_at_stop": 3,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 40144.414606906,
+        "nwk_wait_owner_seconds": 31454.975796144,
+        "hop_capacity_owner_seconds": 8689.438810762,
+        "dack_hold_owner_seconds": 0.0,
+        "completed_nwk_wait_s": {
+          "count": 428,
+          "mean": 72.97551923709347,
+          "median": 76.88079866999999,
+          "max": 138.48129867
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 428,
+          "mean": 93.27794636504206,
+          "median": 96.36129864200001,
+          "max": 154.817187584
+        },
+        "completed_hop_capacity_s": {
+          "count": 428,
+          "mean": 20.302427127948597,
+          "median": 18.765499972,
+          "max": 71.421999972
+        },
+        "receiver_feedback_counts": {
+          "ack": 410,
+          "dack": 21
+        },
+        "ingress_same_hop_replays": 1
+      },
+      "first_instances": {
+        "enqueues": 430,
+        "forwards": 427,
+        "completion_counts": {
+          "ack": 366,
+          "no_ack": 61
+        },
+        "waiting_at_stop": 3,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 40003.632308264,
+        "nwk_wait_owner_seconds": 31353.258497474,
+        "hop_capacity_owner_seconds": 8650.37381079,
+        "dack_hold_owner_seconds": 0.0,
+        "completed_nwk_wait_s": {
+          "count": 427,
+          "mean": 72.9082082782342,
+          "median": 76.73129867,
+          "max": 138.48129867
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 427,
+          "mean": 93.16669495455737,
+          "median": 96.179298642,
+          "max": 154.817187584
+        },
+        "completed_hop_capacity_s": {
+          "count": 427,
+          "mean": 20.258486676323187,
+          "median": 18.758999972,
+          "max": 71.421999972
+        },
+        "receiver_feedback_counts": {
+          "ack": 410,
+          "dack": 20
+        },
+        "ingress_same_hop_replays": 0
+      },
+      "repeated_instances": {
+        "enqueues": 1,
+        "forwards": 1,
+        "completion_counts": {
+          "ack": 1
+        },
+        "waiting_at_stop": 0,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 140.782298642,
+        "nwk_wait_owner_seconds": 101.71729867,
+        "hop_capacity_owner_seconds": 39.064999972,
+        "dack_hold_owner_seconds": 0.0,
+        "completed_nwk_wait_s": {
+          "count": 1,
+          "mean": 101.71729867,
+          "median": 101.71729867,
+          "max": 101.71729867
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 1,
+          "mean": 140.782298642,
+          "median": 140.782298642,
+          "max": 140.782298642
+        },
+        "completed_hop_capacity_s": {
+          "count": 1,
+          "mean": 39.064999972,
+          "median": 39.064999972,
+          "max": 39.064999972
+        },
+        "receiver_feedback_counts": {
+          "dack": 1
+        },
+        "ingress_same_hop_replays": 1
+      },
+      "unique_apps_delivered_by_stop": 426
+    },
+    {
+      "seed": 129,
+      "node": 5,
+      "source": 5,
+      "destination": 1,
+      "origin": "local",
+      "distinct_application_identities": 1400,
+      "identities_enqueued_more_than_once": 0,
+      "repeat_enqueue_count": 0,
+      "repeat_while_same_app_nsdp_owned": 0,
+      "repeat_after_same_app_nsdp_released": 0,
+      "maximum_simultaneous_owners_of_one_identity": 1,
+      "maximum_enqueues_of_one_identity": 1,
+      "nsdp": {
+        "at_stop": 16,
+        "peak": 16,
+        "area_owner_seconds": 91176.843533814,
+        "mean_300_6000": 15.995937462072632
+      },
+      "simultaneous_extra_owners": {
+        "at_stop": 0,
+        "peak": 0,
+        "area_owner_seconds": 0.0,
+        "mean_300_6000": 0.0
+      },
+      "all_instances": {
+        "enqueues": 1400,
+        "forwards": 1385,
+        "completion_counts": {
+          "ack": 1139,
+          "no_ack": 245
+        },
+        "waiting_at_stop": 15,
+        "active_hop_at_stop": 1,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 91176.843533814,
+        "nwk_wait_owner_seconds": 59860.433005784,
+        "hop_capacity_owner_seconds": 31316.41052803,
+        "dack_hold_owner_seconds": 0.0,
+        "completed_nwk_wait_s": {
+          "count": 1385,
+          "mean": 42.49977834352635,
+          "median": 33.522111114,
+          "max": 142.829111114
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 1384,
+          "mean": 65.07204012558815,
+          "median": 58.558055557,
+          "max": 158.264111086
+        },
+        "completed_hop_capacity_s": {
+          "count": 1384,
+          "mean": 22.599733843312137,
+          "median": 18.960499972,
+          "max": 96.064888914
+        },
+        "receiver_feedback_counts": {},
+        "ingress_same_hop_replays": 0
+      },
+      "first_instances": {
+        "enqueues": 1400,
+        "forwards": 1385,
+        "completion_counts": {
+          "ack": 1139,
+          "no_ack": 245
+        },
+        "waiting_at_stop": 15,
+        "active_hop_at_stop": 1,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 91176.843533814,
+        "nwk_wait_owner_seconds": 59860.433005784,
+        "hop_capacity_owner_seconds": 31316.41052803,
+        "dack_hold_owner_seconds": 0.0,
+        "completed_nwk_wait_s": {
+          "count": 1385,
+          "mean": 42.49977834352635,
+          "median": 33.522111114,
+          "max": 142.829111114
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 1384,
+          "mean": 65.07204012558815,
+          "median": 58.558055557,
+          "max": 158.264111086
+        },
+        "completed_hop_capacity_s": {
+          "count": 1384,
+          "mean": 22.599733843312137,
+          "median": 18.960499972,
+          "max": 96.064888914
+        },
+        "receiver_feedback_counts": {},
+        "ingress_same_hop_replays": 0
+      },
+      "repeated_instances": {
+        "enqueues": 0,
+        "forwards": 0,
+        "completion_counts": {},
+        "waiting_at_stop": 0,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 0.0,
+        "nwk_wait_owner_seconds": 0.0,
+        "hop_capacity_owner_seconds": 0.0,
+        "dack_hold_owner_seconds": 0.0,
+        "completed_nwk_wait_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "completed_hop_capacity_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "receiver_feedback_counts": {},
+        "ingress_same_hop_replays": 0
+      },
+      "unique_apps_delivered_by_stop": 1371
+    },
+    {
+      "seed": 129,
+      "node": 5,
+      "source": 7,
+      "destination": 1,
+      "origin": "relay",
+      "distinct_application_identities": 632,
+      "identities_enqueued_more_than_once": 5,
+      "repeat_enqueue_count": 5,
+      "repeat_while_same_app_nsdp_owned": 5,
+      "repeat_after_same_app_nsdp_released": 0,
+      "maximum_simultaneous_owners_of_one_identity": 2,
+      "maximum_enqueues_of_one_identity": 2,
+      "nsdp": {
+        "at_stop": 19,
+        "peak": 27,
+        "area_owner_seconds": 60830.481130534,
+        "mean_300_6000": 10.672014233427017
+      },
+      "simultaneous_extra_owners": {
+        "at_stop": 0,
+        "peak": 2,
+        "area_owner_seconds": 519.32449321,
+        "mean_300_6000": 0.0911095602122807
+      },
+      "all_instances": {
+        "enqueues": 637,
+        "forwards": 624,
+        "completion_counts": {
+          "no_ack": 117,
+          "ack": 501
+        },
+        "waiting_at_stop": 13,
+        "active_hop_at_stop": 6,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 60830.481130534,
+        "nwk_wait_owner_seconds": 46906.255808308,
+        "hop_capacity_owner_seconds": 13924.225322226,
+        "dack_hold_owner_seconds": 0.0,
+        "completed_nwk_wait_s": {
+          "count": 624,
+          "mean": 74.12806950333334,
+          "median": 77.46579867,
+          "max": 139.37829867
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 618,
+          "mean": 96.25071289153722,
+          "median": 100.287298642,
+          "max": 159.489298642
+        },
+        "completed_hop_capacity_s": {
+          "count": 618,
+          "mean": 22.3460938331877,
+          "median": 19.510444443,
+          "max": 98.911888914
+        },
+        "receiver_feedback_counts": {
+          "ack": 458,
+          "dack": 179
+        },
+        "ingress_same_hop_replays": 3
+      },
+      "first_instances": {
+        "enqueues": 632,
+        "forwards": 619,
+        "completion_counts": {
+          "no_ack": 117,
+          "ack": 496
+        },
+        "waiting_at_stop": 13,
+        "active_hop_at_stop": 6,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 60307.087637324,
+        "nwk_wait_owner_seconds": 46450.657314958,
+        "hop_capacity_owner_seconds": 13856.430322366,
+        "dack_hold_owner_seconds": 0.0,
+        "completed_nwk_wait_s": {
+          "count": 619,
+          "mean": 73.99081886386107,
+          "median": 77.26429867,
+          "max": 139.37829867
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 613,
+          "mean": 96.18196912522022,
+          "median": 100.235298642,
+          "max": 159.489298642
+        },
+        "completed_hop_capacity_s": {
+          "count": 613,
+          "mean": 22.417766703181076,
+          "median": 19.759999972,
+          "max": 98.911888914
+        },
+        "receiver_feedback_counts": {
+          "ack": 456,
+          "dack": 176
+        },
+        "ingress_same_hop_replays": 0
+      },
+      "repeated_instances": {
+        "enqueues": 5,
+        "forwards": 5,
+        "completion_counts": {
+          "ack": 5
+        },
+        "waiting_at_stop": 0,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 523.39349321,
+        "nwk_wait_owner_seconds": 455.59849335,
+        "hop_capacity_owner_seconds": 67.79499986,
+        "dack_hold_owner_seconds": 0.0,
+        "completed_nwk_wait_s": {
+          "count": 5,
+          "mean": 91.11969867,
+          "median": 92.98129867,
+          "max": 111.53229867
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 5,
+          "mean": 104.678698642,
+          "median": 102.588298642,
+          "max": 129.693298642
+        },
+        "completed_hop_capacity_s": {
+          "count": 5,
+          "mean": 13.558999972,
+          "median": 13.532999972,
+          "max": 18.160999972
+        },
+        "receiver_feedback_counts": {
+          "ack": 2,
+          "dack": 3
+        },
+        "ingress_same_hop_replays": 3
+      },
+      "unique_apps_delivered_by_stop": 604
+    },
+    {
+      "seed": 129,
+      "node": 5,
+      "source": 8,
+      "destination": 1,
+      "origin": "relay",
+      "distinct_application_identities": 384,
+      "identities_enqueued_more_than_once": 0,
+      "repeat_enqueue_count": 0,
+      "repeat_while_same_app_nsdp_owned": 0,
+      "repeat_after_same_app_nsdp_released": 0,
+      "maximum_simultaneous_owners_of_one_identity": 1,
+      "maximum_enqueues_of_one_identity": 1,
+      "nsdp": {
+        "at_stop": 14,
+        "peak": 17,
+        "area_owner_seconds": 36673.205904554,
+        "mean_300_6000": 6.433895772728772
+      },
+      "simultaneous_extra_owners": {
+        "at_stop": 0,
+        "peak": 0,
+        "area_owner_seconds": 0.0,
+        "mean_300_6000": 0.0
+      },
+      "all_instances": {
+        "enqueues": 384,
+        "forwards": 373,
+        "completion_counts": {
+          "ack": 305,
+          "no_ack": 65
+        },
+        "waiting_at_stop": 11,
+        "active_hop_at_stop": 3,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 36673.205904554,
+        "nwk_wait_owner_seconds": 28472.438168384,
+        "hop_capacity_owner_seconds": 8200.76773617,
+        "dack_hold_owner_seconds": 0.0,
+        "completed_nwk_wait_s": {
+          "count": 373,
+          "mean": 74.54010483986059,
+          "median": 79.00629867,
+          "max": 138.75429867
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 370,
+          "mean": 96.37325210478379,
+          "median": 100.19629864199999,
+          "max": 157.898187584
+        },
+        "completed_hop_capacity_s": {
+          "count": 370,
+          "mean": 22.0352326203027,
+          "median": 19.161999972,
+          "max": 75.927888914
+        },
+        "receiver_feedback_counts": {
+          "ack": 381,
+          "dack": 3
+        },
+        "ingress_same_hop_replays": 0
+      },
+      "first_instances": {
+        "enqueues": 384,
+        "forwards": 373,
+        "completion_counts": {
+          "ack": 305,
+          "no_ack": 65
+        },
+        "waiting_at_stop": 11,
+        "active_hop_at_stop": 3,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 36673.205904554,
+        "nwk_wait_owner_seconds": 28472.438168384,
+        "hop_capacity_owner_seconds": 8200.76773617,
+        "dack_hold_owner_seconds": 0.0,
+        "completed_nwk_wait_s": {
+          "count": 373,
+          "mean": 74.54010483986059,
+          "median": 79.00629867,
+          "max": 138.75429867
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 370,
+          "mean": 96.37325210478379,
+          "median": 100.19629864199999,
+          "max": 157.898187584
+        },
+        "completed_hop_capacity_s": {
+          "count": 370,
+          "mean": 22.0352326203027,
+          "median": 19.161999972,
+          "max": 75.927888914
+        },
+        "receiver_feedback_counts": {
+          "ack": 381,
+          "dack": 3
+        },
+        "ingress_same_hop_replays": 0
+      },
+      "repeated_instances": {
+        "enqueues": 0,
+        "forwards": 0,
+        "completion_counts": {},
+        "waiting_at_stop": 0,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 0.0,
+        "nwk_wait_owner_seconds": 0.0,
+        "hop_capacity_owner_seconds": 0.0,
+        "dack_hold_owner_seconds": 0.0,
+        "completed_nwk_wait_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "completed_hop_capacity_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "receiver_feedback_counts": {},
+        "ingress_same_hop_replays": 0
+      },
+      "unique_apps_delivered_by_stop": 368
+    },
+    {
+      "seed": 129,
+      "node": 7,
+      "source": 7,
+      "destination": 1,
+      "origin": "local",
+      "distinct_application_identities": 870,
+      "identities_enqueued_more_than_once": 0,
+      "repeat_enqueue_count": 0,
+      "repeat_while_same_app_nsdp_owned": 0,
+      "repeat_after_same_app_nsdp_released": 0,
+      "maximum_simultaneous_owners_of_one_identity": 1,
+      "maximum_enqueues_of_one_identity": 1,
+      "nsdp": {
+        "at_stop": 16,
+        "peak": 16,
+        "area_owner_seconds": 91187.352283398,
+        "mean_300_6000": 15.997781102350526
+      },
+      "simultaneous_extra_owners": {
+        "at_stop": 0,
+        "peak": 0,
+        "area_owner_seconds": 0.0,
+        "mean_300_6000": 0.0
+      },
+      "all_instances": {
+        "enqueues": 870,
+        "forwards": 854,
+        "completion_counts": {
+          "ack": 50,
+          "dack": 799,
+          "no_ack": 5
+        },
+        "waiting_at_stop": 16,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 2,
+        "nsdp_owner_seconds": 91187.352283398,
+        "nwk_wait_owner_seconds": 90042.874499254,
+        "hop_capacity_owner_seconds": 17444.639221576,
+        "dack_hold_owner_seconds": 16300.161437432,
+        "completed_nwk_wait_s": {
+          "count": 854,
+          "mean": 104.14465398039111,
+          "median": 108.604292498,
+          "max": 169.724292498
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 854,
+          "mean": 105.48479190093443,
+          "median": 109.893292442,
+          "max": 170.628292442
+        },
+        "completed_hop_capacity_s": {
+          "count": 852,
+          "mean": 20.446892965427228,
+          "median": 20.851999972,
+          "max": 46.948999972
+        },
+        "receiver_feedback_counts": {},
+        "ingress_same_hop_replays": 0
+      },
+      "first_instances": {
+        "enqueues": 870,
+        "forwards": 854,
+        "completion_counts": {
+          "ack": 50,
+          "dack": 799,
+          "no_ack": 5
+        },
+        "waiting_at_stop": 16,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 2,
+        "nsdp_owner_seconds": 91187.352283398,
+        "nwk_wait_owner_seconds": 90042.874499254,
+        "hop_capacity_owner_seconds": 17444.639221576,
+        "dack_hold_owner_seconds": 16300.161437432,
+        "completed_nwk_wait_s": {
+          "count": 854,
+          "mean": 104.14465398039111,
+          "median": 108.604292498,
+          "max": 169.724292498
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 854,
+          "mean": 105.48479190093443,
+          "median": 109.893292442,
+          "max": 170.628292442
+        },
+        "completed_hop_capacity_s": {
+          "count": 852,
+          "mean": 20.446892965427228,
+          "median": 20.851999972,
+          "max": 46.948999972
+        },
+        "receiver_feedback_counts": {},
+        "ingress_same_hop_replays": 0
+      },
+      "repeated_instances": {
+        "enqueues": 0,
+        "forwards": 0,
+        "completion_counts": {},
+        "waiting_at_stop": 0,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 0.0,
+        "nwk_wait_owner_seconds": 0.0,
+        "hop_capacity_owner_seconds": 0.0,
+        "dack_hold_owner_seconds": 0.0,
+        "completed_nwk_wait_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "completed_hop_capacity_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "receiver_feedback_counts": {},
+        "ingress_same_hop_replays": 0
+      },
+      "unique_apps_delivered_by_stop": 604
+    },
+    {
+      "seed": 129,
+      "node": 8,
+      "source": 7,
+      "destination": 1,
+      "origin": "relay",
+      "distinct_application_identities": 849,
+      "identities_enqueued_more_than_once": 0,
+      "repeat_enqueue_count": 0,
+      "repeat_while_same_app_nsdp_owned": 0,
+      "repeat_after_same_app_nsdp_released": 0,
+      "maximum_simultaneous_owners_of_one_identity": 1,
+      "maximum_enqueues_of_one_identity": 1,
+      "nsdp": {
+        "at_stop": 15,
+        "peak": 57,
+        "area_owner_seconds": 168768.782552356,
+        "mean_300_6000": 29.608558342518595
+      },
+      "simultaneous_extra_owners": {
+        "at_stop": 0,
+        "peak": 0,
+        "area_owner_seconds": 0.0,
+        "mean_300_6000": 0.0
+      },
+      "all_instances": {
+        "enqueues": 849,
+        "forwards": 834,
+        "completion_counts": {
+          "ack": 102,
+          "dack": 707,
+          "no_ack": 25
+        },
+        "waiting_at_stop": 15,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 4,
+        "nsdp_owner_seconds": 168768.782552356,
+        "nwk_wait_owner_seconds": 166918.627974814,
+        "hop_capacity_owner_seconds": 16624.133415842,
+        "dack_hold_owner_seconds": 14773.9788383,
+        "completed_nwk_wait_s": {
+          "count": 834,
+          "mean": 198.98099299933332,
+          "median": 192.30448295999997,
+          "max": 398.738482932
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 834,
+          "mean": 201.19940376377218,
+          "median": 194.137982904,
+          "max": 399.154482904
+        },
+        "completed_hop_capacity_s": {
+          "count": 830,
+          "mean": 19.978471804156626,
+          "median": 20.942999972,
+          "max": 63.036
+        },
+        "receiver_feedback_counts": {
+          "ack": 50,
+          "dack": 799
+        },
+        "ingress_same_hop_replays": 0
+      },
+      "first_instances": {
+        "enqueues": 849,
+        "forwards": 834,
+        "completion_counts": {
+          "ack": 102,
+          "dack": 707,
+          "no_ack": 25
+        },
+        "waiting_at_stop": 15,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 4,
+        "nsdp_owner_seconds": 168768.782552356,
+        "nwk_wait_owner_seconds": 166918.627974814,
+        "hop_capacity_owner_seconds": 16624.133415842,
+        "dack_hold_owner_seconds": 14773.9788383,
+        "completed_nwk_wait_s": {
+          "count": 834,
+          "mean": 198.98099299933332,
+          "median": 192.30448295999997,
+          "max": 398.738482932
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 834,
+          "mean": 201.19940376377218,
+          "median": 194.137982904,
+          "max": 399.154482904
+        },
+        "completed_hop_capacity_s": {
+          "count": 830,
+          "mean": 19.978471804156626,
+          "median": 20.942999972,
+          "max": 63.036
+        },
+        "receiver_feedback_counts": {
+          "ack": 50,
+          "dack": 799
+        },
+        "ingress_same_hop_replays": 0
+      },
+      "repeated_instances": {
+        "enqueues": 0,
+        "forwards": 0,
+        "completion_counts": {},
+        "waiting_at_stop": 0,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 0.0,
+        "nwk_wait_owner_seconds": 0.0,
+        "hop_capacity_owner_seconds": 0.0,
+        "dack_hold_owner_seconds": 0.0,
+        "completed_nwk_wait_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "completed_hop_capacity_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "receiver_feedback_counts": {},
+        "ingress_same_hop_replays": 0
+      },
+      "unique_apps_delivered_by_stop": 604
+    },
+    {
+      "seed": 129,
+      "node": 8,
+      "source": 8,
+      "destination": 1,
+      "origin": "local",
+      "distinct_application_identities": 528,
+      "identities_enqueued_more_than_once": 0,
+      "repeat_enqueue_count": 0,
+      "repeat_while_same_app_nsdp_owned": 0,
+      "repeat_after_same_app_nsdp_released": 0,
+      "maximum_simultaneous_owners_of_one_identity": 1,
+      "maximum_enqueues_of_one_identity": 1,
+      "nsdp": {
+        "at_stop": 16,
+        "peak": 16,
+        "area_owner_seconds": 91191.551968654,
+        "mean_300_6000": 15.998517889237544
+      },
+      "simultaneous_extra_owners": {
+        "at_stop": 0,
+        "peak": 0,
+        "area_owner_seconds": 0.0,
+        "mean_300_6000": 0.0
+      },
+      "all_instances": {
+        "enqueues": 528,
+        "forwards": 512,
+        "completion_counts": {
+          "ack": 258,
+          "dack": 243,
+          "no_ack": 11
+        },
+        "waiting_at_stop": 16,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 1,
+        "nsdp_owner_seconds": 91191.551968654,
+        "nwk_wait_owner_seconds": 90008.890946446,
+        "hop_capacity_owner_seconds": 6371.935733638,
+        "dack_hold_owner_seconds": 5189.27471143,
+        "completed_nwk_wait_s": {
+          "count": 512,
+          "mean": 173.13373231727735,
+          "median": 149.292795402,
+          "max": 400.483295402
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 512,
+          "mean": 175.44361712627733,
+          "median": 151.351295346,
+          "max": 403.844295346
+        },
+        "completed_hop_capacity_s": {
+          "count": 511,
+          "mean": 12.44916444039139,
+          "median": 8.293999972,
+          "max": 61.528
+        },
+        "receiver_feedback_counts": {},
+        "ingress_same_hop_replays": 0
+      },
+      "first_instances": {
+        "enqueues": 528,
+        "forwards": 512,
+        "completion_counts": {
+          "ack": 258,
+          "dack": 243,
+          "no_ack": 11
+        },
+        "waiting_at_stop": 16,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 1,
+        "nsdp_owner_seconds": 91191.551968654,
+        "nwk_wait_owner_seconds": 90008.890946446,
+        "hop_capacity_owner_seconds": 6371.935733638,
+        "dack_hold_owner_seconds": 5189.27471143,
+        "completed_nwk_wait_s": {
+          "count": 512,
+          "mean": 173.13373231727735,
+          "median": 149.292795402,
+          "max": 400.483295402
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 512,
+          "mean": 175.44361712627733,
+          "median": 151.351295346,
+          "max": 403.844295346
+        },
+        "completed_hop_capacity_s": {
+          "count": 511,
+          "mean": 12.44916444039139,
+          "median": 8.293999972,
+          "max": 61.528
+        },
+        "receiver_feedback_counts": {},
+        "ingress_same_hop_replays": 0
+      },
+      "repeated_instances": {
+        "enqueues": 0,
+        "forwards": 0,
+        "completion_counts": {},
+        "waiting_at_stop": 0,
+        "active_hop_at_stop": 0,
+        "dack_hold_at_stop": 0,
+        "nsdp_owner_seconds": 0.0,
+        "nwk_wait_owner_seconds": 0.0,
+        "hop_capacity_owner_seconds": 0.0,
+        "dack_hold_owner_seconds": 0.0,
+        "completed_nwk_wait_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "completed_nsdp_lifetime_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "completed_hop_capacity_s": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "max": null
+        },
+        "receiver_feedback_counts": {},
+        "ingress_same_hop_replays": 0
+      },
+      "unique_apps_delivered_by_stop": 368
+    }
+  ],
+  "verification": {
+    "passed": true,
+    "checked_assertion_counts": {
+      "contiguous_event_index": 5049318,
+      "ordered_pre_stop_time": 5049318,
+      "unique_generated_app": 12463,
+      "enqueue_nsdp_snapshot": 18366,
+      "enqueue_queue_snapshot": 18366,
+      "admission_queue_before_snapshot": 18123,
+      "admission_queue_after_snapshot": 18123,
+      "admission_nsdp_snapshot": 18123,
+      "admission_has_waiting_app": 18123,
+      "forward_has_waiting_owner": 18123,
+      "hop_has_same_time_forward": 18123,
+      "active_hop_key_unique": 18123,
+      "admission_reliability_tracked": 18123,
+      "hop_admission_pending_before": 18123,
+      "hop_admission_pending_after": 18123,
+      "hop_admission_outstanding_before": 18123,
+      "hop_admission_outstanding_after": 18123,
+      "enqueue_feedback_first_reception": 5903,
+      "enqueue_feedback_nsdp_valid": 5903,
+      "enqueue_feedback_nsdp_increments": 5903,
+      "nsdp_release_before_snapshot": 18092,
+      "nsdp_release_after_snapshot": 18092,
+      "nsdp_release_queue_snapshot": 18092,
+      "completion_has_active_admission": 18092,
+      "completion_app_matches_hop": 18092,
+      "completion_releases_nsdp": 18092,
+      "completion_has_nsdp_release": 18092,
+      "completion_same_time_preceding_release": 18092,
+      "dack_capacity_separate": 18092,
+      "completion_pending_before": 18092,
+      "completion_pending_after": 18092,
+      "completion_outstanding_before": 18092,
+      "completion_outstanding_after": 18092,
+      "delivered_app_generated": 11793,
+      "capacity_release_has_dack_hold": 3311,
+      "capacity_release_app_matches_hop": 3311,
+      "dack_expiry_capacity_only": 3311,
+      "capacity_release_pending_before": 3311,
+      "capacity_release_pending_after": 3311,
+      "capacity_release_outstanding_before": 3311,
+      "capacity_release_outstanding_after": 3311,
+      "reenqueue_prior_feedback_dack": 6,
+      "raw_trace_sha256": 1,
+      "raw_trace_bytes": 1,
+      "all_forwards_admitted": 1,
+      "all_nsdp_releases_completed": 1,
+      "all_relay_enqueues_feedback_joined": 1,
+      "nsdp_final_identity_count": 16,
+      "queue_final_waiting_count": 6,
+      "capacity_final_active_plus_hold": 6,
+      "nsdp_lifetime_area_equals_snapshot_area": 16,
+      "enqueue_forward_waiting_conservation": 16,
+      "forward_completion_active_conservation": 16
+    },
+    "total_assertions": 10653269
+  },
+  "definitions": {
+    "application_identity": "(source,destination,application sequence); scoped by node for custody",
+    "repeat_enqueue": "Every enqueue after the first for one node/application identity, including serial reacquisition",
+    "simultaneous_extra_owner_area": "Integral of max(active NSDP owners per identity - 1, 0), summed over identities",
+    "repeat_instance_area": "Lifetime area of later enqueued instances; can persist after the first instance has completed",
+    "ownership_endpoint": "ACK, DACK or no-ACK HOP completion releases NSDP",
+    "capacity_endpoint": "ACK/no-ACK completion, or later DACK capacity-release expiry",
+    "pending": "Right-censored at 6000 seconds; never called a drop"
+  },
+  "limits": [
+    "Observational census does not quantify a counterfactual delivery change from deduplication.",
+    "A final unique application delivery cannot be assigned to one duplicate custody instance without additional downstream lineage.",
+    "Historical seed128 lacks detailed native custody events and is not included.",
+    "The source8 NSDP quota is separate from source7; they share downstream queue service and HOP capacity.",
+    "No fresh MATLAB, native or OPNET simulation was executed."
+  ]
+}

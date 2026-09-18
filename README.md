@@ -1,4 +1,4 @@
-> **Current published checkpoint: Tranches 15–21.** The portable T20 baseline passed 716/716 MATLAB tests and three-seed campus validation; T21 is completed offline analysis. See [checkpoint status and evidence](CHECKPOINT_T15_T21.md). Historical tranche handoff files retain their original status text.
+> **Current published checkpoint: Tranches 22–24.** T22 passed its focused adaptive-window contract; T23 completed receiver-feedback diagnostics with two documented custody differences; T24 is accepted offline trace analysis. Production behavior is unchanged. See [checkpoint status and evidence](CHECKPOINT_T22_T24.md). T25 is excluded. Historical handoff files retain their original status text.
 
 # Tranche 18 candidate: relay/local service and 4-to-5 retries
 
