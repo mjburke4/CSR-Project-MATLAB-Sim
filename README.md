@@ -1,4 +1,4 @@
-> **Current published checkpoint: Tranches 22–24.** T22 passed its focused adaptive-window contract; T23 completed receiver-feedback diagnostics with two documented custody differences; T24 is accepted offline trace analysis. Production behavior is unchanged. See [checkpoint status and evidence](CHECKPOINT_T22_T24.md). T25 is excluded. Historical handoff files retain their original status text.
+> **Code checkpoint: T25–T27 and receiver/MAC diagnostic source.** This branch adds validation source, native fixtures and analysis scripts. The latest MAC MATLAB run is pending. New diagnostic data, reports and parity-ledger updates are not included; use the original complete issued bundles to execute their manifest-guarded runners. Historical documentation below retains its earlier status.
 
 # Tranche 18 candidate: relay/local service and 4-to-5 retries
 
@@ -455,3 +455,4 @@ The portable PHY/channel/traffic and MAC/HOP foundations are accepted from owner
 publication, PR creation, merging, and branch deletion require owner
 authorization. Ordinary local edits, tests and internal commits proceed
 within an authorized tranche.
+

@@ -1,0 +1,511 @@
+function report = ackEdgeContract(outputDirectory)
+%ACKEDGECONTRACT Observe actual DATA ingress versus real MAC ACK service.
+% A prescribed source MAC emits a real 89-byte ACK+DATA aggregate. The gateway
+% has a real HOP receive window and NWK delivery callback. Source-side DATA
+% custody/admission, RF reception and routing reconvergence are outside scope.
+% Every event uses the unchanged EventScheduler via a transparent observer.
+if nargin<1, outputDirectory = ''; end
+root = fileparts(fileparts(fileparts(mfilename('fullpath'))));
+inputDirectory = fullfile(root,'scenarios','edge');
+referenceDirectory = fullfile(root,'evidence','tranche-14-edge-reference');
+plan = jsondecode(fileread(fullfile(inputDirectory,'plan.json')));
+cases = readtable(fullfile(inputDirectory,'cases.csv'),'TextType','string', ...
+    'VariableNamingRule','preserve');
+tape = readtable(fullfile(inputDirectory,'draws.csv'),'TextType','string', ...
+    'VariableNamingRule','preserve');
+validateInputs(plan,cases,tape);
+events = table(); boundary = table(); checks = table();
+draws = table(); usage = table(); schedule = table();
+results = repmat(emptyResult(),0,1);
+for k=1:height(cases)
+    fprintf('ACK edge diagnostic %d/%d: %s (4 simulated seconds).\n', ...
+        k,height(cases),char(cases.('case')(k)));
+    [e,b,c,d,u,s,r] = runCase(cases(k,:));
+    if ~isempty(outputDirectory)
+        % Save each completed attempt before cross-case aggregation. Short
+        % paths preserve observations even if a later case/export fails.
+        directory = fullfile(outputDirectory,sprintf('c%d',k));
+        if ~isfolder(directory), mkdir(directory); end
+        writetable(e,fullfile(directory,'events.csv'));
+        writetable(b,fullfile(directory,'boundary.csv'));
+        writetable(c,fullfile(directory,'check.csv'));
+        writetable(d,fullfile(directory,'draws.csv'));
+        writetable(u,fullfile(directory,'usage.csv'));
+        writetable(s,fullfile(directory,'scheduler.csv'));
+        csr.validation.Artifacts.writeJson(fullfile(directory,'result.json'),r);
+    end
+    events = [events;e]; boundary = [boundary;b]; checks = [checks;c]; %#ok<AGROW>
+    draws = [draws;d]; usage = [usage;u]; schedule = [schedule;s]; %#ok<AGROW>
+    results(end+1,1) = r; %#ok<AGROW>
+end
+if ~isequal(events.Properties.VariableNames,cellstr(string(plan.events_schema(:)))') || ...
+        ~isequal(boundary.Properties.VariableNames,cellstr(string(plan.boundary_schema(:)))')
+    error('csr:validation:AckEdgeSchema','Observations differ from the pinned schema.');
+end
+semanticFields = setdiff(events.Properties.VariableNames, ...
+    {'time_seconds_dec','time_seconds_hex','scheduler_id'},'stable');
+boundaryFields = boundary.Properties.VariableNames;
+boundaryFields(endsWith(boundaryFields,'_seconds_dec') | ...
+    strcmp(boundaryFields,'ingress_event_id')) = [];
+eventComparison = compareCases(events,fullfile(referenceDirectory,'events.csv'),semanticFields);
+boundaryComparison = compareCases(boundary,fullfile(referenceDirectory,'boundary.csv'),boundaryFields);
+precisionComparison = compareCases(events,fullfile(referenceDirectory,'events.csv'), ...
+    {'case','order','phase','time_seconds_hex'});
+drawComparison = compareCases(draws,fullfile(referenceDirectory,'draws.csv'),draws.Properties.VariableNames);
+usageComparison = compareCases(usage,fullfile(referenceDirectory,'usage.csv'),usage.Properties.VariableNames);
+unmatched = eventComparison.UnmatchedCount + boundaryComparison.UnmatchedCount + ...
+    precisionComparison.UnmatchedCount + drawComparison.UnmatchedCount + usageComparison.UnmatchedCount;
+completed = all([results.Completed]); failed = sum(~logical(checks.pass));
+sharedCases = ~strcmp({eventComparison.Cases.Case},'continuous');
+integerMatches = eventComparison.ReferencePresent && eventComparison.SchemaMatches && ...
+    all([eventComparison.Cases(sharedCases).UnmatchedCount]==0);
+continuous = boundary(string(boundary.('case'))=="continuous",:);
+continuousResult = results(strcmp({results.Case},'continuous'));
+expectedResidual = completed && failed==0 && height(continuous)==1 && ...
+    hex2num(char(continuous.arrival_minus_tick_seconds_hex))==eps(plan.boundary_ns/1e9) && ...
+    continuousResult.FirstAckBits==uint64(3);
+report = struct('Schema','csr-tranche14-ack-edge-contract-v1', ...
+    'DiagnosticCompleted',completed,'Passed',completed && failed==0, ...
+    'MatchesNative',unmatched==0,'SharedIntegerMatchesNative',integerMatches, ...
+    'ExpectedContinuousResidual',expectedResidual,'CaseCount',height(cases), ...
+    'EventCount',height(events),'BoundaryCount',height(boundary), ...
+    'DrawCount',height(draws),'SchedulerRowCount',height(schedule), ...
+    'CheckpointCount',height(checks),'FailedCount',failed,'UnmatchedCount',unmatched, ...
+    'EventComparison',eventComparison,'BoundaryComparison',boundaryComparison, ...
+    'FullPrecisionComparison',precisionComparison,'DrawComparison',drawComparison, ...
+    'UsageComparison',usageComparison,'FullPrecisionCompared',true, ...
+    'DecimalRoundTripRequired',true,'GlobalClockChanged',false, ...
+    'TransportQuantizationScope','quantized case fixture transport only', ...
+    'SchedulerIdScope','Actual underlying EventScheduler IDs; local causality only, no cross-runtime ID equality', ...
+    'TimeToleranceNanoseconds',0,'CaseResults',results, ...
+    'InputBindings',bindings(inputDirectory,{'plan.json','cases.csv','draws.csv'},'scenarios/edge/'), ...
+    'ReferenceBindings',bindings(referenceDirectory,{'events.csv','boundary.csv','draws.csv','usage.csv'}, ...
+        'evidence/tranche-14-edge-reference/'),'Scope',plan.scope,'Runtime',version);
+if ~isempty(outputDirectory)
+    if ~isfolder(outputDirectory), mkdir(outputDirectory); end
+    writetable(events,fullfile(outputDirectory,'events.csv'));
+    writetable(boundary,fullfile(outputDirectory,'boundary.csv'));
+    writetable(checks,fullfile(outputDirectory,'check.csv'));
+    writetable(draws,fullfile(outputDirectory,'draws.csv'));
+    writetable(usage,fullfile(outputDirectory,'usage.csv'));
+    writetable(schedule,fullfile(outputDirectory,'scheduler.csv'));
+    csr.validation.Artifacts.writeJson(fullfile(outputDirectory,'summary.json'),report);
+end
+report.Events = events; report.Boundary = boundary; report.Checkpoints = checks;
+report.Draws = draws; report.Usage = usage; report.Scheduler = schedule;
+
+    function [outEvents,outBoundary,outChecks,outDraws,outUsage,outSchedule,result] = runCase(entry)
+        name = char(entry.('case')); scheduler = csr.validation.TraceScheduler(name,100000);
+        owner = csr.validation.ReplayStreams(tape(string(tape.('case'))==name,:),@()scheduler.Now,name);
+        macs = cell(1,5); hops = cell(1,5); network = [];
+        eventRows = repmat(emptyEvent(),0,1); boundaryRows = repmat(emptyBoundary(),0,1);
+        checkRows = repmat(emptyCheck(),0,1);
+        result = emptyResult(); result.Case = name;
+        primarySeen = false; firstAckBits = uint64(0); firstAckSequence = 0;
+        firstAckId = uint64(0); ingressId = uint64(0);
+        dataTransmissions = 0; gatewayAcks = 0; deliveries = uint64([]);
+        selectedBytes = 0; selectedSegments = 0; selectedTxNs = -1;
+        selectedRate = -1; selectedPower = -1; selectedShort = false; selectedMembers = false;
+        primeSequence = -1; primeBits = uint64(0); firstAckTimeNs = -1;
+        try
+            options = csr.mac.Layer.defaults(); options.DutyCycleEnabled = false;
+            options.ActiveNodes = plan.active_nodes; options.ReportedActiveNodes = plan.active_nodes;
+            options.SlotProfile = plan.slot_profile;
+            options.SlotSeconds = plan.slot_ns/1e9; options.HoldoffSeconds = plan.holdoff_ns/1e9;
+            for node=reshape(plan.nodes,1,[])
+                macs{node} = csr.mac.Layer(node,scheduler,owner,options, ...
+                    struct('Transmit',@(f,d)transmit(node,f,d), ...
+                    'Event',@(n,f,d)macEvent(node,n,f,d)));
+                callbacks = struct('EnqueueMac',@(f)enqueue(node,f));
+                if node==plan.gateway
+                    callbacks.Deliver = @receiveData;
+                    callbacks.NsdpCount = @networkNsdpCount;
+                    callbacks.RouteAvailable = @networkRouteAvailable;
+                end
+                hops{node} = csr.hop.Layer(node,scheduler,owner,struct(),callbacks);
+                macs{node}.start(); macs{node}.receiverChanged('Idle');
+            end
+            network = csr.nwk.Layer(plan.gateway,scheduler,owner,fixtureConfig(plan), ...
+                struct('CanSendControl',@(~)false,'Delivered',@deliver));
+            scheduler.scheduleAt(plan.source_epoch_ns/1e9,@startSource);
+            scheduler.scheduleAt(plan.gateway_epoch_ns/1e9,@startGateway);
+            scheduler.scheduleAt(plan.stop_ns/1e9,@settled);
+            scheduler.run(plan.stop_ns/1e9);
+            result.Completed = true;
+        catch problem
+            result.ErrorIdentifier = problem.identifier; result.ErrorMessage = problem.message;
+            result.ErrorStack = problem.stack;
+            fprintf(2,'ACK edge case %s failed: %s (%s)\n',name,problem.message,problem.identifier);
+        end
+        outEvents = csr.validation.edgeRecordTable(eventRows,emptyEvent());
+        outBoundary = csr.validation.edgeRecordTable(boundaryRows,emptyBoundary());
+        % Keep the validated ReplayStreams implementation unchanged. Its
+        % char-backed tables are normalized only at this diagnostic boundary.
+        outDraws = csr.validation.edgeRecordTable(owner.draws(),emptyDraw());
+        outUsage = csr.validation.edgeRecordTable(owner.usage(),emptyUsage());
+        outSchedule = scheduler.records();
+        ingressRows = outEvents(string(outEvents.phase)=="ingress_before" & outEvents.node==1,:);
+        ackRows = outEvents(string(outEvents.phase)=="ack_tx",:);
+        follows = true;
+        if height(ingressRows)==1 && ~isempty(ackRows)
+            follows = ingressRows.order(1)>ackRows.order(1);
+        end
+        expectedBits = 7; expectedSeq = 3; if follows, expectedBits = 3; expectedSeq = 2; end
+        checkpoint('case_completed',0,double(result.Completed),1);
+        checkpoint('primary_aggregate_count',5,double(primarySeen),1);
+        checkpoint('primary_wire_bytes',5,selectedBytes,89);
+        checkpoint('primary_segment_count',5,selectedSegments,2);
+        checkpoint('primary_tx_time_ns',5,selectedTxNs,plan.expected_mixed_tx_ns);
+        checkpoint('primary_rate_kbps',5,selectedRate,plan.rate_kbps);
+        checkpoint('primary_power_dbm',5,selectedPower,plan.power_dbm);
+        checkpoint('primary_short_preamble',5,double(selectedShort),1);
+        checkpoint('primary_selected_members',5,double(selectedMembers),1);
+        checkpoint('source_data_transmissions',5,dataTransmissions,1);
+        checkpoint('gateway_deliveries',1,numel(deliveries),3);
+        checkpoint('gateway_identity_set',1,double(isequal(sort(deliveries(:)),uint64((1:3)'))),1);
+        checkpoint('first_ack_bits',1,double(firstAckBits),expectedBits);
+        checkpoint('first_ack_sequence',1,firstAckSequence,expectedSeq);
+        checkpoint('first_ack_time_ns',1,firstAckTimeNs,plan.boundary_ns);
+        checkpoint('primed_window_sequence',1,primeSequence,2);
+        checkpoint('primed_window_bits',1,double(primeBits),3);
+        checkpoint('gateway_ack_transmissions',1,gatewayAcks,5+double(follows));
+        checkpoint('boundary_row_count',0,height(outBoundary),1);
+        causal = false;
+        if height(outBoundary)==1 && firstAckId>0 && ingressId>0
+            arrival = hex2num(char(outBoundary.arrival_seconds_hex));
+            tick = hex2num(char(outBoundary.tick_seconds_hex));
+            causal = (arrival<tick) || (arrival==tick && ingressId<firstAckId);
+        end
+        checkpoint('ingress_precedes_first_ack',1,double(causal),double(~follows));
+        expectedFirst = causal;
+        if any(strcmp(name,{'tie_early','before','quantized'})), expectedFirst = true; end
+        if any(strcmp(name,{'tie_late','after'})), expectedFirst = false; end
+        checkpoint('controlled_case_order',1,double(causal),double(expectedFirst));
+        checkpoint('trace_decimal_hex_roundtrip',0,double(checkPrecision(outEvents,outBoundary,outSchedule)),1);
+        checkpoint('scheduler_execution_identity',0,double(checkScheduler(outEvents,outSchedule)),1);
+        checkpoint('draw_usage_conservation',0,double(all(outUsage.supplied==outUsage.consumed+outUsage.unused) && ...
+            sum(outUsage.consumed)==height(outDraws)),1);
+        checkpoint('raw_support_and_resolution',0,double(all(outDraws.min==0 & outDraws.max==31 & ...
+            outDraws.draw==0 & outDraws.resolved>=0 & outDraws.resolved<=31) && ...
+            all(ismember(string(outDraws.purpose),["prepare","advertise"]))),1);
+        window = struct('Highest',-1,'AckBitmap',uint64(0),'DackBitmap',uint64(0));
+        if ~isempty(hops{1}), state = hops{1}.state(5); window = state.DataReceiveWindow; end
+        checkpoint('final_window_sequence',1,window.Highest,3);
+        checkpoint('final_window_bits',1,double(window.AckBitmap),7);
+        checkpoint('final_window_dack_bits',1,double(window.DackBitmap),0);
+        for node=reshape(plan.nodes,1,[])
+            ack = -1; data = -1; pending = -1;
+            if ~isempty(macs{node}), ack = macs{node}.AckQueueCount; data = macs{node}.DataQueueCount; end
+            if ~isempty(hops{node}), pending = hops{node}.PendingDataCount; end
+            checkpoint('final_ack_queue',node,ack,0);
+            checkpoint('final_data_queue',node,data,0);
+            checkpoint('final_sender_custody',node,pending,0);
+        end
+        outChecks = csr.validation.edgeRecordTable(checkRows,emptyCheck());
+        result.Passed = result.Completed && all(outChecks.pass);
+        result.FirstAckBits = firstAckBits; result.FirstAckSequence = firstAckSequence;
+        result.GatewayAckTransmissions = gatewayAcks; result.Delivered = numel(deliveries);
+        result.SourceDataTransmissions = dataTransmissions;
+        result.IngressEventId = ingressId; result.FirstAckEventId = firstAckId;
+        result.CheckpointCount = height(outChecks);
+
+        function startSource()
+            macs{5}.receiverChanged('Search');
+            for peer=[1 4], hear(5,peer); end
+            hear(4,5);
+            radio = radioConfig(plan);
+            feedback = csr.hop.Frames.acknowledgment(5,4,uint16(4),uint64(15),uint64(0),radio);
+            frame = csr.hop.Frames.data(application(3),5,1,uint16(3),radio);
+            if ~macs{5}.enqueue(feedback) || ~macs{5}.enqueue(frame)
+                error('csr:validation:AckEdgeEnqueue','Prescribed source frames were rejected.');
+            end
+        end
+        function startGateway()
+            macs{1}.receiverChanged('Search'); hear(1,5);
+            network.observe(5,struct('Success',true,'PathlossDb',70));
+            for id=1:2
+                frame = csr.hop.Frames.data(application(id),5,1,uint16(id),radioConfig(plan));
+                observe('prime_before',1,5,frame);
+                macs{1}.receive(frame,struct('Success',true));
+                hops{1}.receive(frame,struct('Success',true));
+                observe('prime_after',1,5,frame);
+            end
+            state = hops{1}.state(5); primeSequence = state.DataReceiveWindow.Highest;
+            primeBits = state.DataReceiveWindow.AckBitmap;
+        end
+        function hear(node,peer)
+            frame = struct('SourceId',peer,'ReservationSlot',-1);
+            macs{node}.receive(frame,struct('Success',true));
+            macs{node}.receive(frame,struct('Success',true));
+        end
+        function accepted = enqueue(node,frame)
+            if isempty(frame.TxPowerDbm), frame.TxPowerDbm = plan.power_dbm; end
+            accepted = macs{node}.enqueue(frame);
+        end
+        function count = networkNsdpCount(app), count = network.nsdpCount(app); end
+        function value = networkRouteAvailable(app), value = network.routeAvailable(app); end
+        function accepted = receiveData(app,peer), accepted = network.receiveData(app,peer); end
+        function accepted = deliver(app,peer)
+            accepted = app.DestinationId==1 && peer==5;
+            if accepted
+                deliveries(end+1) = uint64(app.Id);
+                observe('deliver',1,peer,struct('Kind','DATA','App',app));
+            end
+        end
+        function macEvent(node,event,~,details)
+            if strcmp(event,'mac_prepare'), owner.resolve(node,'prepare',details.ReservationSlot); end
+        end
+        function transmit(node,envelope,duration)
+            owner.resolve(node,'advertise',envelope.ReservationSlot);
+            hasData = false;
+            for index=1:numel(envelope.Segments)
+                frame = envelope.Segments{index}; phase = 'aggregate_tx';
+                if strcmp(frame.Kind,'DATA'), dataTransmissions = dataTransmissions+1; hasData = true; end
+                if node==1
+                    phase = 'ack_tx'; gatewayAcks = gatewayAcks+1;
+                    if gatewayAcks==1
+                        firstAckBits = frame.AckBitmap; firstAckSequence = double(frame.Sequence);
+                        firstAckId = scheduler.CurrentEventId;
+                        firstAckTimeNs = round(scheduler.Now*1e9);
+                    end
+                end
+                observe(phase,node,frame.DestinationId,frame);
+            end
+            if node==5 && hasData
+                if primarySeen, error('csr:validation:AckEdgePrimary','More than one primary DATA emission.'); end
+                primarySeen = true; selectedBytes = envelope.WirePayloadBytes;
+                selectedSegments = numel(envelope.Segments); txTime = scheduler.Now;
+                selectedTxNs = round(txTime*1e9); selectedRate = envelope.RateKeyKbps;
+                selectedPower = envelope.TxPowerDbm; selectedShort = strcmp(envelope.Preamble,'short');
+                if selectedSegments==2
+                    a = envelope.Segments{1}; b = envelope.Segments{2};
+                    selectedMembers = strcmp(a.Kind,'ACK') && a.SourceId==5 && a.DestinationId==4 && ...
+                        a.WirePayloadBytes==41 && a.Sequence==4 && a.AckBitmap==uint64(15) && ...
+                        a.DackBitmap==uint64(0) && strcmp(b.Kind,'DATA') && b.SourceId==5 && ...
+                        b.DestinationId==1 && b.WirePayloadBytes==48 && b.Sequence==3 && ...
+                        b.App.SourceId==5 && b.App.Id==uint64(3);
+                end
+                if logical(entry.late_insertion)
+                    scheduler.scheduleAt(plan.late_arm_ns/1e9,@()arm(envelope,duration,txTime));
+                else
+                    arm(envelope,duration,txTime);
+                end
+            else
+                arrival = scheduler.Now+duration+plan.propagation_seconds;
+                if strcmp(entry.mode,'local_ns')
+                    arrival = (round(scheduler.Now*1e9)+round(duration*1e9)+ ...
+                        round(plan.propagation_seconds*1e9))/1e9;
+                end
+                scheduler.scheduleAt(arrival,@()ingress(envelope));
+            end
+        end
+        function arm(envelope,duration,txTime)
+            tick = plan.boundary_ns/1e9;
+            if strcmp(entry.mode,'target')
+                arrival = (plan.boundary_ns+entry.offset_ns)/1e9;
+            elseif strcmp(entry.mode,'continuous')
+                arrival = txTime+duration+plan.propagation_seconds;
+            else
+                arrival = (round(txTime*1e9)+round(duration*1e9)+ ...
+                    round(plan.propagation_seconds*1e9))/1e9;
+            end
+            ingressId = scheduler.scheduleAt(arrival,@()ingress(envelope));
+            row = emptyBoundary(); row.('case') = name; row.transport_mode = char(entry.mode);
+            row.late_insertion = logical(entry.late_insertion);
+            row.wire_payload_bytes = envelope.WirePayloadBytes; row.segment_count = numel(envelope.Segments);
+            row.tx_time_ns = round(txTime*1e9); row.tx_seconds_dec = sprintf('%.17g',txTime);
+            row.tx_seconds_hex = num2hex(txTime); row.duration_ns = round(duration*1e9);
+            row.duration_seconds_dec = sprintf('%.17g',duration); row.duration_seconds_hex = num2hex(duration);
+            row.tick_time_ns = plan.boundary_ns; row.tick_seconds_dec = sprintf('%.17g',tick);
+            row.tick_seconds_hex = num2hex(tick); row.arm_time_ns = round(scheduler.Now*1e9);
+            row.arm_seconds_dec = sprintf('%.17g',scheduler.Now); row.arm_seconds_hex = num2hex(scheduler.Now);
+            row.arrival_time_ns = round(arrival*1e9); row.arrival_seconds_dec = sprintf('%.17g',arrival);
+            row.arrival_seconds_hex = num2hex(arrival);
+            row.arrival_minus_tick_seconds_dec = sprintf('%.17g',arrival-tick);
+            row.arrival_minus_tick_seconds_hex = num2hex(arrival-tick); row.ingress_event_id = ingressId;
+            boundaryRows(end+1,1) = row;
+        end
+        function ingress(envelope)
+            heard = false(1,5);
+            for index=1:numel(envelope.Segments)
+                frame = envelope.Segments{index}; node = frame.DestinationId; peer = envelope.SourceId;
+                frame.ReservationSlot = envelope.ReservationSlot;
+                if strcmp(frame.Kind,'DATA'), observe('ingress_before',node,peer,frame);
+                else, observe('feedback_ingress',node,peer,frame); end
+                if ~heard(node)
+                    macs{node}.receive(frame,struct('Success',true)); heard(node) = true;
+                end
+                hops{node}.receive(frame,struct('Success',true));
+                if strcmp(frame.Kind,'DATA'), observe('ingress_after',node,peer,frame); end
+            end
+        end
+        function settled()
+            for node=reshape(plan.nodes,1,[]), observe('settled',node,0,struct()); end
+        end
+        function observe(phase,node,peer,frame)
+            row = emptyEvent(); row.('case') = name; row.order = numel(eventRows)+1;
+            row.phase = phase; row.time_ns = round(scheduler.Now*1e9);
+            row.time_seconds_dec = sprintf('%.17g',scheduler.Now); row.time_seconds_hex = num2hex(scheduler.Now);
+            row.scheduler_id = scheduler.CurrentEventId; row.node = node; row.peer = peer;
+            if isfield(frame,'Kind'), row.kind = frame.Kind; end
+            % ACK frames have App=struct() from Frames.base; only DATA has
+            % an application identity. Keep ACK/NONE identity fields zero.
+            if strcmp(row.kind,'DATA')
+                row.app_source = frame.App.SourceId; row.app_id = uint64(frame.App.Id);
+            end
+            if isfield(frame,'Sequence'), row.hop_seq = double(frame.Sequence); end
+            if isfield(frame,'AckBitmap'), row.ack_bits = uint64(frame.AckBitmap); end
+            if isfield(frame,'DackBitmap'), row.dack_bits = uint64(frame.DackBitmap); end
+            row.ack_queue = macs{node}.AckQueueCount; row.data_queue = macs{node}.DataQueueCount;
+            row.transmissions = macs{node}.Counters.Transmissions; eventRows(end+1,1) = row;
+        end
+        function checkpoint(key,node,actual,expected)
+            checkRows(end+1,1) = struct('case',name,'checkpoint',key,'node',node, ...
+                'actual',double(actual),'expected',double(expected), ...
+                'pass',isfinite(actual) && actual==expected);
+        end
+    end
+end
+
+function row = emptyEvent()
+row = struct('case','','order',0,'phase','','time_ns',0,'time_seconds_dec','', ...
+    'time_seconds_hex','','scheduler_id',uint64(0),'node',0,'peer',0,'kind','NONE', ...
+    'app_source',0,'app_id',uint64(0),'hop_seq',0,'ack_bits',uint64(0), ...
+    'dack_bits',uint64(0),'ack_queue',0,'data_queue',0,'transmissions',0);
+end
+function row = emptyBoundary()
+row = struct('case','','transport_mode','','late_insertion',false, ...
+    'wire_payload_bytes',0,'segment_count',0,'tx_time_ns',0,'tx_seconds_dec','', ...
+    'tx_seconds_hex','','duration_ns',0,'duration_seconds_dec','','duration_seconds_hex','', ...
+    'tick_time_ns',0,'tick_seconds_dec','','tick_seconds_hex','','arm_time_ns',0, ...
+    'arm_seconds_dec','','arm_seconds_hex','','arrival_time_ns',0,'arrival_seconds_dec','', ...
+    'arrival_seconds_hex','','arrival_minus_tick_seconds_dec','', ...
+    'arrival_minus_tick_seconds_hex','','ingress_event_id',uint64(0));
+end
+function row = emptyCheck()
+row = struct('case','','checkpoint','','node',0,'actual',0,'expected',0,'pass',false);
+end
+function row = emptyDraw()
+row = struct('case','','node',0,'ordinal',0,'time_ns',0, ...
+    'min',0,'max',0,'draw',0,'resolved',-1,'purpose','unresolved');
+end
+function row = emptyUsage()
+row = struct('case','','node',0,'supplied',0,'consumed',0,'unused',0);
+end
+function result = emptyResult()
+result = struct('Case','','Completed',false,'Passed',false,'ErrorIdentifier','', ...
+    'ErrorMessage','','ErrorStack',struct('file',{},'name',{},'line',{}), ...
+    'FirstAckBits',uint64(0),'FirstAckSequence',0,'GatewayAckTransmissions',0, ...
+    'Delivered',0,'SourceDataTransmissions',0,'IngressEventId',uint64(0), ...
+    'FirstAckEventId',uint64(0),'CheckpointCount',0);
+end
+function app = application(id)
+app = struct('Id',uint64(id),'SourceId',5,'DestinationId',1,'GeneratedSeconds',0, ...
+    'ApplicationPayloadBytes',16,'Dscp',0);
+end
+function radio = radioConfig(plan)
+radio = struct('EnvelopeProfile','bare','RateKeyKbps',plan.rate_kbps,'TxPowerDbm',plan.power_dbm);
+end
+function config = fixtureConfig(plan)
+nwk = csr.nwk.defaults(); nwk.StartupMode = 'none';
+nwk.Neighbor.AdmissionEnabled = false; nwk.Neighbor.FreshnessEnabled = false;
+nwk.AdaptiveLinkControl = false; nwk.ControlRetrySeconds = 1000;
+nwk.SnapshotWatchdogSeconds = 1000; nwk.RouteRequestSeconds = 1000;
+node = struct('Id',1,'Capability',2,'TransitForwardingEnabled',true);
+config = struct('Nwk',nwk,'Nodes',node,'Radio',radioConfig(plan));
+end
+function validateInputs(plan,cases,tape)
+if ~strcmp(plan.schema,'csr-tranche14-edge-input-v1') || ...
+        ~strcmp(plan.source_pin,'486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b') || ...
+        ~isequal(string(cases.('case')),string(plan.cases(:)))
+    error('csr:validation:AckEdgePlan','Cases differ from the pinned ACK-edge plan.');
+end
+if ~isequal(cases.Properties.VariableNames,{'case','mode','offset_ns','late_insertion'}) || ...
+        ~isequal(string(cases.mode),["target";"target";"target";"target";"continuous";"local_ns"]) || ...
+        ~isequal(cases.offset_ns,[0;0;-1;1;0;0]) || ...
+        ~isequal(double(cases.late_insertion),[0;1;0;0;0;0])
+    error('csr:validation:AckEdgePlan','Unsupported boundary case contract.');
+end
+if height(tape)~=6*3*64 || any(tape.min~=0 | tape.max~=31 | tape.draw~=0) || ...
+        ~isequal(sort(unique(tape.node)),[1;4;5])
+    error('csr:validation:AckEdgeTape','Unsupported bounded raw draw tape.');
+end
+end
+function result = compareCases(actual,path,fields)
+result = struct('ReferencePresent',isfile(path),'SchemaMatches',false,'ActualRows',height(actual), ...
+    'ReferenceRows',0,'ComparedRows',height(actual),'UnmatchedCount',height(actual), ...
+    'ComparedFields',{fields},'Cases',struct('Case',{},'ActualRows',{},'ReferenceRows',{},'UnmatchedCount',{}));
+if ~isfile(path), return; end
+options = detectImportOptions(path,'VariableNamingRule','preserve');
+exact = intersect(options.VariableNames,{'scheduler_id','ingress_event_id','app_id','ack_bits','dack_bits'});
+textNames = options.VariableNames(endsWith(options.VariableNames,'_hex') | ...
+    endsWith(options.VariableNames,'_dec') | ismember(options.VariableNames, ...
+    {'case','phase','kind','transport_mode','purpose'}));
+if ~isempty([exact textNames]), options = setvartype(options,[exact textNames],'string'); end
+expected = readtable(path,options); result.ReferenceRows = height(expected);
+result.SchemaMatches = isequal(actual.Properties.VariableNames,expected.Properties.VariableNames);
+if ~result.SchemaMatches, result.UnmatchedCount = max(1,max(height(actual),height(expected))); return; end
+result.UnmatchedCount = 0; result.ComparedRows = 0;
+for name=reshape(unique(string(actual.('case')),'stable'),1,[])
+    a = actual(string(actual.('case'))==name,:); b = expected(string(expected.('case'))==name,:);
+    count = min(height(a),height(b)); matched = true(count,1);
+    for k=1:numel(fields)
+        key = fields{k}; left = a.(key)(1:count); right = b.(key)(1:count);
+        if isa(left,'uint64') || iscell(left) || isstring(left) || ischar(left)
+            matched = matched & string(left)==string(right);
+        elseif isnumeric(left) || islogical(left)
+            matched = matched & isfinite(double(left)) & isfinite(double(right)) & double(left)==double(right);
+        end
+    end
+    unmatched = sum(~matched)+abs(height(a)-height(b));
+    result.Cases(end+1) = struct('Case',char(name),'ActualRows',height(a), ...
+        'ReferenceRows',height(b),'UnmatchedCount',unmatched);
+    result.UnmatchedCount = result.UnmatchedCount+unmatched;
+    result.ComparedRows = result.ComparedRows+max(height(a),height(b));
+end
+unknown = ~ismember(string(expected.('case')),string(actual.('case')));
+result.UnmatchedCount = result.UnmatchedCount+sum(unknown);
+result.ComparedRows = result.ComparedRows+sum(unknown);
+end
+function passed = checkPrecision(events,boundary,schedule)
+passed = true;
+try
+    for item={events,boundary,schedule}
+        rows = item{1}; fields = rows.Properties.VariableNames;
+        for k=1:numel(fields)
+            hexField = fields{k}; if ~endsWith(hexField,'_hex'), continue; end
+            if strcmp(hexField,'observed_hex'), decField = 'observed_seconds';
+            elseif strcmp(hexField,'scheduled_hex'), decField = 'scheduled_seconds';
+            else, decField = [hexField(1:end-4) '_dec']; end
+            for n=1:height(rows)
+                hex = char(string(rows.(hexField)(n))); dec = char(string(rows.(decField)(n)));
+                passed = passed && strcmp(num2hex(str2double(dec)),hex) && isfinite(hex2num(hex));
+            end
+        end
+    end
+catch
+    passed = false;
+end
+end
+function passed = checkScheduler(events,schedule)
+executed = schedule(string(schedule.operation)=="execute",:);
+scheduled = schedule(string(schedule.operation)=="schedule",:);
+passed = numel(unique(scheduled.event_id))==height(scheduled) && ...
+    numel(unique(executed.event_id))==height(executed) && ...
+    all(ismember(executed.event_id,scheduled.event_id));
+for n=1:height(events)
+    row = executed(executed.event_id==events.scheduler_id(n),:);
+    passed = passed && height(row)==1;
+    if height(row)==1
+        passed = passed && string(row.observed_hex)==string(events.time_seconds_hex(n));
+    end
+end
+end
+function output = bindings(directory,names,prefix)
+output = repmat(struct('Path','','SHA256',''),0,1);
+for k=1:numel(names)
+    path = fullfile(directory,names{k}); hash = '';
+    if isfile(path), hash = csr.validation.Artifacts.sha256(path); end
+    output(end+1,1) = struct('Path',[prefix names{k}],'SHA256',hash); %#ok<AGROW>
+end
+end
