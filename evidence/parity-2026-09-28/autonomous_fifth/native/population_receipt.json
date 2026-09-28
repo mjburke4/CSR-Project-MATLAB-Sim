@@ -1,0 +1,136 @@
+{
+  "status": "source_and_capture_confirmed_publication_boundary_mismatch",
+  "native_csr_pin": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "network_run": false,
+  "component_run": true,
+  "production_or_fixture_edit": false,
+  "public_api_component_probe": {
+    "status": "three_cases_passed",
+    "checkpoints": [
+      "POPULATION absent_candidate current=3 published=2",
+      "ROUTE_ADMISSION absent_candidate grouped_operations=0 selectable=0",
+      "LATER_HELLO absent_candidate published=3 selectable=1 grouped_operation=Delete",
+      "ROUTE_ADMISSION observed_capability_zero grouped_operations=1 selectable=1 operation=Delete",
+      "ROUTE_ADMISSION observed_capability_one grouped_operations=1 selectable=1 operation=Update"
+    ],
+    "network_or_phy_created": false,
+    "private_state_access": false,
+    "event_execution": "Only same-time NWK/HOP callbacks, bounded by 1 ns per drain; 3 or 4 ns total per component case.",
+    "compile_command": [
+      "g++",
+      "-std=c++23",
+      "-O0",
+      "-g",
+      "-DNS3_ASSERT_ENABLE",
+      "-DNS3_BUILD_PROFILE_DEBUG",
+      "-DNS3_LOG_ENABLE",
+      "-I/workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/include",
+      "/workspace/scratch/db3d3caa011d/autonomous_fifth/native/population_route_probe.cc",
+      "-L/workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib",
+      "-Wl,-rpath,/workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib",
+      "-lns3-dev-csr-debug",
+      "-lns3-dev-core-debug",
+      "-lns3-dev-network-debug",
+      "-lstdc++exp",
+      "-o",
+      "/workspace/scratch/db3d3caa011d/autonomous_fifth/native/population_route_probe"
+    ]
+  },
+  "native_last_publication_before_stop": {
+    "line": 636,
+    "time_ns": 13266211086,
+    "count": 2
+  },
+  "native_first_publication_three": {
+    "line": 1367,
+    "time_ns": 18724108077,
+    "count": 3
+  },
+  "ack_success_last_heard_refresh_ns": 14400468077,
+  "native_nwk_routing_payload_population_at_stop": 3,
+  "native_mac_published_population_at_stop": 2,
+  "matlab_mac_population_at_stop": 3,
+  "native_clear_routes_calls_in_capture": 0,
+  "same_draw_integer_bounds": [
+    0,
+    31
+  ],
+  "native_next_post_tx_wait_start_ns": 16715760000,
+  "native_captured_wait_seconds": 18.5,
+  "counterfactual_wait_seconds_if_population_three": 20.0,
+  "counterfactual_limit": "Formula sensitivity only, not an executed continuation or realized delivery/latency difference.",
+  "sources": [
+    {
+      "path": "autonomous/native_capture/run/run.log",
+      "sha256": "282ed068740ccba5481bf7a35aca3696c54d422e31976107cfee05889c690cee"
+    },
+    {
+      "path": "autonomous/native_capture/fixture/tx_signatures.csv",
+      "sha256": "40f51355e02c0950e7608d9eeb6efb590a539bdef37c0381780db5fc086ad5e1"
+    },
+    {
+      "path": "autonomous_fifth/data/E_check_gate/ordered_events.jsonl",
+      "sha256": "a1e89cbed45911c428caefc8d323263e650ad012bbbaade5d71bd37aee057fbf"
+    },
+    {
+      "path": "autonomous_fifth/data/E_check_gate/random_summary.json",
+      "sha256": "7d0c0a1f55e4569e4e789e9e1c6048d55751162cc190e64850c2b49644dd99c1"
+    },
+    {
+      "path": "autonomous_fifth/data/E_check_gate/first_divergence.json",
+      "sha256": "891f99d88444d4abe2b634de11d9b2b3eb6f018d0c74922dd1308ad8244695aa"
+    },
+    {
+      "path": "autonomous_fifth/data/F_message_flag/ordered_events.jsonl",
+      "sha256": "a1e89cbed45911c428caefc8d323263e650ad012bbbaade5d71bd37aee057fbf"
+    },
+    {
+      "path": "autonomous_fifth/data/F_message_flag/random_summary.json",
+      "sha256": "7d0c0a1f55e4569e4e789e9e1c6048d55751162cc190e64850c2b49644dd99c1"
+    },
+    {
+      "path": "autonomous_fifth/data/F_message_flag/first_divergence.json",
+      "sha256": "891f99d88444d4abe2b634de11d9b2b3eb6f018d0c74922dd1308ad8244695aa"
+    },
+    {
+      "path": "autonomous/native_env/csr/model/csr-nwk-layer.h",
+      "sha256": "bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc"
+    },
+    {
+      "path": "autonomous/native_env/csr/model/csr-net-device.h",
+      "sha256": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb"
+    },
+    {
+      "path": "autonomous/native_env/csr/model/csr-mac-core.h",
+      "sha256": "64a71ad280ba14ab2b00d5d2b9dac708fabea939dfa385ad62dd73e5e40203e9"
+    },
+    {
+      "path": "autonomous_fourth/kit/autocase/model/+csr/+sim/NetworkSimulation.m",
+      "sha256": "95b83ad8d6b3ae7d56f026bb360b703e800a251f4b4546a34e40f36025e99f58"
+    },
+    {
+      "path": "autonomous_fourth/kit/autocase/model/+csr/+nwk/Layer.m",
+      "sha256": "7ef09931c83c55697ce96b400ee1d90459a44af4c0527b396829d62ab9125300"
+    },
+    {
+      "path": "autonomous_fourth/kit/autocase/model/+csr/+nwk/Neighbors.m",
+      "sha256": "65cb269a9b7e3cade654aad4b262bc6d7ebdf103743fa2581d8694bc6e45aed7"
+    },
+    {
+      "path": "autonomous_fourth/kit/autocase/model/+csr/+mac/Layer.m",
+      "sha256": "b7c24b8b7cf9f019249677db3e83425d6e583a2dc07f3343c6de9f1887b19556"
+    },
+    {
+      "path": "autonomous_fifth/native/population_route_probe.log",
+      "sha256": "8e07841a4b2364bb112179c534924afd00a8bfdae99d95adde9e7d91142b1737"
+    },
+    {
+      "path": "autonomous_fifth/native/population_route_probe.cc",
+      "sha256": "88599fa1ffe14cc34db5c33b2df22ed8ba615ed3bf201c5d7154e71db6b6c768"
+    },
+    {
+      "path": "autonomous/native_env/build.json",
+      "sha256": "e4bc375f516d4b21b20e1fea9a9685bdc4c26f98338b27389b08ec3a3ffcdad9"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "schema": "csr-autonomous-receiver-timer-return-v1",
+  "status": "return_integrity_pass",
+  "archive": "out_auto_20260928_083055.zip",
+  "archive_sha256": "54ade5a199624644263f1ef33e17edc917a12849b040f2c5fac37668f6fa08b7",
+  "archive_members": 46,
+  "issued_manifest_sha256": "3721006cdd23beac861cf9356a78b859b2599345e06625204034bbff7dabafa2",
+  "issued_bound_files": 355,
+  "runtime": {
+    "version": "25.1.0.2943329 (R2025a)",
+    "release": "2025a",
+    "computer": "PCWIN64"
+  },
+  "import_preflight_passed": true,
+  "matlab_passed_component_checks": {
+    "key_request_preflight": 7,
+    "check_gate_preflight": 8,
+    "population_preflight": 6,
+    "route_admission_preflight": 8,
+    "request_wire_preflight": 6,
+    "no_path_wire_preflight": 3,
+    "discovery_identity_preflight": 7,
+    "receiver_timer_preflight": 8
+  },
+  "accepted_natural_reused": true,
+  "case": {
+    "name": "K_receiver_timers",
+    "endpoint_s": 71.942,
+    "requests_consumed_context_matched": 1450,
+    "rejected_requests": 0,
+    "consumed_by_purpose": {
+      "mac_slot": 286,
+      "sync_threshold": 658,
+      "phy_binomial": 506
+    },
+    "verified_transmission_contexts": 243,
+    "rejected_transmissions": 1,
+    "first_time_difference": {
+      "node": 4,
+      "purpose": "mac_slot",
+      "ordinal": 25,
+      "actual_time_s": 62.881,
+      "expected_time_ns": 62870833632.0,
+      "rounded_delta_ns": 10166368.0
+    },
+    "temporal_prefix_match_through_stop": false,
+    "previous_receiver_timer_guard_cleared": true,
+    "discovery_identity_annotations": 12,
+    "discovery_different_outer_identifiers": 9,
+    "raw_rows": {
+      "protocol_trace.csv": 3421,
+      "phy_trace.csv": 3773,
+      "application_admission_trace.csv": 0
+    },
+    "ordered_event_rows": 180186,
+    "timing_records": 1458,
+    "receiver_timer_records": 924,
+    "service_records": 3237,
+    "wall_seconds": 134.3718398,
+    "stop_fields": [
+      "child3.hop_destination",
+      "child3.snmp_destination"
+    ],
+    "actual_snmp_hop_destination": 4,
+    "actual_snmp_destination": 2,
+    "native_snmp_hop_destination": 1,
+    "native_snmp_destination": 1
+  },
+  "target_percent": 15,
+  "network_parity_established": false,
+  "scope": "Startup ends before applications begin at 300 seconds; unfinished traffic and 6000-second parity remain open."
+}

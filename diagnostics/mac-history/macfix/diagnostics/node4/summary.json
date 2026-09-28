@@ -1,0 +1,75 @@
+{
+  "scope": "Node4 DATA HOP flow to5, feedback history before600; focused PHY histories490\u2013600. MATLAB windows reconstructed from archived events, native windows directly traced.",
+  "checks": {
+    "native": 64,
+    "matlab": 80
+  },
+  "boundary": {
+    "native": {
+      "last_feedback_s": 596.960292444,
+      "window_at600": 3,
+      "ack_streak_at600": 0
+    },
+    "matlab": {
+      "last_feedback_s": 589.901292444469,
+      "window_at600": 1,
+      "ack_streak_at600": 1
+    }
+  },
+  "feedback_528_433_to_600": {
+    "native": {
+      "feedback": {
+        "ack": 13,
+        "no_ack": 2
+      },
+      "acks_after_retry": 6,
+      "growths": 2,
+      "shrinks": 0
+    },
+    "matlab": {
+      "feedback": {
+        "no_ack": 3,
+        "ack": 6
+      },
+      "acks_after_retry": 3,
+      "growths": 0,
+      "shrinks": 1
+    }
+  },
+  "matlab_failed_attempts": 9,
+  "matlab_failed_attempt_outcomes": {
+    "not_acquired": 7,
+    "half_duplex": 2
+  },
+  "native_growth_after_retry": [
+    {
+      "engine": "native",
+      "time_s": 584.818292444,
+      "source": "2",
+      "packet_key": "2:1:1089",
+      "hop_sequence": 72,
+      "feedback": "ack",
+      "retries": 1,
+      "window_before": 1,
+      "window_after": 2,
+      "streak_before": 2,
+      "streak_after": 0,
+      "source_order": "281290"
+    },
+    {
+      "engine": "native",
+      "time_s": 596.960292444,
+      "source": "2",
+      "packet_key": "2:1:1099",
+      "hop_sequence": 75,
+      "feedback": "ack",
+      "retries": 2,
+      "window_before": 2,
+      "window_after": 3,
+      "streak_before": 2,
+      "streak_after": 0,
+      "source_order": "294073"
+    }
+  ],
+  "runtime_test_status": "run_hop_window.m prepared; no MATLAB runtime available in this workspace."
+}

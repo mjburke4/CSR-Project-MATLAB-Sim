@@ -1,0 +1,94 @@
+--- production/+csr/+mac/Layer.m
++++ adapter/+mac_replay/MacLayer.m
+@@ -1,4 +1,4 @@
+-classdef Layer < handle
++classdef MacLayer < handle
+     %LAYER CSR access, reservation, ACK queue and receiver wake state machine.
+     %   Protocol time is supplied by a scheduler. PHY acquisition stays in the
+     %   signal engine; receiverChanged synchronizes its Search/Track changes.
+@@ -73,7 +73,7 @@
+         end
+     end
+     methods
+-        function obj = Layer(nodeId, scheduler, streams, config, callbacks)
++        function obj = MacLayer(nodeId, scheduler, streams, config, callbacks)
+             obj.NodeId = double(nodeId);
+             obj.Scheduler = scheduler;
+             obj.Stream = streams.get(nodeId, 'mac');
+@@ -113,7 +113,9 @@
+                 obj.setState('Idle');
+                 cycle = obj.Config.WakeCycleSeconds;
+                 nextWake = (floor(obj.Scheduler.Now / cycle) + 1) * cycle;
+-                obj.WakeEvent = obj.Scheduler.scheduleAt(nextWake, @() obj.periodicWake());
++                % Replay receiver tape owns periodic wake; preserve DutyCycleEnabled
++                % for the unmodified IdleRts near-wake guard.
++                obj.WakeEvent = uint64(0); %#ok<NASGU>
+             else
+                 obj.setState('Search');
+             end
+@@ -186,6 +188,37 @@
+             % the next shared slot may still use that prepared opportunity.
+         end
+ 
++        function removed = replayCancelWindow(obj,peerId,baseSequence,bitmap)
++            % Boundary translation: native CancelAcknowledgedFrames accepts
++            % a bitmap and excludes structured-destination frames. The
++            % MATLAB HOP caller filters custody before invoking cancel.
++            % Translate queue-cancellation intent, then use production cancel.
++            sequences = []; protected = [];
++            for index = 1:obj.DataQueueCount
++                frame = obj.DataQueue{index}.Frame;
++                if ~frame.AckRequired || frame.DestinationId ~= peerId, continue; end
++                if isfield(frame,'DestinationIds') && ~isempty(frame.DestinationIds)
++                    protected(end+1) = double(frame.Sequence); %#ok<AGROW>
++                    continue;
++                end
++                age = mod(double(baseSequence)-double(frame.Sequence),65536);
++                if age < 64 && bitget(bitmap,age+1)
++                    sequences(end+1) = double(frame.Sequence); %#ok<AGROW>
++                end
++            end
++            assert(isempty(intersect(sequences,protected)), ...
++                'mac_replay:AmbiguousCancellation', ...
++                'Structured and unstructured queued frames share a cancellation key.');
++            removed = 0;
++            sequences = unique(sequences,'stable');
++            % unique([]) is an empty column: a value-based for loop
++            % would execute once with an empty sequence. Index elements
++            % explicitly so no eligible key means no cancel call.
++            for index = 1:numel(sequences)
++                removed = removed + obj.cancel(peerId,sequences(index));
++            end
++        end
++
+         function removed = cancelControl(obj,peerId,controlType)
+             % KeyRequest immediateTag replacement applies only to unsent MAC
+             % entries; reliable control owners remain HOP-managed.
+@@ -395,6 +428,8 @@
+                 end
+                 if obj.HoldoffOver && obj.ReservationCounter >= 0
+                     obj.ReservationCounter = obj.ReservationCounter - 1;
++                    obj.emit('mac_reservation_tick', struct(), ...
++                        struct('ReservationCounter', obj.ReservationCounter));
+                     if obj.ReservationCounter == -1 && ~obj.PreparationActive
+                         obj.ReservationSlot = -1;
+                     end
+@@ -627,7 +662,7 @@
+             obj.pollReceiver();
+             if obj.Config.DutyCycleEnabled && strcmp(obj.State, 'Search')
+                 obj.cancelTimer('SleepEvent');
+-                obj.setState('Idle');
++                % Replay receiver tape owns the post-TX Search-to-Idle edge.
+             end
+         end
+ 
+@@ -686,7 +721,8 @@
+                             obj.prepare(false);
+                         elseif obj.Config.DutyCycleEnabled && ~obj.PostTxWaitActive
+                             obj.cancelTimer('SleepEvent');
+-                            obj.SleepEvent = obj.after(obj.Config.SearchSeconds, @() obj.sleep());
++                            % Replay receiver tape owns the Track-to-Search sleep edge.
++                            obj.SleepEvent = uint64(0);
+                         end
+                     end
+             end

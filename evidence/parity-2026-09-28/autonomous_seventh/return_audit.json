@@ -1,0 +1,56 @@
+{
+  "schema": "csr-autonomous-control-wire-return-v1",
+  "status": "pass",
+  "archive": "out_auto_20260928_073809.zip",
+  "archive_sha256": "c74ee8654d97cdc347ad142fea5d079a4cdf7cbfd243b8448449979889cb58f2",
+  "archive_members": 37,
+  "issued_manifest_sha256": "62cd5d1c495d69b2aa4dba2b5e4e33cdfbca0bfc4808b9bcf89d3672aa75a696",
+  "issued_bound_files": 294,
+  "runtime": {
+    "version": "25.1.0.2943329 (R2025a)",
+    "release": "2025a",
+    "computer": "PCWIN64"
+  },
+  "import_preflight_passed": true,
+  "matlab_passed_component_checks": {
+    "key_request_preflight": 7,
+    "check_gate_preflight": 8,
+    "population_preflight": 6,
+    "route_admission_preflight": 8,
+    "request_wire_preflight": 6,
+    "no_path_wire_preflight": 3
+  },
+  "accepted_natural_reused": true,
+  "case": {
+    "name": "I_control_wire",
+    "endpoint_s": 25.74,
+    "requests_consumed_matched": 290,
+    "consumed_by_purpose": {
+      "mac_slot": 61,
+      "sync_threshold": 131,
+      "phy_binomial": 98
+    },
+    "verified_transmissions": 49,
+    "rejected_transmissions": 1,
+    "first_time_difference": [],
+    "previous_wire_guard_cleared": true,
+    "raw_rows": {
+      "protocol_trace.csv": 925,
+      "phy_trace.csv": 736,
+      "application_admission_trace.csv": 0
+    },
+    "ordered_event_rows": 39455,
+    "timing_records": 294,
+    "service_records": 895,
+    "wall_seconds": 37.3751923,
+    "stop_fields": [
+      "child3.hop_sequence"
+    ],
+    "discovery_outer_sequence_actual": 1,
+    "discovery_outer_sequence_native": 4,
+    "discovery_payload_session_both": 1
+  },
+  "target_percent": 15,
+  "network_parity_established": false,
+  "scope": "Actual startup capture ends before application traffic begins at300 seconds; NoPath only validated by separate public component checks."
+}

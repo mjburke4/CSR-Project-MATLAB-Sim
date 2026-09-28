@@ -1,0 +1,210 @@
+{
+  "scope": "Seed132, fixed-destination offered load and endogenous admission; offline existing traces only",
+  "scenario_bytes_identical": true,
+  "source_ids": [
+    2,
+    3,
+    4,
+    5,
+    7,
+    8
+  ],
+  "attempt_start_ns": 300000000000,
+  "attempt_interval_ns": 20000000,
+  "attempt_stop_ns_exclusive": 6000000000000,
+  "attempts_each_source": 285000,
+  "native_all_raw_attempts_checked": 1710000,
+  "matlab_exported_attempts_checked": 100000,
+  "matlab_admission_trace_is_truncated": true,
+  "matlab_grid_max_abs_error_ns": 0,
+  "native_grid_max_abs_error_ns": 0,
+  "both_generated_application_ledgers_are_exact_on_attempt_grid": true,
+  "native_all_raw_admission_outcomes_match_generated_ledger": true,
+  "native_all_raw_gate_outcomes_match_observed_nsdp_threshold": true,
+  "matlab_exported_gate_outcomes_match_observed_nsdp_threshold": true,
+  "paired_complete_attempts_300_330": 9000,
+  "paired_same_outcome_count": 8774,
+  "paired_same_nsdp_count": 8774,
+  "all_first_16_admitted_in_both": true,
+  "first_difference": {
+    "source": 7,
+    "attempt_1based": 29,
+    "time_s": "300.56",
+    "matlab_accepted": false,
+    "matlab_reason": "nsdp_full",
+    "matlab_nsdp": 16,
+    "matlab_nwk_queue": 15,
+    "matlab_packet_id": "0",
+    "ns3_accepted": true,
+    "ns3_reason": "admitted",
+    "ns3_nsdp": 15,
+    "ns3_nwk_queue": 14,
+    "ns3_packet_id": "976",
+    "same_admission_outcome": false
+  },
+  "native_first_source_hop_admission": {
+    "2": {
+      "time_ns": 300000000028,
+      "application_id": "879",
+      "delay_from_first_app_attempt_ns": 28
+    },
+    "3": {
+      "time_ns": 300000000028,
+      "application_id": "880",
+      "delay_from_first_app_attempt_ns": 28
+    },
+    "4": {
+      "time_ns": 300000000028,
+      "application_id": "881",
+      "delay_from_first_app_attempt_ns": 28
+    },
+    "5": {
+      "time_ns": 300000000028,
+      "application_id": "882",
+      "delay_from_first_app_attempt_ns": 28
+    },
+    "7": {
+      "time_ns": 300000000028,
+      "application_id": "883",
+      "delay_from_first_app_attempt_ns": 28
+    },
+    "8": {
+      "time_ns": 300000000028,
+      "application_id": "884",
+      "delay_from_first_app_attempt_ns": 28
+    }
+  },
+  "traffic_rng_draws_required_by_config": 0,
+  "flow_comparisons": [
+    {
+      "source": 2,
+      "attempts_each": 285000,
+      "matlab_admitted": 400,
+      "ns3_admitted": 569,
+      "matlab_blocked_nsdp": 284600,
+      "ns3_blocked_nsdp": 284431,
+      "both_admitted_same_attempt": 20,
+      "matlab_only_admitted_attempt": 380,
+      "ns3_only_admitted_attempt": 549,
+      "first_outcome_difference_s": "302.2",
+      "matlab_admitted_300_330": 29,
+      "ns3_admitted_300_330": 36,
+      "matlab_first_replacement_admitted_s": "305",
+      "ns3_first_replacement_admitted_s": "302.2"
+    },
+    {
+      "source": 3,
+      "attempts_each": 285000,
+      "matlab_admitted": 8522,
+      "ns3_admitted": 8600,
+      "matlab_blocked_nsdp": 276478,
+      "ns3_blocked_nsdp": 276400,
+      "both_admitted_same_attempt": 284,
+      "matlab_only_admitted_attempt": 8238,
+      "ns3_only_admitted_attempt": 8316,
+      "first_outcome_difference_s": "302.06",
+      "matlab_admitted_300_330": 60,
+      "ns3_admitted_300_330": 58,
+      "matlab_first_replacement_admitted_s": "302.06",
+      "ns3_first_replacement_admitted_s": "302.1"
+    },
+    {
+      "source": 4,
+      "attempts_each": 285000,
+      "matlab_admitted": 596,
+      "ns3_admitted": 498,
+      "matlab_blocked_nsdp": 284404,
+      "ns3_blocked_nsdp": 284502,
+      "both_admitted_same_attempt": 17,
+      "matlab_only_admitted_attempt": 579,
+      "ns3_only_admitted_attempt": 481,
+      "first_outcome_difference_s": "301.62",
+      "matlab_admitted_300_330": 24,
+      "ns3_admitted_300_330": 19,
+      "matlab_first_replacement_admitted_s": "301.62",
+      "ns3_first_replacement_admitted_s": "303.26"
+    },
+    {
+      "source": 5,
+      "attempts_each": 285000,
+      "matlab_admitted": 1745,
+      "ns3_admitted": 1462,
+      "matlab_blocked_nsdp": 283255,
+      "ns3_blocked_nsdp": 283538,
+      "both_admitted_same_attempt": 26,
+      "matlab_only_admitted_attempt": 1719,
+      "ns3_only_admitted_attempt": 1436,
+      "first_outcome_difference_s": "304.98",
+      "matlab_admitted_300_330": 26,
+      "ns3_admitted_300_330": 35,
+      "matlab_first_replacement_admitted_s": "309.56",
+      "ns3_first_replacement_admitted_s": "304.98"
+    },
+    {
+      "source": 7,
+      "attempts_each": 285000,
+      "matlab_admitted": 1133,
+      "ns3_admitted": 819,
+      "matlab_blocked_nsdp": 283867,
+      "ns3_blocked_nsdp": 284181,
+      "both_admitted_same_attempt": 19,
+      "matlab_only_admitted_attempt": 1114,
+      "ns3_only_admitted_attempt": 800,
+      "first_outcome_difference_s": "300.56",
+      "matlab_admitted_300_330": 37,
+      "ns3_admitted_300_330": 37,
+      "matlab_first_replacement_admitted_s": "302.04",
+      "ns3_first_replacement_admitted_s": "300.56"
+    },
+    {
+      "source": 8,
+      "attempts_each": 285000,
+      "matlab_admitted": 239,
+      "ns3_admitted": 512,
+      "matlab_blocked_nsdp": 284761,
+      "ns3_blocked_nsdp": 284488,
+      "both_admitted_same_attempt": 16,
+      "matlab_only_admitted_attempt": 223,
+      "ns3_only_admitted_attempt": 496,
+      "first_outcome_difference_s": "302.68",
+      "matlab_admitted_300_330": 31,
+      "ns3_admitted_300_330": 30,
+      "matlab_first_replacement_admitted_s": "302.68",
+      "ns3_first_replacement_admitted_s": "317.3"
+    }
+  ],
+  "native_block_reason_counts": {
+    "2": {
+      "admitted": 569,
+      "nsdp_full": 284431
+    },
+    "3": {
+      "admitted": 8600,
+      "nsdp_full": 276400
+    },
+    "4": {
+      "admitted": 498,
+      "nsdp_full": 284502
+    },
+    "5": {
+      "admitted": 1462,
+      "nsdp_full": 283538
+    },
+    "7": {
+      "admitted": 819,
+      "nsdp_full": 284181
+    },
+    "8": {
+      "admitted": 512,
+      "nsdp_full": 284488
+    }
+  },
+  "matlab_admission_prefix_last_time_s": "633.32",
+  "limitations": [
+    "MATLAB full long-run blocked-attempt state rows are not exported after its100000-record admission budget; full counters and all admitted apps remain available.",
+    "The 28ns native source NWK-to-HOP callback delay is not a source-attempt offset.",
+    "Same numeric seed does not imply matching MAC/PHY/NWK/synchronization RNG histories.",
+    "No inference that the early race alone explains the entire6000s latency difference.",
+    "Generated application counts refer to admitted attempts; suppressed attempts do not create packets."
+  ]
+}

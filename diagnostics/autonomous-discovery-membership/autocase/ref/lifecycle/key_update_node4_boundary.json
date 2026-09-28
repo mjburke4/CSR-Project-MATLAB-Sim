@@ -1,0 +1,1211 @@
+[
+  {
+    "observation_order": 144122,
+    "time_s": 62.870833632,
+    "kind": "scheduler_fire",
+    "node": 0,
+    "details": {
+      "EventId": 19136,
+      "DeadlineSeconds": 62.870833632,
+      "Callback": "@()obj.endSignal(index,incoming.Id)",
+      "ExecutedOrdinal": 18522
+    }
+  },
+  {
+    "observation_order": 144126,
+    "time_s": 62.870833632,
+    "kind": "mac_boundary",
+    "node": 4,
+    "details": {
+      "Cause": "receiverChanged_before",
+      "State": "Track",
+      "DataQueueCount": 0,
+      "AckQueueCount": 0,
+      "ReservationSlot": -1,
+      "ReservationCounter": -1,
+      "LastAdvertisedReservation": 4,
+      "LastOpportunitySlot": 15,
+      "PreparationActive": false,
+      "HoldoffOver": true,
+      "PostTxWaitActive": true,
+      "InReceiverUpdate": false,
+      "ActiveNodes": 2,
+      "ReportedActiveNodes": 4,
+      "SlotProfile": "hist-2014-next-tslot-modulo-probe",
+      "Neighbors": [
+        {
+          "PeerId": 2,
+          "ReservationCounter": -1,
+          "LastHeardSeconds": 62.870833632
+        },
+        {
+          "PeerId": 5,
+          "ReservationCounter": -37,
+          "LastHeardSeconds": 61.083472444
+        }
+      ],
+      "SlotEvent": 19151,
+      "HoldoffEvent": 0,
+      "IdleRtsEvent": 0,
+      "FinishEvent": 0,
+      "WakeEvent": 18879,
+      "SleepEvent": 0,
+      "PostTxEvent": 19025,
+      "PackingRetryEvent": 0
+    }
+  },
+  {
+    "observation_order": 144127,
+    "time_s": 62.870833632,
+    "kind": "mac_boundary",
+    "node": 4,
+    "details": {
+      "Cause": "receiverChanged_after",
+      "State": "Track",
+      "DataQueueCount": 0,
+      "AckQueueCount": 0,
+      "ReservationSlot": -1,
+      "ReservationCounter": -1,
+      "LastAdvertisedReservation": 4,
+      "LastOpportunitySlot": 15,
+      "PreparationActive": false,
+      "HoldoffOver": true,
+      "PostTxWaitActive": true,
+      "InReceiverUpdate": false,
+      "ActiveNodes": 2,
+      "ReportedActiveNodes": 4,
+      "SlotProfile": "hist-2014-next-tslot-modulo-probe",
+      "Neighbors": [
+        {
+          "PeerId": 2,
+          "ReservationCounter": -1,
+          "LastHeardSeconds": 62.870833632
+        },
+        {
+          "PeerId": 5,
+          "ReservationCounter": -37,
+          "LastHeardSeconds": 61.083472444
+        }
+      ],
+      "SlotEvent": 19151,
+      "HoldoffEvent": 0,
+      "IdleRtsEvent": 0,
+      "FinishEvent": 0,
+      "WakeEvent": 18879,
+      "SleepEvent": 0,
+      "PostTxEvent": 19025,
+      "PackingRetryEvent": 0
+    }
+  },
+  {
+    "observation_order": 144128,
+    "time_s": 62.870833632,
+    "kind": "scheduler_schedule",
+    "node": 0,
+    "details": {
+      "EventId": 19156,
+      "DeadlineSeconds": 62.870833632,
+      "Callback": "@()obj.pump()",
+      "PendingCount": 44
+    }
+  },
+  {
+    "observation_order": 144129,
+    "time_s": 62.870833632,
+    "kind": "protocol",
+    "node": 4,
+    "details": {
+      "event": "neighbor_control_send",
+      "frame": {
+        "DestinationId": 2
+      },
+      "details": {
+        "Kind": "KEY_UPDATE",
+        "Reliable": true,
+        "Accepted": true,
+        "Payload": {
+          "Generation": 0,
+          "SecurityProfile": "behavioral-admission"
+        }
+      }
+    }
+  },
+  {
+    "observation_order": 144131,
+    "time_s": 62.870833632,
+    "kind": "scheduler_schedule",
+    "node": 0,
+    "details": {
+      "EventId": 19157,
+      "DeadlineSeconds": 67.870833632,
+      "Callback": "@()obj.retry(peer,generation)",
+      "PendingCount": 45
+    }
+  },
+  {
+    "observation_order": 144132,
+    "time_s": 62.870833632,
+    "kind": "protocol",
+    "node": 4,
+    "details": {
+      "event": "hop_control_receive",
+      "frame": {
+        "Id": 3,
+        "SourceId": 2,
+        "DestinationId": 4,
+        "GeneratedSeconds": 62.590313632,
+        "ApplicationPayloadBytes": 0,
+        "WirePayloadBytes": 18,
+        "RateKeyKbps": 8,
+        "Preamble": "short",
+        "TxPowerDbm": 33,
+        "EnvelopeProfile": "bare",
+        "Kind": "CONTROL",
+        "Sequence": 3,
+        "Dscp": 7,
+        "AckRequired": false,
+        "HasAckWindow": false,
+        "AckBitmap": 0,
+        "DackBitmap": 0,
+        "App": {},
+        "RetryCount": 0,
+        "Control": {
+          "Id": 3,
+          "Type": "KEY_REQUEST",
+          "Payload": {
+            "Generation": 0,
+            "SecurityProfile": "behavioral-admission"
+          },
+          "WirePayloadBytes": 18
+        },
+        "DestinationIds": 4,
+        "HopSequences": 3
+      },
+      "details": {
+        "FirstReception": true,
+        "TimeSeconds": 62.870833632
+      }
+    }
+  },
+  {
+    "observation_order": 144136,
+    "time_s": 62.870833632,
+    "kind": "phy_state_transition",
+    "node": 4,
+    "details": {
+      "Previous": "Track",
+      "Current": "Search",
+      "Changed": true
+    }
+  },
+  {
+    "observation_order": 144137,
+    "time_s": 62.870833632,
+    "kind": "mac_boundary",
+    "node": 4,
+    "details": {
+      "Cause": "receiverChanged_before",
+      "State": "Track",
+      "DataQueueCount": 0,
+      "AckQueueCount": 0,
+      "ReservationSlot": -1,
+      "ReservationCounter": -1,
+      "LastAdvertisedReservation": 4,
+      "LastOpportunitySlot": 15,
+      "PreparationActive": false,
+      "HoldoffOver": true,
+      "PostTxWaitActive": true,
+      "InReceiverUpdate": false,
+      "ActiveNodes": 2,
+      "ReportedActiveNodes": 4,
+      "SlotProfile": "hist-2014-next-tslot-modulo-probe",
+      "Neighbors": [
+        {
+          "PeerId": 2,
+          "ReservationCounter": -1,
+          "LastHeardSeconds": 62.870833632
+        },
+        {
+          "PeerId": 5,
+          "ReservationCounter": -37,
+          "LastHeardSeconds": 61.083472444
+        }
+      ],
+      "SlotEvent": 19151,
+      "HoldoffEvent": 0,
+      "IdleRtsEvent": 0,
+      "FinishEvent": 0,
+      "WakeEvent": 18879,
+      "SleepEvent": 0,
+      "PostTxEvent": 19025,
+      "PackingRetryEvent": 0
+    }
+  },
+  {
+    "observation_order": 144139,
+    "time_s": 62.870833632,
+    "kind": "protocol",
+    "node": 4,
+    "details": {
+      "event": "mac_state",
+      "frame": {},
+      "details": {
+        "State": "Search"
+      }
+    }
+  },
+  {
+    "observation_order": 144140,
+    "time_s": 62.870833632,
+    "kind": "mac_boundary",
+    "node": 4,
+    "details": {
+      "Cause": "receiverChanged_after",
+      "State": "Search",
+      "DataQueueCount": 0,
+      "AckQueueCount": 0,
+      "ReservationSlot": -1,
+      "ReservationCounter": -1,
+      "LastAdvertisedReservation": 4,
+      "LastOpportunitySlot": 15,
+      "PreparationActive": false,
+      "HoldoffOver": true,
+      "PostTxWaitActive": true,
+      "InReceiverUpdate": false,
+      "ActiveNodes": 2,
+      "ReportedActiveNodes": 4,
+      "SlotProfile": "hist-2014-next-tslot-modulo-probe",
+      "Neighbors": [
+        {
+          "PeerId": 2,
+          "ReservationCounter": -1,
+          "LastHeardSeconds": 62.870833632
+        },
+        {
+          "PeerId": 5,
+          "ReservationCounter": -37,
+          "LastHeardSeconds": 61.083472444
+        }
+      ],
+      "SlotEvent": 19151,
+      "HoldoffEvent": 0,
+      "IdleRtsEvent": 0,
+      "FinishEvent": 0,
+      "WakeEvent": 18879,
+      "SleepEvent": 0,
+      "PostTxEvent": 19025,
+      "PackingRetryEvent": 0
+    }
+  },
+  {
+    "observation_order": 144143,
+    "time_s": 62.870833632,
+    "kind": "scheduler_return",
+    "node": 0,
+    "details": {
+      "EventId": 19136,
+      "DeadlineSeconds": 62.870833632,
+      "Callback": "@()obj.endSignal(index,incoming.Id)"
+    }
+  },
+  {
+    "observation_order": 144144,
+    "time_s": 62.870833632,
+    "kind": "scheduler_fire",
+    "node": 0,
+    "details": {
+      "EventId": 19156,
+      "DeadlineSeconds": 62.870833632,
+      "Callback": "@()obj.pump()",
+      "ExecutedOrdinal": 18523
+    }
+  },
+  {
+    "observation_order": 144147,
+    "time_s": 62.870833632,
+    "kind": "protocol",
+    "node": 4,
+    "details": {
+      "event": "mac_enqueue",
+      "frame": {
+        "Id": 10,
+        "SourceId": 4,
+        "DestinationId": 2,
+        "GeneratedSeconds": 62.870833632,
+        "ApplicationPayloadBytes": 0,
+        "WirePayloadBytes": 62,
+        "RateKeyKbps": 8,
+        "Preamble": "long",
+        "TxPowerDbm": 33,
+        "EnvelopeProfile": "bare",
+        "Kind": "CONTROL",
+        "Sequence": 1,
+        "Dscp": 7,
+        "AckRequired": true,
+        "HasAckWindow": false,
+        "AckBitmap": 0,
+        "DackBitmap": 0,
+        "App": {},
+        "RetryCount": 0,
+        "Control": {
+          "Id": 10,
+          "Type": "KEY_UPDATE",
+          "Payload": {
+            "Generation": 0,
+            "SecurityProfile": "behavioral-admission"
+          },
+          "WirePayloadBytes": 62
+        },
+        "DestinationIds": 2,
+        "HopSequences": 1
+      },
+      "details": {
+        "DataDepth": 1,
+        "AckDepth": 0
+      }
+    }
+  },
+  {
+    "observation_order": 144148,
+    "time_s": 62.870833632,
+    "kind": "mac_boundary",
+    "node": 4,
+    "details": {
+      "Cause": "schedulePending_before",
+      "State": "Search",
+      "DataQueueCount": 1,
+      "AckQueueCount": 0,
+      "ReservationSlot": -1,
+      "ReservationCounter": -1,
+      "LastAdvertisedReservation": 4,
+      "LastOpportunitySlot": 15,
+      "PreparationActive": false,
+      "HoldoffOver": true,
+      "PostTxWaitActive": true,
+      "InReceiverUpdate": false,
+      "ActiveNodes": 2,
+      "ReportedActiveNodes": 4,
+      "SlotProfile": "hist-2014-next-tslot-modulo-probe",
+      "Neighbors": [
+        {
+          "PeerId": 2,
+          "ReservationCounter": -1,
+          "LastHeardSeconds": 62.870833632
+        },
+        {
+          "PeerId": 5,
+          "ReservationCounter": -37,
+          "LastHeardSeconds": 61.083472444
+        }
+      ],
+      "SlotEvent": 19151,
+      "HoldoffEvent": 0,
+      "IdleRtsEvent": 0,
+      "FinishEvent": 0,
+      "WakeEvent": 18879,
+      "SleepEvent": 0,
+      "PostTxEvent": 19025,
+      "PackingRetryEvent": 0
+    }
+  },
+  {
+    "observation_order": 144149,
+    "time_s": 62.870833632,
+    "kind": "mac_boundary",
+    "node": 4,
+    "details": {
+      "Cause": "receiverChanged_before",
+      "State": "Search",
+      "DataQueueCount": 1,
+      "AckQueueCount": 0,
+      "ReservationSlot": -1,
+      "ReservationCounter": -1,
+      "LastAdvertisedReservation": 4,
+      "LastOpportunitySlot": 15,
+      "PreparationActive": false,
+      "HoldoffOver": true,
+      "PostTxWaitActive": true,
+      "InReceiverUpdate": false,
+      "ActiveNodes": 2,
+      "ReportedActiveNodes": 4,
+      "SlotProfile": "hist-2014-next-tslot-modulo-probe",
+      "Neighbors": [
+        {
+          "PeerId": 2,
+          "ReservationCounter": -1,
+          "LastHeardSeconds": 62.870833632
+        },
+        {
+          "PeerId": 5,
+          "ReservationCounter": -37,
+          "LastHeardSeconds": 61.083472444
+        }
+      ],
+      "SlotEvent": 19151,
+      "HoldoffEvent": 0,
+      "IdleRtsEvent": 0,
+      "FinishEvent": 0,
+      "WakeEvent": 18879,
+      "SleepEvent": 0,
+      "PostTxEvent": 19025,
+      "PackingRetryEvent": 0
+    }
+  },
+  {
+    "observation_order": 144150,
+    "time_s": 62.870833632,
+    "kind": "mac_boundary",
+    "node": 4,
+    "details": {
+      "Cause": "receiverChanged_after",
+      "State": "Search",
+      "DataQueueCount": 1,
+      "AckQueueCount": 0,
+      "ReservationSlot": -1,
+      "ReservationCounter": -1,
+      "LastAdvertisedReservation": 4,
+      "LastOpportunitySlot": 15,
+      "PreparationActive": false,
+      "HoldoffOver": true,
+      "PostTxWaitActive": true,
+      "InReceiverUpdate": false,
+      "ActiveNodes": 2,
+      "ReportedActiveNodes": 4,
+      "SlotProfile": "hist-2014-next-tslot-modulo-probe",
+      "Neighbors": [
+        {
+          "PeerId": 2,
+          "ReservationCounter": -1,
+          "LastHeardSeconds": 62.870833632
+        },
+        {
+          "PeerId": 5,
+          "ReservationCounter": -37,
+          "LastHeardSeconds": 61.083472444
+        }
+      ],
+      "SlotEvent": 19151,
+      "HoldoffEvent": 0,
+      "IdleRtsEvent": 0,
+      "FinishEvent": 0,
+      "WakeEvent": 18879,
+      "SleepEvent": 0,
+      "PostTxEvent": 19025,
+      "PackingRetryEvent": 0
+    }
+  },
+  {
+    "observation_order": 144151,
+    "time_s": 62.870833632,
+    "kind": "mac_boundary",
+    "node": 4,
+    "details": {
+      "Cause": "schedulePending_after",
+      "State": "Search",
+      "DataQueueCount": 1,
+      "AckQueueCount": 0,
+      "ReservationSlot": -1,
+      "ReservationCounter": -1,
+      "LastAdvertisedReservation": 4,
+      "LastOpportunitySlot": 15,
+      "PreparationActive": false,
+      "HoldoffOver": true,
+      "PostTxWaitActive": true,
+      "InReceiverUpdate": false,
+      "ActiveNodes": 2,
+      "ReportedActiveNodes": 4,
+      "SlotProfile": "hist-2014-next-tslot-modulo-probe",
+      "Neighbors": [
+        {
+          "PeerId": 2,
+          "ReservationCounter": -1,
+          "LastHeardSeconds": 62.870833632
+        },
+        {
+          "PeerId": 5,
+          "ReservationCounter": -37,
+          "LastHeardSeconds": 61.083472444
+        }
+      ],
+      "SlotEvent": 19151,
+      "HoldoffEvent": 0,
+      "IdleRtsEvent": 0,
+      "FinishEvent": 0,
+      "WakeEvent": 18879,
+      "SleepEvent": 0,
+      "PostTxEvent": 19025,
+      "PackingRetryEvent": 0
+    }
+  },
+  {
+    "observation_order": 144152,
+    "time_s": 62.870833632,
+    "kind": "protocol",
+    "node": 4,
+    "details": {
+      "event": "hop_control_admit",
+      "frame": {
+        "Id": 10,
+        "SourceId": 4,
+        "DestinationId": 2,
+        "GeneratedSeconds": 62.870833632,
+        "ApplicationPayloadBytes": 0,
+        "WirePayloadBytes": 62,
+        "RateKeyKbps": 8,
+        "Preamble": "long",
+        "TxPowerDbm": 33,
+        "EnvelopeProfile": "bare",
+        "Kind": "CONTROL",
+        "Sequence": 1,
+        "Dscp": 7,
+        "AckRequired": true,
+        "HasAckWindow": false,
+        "AckBitmap": 0,
+        "DackBitmap": 0,
+        "App": {},
+        "RetryCount": 0,
+        "Control": {
+          "Id": 10,
+          "Type": "KEY_UPDATE",
+          "Payload": {
+            "Generation": 0,
+            "SecurityProfile": "behavioral-admission"
+          },
+          "WirePayloadBytes": 62
+        },
+        "DestinationIds": 2,
+        "HopSequences": 1
+      },
+      "details": {
+        "Targets": 2,
+        "TimeSeconds": 62.870833632
+      }
+    }
+  },
+  {
+    "observation_order": 144153,
+    "time_s": 62.870833632,
+    "kind": "scheduler_return",
+    "node": 0,
+    "details": {
+      "EventId": 19156,
+      "DeadlineSeconds": 62.870833632,
+      "Callback": "@()obj.pump()"
+    }
+  },
+  {
+    "observation_order": 144154,
+    "time_s": 62.870835346,
+    "kind": "scheduler_fire",
+    "node": 0,
+    "details": {
+      "EventId": 19139,
+      "DeadlineSeconds": 62.870835346,
+      "Callback": "@()obj.endSignal(index,incoming.Id)",
+      "ExecutedOrdinal": 18524
+    }
+  },
+  {
+    "observation_order": 144161,
+    "time_s": 62.870835346,
+    "kind": "scheduler_return",
+    "node": 0,
+    "details": {
+      "EventId": 19139,
+      "DeadlineSeconds": 62.870835346,
+      "Callback": "@()obj.endSignal(index,incoming.Id)"
+    }
+  },
+  {
+    "observation_order": 144162,
+    "time_s": 62.870846077,
+    "kind": "scheduler_fire",
+    "node": 0,
+    "details": {
+      "EventId": 19126,
+      "DeadlineSeconds": 62.870846077,
+      "Callback": "@()obj.finishOccluded(index,signal)",
+      "ExecutedOrdinal": 18525
+    }
+  },
+  {
+    "observation_order": 144166,
+    "time_s": 62.870846077,
+    "kind": "scheduler_return",
+    "node": 0,
+    "details": {
+      "EventId": 19126,
+      "DeadlineSeconds": 62.870846077,
+      "Callback": "@()obj.finishOccluded(index,signal)"
+    }
+  },
+  {
+    "observation_order": 144167,
+    "time_s": 62.870847786,
+    "kind": "scheduler_fire",
+    "node": 0,
+    "details": {
+      "EventId": 19127,
+      "DeadlineSeconds": 62.870847786,
+      "Callback": "@()obj.finishOccluded(index,signal)",
+      "ExecutedOrdinal": 18526
+    }
+  },
+  {
+    "observation_order": 144171,
+    "time_s": 62.870847786,
+    "kind": "scheduler_return",
+    "node": 0,
+    "details": {
+      "EventId": 19127,
+      "DeadlineSeconds": 62.870847786,
+      "Callback": "@()obj.finishOccluded(index,signal)"
+    }
+  },
+  {
+    "observation_order": 144172,
+    "time_s": 62.870857159,
+    "kind": "scheduler_fire",
+    "node": 0,
+    "details": {
+      "EventId": 19123,
+      "DeadlineSeconds": 62.870857159,
+      "Callback": "@()obj.finishOccluded(index,signal)",
+      "ExecutedOrdinal": 18527
+    }
+  },
+  {
+    "observation_order": 144176,
+    "time_s": 62.870857159,
+    "kind": "scheduler_return",
+    "node": 0,
+    "details": {
+      "EventId": 19123,
+      "DeadlineSeconds": 62.870857159,
+      "Callback": "@()obj.finishOccluded(index,signal)"
+    }
+  },
+  {
+    "observation_order": 144177,
+    "time_s": 62.870865237,
+    "kind": "scheduler_fire",
+    "node": 0,
+    "details": {
+      "EventId": 19124,
+      "DeadlineSeconds": 62.870865237,
+      "Callback": "@()obj.finishOccluded(index,signal)",
+      "ExecutedOrdinal": 18528
+    }
+  },
+  {
+    "observation_order": 144181,
+    "time_s": 62.870865237,
+    "kind": "scheduler_return",
+    "node": 0,
+    "details": {
+      "EventId": 19124,
+      "DeadlineSeconds": 62.870865237,
+      "Callback": "@()obj.finishOccluded(index,signal)"
+    }
+  },
+  {
+    "observation_order": 144182,
+    "time_s": 62.881,
+    "kind": "scheduler_fire",
+    "node": 0,
+    "details": {
+      "EventId": 19150,
+      "DeadlineSeconds": 62.881,
+      "Callback": "@()obj.slotTick()",
+      "ExecutedOrdinal": 18529
+    }
+  },
+  {
+    "observation_order": 144184,
+    "time_s": 62.881,
+    "kind": "scheduler_schedule",
+    "node": 0,
+    "details": {
+      "EventId": 19158,
+      "DeadlineSeconds": 62.894,
+      "Callback": "@()obj.slotTick()",
+      "PendingCount": 39
+    }
+  },
+  {
+    "observation_order": 144188,
+    "time_s": 62.881,
+    "kind": "scheduler_return",
+    "node": 0,
+    "details": {
+      "EventId": 19150,
+      "DeadlineSeconds": 62.881,
+      "Callback": "@()obj.slotTick()"
+    }
+  },
+  {
+    "observation_order": 144189,
+    "time_s": 62.881,
+    "kind": "scheduler_fire",
+    "node": 0,
+    "details": {
+      "EventId": 19151,
+      "DeadlineSeconds": 62.881,
+      "Callback": "@()obj.slotTick()",
+      "ExecutedOrdinal": 18530
+    }
+  },
+  {
+    "observation_order": 144190,
+    "time_s": 62.881,
+    "kind": "mac_boundary",
+    "node": 4,
+    "details": {
+      "Cause": "slotTick_before",
+      "State": "Search",
+      "DataQueueCount": 1,
+      "AckQueueCount": 0,
+      "ReservationSlot": -1,
+      "ReservationCounter": -1,
+      "LastAdvertisedReservation": 4,
+      "LastOpportunitySlot": 15,
+      "PreparationActive": false,
+      "HoldoffOver": true,
+      "PostTxWaitActive": true,
+      "InReceiverUpdate": false,
+      "ActiveNodes": 2,
+      "ReportedActiveNodes": 4,
+      "SlotProfile": "hist-2014-next-tslot-modulo-probe",
+      "Neighbors": [
+        {
+          "PeerId": 2,
+          "ReservationCounter": -1,
+          "LastHeardSeconds": 62.870833632
+        },
+        {
+          "PeerId": 5,
+          "ReservationCounter": -37,
+          "LastHeardSeconds": 61.083472444
+        }
+      ],
+      "SlotEvent": 19151,
+      "HoldoffEvent": 0,
+      "IdleRtsEvent": 0,
+      "FinishEvent": 0,
+      "WakeEvent": 18879,
+      "SleepEvent": 0,
+      "PostTxEvent": 19025,
+      "PackingRetryEvent": 0
+    }
+  },
+  {
+    "observation_order": 144191,
+    "time_s": 62.881,
+    "kind": "scheduler_schedule",
+    "node": 0,
+    "details": {
+      "EventId": 19159,
+      "DeadlineSeconds": 62.894,
+      "Callback": "@()obj.slotTick()",
+      "PendingCount": 39
+    }
+  },
+  {
+    "observation_order": 144192,
+    "time_s": 62.881,
+    "kind": "mac_boundary",
+    "node": 4,
+    "details": {
+      "Cause": "receiverChanged_before",
+      "State": "Search",
+      "DataQueueCount": 1,
+      "AckQueueCount": 0,
+      "ReservationSlot": -1,
+      "ReservationCounter": -1,
+      "LastAdvertisedReservation": 4,
+      "LastOpportunitySlot": 15,
+      "PreparationActive": false,
+      "HoldoffOver": true,
+      "PostTxWaitActive": true,
+      "InReceiverUpdate": false,
+      "ActiveNodes": 2,
+      "ReportedActiveNodes": 4,
+      "SlotProfile": "hist-2014-next-tslot-modulo-probe",
+      "Neighbors": [
+        {
+          "PeerId": 2,
+          "ReservationCounter": -1,
+          "LastHeardSeconds": 62.870833632
+        },
+        {
+          "PeerId": 5,
+          "ReservationCounter": -37,
+          "LastHeardSeconds": 61.083472444
+        }
+      ],
+      "SlotEvent": 19159,
+      "HoldoffEvent": 0,
+      "IdleRtsEvent": 0,
+      "FinishEvent": 0,
+      "WakeEvent": 18879,
+      "SleepEvent": 0,
+      "PostTxEvent": 19025,
+      "PackingRetryEvent": 0
+    }
+  },
+  {
+    "observation_order": 144193,
+    "time_s": 62.881,
+    "kind": "mac_boundary",
+    "node": 4,
+    "details": {
+      "Cause": "receiverChanged_after",
+      "State": "Search",
+      "DataQueueCount": 1,
+      "AckQueueCount": 0,
+      "ReservationSlot": -1,
+      "ReservationCounter": -1,
+      "LastAdvertisedReservation": 4,
+      "LastOpportunitySlot": 15,
+      "PreparationActive": false,
+      "HoldoffOver": true,
+      "PostTxWaitActive": true,
+      "InReceiverUpdate": false,
+      "ActiveNodes": 2,
+      "ReportedActiveNodes": 4,
+      "SlotProfile": "hist-2014-next-tslot-modulo-probe",
+      "Neighbors": [
+        {
+          "PeerId": 2,
+          "ReservationCounter": -1,
+          "LastHeardSeconds": 62.870833632
+        },
+        {
+          "PeerId": 5,
+          "ReservationCounter": -37,
+          "LastHeardSeconds": 61.083472444
+        }
+      ],
+      "SlotEvent": 19159,
+      "HoldoffEvent": 0,
+      "IdleRtsEvent": 0,
+      "FinishEvent": 0,
+      "WakeEvent": 18879,
+      "SleepEvent": 0,
+      "PostTxEvent": 19025,
+      "PackingRetryEvent": 0
+    }
+  },
+  {
+    "observation_order": 144198,
+    "time_s": 62.881,
+    "kind": "mac_boundary",
+    "node": 4,
+    "details": {
+      "Cause": "prepare_before",
+      "State": "Search",
+      "DataQueueCount": 1,
+      "AckQueueCount": 0,
+      "ReservationSlot": -1,
+      "ReservationCounter": -1,
+      "LastAdvertisedReservation": 4,
+      "LastOpportunitySlot": 15,
+      "PreparationActive": false,
+      "HoldoffOver": true,
+      "PostTxWaitActive": false,
+      "InReceiverUpdate": false,
+      "ActiveNodes": 2,
+      "ReportedActiveNodes": 4,
+      "SlotProfile": "hist-2014-next-tslot-modulo-probe",
+      "Neighbors": [
+        {
+          "PeerId": 2,
+          "ReservationCounter": -2,
+          "LastHeardSeconds": 62.870833632
+        },
+        {
+          "PeerId": 5,
+          "ReservationCounter": -38,
+          "LastHeardSeconds": 61.083472444
+        }
+      ],
+      "SlotEvent": 19159,
+      "HoldoffEvent": 0,
+      "IdleRtsEvent": 0,
+      "FinishEvent": 0,
+      "WakeEvent": 18879,
+      "SleepEvent": 0,
+      "PostTxEvent": 0,
+      "PackingRetryEvent": 0
+    }
+  },
+  {
+    "observation_order": 144200,
+    "time_s": 62.881,
+    "kind": "random_request",
+    "node": 4,
+    "details": {
+      "time_s": 62.881,
+      "node": 4,
+      "purpose": "mac_slot",
+      "ordinal": 25,
+      "value": 8,
+      "actual": {
+        "profile": 4,
+        "active_nodes": 2,
+        "reported_nodes": 4,
+        "reservation_counter": -1,
+        "reservation_slot": -1,
+        "state": "search",
+        "low": 0,
+        "high": 31
+      },
+      "expected": {
+        "event_order": 28537,
+        "time_ns": 62870833632.0,
+        "node": 4,
+        "purpose": "mac_slot",
+        "ordinal": 25,
+        "value": 8,
+        "low": 0,
+        "high": 31,
+        "mean": null,
+        "variance": null,
+        "tx_id": null,
+        "interval_ordinal": null,
+        "component": "",
+        "interval_start_ns": null,
+        "interval_end_ns": null,
+        "component_start_ns": null,
+        "component_end_ns": null,
+        "bits": null,
+        "probability": null,
+        "rng_consumed": 1,
+        "active_nodes": 2,
+        "reported_nodes": 4,
+        "reservation_counter": -1,
+        "reservation_slot": -1,
+        "profile": 4,
+        "state": "search",
+        "cause": "CsrMacCore::PickTxSlot"
+      },
+      "context_matched": true
+    }
+  },
+  {
+    "observation_order": 144201,
+    "time_s": 62.881,
+    "kind": "protocol",
+    "node": 4,
+    "details": {
+      "event": "mac_prepare",
+      "frame": {},
+      "details": {
+        "ReservationSlot": 8,
+        "ReservationCounter": 8
+      }
+    }
+  },
+  {
+    "observation_order": 144202,
+    "time_s": 62.881,
+    "kind": "mac_boundary",
+    "node": 4,
+    "details": {
+      "Cause": "prepare_after",
+      "State": "Search",
+      "DataQueueCount": 1,
+      "AckQueueCount": 0,
+      "ReservationSlot": 8,
+      "ReservationCounter": 8,
+      "LastAdvertisedReservation": 4,
+      "LastOpportunitySlot": 15,
+      "PreparationActive": true,
+      "HoldoffOver": true,
+      "PostTxWaitActive": false,
+      "InReceiverUpdate": false,
+      "ActiveNodes": 2,
+      "ReportedActiveNodes": 4,
+      "SlotProfile": "hist-2014-next-tslot-modulo-probe",
+      "Neighbors": [
+        {
+          "PeerId": 2,
+          "ReservationCounter": -2,
+          "LastHeardSeconds": 62.870833632
+        },
+        {
+          "PeerId": 5,
+          "ReservationCounter": -38,
+          "LastHeardSeconds": 61.083472444
+        }
+      ],
+      "SlotEvent": 19159,
+      "HoldoffEvent": 0,
+      "IdleRtsEvent": 0,
+      "FinishEvent": 0,
+      "WakeEvent": 18879,
+      "SleepEvent": 0,
+      "PostTxEvent": 0,
+      "PackingRetryEvent": 0
+    }
+  },
+  {
+    "observation_order": 144203,
+    "time_s": 62.881,
+    "kind": "mac_boundary",
+    "node": 4,
+    "details": {
+      "Cause": "slotTick_after",
+      "State": "Search",
+      "DataQueueCount": 1,
+      "AckQueueCount": 0,
+      "ReservationSlot": 8,
+      "ReservationCounter": 8,
+      "LastAdvertisedReservation": 4,
+      "LastOpportunitySlot": 15,
+      "PreparationActive": true,
+      "HoldoffOver": true,
+      "PostTxWaitActive": false,
+      "InReceiverUpdate": false,
+      "ActiveNodes": 2,
+      "ReportedActiveNodes": 4,
+      "SlotProfile": "hist-2014-next-tslot-modulo-probe",
+      "Neighbors": [
+        {
+          "PeerId": 2,
+          "ReservationCounter": -2,
+          "LastHeardSeconds": 62.870833632
+        },
+        {
+          "PeerId": 5,
+          "ReservationCounter": -38,
+          "LastHeardSeconds": 61.083472444
+        }
+      ],
+      "SlotEvent": 19159,
+      "HoldoffEvent": 0,
+      "IdleRtsEvent": 0,
+      "FinishEvent": 0,
+      "WakeEvent": 18879,
+      "SleepEvent": 0,
+      "PostTxEvent": 0,
+      "PackingRetryEvent": 0
+    }
+  },
+  {
+    "observation_order": 144204,
+    "time_s": 62.881,
+    "kind": "scheduler_return",
+    "node": 0,
+    "details": {
+      "EventId": 19151,
+      "DeadlineSeconds": 62.881,
+      "Callback": "@()obj.slotTick()"
+    }
+  },
+  {
+    "observation_order": 144205,
+    "time_s": 62.881,
+    "kind": "scheduler_fire",
+    "node": 0,
+    "details": {
+      "EventId": 19152,
+      "DeadlineSeconds": 62.881,
+      "Callback": "@()obj.slotTick()",
+      "ExecutedOrdinal": 18531
+    }
+  },
+  {
+    "observation_order": 144207,
+    "time_s": 62.881,
+    "kind": "scheduler_schedule",
+    "node": 0,
+    "details": {
+      "EventId": 19160,
+      "DeadlineSeconds": 62.894,
+      "Callback": "@()obj.slotTick()",
+      "PendingCount": 38
+    }
+  },
+  {
+    "observation_order": 144211,
+    "time_s": 62.881,
+    "kind": "scheduler_return",
+    "node": 0,
+    "details": {
+      "EventId": 19152,
+      "DeadlineSeconds": 62.881,
+      "Callback": "@()obj.slotTick()"
+    }
+  },
+  {
+    "observation_order": 144212,
+    "time_s": 62.881,
+    "kind": "scheduler_fire",
+    "node": 0,
+    "details": {
+      "EventId": 19153,
+      "DeadlineSeconds": 62.881,
+      "Callback": "@()obj.slotTick()",
+      "ExecutedOrdinal": 18532
+    }
+  },
+  {
+    "observation_order": 144214,
+    "time_s": 62.881,
+    "kind": "scheduler_schedule",
+    "node": 0,
+    "details": {
+      "EventId": 19161,
+      "DeadlineSeconds": 62.894,
+      "Callback": "@()obj.slotTick()",
+      "PendingCount": 38
+    }
+  },
+  {
+    "observation_order": 144218,
+    "time_s": 62.881,
+    "kind": "scheduler_return",
+    "node": 0,
+    "details": {
+      "EventId": 19153,
+      "DeadlineSeconds": 62.881,
+      "Callback": "@()obj.slotTick()"
+    }
+  },
+  {
+    "observation_order": 144219,
+    "time_s": 62.881,
+    "kind": "scheduler_fire",
+    "node": 0,
+    "details": {
+      "EventId": 19154,
+      "DeadlineSeconds": 62.881,
+      "Callback": "@()obj.slotTick()",
+      "ExecutedOrdinal": 18533
+    }
+  },
+  {
+    "observation_order": 144221,
+    "time_s": 62.881,
+    "kind": "scheduler_schedule",
+    "node": 0,
+    "details": {
+      "EventId": 19162,
+      "DeadlineSeconds": 62.894,
+      "Callback": "@()obj.slotTick()",
+      "PendingCount": 38
+    }
+  },
+  {
+    "observation_order": 144225,
+    "time_s": 62.881,
+    "kind": "scheduler_return",
+    "node": 0,
+    "details": {
+      "EventId": 19154,
+      "DeadlineSeconds": 62.881,
+      "Callback": "@()obj.slotTick()"
+    }
+  }
+]

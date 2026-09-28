@@ -1,0 +1,666 @@
+{
+  "E_check_gate": {
+    "population_transitions": [
+      {
+        "observation_order": 1,
+        "time_s": 0,
+        "kind": "mac_boundary",
+        "node": 1,
+        "details": {
+          "Cause": "start_before",
+          "State": "Search",
+          "DataQueueCount": 0,
+          "AckQueueCount": 0,
+          "ReservationSlot": -1,
+          "ReservationCounter": -1,
+          "LastAdvertisedReservation": -1,
+          "LastOpportunitySlot": -1,
+          "PreparationActive": false,
+          "HoldoffOver": false,
+          "PostTxWaitActive": false,
+          "InReceiverUpdate": false,
+          "ActiveNodes": 1,
+          "ReportedActiveNodes": 1,
+          "SlotProfile": "hist-2014-next-tslot-modulo-probe",
+          "Neighbors": [],
+          "SlotEvent": 0,
+          "HoldoffEvent": 0,
+          "IdleRtsEvent": 0,
+          "FinishEvent": 0,
+          "WakeEvent": 0,
+          "SleepEvent": 0,
+          "PostTxEvent": 0,
+          "PackingRetryEvent": 0
+        }
+      },
+      {
+        "observation_order": 8003,
+        "time_s": 12.509111086,
+        "kind": "mac_boundary",
+        "node": 1,
+        "details": {
+          "Cause": "start_before",
+          "State": "Track",
+          "DataQueueCount": 0,
+          "AckQueueCount": 1,
+          "ReservationSlot": 18,
+          "ReservationCounter": 11,
+          "LastAdvertisedReservation": 18,
+          "LastOpportunitySlot": 17,
+          "PreparationActive": true,
+          "HoldoffOver": true,
+          "PostTxWaitActive": false,
+          "InReceiverUpdate": false,
+          "ActiveNodes": 2,
+          "ReportedActiveNodes": 2,
+          "SlotProfile": "hist-2014-next-tslot-modulo-probe",
+          "Neighbors": [
+            {
+              "PeerId": 3,
+              "ReservationCounter": -20,
+              "LastHeardSeconds": 12.014828077
+            },
+            {
+              "PeerId": 5,
+              "ReservationCounter": 15,
+              "LastHeardSeconds": 12.509111086
+            }
+          ],
+          "SlotEvent": 950,
+          "HoldoffEvent": 0,
+          "IdleRtsEvent": 0,
+          "FinishEvent": 0,
+          "WakeEvent": 711,
+          "SleepEvent": 0,
+          "PostTxEvent": 0,
+          "PackingRetryEvent": 0
+        }
+      },
+      {
+        "observation_order": 13071,
+        "time_s": 14.400468077,
+        "kind": "mac_boundary",
+        "node": 1,
+        "details": {
+          "Cause": "receiverChanged_before",
+          "State": "Track",
+          "DataQueueCount": 0,
+          "AckQueueCount": 6,
+          "ReservationSlot": 27,
+          "ReservationCounter": 10,
+          "LastAdvertisedReservation": 27,
+          "LastOpportunitySlot": 11,
+          "PreparationActive": true,
+          "HoldoffOver": true,
+          "PostTxWaitActive": false,
+          "InReceiverUpdate": false,
+          "ActiveNodes": 3,
+          "ReportedActiveNodes": 2,
+          "SlotProfile": "hist-2014-next-tslot-modulo-probe",
+          "Neighbors": [
+            {
+              "PeerId": 3,
+              "ReservationCounter": 29,
+              "LastHeardSeconds": 14.400468077
+            },
+            {
+              "PeerId": 5,
+              "ReservationCounter": 11,
+              "LastHeardSeconds": 14.138971086
+            }
+          ],
+          "SlotEvent": 1617,
+          "HoldoffEvent": 0,
+          "IdleRtsEvent": 0,
+          "FinishEvent": 0,
+          "WakeEvent": 1416,
+          "SleepEvent": 0,
+          "PostTxEvent": 0,
+          "PackingRetryEvent": 0
+        }
+      }
+    ],
+    "first_divergence": {
+      "node": 1,
+      "purpose": "mac_slot",
+      "ordinal": 8,
+      "actual_time_s": 14.534,
+      "fields": [
+        "active_nodes"
+      ],
+      "actual": {
+        "profile": 4,
+        "active_nodes": 3,
+        "reported_nodes": 2,
+        "reservation_counter": -1,
+        "reservation_slot": 27,
+        "state": "search",
+        "low": 0,
+        "high": 31
+      },
+      "expected": {
+        "event_order": 3402,
+        "time_ns": 14534000000.0,
+        "node": 1,
+        "purpose": "mac_slot",
+        "ordinal": 8,
+        "value": 13,
+        "low": 0,
+        "high": 31,
+        "mean": null,
+        "variance": null,
+        "tx_id": null,
+        "interval_ordinal": null,
+        "component": "",
+        "interval_start_ns": null,
+        "interval_end_ns": null,
+        "component_start_ns": null,
+        "component_end_ns": null,
+        "bits": null,
+        "probability": null,
+        "rng_consumed": 1,
+        "active_nodes": 2,
+        "reported_nodes": 2,
+        "reservation_counter": -1,
+        "reservation_slot": 27,
+        "profile": 4,
+        "state": "search",
+        "cause": "CsrMacCore::PickTxSlot"
+      }
+    },
+    "matched_random_requests": 96,
+    "native_transmissions_checked": 16,
+    "routing_admissions_at_14_400468077": [
+      {
+        "observation_order": 13092,
+        "time_s": 14.400468077,
+        "kind": "protocol",
+        "node": 1,
+        "details": {
+          "event": "hop_control_admit",
+          "frame": {
+            "Id": 11,
+            "SourceId": 1,
+            "DestinationId": 3,
+            "GeneratedSeconds": 14.400468077,
+            "ApplicationPayloadBytes": 0,
+            "WirePayloadBytes": 65,
+            "RateKeyKbps": 8,
+            "Preamble": "long",
+            "TxPowerDbm": 33,
+            "EnvelopeProfile": "bare",
+            "Kind": "CONTROL",
+            "Sequence": 4,
+            "Dscp": 7,
+            "AckRequired": true,
+            "HasAckWindow": false,
+            "AckBitmap": 0,
+            "DackBitmap": 0,
+            "App": {},
+            "RetryCount": 0,
+            "Control": {
+              "Id": 11,
+              "Type": "ROUTING",
+              "Payload": {
+                "Bytes": [
+                  0,
+                  0,
+                  0,
+                  3,
+                  0,
+                  1,
+                  4,
+                  0,
+                  8,
+                  0,
+                  128,
+                  254,
+                  152,
+                  1,
+                  74,
+                  0,
+                  120,
+                  0,
+                  140,
+                  0,
+                  0,
+                  0,
+                  0,
+                  2,
+                  0,
+                  0,
+                  1,
+                  2,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  2,
+                  0,
+                  0,
+                  5,
+                  1,
+                  0,
+                  1,
+                  0,
+                  0,
+                  29,
+                  26,
+                  0,
+                  0,
+                  5,
+                  0
+                ]
+              },
+              "WirePayloadBytes": 65
+            },
+            "DestinationIds": 3,
+            "HopSequences": 4
+          },
+          "details": {
+            "Targets": 3,
+            "TimeSeconds": 14.400468077
+          }
+        }
+      },
+      {
+        "observation_order": 13100,
+        "time_s": 14.400468077,
+        "kind": "protocol",
+        "node": 1,
+        "details": {
+          "event": "hop_control_admit",
+          "frame": {
+            "Id": 12,
+            "SourceId": 1,
+            "DestinationId": 3,
+            "GeneratedSeconds": 14.400468077,
+            "ApplicationPayloadBytes": 0,
+            "WirePayloadBytes": 26,
+            "RateKeyKbps": 8,
+            "Preamble": "long",
+            "TxPowerDbm": 33,
+            "EnvelopeProfile": "bare",
+            "Kind": "CONTROL",
+            "Sequence": 5,
+            "Dscp": 7,
+            "AckRequired": true,
+            "HasAckWindow": false,
+            "AckBitmap": 0,
+            "DackBitmap": 0,
+            "App": {},
+            "RetryCount": 0,
+            "Control": {
+              "Id": 12,
+              "Type": "ROUTING",
+              "Payload": {
+                "Bytes": [
+                  0,
+                  0,
+                  0,
+                  4,
+                  0,
+                  1,
+                  1,
+                  0,
+                  0,
+                  3
+                ]
+              },
+              "WirePayloadBytes": 26
+            },
+            "DestinationIds": [
+              3,
+              5
+            ],
+            "HopSequences": [
+              5,
+              7
+            ]
+          },
+          "details": {
+            "Targets": [
+              3,
+              5
+            ],
+            "TimeSeconds": 14.400468077
+          }
+        }
+      }
+    ]
+  },
+  "F_message_flag": {
+    "population_transitions": [
+      {
+        "observation_order": 1,
+        "time_s": 0,
+        "kind": "mac_boundary",
+        "node": 1,
+        "details": {
+          "Cause": "start_before",
+          "State": "Search",
+          "DataQueueCount": 0,
+          "AckQueueCount": 0,
+          "ReservationSlot": -1,
+          "ReservationCounter": -1,
+          "LastAdvertisedReservation": -1,
+          "LastOpportunitySlot": -1,
+          "PreparationActive": false,
+          "HoldoffOver": false,
+          "PostTxWaitActive": false,
+          "InReceiverUpdate": false,
+          "ActiveNodes": 1,
+          "ReportedActiveNodes": 1,
+          "SlotProfile": "hist-2014-next-tslot-modulo-probe",
+          "Neighbors": [],
+          "SlotEvent": 0,
+          "HoldoffEvent": 0,
+          "IdleRtsEvent": 0,
+          "FinishEvent": 0,
+          "WakeEvent": 0,
+          "SleepEvent": 0,
+          "PostTxEvent": 0,
+          "PackingRetryEvent": 0
+        }
+      },
+      {
+        "observation_order": 8003,
+        "time_s": 12.509111086,
+        "kind": "mac_boundary",
+        "node": 1,
+        "details": {
+          "Cause": "start_before",
+          "State": "Track",
+          "DataQueueCount": 0,
+          "AckQueueCount": 1,
+          "ReservationSlot": 18,
+          "ReservationCounter": 11,
+          "LastAdvertisedReservation": 18,
+          "LastOpportunitySlot": 17,
+          "PreparationActive": true,
+          "HoldoffOver": true,
+          "PostTxWaitActive": false,
+          "InReceiverUpdate": false,
+          "ActiveNodes": 2,
+          "ReportedActiveNodes": 2,
+          "SlotProfile": "hist-2014-next-tslot-modulo-probe",
+          "Neighbors": [
+            {
+              "PeerId": 3,
+              "ReservationCounter": -20,
+              "LastHeardSeconds": 12.014828077
+            },
+            {
+              "PeerId": 5,
+              "ReservationCounter": 15,
+              "LastHeardSeconds": 12.509111086
+            }
+          ],
+          "SlotEvent": 950,
+          "HoldoffEvent": 0,
+          "IdleRtsEvent": 0,
+          "FinishEvent": 0,
+          "WakeEvent": 711,
+          "SleepEvent": 0,
+          "PostTxEvent": 0,
+          "PackingRetryEvent": 0
+        }
+      },
+      {
+        "observation_order": 13071,
+        "time_s": 14.400468077,
+        "kind": "mac_boundary",
+        "node": 1,
+        "details": {
+          "Cause": "receiverChanged_before",
+          "State": "Track",
+          "DataQueueCount": 0,
+          "AckQueueCount": 6,
+          "ReservationSlot": 27,
+          "ReservationCounter": 10,
+          "LastAdvertisedReservation": 27,
+          "LastOpportunitySlot": 11,
+          "PreparationActive": true,
+          "HoldoffOver": true,
+          "PostTxWaitActive": false,
+          "InReceiverUpdate": false,
+          "ActiveNodes": 3,
+          "ReportedActiveNodes": 2,
+          "SlotProfile": "hist-2014-next-tslot-modulo-probe",
+          "Neighbors": [
+            {
+              "PeerId": 3,
+              "ReservationCounter": 29,
+              "LastHeardSeconds": 14.400468077
+            },
+            {
+              "PeerId": 5,
+              "ReservationCounter": 11,
+              "LastHeardSeconds": 14.138971086
+            }
+          ],
+          "SlotEvent": 1617,
+          "HoldoffEvent": 0,
+          "IdleRtsEvent": 0,
+          "FinishEvent": 0,
+          "WakeEvent": 1416,
+          "SleepEvent": 0,
+          "PostTxEvent": 0,
+          "PackingRetryEvent": 0
+        }
+      }
+    ],
+    "first_divergence": {
+      "node": 1,
+      "purpose": "mac_slot",
+      "ordinal": 8,
+      "actual_time_s": 14.534,
+      "fields": [
+        "active_nodes"
+      ],
+      "actual": {
+        "profile": 4,
+        "active_nodes": 3,
+        "reported_nodes": 2,
+        "reservation_counter": -1,
+        "reservation_slot": 27,
+        "state": "search",
+        "low": 0,
+        "high": 31
+      },
+      "expected": {
+        "event_order": 3402,
+        "time_ns": 14534000000.0,
+        "node": 1,
+        "purpose": "mac_slot",
+        "ordinal": 8,
+        "value": 13,
+        "low": 0,
+        "high": 31,
+        "mean": null,
+        "variance": null,
+        "tx_id": null,
+        "interval_ordinal": null,
+        "component": "",
+        "interval_start_ns": null,
+        "interval_end_ns": null,
+        "component_start_ns": null,
+        "component_end_ns": null,
+        "bits": null,
+        "probability": null,
+        "rng_consumed": 1,
+        "active_nodes": 2,
+        "reported_nodes": 2,
+        "reservation_counter": -1,
+        "reservation_slot": 27,
+        "profile": 4,
+        "state": "search",
+        "cause": "CsrMacCore::PickTxSlot"
+      }
+    },
+    "matched_random_requests": 96,
+    "native_transmissions_checked": 16,
+    "routing_admissions_at_14_400468077": [
+      {
+        "observation_order": 13092,
+        "time_s": 14.400468077,
+        "kind": "protocol",
+        "node": 1,
+        "details": {
+          "event": "hop_control_admit",
+          "frame": {
+            "Id": 11,
+            "SourceId": 1,
+            "DestinationId": 3,
+            "GeneratedSeconds": 14.400468077,
+            "ApplicationPayloadBytes": 0,
+            "WirePayloadBytes": 65,
+            "RateKeyKbps": 8,
+            "Preamble": "long",
+            "TxPowerDbm": 33,
+            "EnvelopeProfile": "bare",
+            "Kind": "CONTROL",
+            "Sequence": 4,
+            "Dscp": 7,
+            "AckRequired": true,
+            "HasAckWindow": false,
+            "AckBitmap": 0,
+            "DackBitmap": 0,
+            "App": {},
+            "RetryCount": 0,
+            "Control": {
+              "Id": 11,
+              "Type": "ROUTING",
+              "Payload": {
+                "Bytes": [
+                  0,
+                  0,
+                  0,
+                  3,
+                  0,
+                  1,
+                  4,
+                  0,
+                  8,
+                  0,
+                  128,
+                  254,
+                  152,
+                  1,
+                  74,
+                  0,
+                  120,
+                  0,
+                  140,
+                  0,
+                  0,
+                  0,
+                  0,
+                  2,
+                  0,
+                  0,
+                  1,
+                  2,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  2,
+                  0,
+                  0,
+                  5,
+                  1,
+                  0,
+                  1,
+                  0,
+                  0,
+                  29,
+                  26,
+                  0,
+                  0,
+                  5,
+                  0
+                ]
+              },
+              "WirePayloadBytes": 65
+            },
+            "DestinationIds": 3,
+            "HopSequences": 4
+          },
+          "details": {
+            "Targets": 3,
+            "TimeSeconds": 14.400468077
+          }
+        }
+      },
+      {
+        "observation_order": 13100,
+        "time_s": 14.400468077,
+        "kind": "protocol",
+        "node": 1,
+        "details": {
+          "event": "hop_control_admit",
+          "frame": {
+            "Id": 12,
+            "SourceId": 1,
+            "DestinationId": 3,
+            "GeneratedSeconds": 14.400468077,
+            "ApplicationPayloadBytes": 0,
+            "WirePayloadBytes": 26,
+            "RateKeyKbps": 8,
+            "Preamble": "long",
+            "TxPowerDbm": 33,
+            "EnvelopeProfile": "bare",
+            "Kind": "CONTROL",
+            "Sequence": 5,
+            "Dscp": 7,
+            "AckRequired": true,
+            "HasAckWindow": false,
+            "AckBitmap": 0,
+            "DackBitmap": 0,
+            "App": {},
+            "RetryCount": 0,
+            "Control": {
+              "Id": 12,
+              "Type": "ROUTING",
+              "Payload": {
+                "Bytes": [
+                  0,
+                  0,
+                  0,
+                  4,
+                  0,
+                  1,
+                  1,
+                  0,
+                  0,
+                  3
+                ]
+              },
+              "WirePayloadBytes": 26
+            },
+            "DestinationIds": [
+              3,
+              5
+            ],
+            "HopSequences": [
+              5,
+              7
+            ]
+          },
+          "details": {
+            "Targets": [
+              3,
+              5
+            ],
+            "TimeSeconds": 14.400468077
+          }
+        }
+      }
+    ]
+  }
+}

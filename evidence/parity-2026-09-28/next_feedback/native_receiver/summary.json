@@ -1,0 +1,141 @@
+{
+  "schema": "csr-native-receiver-feedback-audit-v1",
+  "seed": 132,
+  "input": "/workspace/scratch/db3d3caa011d/next_feedback/native_archive/evidence/tranche-25-ns3-reference/s132/ns3-trace.csv.gz",
+  "input_sha256": "3da17e3397756f8890964d571932a44f7c94573b4d38eac9387342588883a4ef",
+  "total_raw_rows": 4991634,
+  "kept_raw_rows": 31219,
+  "event_counts": {
+    "mac_state": 261991,
+    "route_change": 85,
+    "scenario_node": 7,
+    "scenario_link": 21,
+    "statistic_sample": 160324,
+    "reservation_prepare": 47979,
+    "reservation_holdoff": 113,
+    "reservation_tick": 871301,
+    "reservation_advertise": 47976,
+    "tx_start": 47976,
+    "rx_drop": 206345,
+    "rx_accept": 81508,
+    "app_admission": 1710000,
+    "app_send": 12460,
+    "nwk_enqueue": 18085,
+    "nwk_admission": 1421835,
+    "nwk_forward": 17824,
+    "hop_admission": 17824,
+    "hop_feedback": 17455,
+    "nwk_nsdp_release": 17800,
+    "hop_completion": 17800,
+    "nwk_delivery": 11798,
+    "hop_capacity_release": 3127
+  },
+  "receiver_decision_counts": {
+    "ack": 300,
+    "dack": 945
+  },
+  "receiver_first_counts": {
+    "1": 1245
+  },
+  "completion_counts": {
+    "ack": 300,
+    "dack": 945,
+    "no_ack": 26
+  },
+  "admissions": 1271,
+  "no_receive_count": 26,
+  "kind_mismatch_count": 0,
+  "decision_and_nsdp_errors": [],
+  "first_dacks": {
+    "7": {
+      "event_index": 63549,
+      "time_s": "346.85081534599999",
+      "time_ns": 346850815346,
+      "source": 7,
+      "destination": 1,
+      "application_sequence": 988,
+      "incoming_hop_sequence": 46,
+      "first_reception": 1,
+      "nsdp_before": 16,
+      "nsdp_after": 17,
+      "nsdp_limit": 16,
+      "predicted_kind": "dack",
+      "emitted_kind": "dack",
+      "total_custody_after": 49
+    },
+    "8": {
+      "event_index": 66204,
+      "time_s": "349.91881534599997",
+      "time_ns": 349918815346,
+      "source": 8,
+      "destination": 1,
+      "application_sequence": 1143,
+      "incoming_hop_sequence": 51,
+      "first_reception": 1,
+      "nsdp_before": 16,
+      "nsdp_after": 17,
+      "nsdp_limit": 16,
+      "predicted_kind": "dack",
+      "emitted_kind": "dack",
+      "total_custody_after": 53
+    }
+  },
+  "feedback_delay_seconds": {
+    "ack": {
+      "n": 300,
+      "mean": 0.3091933333333333,
+      "p50": 0.24948,
+      "max": 1.56248
+    },
+    "dack": {
+      "n": 945,
+      "mean": 0.31105460317460315,
+      "p50": 0.23648,
+      "max": 1.96548
+    }
+  },
+  "limitations": [
+    "Native PHY tx/rx exposes aggregate-front identity only; control children/bitmap membership are not fully exposed by this longrun schema.",
+    "Logical HOP completion is recorded per original application and hop sequence; its completion time supports end-to-end feedback age without asserting which physical control child acknowledged it.",
+    "Different autonomous engines/seeds are not packet-paired.",
+    "NSDP is tracked per original (source,destination), not per ingress neighbor; receiver decision occupancy is before this reception."
+  ],
+  "flow_summary": [
+    {
+      "source": 7,
+      "admissions": 775,
+      "receptions": 759,
+      "receiver_acks": 114,
+      "receiver_dacks": 645,
+      "ack_fraction_of_receptions": 0.15019762845849802,
+      "no_reception_failures": 16,
+      "unfinished": 0,
+      "first_reception_s": 331.588815346,
+      "first_dack_s": 346.850815346,
+      "first_dack_nsdp": 16,
+      "mean_nsdp_at_arrival": 25.159420289855074,
+      "max_nsdp_at_arrival": 52,
+      "max_ack_nsdp": 15,
+      "min_dack_nsdp": 16,
+      "mean_receipt_to_completion_s": 0.3111400790513834
+    },
+    {
+      "source": 8,
+      "admissions": 496,
+      "receptions": 486,
+      "receiver_acks": 186,
+      "receiver_dacks": 300,
+      "ack_fraction_of_receptions": 0.38271604938271603,
+      "no_reception_failures": 10,
+      "unfinished": 0,
+      "first_reception_s": 316.963815346,
+      "first_dack_s": 349.918815346,
+      "first_dack_nsdp": 16,
+      "mean_nsdp_at_arrival": 16.89917695473251,
+      "max_nsdp_at_arrival": 38,
+      "max_ack_nsdp": 15,
+      "min_dack_nsdp": 16,
+      "mean_receipt_to_completion_s": 0.30977218106995885
+    }
+  ]
+}

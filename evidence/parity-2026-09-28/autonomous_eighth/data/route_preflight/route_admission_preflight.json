@@ -1,0 +1,81 @@
+{
+  "schema": "csr-route-admission-preflight-v1",
+  "passed": true,
+  "checks": [
+    {
+      "name": "baseline_unobserved_admission_reproduces_delete3",
+      "passed": true,
+      "details": {
+        "routing_section_hex": "00000004000101000003",
+        "selected_cost": 3587
+      }
+    },
+    {
+      "name": "unobserved_admission_has_no_candidate_or_change",
+      "passed": true,
+      "details": {
+        "candidate_count": 0,
+        "change_count": 0
+      }
+    },
+    {
+      "name": "later_observation_creates_direct_route_and_legitimate_delete",
+      "passed": true,
+      "details": {
+        "cost": 3587,
+        "operation": "DELETE"
+      }
+    },
+    {
+      "name": "observed_capability_zero_candidate_is_selected_without_mutation",
+      "passed": true,
+      "details": {
+        "cost_before": 3587,
+        "admission_cost_argument": 9999,
+        "cost_after": 3587
+      }
+    },
+    {
+      "name": "observed_capable_candidate_admission_and_repeat",
+      "passed": true,
+      "details": {
+        "cost": 3587,
+        "capability": 1,
+        "sequence": 7,
+        "updated_seconds": 2
+      }
+    },
+    {
+      "name": "unrelated_transit_candidate_stays_deferred",
+      "passed": true,
+      "details": {
+        "destination": 4,
+        "selection_deferred": true
+      }
+    },
+    {
+      "name": "invalid_cached_candidate_preserved",
+      "passed": true,
+      "details": {
+        "destination": 3,
+        "next_hop": 5,
+        "valid": false,
+        "selection_deferred": true
+      }
+    },
+    {
+      "name": "admission_preserves_logical_destination_creation_order",
+      "passed": true,
+      "details": {
+        "changed_destination_order": [
+          5,
+          3
+        ]
+      }
+    }
+  ],
+  "network_simulation_executed": false,
+  "random_variates_requested": 0,
+  "scope": "Public Routes API: admission allocation, legitimate changes, deferred state and ordering",
+  "limitation": "Full H network continuation is a separate result; no private candidate state was injected"
+}

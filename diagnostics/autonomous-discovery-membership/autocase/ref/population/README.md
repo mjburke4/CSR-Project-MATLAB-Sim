@@ -1,0 +1,1 @@
+Native public-component evidence only. The probe confirms NWK population3/MAC latch2 after ACK-only admission, publication on later qualifying HELLO, and the distinction between absent and previously observed direct route candidates. It does not run a full network. The owner only runs run_autonomous_tests in MATLAB; the C++ source/log/build receipt are provenance.

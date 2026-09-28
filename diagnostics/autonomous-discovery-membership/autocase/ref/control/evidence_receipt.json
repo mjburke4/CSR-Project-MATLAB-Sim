@@ -1,0 +1,104 @@
+{
+  "schema": "csr-sixth-control-wire-native-evidence-v1",
+  "status": "native_packet_component_pass_and_candidate_static_review_pass",
+  "native_network_run": false,
+  "matlab_executed": false,
+  "production_or_fixture_edited": false,
+  "native_component_cases": 12,
+  "component_scope": "Native packet/header/security/envelope/PHY rate APIs only; no Simulator::Run, device or channel.",
+  "no_path_actual_sender_path_source_verified": true,
+  "no_path_actual_sender_path_executed": false,
+  "no_path_network_coverage": 0,
+  "source_pins": {
+    "csr": {
+      "url": "https://github.com/mjburke4/CSR-Project-NS3-part2.git",
+      "commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+      "tree": "b611b233fb369569b98f0914ece24d029ccc2f42",
+      "tracked_files_clean": true
+    },
+    "engine": {
+      "url": "https://github.com/nsnam/ns-3-dev-git.git",
+      "commit": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+      "tree": "f30343185fb057e3a9cdd54f496cca0cef49ae23",
+      "tracked_files_clean": true
+    }
+  },
+  "toolchain": {
+    "g++": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+    "cmake": "cmake version 3.31.10",
+    "ninja": "1.13.2.git.kitware.jobserver-pipe-1"
+  },
+  "input_sha256": {
+    "autonomous/native_capture/fixture/tx_signatures.csv": "40f51355e02c0950e7608d9eeb6efb590a539bdef37c0381780db5fc086ad5e1",
+    "autonomous/native_capture/normalize.py": "4d789713feb0dc92534aa553584fa6d9132d6f542060860b00c3a4a63e1251fe",
+    "autonomous/native_capture/run/observations.tsv": "3156069106cf3db451dce3fca4c9de91e09b5c9da07dd9ccc8d84615957de7f6",
+    "autonomous_sixth/data/H_admission_route/first_divergence.json": "6b63c6c31a5136834d38076b07014852438b0655110b4019bfafe5416784b337",
+    "autonomous/native_env/build.json": "e4bc375f516d4b21b20e1fea9a9685bdc4c26f98338b27389b08ec3a3ffcdad9"
+  },
+  "native_source_sha256": {
+    "csr-nwk-layer.h": "bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc",
+    "csr-hop-layer.h": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+    "csr-hop-security.h": "9bca9c9a6e4ae04a20a3309ac8a8787589ac4ad65785cbf57fbe20c5e8e37d5e",
+    "csr-opnet-envelope.h": "e67b526126907f43f2ee4199552c583ac9c2a0f927cf942fe76aa328900e001a",
+    "csr-opnet-packet-model.cc": "16af5d39e7f12c17e1f27a49f80c1ea313618bce87d3c5b75b07bc38cebf2056",
+    "csr-net-device.h": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+    "csr-phy-model.h": "d690b4c572491a9ea8c48735b1726770938b118dcbcd931e92920e602cae18fc",
+    "csr-hello-header.h": "741ccff278e1694ea40c4c6c5b1cb14a3a6034864d0328c6a2e04420935fb7d4",
+    "csr-hello-header.cc": "e6a1a9e95312d089404873fd7d9d4c87bf024d754af224064328106d5c886a4f"
+  },
+  "runtime_library_sha256": {
+    "libns3-dev-antenna-debug.so": "86c433f54a806e08224c1f4a1dd2e3fe76bb71677a50e3707329449f95827504",
+    "libns3-dev-buildings-debug.so": "55b913985774a57a5d5687431f9086274bd869a6919d8b87d5124a5f4361bfbb",
+    "libns3-dev-core-debug.so": "c3cc4ad37ff809ec4d0e12cdae8862ecac7ac3059186ae306973fe203aa8fd43",
+    "libns3-dev-csr-debug.so": "b27ef8615595ab2fba7af508136db7288d4852cb01c5eb0a8d57161721dc52d3",
+    "libns3-dev-mobility-debug.so": "934c0f3b6846902250b699a65ac0de03b048825bd7d49ce00a44a61790fa6fc4",
+    "libns3-dev-network-debug.so": "6596bf4a7923d9e59ec061e84438b9f22e42575cdc45cdab2d9491a267f32979",
+    "libns3-dev-propagation-debug.so": "a85a8bff3b8bfa41eeb5d333d7c25b8c8801668acd959528e9f942ac5e8baa1e",
+    "libns3-dev-spectrum-debug.so": "891bfaf493b8b2cab4e6b3e111e0addf6aadf1b644b1c3ae898763b62f151a79",
+    "libns3-dev-stats-debug.so": "0c39521ca00e5dbe8495b54d35a821598ee10ab23dbd985fa1b297ca310828d5"
+  },
+  "artifact_sha256": {
+    "REVIEW.md": "81f1dfc6817cb0ce7f0bebb80aa60be88d4c65651b64df933a03e02203eed7cb",
+    "audit_evidence.py": "4f086d6f53812713c1ae9bf571907075b409f87a96a5ace499575da9ccd4ac8e",
+    "candidate_scope_review.json": "ddc5c10b9ed3cd2bd66ed328480ffee6b9c9eb617cd67fc16a3d7fe761081d05",
+    "captured_frames.tsv": "8f2e3e13ba191672b8d6e609895784f1667c0ce88ca5c0f8997e65c1f8604f9f",
+    "compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compile_command.json": "fa4e5f7d8de8b2b582401efabb7190c9a2731361504705e6f3f57054a36f7e40",
+    "control_size_probe.cc": "f86a6ed41f1f638e694cdbd0ad2d3f2fc8321e1ccc847a8368767661f6b598bf",
+    "control_size_probe.log": "8f2930a0313e04c28ac5ceed280800f94224748154d31e2201a49abdeee7c3c4",
+    "fixture_control_audit.json": "c8ba16246c44ea841488ff8593a42c98fd24401046c6227bb38c542019f74260",
+    "run_packet_probe.py": "c17f0518219529d869a7226a44f1d3b26ed7ffc198e3edb113daaea2c5914e0e",
+    "source_path_proof.json": "8fa24f8d69eabb11bb5d490747a2f45d329ab36ad6fe1c6e177f9ad48298544f"
+  },
+  "compile_argv": [
+    "g++",
+    "-std=c++23",
+    "-O0",
+    "-g",
+    "-DNS3_ASSERT_ENABLE",
+    "-DNS3_BUILD_PROFILE_DEBUG",
+    "-DNS3_LOG_ENABLE",
+    "-I/workspace/scratch/db3d3caa011d/autonomous_sixth/native/include",
+    "-I/workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/include",
+    "/workspace/scratch/db3d3caa011d/autonomous_sixth/native/control_size_probe.cc",
+    "-L/workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib",
+    "-Wl,-rpath,/workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib",
+    "-lns3-dev-csr-debug",
+    "-lns3-dev-core-debug",
+    "-lns3-dev-network-debug",
+    "-lstdc++exp",
+    "-o",
+    "/workspace/scratch/db3d3caa011d/autonomous_sixth/native/control_size_probe"
+  ],
+  "run_argv": [
+    "/workspace/scratch/db3d3caa011d/autonomous_sixth/native/control_size_probe",
+    "/workspace/scratch/db3d3caa011d/autonomous_sixth/native/captured_frames.tsv"
+  ],
+  "include_wrapper_note": "Three local headers redirect restored ns3 wrappers to the pinned CSR checkout; source and build were not modified.",
+  "recommended_candidate": "I_control_wire: provenance-tagged compact REQUEST16 and compatibility-metadata NoPath16; no general opcode-based exemption.",
+  "limits": [
+    "No downstream trajectory or delivery improvement measured.",
+    "NoPath source chain plus packet component validated; owner-side public preflight remains pending.",
+    "Compatibility DELETE-marker API is also16, but real grouped DELETE remains26; no new DELETE change justified."
+  ]
+}

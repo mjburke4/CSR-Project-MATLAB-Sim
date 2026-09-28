@@ -1,0 +1,99 @@
+{
+  "schema": "csr-discovery-outer-identity-audit-v1",
+  "matlab_executed_here": false,
+  "fixture_sha256": "40f51355e02c0950e7608d9eeb6efb590a539bdef37c0381780db5fc086ad5e1",
+  "native_discover_count": 24,
+  "native_creation_sequences_contiguous_1_to_24": true,
+  "subtypes": {
+    "broadcast": 24
+  },
+  "native_first_four": [
+    {
+      "native_create_ns": 10000000000,
+      "native_tx_ns": 10465000000,
+      "source": 1,
+      "native_outer_sequence": 1,
+      "payload_session_sequence": 1,
+      "subtype": "broadcast",
+      "source_tx_ordinal": 1
+    },
+    {
+      "native_create_ns": 15000000000,
+      "native_tx_ns": 15067000000,
+      "source": 1,
+      "native_outer_sequence": 2,
+      "payload_session_sequence": 1,
+      "subtype": "broadcast",
+      "source_tx_ordinal": 8
+    },
+    {
+      "native_create_ns": 20000000000,
+      "native_tx_ns": 20189000000,
+      "source": 1,
+      "native_outer_sequence": 3,
+      "payload_session_sequence": 1,
+      "subtype": "broadcast",
+      "source_tx_ordinal": 13
+    },
+    {
+      "native_create_ns": 25385728077,
+      "native_tx_ns": 25740000000,
+      "source": 3,
+      "native_outer_sequence": 4,
+      "payload_session_sequence": 1,
+      "subtype": "broadcast",
+      "source_tx_ordinal": 17
+    }
+  ],
+  "portable_admitted_discover": [
+    {
+      "time_s": 10.0,
+      "source": 1,
+      "destination": 16777215,
+      "outer_sequence": 1
+    },
+    {
+      "time_s": 15.0,
+      "source": 1,
+      "destination": 16777215,
+      "outer_sequence": 2
+    },
+    {
+      "time_s": 20.0,
+      "source": 1,
+      "destination": 16777215,
+      "outer_sequence": 3
+    },
+    {
+      "time_s": 25.385728077,
+      "source": 3,
+      "destination": 16777215,
+      "outer_sequence": 1
+    }
+  ],
+  "returned_status": {
+    "mode": "native",
+    "draw_count": 290,
+    "native_unrequested_draws": 4140,
+    "native_transmissions_available": 811,
+    "native_transmissions_checked": 49,
+    "native_transmissions_unused": 762,
+    "native_tape_exhausted": false,
+    "first_time_difference": [],
+    "strict_context_matched": false,
+    "numeric_parity_established": false,
+    "time_is_endogenous": true,
+    "probability_absolute_tolerance": 0,
+    "probability_relative_tolerance": 1e-12,
+    "reported_population_gate": "Recorded only; fixed native MAC profile 4 does not use this field"
+  },
+  "observed_comparison_scope": "Broadcast non-ACK DISCOVER only. Payload discovery-session sequence is semantic and remains strict.",
+  "sibling_allocators": {
+    "DISCOVER_broadcast_and_chirp": "Native function-static process counter; MATLAB per-object broadcast destination map. Only broadcast subtype is captured and normalized.",
+    "KEY_REQUEST_KEY_UPDATE_NEIGHBOR_CHECK_ROUTING_DATA": "Per-source, per-destination uint16 transmit stream shared by kinds; reliable receive ACK ownership remains strict.",
+    "SNMP": "Constant zero, no reliable sequence allocation in both.",
+    "HELLO_and_authenticated_routing_broadcast": "Native independent process-static counters; no portable HELLO control type and no captured HELLO. No comparator exception.",
+    "ApplicationPacketId": "Engine-local application identity; existing source flow/attempt semantic guards unchanged.",
+    "NWK_routing_and_discovery_session_sequences": "Independent payload sequences; remain strict."
+  }
+}

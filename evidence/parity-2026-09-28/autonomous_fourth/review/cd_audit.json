@@ -1,0 +1,605 @@
+{
+  "schema": "csr-fourth-owner-cd-independent-audit-v1",
+  "stop_ns": 12402000000,
+  "native_requests_through_stop": 40,
+  "native_txs_through_stop": 7,
+  "cases": {
+    "C_timing": {
+      "requests": 40,
+      "requests_by_purpose": {
+        "mac_slot": 11,
+        "sync_threshold": 17,
+        "phy_binomial": 12
+      },
+      "global_order_mismatches": [
+        {
+          "global_index": 6,
+          "actual": [
+            4,
+            "phy_binomial",
+            1
+          ],
+          "native": [
+            3,
+            "mac_slot",
+            1
+          ]
+        },
+        {
+          "global_index": 7,
+          "actual": [
+            4,
+            "phy_binomial",
+            2
+          ],
+          "native": [
+            5,
+            "mac_slot",
+            1
+          ]
+        },
+        {
+          "global_index": 8,
+          "actual": [
+            3,
+            "mac_slot",
+            1
+          ],
+          "native": [
+            4,
+            "phy_binomial",
+            1
+          ]
+        },
+        {
+          "global_index": 9,
+          "actual": [
+            5,
+            "mac_slot",
+            1
+          ],
+          "native": [
+            4,
+            "phy_binomial",
+            2
+          ]
+        }
+      ],
+      "request_timing_differences": [
+        {
+          "key": [
+            3,
+            "mac_slot",
+            1
+          ],
+          "delta_ns": 4691923
+        },
+        {
+          "key": [
+            5,
+            "mac_slot",
+            1
+          ],
+          "delta_ns": 4688914
+        },
+        {
+          "key": [
+            5,
+            "mac_slot",
+            2
+          ],
+          "delta_ns": 13000000
+        },
+        {
+          "key": [
+            1,
+            "sync_threshold",
+            1
+          ],
+          "delta_ns": 13000000
+        },
+        {
+          "key": [
+            4,
+            "sync_threshold",
+            2
+          ],
+          "delta_ns": 13000000
+        },
+        {
+          "key": [
+            3,
+            "sync_threshold",
+            2
+          ],
+          "delta_ns": 13000000
+        },
+        {
+          "key": [
+            3,
+            "phy_binomial",
+            1
+          ],
+          "delta_ns": 13000000
+        },
+        {
+          "key": [
+            3,
+            "phy_binomial",
+            2
+          ],
+          "delta_ns": 13000000
+        },
+        {
+          "key": [
+            3,
+            "mac_slot",
+            2
+          ],
+          "delta_ns": 13000000
+        },
+        {
+          "key": [
+            1,
+            "sync_threshold",
+            3
+          ],
+          "delta_ns": 13000000
+        },
+        {
+          "key": [
+            5,
+            "sync_threshold",
+            3
+          ],
+          "delta_ns": 13000000
+        },
+        {
+          "key": [
+            5,
+            "phy_binomial",
+            1
+          ],
+          "delta_ns": 13000000
+        },
+        {
+          "key": [
+            5,
+            "phy_binomial",
+            2
+          ],
+          "delta_ns": 13000000
+        }
+      ],
+      "interval_component_ns_differences": [
+        {
+          "key": [
+            3,
+            "phy_binomial",
+            1
+          ],
+          "field": "interval_start_ns",
+          "delta_ns": 13000000.0
+        },
+        {
+          "key": [
+            3,
+            "phy_binomial",
+            1
+          ],
+          "field": "interval_end_ns",
+          "delta_ns": 13000000.0
+        },
+        {
+          "key": [
+            3,
+            "phy_binomial",
+            1
+          ],
+          "field": "component_start_ns",
+          "delta_ns": 13000000.0
+        },
+        {
+          "key": [
+            3,
+            "phy_binomial",
+            1
+          ],
+          "field": "component_end_ns",
+          "delta_ns": 13000000.0
+        },
+        {
+          "key": [
+            3,
+            "phy_binomial",
+            2
+          ],
+          "field": "interval_start_ns",
+          "delta_ns": 13000000.0
+        },
+        {
+          "key": [
+            3,
+            "phy_binomial",
+            2
+          ],
+          "field": "interval_end_ns",
+          "delta_ns": 13000000.0
+        },
+        {
+          "key": [
+            3,
+            "phy_binomial",
+            2
+          ],
+          "field": "component_start_ns",
+          "delta_ns": 13000000.0
+        },
+        {
+          "key": [
+            3,
+            "phy_binomial",
+            2
+          ],
+          "field": "component_end_ns",
+          "delta_ns": 13000000.0
+        },
+        {
+          "key": [
+            5,
+            "phy_binomial",
+            1
+          ],
+          "field": "interval_start_ns",
+          "delta_ns": 13000000.0
+        },
+        {
+          "key": [
+            5,
+            "phy_binomial",
+            1
+          ],
+          "field": "interval_end_ns",
+          "delta_ns": 13000000.0
+        },
+        {
+          "key": [
+            5,
+            "phy_binomial",
+            1
+          ],
+          "field": "component_start_ns",
+          "delta_ns": 13000000.0
+        },
+        {
+          "key": [
+            5,
+            "phy_binomial",
+            1
+          ],
+          "field": "component_end_ns",
+          "delta_ns": 13000000.0
+        },
+        {
+          "key": [
+            5,
+            "phy_binomial",
+            2
+          ],
+          "field": "interval_start_ns",
+          "delta_ns": 13000000.0
+        },
+        {
+          "key": [
+            5,
+            "phy_binomial",
+            2
+          ],
+          "field": "interval_end_ns",
+          "delta_ns": 13000000.0
+        },
+        {
+          "key": [
+            5,
+            "phy_binomial",
+            2
+          ],
+          "field": "component_start_ns",
+          "delta_ns": 13000000.0
+        },
+        {
+          "key": [
+            5,
+            "phy_binomial",
+            2
+          ],
+          "field": "component_end_ns",
+          "delta_ns": 13000000.0
+        }
+      ],
+      "missing_or_extra_request_keys": false,
+      "matched_tx_contexts": 6,
+      "attempted_tx_contexts": 7,
+      "previous_phy_request": {
+        "time_s": 11.500323527,
+        "node": 4,
+        "purpose": "phy_binomial",
+        "ordinal": 2,
+        "value": 0.4555911702949003,
+        "actual": {
+          "tx_id": 4294967297.0,
+          "interval_ordinal": 1,
+          "interval_start_ns": 10465023527.0,
+          "interval_end_ns": 11500323527.0,
+          "bits": 183,
+          "probability": 0.015116561887016548,
+          "component": "payload",
+          "component_start_ns": 11476863527.0,
+          "component_end_ns": 11500323527.0
+        },
+        "expected": {
+          "event_order": 1099,
+          "time_ns": 11500323527.0,
+          "node": 4,
+          "purpose": "phy_binomial",
+          "ordinal": 2,
+          "value": 0.4555911702949003,
+          "low": 0,
+          "high": 1,
+          "mean": null,
+          "variance": null,
+          "tx_id": 4294967297.0,
+          "interval_ordinal": 1,
+          "component": "payload",
+          "interval_start_ns": 10465023527.0,
+          "interval_end_ns": 11500323527.0,
+          "component_start_ns": 11476863527.0,
+          "component_end_ns": 11500323527.0,
+          "bits": 183,
+          "probability": 0.015116561887016548,
+          "rng_consumed": 1,
+          "active_nodes": null,
+          "reported_nodes": null,
+          "reservation_counter": null,
+          "reservation_slot": null,
+          "profile": null,
+          "state": "",
+          "cause": "CsrNetDevice::EndReceiveSignal"
+        },
+        "context_matched": true
+      },
+      "control_admission_order": [
+        {
+          "order": 4970,
+          "time_s": 11.500308077,
+          "node": 3,
+          "event": "neighbor_control_send"
+        },
+        {
+          "order": 4978,
+          "time_s": 11.500308077,
+          "node": 3,
+          "event": "phy_Track_to_Search"
+        },
+        {
+          "order": 4991,
+          "time_s": 11.500308077,
+          "node": 3,
+          "event": "mac_enqueue"
+        },
+        {
+          "order": 4996,
+          "time_s": 11.500308077,
+          "node": 3,
+          "event": "hop_control_admit"
+        },
+        {
+          "order": 5010,
+          "time_s": 11.500311086,
+          "node": 5,
+          "event": "neighbor_control_send"
+        },
+        {
+          "order": 5018,
+          "time_s": 11.500311086,
+          "node": 5,
+          "event": "phy_Track_to_Search"
+        },
+        {
+          "order": 5031,
+          "time_s": 11.500311086,
+          "node": 5,
+          "event": "mac_enqueue"
+        },
+        {
+          "order": 5036,
+          "time_s": 11.500311086,
+          "node": 5,
+          "event": "hop_control_admit"
+        },
+        {
+          "order": 5079,
+          "time_s": 11.505,
+          "node": 3,
+          "event": "mac_prepare_counter_27"
+        },
+        {
+          "order": 5095,
+          "time_s": 11.505,
+          "node": 5,
+          "event": "mac_prepare_counter_10"
+        }
+      ],
+      "stop": {
+        "node": 5,
+        "time_s": 12.402,
+        "ordinal": 3,
+        "fields": [
+          "parent.child_count",
+          "parent.total_wire_bytes",
+          "ordered_child_count"
+        ],
+        "actual_children": 3,
+        "native_children": 4,
+        "actual_wire_bytes": 66,
+        "native_wire_bytes": 82
+      }
+    },
+    "D_inline_key": {
+      "requests": 40,
+      "requests_by_purpose": {
+        "mac_slot": 11,
+        "sync_threshold": 17,
+        "phy_binomial": 12
+      },
+      "global_order_mismatches": [],
+      "request_timing_differences": [],
+      "interval_component_ns_differences": [],
+      "missing_or_extra_request_keys": false,
+      "matched_tx_contexts": 6,
+      "attempted_tx_contexts": 7,
+      "previous_phy_request": {
+        "time_s": 11.500323527,
+        "node": 4,
+        "purpose": "phy_binomial",
+        "ordinal": 2,
+        "value": 0.4555911702949003,
+        "actual": {
+          "tx_id": 4294967297.0,
+          "interval_ordinal": 1,
+          "interval_start_ns": 10465023527.0,
+          "interval_end_ns": 11500323527.0,
+          "bits": 183,
+          "probability": 0.015116561887016548,
+          "component": "payload",
+          "component_start_ns": 11476863527.0,
+          "component_end_ns": 11500323527.0
+        },
+        "expected": {
+          "event_order": 1099,
+          "time_ns": 11500323527.0,
+          "node": 4,
+          "purpose": "phy_binomial",
+          "ordinal": 2,
+          "value": 0.4555911702949003,
+          "low": 0,
+          "high": 1,
+          "mean": null,
+          "variance": null,
+          "tx_id": 4294967297.0,
+          "interval_ordinal": 1,
+          "component": "payload",
+          "interval_start_ns": 10465023527.0,
+          "interval_end_ns": 11500323527.0,
+          "component_start_ns": 11476863527.0,
+          "component_end_ns": 11500323527.0,
+          "bits": 183,
+          "probability": 0.015116561887016548,
+          "rng_consumed": 1,
+          "active_nodes": null,
+          "reported_nodes": null,
+          "reservation_counter": null,
+          "reservation_slot": null,
+          "profile": null,
+          "state": "",
+          "cause": "CsrNetDevice::EndReceiveSignal"
+        },
+        "context_matched": true
+      },
+      "control_admission_order": [
+        {
+          "order": 4971,
+          "time_s": 11.500308077,
+          "node": 3,
+          "event": "mac_enqueue"
+        },
+        {
+          "order": 4976,
+          "time_s": 11.500308077,
+          "node": 3,
+          "event": "hop_control_admit"
+        },
+        {
+          "order": 4977,
+          "time_s": 11.500308077,
+          "node": 3,
+          "event": "neighbor_control_send"
+        },
+        {
+          "order": 4985,
+          "time_s": 11.500308077,
+          "node": 3,
+          "event": "phy_Track_to_Search"
+        },
+        {
+          "order": 4993,
+          "time_s": 11.500308077,
+          "node": 3,
+          "event": "mac_prepare_counter_27"
+        },
+        {
+          "order": 5011,
+          "time_s": 11.500311086,
+          "node": 5,
+          "event": "mac_enqueue"
+        },
+        {
+          "order": 5016,
+          "time_s": 11.500311086,
+          "node": 5,
+          "event": "hop_control_admit"
+        },
+        {
+          "order": 5017,
+          "time_s": 11.500311086,
+          "node": 5,
+          "event": "neighbor_control_send"
+        },
+        {
+          "order": 5025,
+          "time_s": 11.500311086,
+          "node": 5,
+          "event": "phy_Track_to_Search"
+        },
+        {
+          "order": 5033,
+          "time_s": 11.500311086,
+          "node": 5,
+          "event": "mac_prepare_counter_10"
+        }
+      ],
+      "stop": {
+        "node": 5,
+        "time_s": 12.402,
+        "ordinal": 3,
+        "fields": [
+          "parent.child_count",
+          "parent.total_wire_bytes",
+          "ordered_child_count"
+        ],
+        "actual_children": 3,
+        "native_children": 4,
+        "actual_wire_bytes": 66,
+        "native_wire_bytes": 82
+      }
+    }
+  },
+  "C_D_control_semantic_sequence_equal": true,
+  "control_requests_per_case": 10,
+  "C_D_signal_end_decisions_equal_except_time": true,
+  "signal_end_decisions_per_case": 36,
+  "local_effect": "D admits initial KEY_REQUESTs before Track-to-Search; first node3/5 transmissions move one13ms slot earlier and match native.",
+  "scope": "Unconditional comparison through actual12.402s stop. No missing/extra sampled requests within this prefix; physical TX7 still differs. No full receiver-history or15percent performance-parity claim.",
+  "new_simulations_executed": false,
+  "kit_or_model_edited": false,
+  "input_hashes": {
+    "autonomous/native_capture/fixture/random_draws.csv": "6ab5f1e03a77de23bd11f5920d0acb570183a386d1b91fcb91368aeec0042838",
+    "autonomous/native_capture/fixture/tx_signatures.csv": "40f51355e02c0950e7608d9eeb6efb590a539bdef37c0381780db5fc086ad5e1",
+    "autonomous_fourth/data/C_timing/random_requests.jsonl": "c6a7771b33cded4a405d62bdb2e896afed0b0c524f9593ee6931d163d65991a7",
+    "autonomous_fourth/data/C_timing/ordered_events.jsonl": "21d6489979366beeb90d5b2542b84c72626e4182b3892e6c898857915c8313db",
+    "autonomous_fourth/data/C_timing/first_divergence.json": "3edbfcf7137903c71dc986f4166d58821f552a3849b64a7145049ad9cb1e5dfe",
+    "autonomous_fourth/data/D_inline_key/random_requests.jsonl": "370d7f744dd6ccd44952d912ba94b9a832c8d0980f19d601f748bd95106e4535",
+    "autonomous_fourth/data/D_inline_key/ordered_events.jsonl": "739bc5cf1e5402f1f14dda6fc2285017764e086b0f2e9c77746a330f0d27ae04",
+    "autonomous_fourth/data/D_inline_key/first_divergence.json": "3edbfcf7137903c71dc986f4166d58821f552a3849b64a7145049ad9cb1e5dfe"
+  }
+}

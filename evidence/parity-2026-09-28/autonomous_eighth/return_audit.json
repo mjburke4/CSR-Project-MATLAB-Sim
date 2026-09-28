@@ -1,0 +1,58 @@
+{
+  "schema": "csr-autonomous-discovery-identity-return-v1",
+  "status": "pass",
+  "archive": "out_auto_20260928_075726.zip",
+  "archive_sha256": "4f4c6cfdb8505c1520c880b21f3ee69207c73d034947f93aea38fda288484512",
+  "archive_members": 38,
+  "issued_manifest_sha256": "d6911e998e2aff2d16a27c7bf082741ed261029e5ba366ce99d6a89ece99e7db",
+  "issued_bound_files": 322,
+  "runtime": {
+    "version": "25.1.0.2943329 (R2025a)",
+    "release": "2025a",
+    "computer": "PCWIN64"
+  },
+  "import_preflight_passed": true,
+  "matlab_passed_component_checks": {
+    "key_request_preflight": 7,
+    "check_gate_preflight": 8,
+    "population_preflight": 6,
+    "route_admission_preflight": 8,
+    "request_wire_preflight": 6,
+    "no_path_wire_preflight": 3,
+    "discovery_identity_preflight": 7
+  },
+  "accepted_natural_reused": true,
+  "case": {
+    "name": "J_discovery_identity",
+    "endpoint_s": 45.662638077000004,
+    "requests_consumed_matched": 758,
+    "rejected_requests": 1,
+    "consumed_by_purpose": {
+      "mac_slot": 150,
+      "sync_threshold": 348,
+      "phy_binomial": 260
+    },
+    "verified_transmissions": 129,
+    "first_time_difference": [],
+    "previous_discovery_identity_guard_cleared": true,
+    "discovery_identity_annotations": 7,
+    "discovery_different_outer_identifiers": 4,
+    "raw_rows": {
+      "protocol_trace.csv": 2030,
+      "phy_trace.csv": 1940,
+      "application_admission_trace.csv": 0
+    },
+    "ordered_event_rows": 91379,
+    "timing_records": 774,
+    "service_records": 1947,
+    "wall_seconds": 85.3465217,
+    "stop_fields": [
+      "bits"
+    ],
+    "actual_bits": 52,
+    "native_bits": 51
+  },
+  "target_percent": 15,
+  "network_parity_established": false,
+  "scope": "Startup ends before applications begin at 300 seconds; unfinished traffic and 6000-second parity remain open."
+}

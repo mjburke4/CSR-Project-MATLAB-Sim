@@ -1,0 +1,58 @@
+{
+  "schema": "csr-autonomous-return-audit-v1",
+  "status": "pass",
+  "input_archive": "out_auto_20260925_124644.zip",
+  "input_sha256": "68050a440c5dbb8c6cbde373e26d806228836aa7d87f6c188adc8ee76dce0b9c",
+  "archive_members": 29,
+  "issued_manifest_matches_return": true,
+  "issued_bound_files": 119,
+  "runtime": {
+    "version": "25.1.0.2943329 (R2025a)",
+    "release": "2025a",
+    "computer": "PCWIN64"
+  },
+  "natural_prefix_checks": [
+    {
+      "file": "protocol_trace.csv",
+      "rows": 12200,
+      "csv_field_strings_equal": true,
+      "actual_sha256": "239546c237692e03d64e82908cdc89d43a337024b7aa9457d84147874537df53",
+      "reference_sha256": "239546c237692e03d64e82908cdc89d43a337024b7aa9457d84147874537df53"
+    },
+    {
+      "file": "phy_trace.csv",
+      "rows": 12198,
+      "csv_field_strings_equal": true,
+      "actual_sha256": "100c060537f516e34864ddc3c35a2c267e76a4bfea9d6e283dfc74c5d7369da6",
+      "reference_sha256": "100c060537f516e34864ddc3c35a2c267e76a4bfea9d6e283dfc74c5d7369da6"
+    },
+    {
+      "file": "application_admission_trace.csv",
+      "rows": 9000,
+      "csv_field_strings_equal": true,
+      "actual_sha256": "6f523d0b51fcc5672cb1e8d2147f6eaae975f1b23cdd2f38391629a53051150d",
+      "reference_sha256": "6f523d0b51fcc5672cb1e8d2147f6eaae975f1b23cdd2f38391629a53051150d"
+    }
+  ],
+  "natural_random_counts": {
+    "mac_slot": 941,
+    "sync_threshold": 1965,
+    "phy_binomial": 1554
+  },
+  "common_case": {
+    "name": "B_common",
+    "mode": "native",
+    "completed": false,
+    "natural_prefix_passed": false,
+    "reached_time_s": 10.01,
+    "diagnostic_status": "unexpected_harness_error",
+    "error_identifier": "MATLAB:string:CannotConvertMissingElementToChar",
+    "error_message": "Conversion of element 1 from <missing> to character vector is not supported.",
+    "wall_seconds": 6.7709269
+  },
+  "common_requested_draws": 1,
+  "common_consumed_draws": 0,
+  "common_network_comparison_available": false,
+  "numeric_network_parity_established": false,
+  "target_percent": 15
+}

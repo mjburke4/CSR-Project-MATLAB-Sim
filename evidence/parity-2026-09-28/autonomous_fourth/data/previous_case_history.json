@@ -1,0 +1,24 @@
+{
+  "schema": "csr-prior-common-case-history-v1",
+  "previous_owner_case": "B_common",
+  "new_execution": false,
+  "actual_owner_matlab_execution": true,
+  "case_summary": {
+    "name": "B_common",
+    "mode": "native",
+    "completed": false,
+    "natural_prefix_passed": false,
+    "reached_time_s": 11.500323527005154,
+    "diagnostic_status": "context_divergence",
+    "error_identifier": "autocase:DrawContextDivergence",
+    "error_message": "Native random request context diverged at 11.500323527005154 s, node 4, phy_binomial #2 (bits). Partial evidence is preserved.",
+    "wall_seconds": 12.1081817
+  },
+  "diagnosis": "Native CSV preflight and accepted natural reuse passed. Common native-input case stopped at node4 PHY sample2: payload bits184 versus183 due receiver callback endpoint quantization. This stored B is historical, not rerun by this kit.",
+  "source_issued_manifest_sha256": "64e135edd1843a2ec009c677f91918eda61258fe7331b779d88eb1822eb9a742",
+  "evidence_folder": "ref/history/B_common",
+  "new_cases": [
+    "C_timing",
+    "D_inline_key"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "method": "Read-only evidence/source review; no simulation or MATLAB execution.",
+  "key_update_generations": 10,
+  "all_enqueued_after_Track_to_Search": true,
+  "existing_queue_or_preparation": 8,
+  "carried_reservation": 1,
+  "exposed_empty_queue_unassigned_slot": 1,
+  "first_random_time_divergence": {
+    "node": 4,
+    "purpose": "mac_slot",
+    "ordinal": 25,
+    "matlab_time_ns": 62881000000,
+    "native_time_ns": 62870833632,
+    "delay_ns": 10166368,
+    "raw_slot": 8,
+    "semantic_context_matched": true
+  },
+  "first_shifted_TX": {
+    "node": 4,
+    "source_tx_ordinal": 21,
+    "native_semantic_tx_id": 17179869205,
+    "matlab_time_ns": 62998000000,
+    "native_time_ns": 62985000000,
+    "delay_ns": 13000000,
+    "signature_matched": true,
+    "kind": "KEY_UPDATE",
+    "destination": 2,
+    "wire_bytes": 62
+  },
+  "cause": "NWK defers newly created reliable KEY_UPDATE to same-time pump after PHY returns Track to Search; native sends synchronously inside receive.",
+  "recommended_scope": "Inline only the new KEY_UPDATE owner with reliable admission/capacity/rollback checks; keep native post-TX-wait ownership and MAC rules unchanged.",
+  "limits": [
+    "This is the first recorded random-request time difference, not the earliest protocol-state difference: the independent SNMP finding predates it.",
+    "The earlier masking rows show contextual conditions, not corrected-run validation.",
+    "No corrected network continuation or 15-percent parity claim."
+  ],
+  "inputs_sha256": {
+    "autonomous_ninth/data/K_receiver_timers/ordered_events.jsonl": "5dc2d9fb404eaff5dbf207f57caf500e37d1dd7f251b2a676797f45e7fbd2cb0",
+    "autonomous_ninth/data/K_receiver_timers/random_requests.jsonl": "c4a30cc3032248a210597a6d4f83f1b84d70f0c220c62833391e65c61f51695a",
+    "autonomous/native_capture/run/observations.tsv": "3156069106cf3db451dce3fca4c9de91e09b5c9da07dd9ccc8d84615957de7f6",
+    "autonomous_eighth/kit/autocase/+ac/ControlWireNwk.m": "499f65ef3c894162fda0440ab39c98551537d84821ec4b7563d0a47135973677",
+    "autonomous_eighth/kit/autocase/+ac/ReceiverTimerMac.m": "593d0709214e1b83031cd6c796164b2e3df995d702028bb5485320ade4eb5335",
+    "autonomous_eighth/kit/autocase/+ac/ReceiverTimerSignalEngine.m": "5b428f578acaea2ae3158bfdcf34aed4b90c4ae35a2531abd152d47eef7bffa3",
+    "autonomous/native_env/csr/model/csr-hop-layer.h": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+    "autonomous/native_env/csr/model/csr-nwk-layer.h": "bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc",
+    "autonomous/native_env/csr/model/csr-mac-core.h": "64a71ad280ba14ab2b00d5d2b9dac708fabea939dfa385ad62dd73e5e40203e9"
+  }
+}

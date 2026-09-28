@@ -1,0 +1,18 @@
+#include "ns3/core-module.h"
+#include "ns3/csr-net-device.h"
+#include <filesystem>
+#include <sstream>
+#include <map>
+using Row=std::map<std::string,std::string>;
+std::vector<std::string> Split(const std::string&s){std::vector<std::string>v;std::stringstream ss(s);std::string x;while(std::getline(ss,x,','))v.push_back(x);if(!s.empty()&&s.back()==',')v.push_back("");return v;}
+std::vector<Row> Read(const std::string&path){std::ifstream f(path);NS_ABORT_MSG_IF(!f,"Cannot read "<<path);std::string s;std::getline(f,s);if(!s.empty()&&s.back()=='\r')s.pop_back();auto h=Split(s);std::vector<Row> rows;while(std::getline(f,s)){if(!s.empty()&&s.back()=='\r')s.pop_back();auto v=Split(s);NS_ABORT_MSG_IF(v.size()!=h.size(),"CSV shape "<<path);Row r;for(size_t i=0;i<h.size();++i)r[h[i]]=v[i];rows.push_back(r);}return rows;}
+uint64_t U(const Row&r,const char*k){return std::stoull(r.at(k));}double D(const Row&r,const char*k){return std::stod(r.at(k));}
+int main(int argc,char**argv){NS_ABORT_MSG_IF(argc!=5,"Usage: replay INPUT_DIR OUTPUT_LOG OUTPUT_TRACE NODE");std::filesystem::path I=argv[1];setenv("CSR_MAC_CAPTURE",argv[2],1);Mr::replay=true;unsigned node=std::stoul(argv[4]);OpenDifferentialTraceCsv(argv[3]);
+ auto rows=Read((I/"inputs.csv").string());std::map<uint64_t,Ptr<Packet>>frames;
+ for(const auto&r:Read((I/"frames.csv").string())){if(U(r,"node")!=node)continue;auto hex=r.at("packet_hex");std::vector<uint8_t>b;for(size_t j=0;j<hex.size();j+=2)b.push_back(std::stoul(hex.substr(j,2),nullptr,16));auto p=Create<Packet>(b.data(),b.size());CsrSetOpnetEnvelope(p,static_cast<CsrOpnetPacketFormat>(U(r,"envelope_format")),U(r,"wirebytes"));Mr::FrameTag tag;tag.id=U(r,"frame_id");p->AddPacketTag(tag);frames[tag.id]=p;}
+ for(const auto&r:Read((I/"draws.csv").string()))if(U(r,"node")==node)Mr::draws[node].push_back({U(r,"time_ns"),int(U(r,"min")),int(U(r,"max")),int(U(r,"draw"))});
+ auto d=CreateObject<CsrNetDevice>(node);d->ConfigureMacReplay();d->GetMac().SetSlotSelectionProfile(CsrMacCore::SlotSelectionProfile::HIST_2014_NEXT_TSLOT_MODULO_PROBE);d->GetMac().SetMaxRateKbps(128);
+ std::stable_sort(rows.begin(),rows.end(),[](const Row&a,const Row&b){return std::pair(U(a,"time_ns"),U(a,"event_order"))<std::pair(U(b,"time_ns"),U(b,"event_order"));});
+ for(const auto&r:rows){if(U(r,"node")!=node||U(r,"time_ns")>=665000000000ULL)continue;Simulator::Schedule(NanoSeconds(U(r,"time_ns")),[d,r,&frames](){auto&m=d->GetMac();auto kind=r.at("kind");if(kind=="enqueue")m.EnqueueTxFrame(frames.at(U(r,"frame_id"))->Copy(),U(r,"peer"),U(r,"value"),U(r,"value2"));else if(kind=="receiver_state"){auto v=r.at("value");m.SetReceiveState(v=="idle"?CsrMacCore::State::IDLE:(v=="track"?CsrMacCore::State::TRACK:CsrMacCore::State::SEARCH));}else if(kind=="sync")m.SetSyncPresent(U(r,"value"));else if(kind=="active")m.SetActiveNodesForPostTx(U(r,"value"));else if(kind=="reported")m.NoteReportedActiveNodes(U(r,"value"));else if(kind=="received"){m.NoteHeardFrom(U(r,"peer"),D(r,"value"));m.SetNeighborPathloss(U(r,"peer"),D(r,"value2"));int slot=std::stoi(r.at("value3"));if(slot>=0)m.NoteNeighborReservedSlot(U(r,"peer"),slot);}else if(kind=="cancel_ack")m.CancelAcknowledgedFrames(U(r,"peer"),U(r,"sequence"),U(r,"ack_bitmap"),U(r,"dack_bitmap"));else if(kind=="cancel_type")m.CancelQueuedFramesByType(U(r,"peer"),U(r,"value"));else NS_ABORT_MSG("Unknown replay kind "<<kind);});}
+ Simulator::Stop(Seconds(665));Simulator::Run();NS_ABORT_MSG_IF(!Mr::draws[node].empty(),"Unused slot draws node "<<node<<": "<<Mr::draws[node].size());Simulator::Destroy();Mr::Out().flush();std::cout<<"MAC_REPLAY_COMPLETE node="<<node<<" draws="<<Mr::ordinals[node]<<std::endl;
+}

@@ -1,0 +1,91 @@
+{
+  "scope": "seed 132 corrected MATLAB, 300\u20136000 s, node 2 feedback to node 8",
+  "receiver_data_receptions": 1132,
+  "receiver_data_duplicates": 0,
+  "receiver_decisions": {
+    "ACK": 139,
+    "DACK": 993
+  },
+  "queue_events": {
+    "mac_enqueue:ACK": 56,
+    "mac_ack_replace:ACK": 83,
+    "mac_ack_replace:DACK": 428,
+    "mac_enqueue:DACK": 565
+  },
+  "all_receiver_decisions_have_matching_completion": true,
+  "completion_by_carrier_kind": {
+    "ACK carried by ACK": 129,
+    "DACK carried by DACK": 986,
+    "DACK carried by ACK": 7,
+    "ACK carried by DACK": 10
+  },
+  "mean_receiver_decision_to_completion_s": 0.3275105123674913,
+  "max_receiver_decision_to_completion_s": 1.5624800000000505,
+  "completion_bitmap_reconstruction_mismatches": 0,
+  "data_completions_reproduced": 1132,
+  "feedback_transmissions": 3830,
+  "phy_results": {
+    "not_acquired": 151,
+    "half_duplex": 78,
+    "accepted": 3601
+  },
+  "success_feedback_transmissions": 3601,
+  "success_feedback_transmissions_with_new_data_completion": 1013,
+  "unknown_or_already_complete_bitmap_bits": 223285,
+  "replacement_before_first_transmission": 118,
+  "replacements_total": 511,
+  "remaining_data_resend_owners": {
+    "1160": 9020
+  },
+  "source_cohorts": [
+    {
+      "source": 7,
+      "receiver_decision": "ACK",
+      "count": 75,
+      "first_receive_s": 330.626815345563,
+      "last_receive_s": 5804.80981534556,
+      "mean_feedback_delay_s": 0.3496666666666609,
+      "median_feedback_delay_s": 0.2884800000001633,
+      "p95_feedback_delay_s": 0.9124799999999595,
+      "max_feedback_delay_s": 1.1984800000000178
+    },
+    {
+      "source": 7,
+      "receiver_decision": "DACK",
+      "count": 836,
+      "first_receive_s": 346.330815345563,
+      "last_receive_s": 5997.61281534556,
+      "mean_feedback_delay_s": 0.3201402870813429,
+      "median_feedback_delay_s": 0.2624799999998686,
+      "p95_feedback_delay_s": 0.7954799999999977,
+      "max_feedback_delay_s": 1.5624800000000505
+    },
+    {
+      "source": 8,
+      "receiver_decision": "ACK",
+      "count": 64,
+      "first_receive_s": 301.381275345563,
+      "last_receive_s": 5889.40081534556,
+      "mean_feedback_delay_s": 0.32192593749995435,
+      "median_feedback_delay_s": 0.26247999999969807,
+      "p95_feedback_delay_s": 0.7824800000000778,
+      "max_feedback_delay_s": 1.2980200000000082
+    },
+    {
+      "source": 8,
+      "receiver_decision": "DACK",
+      "count": 157,
+      "first_receive_s": 331.367815345563,
+      "last_receive_s": 3394.57081534556,
+      "mean_feedback_delay_s": 0.35844815286624754,
+      "median_feedback_delay_s": 0.30148000000008324,
+      "p95_feedback_delay_s": 0.8734799999999723,
+      "max_feedback_delay_s": 1.471480000000156
+    }
+  ],
+  "limitations": [
+    "Queue contents and bitmaps are inferred from pinned production rules and complete observed receive/queue/tx events, not directly captured bitmap fields.",
+    "Each inferred transmission is cross-checked against the observed TX head/PHY envelope and every corresponding node-8 DATA completion.",
+    "This does not establish equality to native receiver NSDP state or receiver choice under common inputs."
+  ]
+}

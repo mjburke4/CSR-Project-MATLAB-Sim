@@ -1,3 +1,5 @@
+> **Current checkpoint: 28 September 2026.** The validated grouped-routing cleanup, completed 6,000-second comparisons, short replays, and latest autonomous investigation are now preserved here. Start with [CHECKPOINT_2026_09_28.md](CHECKPOINT_2026_09_28.md). The new M discovery-membership continuation awaits MATLAB execution; the target is +/-15% and full-network parity remains open. Historical handoffs below retain their original status.
+
 > **Code checkpoint: T25–T27 and receiver/MAC diagnostic source.** This branch adds validation source, native fixtures and analysis scripts. The latest MAC MATLAB run is pending. New diagnostic data, reports and parity-ledger updates are not included; use the original complete issued bundles to execute their manifest-guarded runners. Historical documentation below retains its earlier status.
 
 # Tranche 18 candidate: relay/local service and 4-to-5 retries

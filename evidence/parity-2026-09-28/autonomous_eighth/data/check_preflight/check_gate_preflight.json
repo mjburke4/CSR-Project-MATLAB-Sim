@@ -1,0 +1,92 @@
+{
+  "schema": "csr-check-gate-preflight-v1",
+  "passed": true,
+  "checks": [
+    {
+      "name": "baseline_discovery_suppresses_overheard",
+      "passed": true,
+      "details": {
+        "discovery": 1,
+        "overheard": 0
+      }
+    },
+    {
+      "name": "E_keys_discovery_and_absolute_deadline",
+      "passed": true,
+      "details": {
+        "first_deadline_s": 10,
+        "overheard_requests": 2,
+        "discovery_requests": 1,
+        "initial_check_active": true,
+        "retry_delay_s": 20
+      }
+    },
+    {
+      "name": "E_active_and_stale_gates",
+      "passed": true,
+      "details": {
+        "active_peer_suppresses_new_proofs": true,
+        "stale_key_input_suppressed": true
+      }
+    },
+    {
+      "name": "F_keys_discovery_and_absolute_deadline",
+      "passed": true,
+      "details": {
+        "first_deadline_s": 10,
+        "overheard_requests": 2,
+        "discovery_requests": 1,
+        "initial_check_active": false,
+        "retry_delay_s": 20
+      }
+    },
+    {
+      "name": "F_active_and_stale_gates",
+      "passed": true,
+      "details": {
+        "active_peer_suppresses_new_proofs": true,
+        "stale_key_input_suppressed": true
+      }
+    },
+    {
+      "name": "message_flag_E_characterization_F_expectation",
+      "passed": true,
+      "details": {
+        "message_requests": {
+          "E": 0,
+          "F": 1
+        },
+        "outstanding_message_flag_preserved": true
+      }
+    },
+    {
+      "name": "E_independent_reliable_proof_owners",
+      "passed": true,
+      "details": {
+        "control_ids": [
+          3,
+          4
+        ],
+        "pending_after_first_completion": 1,
+        "pending_after_second_completion": 0
+      }
+    },
+    {
+      "name": "F_independent_reliable_proof_owners",
+      "passed": true,
+      "details": {
+        "control_ids": [
+          3,
+          4
+        ],
+        "pending_after_first_completion": 1,
+        "pending_after_second_completion": 0
+      }
+    }
+  ],
+  "network_simulation_executed": false,
+  "random_variates_requested": 0,
+  "scope": "Public admission, deadline and callback custody checks; full E/F network results remain separate",
+  "E_limitation": "Broad CheckActive still suppresses Message while a non-Message proof is outstanding",
+  "F_scope": "Only Message sets CheckActive; existing true state and original completion clearing remain"
+}

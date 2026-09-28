@@ -1,0 +1,101 @@
+{
+  "schema": "csr-autonomous-discovery-lifecycle-return-v1",
+  "status": "return_integrity_pass",
+  "archive": "out_auto_20260928_090828.zip",
+  "archive_sha256": "979706b7d4f545b60cb5bfd1b4ac11c485783ec91a1eaa49b4858c50a3e0f2a7",
+  "archive_members": 47,
+  "issued_manifest_sha256": "0125e2c6e70c5047a604a9a77fa1155dfabcb8251c1cc461d9b54aaeff592bae",
+  "issued_bound_files": 389,
+  "runtime": {
+    "version": "25.1.0.2943329 (R2025a)",
+    "release": "2025a",
+    "computer": "PCWIN64"
+  },
+  "import_preflight_passed": true,
+  "matlab_passed_component_checks": {
+    "key_request_preflight": 7,
+    "check_gate_preflight": 8,
+    "population_preflight": 6,
+    "route_admission_preflight": 8,
+    "request_wire_preflight": 6,
+    "no_path_wire_preflight": 3,
+    "discovery_identity_preflight": 7,
+    "receiver_timer_preflight": 8,
+    "discovery_lifecycle_preflight": 8
+  },
+  "accepted_natural_reused": true,
+  "case": {
+    "name": "L_discovery_lifecycle",
+    "endpoint_s": 116.415,
+    "requests_consumed_context_matched": 2731,
+    "rejected_requests": 0,
+    "consumed_by_purpose": {
+      "mac_slot": 563,
+      "sync_threshold": 1226,
+      "phy_binomial": 942
+    },
+    "verified_transmission_contexts": 487,
+    "rejected_transmissions": 1,
+    "first_time_difference": {
+      "node": 3,
+      "purpose": "mac_slot",
+      "ordinal": 102,
+      "actual_time_s": 116.35,
+      "expected_time_ns": 300001000000.0,
+      "rounded_delta_ns": -183651000000.0
+    },
+    "temporal_prefix_match_through_stop": false,
+    "previous_key_update_and_requester_guards_cleared": true,
+    "discovery_identity_annotations": 24,
+    "discovery_different_outer_identifiers": 21,
+    "raw_rows": {
+      "protocol_trace.csv": 6034,
+      "phy_trace.csv": 7406,
+      "application_admission_trace.csv": 0
+    },
+    "ordered_event_rows": 381268,
+    "ordered_event_kinds": {
+      "mac_boundary": 170212,
+      "phy_state_request": 1079,
+      "phy_boundary": 27048,
+      "phy_state_transition": 3711,
+      "mac_state_transition": 2737,
+      "protocol": 5546,
+      "mac_cancel_timer": 4091,
+      "scheduler_schedule": 51512,
+      "scheduler_fire": 50701,
+      "scheduler_return": 50700,
+      "scheduler_cancel": 795,
+      "random_request": 2731,
+      "physical_tx_context": 488,
+      "physical_tx_identity": 487,
+      "relative_timer_target": 1818,
+      "phy": 7406,
+      "mac_population_publish": 206
+    },
+    "timing_records": 2922,
+    "receiver_timer_records": 1818,
+    "service_records": 5636,
+    "wall_seconds": 196.5239422,
+    "stop_fields": [
+      "parent.preamble",
+      "parent.total_wire_bytes",
+      "child1.hop_destination",
+      "child1.hop_sequence",
+      "child1.kind",
+      "child1.wire_bytes",
+      "child1.ackable",
+      "child1.snmp_command",
+      "child1.snmp_source",
+      "child1.snmp_destination",
+      "child1.snmp_value"
+    ],
+    "actual_snmp_hop_destination": 5,
+    "actual_snmp_destination": 7,
+    "expected_next_node3_tx_s": 300.365,
+    "expected_next_node3_kind": "DATA"
+  },
+  "target_percent": 15,
+  "network_parity_established": false,
+  "scope": "Startup ends before applications begin at 300 seconds; unfinished traffic and 6000-second parity remain open."
+}

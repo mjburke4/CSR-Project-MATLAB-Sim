@@ -1,0 +1,25 @@
+# MATLAB control-wire review of the sixth owner return
+
+The returned H candidate passed the previously failing population and extra-route-control boundaries. It stopped at 25.298 seconds on node 1's eighteenth physical transmission: the same ordered two routing REQUESTs and SNMP_START occupied 77 modeled bytes in MATLAB and 63 in native. Both REQUEST section identities, destinations, HOP sequences, rate, power and aggregate metadata matched. Only the two REQUEST sizes differed, 23 versus 16. H had consumed 276 common random requests and verified 47 physical transmissions; the provider recorded no rounded-nanosecond request-time difference. The stopped transmission was checked before PHY scheduling, so the 14.28 ms airtime excess is a source-based counterfactual, not an observed post-stop receiver delay.
+
+The G control case independently cleared the former population guard and stopped at the predicted extra DELETE at 14.534 seconds. Its 97 consumed draws and 16 verified transmissions are historical results. Neither case is rerun by the new kit.
+
+## Exact causal path
+
+`AdmissionNwk.requestTick` encodes `{Operation='REQUEST'}` using ordinary `sendRecords`. The codec produces a seven-byte semantic section: sequence (4), section index (1), section count (1), REQUEST opcode (1). `materializeRouting` puts this in `Payload.Bytes`. The baseline `csr.nwk.controlWireBytes` charges Routes 11 + Group16 security 5 + all seven section bytes = 23. It is called at initial queue creation, before control submission, and when a residual routing owner is reissued. `Frames.control`, `Frames.aggregate`, and MAC aggregation preserve or sum this value; they do not introduce the extra seven bytes themselves.
+
+Native `BuildRoutingRequestPayload` creates an empty packet and stores operation/sequence in `CsrHelloHeader`. `GetRoutingControlRecordSize` removes that compatibility header, leaving zero raw body bytes: 11+5=16. The captured fixture's `normalized_legacy_request` section is synthesized solely to compare receiver semantics. It is not seven additional air bytes. A real seven-byte ARL REQUEST section remains 23 bytes. All 17 normalized REQUEST appearances in the 115-row native routing fixture have 16 bytes; all 98 actual ARL sections follow 16 + actual section length. See `routing_sizes.csv` and `size_audit.json`.
+
+## Bounded candidate
+
+`ControlWireNwk` is an exact isolated copy of H plus origin provenance and three size-helper substitutions. Only locally generated `requestTick` owners select `legacy_request_header`. The optional representation travels through routing backlog, materialized payload, HOP ownership and residual resubmission. The semantic section stays unchanged. `ac.controlWireBytes` first runs baseline validation, then accepts compact REQUEST sizing only for a tagged unicast ROUTING owner with exactly one seven-byte section whose final bytes are section 0 / count 1 / opcode 3. Untagged raw REQUEST sections and other routing records retain their original byte counts. The new marker never relaxes a transmitted-length or semantic guard.
+
+The same helper corrects a source-confirmed sibling: MATLAB adds three bytes for a NoPath TargetId even though native stores that target in the removed compatibility header. The portable NWK creates no raw NoPath body, so its metadata-only control is 16 bytes, preserving subtype, target, reliable ownership and ACK requirements. A native component probe distinguishes this from an actual three-byte raw body (19 bytes). There is no NoPath child in the accepted 0–330 native fixture: this sibling has native packet-level evidence and a separate pending MATLAB public-API preflight, not a measured network correction in this return.
+
+Native compatibility DELETE markers can also be 16 bytes, whereas actual DELETE sections are 26 bytes. This candidate does not rewrite DELETEs: the observed MATLAB routing path emits actual ARL sections. Other fixed control formulas (DISCOVER 19, KEY_REQUEST 18, KEY_UPDATE 62, NeighborCheck 16, SNMP 31) agree with the captured relevant families. The fixture contains no basis for changing those formulas.
+
+## Validation boundary
+
+All 99 issued model artifacts and the accepted-natural source path remain byte-identical. Candidate class transformations are recorded in `candidate_transform.json`; the new helper is separately hash-bound by `FILES.json`. Existing exact natural-prefix reuse, native import, semantic draw/packet guards, diagnostics and receiver timing option remain unchanged. Historical G/H evidence is packaged under `ref/history`; only new I_control_wire is run after the accepted A gate and component preflights.
+
+No MATLAB runtime is available in the preparation environment. New REQUEST/NoPath preflights and I network execution remain pending. A matching local prefix does not establish complete header serialization, all timer ordering, or the ±15% full-network accounting/latency target. The inherited failed KEY_REQUEST fallback, Message-flag retry scheduling, and stale-neighbor route recovery limitations remain outside these size corrections.

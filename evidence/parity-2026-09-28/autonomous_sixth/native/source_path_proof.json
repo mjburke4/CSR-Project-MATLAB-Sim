@@ -1,0 +1,86 @@
+{
+  "source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "read_only_source_proof_not_sender_runtime_probe": true,
+  "spans": [
+    {
+      "purpose": "NoPath public entry",
+      "file": "csr-nwk-layer.h",
+      "first_line": 778,
+      "last_line": 784,
+      "file_sha256": "bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc",
+      "source": "  SendNoPath (CsrNodeId neighbor, CsrNodeId unreachableDest)\n  {\n    GetOrCreateNwkNeighbor (neighbor);\n    SendNeighborCheck (neighbor,\n                      CsrNeighborCheckType::NoPath,\n                      unreachableDest);\n  }\n"
+    },
+    {
+      "purpose": "NoPath relay failure caller",
+      "file": "csr-nwk-layer.h",
+      "first_line": 1453,
+      "last_line": 1470,
+      "file_sha256": "bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc",
+      "source": "      {\n\n        if (!m_transitForwardingEnabled)\n          {\n            std::cout << \"[NWK \" << m_nodeId\n                      << \"] Refusing transit packet\"\n                      << \" role=\" << NodeTypeName (m_nodeType)\n                      << \" nwkSrc=\" << nwkSrc\n                      << \" nwkDst=\" << nwkDst\n                      << \" arrivedVia=\" << hopSrc\n                      << std::endl;\n\n            SendNoPath (hopSrc, nwkDst);\n            return;\n          }\n        // Not for us: enqueue as a relay and bump NSDP,\n        // similar to br_nwk.proc_hop_pk() for br_Network. \n\n"
+    },
+    {
+      "purpose": "NeighborCheck actual payload builder",
+      "file": "csr-nwk-layer.h",
+      "first_line": 7880,
+      "last_line": 7948,
+      "file_sha256": "bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc",
+      "source": "void\nCsrNetLayer::SendNeighborCheck (\n  CsrNodeId neighbor,\n  CsrNeighborCheckType type,\n  CsrNodeId target,\n  uint32_t discoverySequence)\n{\n  if (m_hop == nullptr)\n    {\n      return;\n    }\n\n  Ptr<Packet> p = Create<Packet> ();\n\n  CsrHelloHeader hh;\n  hh.SetNodeId (m_nodeId);\n  hh.SetHelloSeq (++m_neighborCheckSeq);\n  hh.SetSpeedKey (m_minSpeedKey);\n\n  hh.SetNodeType (m_nodeType);\n\n  double s0PowerDbm = m_rxS0BaseLevelDbm + m_linkMarginDb;\n  hh.SetRxPowerDbmX10 (\n    static_cast<int16_t> (std::round (s0PowerDbm * 10.0)));\n\n  if (type == CsrNeighborCheckType::Discovery &&\n      m_arlNeighborAdmissionEnabled)\n    {\n      // CHECK_DISCOVERY carries the sender's neighbor state byte.  The\n      // legacy value is NEIGHBOR_ACTIVE == 3, not the global node count used\n      // by ordinary HELLOs.\n      hh.SetActiveNodes (\n        IsArlNeighborActive (neighbor) ? 3 : 0);\n    }\n  else\n    {\n      hh.SetActiveNodes (\n        static_cast<uint8_t> (GetActiveNodeCount ()));\n    }\n\n  hh.SetArlRouteMsgType (\n    CsrArlRouteMsgType::NeighborCheck);\n\n  hh.SetNeighborCheckType (type);\n  hh.SetNeighborCheckTarget (target);\n  hh.SetDiscoverySequence (discoverySequence);\n  hh.ClearAdvertisedRoutes ();\n\n  p->AddHeader (hh);\n  std::cout << \"[NWK \" << m_nodeId\n            << \"] Sending targeted ARL NeighborCheck\"\n            << \" neighbor=\" << neighbor\n            << \" subtype=\" << NeighborCheckTypeName (type);\n\n  if (type == CsrNeighborCheckType::NoPath)\n    {\n      std::cout << \" unreachableDest=\" << target;\n    }\n\n  if (type == CsrNeighborCheckType::Discovery ||\n      type == CsrNeighborCheckType::Verify)\n    {\n      std::cout << \" discoverySequence=\" << discoverySequence;\n    }\n\n  std::cout << std::endl;\n\n  m_hop->SendNeighborCheck (neighbor, p);\n}\n"
+    },
+    {
+      "purpose": "NeighborCheck actual HOP sender and explicit envelope",
+      "file": "csr-hop-layer.h",
+      "first_line": 1856,
+      "last_line": 1930,
+      "file_sha256": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+      "source": "CsrHopLayer::SendNeighborCheck (CsrNodeId dst, Ptr<Packet> payload)\n{\n  NS_ASSERT (m_mac != nullptr);\n\n  CsrHelloHeader neighborCheckMetadata;\n  bool neighborCheckMetadataValid =\n    payload != nullptr && payload->PeekHeader (neighborCheckMetadata);\n\n  uint32_t rawPayloadSize = payload->GetSize ();\n  if (neighborCheckMetadataValid)\n    {\n      Ptr<Packet> rawPayload = payload->Copy ();\n      rawPayload->RemoveHeader (neighborCheckMetadata);\n      rawPayloadSize = rawPayload->GetSize ();\n    }\n\n  uint16_t &lastSeq = m_lastSentSeqByDest[dst];\n  uint16_t seq = static_cast<uint16_t> ((lastSeq + 1) & 0xFFFF);\n  lastSeq = seq;\n\n  CsrHeader hdr (m_nodeId,\n                 dst,\n                 seq,\n                 7,     // robust control priority\n                 true,  // ACKable\n                 false);\n\n  hdr.SetType (CSR_PKT_NEIGHBOR_CHECK);\n  hdr.SetDestType (CSR_DEST_UNICAST);\n  hdr.SetSecurityCount (m_hopSecurity.GetOwnSecurityCount ());\n  ApplyLinkControl (hdr, {dst});\n\n  // packetTypes.c maps NeighborCheck (packet type 9) to Pairwise16. Protect\n  // once here so every HOP retry reuses the original pairwise key/sequence.\n  Ptr<Packet> frame = ProtectPairwisePayload (\n    dst,\n    CsrPairwiseSecurityMode::Pairwise16,\n    LEGACY_NEIGHBOR_CHECK_PACKET_TYPE,\n    payload);\n  frame->AddHeader (hdr);\n  CsrSetOpnetEnvelope (\n    frame,\n    CsrOpnetPacketFormat::Routes,\n    CsrOpnetPacketModel::GetFixedSizeBytes (\n      CsrOpnetPacketFormat::Routes) +\n      LEGACY_NEIGHBOR_CHECK_SECURITY_OVERHEAD +\n      rawPayloadSize);\n\n  EnqueueResend (\n    dst,\n    seq,\n    frame->Copy (),\n    false);\n\n  ResendEntry *resendEntry = FindResendEntry (dst, seq);\n  if (resendEntry != nullptr && neighborCheckMetadataValid)\n    {\n      resendEntry->neighborCheckMetadataValid = true;\n      resendEntry->neighborCheckType =\n        neighborCheckMetadata.GetNeighborCheckType ();\n      resendEntry->neighborCheckDiscoverySequence =\n        neighborCheckMetadata.GetDiscoverySequence ();\n    }\n\n  std::cout << \"[HOP \" << m_nodeId\n            << \"] TX reliable NeighborCheck to \" << dst\n            << \" seq=\" << seq\n            << std::endl;\n\n  m_mac->EnqueueTxFrame (frame,\n                         dst,\n                         7,\n                         true);\n}\n\n"
+    },
+    {
+      "purpose": "MAC preserves the explicit envelope",
+      "file": "csr-net-device.h",
+      "first_line": 2240,
+      "last_line": 2250,
+      "file_sha256": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+      "source": "void\nCsrMacCore::EnqueueTxFrame (Ptr<Packet> frame,\n                            CsrNodeId dest,\n                            uint8_t dscp,\n                            bool ackable)\n{\n  CsrAnnotateOpnetEnvelope (frame);\n\n  CsrHeader header;\n  if (frame != nullptr && frame->PeekHeader (header) &&\n      (header.IsAck () || header.IsDack () ||\n"
+    },
+    {
+      "purpose": "Existing envelope is authoritative",
+      "file": "csr-opnet-envelope.h",
+      "first_line": 110,
+      "last_line": 127,
+      "file_sha256": "e67b526126907f43f2ee4199552c583ac9c2a0f927cf942fe76aa328900e001a",
+      "source": " * @return True when a known CSR packet type was annotated.\n */\ninline bool\nCsrAnnotateOpnetEnvelope (Ptr<Packet> packet)\n{\n  if (packet == nullptr)\n    {\n      return false;\n    }\n\n  CsrOpnetPacketFormat existingFormat;\n  uint32_t existingSize = 0;\n  if (CsrGetOpnetEnvelope (packet, existingFormat, existingSize))\n    {\n      return true;\n    }\n\n  CsrHeader header;\n"
+    },
+    {
+      "purpose": "Compact REQUEST actual payload builder",
+      "file": "csr-nwk-layer.h",
+      "first_line": 8945,
+      "last_line": 8996,
+      "file_sha256": "bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc",
+      "source": "Ptr<Packet>\nCsrNetLayer::BuildRoutingRequestPayload (\n  uint32_t routingSequence)\n{\n  Ptr<Packet> packet =\n    Create<Packet> ();\n\n  CsrHelloHeader hh;\n\n  hh.SetNodeId (m_nodeId);\n  hh.SetHelloSeq (\n    ++m_routingControlHeaderSeq);\n  hh.SetNodeType (m_nodeType);\n  hh.SetSpeedKey (m_minSpeedKey);\n\n  double s0PowerDbm =\n    m_rxS0BaseLevelDbm +\n    m_linkMarginDb;\n\n  hh.SetRxPowerDbmX10 (\n    static_cast<int16_t> (\n      std::round (\n        s0PowerDbm * 10.0)));\n\n  hh.SetActiveNodes (\n    static_cast<uint8_t> (\n      GetActiveNodeCount ()));\n\n  hh.SetArlRouteMsgType (\n    CsrArlRouteMsgType::RoutingUpdate);\n\n  hh.SetNeighborCheckType (\n    CsrNeighborCheckType::None);\n\n  hh.SetDiscoverType (\n    CsrDiscoverType::None);\n\n  hh.SetDiscoverySequence (0);\n  hh.SetRoutingSequence (\n    routingSequence);\n\n  hh.SetRoutingOperation (\n    CsrRoutingOperation::Request);\n\n  hh.ClearChirpNeighbors ();\n  hh.ClearAdvertisedRoutes ();\n\n  packet->AddHeader (hh);\n\n  return packet;\n}\n\n"
+    },
+    {
+      "purpose": "Routing envelope strips compatibility metadata",
+      "file": "csr-opnet-envelope.h",
+      "first_line": 35,
+      "last_line": 74,
+      "file_sha256": "e67b526126907f43f2ee4199552c583ac9c2a0f927cf942fe76aa328900e001a",
+      "source": "GetRawHelloPayloadSize (Ptr<Packet> packet)\n{\n  CsrHelloHeader compatibilityHeader;\n  if (packet->RemoveHeader (compatibilityHeader) == 0)\n    {\n      return packet->GetSize ();\n    }\n  return packet->GetSize ();\n}\n\ninline uint32_t\nGetRoutingControlRecordSize (Ptr<const Packet> frame,\n                             const CsrHeader &header)\n{\n  Ptr<Packet> recordPacket = frame->Copy ();\n  CsrHeader removedHeader;\n  if (recordPacket->RemoveHeader (removedHeader) !=\n      header.GetSerializedSize ())\n    {\n      return recordPacket->GetSize ();\n    }\n\n  std::vector<uint8_t> record = CopyPacketBytes (recordPacket);\n  if (record.size () < GROUP16_OVERHEAD)\n    {\n      return static_cast<uint32_t> (record.size ());\n    }\n\n  static constexpr std::size_t keySequenceSize = 3;\n  static constexpr std::size_t authTagSize = 2;\n  std::span<const uint8_t> plaintext (\n    record.data () + keySequenceSize,\n    record.size () - keySequenceSize - authTagSize);\n\n  Ptr<Packet> plaintextPacket = Create<Packet> (plaintext.data (),\n                                                plaintext.size ());\n  return GROUP16_OVERHEAD + GetRawHelloPayloadSize (plaintextPacket);\n}\n\ninline uint32_t\n"
+    },
+    {
+      "purpose": "PHY consumes modeled child sizes",
+      "file": "csr-net-device.h",
+      "first_line": 661,
+      "last_line": 704,
+      "file_sha256": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+      "source": "Time\nCsrNetDevice::SendFramesToPeers (\n  const std::vector<Ptr<Packet>> &frames,\n  int rateKbps,\n  double txPowerDbm,\n  PreambleType preamble,\n  int slot,\n  bool ackable)\n{\n  NS_ASSERT_MSG (!frames.empty (), \"cannot transmit an empty CSR aggregate\");\n  NS_ABORT_MSG_IF (rateKbps < 0 ||\n                   static_cast<uint64_t> (rateKbps) >\n                     std::numeric_limits<CsrRateKey>::max () ||\n                   !CsrIsOperationalRateKey (\n                   static_cast<CsrRateKey> (rateKbps)),\n                   \"CSR transmission rate has no defined airtime or BER model\");\n  NS_ABORT_MSG_IF (!m_mac.IsRateEnabled (\n                     static_cast<CsrRateKey> (rateKbps)),\n                   \"CSR transmission rate exceeds the active profile ceiling\");\n\n  uint32_t payloadBytes = 0;\n  std::vector<Ptr<Packet>> frameCopies;\n  frameCopies.reserve (frames.size ());\n  for (const auto &segment : frames)\n    {\n      payloadBytes += CsrGetOpnetWireSize (segment);\n      frameCopies.push_back (segment->Copy ());\n    }\n\n  // br_txdel.ps.c sends the preamble, SOF, speed, and length at S0, then\n  // sends the inherited payload and 32-bit FCS at the selected payload rate.\n  static constexpr double s0DurationSec = 0.00051;\n  uint32_t preambleBits = preamble == PREAMBLE_LONG ? 7888 : 104;\n  uint32_t s0HeaderBits = preambleBits + 16 + 16 + 16;\n  uint32_t payloadAndFcsBits = payloadBytes * 8 + 32;\n  uint32_t packetBits = s0HeaderBits + payloadAndFcsBits;\n  double rbps = CsrRateKeyToBps (rateKbps);\n  double preambleSec = preambleBits / 4.0 * s0DurationSec;\n  double duration = s0HeaderBits / 4.0 * s0DurationSec\n                  + payloadAndFcsBits / rbps;\n\n  double txTime = Simulator::Now ().GetSeconds ();\n\n  // For log: peek header\n"
+    },
+    {
+      "purpose": "Targeted compatibility DELETE versus raw self DELETE",
+      "file": "csr-nwk-layer.h",
+      "first_line": 8907,
+      "last_line": 8943,
+      "file_sha256": "bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc",
+      "source": "BuildRoutingDeletePayload (\n  CsrNodeId destination,\n  uint32_t routingSequence)\n{\n  if (destination != m_nodeId)\n    {\n      return BuildRoutingMarkerPayload (\n        CsrRoutingOperation::Delete,\n        routingSequence,\n        destination);\n    }\n\n  // routesSetCapability(0) is serialized by routesProcess() as a four-byte\n  // DELETE record inside the ordinary six-byte section prefix.  Preserve the\n  // current per-neighbor fanout boundary while using the exact source record\n  // for this bounded self-route step.\n  CsrArlRoutingMessage::Builder builder;\n  std::string error;\n  std::vector<std::vector<uint8_t>> sections;\n\n  if (!builder.AddDelete (destination, &error) ||\n      !builder.BuildSections (routingSequence, sections, &error) ||\n      sections.size () != 1)\n    {\n      std::cout << \"[NWK \" << m_nodeId\n                << \"] Failed to build source-owned self DELETE\"\n                << \" reason=\" << error\n                << std::endl;\n      return nullptr;\n    }\n\n  return BuildArlRoutingSectionPayload (\n    sections.front (),\n    routingSequence,\n    0,\n    1);\n}\n"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "source_relative_path": "core/+csr/+mac/Layer.m",
+  "source_sha256": "d2e1b9e08c7e3d3ea60c88b61f3480f881e53c5963f48ae09822c4f04170e67b",
+  "adapter_relative_path": "matlab/+mac_replay/MacLayer.m",
+  "adapter_sha256": "1e58de0651856340750d0a782f42c9071ab6301b792f3f74ff3ea26e4944ad42",
+  "patch_sha256": "94d5ef49e4c02d282c75c128b3a39a50ef2b2cbbbd957a2798f410394e5a3c99",
+  "edit_count": 7,
+  "behavioral_seams": [
+    "Receiver tape owns periodic wake (IdleRts guard remains enabled).",
+    "Receiver tape owns post-TX idle edge; post-TX wait flag expiry is retained.",
+    "Receiver tape owns sleep after tracked reception."
+  ],
+  "unchanged": "Queue ordering, cancellation, ACK repetition, packing, preamble, slot/holdoff clocks, historical slot avoidance, IdleRts and actual transmission paths.",
+  "scope": "Conditional MAC scheduling parity under common receiver availability; not a duty-cycle lifecycle test.",
+  "passive_observer": "Emit the actual local reservation counter after each production decrement; no extra clock event, draw, or state change.",
+  "cancellation_boundary": {
+    "native": "CancelAcknowledgedFrames scans the queued window and excludes structured destination sequences.",
+    "matlab": "HOP Layer.receiveFeedback/complete filters control custody before calling MAC.cancel; calling MAC.cancel for every bitmap bit is not an equivalent boundary.",
+    "adapter": "replayCancelWindow selects only native-eligible actual queued keys, then calls unchanged production cancel. Ambiguous protected/unprotected keys abort.",
+    "scope": "Queue-cancellation intent is exogenous. This test does not validate HOP custody or group completion."
+  }
+}

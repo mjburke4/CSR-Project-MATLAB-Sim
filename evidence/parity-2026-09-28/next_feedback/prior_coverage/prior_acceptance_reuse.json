@@ -1,0 +1,42 @@
+{
+  "schema": "csr-prior-mac-acceptance-reuse-v1",
+  "pass": true,
+  "method": "Read-only verification of previously returned real MATLAB execution; no new simulation.",
+  "runtime": "25.1.0.2943329 (R2025a)",
+  "runtime_binding_files_verified": 160,
+  "adapter_mac_bytes_identical": true,
+  "adapter_scheduler_bytes_identical": true,
+  "driver_difference": "Only text label for target window changed from fixed 657\u2013665 to profile-derived bounds.",
+  "current_model_files_same": 98,
+  "current_model_files_different": [
+    "+csr/+hop/Layer.m"
+  ],
+  "changed_model_file_executed_by_mac_replay": false,
+  "nodes": [
+    {
+      "node": 2,
+      "input_prefix_rows_matched": 2155,
+      "full_frame_records_matched": 101,
+      "native_draw_prefix_matched": 130,
+      "prior_owner_tx_prefix_matched": 110,
+      "prior_owner_draw_prefix_matched": 130,
+      "prior_owner_input_application_prefix_matched": 2155
+    },
+    {
+      "node": 8,
+      "input_prefix_rows_matched": 1920,
+      "full_frame_records_matched": 91,
+      "native_draw_prefix_matched": 111,
+      "prior_owner_tx_prefix_matched": 98,
+      "prior_owner_draw_prefix_matched": 111,
+      "prior_owner_input_application_prefix_matched": 1920
+    }
+  ],
+  "normalization": [
+    "Global observer event_order IDs differ because capture node sets differ; per-node ordered input rows including tied timestamps match exactly.",
+    "Frame IDs differ by capture; a bijection is established from ordered enqueue events, validating every other frame field including packet_hex, ACK/DACK fields and link control.",
+    "Decimal/scientific CSV numbers compared exactly with Decimal, not rounded binary floats."
+  ],
+  "conclusion": "Do not issue the proposed nodes2/8 0\u2013330 MAC replay. Its full input/draw/TX populations, including specific feedback-priority waits, already passed in the September23 owner return.",
+  "scope_limit": "This validates conditional MAC service given the captured native queue, feedback-cancellation, receiver availability and draw history. It does not validate autonomous PHY receiver inputs, ACK generation, HOP/NWK custody or network parity."
+}

@@ -1,0 +1,295 @@
+{
+  "schema": "independent-return6000-accounting-v1",
+  "seeds": [
+    131,
+    132
+  ],
+  "target_percent": 15,
+  "no_simulation": true,
+  "inputs": [
+    {
+      "archive": "recovered/NS3 to MATLAB Network Simulation/csr-6000s-accounting-evidence.zip",
+      "member": "longrun_review/matlab/applications.csv",
+      "sha256": "d6036f132a7a6430346f74d44a72a111b736536eaa7cc4611b2e2103069c8b60"
+    },
+    {
+      "path": "data/s131/attempt_001/analysis/applications.csv",
+      "sha256": "1e8a43370590ce31405e55703758067ccef3e3d3618d4e70bd6990bb2f83dd0b"
+    },
+    {
+      "archive": "recovered/NS3 to MATLAB Network Simulation/csr-6000-batch.zip",
+      "member": "csr6000/reference/s131/applications.csv",
+      "sha256": "e712c458aedd3446a91fdf6385d6475f1d4a8fd9c47dabb6c301b0e0ca1365b0"
+    },
+    {
+      "path": "data/s131/attempt_001/raw/application_admission_statistics.csv",
+      "sha256": "058bfa003cddb7077dcd0a594da7cd3ae737e8e8bbc4cdef0fcd835a19641872"
+    },
+    {
+      "archive": "recovered/NS3 to MATLAB Network Simulation/csr-6000-batch.zip",
+      "member": "csr6000/reference/s131/app-admission-diagnostics.csv",
+      "sha256": "6cdd70a7c5e3a5b8f139b0ad35eb9700a1afe0d7c9e9c8c5999b0c008fcf369c"
+    },
+    {
+      "path": "data/s131/attempt_001/analysis/source_accounting.csv",
+      "sha256": "493acc4361dd26a94bacdb580be30a0790145738f4751a0f59274768fbbb9060"
+    },
+    {
+      "path": "data/s131/attempt_001/analysis/fixed_age_delivery.csv",
+      "sha256": "2ea3ab5953e372005c6804eb5f90e11182258ce40182d688db5fe006ce355e4d"
+    },
+    {
+      "path": "data/s131/attempt_001/analysis/source_target_comparison.csv",
+      "sha256": "5162badc7f6d395176f05a21bafade68e098d7eddda2e2c07c58eb7d7a1b0585"
+    },
+    {
+      "path": "data/s132/attempt_001/analysis/applications.csv",
+      "sha256": "3a0b642f2cb76b0778f31e445c4052efa1216c4170bdc1daff6816e6e4b194f7"
+    },
+    {
+      "archive": "recovered/NS3 to MATLAB Network Simulation/csr-6000-batch.zip",
+      "member": "csr6000/reference/s132/applications.csv",
+      "sha256": "64214e11a61a528b5a4827017e574042df4065d785c17361824f2ecd936ee577"
+    },
+    {
+      "path": "data/s132/attempt_001/raw/application_admission_statistics.csv",
+      "sha256": "fc0fdb34d3bf58baf7a7a3831e5c5fbb6894c0801bcdd7b4b11084b4e4b3c66b"
+    },
+    {
+      "archive": "recovered/NS3 to MATLAB Network Simulation/csr-6000-batch.zip",
+      "member": "csr6000/reference/s132/app-admission-diagnostics.csv",
+      "sha256": "1485df0f5a5bb9d96f4d7dc0c13628ae2cf10c2990985a2e34e4a9a42bc080c0"
+    },
+    {
+      "path": "data/s132/attempt_001/analysis/source_accounting.csv",
+      "sha256": "4432e598eef3a66bdca9cfeff754e39096c9247db2cdddad9146ad483d1c2777"
+    },
+    {
+      "path": "data/s132/attempt_001/analysis/fixed_age_delivery.csv",
+      "sha256": "f9937d290b9dd5d05b9da6e0a883efbdb296f02b8bcb1cc205c7623bdca08d44"
+    },
+    {
+      "path": "data/s132/attempt_001/analysis/source_target_comparison.csv",
+      "sha256": "8a898a3699d4328d02d47ddb96f8277a1583fff8f7771f76f3458cdf35de715d"
+    },
+    {
+      "path": "data/s131/attempt_001/analysis/comparison_summary.json",
+      "sha256": "60a4c3fb4bb3e854b9780b95a99fb5f28f502f98d81ab570e4742ce5cf7ddd7c"
+    },
+    {
+      "path": "data/s132/attempt_001/analysis/comparison_summary.json",
+      "sha256": "04c8402ed7197b6c99374bd4ef6afbc67eec00efdd716aed080fab68ee6605dc"
+    }
+  ],
+  "checks": {
+    "passed": 26526,
+    "failed": 0,
+    "scope": "Ledger integrity, raw admission closure, all numeric source accounting/comparison/fixed-age fields"
+  },
+  "totals": {
+    "matlab": {
+      "model": "matlab",
+      "seed": 0,
+      "source": 0,
+      "destination": 1,
+      "attempted": 3420000,
+      "admitted": 25072,
+      "not_admitted": 3394928,
+      "delivered": 23698,
+      "delivery_events": 23698,
+      "duplicate_delivery_events": 0,
+      "known_terminal_dropped": 760,
+      "known_model_pending": 614,
+      "unresolved_at_cutoff": 614,
+      "undelivered_total": 1374,
+      "proven_terminal_drop_lower_bound": 760,
+      "terminal_drop_total_known": 1,
+      "delivery_fraction_of_attempts": 0.006929239766081871,
+      "delivery_fraction_of_admitted": 0.9451978302488833,
+      "mean_delivered_latency_s": 135.1558404732038,
+      "p50_delivered_latency_s": 10.354808077,
+      "p95_delivered_latency_s": 1115.428561086,
+      "max_delivered_latency_s": 2005.505811086,
+      "mean_unresolved_age_s": 620.2002605863192,
+      "p95_unresolved_age_s": 1815.3200000000002,
+      "max_unresolved_age_s": 1995.66
+    },
+    "native": {
+      "model": "native",
+      "seed": 0,
+      "source": 0,
+      "destination": 1,
+      "attempted": 3420000,
+      "admitted": 25090,
+      "not_admitted": 3394910,
+      "delivered": 24055,
+      "delivery_events": 24059,
+      "duplicate_delivery_events": 4,
+      "known_terminal_dropped": null,
+      "known_model_pending": null,
+      "unresolved_at_cutoff": 1035,
+      "undelivered_total": 1035,
+      "proven_terminal_drop_lower_bound": 0,
+      "terminal_drop_total_known": 0,
+      "delivery_fraction_of_attempts": 0.007033625730994152,
+      "delivery_fraction_of_admitted": 0.9587485053806297,
+      "mean_delivered_latency_s": 64.49658953152958,
+      "p50_delivered_latency_s": 10.920808077,
+      "p95_delivered_latency_s": 433.8097110859999,
+      "max_delivered_latency_s": 1120.851811086,
+      "mean_unresolved_age_s": 2183.1662028985506,
+      "p95_unresolved_age_s": 5528.156,
+      "max_unresolved_age_s": 5699.98
+    },
+    "old_matlab": {
+      "model": "old_matlab",
+      "seed": 0,
+      "source": 0,
+      "destination": 1,
+      "attempted": 3420000,
+      "admitted": 25306,
+      "not_admitted": 3394694,
+      "delivered": 23839,
+      "delivery_events": 23839,
+      "duplicate_delivery_events": 0,
+      "known_terminal_dropped": 759,
+      "known_model_pending": 708,
+      "unresolved_at_cutoff": 708,
+      "undelivered_total": 1467,
+      "proven_terminal_drop_lower_bound": 759,
+      "terminal_drop_total_known": 1,
+      "delivery_fraction_of_attempts": 0.00697046783625731,
+      "delivery_fraction_of_admitted": 0.9420295582075398,
+      "mean_delivered_latency_s": 146.90136459032763,
+      "p50_delivered_latency_s": 10.523808077,
+      "p95_delivered_latency_s": 1257.285411086,
+      "max_delivered_latency_s": 2283.914811086,
+      "mean_unresolved_age_s": 849.1217231638419,
+      "p95_unresolved_age_s": 1900.413,
+      "max_unresolved_age_s": 2151.44
+    }
+  },
+  "raw_latency_signed_relative_percent": 109.55501904039747,
+  "old_raw_latency_signed_relative_percent": 127.76609687015146,
+  "delivered_count_signed_relative_percent": -1.4840989399293236,
+  "gates_current": {
+    "delivered": {
+      "evaluated": 9,
+      "passed": 2,
+      "failed": 7,
+      "undefined": 3
+    },
+    "latency": {
+      "evaluated": 9,
+      "passed": 3,
+      "failed": 6,
+      "undefined": 3
+    },
+    "both_metrics_pass": 2
+  },
+  "gates_old": {
+    "delivered": {
+      "evaluated": 9,
+      "passed": 5,
+      "failed": 4,
+      "undefined": 3
+    },
+    "latency": {
+      "evaluated": 9,
+      "passed": 3,
+      "failed": 6,
+      "undefined": 3
+    },
+    "both_metrics_pass": 3
+  },
+  "native_common_cell_weighting": [
+    {
+      "model": "matlab",
+      "seeds": [
+        131,
+        132
+      ],
+      "common_cells": 9,
+      "native_delivery_weight_total": 24055,
+      "matlab_weighted_mean_latency_s": 96.17737945180494,
+      "native_weighted_mean_latency_s": 64.49658953152958,
+      "signed_relative_percent": 49.12010100129092,
+      "matlab_excluded_deliveries": 1353,
+      "native_excluded_deliveries": 0
+    },
+    {
+      "model": "matlab",
+      "seeds": [
+        131
+      ],
+      "common_cells": 3,
+      "native_delivery_weight_total": 12261,
+      "matlab_weighted_mean_latency_s": 52.0388841529121,
+      "native_weighted_mean_latency_s": 26.00875349448642,
+      "signed_relative_percent": 100.08219218942496,
+      "matlab_excluded_deliveries": 1353,
+      "native_excluded_deliveries": 0
+    },
+    {
+      "model": "matlab",
+      "seeds": [
+        132
+      ],
+      "common_cells": 6,
+      "native_delivery_weight_total": 11794,
+      "matlab_weighted_mean_latency_s": 142.06360048451015,
+      "native_weighted_mean_latency_s": 104.50840551000898,
+      "signed_relative_percent": 35.935095164096076,
+      "matlab_excluded_deliveries": 0,
+      "native_excluded_deliveries": 0
+    },
+    {
+      "model": "old_matlab",
+      "seeds": [
+        131,
+        132
+      ],
+      "common_cells": 9,
+      "native_delivery_weight_total": 24055,
+      "matlab_weighted_mean_latency_s": 112.85832366480803,
+      "native_weighted_mean_latency_s": 64.49658953152958,
+      "signed_relative_percent": 74.98339754792227,
+      "matlab_excluded_deliveries": 1304,
+      "native_excluded_deliveries": 0
+    },
+    {
+      "model": "old_matlab",
+      "seeds": [
+        131
+      ],
+      "common_cells": 3,
+      "native_delivery_weight_total": 12261,
+      "matlab_weighted_mean_latency_s": 48.217746456175234,
+      "native_weighted_mean_latency_s": 26.00875349448642,
+      "signed_relative_percent": 85.39045504966967,
+      "matlab_excluded_deliveries": 1304,
+      "native_excluded_deliveries": 0
+    },
+    {
+      "model": "old_matlab",
+      "seeds": [
+        132
+      ],
+      "common_cells": 6,
+      "native_delivery_weight_total": 11794,
+      "matlab_weighted_mean_latency_s": 180.0584353449036,
+      "native_weighted_mean_latency_s": 104.50840551000898,
+      "signed_relative_percent": 72.2908645158298,
+      "matlab_excluded_deliveries": 0,
+      "native_excluded_deliveries": 0
+    }
+  ],
+  "limitations": [
+    "This is only seeds 131 and 132, not a new five-seed evaluation.",
+    "Native undelivered identities have unresolved fate; terminal losses and live queued counts remain unknown.",
+    "Pending MATLAB outcome is not proof of a live queued copy.",
+    "Admitted latency is conditioned on delivery; excluded outcomes are not assigned latency.",
+    "Common-source weights exclude zero-native sources; weighting does not establish network parity.",
+    "These checks validate returned final ledgers against counters and pinned references; protocol-trace reconstruction is separate."
+  ]
+}

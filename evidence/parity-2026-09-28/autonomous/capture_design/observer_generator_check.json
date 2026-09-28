@@ -1,0 +1,29 @@
+{
+  "schema": "csr-autonomous-passive-observer-seam-v1",
+  "sink": "ac.Trace.record(time,kind,node,details)",
+  "passivity_claim": "Static insertions only; runtime passive-equivalence gate remains required",
+  "runtime_passivity_verified": false,
+  "files": [
+    {
+      "path": "+csr/+sim/EventScheduler.m",
+      "source_sha256": "0e1887cf9d1195a20ab8e4a24c7ff182a2e72303abfec67d34a61eaa1fa9585e",
+      "instrumented_sha256": "270b644379bd4e48e0e6c5ae9efc8b6d27bae42ce00b6b85da593a203cbb9c78",
+      "insertions": 4,
+      "source_recovered_exactly_after_removing_insertions": true
+    },
+    {
+      "path": "+csr/+mac/Layer.m",
+      "source_sha256": "d2e1b9e08c7e3d3ea60c88b61f3480f881e53c5963f48ae09822c4f04170e67b",
+      "instrumented_sha256": "d7adfe9774d853d29aa5252aa48e4f6a3deddbf65081f445bec0fb118f8bf2a3",
+      "insertions": 18,
+      "source_recovered_exactly_after_removing_insertions": true
+    },
+    {
+      "path": "+csr/+phy/SignalEngine.m",
+      "source_sha256": "289c764bac0de95fefa75812e1b5090dcdf1953e35960cf7f02c4e298f4e294e",
+      "instrumented_sha256": "f8da8481a66a501d26301ca631d7bf85843b7a98dd38b17f64e0484e0da557c0",
+      "insertions": 13,
+      "source_recovered_exactly_after_removing_insertions": true
+    }
+  ]
+}

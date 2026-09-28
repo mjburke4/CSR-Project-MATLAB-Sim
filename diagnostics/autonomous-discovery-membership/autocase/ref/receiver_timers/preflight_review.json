@@ -1,0 +1,50 @@
+{
+  "schema": "csr-receiver-timer-preflight-static-review-v1",
+  "checks": 8,
+  "blockers": [],
+  "matlab_execution": "pending_owner",
+  "files": {
+    "+ac/receiverTimerPreflight.m": "2f893517e19138d56b65c9e3206b3836e721649871aa966712455e54b0eb3cb0",
+    "+ac/ReceiverTimerProbe.m": "9144f284aebf4d4713ac42d1276bf0a91a1d669f8d6814ab890d2cb74ff752d8",
+    "+ac/ReceiverTimer.m": "b44a563e1676b8e060ab885af1d796e144770e97c9e173e7696dea9595fc427d",
+    "+ac/ReceiverTimerSignalEngine.m": "5b428f578acaea2ae3158bfdcf34aed4b90c4ae35a2531abd152d47eef7bffa3",
+    "+ac/ReceiverTimerMac.m": "593d0709214e1b83031cd6c796164b2e3df995d702028bb5485320ade4eb5335",
+    "+ac/ReceiverTimerSimulation.m": "ae14f3a7408b259fd90a80a4af20a8bcd708d80d3ca8a1661b415fbfb3db286c",
+    "model/+csr/+phy/Model.m": "bf290155af0b26d7a4ae31395808a3740b1035d53fe146083e60a60ba3b8a896",
+    "ref/receiver_timers/phy_component_fixture.csv": "5bb859ae492f83aee4869045ece60053baacb576bad62e17bb0967f92373db85",
+    "ref/receiver_timers/acquisition_schedule_fixture.csv": "63bab9e5b9fb6bb676871dfba9c138155acb671979e82e71b3f0e6add9202fa5",
+    "ref/receiver_timers/native_TX_finish_arithmetic.csv": "a0430cc9175373d2c3e008a5beba21089dadbd44dcdec749946390050ad8927a"
+  },
+  "exact_forward_reverse_targets": [
+    "+ac/ReceiverTimerSignalEngine.m",
+    "+ac/ReceiverTimerMac.m",
+    "+ac/ReceiverTimerSimulation.m"
+  ],
+  "model_allocate_errors_bytes_unchanged": true,
+  "scope": [
+    "1352 native acquisition scheduling targets",
+    "811 source TX targets:810native observed completions plus1pending",
+    "28ns rejected-return target source-only; actual branch not captured",
+    "Stopped raw signal/interval geometry through public unchanged Model:52versus51bits",
+    "All1542 consumed-component native geometries through public Model, both header/payload counts",
+    "Actual public baseline and candidate acquisition callback using long preamble",
+    "Continuous and absent TransportTiming retain baseline arithmetic",
+    "One-radio actual public MAC enqueue/transmit and PHY/MAC completions share target with preserved PHY-first order"
+  ],
+  "random_scope": "One-radio MAC component uses real measured seeded MAC draws; acquisition and geometry probes assert no random draws. No full-network run.",
+  "native_callback_scope": "Native has one completion event; preflight preserves existing MATLAB two-callback decomposition rather than claiming native has two.",
+  "limitations": [
+    "Static/API and exact source-binding review, not MATLAB execution.",
+    "High-SNR geometry with finite positive noise isolates bit allocation and does not claim native BER/error outcome parity.",
+    "Fixture-based timer targets do not assert every callback occurred; one TX deadline is beyond the native capture.",
+    "28ns path is arithmetic/source-bound only, with network branch unexercised.",
+    "No full330second or6000second performance parity claim."
+  ],
+  "geometry_isolation": {
+    "received_power_watts": 1,
+    "noise_power_watts": 1e-100,
+    "base_snr_db": 1000,
+    "uniform_supplier": "throws if requested",
+    "reason": "Model.snrDb requires positive noise; supported BER high tails are zero at this finite high SNR"
+  }
+}

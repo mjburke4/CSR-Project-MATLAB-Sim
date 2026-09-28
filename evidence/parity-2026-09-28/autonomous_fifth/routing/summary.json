@@ -1,0 +1,97 @@
+{
+  "seed": 132,
+  "case": "F_message_flag",
+  "admission_time_s": 14.400468077,
+  "matlab_control_count": 2,
+  "native_control_count": 1,
+  "extra_control": {
+    "observation_order": 13095,
+    "time_s": 14.400468077,
+    "control_id": 12,
+    "hop_sequence": 5,
+    "targets": [
+      3,
+      5
+    ],
+    "hop_sequences": [
+      5,
+      7
+    ],
+    "wire_bytes": 26,
+    "queues": {
+      "DataDepth": 2,
+      "AckDepth": 6
+    },
+    "routing": {
+      "hex": "00000004000101000003",
+      "routing_sequence": 4,
+      "section": 0,
+      "total_sections": 1,
+      "records": [
+        {
+          "operation": "DELETE",
+          "destination": 3
+        }
+      ]
+    }
+  },
+  "snapshot_byte_identical": true,
+  "matlab_received_control_types_from_peer3_before_admission": [
+    "KEY_REQUEST",
+    "KEY_UPDATE"
+  ],
+  "native_first_direct_candidate_3_time_ns": 18724108077,
+  "next_guard_failure": {
+    "node": 1,
+    "purpose": "mac_slot",
+    "ordinal": 8,
+    "actual_time_s": 14.534,
+    "fields": [
+      "active_nodes"
+    ],
+    "actual": {
+      "profile": 4,
+      "active_nodes": 3,
+      "reported_nodes": 2,
+      "reservation_counter": -1,
+      "reservation_slot": 27,
+      "state": "search",
+      "low": 0,
+      "high": 31
+    },
+    "expected": {
+      "event_order": 3402,
+      "time_ns": 14534000000.0,
+      "node": 1,
+      "purpose": "mac_slot",
+      "ordinal": 8,
+      "value": 13,
+      "low": 0,
+      "high": 31,
+      "mean": null,
+      "variance": null,
+      "tx_id": null,
+      "interval_ordinal": null,
+      "component": "",
+      "interval_start_ns": null,
+      "interval_end_ns": null,
+      "component_start_ns": null,
+      "component_end_ns": null,
+      "bits": null,
+      "probability": null,
+      "rng_consumed": 1,
+      "active_nodes": 2,
+      "reported_nodes": 2,
+      "reservation_counter": -1,
+      "reservation_slot": 27,
+      "profile": 4,
+      "state": "search",
+      "cause": "CsrMacCore::PickTxSlot"
+    }
+  },
+  "conclusion": "ACK admission incorrectly creates a MATLAB direct route candidate; capability zero produces DELETE3",
+  "evidence_boundary": "Decoded controls and native first-candidate log are observed; MATLAB private candidate birth is inferred from the traced callback and exact source path",
+  "independent_issue": "Guarded MAC active-node count mismatch is a separate population-publication behavior",
+  "new_network_simulation_executed": false,
+  "matlab_runtime_executed": false
+}

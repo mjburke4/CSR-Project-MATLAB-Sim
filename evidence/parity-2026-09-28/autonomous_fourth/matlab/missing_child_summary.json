@@ -1,0 +1,200 @@
+{
+  "schema": "csr-node5-missing-overheard-audit-v1",
+  "cases": [
+    {
+      "case": "C_timing",
+      "stop_time_s": 12.402,
+      "draws_consumed": 40,
+      "native_transmissions_checked": 6,
+      "first_time_difference": {
+        "node": 3,
+        "purpose": "mac_slot",
+        "ordinal": 1,
+        "actual_time_s": 11.505,
+        "expected_time_ns": 11500308077.0,
+        "rounded_delta_ns": 4691923.0
+      },
+      "actual_children": [
+        {
+          "kind": "ACK",
+          "source": 5,
+          "destination": 1,
+          "hop_sequence": 1,
+          "wire_bytes": 25,
+          "control_type": "",
+          "subtype": "",
+          "control_sequence": null
+        },
+        {
+          "kind": "ACK",
+          "source": 5,
+          "destination": 1,
+          "hop_sequence": 3,
+          "wire_bytes": 25,
+          "control_type": "",
+          "subtype": "",
+          "control_sequence": null
+        },
+        {
+          "kind": "CONTROL",
+          "source": 5,
+          "destination": 1,
+          "hop_sequence": 3,
+          "wire_bytes": 16,
+          "control_type": "NEIGHBOR_CHECK",
+          "subtype": "discovery",
+          "control_sequence": 1
+        }
+      ],
+      "expected_children": [
+        {
+          "kind": "ACK",
+          "source": 5,
+          "destination": 1,
+          "hop_sequence": 1,
+          "wire_bytes": 25,
+          "control_type": "",
+          "subtype": "",
+          "control_sequence": null
+        },
+        {
+          "kind": "ACK",
+          "source": 5,
+          "destination": 1,
+          "hop_sequence": 3,
+          "wire_bytes": 25,
+          "control_type": "",
+          "subtype": "",
+          "control_sequence": null
+        },
+        {
+          "kind": "CONTROL",
+          "source": 5,
+          "destination": 1,
+          "hop_sequence": 3,
+          "wire_bytes": 16,
+          "control_type": "NEIGHBOR_CHECK",
+          "subtype": "discovery",
+          "control_sequence": 1
+        },
+        {
+          "kind": "CONTROL",
+          "source": 5,
+          "destination": 1,
+          "hop_sequence": 4,
+          "wire_bytes": 16,
+          "control_type": "NEIGHBOR_CHECK",
+          "subtype": "overheard",
+          "control_sequence": 0
+        }
+      ],
+      "missing_child": {
+        "kind": "CONTROL",
+        "source": 5,
+        "destination": 1,
+        "hop_sequence": 4,
+        "wire_bytes": 16,
+        "control_type": "NEIGHBOR_CHECK",
+        "subtype": "overheard",
+        "control_sequence": 0
+      },
+      "ordered_log_sha256": "21d6489979366beeb90d5b2542b84c72626e4182b3892e6c898857915c8313db"
+    },
+    {
+      "case": "D_inline_key",
+      "stop_time_s": 12.402,
+      "draws_consumed": 40,
+      "native_transmissions_checked": 6,
+      "first_time_difference": [],
+      "actual_children": [
+        {
+          "kind": "ACK",
+          "source": 5,
+          "destination": 1,
+          "hop_sequence": 1,
+          "wire_bytes": 25,
+          "control_type": "",
+          "subtype": "",
+          "control_sequence": null
+        },
+        {
+          "kind": "ACK",
+          "source": 5,
+          "destination": 1,
+          "hop_sequence": 3,
+          "wire_bytes": 25,
+          "control_type": "",
+          "subtype": "",
+          "control_sequence": null
+        },
+        {
+          "kind": "CONTROL",
+          "source": 5,
+          "destination": 1,
+          "hop_sequence": 3,
+          "wire_bytes": 16,
+          "control_type": "NEIGHBOR_CHECK",
+          "subtype": "discovery",
+          "control_sequence": 1
+        }
+      ],
+      "expected_children": [
+        {
+          "kind": "ACK",
+          "source": 5,
+          "destination": 1,
+          "hop_sequence": 1,
+          "wire_bytes": 25,
+          "control_type": "",
+          "subtype": "",
+          "control_sequence": null
+        },
+        {
+          "kind": "ACK",
+          "source": 5,
+          "destination": 1,
+          "hop_sequence": 3,
+          "wire_bytes": 25,
+          "control_type": "",
+          "subtype": "",
+          "control_sequence": null
+        },
+        {
+          "kind": "CONTROL",
+          "source": 5,
+          "destination": 1,
+          "hop_sequence": 3,
+          "wire_bytes": 16,
+          "control_type": "NEIGHBOR_CHECK",
+          "subtype": "discovery",
+          "control_sequence": 1
+        },
+        {
+          "kind": "CONTROL",
+          "source": 5,
+          "destination": 1,
+          "hop_sequence": 4,
+          "wire_bytes": 16,
+          "control_type": "NEIGHBOR_CHECK",
+          "subtype": "overheard",
+          "control_sequence": 0
+        }
+      ],
+      "missing_child": {
+        "kind": "CONTROL",
+        "source": 5,
+        "destination": 1,
+        "hop_sequence": 4,
+        "wire_bytes": 16,
+        "control_type": "NEIGHBOR_CHECK",
+        "subtype": "overheard",
+        "control_sequence": 0
+      },
+      "ordered_log_sha256": "739bc5cf1e5402f1f14dda6fc2285017764e086b0f2e9c77746a330f0d27ae04"
+    }
+  ],
+  "observed_cause": "Discovery proof is queued after KEY_UPDATE ACK; MATLAB generic CheckActive excludes otherwise-eligible Overheard proof in evaluate; native has no such Overheard exclusion.",
+  "proposed_scope": "Remove only CheckActive from the Overheard send predicate in an isolated candidate; preserve the original not-yet-due branch and key/liveness/discovery/deadline gates.",
+  "model_modified": false,
+  "matlab_executed_by_analysis": false
+}

@@ -1,0 +1,127 @@
+{
+  "schema": "source5-returned-pass-audit-v1",
+  "returned_results": "/workspace/scratch/db3d3caa011d/short_results/20260923_174417",
+  "runtime": "MATLAB 26.1.0.3346908 (R2026a) Update 5",
+  "checks": {
+    "mac": {
+      "scope": "Node-5 MAC scheduling conditional on native queue, receiver-state and random-draw inputs; startup [0,330) s with target [300,330) s.",
+      "reference": "/workspace/scratch/db3d3caa011d/two_case_next/native/seed132/reference",
+      "observed": "/workspace/scratch/db3d3caa011d/short_results/20260923_174417/replays/source5_mac/replayed/node5",
+      "tx_rows_full": 135,
+      "tx_rows_warmup_0_300": 100,
+      "tx_rows_target_300_330": 35,
+      "tx_rows_textually_identical": true,
+      "tx_compared_fields": [
+        "time_ns",
+        "node",
+        "consumed_slot",
+        "next_slot",
+        "wirebytes",
+        "rate",
+        "power",
+        "preamble_bits",
+        "duration_ns",
+        "frame_ids"
+      ],
+      "draw_rows_full": 153,
+      "draw_rows_target_300_330": 39,
+      "draw_fields_numerically_identical": true,
+      "draw_compared_fields": [
+        "time_ns",
+        "node",
+        "ordinal",
+        "min",
+        "max",
+        "draw"
+      ],
+      "returned_staging_reference_hashes_match_native": true,
+      "unused_draws": 0,
+      "processed_inputs": 3443,
+      "independent_receiver_behavior_verified": false
+    },
+    "hop_capacity": {
+      "scope": "Production HOP under native-timed first-16 local offers, actual TX notifications and ACK completion inputs; a test-owned FIFO represents the NWK boundary.",
+      "fixtures": "/workspace/scratch/db3d3caa011d/two_case_next/source5_replay/fixtures",
+      "observed": "/workspace/scratch/db3d3caa011d/short_results/20260923_174417/replays/source5_capacity",
+      "admissions_compared": 16,
+      "admissions_exact": true,
+      "compared_fields": [
+        "time_ns",
+        "attempt_index",
+        "app_sequence",
+        "pending_before",
+        "pending_after",
+        "outstanding_before",
+        "outstanding_after",
+        "threshold"
+      ],
+      "input_boundaries": {
+        "total": 52,
+        "local_offer": 16,
+        "sent": 20,
+        "feedback_ack": 16,
+        "feedback_dack": 0
+      },
+      "retransmissions": 4,
+      "final_pending_data": 0,
+      "peak_pending_data": 4,
+      "offer_to_admission_seconds": {
+        "mean": 9.977604171125,
+        "median": 11.001111114,
+        "maximum": 17.761111114,
+        "per_attempt": [
+          2.8e-08,
+          4.950111114,
+          6.139111114,
+          7.237111114,
+          7.217111114,
+          8.224111114,
+          9.348111114,
+          11.031111114,
+          11.011111114,
+          10.991111114,
+          12.453111114,
+          12.433111114,
+          12.413111114,
+          13.511111114,
+          14.921111114,
+          17.761111114
+        ]
+      },
+      "full_production_nwk_state_replayed": false
+    }
+  },
+  "native_gate_context": {
+    "source": "/workspace/scratch/db3d3caa011d/two_case_next/native/seed132/capture/source5_native.tsv",
+    "node": 5,
+    "window_seconds": [
+      300,
+      330
+    ],
+    "hop_gate_probes": 856,
+    "per_neighbor_capacity_denials": 830,
+    "permitted_probes": 26,
+    "global_capacity_available_probes": 856,
+    "interpretation": "These are repeated gate evaluations, not unique applications. All denials in the observed capture are due to the per-neighbor capacity condition while global capacity is available.",
+    "local_offers": 35,
+    "relay_receptions": 2,
+    "admissions": {
+      "total": 26,
+      "local_source5": 25,
+      "relay_source4": 1
+    },
+    "hop_ack_completions": {
+      "total": 20,
+      "local_source5": 19,
+      "relay_source4": 1
+    }
+  },
+  "limitations": [
+    "MAC receives recorded receiver-state and queue inputs; it does not independently generate or validate reception outcomes.",
+    "HOP receives actual-transmission and ACK times; matching downstream admission does not establish parity of the upstream process producing those times.",
+    "First-16 capacity replay uses a test-owned FIFO, excludes the complete mixed local/relay workload and does not reconstruct production NWK state.",
+    "The returned target comparison text contains a stale 657-665-second label; the profile and actual selectors used 300-330 seconds. Root has corrected the runner label dynamically and updated binding for future runs."
+  ],
+  "recommendation": "Trace the upstream ACK generation/reception and feedback-release sequence supplying the matched boundary inputs. If necessary, replay production NWK with the full mixed source-5 workload. Current passes do not justify another HOP admission or MAC scheduling change.",
+  "network_parity_claim": false
+}

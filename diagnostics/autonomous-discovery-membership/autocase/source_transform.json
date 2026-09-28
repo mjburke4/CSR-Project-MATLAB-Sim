@@ -1,0 +1,100 @@
+{
+  "schema": "csr-autonomous-validation-transform-v1",
+  "observer_receipt": {
+    "schema": "csr-autonomous-passive-observer-seam-v1",
+    "sink": "ac.Trace.record(time,kind,node,details)",
+    "passivity_claim": "Static insertions only; runtime passive-equivalence gate remains required",
+    "runtime_passivity_verified": false,
+    "files": [
+      {
+        "path": "+csr/+sim/EventScheduler.m",
+        "source_sha256": "0e1887cf9d1195a20ab8e4a24c7ff182a2e72303abfec67d34a61eaa1fa9585e",
+        "instrumented_sha256": "270b644379bd4e48e0e6c5ae9efc8b6d27bae42ce00b6b85da593a203cbb9c78",
+        "insertions": 4,
+        "source_recovered_exactly_after_removing_insertions": true
+      },
+      {
+        "path": "+csr/+mac/Layer.m",
+        "source_sha256": "d2e1b9e08c7e3d3ea60c88b61f3480f881e53c5963f48ae09822c4f04170e67b",
+        "instrumented_sha256": "d7adfe9774d853d29aa5252aa48e4f6a3deddbf65081f445bec0fb118f8bf2a3",
+        "insertions": 18,
+        "source_recovered_exactly_after_removing_insertions": true
+      },
+      {
+        "path": "+csr/+phy/SignalEngine.m",
+        "source_sha256": "289c764bac0de95fefa75812e1b5090dcdf1953e35960cf7f02c4e298f4e294e",
+        "instrumented_sha256": "f8da8481a66a501d26301ca631d7bf85843b7a98dd38b17f64e0484e0da557c0",
+        "insertions": 13,
+        "source_recovered_exactly_after_removing_insertions": true
+      }
+    ]
+  },
+  "random_and_export_edits": [
+    {
+      "path": "+csr/+sim/NetworkSimulation.m",
+      "before": "function obj = NetworkSimulation(config,linkObserver,transportTiming)",
+      "after": "function obj = NetworkSimulation(config,linkObserver,transportTiming,autonomousOptions)"
+    },
+    {
+      "path": "+csr/+sim/NetworkSimulation.m",
+      "before": "            obj.Streams = csr.sim.RandomStreams(config.Seed);",
+      "after": "            assert(nargin==4 && isstruct(autonomousOptions), ...\n                'autocase:Options','This validation copy requires explicit autonomous options.');\n            obj.Streams = ac.Streams(config.Seed,obj.Scheduler, ...\n                autonomousOptions.Mode,autonomousOptions.Fixture,autonomousOptions.Folder);"
+    },
+    {
+      "path": "+csr/+sim/NetworkSimulation.m",
+      "before": "            metadata.Rng = struct('Generator','mt19937ar','MappingVersion',obj.Streams.MappingVersion);",
+      "after": "            metadata.Rng = struct('Generator','mt19937ar','MappingVersion',obj.Streams.MappingVersion);\n            metadata.AutonomousValidationMode=obj.Streams.Mode;\n            if strcmp(obj.Streams.Mode,'native'), metadata.Rng.Generator='captured-ns3-samples'; end"
+    },
+    {
+      "path": "+csr/+sim/NetworkSimulation.m",
+      "before": "        function protocolEvent(obj,nodeId,event,frame,details)\n",
+      "after": "        function protocolEvent(obj,nodeId,event,frame,details)\n            ac.Trace.record(obj.Scheduler.Now,'protocol',nodeId, ...\n                struct('event',event,'frame',frame,'details',details));\n"
+    },
+    {
+      "path": "+csr/+sim/NetworkSimulation.m",
+      "before": "        function recordPhy(obj,event,frame,nodeId,details)\n",
+      "after": "        function recordPhy(obj,event,frame,nodeId,details)\n            ac.Trace.record(obj.Scheduler.Now,'phy',nodeId, ...\n                struct('event',event,'frame',frame,'details',details));\n"
+    },
+    {
+      "path": "+csr/+sim/NetworkSimulation.m",
+      "before": "        function recordAdmission(obj,row)\n",
+      "after": "        function recordAdmission(obj,row)\n            ac.Trace.record(obj.Scheduler.Now,'application_attempt',row.SourceId,row);\n"
+    },
+    {
+      "path": "+csr/+sim/NetworkSimulation.m",
+      "before": "    methods (Access = private)\n        function generate(obj,flowIndex,ordinal)",
+      "after": "    methods\n        function value=autonomousRandomSummary(obj)\n            value=obj.Streams.summary();\n        end\n        function autonomousClose(obj)\n            obj.Streams.close();\n        end\n        function value=autonomousPartial(obj)\n            % Saved observations only. This does not complete, advance or\n            % recompute application outcomes after a failed simulation.\n            value=struct('ProtocolTrace',struct2table(obj.TraceRows(1:obj.TraceCount),'AsArray',true), ...\n                'PhyTrace',struct2table(obj.PhyRows(1:obj.PhyCount),'AsArray',true), ...\n                'ApplicationAdmissionTrace',struct2table(obj.AdmissionRows(1:obj.AdmissionCount),'AsArray',true), ...\n                'Statistics',obj.Counters,'Config',obj.Config);\n        end\n    end\n    methods (Access = private)\n        function generate(obj,flowIndex,ordinal)"
+    },
+    {
+      "path": "+csr/+mac/Layer.m",
+      "before": "            range = csr.mac.SlotSelection.slotRange(obj.Config.SlotProfile, ...\n                active,obj.Config.SlotReduction);",
+      "after": "            range = csr.mac.SlotSelection.slotRange(obj.Config.SlotProfile, ...\n                active,obj.Config.SlotReduction);\n            profiles=csr.mac.SlotSelection.profiles();\n            obj.Stream.setContext(struct('profile',find(strcmp(obj.Config.SlotProfile,profiles))-1, ...\n                'active_nodes',obj.Config.ActiveNodes,'reported_nodes',obj.Config.ReportedActiveNodes, ...\n                'reservation_counter',obj.ReservationCounter,'reservation_slot',obj.ReservationSlot, ...\n                'state',lower(obj.State)));"
+    },
+    {
+      "path": "+csr/+phy/SignalEngine.m",
+      "before": "        function transmit(obj,frame,duration)\n",
+      "after": "        function transmit(obj,frame,duration)\n            obj.Streams.registerTx(frame);\n"
+    },
+    {
+      "path": "+csr/+phy/SignalEngine.m",
+      "before": "                    threshold=threshold+sqrt(profile.SyncSnrThresholdVarianceDb2)* ...\n                        randn(obj.Streams.get(obj.Receivers(index).Id,'sync'));",
+      "after": "                    threshold=obj.Streams.threshold(obj.Receivers(index).Id,profile,incoming.Frame);"
+    },
+    {
+      "path": "+csr/+phy/SignalEngine.m",
+      "before": "signal.Frame.RateKeyKbps,interval,obj.Streams.get(obj.Receivers(index).Id,'phy'));",
+      "after": "signal.Frame.RateKeyKbps,interval,obj.Streams.phy( ...\n                        obj.Receivers(index).Id,signal.Frame,signal.IntervalCount+1,interval));"
+    },
+    {
+      "path": "+csr/+phy/Model.m",
+      "before": "if ~isa(stream, 'RandStream') && ~isa(stream, 'function_handle')",
+      "after": "if ~isa(stream, 'RandStream') && ~isa(stream, 'function_handle') && ~isa(stream,'ac.PhySampler')"
+    },
+    {
+      "path": "+csr/+phy/Model.m",
+      "before": "                headerErrors = csr.phy.Model.drawBinomial( ...\n                    headerCount, values.HeaderBer, stream);\n                payloadErrors = csr.phy.Model.drawBinomial( ...\n                    payloadCount, values.PayloadBer, stream);",
+      "after": "                if isa(stream,'ac.PhySampler')\n                    headerErrors=stream.draw(headerCount,values.HeaderBer,'header',headerBegin,headerEnd);\n                    payloadErrors=stream.draw(payloadCount,values.PayloadBer,'payload',payloadBegin,intervalEnd);\n                else\n                    headerErrors = csr.phy.Model.drawBinomial( ...\n                        headerCount, values.HeaderBer, stream);\n                    payloadErrors = csr.phy.Model.drawBinomial( ...\n                        payloadCount, values.PayloadBer, stream);\n                end"
+    }
+  ],
+  "production_fix": false
+}

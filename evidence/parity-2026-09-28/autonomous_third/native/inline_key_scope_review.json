@@ -1,0 +1,20 @@
+{
+  "scope": "Static review only; no MATLAB execution, no network run, no code changes.",
+  "transforms": [
+    {
+      "source": "model/+csr/+nwk/Layer.m",
+      "target": "+ac/InlineKeyNwk.m",
+      "reverse_bytes_equal": true,
+      "source_sha256": "7ef09931c83c55697ce96b400ee1d90459a44af4c0527b396829d62ab9125300",
+      "target_sha256": "ae267f6cc5a0bd3bb8378b6b72e49ca5987ba8b07e8b41175b85519f539b728f"
+    },
+    {
+      "source": "model/+csr/+sim/NetworkSimulation.m",
+      "target": "+ac/InlineKeySimulation.m",
+      "reverse_bytes_equal": true,
+      "source_sha256": "95b83ad8d6b3ae7d56f026bb360b703e800a251f4b4546a34e40f36025e99f58",
+      "target_sha256": "fc62a43eb1b0e317586b9a2882e4b9b95ebf7cf0567715caf007b81fbf6740fc"
+    }
+  ],
+  "native_rejection_fallback_parity": "not established; empty-queue successful admission is the observed motivating case"
+}

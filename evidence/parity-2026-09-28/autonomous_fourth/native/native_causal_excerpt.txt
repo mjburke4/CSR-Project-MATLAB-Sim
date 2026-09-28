@@ -1,0 +1,40 @@
+310: time_ns=12314891086 [t=12.3149] RX at node 5 from node 1 seq 2 rate 8 kbps txPower 33 dBm preamble SHORT pathloss 140.876 dB snr -0.900945 dB (slot 18, len 121B, ackable=1)
+311: time_ns=12314891086 [MAC 5] Learned neighbor 1 uses slot 18 (rtCounter=18)
+312: time_ns=12314891086 [HOP 5] RX ACK from 1 seq=2
+313: time_ns=12314891086 [HOP 5] Reliable KeyUpdate completed neighbor=1 seq=2
+314: time_ns=12314891086 [NWK 5] KeyUpdate send completion neighbor=1 acknowledged=1 sentKey=1
+315: time_ns=12314891086 [NWK 5] Sending deferred Discovery NeighborCheck neighbor=1 sequence=1 afterKeySend=1
+316: time_ns=12314891086 [NWK 5] Sending targeted ARL NeighborCheck neighbor=1 subtype=Discovery discoverySequence=1
+317: time_ns=12314891086 [HOP 5] link_control dest=1 neighborKnown=1 s0=-103 pathloss=140.876 failures=0 speed=8 txPower=33 rxPower=-103 cost=7450
+318: time_ns=12314891086 [HOP 5] TX reliable NeighborCheck to 1 seq=3
+319: time_ns=12314891086 [MAC] Enqueue TX pkt dscp=7 insert_pos=0 queue_size_before=0
+320: time_ns=12314891086 [HOP 5] RX authenticated KeyRequest from=1 keyId=1 keySeq=3 securityCount=1
+321: time_ns=12314891086 [NWK 5] KeyRequest received after completed KeyUpdate neighbor=1 ageMs=0 recent-key-suppressed
+322: time_ns=12314891086 [HOP 5] RX reliable NeighborCheck from 1 seq=3 firstReception=1
+323: time_ns=12314891086 [MAC 5] active_nodes set to 2 for local slotting and post-TX wait
+324: time_ns=12314891086 [NWK 5] active_nodes=2 pushed to MAC
+325: time_ns=12314891086 [NWK 5] Updated HELLO neighbor=1 hopSrc=1 speedKey=8 activeNodes=1 pathloss=140.876 snr=-0.900945
+326: time_ns=12314891086 [NWK 5] link_calc neighbor=1 s0=-103 pathloss=140.876 numFailures=0 speed=8 txPower=33 estDistance=298 speedMargin=-4.87595 totalMargin=-4.87595 costMode=local-only cost=7450
+327: time_ns=12314891086 [NWK 5] Updated route candidate dst=1 nextHop=1 hops=1 oldCost=7450 newCost=7450 valid=1->1 selectionDeferred=0 selected=0
+328: time_ns=12314891086 [NWK 5] ARL route message from 1 type=NeighborCheck advCount=0
+329: time_ns=12314891086 [NWK 5] ProcessNeighborCheck from 1 subtype=Overheard pathloss=140.876 snr=-0.900945 linkCost=7450 advCount=0
+330: time_ns=12314891086 [NWK 5] NeighborCheck Overheard received from 1
+331: time_ns=12314891086 [NWK 5] Sending CHECK_OVERHEARD after two-sided key exchange neighbor=1
+332: time_ns=12314891086 [NWK 5] Sending targeted ARL NeighborCheck neighbor=1 subtype=Overheard
+333: time_ns=12314891086 [HOP 5] link_control dest=1 neighborKnown=1 s0=-103 pathloss=140.876 failures=0 speed=8 txPower=33 rxPower=-103 cost=7450
+334: time_ns=12314891086 [HOP 5] TX reliable NeighborCheck to 1 seq=4
+335: time_ns=12314891086 [MAC] Enqueue TX pkt dscp=7 insert_pos=1 queue_size_before=1
+336: time_ns=12314891086 [NWK 5] Routes: dst=1->nh=1(hops=1,cost=7450,linkCost=7450,advCost=0,from=1,imm=1,pl=140.876,valid=1,path=[1])
+337: time_ns=12314891086 [HOP 5] link_control dest=1 neighborKnown=1 s0=-103 pathloss=140.876 failures=0 speed=8 txPower=33 rxPower=-103 cost=7450
+338: time_ns=12314891086 [HOP 5] ACK NeighborCheck to 1 seq=3
+339: time_ns=12314891086 [MAC 5] Enqueue ACK dest=1 seq=3 window=0 ack_queue_size=2
+340: time_ns=12314891086 [HOP 5] Overheard frame from 1 for 3 type=9 ignored after neighbor update
+343: time_ns=12402000000 [MAC 5] PickTxSlot(dest=1) active_nodes_for_slotting=2 opnet_slot_range=31
+344: time_ns=12402000000 [MAC 5] avoiding neighbor 1 currentReservedSlot=11 rtslot_counter=11
+345: time_ns=12402000000 [MAC 5] PickTxSlot(dest=1) avoid: 11
+346: time_ns=12402000000 [MAC 5] PickTxSlot chose 15 using historical next_tslot modulo probe
+347: time_ns=12402000000 [MAC 5] TX opportunity reached currentSlot=21 reserveNextSlot=15
+348: time_ns=12402000000 ... type=1 speedKey=8[t=12.402] TX from node 5 to dest 1 seq 1 size 82 bytes segments 4 at slot 15 rate 8 kbps txPower 33 dBm (7843.14 bps) preamble SHORT duration 0.1071 s
+354: time_ns=12402000000 [MAC 5] ACK transmitted in aggregate dest=1 seq=1 txCount=2/5
+355: time_ns=12402000000 [MAC 5] ACK transmitted in aggregate dest=1 seq=3 txCount=1/5
+356: time_ns=12402000000 [MAC 5] OPNET aggregate transmitted segments=4 ackSegments=2 dataSegments=2 bytes=82 rate=8

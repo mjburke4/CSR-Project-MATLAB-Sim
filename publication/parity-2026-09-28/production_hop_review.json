@@ -1,0 +1,57 @@
+{
+  "scope_review": "pass",
+  "base_commit": "6bfbb3ceaa39c3a7457027384a4bf6498313194e",
+  "production_file": "+csr/+hop/Layer.m",
+  "old_sha256": "67323b4106738c2d1fdfafebf1f408719f878513aa898fb9cf754e446d87d9f7",
+  "new_sha256": "21d4a56d782fde35d45f102c137b6c78c3bf4cdc05593d15fb9a7db8f26c2649",
+  "only_model_change_out_of99": true,
+  "base_comparison_method": "Read-only99-file comparison against the locally retained prior macfix/core baseline, mapped to main by the preserved production_hop_proof inventory; source-exact reverse edit also recovers its base HOP SHA. No git object lookup or network needed.",
+  "exact_change": "On final exact ACK of a ROUTING control, remove HOP resend ownership but do not request MAC queued-copy cancellation. Other control types retain cancellation; partial-group and DATA paths are unchanged.",
+  "native_contract": "SendRoutingControl always constructs DestinationSequences, including single target; CancelAcknowledgedFrames skips every queued frame with DestinationSequences.",
+  "native_source_pin": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "native_source_spans": [
+    {
+      "file": "csr-hop-layer.h",
+      "first_line": 2034,
+      "last_line": 2088,
+      "source": "CsrHopLayer::SendRoutingControl (\n  CsrNodeId dst,\n  Ptr<Packet> payload)\n{\n  SendRoutingControl (\n    std::vector<CsrNodeId> {dst},\n    payload);\n}\n\nvoid\nCsrHopLayer::SendRoutingControl (\n  const std::vector<CsrNodeId> &destinations,\n  Ptr<Packet> payload)\n{\n  NS_ASSERT (m_mac != nullptr);\n  NS_ABORT_MSG_IF (\n    destinations.empty () ||\n      destinations.size () > CsrHeader::MAX_DESTINATIONS,\n    \"reliable routing control requires 1 to 10 destinations\");\n\n  std::vector<CsrHeader::DestinationSequence> targets;\n  targets.reserve (destinations.size ());\n\n  for (CsrNodeId destination : destinations)\n    {\n      uint16_t &lastSeq =\n        m_lastSentSeqByDest[destination];\n      uint16_t sequence =\n        static_cast<uint16_t> (\n          (lastSeq + 1) & 0xFFFF);\n      lastSeq = sequence;\n      targets.emplace_back (\n        destination,\n        sequence);\n    }\n\n  CsrNodeId primaryDestination =\n    targets.front ().first;\n  uint16_t primarySequence =\n    targets.front ().second;\n\n  CsrHeader hdr (\n    m_nodeId,\n    primaryDestination,\n    primarySequence,\n    7,\n    true,\n    false);\n\n  hdr.SetType (CSR_PKT_ROUTING_CONTROL);\n  hdr.SetDestType (CSR_DEST_MULTICAST);\n  hdr.SetDestinationSequences (targets);\n  hdr.SetSecurityCount (m_hopSecurity.GetOwnSecurityCount ());\n  hdr.SetHasGroupSecurity (true);\n  ApplyLinkControl (hdr, destinations);\n",
+      "sha256": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b"
+    },
+    {
+      "file": "csr-net-device.h",
+      "first_line": 2307,
+      "last_line": 2363,
+      "source": "CsrMacCore::CancelAcknowledgedFrames (CsrNodeId neighbor,\n                                      uint16_t baseSeq,\n                                      uint64_t ackBitmap,\n                                      uint64_t dackBitmap)\n{\n  // DACK is also terminal at MAC: HOP moves that packet to its delayed DACK\n  // list, so another queued over-the-air copy must not be transmitted.\n  uint64_t completedBitmap = ackBitmap | dackBitmap;\n  uint32_t removed = 0;\n\n  for (auto it = m_queue.begin (); it != m_queue.end (); )\n    {\n      if (!it->ackable || it->dest != neighbor || it->frame == nullptr)\n        {\n          ++it;\n          continue;\n        }\n\n      CsrHeader queuedHeader;\n      if (!it->frame->PeekHeader (queuedHeader))\n        {\n          ++it;\n          continue;\n        }\n\n      // OPNET's exact-ACK MAC cleanup compares the outer integer\n      // destination.  A routing-control packet with a destination structure\n      // is therefore left intact, even after one member of the group ACKs.\n      if (queuedHeader.HasDestinationSequences ())\n        {\n          ++it;\n          continue;\n        }\n\n      // Unsigned subtraction gives the sequence's age modulo 2^16, matching\n      // the 16-bit legacy sequence space even across wraparound.\n      uint16_t age = static_cast<uint16_t> (\n        baseSeq - queuedHeader.GetSeq ());\n\n      if (age < 64 && (completedBitmap & (1ULL << age)) != 0)\n        {\n          std::cout << \"[MAC \" << m_nodeId\n                    << \"] Cancel queued acknowledged frame\"\n                    << \" neighbor=\" << neighbor\n                    << \" seq=\" << queuedHeader.GetSeq ()\n                    << \" baseSeq=\" << baseSeq\n                    << \" windowIndex=\" << age\n                    << std::endl;\n\n          it = m_queue.erase (it);\n          removed++;\n          continue;\n        }\n\n      ++it;\n    }\n\n",
+      "sha256": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb"
+    }
+  ],
+  "actual_owner_runs": [
+    {
+      "seed": 131,
+      "case_manifest_sha256": "8ab385bccf37cd2288d688732b041ce4ddb33a5df84c609fb5d0bb92f9f0ddd3",
+      "completed_utc": "2026-09-24T17:31:15.500Z",
+      "runtime": "25.1.0.2943329 (R2025a)",
+      "structural_checks_passed": true,
+      "data_drained": false,
+      "numerical_parity_established": false
+    },
+    {
+      "seed": 132,
+      "case_manifest_sha256": "adebe000ebe5025042b95b64edb0c4eba588a0bd2f3287c529779833152126a1",
+      "completed_utc": "2026-09-24T19:22:51.633Z",
+      "runtime": "25.1.0.2943329 (R2025a)",
+      "structural_checks_passed": true,
+      "data_drained": false,
+      "numerical_parity_established": false
+    }
+  ],
+  "provenance_sha256": "dc00f362adae197b475d22d241540b12c4fc31d000694fd17ecbdc3c853b8586",
+  "all_actual_case_source_hashes_match_candidate": true,
+  "current_M_or_other_autonomous_fixes_promoted": false,
+  "new_matlab_or_native_execution": false,
+  "limits": [
+    "Publication reuses an already executed source snapshot; no new MATLAB execution occurred here.",
+    "Completed6,000-second scenarios pass structural checks but retain unfinished traffic and do not establish15-percent network parity.",
+    "This review does not broaden control callback ordering or other native/MATLAB lifecycle differences."
+  ]
+}

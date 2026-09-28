@@ -1,0 +1,37 @@
+{
+  "schema": "csr-no-path-wire-preflight-v1",
+  "passed": true,
+  "checks": [
+    {
+      "name": "no_path_metadata_is_not_charged_as_raw_body",
+      "passed": true,
+      "details": {
+        "baseline_bytes": 19,
+        "candidate_bytes": 16,
+        "target_id": 8
+      }
+    },
+    {
+      "name": "public_data_rejection_emits_reliable_compact_no_path",
+      "passed": true,
+      "details": {
+        "reason": "transit_disabled",
+        "destination": 3,
+        "target_id": 8,
+        "wire_bytes": 16,
+        "ack_required": true
+      }
+    },
+    {
+      "name": "other_neighbor_checks_and_sibling_controls_keep_baseline_sizes",
+      "passed": true,
+      "details": {
+        "neighbor_subtypes_checked": 4,
+        "sibling_control_types_checked": 5
+      }
+    }
+  ],
+  "network_simulation_executed": false,
+  "random_variates_requested": 0,
+  "scope": "Public NWK forwarded-DATA rejection and HOP Frames API; native 0-330 s fixture has no NoPath, so network effect is unexercised"
+}

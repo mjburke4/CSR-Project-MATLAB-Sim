@@ -1,0 +1,53 @@
+{
+  "schema": "csr-two-case-capture-v1",
+  "case_id": "source5_132",
+  "seed": 132,
+  "window_ns": [
+    300000000000,
+    330000000000
+  ],
+  "source_files": [
+    {
+      "role": "scenario",
+      "path": "scenario_s132.csv",
+      "sha256": "fa45217f8631f34d203580842d8a1a12cb18c53a3efbe0b702b2e17aaeb30d48"
+    },
+    {
+      "role": "native_reference",
+      "path": "native_s132_prefix_0_330.csv.gz",
+      "sha256": "6819889725eb891112b57dbc9f8e63c35af7e87fcf64f77c6dbe3f490d3c63a8"
+    },
+    {
+      "role": "instrumentation_generator",
+      "path": "source5_instrumentation_generator.py",
+      "sha256": "04a6d555177a44638aeba7863e7ed977e69173c692e1d14afa92422147f7b425"
+    }
+  ],
+  "reference_lineage": {
+    "original_full_trace_sha256": "3da17e3397756f8890964d571932a44f7c94573b4d38eac9387342588883a4ef",
+    "strict_stop_ns": 330000000000,
+    "rows": 48919,
+    "extractor": "extract_exact_prefix.py"
+  },
+  "capture": {
+    "status": "capture_pending",
+    "prefix_fidelity": "pending"
+  },
+  "coverage": {
+    "counts": {},
+    "observability": {
+      "aggregate_children": "unavailable",
+      "receiver_state": "unavailable",
+      "competing_signals": "unavailable",
+      "mac_integer_draws": "unavailable",
+      "phy_random_tape": "unavailable",
+      "nwk_hop_capacity": "unavailable"
+    }
+  },
+  "replay": {
+    "status": "replay_pending"
+  },
+  "claims": {
+    "full_network_parity": false
+  }
+}

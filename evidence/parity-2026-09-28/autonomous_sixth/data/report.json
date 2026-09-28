@@ -1,0 +1,556 @@
+{
+  "schema": "csr-autonomous-owner-v1",
+  "completed": false,
+  "matlab_execution_required": true,
+  "numerical_parity_established": false,
+  "target_percent": 15,
+  "runtime": {
+    "version": "25.1.0.2943329 (R2025a)",
+    "release": "2025a",
+    "computer": "PCWIN64"
+  },
+  "cases": [
+    {
+      "name": "A_natural",
+      "mode": "natural",
+      "completed": true,
+      "natural_prefix_passed": true,
+      "reached_time_s": 330,
+      "diagnostic_status": "accepted_prior_run_reused",
+      "error_identifier": "",
+      "error_message": "",
+      "wall_seconds": 0
+    },
+    {
+      "name": "G_population",
+      "mode": "native",
+      "completed": false,
+      "natural_prefix_passed": false,
+      "reached_time_s": 14.534,
+      "diagnostic_status": "context_divergence",
+      "error_identifier": "autocase:TxContextDivergence",
+      "error_message": "Physical transmission context diverged at 14.534000000000001 s, node 1, TX #7 (parent.child_count,parent.total_wire_bytes,ordered_child_count).",
+      "wall_seconds": 16.5067753
+    },
+    {
+      "name": "H_admission_route",
+      "mode": "native",
+      "completed": false,
+      "natural_prefix_passed": false,
+      "reached_time_s": 25.298,
+      "diagnostic_status": "context_divergence",
+      "error_identifier": "autocase:TxContextDivergence",
+      "error_message": "Physical transmission context diverged at 25.297999999999998 s, node 1, TX #18 (parent.total_wire_bytes,child1.wire_bytes,child2.wire_bytes).",
+      "wall_seconds": 23.8073516
+    }
+  ],
+  "archive": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-population-routing-tests\\autocase\\out_auto_20260928_071516.zip",
+  "error_identifier": "",
+  "error_message": "",
+  "case_design": {
+    "A_natural": "Accepted natural run reused if exact gates match; otherwise fresh natural run",
+    "G_population": "Prior F plus event-owned MAC population publication",
+    "H_admission_route": "G plus route admission without inventing an unobserved direct candidate"
+  },
+  "previous_common_case": {
+    "schema": "csr-prior-common-case-history-v3",
+    "new_execution": false,
+    "actual_owner_matlab_execution": true,
+    "prior_history": {
+      "schema": "csr-prior-common-case-history-v2",
+      "new_execution": false,
+      "actual_owner_matlab_execution": true,
+      "prior_B": {
+        "schema": "csr-prior-common-case-history-v1",
+        "previous_owner_case": "B_common",
+        "new_execution": false,
+        "actual_owner_matlab_execution": true,
+        "case_summary": {
+          "name": "B_common",
+          "mode": "native",
+          "completed": false,
+          "natural_prefix_passed": false,
+          "reached_time_s": 11.500323527005154,
+          "diagnostic_status": "context_divergence",
+          "error_identifier": "autocase:DrawContextDivergence",
+          "error_message": "Native random request context diverged at 11.500323527005154 s, node 4, phy_binomial #2 (bits). Partial evidence is preserved.",
+          "wall_seconds": 12.1081817
+        },
+        "diagnosis": "Native CSV preflight and accepted natural reuse passed. Common native-input case stopped at node4 PHY sample2: payload bits184 versus183 due receiver callback endpoint quantization. This stored B is historical, not rerun by this kit.",
+        "source_issued_manifest_sha256": "64e135edd1843a2ec009c677f91918eda61258fe7331b779d88eb1822eb9a742",
+        "evidence_folder": "ref/history/B_common",
+        "new_cases": [
+          "C_timing",
+          "D_inline_key"
+        ]
+      },
+      "cases": [
+        {
+          "name": "C_timing",
+          "mode": "native",
+          "completed": false,
+          "natural_prefix_passed": false,
+          "reached_time_s": 12.402,
+          "diagnostic_status": "context_divergence",
+          "error_identifier": "autocase:TxContextDivergence",
+          "error_message": "Physical transmission context diverged at 12.401999999999999 s, node 5, TX #3 (parent.child_count,parent.total_wire_bytes,ordered_child_count).",
+          "wall_seconds": 12.5182037
+        },
+        {
+          "name": "D_inline_key",
+          "mode": "native",
+          "completed": false,
+          "natural_prefix_passed": false,
+          "reached_time_s": 12.402,
+          "diagnostic_status": "context_divergence",
+          "error_identifier": "autocase:TxContextDivergence",
+          "error_message": "Physical transmission context diverged at 12.401999999999999 s, node 5, TX #3 (parent.child_count,parent.total_wire_bytes,ordered_child_count).",
+          "wall_seconds": 8.2400878
+        }
+      ],
+      "successful_prior_preflights": [
+        "Native CSV import",
+        "Accepted natural A reuse",
+        "All 7 KEY_REQUEST checks"
+      ],
+      "diagnosis": "Both C and D stopped at12.402 seconds with node5 TX3 containing ACK1, ACK3 and discovery-check3 (66 bytes), missing native Overheard-check4 (16 bytes). D removed the earlier KEY_REQUEST request-time mismatch. These are historical actual owner cases, not rerun by this kit.",
+      "source_issued_manifest_sha256": "6ee680f14978219f217c6d20f634af389ab24631017966e85b24fe2e0a7a0924",
+      "evidence_folders": [
+        "ref/history/C_timing",
+        "ref/history/D_inline_key"
+      ],
+      "new_cases": [
+        "E_check_gate",
+        "F_message_flag"
+      ]
+    },
+    "cases": [
+      {
+        "name": "E_check_gate",
+        "mode": "native",
+        "completed": false,
+        "natural_prefix_passed": false,
+        "reached_time_s": 14.534,
+        "diagnostic_status": "context_divergence",
+        "error_identifier": "autocase:DrawContextDivergence",
+        "error_message": "Native random request context diverged at 14.534000000000001 s, node 1, mac_slot #8 (active_nodes). Partial evidence is preserved.",
+        "wall_seconds": 17.2786848
+      },
+      {
+        "name": "F_message_flag",
+        "mode": "native",
+        "completed": false,
+        "natural_prefix_passed": false,
+        "reached_time_s": 14.534,
+        "diagnostic_status": "context_divergence",
+        "error_identifier": "autocase:DrawContextDivergence",
+        "error_message": "Native random request context diverged at 14.534000000000001 s, node 1, mac_slot #8 (active_nodes). Partial evidence is preserved.",
+        "wall_seconds": 10.7130896
+      }
+    ],
+    "successful_prior_preflights": [
+      "Native CSV import",
+      "Accepted natural A reuse",
+      "All7 KEY_REQUEST checks",
+      "All8 neighbor-condition checks"
+    ],
+    "diagnosis": "Both E/F stopped at14.534 node1 MACdraw8: prematurely published local population3 versus native latch2. Current NWK count3 is correct. Same returned prefix also contains an extra grouped routing control after peer3 admission.",
+    "source_issued_manifest_sha256": "2d37baf35c91024375a6272790dfc00480c361576da4aeee02e37430d022ca6d",
+    "evidence_folders": [
+      "ref/history/E_check_gate",
+      "ref/history/F_message_flag"
+    ],
+    "new_cases": [
+      "G_population",
+      "H_admission_route"
+    ]
+  },
+  "import_preflight": {
+    "schema": "csr-native-import-regression-v1",
+    "passed": true,
+    "native_random_rows": 4430,
+    "native_tx_children": 1495,
+    "first_mac_value": 11,
+    "legitimate_empty_mac_component_accepted": true,
+    "invalid_required_fields_rejected": [
+      "empty_phy_component",
+      "empty_mac_state",
+      "missing_sync_mean",
+      "empty_routing_section"
+    ],
+    "scheduled_events": 0,
+    "executed_events": 0,
+    "network_simulation_executed": false,
+    "scope": "CSV/runtime import regression only; no network parity claim"
+  },
+  "accepted_natural_reuse": {
+    "reused": true,
+    "runtime_matches": true,
+    "configuration_matches": true,
+    "accepted_runtime": {
+      "version": "25.1.0.2943329 (R2025a)",
+      "release": "2025a",
+      "computer": "PCWIN64"
+    },
+    "fresh_natural_simulation_executed": false,
+    "source_basis": "All model and natural producer bytes match; Streams edits are confined to native-only import and matching.",
+    "prefix_gate_recomputed": true,
+    "configuration_metadata_path_only": {
+      "accepted": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-seed132-tests\\autocase\\inputs\\s132.csv",
+      "current": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-population-routing-tests\\autocase\\inputs\\s132.csv"
+    },
+    "configuration_path_rule": "Only SharedScenario.SourcePath is canonicalized; input CSV hash and every behavioral field are checked",
+    "accepted_previous_wall_seconds": 308.1675283
+  },
+  "key_request_preflight": {
+    "schema": "csr-inline-key-request-preflight-v1",
+    "passed": true,
+    "checks": [
+      {
+        "name": "baseline_key_request_is_deferred",
+        "passed": true,
+        "details": {
+          "send_callbacks_before_scheduler": 0,
+          "pending_controls": 1
+        }
+      },
+      {
+        "name": "fresh_key_request_is_inline",
+        "passed": true,
+        "details": {
+          "control": {
+            "Id": 1,
+            "Type": "KEY_REQUEST",
+            "Payload": {
+              "Generation": 0,
+              "SecurityProfile": "behavioral-admission"
+            },
+            "WirePayloadBytes": 18
+          },
+          "peers": 1,
+          "options": {
+            "RateKeyKbps": 8,
+            "TxPowerDbm": 33,
+            "Preamble": "long",
+            "EnvelopeProfile": "bare",
+            "AckRequired": false
+          },
+          "time_s": 0,
+          "accepted": true
+        }
+      },
+      {
+        "name": "other_owners_are_not_flushed",
+        "passed": true,
+        "details": {
+          "pending_controls": 2,
+          "pending_applications": 1,
+          "send_callbacks": 1,
+          "data_callbacks": 0
+        }
+      },
+      {
+        "name": "submitted_owner_replaced_after_cancellation",
+        "passed": true,
+        "details": {
+          "ledger": [
+            {
+              "event": "send",
+              "kind": "KEY_REQUEST",
+              "id": 1,
+              "peer": 1
+            },
+            {
+              "event": "cancel",
+              "kind": "KEY_REQUEST",
+              "id": 0,
+              "peer": 1
+            },
+            {
+              "event": "send",
+              "kind": "KEY_REQUEST",
+              "id": 2,
+              "peer": 1
+            }
+          ],
+          "pending_controls": 1
+        }
+      },
+      {
+        "name": "capacity_checked_before_inline_submission",
+        "passed": true,
+        "details": {
+          "pending_controls": 1,
+          "rejections": 1
+        }
+      },
+      {
+        "name": "rejected_submission_uses_original_wake_retry",
+        "passed": true,
+        "details": {
+          "owner_id": 1,
+          "send_callbacks": 2,
+          "same_time_callbacks_executed": 3
+        }
+      },
+      {
+        "name": "synchronous_completion_does_not_resurrect_owner",
+        "passed": true,
+        "details": {
+          "send_callbacks": 1,
+          "pending_controls": 0
+        }
+      }
+    ],
+    "network_simulation_executed": false,
+    "random_variates_requested": 0,
+    "scope": "Public NWK receiveControl and callback boundary; not an end-to-end PHY/MAC parity result"
+  },
+  "check_gate_preflight": {
+    "schema": "csr-check-gate-preflight-v1",
+    "passed": true,
+    "checks": [
+      {
+        "name": "baseline_discovery_suppresses_overheard",
+        "passed": true,
+        "details": {
+          "discovery": 1,
+          "overheard": 0
+        }
+      },
+      {
+        "name": "E_keys_discovery_and_absolute_deadline",
+        "passed": true,
+        "details": {
+          "first_deadline_s": 10,
+          "overheard_requests": 2,
+          "discovery_requests": 1,
+          "initial_check_active": true,
+          "retry_delay_s": 20
+        }
+      },
+      {
+        "name": "E_active_and_stale_gates",
+        "passed": true,
+        "details": {
+          "active_peer_suppresses_new_proofs": true,
+          "stale_key_input_suppressed": true
+        }
+      },
+      {
+        "name": "F_keys_discovery_and_absolute_deadline",
+        "passed": true,
+        "details": {
+          "first_deadline_s": 10,
+          "overheard_requests": 2,
+          "discovery_requests": 1,
+          "initial_check_active": false,
+          "retry_delay_s": 20
+        }
+      },
+      {
+        "name": "F_active_and_stale_gates",
+        "passed": true,
+        "details": {
+          "active_peer_suppresses_new_proofs": true,
+          "stale_key_input_suppressed": true
+        }
+      },
+      {
+        "name": "message_flag_E_characterization_F_expectation",
+        "passed": true,
+        "details": {
+          "message_requests": {
+            "E": 0,
+            "F": 1
+          },
+          "outstanding_message_flag_preserved": true
+        }
+      },
+      {
+        "name": "E_independent_reliable_proof_owners",
+        "passed": true,
+        "details": {
+          "control_ids": [
+            3,
+            4
+          ],
+          "pending_after_first_completion": 1,
+          "pending_after_second_completion": 0
+        }
+      },
+      {
+        "name": "F_independent_reliable_proof_owners",
+        "passed": true,
+        "details": {
+          "control_ids": [
+            3,
+            4
+          ],
+          "pending_after_first_completion": 1,
+          "pending_after_second_completion": 0
+        }
+      }
+    ],
+    "network_simulation_executed": false,
+    "random_variates_requested": 0,
+    "scope": "Public admission, deadline and callback custody checks; full E/F network results remain separate",
+    "E_limitation": "Broad CheckActive still suppresses Message while a non-Message proof is outstanding",
+    "F_scope": "Only Message sets CheckActive; existing true state and original completion clearing remain"
+  },
+  "population_preflight": {
+    "schema": "csr-population-publication-preflight-v1",
+    "passed": true,
+    "checks": [
+      {
+        "name": "actual_bridge_publishes_before_key_request_enqueue",
+        "passed": true,
+        "details": {
+          "raw_count": 2,
+          "mac_count": 2,
+          "publication_precedes_response": true
+        }
+      },
+      {
+        "name": "acked_proof_changes_raw_count_without_publishing",
+        "passed": true,
+        "details": {
+          "raw_count": 3,
+          "latched_mac_count": 2,
+          "published_values": 2
+        }
+      },
+      {
+        "name": "passive_key_data_ack_and_routing_enqueue_do_not_publish",
+        "passed": true,
+        "details": {
+          "actual_ack_enqueued": true,
+          "actual_routing_enqueued": true,
+          "raw_count": 3,
+          "mac_count": 2
+        }
+      },
+      {
+        "name": "qualifying_discover_check_routing_publish_current_count",
+        "passed": true,
+        "details": {
+          "published_values": [
+            2,
+            3,
+            3,
+            3
+          ],
+          "raw_count": 3,
+          "mac_count": 3
+        }
+      },
+      {
+        "name": "stale_peer_retains_count_until_qualified_republication",
+        "passed": true,
+        "details": {
+          "persistent_count": 2,
+          "published_values": [
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "name": "admission_disabled_publishes_before_changed_and_response",
+        "passed": true,
+        "details": {
+          "first_event": "publish",
+          "second_event": "neighbor_changed"
+        }
+      }
+    ],
+    "network_run_method_called": false,
+    "physical_transmissions": 0,
+    "random_variates_requested": 0,
+    "integrated_component_clock_s": 0,
+    "scope": "Actual G public NWK/HOP/MAC callback bridge plus separate public Neighbors timer; not network parity"
+  },
+  "route_admission_preflight": {
+    "schema": "csr-route-admission-preflight-v1",
+    "passed": true,
+    "checks": [
+      {
+        "name": "baseline_unobserved_admission_reproduces_delete3",
+        "passed": true,
+        "details": {
+          "routing_section_hex": "00000004000101000003",
+          "selected_cost": 3587
+        }
+      },
+      {
+        "name": "unobserved_admission_has_no_candidate_or_change",
+        "passed": true,
+        "details": {
+          "candidate_count": 0,
+          "change_count": 0
+        }
+      },
+      {
+        "name": "later_observation_creates_direct_route_and_legitimate_delete",
+        "passed": true,
+        "details": {
+          "cost": 3587,
+          "operation": "DELETE"
+        }
+      },
+      {
+        "name": "observed_capability_zero_candidate_is_selected_without_mutation",
+        "passed": true,
+        "details": {
+          "cost_before": 3587,
+          "admission_cost_argument": 9999,
+          "cost_after": 3587
+        }
+      },
+      {
+        "name": "observed_capable_candidate_admission_and_repeat",
+        "passed": true,
+        "details": {
+          "cost": 3587,
+          "capability": 1,
+          "sequence": 7,
+          "updated_seconds": 2
+        }
+      },
+      {
+        "name": "unrelated_transit_candidate_stays_deferred",
+        "passed": true,
+        "details": {
+          "destination": 4,
+          "selection_deferred": true
+        }
+      },
+      {
+        "name": "invalid_cached_candidate_preserved",
+        "passed": true,
+        "details": {
+          "destination": 3,
+          "next_hop": 5,
+          "valid": false,
+          "selection_deferred": true
+        }
+      },
+      {
+        "name": "admission_preserves_logical_destination_creation_order",
+        "passed": true,
+        "details": {
+          "changed_destination_order": [
+            5,
+            3
+          ]
+        }
+      }
+    ],
+    "network_simulation_executed": false,
+    "random_variates_requested": 0,
+    "scope": "Public Routes API: admission allocation, legitimate changes, deferred state and ordering",
+    "limitation": "Full H network continuation is a separate result; no private candidate state was injected"
+  },
+  "wall_seconds": 66.7339506,
+  "archive_status": "Archive construction follows this report; successful archive receipt is saved beside the archive."
+}

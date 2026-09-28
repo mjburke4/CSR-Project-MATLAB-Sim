@@ -1,0 +1,616 @@
+--- a/capture.cc
++++ b/capture.cc
+@@ -1207,6 +1207,19 @@
+         }
+     }
+ 
++  // Snapshot exact receiver state at the left replay boundary. This is an
++  // observation-only event; accepting the tape still requires exact equality
++  // of the canonical differential prefix against the uninstrumented run.
++  if (DiscoveryCapture::Enabled ())
++    {
++      Simulator::Schedule (Seconds (25.0), [&nodes] () {
++        for (const auto &entry : nodes)
++          {
++            entry.second.device->RecordDiscoveryBoundary ();
++          }
++      });
++    }
++
+   if (gatewayDiscovery)
+     {
+       for (auto &entry : nodes)
+--- a/overlay/ns3/csr-net-device.h
++++ b/overlay/ns3/csr-net-device.h
+@@ -1,5 +1,6 @@
+ #pragma once
+ #include "csr-common.h"
++#include "csr-discovery-capture.h"
+ #include "csr-mac-core.h"
+ #include "csr-opnet-envelope.h"
+ #include "csr-phy-model.h"
+@@ -243,6 +244,29 @@
+   CsrMacCore::State GetMacState () const
+   {
+     return m_mac.GetState ();
++  }
++
++  /** Observation-only checkpoint at the replay's 25-s left boundary. */
++  void RecordDiscoveryBoundary () const
++  {
++    if (!DiscoveryCapture::InWindow ()) { return; }
++    std::ostringstream activeIds;
++    for (const auto &[id, signal] : m_rxSignals)
++      {
++        if (activeIds.tellp () > 0) { activeIds << ';'; }
++        activeIds << id;
++      }
++    DiscoveryCapture::Write (
++      "MAC", "boundary_state", m_id, 0, 0, 0,
++      "25s_replay_start", CsrMacCore::StateName (m_mac.GetState ()),
++      CsrMacCore::StateName (m_mac.GetState ()),
++      {{"active_signal_ids", activeIds.str ()},
++       {"tracked_signal_id", std::to_string (m_trackedSignalId)},
++       {"sync_present", DiscoveryCapture::Bool (m_mac.IsSyncPresent ())},
++       {"acquisition_pending", DiscoveryCapture::Bool (
++          m_acquisitionEvent.IsPending ())},
++       {"sleep_pending", DiscoveryCapture::Bool (m_sleepEvent.IsPending ())},
++       {"post_tx_wait", DiscoveryCapture::Bool (m_postTxWaitActive)}});
+   }
+ 
+   /** Return the number of overlapping acceptable preambles observed. */
+@@ -732,6 +756,52 @@
+   uint64_t signalId = (static_cast<uint64_t> (m_id) << 32)
+                     | (++m_nextTxSignalId & 0xffffffffULL);
+ 
++  // The existing differential trace names only the first segment. Preserve
++  // every post-MAC wire member, including ACK-headed DISCOVER/ROUTING children.
++  if (DiscoveryCapture::InWindow ())
++    {
++      DiscoveryCapture::Write (
++        "PHY", "tx_start", m_id, hdrOnTx.GetDst (), signalId, 0,
++        "", CsrMacCore::StateName (m_mac.GetState ()),
++        CsrMacCore::StateName (m_mac.GetState ()),
++        {{"sequence", std::to_string (sequence)},
++         {"rate_kbps", std::to_string (rateKbps)},
++         {"tx_power_dbm", DiscoveryCapture::Number (txPowerDbm)},
++         {"preamble", preamble == PREAMBLE_LONG ? "long" : "short"},
++         {"reservation_slot", std::to_string (slot)},
++         {"payload_bytes", std::to_string (payloadBytes)},
++         {"duration_ns", std::to_string (Seconds (duration).GetNanoSeconds ())},
++         {"child_count", std::to_string (frameCopies.size ())}});
++      for (size_t index = 0; index < frameCopies.size (); ++index)
++        {
++          CsrHeader child;
++          NS_ASSERT_MSG (frameCopies[index]->PeekHeader (child),
++                         "discovery observer could not parse wire child");
++          Mr::FrameTag tag;
++          const bool tagged = frameCopies[index]->PeekPacketTag (tag);
++          std::ostringstream destinationSequences;
++          for (const auto &[destination, childSequence] :
++               child.GetDestinationSequences ())
++            {
++              if (destinationSequences.tellp () > 0)
++                { destinationSequences << ';'; }
++              destinationSequences << destination << ':' << childSequence;
++            }
++          DiscoveryCapture::Write (
++            "MAC", "tx_child", m_id, child.GetDst (), signalId,
++            tagged ? tag.id : 0, "", "", "",
++            {{"child_index", std::to_string (index)},
++             {"src", std::to_string (child.GetSrc ())},
++             {"dst", std::to_string (child.GetDst ())},
++             {"sequence", std::to_string (child.GetSeq ())},
++             {"packet_type", CsrPacketTypeName (child.GetType ())},
++             {"wire_bytes", std::to_string (
++                CsrGetOpnetWireSize (frameCopies[index]))},
++             {"destination_sequences", destinationSequences.str ()},
++             {"raw_bytes_hex", Mr::Hex (frameCopies[index])}});
++        }
++    }
++
+   CsrDifferentialTraceEvent txEvent;
+   txEvent.event = "tx_start";
+   txEvent.node = CsrTraceInteger (m_id);
+@@ -769,6 +839,14 @@
+       CsrTxRadioProfile txRadio = m_phy.GetTxRadioProfile ();
+       if (!peer->m_phy.HasClosure (distanceMeters, txRadio))
+         {
++          DiscoveryCapture::Write (
++            "PHY", "rx_end", peer->GetId (), m_id,
++            signalId, 0, "closure",
++            CsrMacCore::StateName (peer->GetMacState ()),
++            CsrMacCore::StateName (peer->GetMacState ()),
++            {{"sequence", std::to_string (sequence)},
++             {"distance_m", DiscoveryCapture::Number (distanceMeters)},
++             {"tracked", "false"}, {"success", "false"}});
+           std::cout << "[t=" << txTime << "] RX OCCLUDED at node "
+                     << peer->GetId () << " from node " << txId
+                     << " seq " << sequence
+@@ -949,6 +1027,11 @@
+       Simulator::Cancel (m_acquisitionEvent);
+     }
+   m_mac.SetReceiveState (CsrMacCore::State::IDLE);
++  DiscoveryCapture::Write (
++    "MAC", "receiver_sleep", m_id, 0, 0, 0,
++    "sleep_timer", CsrMacCore::StateName (state),
++    CsrMacCore::StateName (m_mac.GetState ()),
++    {{"sync_present", DiscoveryCapture::Bool (m_mac.IsSyncPresent ())}});
+ }
+ 
+ void
+@@ -1031,6 +1114,11 @@
+     }
+ 
+   m_mac.SetReceiveState (CsrMacCore::State::SEARCH);
++  DiscoveryCapture::Write (
++    "MAC", "receiver_wake", m_id, 0, 0, 0,
++    "periodic_wake", "idle", CsrMacCore::StateName (m_mac.GetState ()),
++    {{"awake_window_ns", std::to_string (
++        Seconds (m_awakeWindowSec).GetNanoSeconds ())}});
+   if (m_sleepEvent.IsPending ())
+     {
+       Simulator::Cancel (m_sleepEvent);
+@@ -1215,6 +1303,12 @@
+   m_acquisitionEvent = Simulator::Schedule (Seconds (m_syncToTrackSec),
+                                              &CsrNetDevice::AcquireSignal,
+                                              this);
++  DiscoveryCapture::Write (
++    "MAC", "acquisition_scheduled", m_id, 0, 0, 0,
++    "sync_present", CsrMacCore::StateName (m_mac.GetState ()),
++    CsrMacCore::StateName (m_mac.GetState ()),
++    {{"deadline_ns", std::to_string (
++        (Simulator::Now () + Seconds (m_syncToTrackSec)).GetNanoSeconds ())}});
+ }
+ 
+ void
+@@ -1316,6 +1410,8 @@
+     }
+   signal.berIntervals.push_back (interval);
+   uint32_t preambleBits = signal.preamble == PREAMBLE_LONG ? 7888 : 104;
++  DiscoveryCapture::ScopedReceiver discoveryReceiver (
++    m_id, signal.txId, signal.id, signal.berIntervals.size () - 1);
+   CsrErrorAllocation allocated = m_phy.AllocateErrors (
+     signal.frontEnd,
+     signal.startSec,
+@@ -1324,6 +1420,21 @@
+     signal.rateKbps,
+     {interval},
+     m_rng);
++  DiscoveryCapture::Write (
++    "PHY", "ber_interval", m_id, signal.txId, signal.id, 0,
++    "", CsrMacCore::StateName (m_mac.GetState ()),
++    CsrMacCore::StateName (m_mac.GetState ()),
++    {{"interval_index", std::to_string (signal.berIntervals.size () - 1)},
++     {"start_ns", std::to_string (Seconds (interval.startSec).GetNanoSeconds ())},
++     {"end_ns", std::to_string (Seconds (interval.endSec).GetNanoSeconds ())},
++     {"noise_watts", DiscoveryCapture::Number (interval.noisePowerWatts)},
++     {"same_rate_interference", DiscoveryCapture::Bool (
++        interval.sameRateInterference)},
++     {"jsr_db", DiscoveryCapture::Number (interval.jsrDb)},
++     {"header_bits", std::to_string (allocated.headerBits)},
++     {"payload_bits", std::to_string (allocated.payloadBits)},
++     {"header_errors", std::to_string (allocated.headerErrors)},
++     {"payload_errors", std::to_string (allocated.payloadErrors)}});
+   signal.errorAllocation.headerBits += allocated.headerBits;
+   signal.errorAllocation.payloadBits += allocated.payloadBits;
+   signal.errorAllocation.headerErrors += allocated.headerErrors;
+@@ -1583,6 +1694,7 @@
+ {
+   double now = Simulator::Now ().GetSeconds ();
+   signal.arrivalOrder = ++m_nextRxArrivalOrder;
++  const char *stateBeforeArrival = CsrMacCore::StateName (m_mac.GetState ());
+   double distanceMeters = m_phy.GetDistanceMeters (signal.txId, m_id);
+   signal.frontEnd = m_phy.ComputeFrontEnd (
+     signal.txPowerDbm,
+@@ -1626,6 +1738,14 @@
+     {
+       double syncThresholdDb = DrawSyncSnrThresholdDb ();
+       incoming.syncEligible = incoming.snrDb >= syncThresholdDb;
++      DiscoveryCapture::Write (
++        "PHY", "sync_decision", m_id, incoming.txId,
++        incoming.id, 0, incoming.syncEligible ? "eligible" : "below_threshold",
++        stateBeforeArrival, CsrMacCore::StateName (m_mac.GetState ()),
++        {{"sequence", std::to_string (incoming.sequence)},
++         {"snr_db", DiscoveryCapture::Number (incoming.snrDb)},
++         {"threshold_db", DiscoveryCapture::Number (syncThresholdDb)},
++         {"threshold_draw_site", "DrawSyncSnrThresholdDb"}});
+       if (!incoming.syncEligible)
+         {
+           // mark_sync() writes PK_ACCEPT=false for a below-threshold SYNC.
+@@ -1640,6 +1760,38 @@
+                            incoming.syncEligible);
+     }
+ 
++  if (DiscoveryCapture::InWindow ())
++    {
++      std::ostringstream activeIds;
++      for (const auto &[id, previous] : m_rxSignals)
++        {
++          if (id == incoming.id) { continue; }
++          if (activeIds.tellp () > 0) { activeIds << ';'; }
++          activeIds << previous.id;
++        }
++      DiscoveryCapture::Write (
++        "PHY", "rx_begin", m_id, incoming.txId,
++        incoming.id, 0, "", stateBeforeArrival,
++        CsrMacCore::StateName (m_mac.GetState ()),
++        {{"sequence", std::to_string (incoming.sequence)},
++         {"arrival_order", std::to_string (incoming.arrivalOrder)},
++         {"preamble", incoming.preamble == PREAMBLE_LONG ? "long" : "short"},
++         {"start_ns", std::to_string (Seconds (incoming.startSec).GetNanoSeconds ())},
++         {"preamble_end_ns", std::to_string (
++            Seconds (incoming.preambleEndSec).GetNanoSeconds ())},
++         {"end_ns", std::to_string (Seconds (incoming.endSec).GetNanoSeconds ())},
++         {"rate_kbps", std::to_string (incoming.rateKbps)},
++         {"payload_bytes", std::to_string (incoming.payloadBytes)},
++         {"packet_bits", std::to_string (incoming.packetBits)},
++         {"rx_power_dbm", DiscoveryCapture::Number (incoming.rxPowerDbm)},
++         {"pathloss_db", DiscoveryCapture::Number (incoming.pathlossDb)},
++         {"snr_db", DiscoveryCapture::Number (incoming.snrDb)},
++         {"channel_matched", DiscoveryCapture::Bool (
++            incoming.frontEnd.channelMatched)},
++         {"sync_eligible", DiscoveryCapture::Bool (incoming.syncEligible)},
++         {"active_signal_ids", activeIds.str ()}});
++    }
++
+   // mark_sync() returns before adding a rejected signal to the SYNC table
+   // or scheduling SYNC_END. Its physical end must not cancel acquisition of
+   // another signal through clear_sync(). The signal still contributes to
+@@ -1696,6 +1848,16 @@
+       incoming.missedByState = true;
+       ScheduleSignalWake ();
+     }
++
++  DiscoveryCapture::Write (
++    "MAC", "rx_arrival_state", m_id, incoming.txId,
++    incoming.id, 0,
++    incoming.missedByState ? "missed_state" : "receiver_active",
++    stateBeforeArrival, CsrMacCore::StateName (m_mac.GetState ()),
++    {{"sync_eligible", DiscoveryCapture::Bool (incoming.syncEligible)},
++     {"acquisition_pending", DiscoveryCapture::Bool (
++        m_acquisitionEvent.IsPending ())},
++     {"post_tx_wait", DiscoveryCapture::Bool (m_postTxWaitActive)}});
+ 
+   std::cout << "[t=" << now << "] RX SYNC at node " << m_id
+             << " from node " << incoming.txId
+@@ -1732,6 +1894,14 @@
+     {
+       it->second.rejected = true;
+     }
++  DiscoveryCapture::Write (
++    "PHY", "preamble_expire", m_id, it->second.txId,
++    signalId, 0, it->second.rejected ? "not_track" : "tracked",
++    CsrMacCore::StateName (m_mac.GetState ()),
++    CsrMacCore::StateName (m_mac.GetState ()),
++    {{"sequence", std::to_string (it->second.sequence)},
++     {"acquisition_pending_before_clear", DiscoveryCapture::Bool (
++        m_acquisitionEvent.IsPending ())}});
+ 
+   // clear_sync() cancels the outstanding RX_SIG_FOUND event whenever any
+   // preamble expires.  Preserve that ordering, including the multi-signal
+@@ -1748,6 +1918,10 @@
+ {
+   if (m_mac.GetState () != CsrMacCore::State::SEARCH)
+     {
++      DiscoveryCapture::Write (
++        "MAC", "acquisition_attempt", m_id, 0, 0, 0,
++        "not_search", CsrMacCore::StateName (m_mac.GetState ()),
++        CsrMacCore::StateName (m_mac.GetState ()));
+       return;
+     }
+ 
+@@ -1766,6 +1940,10 @@
+ 
+   if (candidates.empty ())
+     {
++      DiscoveryCapture::Write (
++        "MAC", "acquisition_attempt", m_id, 0, 0, 0,
++        "no_eligible_preamble", CsrMacCore::StateName (m_mac.GetState ()),
++        CsrMacCore::StateName (m_mac.GetState ()));
+       return;
+     }
+ 
+@@ -1790,6 +1968,23 @@
+         }
+     }
+ 
++  if (DiscoveryCapture::InWindow ())
++    {
++      std::ostringstream candidateIds;
++      for (const auto *candidate : candidates)
++        {
++          if (candidateIds.tellp () > 0) { candidateIds << ';'; }
++          candidateIds << candidate->id;
++        }
++      DiscoveryCapture::Write (
++        "MAC", "acquisition_attempt", m_id, selected->txId,
++        selected->id, 0, "select", CsrMacCore::StateName (m_mac.GetState ()),
++        CsrMacCore::StateName (m_mac.GetState ()),
++        {{"candidate_signal_ids", candidateIds.str ()},
++         {"selected_rx_power_dbm", DiscoveryCapture::Number (
++            selected->rxPowerDbm)}});
++    }
++
+   // Snapshot the receiver-global br_inoise state through the exact
+   // start_track() boundary.  The JSR/offset overwrite below applies only to
+   // the following interval; it must not be retroactively attached to time
+@@ -1860,6 +2055,14 @@
+       Simulator::Cancel (m_sleepEvent);
+     }
+   m_mac.SetReceiveState (CsrMacCore::State::TRACK);
++
++  DiscoveryCapture::Write (
++    "MAC", "acquire_track", m_id, selected->txId, selected->id, 0,
++    selected->collided ? "collision" : "selected",
++    "search", CsrMacCore::StateName (m_mac.GetState ()),
++    {{"sequence", std::to_string (selected->sequence)},
++     {"collisions", std::to_string (selected->collisionCount)},
++     {"tracked_signal_id", std::to_string (m_trackedSignalId)}});
+ 
+   std::cout << "[t=" << now << "] MAC " << m_id
+             << " enters Track on node " << selected->txId
+@@ -1934,6 +2137,7 @@
+   RxSignal signal = it->second;
+   bool wasTracked = signalId == m_trackedSignalId;
+   bool pipelineRejectedTracked = false;
++  std::string discoveryEndReason;
+   if (wasTracked)
+     {
+       uint32_t preambleBits = signal.preamble == PREAMBLE_LONG
+@@ -2018,6 +2222,7 @@
+              : (signal.collided
+                   ? "collision"
+                   : (stateAllowsDelivery ? "phy" : "state")));
++      discoveryEndReason = rxEvent.reason;
+       rxEvent.pathlossDb = CsrTraceDouble (decision.pathlossDb);
+       rxEvent.rxPowerDbm = CsrTraceDouble (decision.receivedPowerDbm);
+       rxEvent.noiseDbm = CsrTraceDouble (decision.noisePowerDbm);
+@@ -2077,6 +2282,7 @@
+       missEvent.reason = m_mac.GetState () == CsrMacCore::State::TX
+         ? "half_duplex"
+         : "prior_stage";
++      discoveryEndReason = missEvent.reason;
+       missEvent.pathlossDb = CsrTraceDouble (signal.pathlossDb);
+       missEvent.rxPowerDbm = CsrTraceDouble (signal.rxPowerDbm);
+       missEvent.noiseDbm = CsrTraceDouble (
+@@ -2103,6 +2309,25 @@
+                     << std::endl;
+         }
+     }
++
++  DiscoveryCapture::Write (
++    "PHY", "rx_end", m_id, signal.txId, signalId, 0,
++    discoveryEndReason.c_str (), CsrMacCore::StateName (m_mac.GetState ()),
++    CsrMacCore::StateName (m_mac.GetState ()),
++    {{"sequence", std::to_string (signal.sequence)},
++     {"tracked", DiscoveryCapture::Bool (wasTracked)},
++     {"success", DiscoveryCapture::Bool (
++        wasTracked && !pipelineRejectedTracked)},
++     {"sync_eligible", DiscoveryCapture::Bool (signal.syncEligible)},
++     {"missed_by_state", DiscoveryCapture::Bool (signal.missedByState)},
++     {"rejected", DiscoveryCapture::Bool (signal.rejected)},
++     {"collided", DiscoveryCapture::Bool (signal.collided)},
++     {"collisions", std::to_string (signal.collisionCount)},
++     {"header_errors", std::to_string (
++        signal.errorAllocation.headerErrors)},
++     {"payload_errors", std::to_string (
++        signal.errorAllocation.payloadErrors)},
++     {"active_signal_count", std::to_string (m_rxSignals.size ())}});
+ 
+   RemoveEndedInterference (signal);
+   m_rxSignals.erase (it);
+--- a/overlay/ns3/csr-phy-model.h
++++ b/overlay/ns3/csr-phy-model.h
+@@ -1,6 +1,7 @@
+ #pragma once
+ 
+ #include "csr-common.h"
++#include "csr-discovery-capture.h"
+ #include "csr-opnet-ber-tables.h"
+ 
+ #include <limits>
+@@ -684,6 +685,7 @@
+         return bits;
+       }
+     double uniform = rng == nullptr ? 1.0 : rng->GetValue (0.0, 1.0);
++    DiscoveryCapture::Uniform (bits, probability, uniform);
+     return SampleSourceBinomial (bits, probability, uniform);
+   }
+ 
+@@ -759,10 +761,12 @@
+               (intervalEndSec - payloadBeginSec) * payloadRate)
+           : 0;
+ 
++        DiscoveryCapture::SetComponent ("header");
+         uint32_t headerErrors = SampleSourceBinomial (
+           headerBits,
+           ber.headerBer,
+           rng);
++        DiscoveryCapture::SetComponent ("payload");
+         uint32_t payloadErrors = SampleSourceBinomial (
+           payloadBits,
+           ber.payloadBer,
+--- a/overlay/ns3/mac-replay-hooks.h
++++ b/overlay/ns3/mac-replay-hooks.h
+@@ -22,7 +22,7 @@
+ struct DrawRow { uint64_t time; int low,high,value; };
+ inline std::map<unsigned,std::deque<DrawRow>> draws;
+ inline std::ofstream stream;
+-inline bool Active(unsigned n){return n==2||n==4||n==8;}
++inline bool Active(unsigned n){return n==1||n==2||n==3||n==4||n==5||n==7||n==8;}
+ inline std::ofstream& Out(){if(!stream.is_open()){const char*p=std::getenv("CSR_MAC_CAPTURE");if(p)stream.open(p);}return stream;}
+ template<class... T> inline void Input(unsigned node,const char* kind,T... values){if(replay||!Active(node))return;Out()<<std::setprecision(17)<<"INPUT|"<<++order<<"|"<<Simulator::Now().GetNanoSeconds()<<"|"<<node<<"|"<<kind;((Out()<<"|"<<values),...);Out()<<"\n";}
+ inline int Draw(const Ptr<UniformRandomVariable>& rng,unsigned node,int low,int high){int value;auto ordinal=++ordinals[node];if(replay&&Active(node)){auto&q=draws[node];NS_ABORT_MSG_IF(q.empty(),"MAC draw exhausted node "<<node);auto r=q.front();q.pop_front();NS_ABORT_MSG_IF(r.time!=uint64_t(Simulator::Now().GetNanoSeconds())||r.value<low||r.value>high||r.low!=low||r.high!=high,"MAC draw range mismatch node "<<node<<" ordinal "<<ordinal);value=r.value;}else value=rng->GetInteger(low,high);if(Active(node))Out()<<"DRAW|"<<++order<<"|"<<Simulator::Now().GetNanoSeconds()<<"|"<<node<<"|"<<ordinal<<"|"<<low<<"|"<<high<<"|"<<value<<"\n";return value;}
+--- /dev/null
++++ b/overlay/ns3/csr-discovery-capture.h
+@@ -0,0 +1,169 @@
++#pragma once
++
++// Passive, short-window native receiver input tape. The simulator always starts
++// at t=0; this observer only writes rows during [25,85) seconds when enabled.
++#include "ns3/simulator.h"
++
++#include <cstdint>
++#include <cstdlib>
++#include <fstream>
++#include <iomanip>
++#include <initializer_list>
++#include <sstream>
++#include <string>
++#include <utility>
++
++namespace DiscoveryCapture {
++
++inline bool Enabled ()
++{
++  static const bool enabled = [] {
++    const char *path = std::getenv ("CSR_DISCOVERY_CAPTURE");
++    return path != nullptr && path[0] != '\0';
++  } ();
++  return enabled;
++}
++
++inline bool InWindow ()
++{
++  const int64_t ns = ns3::Simulator::Now ().GetNanoSeconds ();
++  return Enabled () && ns >= 25000000000LL && ns < 85000000000LL;
++}
++
++inline std::string Number (double value)
++{
++  std::ostringstream out;
++  out << std::setprecision (17) << value;
++  return out.str ();
++}
++
++inline std::string Bool (bool value) { return value ? "true" : "false"; }
++
++inline std::string Quote (const std::string &value)
++{
++  std::string output = "\"";
++  for (unsigned char character : value)
++    {
++      if (character == '\"' || character == '\\')
++        {
++          output.push_back ('\\');
++          output.push_back (static_cast<char> (character));
++        }
++      else if (character == '\n') { output += "\\n"; }
++      else if (character == '\r') { output += "\\r"; }
++      else if (character == '\t') { output += "\\t"; }
++      else if (character < 0x20)
++        {
++          std::ostringstream hex;
++          hex << "\\u" << std::hex << std::setw (4)
++              << std::setfill ('0') << static_cast<unsigned> (character);
++          output += hex.str ();
++        }
++      else { output.push_back (static_cast<char> (character)); }
++    }
++  return output + "\"";
++}
++
++inline std::ofstream &Stream ()
++{
++  static std::ofstream output;
++  if (!output.is_open ())
++    {
++      const char *path = std::getenv ("CSR_DISCOVERY_CAPTURE");
++      if (path != nullptr && path[0] != '\0')
++        {
++          output.open (path, std::ios::out | std::ios::trunc);
++          NS_ABORT_MSG_IF (!output.is_open (),
++                           "cannot open bounded discovery capture: " << path);
++        }
++    }
++  return output;
++}
++
++using Detail = std::initializer_list<std::pair<std::string, std::string>>;
++inline uint64_t eventOrder = 0;
++
++inline void Write (const char *layer,
++                   const char *event,
++                   uint32_t node,
++                   uint32_t peer,
++                   uint64_t txId,
++                   uint64_t frameId,
++                   const char *reason,
++                   const char *before,
++                   const char *after,
++                   Detail detail = {})
++{
++  if (!InWindow ()) { return; }
++  auto &output = Stream ();
++  output << "{\"case_id\":\"discovery131\",\"event_order\":"
++         << ++eventOrder << ",\"time_ns\":"
++         << ns3::Simulator::Now ().GetNanoSeconds ()
++         << ",\"layer\":" << Quote (layer)
++         << ",\"event\":" << Quote (event)
++         << ",\"node\":" << node
++         << ",\"peer\":";
++  if (peer) { output << peer; } else { output << "null"; }
++  output << ",\"frame_id\":";
++  if (frameId) { output << frameId; } else { output << "null"; }
++  output << ",\"tx_id\":";
++  if (txId) { output << txId; } else { output << "null"; }
++  output << ",\"app_source\":null,\"app_sequence\":null"
++         << ",\"reason\":" << Quote (reason)
++         << ",\"state_before\":" << Quote (before)
++         << ",\"state_after\":" << Quote (after)
++         << ",\"detail\":{";
++  bool first = true;
++  for (const auto &[key, value] : detail)
++    {
++      if (!first) { output << ','; }
++      output << Quote (key) << ':' << Quote (value);
++      first = false;
++    }
++  output << "}}\n";
++}
++
++struct ReceiverContext {
++  uint32_t node = 0;
++  uint32_t peer = 0;
++  uint64_t signalId = 0;
++  uint64_t intervalIndex = 0;
++  const char *component = "unknown";
++  uint64_t drawOrdinal = 0;
++};
++inline ReceiverContext current;
++
++class ScopedReceiver {
++public:
++  ScopedReceiver (uint32_t node, uint32_t peer, uint64_t id,
++                  uint64_t intervalIndex)
++    : previous (current)
++  {
++    current = {node, peer, id, intervalIndex, "unknown", 0};
++  }
++  ~ScopedReceiver () { current = previous; }
++  ScopedReceiver (const ScopedReceiver &) = delete;
++  ScopedReceiver &operator= (const ScopedReceiver &) = delete;
++private:
++  ReceiverContext previous;
++};
++
++inline void SetComponent (const char *component)
++{
++  current.component = component;
++}
++
++inline void Uniform (uint32_t bits, double probability, double value)
++{
++  if (!current.signalId || !InWindow ()) { return; }
++  Write ("PHY", "phy_uniform", current.node, current.peer,
++         current.signalId, 0, "binomial", "", "",
++         {{"ber_interval_index", std::to_string (current.intervalIndex)},
++          {"component", current.component},
++          {"draw_ordinal", std::to_string (++current.drawOrdinal)},
++          {"bits", std::to_string (bits)},
++          {"probability", Number (probability)},
++          {"uniform", Number (value)}});
++}
++
++} // namespace DiscoveryCapture

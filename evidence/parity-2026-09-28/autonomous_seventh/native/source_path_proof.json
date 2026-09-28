@@ -1,0 +1,158 @@
+{
+  "source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "source_only_no_new_runtime_test": true,
+  "spans": [
+    {
+      "purpose": "Bare HOP HELLO allocator",
+      "file": "csr-hop-layer.h",
+      "first_line": 1194,
+      "last_line": 1217,
+      "file_sha256": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+      "source": "void CsrHopLayer::SendHello (Ptr<Packet> helloPayload)\n{\n  NS_ASSERT (m_mac != nullptr);\n\n  // Outer MAC/HOP header\n  static uint16_t helloSeq = 0;\n  uint16_t seq = ++helloSeq;\n\n  CsrHeader h;\n  h.SetSrc (m_nodeId);\n  h.SetDst (CSR_BROADCAST_ID);\n  h.SetSeq (seq);\n  h.SetDscp (7);\n  h.SetAckable (false);\n  h.SetType (CSR_PKT_HELLO);\n  h.SetDestType (CSR_DEST_BROADCAST);\n  h.SetSecurityCount (\n    m_hopSecurity.GetOwnSecurityCount ());\n  ApplyLinkControl (h, {CSR_BROADCAST_ID});\n\n  helloPayload->AddHeader (h);\n\n  m_mac->EnqueueTxFrame (helloPayload, CSR_BROADCAST_ID, 7, false);\n}\n"
+    },
+    {
+      "purpose": "Group protection has no outer HOP header input",
+      "file": "csr-hop-layer.h",
+      "first_line": 1220,
+      "last_line": 1240,
+      "file_sha256": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+      "source": "CsrHopLayer::ProtectGroupPayload (\n  CsrGroupSecurityMode mode,\n  uint8_t legacyPacketType,\n  Ptr<Packet> payload,\n  bool &generatedNewGroupKey)\n{\n  std::vector<uint8_t> plaintext (payload->GetSize ());\n  if (!plaintext.empty ())\n    {\n      payload->CopyData (plaintext.data (), plaintext.size ());\n    }\n\n  CsrProtectedGroupMessage protectedMessage =\n    m_hopSecurity.ProtectGroupMessage (mode,\n                                       legacyPacketType,\n                                       plaintext);\n  generatedNewGroupKey = protectedMessage.generatedNewGroupKey;\n  return Create<Packet> (protectedMessage.record.data (),\n                         protectedMessage.record.size ());\n}\n\n"
+    },
+    {
+      "purpose": "DISCOVER allocator after protection",
+      "file": "csr-hop-layer.h",
+      "first_line": 1467,
+      "last_line": 1499,
+      "file_sha256": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+      "source": "CsrHopLayer::SendProtectedDiscovery (Ptr<Packet> discoveryPayload)\n{\n  NS_ASSERT (m_mac != nullptr);\n\n  bool generatedNewGroupKey = false;\n  Ptr<Packet> frame = ProtectGroupPayload (\n    CsrGroupSecurityMode::GroupEstablish,\n    LEGACY_DISCOVER_PACKET_TYPE,\n    discoveryPayload,\n    generatedNewGroupKey);\n\n  static uint16_t discoverySequence = 0;\n  CsrHeader header;\n  header.SetSrc (m_nodeId);\n  header.SetDst (CSR_BROADCAST_ID);\n  header.SetSeq (++discoverySequence);\n  header.SetDscp (7);\n  header.SetAckable (false);\n  header.SetType (CSR_PKT_DISCOVER);\n  header.SetDestType (CSR_DEST_BROADCAST);\n  header.SetSecurityCount (m_hopSecurity.GetOwnSecurityCount ());\n  header.SetHasGroupSecurity (true);\n  ApplyLinkControl (header, {CSR_BROADCAST_ID});\n  frame->AddHeader (header);\n\n  std::cout << \"[HOP \" << m_nodeId\n            << \"] TX GroupEstablish Discover\"\n            << \" securityCount=\" << m_hopSecurity.GetOwnSecurityCount ()\n            << \" securityBytes=7\"\n            << std::endl;\n\n  m_mac->EnqueueTxFrame (frame, CSR_BROADCAST_ID, 7, false);\n  NotifyLocalGroupKeyChanged (generatedNewGroupKey);\n"
+    },
+    {
+      "purpose": "Authenticated HELLO separate allocator",
+      "file": "csr-hop-layer.h",
+      "first_line": 1503,
+      "last_line": 1536,
+      "file_sha256": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+      "source": "CsrHopLayer::SendAuthenticatedRoutingHello (Ptr<Packet> routingPayload)\n{\n  NS_ASSERT (m_mac != nullptr);\n\n  bool generatedNewGroupKey = false;\n  Ptr<Packet> frame = ProtectGroupPayload (\n    CsrGroupSecurityMode::Group16,\n    LEGACY_ROUTING_UPDATE_PACKET_TYPE,\n    routingPayload,\n    generatedNewGroupKey);\n\n  static uint16_t routingHelloSequence = 0;\n  CsrHeader header;\n  header.SetSrc (m_nodeId);\n  header.SetDst (CSR_BROADCAST_ID);\n  header.SetSeq (++routingHelloSequence);\n  header.SetDscp (7);\n  header.SetAckable (false);\n  header.SetType (CSR_PKT_HELLO);\n  header.SetDestType (CSR_DEST_BROADCAST);\n  header.SetSecurityCount (m_hopSecurity.GetOwnSecurityCount ());\n  header.SetHasGroupSecurity (true);\n  ApplyLinkControl (header, {CSR_BROADCAST_ID});\n  frame->AddHeader (header);\n\n  std::cout << \"[HOP \" << m_nodeId\n            << \"] TX Group16 RoutingUpdate broadcast\"\n            << \" securityCount=\" << m_hopSecurity.GetOwnSecurityCount ()\n            << \" securityBytes=5\"\n            << std::endl;\n\n  m_mac->EnqueueTxFrame (frame, CSR_BROADCAST_ID, 7, false);\n  NotifyLocalGroupKeyChanged (generatedNewGroupKey);\n}\n"
+    },
+    {
+      "purpose": "SNMP constant zero",
+      "file": "csr-hop-layer.h",
+      "first_line": 1539,
+      "last_line": 1573,
+      "file_sha256": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+      "source": "CsrHopLayer::SendSnmp (CsrNodeId hopDestination, Ptr<Packet> payload)\n{\n  NS_ASSERT (m_mac != nullptr);\n\n  // OPNET wraps br_SNMP in a non-ACKable br_Hop packet without allocating a\n  // reliable-HOP sequence number.  It also uses the configured minimum rate\n  // and maximum power instead of running adaptive link control.\n  CsrHeader header;\n  header.SetSrc (m_nodeId);\n  header.SetDst (hopDestination);\n  header.SetSeq (0);\n  header.SetDscp (0);\n  header.SetAckable (false);\n  header.SetType (CSR_PKT_SNMP);\n  header.SetDestType (CSR_DEST_UNICAST);\n  header.SetLinkControl (\n    static_cast<CsrRateKey> (m_minSpeed),\n    m_maxPower,\n    m_rxS0Base + m_linkMargin);\n\n  Ptr<Packet> frame = payload->Copy ();\n  frame->AddHeader (header);\n\n  std::cout << \"[HOP \" << m_nodeId\n            << \"] TX legacy SNMP\"\n            << \" hopDestination=\" << hopDestination\n            << \" ackable=0 dscp=0\"\n            << std::endl;\n\n  m_mac->EnqueueTxFrame (\n    frame,\n    hopDestination,\n    0,\n    false);\n}\n"
+    },
+    {
+      "purpose": "Neighborcast separate allocator",
+      "file": "csr-hop-layer.h",
+      "first_line": 1816,
+      "last_line": 1853,
+      "file_sha256": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+      "source": "void\nCsrHopLayer::SendNeighborcast (uint8_t dscp, Ptr<Packet> payload)\n{\n  NS_ASSERT (m_mac != nullptr);\n\n  bool generatedNewGroupKey = false;\n  Ptr<Packet> frame = ProtectGroupPayload (\n    CsrGroupSecurityMode::Group32Encrypt,\n    LEGACY_APP_NEIGHBORCAST_PACKET_TYPE,\n    payload,\n    generatedNewGroupKey);\n\n  static uint16_t neighborcastSequence = 0;\n  CsrHeader header;\n  header.SetSrc (m_nodeId);\n  header.SetDst (CSR_BROADCAST_ID);\n  header.SetSeq (++neighborcastSequence);\n  header.SetDscp (dscp);\n  header.SetAckable (false);\n  header.SetType (CSR_PKT_NEIGHBORCAST);\n  header.SetDestType (CSR_DEST_BROADCAST);\n  header.SetSecurityCount (m_hopSecurity.GetOwnSecurityCount ());\n  header.SetHasGroupSecurity (true);\n  ApplyLinkControl (header, {CSR_BROADCAST_ID});\n  frame->AddHeader (header);\n\n  std::cout << \"[HOP \" << m_nodeId\n            << \"] TX Group32Encrypt AppNeighborcast\"\n            << \" securityCount=\" << m_hopSecurity.GetOwnSecurityCount ()\n            << \" securityBytes=7\"\n            << std::endl;\n\n  m_mac->EnqueueTxFrame (frame,\n                         CSR_BROADCAST_ID,\n                         dscp,\n                         false);\n  NotifyLocalGroupKeyChanged (generatedNewGroupKey);\n}\n"
+    },
+    {
+      "purpose": "KEY_REQUEST shared destination stream",
+      "file": "csr-hop-layer.h",
+      "first_line": 1932,
+      "last_line": 1972,
+      "file_sha256": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+      "source": "CsrHopLayer::SendKeyRequest (CsrNodeId dst)\n{\n  NS_ASSERT (m_mac != nullptr);\n\n  uint16_t &lastSeq = m_lastSentSeqByDest[dst];\n  uint16_t sequence = static_cast<uint16_t> ((lastSeq + 1) & 0xffff);\n  lastSeq = sequence;\n\n  CsrKeyRequestHeader securityHeader =\n    m_hopSecurity.BuildKeyRequest (dst);\n\n  CsrHeader hopHeader (m_nodeId,\n                       dst,\n                       sequence,\n                       7,\n                       false,\n                       false);\n  hopHeader.SetType (CSR_PKT_KEY_REQUEST);\n  hopHeader.SetDestType (CSR_DEST_UNICAST);\n  hopHeader.SetSecurityCount (\n    m_hopSecurity.GetOwnSecurityCount ());\n  ApplyLinkControl (hopHeader, {dst});\n\n  Ptr<Packet> frame = Create<Packet> ();\n  frame->AddHeader (securityHeader);\n  frame->AddHeader (hopHeader);\n\n  std::cout << \"[HOP \" << m_nodeId\n            << \"] TX non-ACKed KeyRequest\"\n            << \" neighbor=\" << dst\n            << \" hopSeq=\" << sequence\n            << \" keyId=\" << securityHeader.GetKeyId ()\n            << \" keySeq=\" << securityHeader.GetSequence ()\n            << \" securityCount=\"\n            << m_hopSecurity.GetOwnSecurityCount ()\n            << std::endl;\n\n  // packetTypes.h specifies NoResend/NoAck for ARLPktTypeKeyRequest.\n  // Its immediateTag is the destination node, so only the newest unsent\n  // request for this neighbor may remain in MAC.\n  m_mac->CancelQueuedFramesByType (dst, CSR_PKT_KEY_REQUEST);\n"
+    },
+    {
+      "purpose": "Protected HELLO receiver does not consume outer sequence",
+      "file": "csr-hop-layer.h",
+      "first_line": 2204,
+      "last_line": 2318,
+      "file_sha256": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+      "source": "{\n  if (!header.HasGroupSecurity ())\n    {\n      return false;\n    }\n\n  if (!header.HasSecurityCount ())\n    {\n      std::cout << \"[HOP \" << m_nodeId\n                << \"] Drop group-protected control without security count\"\n                << \" from=\" << header.GetSrc ()\n                << std::endl;\n      return true;\n    }\n\n  CsrGroupSecurityMode mode =\n    header.GetType () == CSR_PKT_DISCOVER\n      ? CsrGroupSecurityMode::GroupEstablish\n      : CsrGroupSecurityMode::Group16;\n  uint8_t legacyPacketType =\n    header.GetType () == CSR_PKT_DISCOVER\n      ? LEGACY_DISCOVER_PACKET_TYPE\n      : LEGACY_ROUTING_UPDATE_PACKET_TYPE;\n\n  std::vector<uint8_t> record (recordPacket->GetSize ());\n  if (!record.empty ())\n    {\n      recordPacket->CopyData (record.data (), record.size ());\n    }\n\n  CsrReceivedGroupMessage received =\n    m_hopSecurity.ReceiveGroupMessage (header.GetSrc (),\n                                       header.GetSecurityCount (),\n                                       mode,\n                                       legacyPacketType,\n                                       record);\n\n  if (received.status == CsrHopSecurityReceiveStatus::Accepted ||\n      received.status ==\n        CsrHopSecurityReceiveStatus::AcceptedSecurityCountChanged)\n    {\n      if (received.status ==\n          CsrHopSecurityReceiveStatus::AcceptedSecurityCountChanged)\n        {\n          DiscardOutstandingKeyUpdate (header.GetSrc ());\n          if (!m_securityCountChangeCb.IsNull ())\n            {\n              m_securityCountChangeCb (header.GetSrc ());\n            }\n        }\n\n      Ptr<Packet> plaintext = Create<Packet> (received.payload.data (),\n                                             received.payload.size ());\n      std::cout << \"[HOP \" << m_nodeId << \"] RX authenticated \"\n                << (mode == CsrGroupSecurityMode::GroupEstablish\n                      ? \"GroupEstablish Discover\"\n                      : \"Group16 RoutingUpdate\")\n                << \" from=\" << header.GetSrc ()\n                << \" keyId=\" << received.groupKeyId\n                << \" groupSeq=\" << received.groupSequence\n                << std::endl;\n\n      if (!m_rxHelloFromHopCb.IsNull ())\n        {\n          m_rxHelloFromHopCb (plaintext,\n                              header.GetSrc (),\n                              pathlossDb,\n                              snrDb);\n        }\n      return true;\n    }\n\n  if (received.status ==\n        CsrHopSecurityReceiveStatus::AuthenticatedGroupKeyNeeded ||\n      received.status == CsrHopSecurityReceiveStatus::\n        AuthenticatedGroupKeyNeededSecurityCountChanged)\n    {\n      PendingGroupEstablish &pending =\n        m_pendingGroupEstablish[header.GetSrc ()];\n      pending.securityCount = header.GetSecurityCount ();\n      pending.legacyPacketType = legacyPacketType;\n      pending.record = std::move (record);\n      pending.pathlossDb = pathlossDb;\n      pending.snrDb = snrDb;\n\n      if (received.status == CsrHopSecurityReceiveStatus::\n          AuthenticatedGroupKeyNeededSecurityCountChanged)\n        {\n          DiscardOutstandingKeyUpdate (header.GetSrc ());\n          if (!m_securityCountChangeCb.IsNull ())\n            {\n              m_securityCountChangeCb (header.GetSrc ());\n            }\n        }\n\n      std::cout << \"[HOP \" << m_nodeId\n                << \"] Queue authenticated GroupEstablish pending KeyUpdate\"\n                << \" from=\" << header.GetSrc ()\n                << \" keyId=\" << received.groupKeyId\n                << \" groupSeq=\" << received.groupSequence\n                << std::endl;\n\n      if (!m_authenticatedGroupKeyNeededCb.IsNull ())\n        {\n          m_authenticatedGroupKeyNeededCb (header.GetSrc (),\n                                           pathlossDb,\n                                           snrDb);\n        }\n      return true;\n    }\n\n  std::cout << \"[HOP \" << m_nodeId\n            << \"] Drop group-protected control\"\n            << \" from=\" << header.GetSrc ()\n            << \" status=\" << static_cast<unsigned> (received.status)\n"
+    },
+    {
+      "purpose": "DISCOVER dispatch returns before reliable sequence window",
+      "file": "csr-hop-layer.h",
+      "first_line": 2764,
+      "last_line": 2800,
+      "file_sha256": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+      "source": "    }*/\n  // HELLO/Discover is discovery control. Protected messages must authenticate\n  // before their payload reaches NWK.\n  if (hdr.GetType () == CSR_PKT_HELLO ||\n      hdr.GetType () == CSR_PKT_DISCOVER)\n    {\n      if (HandleProtectedHello (hdr, frame, pathlossDb, snrDb))\n        {\n          return;\n        }\n\n      std::cout << \"[HOP \" << m_nodeId << \"] RX HELLO from \"\n                << hdr.GetSrc ()\n                << \" pathloss=\" << pathlossDb\n                << \" snr=\" << snrDb\n                << std::endl;\n\n      if (!m_rxHelloFromHopCb.IsNull ())\n        {\n          m_rxHelloFromHopCb (frame, hdr.GetSrc (), pathlossDb, snrDb);\n        }\n\n      return;\n    }\n\n  if (hdr.GetType () == CSR_PKT_NEIGHBORCAST)\n    {\n      HandleProtectedNeighborcast (hdr, frame);\n      return;\n    }\n\n  // Non-HELLO traffic addressed elsewhere has already contributed its link\n  // observation above, but must not affect ACK/resend, duplicate suppression,\n  // routing control, or NWK delivery at this node.\n  if (hdr.GetDst () != m_nodeId)\n    {\n      std::cout << \"[HOP \" << m_nodeId\n"
+    },
+    {
+      "purpose": "Security uses its own record sequence",
+      "file": "csr-hop-security.cc",
+      "first_line": 856,
+      "last_line": 951,
+      "file_sha256": "2b390e6496c98e87a771ed10613e69ecd702922a0b9f54e8058170653271cc6a",
+      "source": "CsrHopSecurityState::ProtectGroupMessage (\n  CsrGroupSecurityMode mode,\n  uint8_t legacyPacketType,\n  std::span<const uint8_t> payload)\n{\n  bool generatedNewGroupKey = NextGroupKeySequence ();\n\n  CsrLegacyCrypto::ProtectionKeys keys =\n    CsrLegacyCrypto::DeriveProtectionKeys (m_missionKey,\n                                           m_groupKeyMaterial,\n                                           m_nodeId,\n                                           m_ownSecurityCount,\n                                           m_groupKeyId);\n\n  std::vector<uint8_t> protectedPayload (payload.begin (), payload.end ());\n  if (GroupModeEncryptsPayload (mode) && !protectedPayload.empty ())\n    {\n      CsrLegacyCrypto::ApplyAes256Ctr (keys.encryption,\n                                       m_nodeId,\n                                       0,\n                                       m_ownSecurityCount,\n                                       m_groupKeyId,\n                                       m_groupSequence,\n                                       protectedPayload);\n    }\n\n  std::array<uint8_t, CSR_GROUP_KEY_SEQUENCE_SIZE> packed =\n    SerializePackedKeySequence (m_groupKeyId, m_groupSequence);\n  std::vector<uint8_t> record (packed.begin (), packed.end ());\n  record.insert (record.end (),\n                 protectedPayload.begin (),\n                 protectedPayload.end ());\n\n  if (mode == CsrGroupSecurityMode::GroupEstablish)\n    {\n      std::array<uint8_t, 4> tag =\n        CsrLegacyCrypto::ComputeGroupEstablishAuthTag (\n          m_missionKey,\n          &keys.authentication,\n          legacyPacketType,\n          m_nodeId,\n          m_ownSecurityCount,\n          m_groupKeyId,\n          m_groupSequence,\n          protectedPayload);\n      record.insert (record.end (), tag.begin (), tag.end ());\n    }\n  else\n    {\n      std::size_t authLength = GetGroupAuthTagSize (mode);\n      std::vector<uint8_t> tag = CsrLegacyCrypto::ComputeGroupAuthTag (\n        keys.authentication,\n        m_nodeId,\n        legacyPacketType,\n        record,\n        authLength);\n      record.insert (record.end (), tag.begin (), tag.end ());\n    }\n\n  return {\n    m_groupKeyId,\n    m_groupSequence,\n    generatedNewGroupKey,\n    std::move (record)\n  };\n}\n\nCsrReceivedGroupMessage\nCsrHopSecurityState::ReceiveGroupMessage (\n  CsrNodeId source,\n  uint16_t securityCount,\n  CsrGroupSecurityMode mode,\n  uint8_t legacyPacketType,\n  std::span<const uint8_t> record)\n{\n  CsrReceivedGroupMessage result;\n  std::size_t authLength = GetGroupAuthTagSize (mode);\n\n  if (!CsrIsValidNodeId (source) || source == CSR_BROADCAST_ID ||\n      authLength == 0 ||\n      record.size () < CSR_GROUP_KEY_SEQUENCE_SIZE + authLength)\n    {\n      return result;\n    }\n\n  uint16_t groupKeyId = static_cast<uint16_t> (\n    (static_cast<uint16_t> (record[0]) << 4) | (record[1] >> 4));\n  uint16_t groupSequence = static_cast<uint16_t> (\n    (static_cast<uint16_t> (record[1] & 0x0f) << 8) | record[2]);\n  result.groupKeyId = groupKeyId;\n  result.groupSequence = groupSequence;\n\n  std::size_t payloadLength =\n    record.size () - CSR_GROUP_KEY_SEQUENCE_SIZE - authLength;\n  std::span<const uint8_t> protectedPayload = record.subspan (\n    CSR_GROUP_KEY_SEQUENCE_SIZE,\n"
+    },
+    {
+      "purpose": "Replay key is group key and group sequence",
+      "file": "csr-hop-security.cc",
+      "first_line": 1114,
+      "last_line": 1127,
+      "file_sha256": "2b390e6496c98e87a771ed10613e69ecd702922a0b9f54e8058170653271cc6a",
+      "source": "  uint32_t replayValue =\n    (static_cast<uint32_t> (groupKeyId) << 12) | groupSequence;\n  if (neighbor->inboundGroup.IsBeforeWindow (replayValue))\n    {\n      result.status = CsrHopSecurityReceiveStatus::DuplicateOrStale;\n      return result;\n    }\n  if (neighbor->inboundGroup.IsDuplicate (replayValue))\n    {\n      result.status = CsrHopSecurityReceiveStatus::AuthenticatedDuplicate;\n      return result;\n    }\n\n  result.payload.assign (protectedPayload.begin (), protectedPayload.end ());\n"
+    },
+    {
+      "purpose": "MAC direct HELLO uses object-local member",
+      "file": "csr-net-device.h",
+      "first_line": 575,
+      "last_line": 596,
+      "file_sha256": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+      "source": "CsrMacCore::SendHelloInternal (bool reschedule)\n{\n  // Allow HELLO if either periodic is enabled OR discovery is active\n  if ((m_dev == nullptr) || (!m_helloEnabled && !m_discoveryActive))\n    {\n      return;\n    }\n\n  CsrHeader h;\n  h.SetSrc (m_dev->GetId ());\n  h.SetDst (CSR_BROADCAST_ID);\n  h.SetSeq (++m_helloSeq);\n  h.SetDscp (7);\n  h.SetAckable (false);\n  h.SetIsAck (false);\n  h.SetIsDack (false);\n\n  h.SetType (CSR_PKT_HELLO);\n  h.SetDestType (CSR_DEST_BROADCAST);\n  h.SetSpeedKey (8);\n\n  Ptr<Packet> p = Create<Packet> ();\n"
+    },
+    {
+      "purpose": "Physical signal identity independent of sequence",
+      "file": "csr-net-device.h",
+      "first_line": 727,
+      "last_line": 740,
+      "file_sha256": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+      "source": "  uint16_t sequence = hdrOnTx.GetSeq ();\n  uint64_t signalId = (static_cast<uint64_t> (m_id) << 32)\n                    | (++m_nextTxSignalId & 0xffffffffULL);\n\n  CsrDifferentialTraceEvent txEvent;\n  txEvent.event = \"tx_start\";\n  txEvent.node = CsrTraceInteger (m_id);\n  txEvent.peer = CsrTraceInteger (hdrOnTx.GetDst ());\n  txEvent.packetType = CsrPacketTypeName (hdrOnTx.GetType ());\n  txEvent.source = CsrTraceInteger (hdrOnTx.GetSrc ());\n  txEvent.destination = CsrTraceInteger (hdrOnTx.GetDst ());\n  txEvent.sequence = CsrTraceInteger (sequence);\n  txEvent.rateKbps = CsrTraceSignedInteger (rateKbps);\n  txEvent.sizeBytes = CsrTraceInteger (payloadBytes);\n"
+    },
+    {
+      "purpose": "Outer sequence in receive signal metadata",
+      "file": "csr-net-device.h",
+      "first_line": 790,
+      "last_line": 817,
+      "file_sha256": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+      "source": "\n      RxSignal signal;\n      signal.id = signalId;\n      signal.txId = txId;\n      signal.sequence = sequence;\n      signal.rateKbps = rateKbps;\n      signal.txPowerDbm = txPowerDbm;\n      signal.preamble = preamble;\n      signal.reservedSlot = slot;\n      signal.ackable = ackable;\n      signal.payloadBytes = payloadBytes;\n      signal.packetBits = packetBits;\n      signal.txRadio = txRadio;\n      signal.startSec = txTime + propagationDelaySec;\n      signal.endSec = signal.startSec + duration;\n      signal.preambleEndSec = signal.startSec + preambleSec;\n      signal.frames.reserve (frameCopies.size ());\n      for (const auto &segment : frameCopies)\n        {\n          signal.frames.push_back (segment->Copy ());\n        }\n\n      Simulator::Schedule (Seconds (propagationDelaySec), [peer, signal] () {\n        peer->BeginReceiveSignal (signal);\n      });\n    }\n\n  return Seconds (duration);\n"
+    },
+    {
+      "purpose": "SYNC sequence is trace argument only",
+      "file": "csr-net-device.h",
+      "first_line": 1618,
+      "last_line": 1635,
+      "file_sha256": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+      "source": "  StartAllSignalIntervals (now);\n  if (incoming.frontEnd.channelMatched)\n    {\n      double syncThresholdDb = DrawSyncSnrThresholdDb ();\n      incoming.syncEligible = incoming.snrDb >= syncThresholdDb;\n      if (!incoming.syncEligible)\n        {\n          // mark_sync() writes PK_ACCEPT=false for a below-threshold SYNC.\n          // Keep that state for any later br_inoise pair while this packet is\n          // still physically present in the receiver pipeline.\n          incoming.rejected = true;\n        }\n      m_syncDecisionTrace (incoming.txId,\n                           incoming.sequence,\n                           incoming.snrDb,\n                           syncThresholdDb,\n                           incoming.syncEligible);\n    }\n"
+    },
+    {
+      "purpose": "NonACK MAC enqueue has no sequence rule",
+      "file": "csr-net-device.h",
+      "first_line": 2241,
+      "last_line": 2311,
+      "file_sha256": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+      "source": "CsrMacCore::EnqueueTxFrame (Ptr<Packet> frame,\n                            CsrNodeId dest,\n                            uint8_t dscp,\n                            bool ackable)\n{\n  CsrAnnotateOpnetEnvelope (frame);\n\n  CsrHeader header;\n  if (frame != nullptr && frame->PeekHeader (header) &&\n      (header.IsAck () || header.IsDack () ||\n       header.GetType () == CSR_PKT_ACK ||\n       header.GetType () == CSR_PKT_DACK))\n    {\n      EnqueueAckFrame (frame, header);\n      return;\n    }\n\n  // OPNET checks the non-ACK Tx queue limit before DSCP insertion.  A newly\n  // arriving high-priority frame is dropped rather than displacing an older\n  // lower-priority frame already occupying one of the 512 entries.\n  if (m_queue.size () >= TX_QUEUE_SIZE)\n    {\n      m_dataQueueDropCount++;\n\n      std::cout << \"[MAC \" << m_nodeId\n                << \"] Drop TX: OPNET data queue limit reached\"\n                << \" dest=\" << dest\n                << \" dscp=\" << unsigned (dscp)\n                << \" limit=\" << TX_QUEUE_SIZE\n                << \" drops=\" << m_dataQueueDropCount\n                << std::endl;\n      return;\n    }\n\n  TxQueueEntry e;\n  e.frame   = frame;\n  e.dest    = dest;\n  e.dscp    = dscp;\n  e.ackable = ackable;\n  e.enqueuedAt = Simulator::Now ();\n\n  // DSCP priority insert: higher dscp earlier\n  auto it = m_queue.begin ();\n  for (; it != m_queue.end (); ++it)\n    {\n      if (dscp > it->dscp)\n        {\n          break;\n        }\n    }\n\n  std::cout << \"[MAC] Enqueue TX pkt\"\n            << \" dscp=\" << int(dscp)\n            << \" insert_pos=\" << std::distance (m_queue.begin (), it)\n            << \" queue_size_before=\" << m_queue.size ()\n            << std::endl;\n\n  m_queue.insert (it, e);\n  WriteDifferentialStatisticSample (\n    m_nodeId,\n    CSR_STAT_MAC_TX_QUEUE_SIZE,\n    static_cast<double> (m_queue.size ()));\n  MaybeScheduleNextTx ();\n}\n\nuint32_t\nCsrMacCore::CancelAcknowledgedFrames (CsrNodeId neighbor,\n                                      uint16_t baseSeq,\n                                      uint64_t ackBitmap,\n                                      uint64_t dackBitmap)\n{\n"
+    },
+    {
+      "purpose": "MAC ACK cancellation excludes nonACK frames",
+      "file": "csr-net-device.h",
+      "first_line": 2315,
+      "last_line": 2334,
+      "file_sha256": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+      "source": "  uint32_t removed = 0;\n\n  for (auto it = m_queue.begin (); it != m_queue.end (); )\n    {\n      if (!it->ackable || it->dest != neighbor || it->frame == nullptr)\n        {\n          ++it;\n          continue;\n        }\n\n      CsrHeader queuedHeader;\n      if (!it->frame->PeekHeader (queuedHeader))\n        {\n          ++it;\n          continue;\n        }\n\n      // OPNET's exact-ACK MAC cleanup compares the outer integer\n      // destination.  A routing-control packet with a destination structure\n      // is therefore left intact, even after one member of the group ACKs.\n"
+    },
+    {
+      "purpose": "Sent callback uses sequence only for ACKable frames",
+      "file": "csr-net-device.h",
+      "first_line": 3210,
+      "last_line": 3227,
+      "file_sha256": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+      "source": "  // OPNET br_mac sends br_Mac_Hop_Inst only after the frame actually enters\n  // the transmitter.  HOP uses that sent instant, rather than its enqueue\n  // time, as the origin for ACK timeout and retransmission processing.\n  if (!m_txSentCallback.IsNull ())\n    {\n      for (const auto &entry : selected)\n        {\n          if (!entry.ackable)\n            {\n              continue;\n            }\n          CsrHeader header;\n          entry.frame->PeekHeader (header);\n          m_txSentCallback (entry.dest,\n                            header.GetSeq (),\n                            Simulator::Now ());\n        }\n    }\n"
+    },
+    {
+      "purpose": "NWK uses payload discovery sequence",
+      "file": "csr-nwk-layer.h",
+      "first_line": 6986,
+      "last_line": 7035,
+      "file_sha256": "bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc",
+      "source": "  CsrDiscoverType discoverType = hh.GetDiscoverType ();\n\n  std::cout << \"[NWK \" << m_nodeId\n            << \"] ProcessDiscover from \" << helloSrc\n            << \" subtype=\"\n            << (discoverType == CsrDiscoverType::Broadcast\n                  ? \"Broadcast\"\n                  : discoverType == CsrDiscoverType::Chirp\n                      ? \"Chirp\"\n                      : \"None\")\n            << \" sequence=\" << hh.GetDiscoverySequence ()\n            << std::endl;\n\n  switch (discoverType)\n    {\n    case CsrDiscoverType::Broadcast:\n      {\n        auto neighborIt = m_nwkNeighbors.find (helloSrc);\n        if (neighborIt == m_nwkNeighbors.end ())\n          {\n            break;\n          }\n\n        NwkNeighborEntry &neighbor = neighborIt->second;\n        uint32_t receivedSequence = hh.GetDiscoverySequence ();\n\n        bool isNewSequence =\n          !neighbor.discoverySequenceValid ||\n          CompareRoutingSequence (\n            neighbor.discoverySequence,\n            receivedSequence) < 0;\n\n        if (isNewSequence)\n          {\n            uint32_t oldSequence = neighbor.discoverySequence;\n\n            neighbor.discoverySequence = receivedSequence;\n            neighbor.discoverySequenceValid = true;\n\n            std::cout << \"[NWK \" << m_nodeId\n                      << \"] New discovery sequence from \"\n                      << helloSrc\n                      << \" old=\" << oldSequence\n                      << \" new=\" << receivedSequence\n                      << std::endl;\n\n            if (m_discoveryResponseEnabled)\n              {\n                if (m_arlNeighborAdmissionEnabled)\n                  {\n"
+    }
+  ]
+}
