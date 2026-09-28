@@ -1,0 +1,323 @@
+{
+  "schema": "csr-short-return-discovery-analysis-v1",
+  "classification": "replay_state_ownership_and_timestamp_order_defect",
+  "returned_target_count": 25,
+  "matched_success_flags": 21,
+  "matching_other_metrics": {
+    "arrival_times": 25,
+    "collision_counts": 25,
+    "error_counts": 25
+  },
+  "mismatches": [
+    {
+      "seed": 131,
+      "tx_id": 6239,
+      "receiver": 5,
+      "native_end_ns": 72308832444,
+      "native_success": true,
+      "matlab_success": false,
+      "matlab_reason": "prior_stage",
+      "search_action": {
+        "time_ns": "72308832444",
+        "event_order": "4212",
+        "node": "5",
+        "state": "search"
+      },
+      "continuous_completion_s": "72.308832444469374",
+      "search_precedes_completion_ns": 0.469370320388407
+    },
+    {
+      "seed": 132,
+      "tx_id": 6330,
+      "receiver": 2,
+      "native_end_ns": 57581793632,
+      "native_success": true,
+      "matlab_success": false,
+      "matlab_reason": "prior_stage",
+      "search_action": {
+        "time_ns": "57581793632",
+        "event_order": "6538",
+        "node": "2",
+        "state": "search"
+      },
+      "continuous_completion_s": "57.581793632364693",
+      "search_precedes_completion_ns": 0.364693164556229
+    },
+    {
+      "seed": 132,
+      "tx_id": 7402,
+      "receiver": 2,
+      "native_end_ns": 62590313632,
+      "native_success": true,
+      "matlab_success": false,
+      "matlab_reason": "prior_stage",
+      "search_action": {
+        "time_ns": "62590313632",
+        "event_order": "7420",
+        "node": "2",
+        "state": "search"
+      },
+      "continuous_completion_s": "62.59031363236469",
+      "search_precedes_completion_ns": 0.364693164556229
+    },
+    {
+      "seed": 132,
+      "tx_id": 8414,
+      "receiver": 2,
+      "native_end_ns": 67800813632,
+      "native_success": true,
+      "matlab_success": false,
+      "matlab_reason": "prior_stage",
+      "search_action": {
+        "time_ns": "67800813632",
+        "event_order": "8648",
+        "node": "2",
+        "state": "search"
+      },
+      "continuous_completion_s": "67.800813632364708",
+      "search_precedes_completion_ns": 0.3647073754109442
+    }
+  ],
+  "skip_classification": [
+    {
+      "seed": 131,
+      "predicted_skips": 43,
+      "reported_skips": 43,
+      "all_skips_at_native_tx_end": true,
+      "all_tx_end_search_records": 50
+    },
+    {
+      "seed": 132,
+      "predicted_skips": 235,
+      "reported_skips": 235,
+      "all_skips_at_native_tx_end": true,
+      "all_tx_end_search_records": 288
+    }
+  ],
+  "native_seed131_target_history": [
+    {
+      "case_id": "discovery131",
+      "event_order": 3557,
+      "time_ns": 72267012444,
+      "layer": "PHY",
+      "event": "sync_decision",
+      "node": 5,
+      "peer": 4,
+      "frame_id": null,
+      "tx_id": 17179869190,
+      "app_source": null,
+      "app_sequence": null,
+      "reason": "eligible",
+      "state_before": "search",
+      "state_after": "search",
+      "detail": {
+        "sequence": "7",
+        "snr_db": "-2.9089055307529383",
+        "threshold_db": "-11.56109536275642",
+        "threshold_draw_site": "DrawSyncSnrThresholdDb"
+      }
+    },
+    {
+      "case_id": "discovery131",
+      "event_order": 3558,
+      "time_ns": 72267012444,
+      "layer": "PHY",
+      "event": "rx_begin",
+      "node": 5,
+      "peer": 4,
+      "frame_id": null,
+      "tx_id": 17179869190,
+      "app_source": null,
+      "app_sequence": null,
+      "reason": "",
+      "state_before": "search",
+      "state_after": "search",
+      "detail": {
+        "sequence": "7",
+        "arrival_order": "103",
+        "preamble": "short",
+        "start_ns": "72267012444",
+        "preamble_end_ns": "72280272444",
+        "end_ns": "72308832444",
+        "rate_kbps": "8",
+        "payload_bytes": "18",
+        "packet_bits": "328",
+        "rx_power_dbm": "-109.88390553075294",
+        "pathloss_db": "142.88390553075294",
+        "snr_db": "-2.9089055307529383",
+        "channel_matched": "true",
+        "sync_eligible": "true",
+        "active_signal_ids": ""
+      }
+    },
+    {
+      "case_id": "discovery131",
+      "event_order": 3560,
+      "time_ns": 72267012444,
+      "layer": "MAC",
+      "event": "rx_arrival_state",
+      "node": 5,
+      "peer": 4,
+      "frame_id": null,
+      "tx_id": 17179869190,
+      "app_source": null,
+      "app_sequence": null,
+      "reason": "receiver_active",
+      "state_before": "search",
+      "state_after": "search",
+      "detail": {
+        "sync_eligible": "true",
+        "acquisition_pending": "true",
+        "post_tx_wait": "false"
+      }
+    },
+    {
+      "case_id": "discovery131",
+      "event_order": 3567,
+      "time_ns": 72273642444,
+      "layer": "MAC",
+      "event": "acquisition_attempt",
+      "node": 5,
+      "peer": 4,
+      "frame_id": null,
+      "tx_id": 17179869190,
+      "app_source": null,
+      "app_sequence": null,
+      "reason": "select",
+      "state_before": "search",
+      "state_after": "search",
+      "detail": {
+        "candidate_signal_ids": "17179869190",
+        "selected_rx_power_dbm": "-109.88390553075294"
+      }
+    },
+    {
+      "case_id": "discovery131",
+      "event_order": 3568,
+      "time_ns": 72273642444,
+      "layer": "PHY",
+      "event": "ber_interval",
+      "node": 5,
+      "peer": 4,
+      "frame_id": null,
+      "tx_id": 17179869190,
+      "app_source": null,
+      "app_sequence": null,
+      "reason": "",
+      "state_before": "search",
+      "state_after": "search",
+      "detail": {
+        "interval_index": "0",
+        "start_ns": "72267012444",
+        "end_ns": "72273642444",
+        "noise_watts": "2.0067810900181901e-14",
+        "same_rate_interference": "true",
+        "jsr_db": "-7.4991150656155412",
+        "header_bits": "0",
+        "payload_bits": "0",
+        "header_errors": "0",
+        "payload_errors": "0"
+      }
+    },
+    {
+      "case_id": "discovery131",
+      "event_order": 3569,
+      "time_ns": 72273642444,
+      "layer": "MAC",
+      "event": "acquire_track",
+      "node": 5,
+      "peer": 4,
+      "frame_id": null,
+      "tx_id": 17179869190,
+      "app_source": null,
+      "app_sequence": null,
+      "reason": "selected",
+      "state_before": "search",
+      "state_after": "track",
+      "detail": {
+        "sequence": "7",
+        "collisions": "0",
+        "tracked_signal_id": "17179869190"
+      }
+    },
+    {
+      "case_id": "discovery131",
+      "event_order": 3570,
+      "time_ns": 72280272444,
+      "layer": "PHY",
+      "event": "preamble_expire",
+      "node": 5,
+      "peer": 4,
+      "frame_id": null,
+      "tx_id": 17179869190,
+      "app_source": null,
+      "app_sequence": null,
+      "reason": "tracked",
+      "state_before": "track",
+      "state_after": "track",
+      "detail": {
+        "sequence": "7",
+        "acquisition_pending_before_clear": "false"
+      }
+    },
+    {
+      "case_id": "discovery131",
+      "event_order": 3572,
+      "time_ns": 72308832444,
+      "layer": "PHY",
+      "event": "ber_interval",
+      "node": 5,
+      "peer": 4,
+      "frame_id": null,
+      "tx_id": 17179869190,
+      "app_source": null,
+      "app_sequence": null,
+      "reason": "",
+      "state_before": "track",
+      "state_after": "track",
+      "detail": {
+        "interval_index": "1",
+        "start_ns": "72273642444",
+        "end_ns": "72308832444",
+        "noise_watts": "2.0067810900181901e-14",
+        "same_rate_interference": "true",
+        "jsr_db": "-7.4991150656155412",
+        "header_bits": "47",
+        "payload_bits": "175",
+        "header_errors": "0",
+        "payload_errors": "0"
+      }
+    },
+    {
+      "case_id": "discovery131",
+      "event_order": 3573,
+      "time_ns": 72308832444,
+      "layer": "PHY",
+      "event": "rx_end",
+      "node": 5,
+      "peer": 4,
+      "frame_id": null,
+      "tx_id": 17179869190,
+      "app_source": null,
+      "app_sequence": null,
+      "reason": "accepted",
+      "state_before": "track",
+      "state_after": "track",
+      "detail": {
+        "sequence": "7",
+        "tracked": "true",
+        "success": "true",
+        "sync_eligible": "true",
+        "missed_by_state": "false",
+        "rejected": "false",
+        "collided": "false",
+        "collisions": "0",
+        "header_errors": "0",
+        "payload_errors": "0",
+        "active_signal_count": "1"
+      }
+    }
+  ],
+  "production_fix_supported": false,
+  "validation_limit": "Static input/source proof and independent arithmetic; no corrected MATLAB rerun performed."
+}

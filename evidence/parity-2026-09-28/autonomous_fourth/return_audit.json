@@ -1,0 +1,83 @@
+{
+  "schema": "csr-autonomous-control-timing-return-v1",
+  "status": "pass",
+  "archive": "out_auto_20260925_133710.zip",
+  "archive_sha256": "0e949fe13da40fa02251875d26d6be1ac6ea7637e323bc07d47d46e8c49a5b11",
+  "archive_members": 46,
+  "issued_manifest_sha256": "6ee680f14978219f217c6d20f634af389ab24631017966e85b24fe2e0a7a0924",
+  "issued_bound_files": 156,
+  "runtime": {
+    "version": "25.1.0.2943329 (R2025a)",
+    "release": "2025a",
+    "computer": "PCWIN64"
+  },
+  "import_preflight_passed_in_matlab": true,
+  "key_preflight_checks_passed_in_matlab": 7,
+  "accepted_natural_reused": true,
+  "cases": [
+    {
+      "name": "C_timing",
+      "endpoint_s": 12.402,
+      "status": "context_divergence",
+      "matched_samples": 40,
+      "samples_by_purpose": {
+        "mac_slot": 11,
+        "sync_threshold": 17,
+        "phy_binomial": 12
+      },
+      "verified_transmissions": 6,
+      "attempted_transmissions": 7,
+      "prior_payload_bits": 183,
+      "first_time_difference": {
+        "node": 3,
+        "purpose": "mac_slot",
+        "ordinal": 1,
+        "actual_time_s": 11.505,
+        "expected_time_ns": 11500308077.0,
+        "rounded_delta_ns": 4691923.0
+      },
+      "actual_children": 3,
+      "native_children": 4,
+      "actual_wire_bytes": 66,
+      "native_wire_bytes": 82,
+      "raw_rows": {
+        "protocol_trace.csv": 275,
+        "phy_trace.csv": 92,
+        "application_admission_trace.csv": 0
+      },
+      "timing_records": 36,
+      "service_records": 272,
+      "wall_seconds": 12.5182037
+    },
+    {
+      "name": "D_inline_key",
+      "endpoint_s": 12.402,
+      "status": "context_divergence",
+      "matched_samples": 40,
+      "samples_by_purpose": {
+        "mac_slot": 11,
+        "sync_threshold": 17,
+        "phy_binomial": 12
+      },
+      "verified_transmissions": 6,
+      "attempted_transmissions": 7,
+      "prior_payload_bits": 183,
+      "first_time_difference": [],
+      "actual_children": 3,
+      "native_children": 4,
+      "actual_wire_bytes": 66,
+      "native_wire_bytes": 82,
+      "raw_rows": {
+        "protocol_trace.csv": 275,
+        "phy_trace.csv": 92,
+        "application_admission_trace.csv": 0
+      },
+      "timing_records": 36,
+      "service_records": 272,
+      "wall_seconds": 8.2400878
+    }
+  ],
+  "target_percent": 15,
+  "network_parity_established": false,
+  "scope": "Actual startup captures stop before application traffic begins at 300 seconds."
+}

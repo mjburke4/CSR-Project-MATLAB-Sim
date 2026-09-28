@@ -1,0 +1,35 @@
+{
+  "schema": "csr-seventh-discovery-identity-audit-v1",
+  "status": "source_and_existing_capture_consistent",
+  "new_native_network_or_component_execution": false,
+  "matlab_executed_here": false,
+  "production_fixture_or_guard_edited": false,
+  "input_sha256": {
+    "autonomous/native_capture/fixture/tx_signatures.csv": "40f51355e02c0950e7608d9eeb6efb590a539bdef37c0381780db5fc086ad5e1",
+    "autonomous/native_capture/run/observations.tsv": "3156069106cf3db451dce3fca4c9de91e09b5c9da07dd9ccc8d84615957de7f6",
+    "autonomous_seventh/data/I_control_wire/first_divergence.json": "d8809c4a6c2409791e12c19978e203ac8f7e144dbd2bed8424740c5a50e6e343",
+    "autonomous_sixth/kit/autocase/model/+csr/+hop/Layer.m": "21d4a56d782fde35d45f102c137b6c78c3bf4cdc05593d15fb9a7db8f26c2649",
+    "autonomous_sixth/kit/autocase/model/+csr/+nwk/Neighbors.m": "65cb269a9b7e3cade654aad4b262bc6d7ebdf103743fa2581d8694bc6e45aed7",
+    "autonomous_sixth/kit/autocase/+ac/TxSignature.m": "f8111a1d06d68659f74eae555bc2ae94bf803e1a73a69a6c583983df511ad201"
+  },
+  "native_source_sha256": {
+    "csr-hop-layer.h": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+    "csr-hop-security.cc": "2b390e6496c98e87a771ed10613e69ecd702922a0b9f54e8058170653271cc6a",
+    "csr-net-device.h": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+    "csr-nwk-layer.h": "bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc"
+  },
+  "artifact_sha256": {
+    "REVIEW.md": "7e333a4660c6dcd162bc1d589039a8f24c1a632f0d667f566f99f82ecf21377f",
+    "audit_discovery_sequence.py": "e1948f5acc477ebde3d4dd0975ce8a39f0a13e6ea1fba37ba2d6a5ff74fc6239",
+    "candidate_scope_review.json": "4db0a5ca5de80b9a789ef003baf497afa7d57769a93332ade3291853c4468e9b",
+    "review_candidate.py": "077f0d8d04fa9e90b8bea82e689208f79874cb62b9a5809bfe7cde8fa80c7a0e",
+    "sequence_audit.json": "2310553837bc5b8eed9a6f7127d9119f95a791c1a20c6b54c61a350363db3bef",
+    "source_path_proof.json": "e8be7293c0d5da56eaf4cb1366fd1041f0a9a7b8163a204d5b930d0bfc5e3825"
+  },
+  "recommendation": "Treat only the observed broadcast subtype of protected DISCOVER outer sequence as nonbehavioral representation metadata, retaining both values and every semantic/frame/radio/lineage guard; no global allocator mutation is needed for network parity.",
+  "limits": [
+    "Recommendation only: no checker edit performed.",
+    "No new continuation or performance parity measured.",
+    "Unobserved HELLO/neighborcast branches are not authorized as generic exceptions."
+  ]
+}

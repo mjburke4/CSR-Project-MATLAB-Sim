@@ -1,0 +1,657 @@
+{
+  "schema": "csr-mac-population-publication-audit-v1",
+  "cases": [
+    {
+      "case": "E_check_gate",
+      "stop_s": 14.534,
+      "draw_ordinal": 8,
+      "logged_requests": 97,
+      "consumed": 96,
+      "native_transmissions_checked": 16,
+      "first_time_difference": [],
+      "divergence": {
+        "node": 1,
+        "purpose": "mac_slot",
+        "ordinal": 8,
+        "actual_time_s": 14.534,
+        "fields": [
+          "active_nodes"
+        ],
+        "actual": {
+          "profile": 4,
+          "active_nodes": 3,
+          "reported_nodes": 2,
+          "reservation_counter": -1,
+          "reservation_slot": 27,
+          "state": "search",
+          "low": 0,
+          "high": 31
+        },
+        "expected": {
+          "event_order": 3402,
+          "time_ns": 14534000000.0,
+          "node": 1,
+          "purpose": "mac_slot",
+          "ordinal": 8,
+          "value": 13,
+          "low": 0,
+          "high": 31,
+          "mean": null,
+          "variance": null,
+          "tx_id": null,
+          "interval_ordinal": null,
+          "component": "",
+          "interval_start_ns": null,
+          "interval_end_ns": null,
+          "component_start_ns": null,
+          "component_end_ns": null,
+          "bits": null,
+          "probability": null,
+          "rng_consumed": 1,
+          "active_nodes": 2,
+          "reported_nodes": 2,
+          "reservation_counter": -1,
+          "reservation_slot": 27,
+          "profile": 4,
+          "state": "search",
+          "cause": "CsrMacCore::PickTxSlot"
+        }
+      },
+      "relevant_events": [
+        {
+          "order": 13065,
+          "time_s": 14.400468077,
+          "event": "neighbor_active",
+          "kind": null,
+          "source": null,
+          "destination": 3,
+          "sequence": null,
+          "targets": null,
+          "control": {},
+          "details": {
+            "Reason": "acked_overheard"
+          }
+        },
+        {
+          "order": 13066,
+          "time_s": 14.400468077,
+          "event": "hop_control_ack",
+          "kind": "CONTROL",
+          "source": 1,
+          "destination": 3,
+          "sequence": 3,
+          "targets": 3,
+          "control": {
+            "Id": 9,
+            "Type": "NEIGHBOR_CHECK",
+            "Payload": {
+              "Subtype": "overheard",
+              "Sequence": 0,
+              "Active": false,
+              "Generation": 0,
+              "SecurityProfile": "behavioral-admission"
+            },
+            "WirePayloadBytes": 16
+          },
+          "details": {
+            "Peer": 3,
+            "Complete": true,
+            "RemainingPeers": [],
+            "TimeSeconds": 14.400468077
+          }
+        },
+        {
+          "order": 13087,
+          "time_s": 14.400468077,
+          "event": "mac_enqueue",
+          "kind": "CONTROL",
+          "source": 1,
+          "destination": 3,
+          "sequence": 4,
+          "targets": 3,
+          "control": {
+            "Id": 11,
+            "Type": "ROUTING",
+            "Payload": {
+              "Bytes": [
+                0,
+                0,
+                0,
+                3,
+                0,
+                1,
+                4,
+                0,
+                8,
+                0,
+                128,
+                254,
+                152,
+                1,
+                74,
+                0,
+                120,
+                0,
+                140,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                1,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                5,
+                1,
+                0,
+                1,
+                0,
+                0,
+                29,
+                26,
+                0,
+                0,
+                5,
+                0
+              ]
+            },
+            "WirePayloadBytes": 65
+          },
+          "details": {
+            "DataDepth": 1,
+            "AckDepth": 6
+          }
+        },
+        {
+          "order": 13092,
+          "time_s": 14.400468077,
+          "event": "hop_control_admit",
+          "kind": "CONTROL",
+          "source": 1,
+          "destination": 3,
+          "sequence": 4,
+          "targets": 3,
+          "control": {
+            "Id": 11,
+            "Type": "ROUTING",
+            "Payload": {
+              "Bytes": [
+                0,
+                0,
+                0,
+                3,
+                0,
+                1,
+                4,
+                0,
+                8,
+                0,
+                128,
+                254,
+                152,
+                1,
+                74,
+                0,
+                120,
+                0,
+                140,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                1,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                5,
+                1,
+                0,
+                1,
+                0,
+                0,
+                29,
+                26,
+                0,
+                0,
+                5,
+                0
+              ]
+            },
+            "WirePayloadBytes": 65
+          },
+          "details": {
+            "Targets": 3,
+            "TimeSeconds": 14.400468077
+          }
+        },
+        {
+          "order": 13095,
+          "time_s": 14.400468077,
+          "event": "mac_enqueue",
+          "kind": "CONTROL",
+          "source": 1,
+          "destination": 3,
+          "sequence": 5,
+          "targets": [
+            3,
+            5
+          ],
+          "control": {
+            "Id": 12,
+            "Type": "ROUTING",
+            "Payload": {
+              "Bytes": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                1,
+                1,
+                0,
+                0,
+                3
+              ]
+            },
+            "WirePayloadBytes": 26
+          },
+          "details": {
+            "DataDepth": 2,
+            "AckDepth": 6
+          }
+        },
+        {
+          "order": 13100,
+          "time_s": 14.400468077,
+          "event": "hop_control_admit",
+          "kind": "CONTROL",
+          "source": 1,
+          "destination": 3,
+          "sequence": 5,
+          "targets": [
+            3,
+            5
+          ],
+          "control": {
+            "Id": 12,
+            "Type": "ROUTING",
+            "Payload": {
+              "Bytes": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                1,
+                1,
+                0,
+                0,
+                3
+              ]
+            },
+            "WirePayloadBytes": 26
+          },
+          "details": {
+            "Targets": [
+              3,
+              5
+            ],
+            "TimeSeconds": 14.400468077
+          }
+        }
+      ],
+      "ordered_log_sha256": "a1e89cbed45911c428caefc8d323263e650ad012bbbaade5d71bd37aee057fbf"
+    },
+    {
+      "case": "F_message_flag",
+      "stop_s": 14.534,
+      "draw_ordinal": 8,
+      "logged_requests": 97,
+      "consumed": 96,
+      "native_transmissions_checked": 16,
+      "first_time_difference": [],
+      "divergence": {
+        "node": 1,
+        "purpose": "mac_slot",
+        "ordinal": 8,
+        "actual_time_s": 14.534,
+        "fields": [
+          "active_nodes"
+        ],
+        "actual": {
+          "profile": 4,
+          "active_nodes": 3,
+          "reported_nodes": 2,
+          "reservation_counter": -1,
+          "reservation_slot": 27,
+          "state": "search",
+          "low": 0,
+          "high": 31
+        },
+        "expected": {
+          "event_order": 3402,
+          "time_ns": 14534000000.0,
+          "node": 1,
+          "purpose": "mac_slot",
+          "ordinal": 8,
+          "value": 13,
+          "low": 0,
+          "high": 31,
+          "mean": null,
+          "variance": null,
+          "tx_id": null,
+          "interval_ordinal": null,
+          "component": "",
+          "interval_start_ns": null,
+          "interval_end_ns": null,
+          "component_start_ns": null,
+          "component_end_ns": null,
+          "bits": null,
+          "probability": null,
+          "rng_consumed": 1,
+          "active_nodes": 2,
+          "reported_nodes": 2,
+          "reservation_counter": -1,
+          "reservation_slot": 27,
+          "profile": 4,
+          "state": "search",
+          "cause": "CsrMacCore::PickTxSlot"
+        }
+      },
+      "relevant_events": [
+        {
+          "order": 13065,
+          "time_s": 14.400468077,
+          "event": "neighbor_active",
+          "kind": null,
+          "source": null,
+          "destination": 3,
+          "sequence": null,
+          "targets": null,
+          "control": {},
+          "details": {
+            "Reason": "acked_overheard"
+          }
+        },
+        {
+          "order": 13066,
+          "time_s": 14.400468077,
+          "event": "hop_control_ack",
+          "kind": "CONTROL",
+          "source": 1,
+          "destination": 3,
+          "sequence": 3,
+          "targets": 3,
+          "control": {
+            "Id": 9,
+            "Type": "NEIGHBOR_CHECK",
+            "Payload": {
+              "Subtype": "overheard",
+              "Sequence": 0,
+              "Active": false,
+              "Generation": 0,
+              "SecurityProfile": "behavioral-admission"
+            },
+            "WirePayloadBytes": 16
+          },
+          "details": {
+            "Peer": 3,
+            "Complete": true,
+            "RemainingPeers": [],
+            "TimeSeconds": 14.400468077
+          }
+        },
+        {
+          "order": 13087,
+          "time_s": 14.400468077,
+          "event": "mac_enqueue",
+          "kind": "CONTROL",
+          "source": 1,
+          "destination": 3,
+          "sequence": 4,
+          "targets": 3,
+          "control": {
+            "Id": 11,
+            "Type": "ROUTING",
+            "Payload": {
+              "Bytes": [
+                0,
+                0,
+                0,
+                3,
+                0,
+                1,
+                4,
+                0,
+                8,
+                0,
+                128,
+                254,
+                152,
+                1,
+                74,
+                0,
+                120,
+                0,
+                140,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                1,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                5,
+                1,
+                0,
+                1,
+                0,
+                0,
+                29,
+                26,
+                0,
+                0,
+                5,
+                0
+              ]
+            },
+            "WirePayloadBytes": 65
+          },
+          "details": {
+            "DataDepth": 1,
+            "AckDepth": 6
+          }
+        },
+        {
+          "order": 13092,
+          "time_s": 14.400468077,
+          "event": "hop_control_admit",
+          "kind": "CONTROL",
+          "source": 1,
+          "destination": 3,
+          "sequence": 4,
+          "targets": 3,
+          "control": {
+            "Id": 11,
+            "Type": "ROUTING",
+            "Payload": {
+              "Bytes": [
+                0,
+                0,
+                0,
+                3,
+                0,
+                1,
+                4,
+                0,
+                8,
+                0,
+                128,
+                254,
+                152,
+                1,
+                74,
+                0,
+                120,
+                0,
+                140,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                1,
+                2,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                5,
+                1,
+                0,
+                1,
+                0,
+                0,
+                29,
+                26,
+                0,
+                0,
+                5,
+                0
+              ]
+            },
+            "WirePayloadBytes": 65
+          },
+          "details": {
+            "Targets": 3,
+            "TimeSeconds": 14.400468077
+          }
+        },
+        {
+          "order": 13095,
+          "time_s": 14.400468077,
+          "event": "mac_enqueue",
+          "kind": "CONTROL",
+          "source": 1,
+          "destination": 3,
+          "sequence": 5,
+          "targets": [
+            3,
+            5
+          ],
+          "control": {
+            "Id": 12,
+            "Type": "ROUTING",
+            "Payload": {
+              "Bytes": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                1,
+                1,
+                0,
+                0,
+                3
+              ]
+            },
+            "WirePayloadBytes": 26
+          },
+          "details": {
+            "DataDepth": 2,
+            "AckDepth": 6
+          }
+        },
+        {
+          "order": 13100,
+          "time_s": 14.400468077,
+          "event": "hop_control_admit",
+          "kind": "CONTROL",
+          "source": 1,
+          "destination": 3,
+          "sequence": 5,
+          "targets": [
+            3,
+            5
+          ],
+          "control": {
+            "Id": 12,
+            "Type": "ROUTING",
+            "Payload": {
+              "Bytes": [
+                0,
+                0,
+                0,
+                4,
+                0,
+                1,
+                1,
+                0,
+                0,
+                3
+              ]
+            },
+            "WirePayloadBytes": 26
+          },
+          "details": {
+            "Targets": [
+              3,
+              5
+            ],
+            "TimeSeconds": 14.400468077
+          }
+        }
+      ],
+      "ordered_log_sha256": "a1e89cbed45911c428caefc8d323263e650ad012bbbaade5d71bd37aee057fbf"
+    }
+  ],
+  "internal_nwk_count": 3,
+  "native_mac_latch": 2,
+  "matlab_mac_latch": 3,
+  "cause": "Native ACKed NeighborCheck updates NWK lastHeard/current count but does not publish to MAC. MATLAB eagerly publishes at every addressed member and MAC enqueue.",
+  "same_draw_support": true,
+  "posttx_wait_native_s": 18.5,
+  "posttx_wait_premature_population_counterfactual_s": 20,
+  "production_model_changed": false,
+  "matlab_executed_by_analysis": false,
+  "future_scope": "Event-owned publication only; retain current NWK/application/routing-advertisement count. Independent extra ROUTING owner is under separate investigation."
+}

@@ -1,0 +1,159 @@
+{
+  "schema": "csr-prior-common-case-history-v4",
+  "new_execution": false,
+  "actual_owner_matlab_execution": true,
+  "prior_history": {
+    "schema": "csr-prior-common-case-history-v3",
+    "new_execution": false,
+    "actual_owner_matlab_execution": true,
+    "prior_history": {
+      "schema": "csr-prior-common-case-history-v2",
+      "new_execution": false,
+      "actual_owner_matlab_execution": true,
+      "prior_B": {
+        "schema": "csr-prior-common-case-history-v1",
+        "previous_owner_case": "B_common",
+        "new_execution": false,
+        "actual_owner_matlab_execution": true,
+        "case_summary": {
+          "name": "B_common",
+          "mode": "native",
+          "completed": false,
+          "natural_prefix_passed": false,
+          "reached_time_s": 11.500323527005154,
+          "diagnostic_status": "context_divergence",
+          "error_identifier": "autocase:DrawContextDivergence",
+          "error_message": "Native random request context diverged at 11.500323527005154 s, node 4, phy_binomial #2 (bits). Partial evidence is preserved.",
+          "wall_seconds": 12.1081817
+        },
+        "diagnosis": "Native CSV preflight and accepted natural reuse passed. Common native-input case stopped at node4 PHY sample2: payload bits184 versus183 due receiver callback endpoint quantization. This stored B is historical, not rerun by this kit.",
+        "source_issued_manifest_sha256": "64e135edd1843a2ec009c677f91918eda61258fe7331b779d88eb1822eb9a742",
+        "evidence_folder": "ref/history/B_common",
+        "new_cases": [
+          "C_timing",
+          "D_inline_key"
+        ]
+      },
+      "cases": [
+        {
+          "name": "C_timing",
+          "mode": "native",
+          "completed": false,
+          "natural_prefix_passed": false,
+          "reached_time_s": 12.402,
+          "diagnostic_status": "context_divergence",
+          "error_identifier": "autocase:TxContextDivergence",
+          "error_message": "Physical transmission context diverged at 12.401999999999999 s, node 5, TX #3 (parent.child_count,parent.total_wire_bytes,ordered_child_count).",
+          "wall_seconds": 12.5182037
+        },
+        {
+          "name": "D_inline_key",
+          "mode": "native",
+          "completed": false,
+          "natural_prefix_passed": false,
+          "reached_time_s": 12.402,
+          "diagnostic_status": "context_divergence",
+          "error_identifier": "autocase:TxContextDivergence",
+          "error_message": "Physical transmission context diverged at 12.401999999999999 s, node 5, TX #3 (parent.child_count,parent.total_wire_bytes,ordered_child_count).",
+          "wall_seconds": 8.2400878
+        }
+      ],
+      "successful_prior_preflights": [
+        "Native CSV import",
+        "Accepted natural A reuse",
+        "All 7 KEY_REQUEST checks"
+      ],
+      "diagnosis": "Both C and D stopped at12.402 seconds with node5 TX3 containing ACK1, ACK3 and discovery-check3 (66 bytes), missing native Overheard-check4 (16 bytes). D removed the earlier KEY_REQUEST request-time mismatch. These are historical actual owner cases, not rerun by this kit.",
+      "source_issued_manifest_sha256": "6ee680f14978219f217c6d20f634af389ab24631017966e85b24fe2e0a7a0924",
+      "evidence_folders": [
+        "ref/history/C_timing",
+        "ref/history/D_inline_key"
+      ],
+      "new_cases": [
+        "E_check_gate",
+        "F_message_flag"
+      ]
+    },
+    "cases": [
+      {
+        "name": "E_check_gate",
+        "mode": "native",
+        "completed": false,
+        "natural_prefix_passed": false,
+        "reached_time_s": 14.534,
+        "diagnostic_status": "context_divergence",
+        "error_identifier": "autocase:DrawContextDivergence",
+        "error_message": "Native random request context diverged at 14.534000000000001 s, node 1, mac_slot #8 (active_nodes). Partial evidence is preserved.",
+        "wall_seconds": 17.2786848
+      },
+      {
+        "name": "F_message_flag",
+        "mode": "native",
+        "completed": false,
+        "natural_prefix_passed": false,
+        "reached_time_s": 14.534,
+        "diagnostic_status": "context_divergence",
+        "error_identifier": "autocase:DrawContextDivergence",
+        "error_message": "Native random request context diverged at 14.534000000000001 s, node 1, mac_slot #8 (active_nodes). Partial evidence is preserved.",
+        "wall_seconds": 10.7130896
+      }
+    ],
+    "successful_prior_preflights": [
+      "Native CSV import",
+      "Accepted natural A reuse",
+      "All7 KEY_REQUEST checks",
+      "All8 neighbor-condition checks"
+    ],
+    "diagnosis": "Both E/F stopped at14.534 node1 MACdraw8: prematurely published local population3 versus native latch2. Current NWK count3 is correct. Same returned prefix also contains an extra grouped routing control after peer3 admission.",
+    "source_issued_manifest_sha256": "2d37baf35c91024375a6272790dfc00480c361576da4aeee02e37430d022ca6d",
+    "evidence_folders": [
+      "ref/history/E_check_gate",
+      "ref/history/F_message_flag"
+    ],
+    "new_cases": [
+      "G_population",
+      "H_admission_route"
+    ]
+  },
+  "cases": [
+    {
+      "name": "G_population",
+      "mode": "native",
+      "completed": false,
+      "natural_prefix_passed": false,
+      "reached_time_s": 14.534,
+      "diagnostic_status": "context_divergence",
+      "error_identifier": "autocase:TxContextDivergence",
+      "error_message": "Physical transmission context diverged at 14.534000000000001 s, node 1, TX #7 (parent.child_count,parent.total_wire_bytes,ordered_child_count).",
+      "wall_seconds": 16.5067753
+    },
+    {
+      "name": "H_admission_route",
+      "mode": "native",
+      "completed": false,
+      "natural_prefix_passed": false,
+      "reached_time_s": 25.298,
+      "diagnostic_status": "context_divergence",
+      "error_identifier": "autocase:TxContextDivergence",
+      "error_message": "Physical transmission context diverged at 25.297999999999998 s, node 1, TX #18 (parent.total_wire_bytes,child1.wire_bytes,child2.wire_bytes).",
+      "wall_seconds": 23.8073516
+    }
+  ],
+  "successful_prior_preflights": [
+    "Native CSV import",
+    "Accepted natural A reuse",
+    "All7 KEY_REQUEST checks",
+    "All8 neighbor-condition checks",
+    "All6 population checks",
+    "All8 route-admission checks"
+  ],
+  "diagnosis": "G cleared the earlier MAC population guard and exposed the predicted extra DELETE at14.534. H removed that extra control and reached25.298, where two compatibility-header REQUESTs were charged23bytes each instead of native16; ordered payload semantics matched.",
+  "source_issued_manifest_sha256": "e3fea26d3deddaed2049d5facc562866ffb6350d1e865e50426560cdd7de4f87",
+  "evidence_folders": [
+    "ref/history/G_population",
+    "ref/history/H_admission_route"
+  ],
+  "new_cases": [
+    "I_control_wire"
+  ]
+}

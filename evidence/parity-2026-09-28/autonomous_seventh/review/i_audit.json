@@ -1,0 +1,304 @@
+{
+  "schema": "csr-seventh-owner-i-independent-audit-v1",
+  "requests": 290,
+  "consumed": 290,
+  "requests_by_purpose": {
+    "mac_slot": 61,
+    "sync_threshold": 131,
+    "phy_binomial": 98
+  },
+  "tx_verified": 49,
+  "rejected_tx_attempt": 50,
+  "rejected_tx_not_transmitted": true,
+  "merged_events": 340,
+  "native_cutoff_event_order": 8533,
+  "cutoff_time_ns": 25740000000,
+  "global_order_equal": true,
+  "rounded_ns_times_equal": true,
+  "controlling_request_contexts_equal": true,
+  "recorded_phy_interval_component_ns_equal": true,
+  "ignored_profile4_reported_nodes_differences": [
+    {
+      "request": 1,
+      "actual": 1,
+      "native": 0
+    },
+    {
+      "request": 2,
+      "actual": 1,
+      "native": 0
+    },
+    {
+      "request": 6,
+      "actual": 1,
+      "native": 0
+    },
+    {
+      "request": 7,
+      "actual": 1,
+      "native": 0
+    },
+    {
+      "request": 10,
+      "actual": 1,
+      "native": 0
+    },
+    {
+      "request": 16,
+      "actual": 2,
+      "native": 0
+    },
+    {
+      "request": 29,
+      "actual": 2,
+      "native": 0
+    },
+    {
+      "request": 34,
+      "actual": 2,
+      "native": 0
+    },
+    {
+      "request": 40,
+      "actual": 2,
+      "native": 1
+    },
+    {
+      "request": 46,
+      "actual": 2,
+      "native": 1
+    },
+    {
+      "request": 115,
+      "actual": 2,
+      "native": 3
+    },
+    {
+      "request": 119,
+      "actual": 2,
+      "native": 3
+    },
+    {
+      "request": 132,
+      "actual": 2,
+      "native": 3
+    },
+    {
+      "request": 138,
+      "actual": 2,
+      "native": 3
+    },
+    {
+      "request": 143,
+      "actual": 2,
+      "native": 3
+    },
+    {
+      "request": 148,
+      "actual": 2,
+      "native": 3
+    },
+    {
+      "request": 153,
+      "actual": 2,
+      "native": 3
+    },
+    {
+      "request": 158,
+      "actual": 2,
+      "native": 3
+    },
+    {
+      "request": 159,
+      "actual": 2,
+      "native": 3
+    }
+  ],
+  "final_tx_independent_differences": [
+    "child3.hop_sequence"
+  ],
+  "request_wire_fix_actual_tx": {
+    "source": 1,
+    "rate_kbps": 8,
+    "tx_power_dbm": 33,
+    "preamble": 0,
+    "reservation_slot": 25,
+    "child_count": 3,
+    "total_wire_bytes": 63,
+    "children": [
+      {
+        "child_index": 0,
+        "hop_source": 1,
+        "hop_destination": 3,
+        "hop_sequence": 7,
+        "kind": 6,
+        "wire_bytes": 16,
+        "dscp": 7,
+        "ackable": 1,
+        "has_ack_window": 0,
+        "ack_bitmap_hex": "0000000000000000",
+        "dack_bitmap_hex": "0000000000000000",
+        "destination_sequences": "3:7",
+        "control_type": "ROUTING",
+        "control_payload": {
+          "Bytes": [
+            0,
+            0,
+            0,
+            6,
+            0,
+            1,
+            3
+          ],
+          "WireRepresentation": "legacy_request_header"
+        },
+        "routing_section_hex": "00000006000103"
+      },
+      {
+        "child_index": 1,
+        "hop_source": 1,
+        "hop_destination": 5,
+        "hop_sequence": 9,
+        "kind": 6,
+        "wire_bytes": 16,
+        "dscp": 7,
+        "ackable": 1,
+        "has_ack_window": 0,
+        "ack_bitmap_hex": "0000000000000000",
+        "dack_bitmap_hex": "0000000000000000",
+        "destination_sequences": "5:9",
+        "control_type": "ROUTING",
+        "control_payload": {
+          "Bytes": [
+            0,
+            0,
+            0,
+            7,
+            0,
+            1,
+            3
+          ],
+          "WireRepresentation": "legacy_request_header"
+        },
+        "routing_section_hex": "00000007000103"
+      },
+      {
+        "child_index": 2,
+        "hop_source": 1,
+        "hop_destination": 3,
+        "hop_sequence": 0,
+        "kind": 7,
+        "wire_bytes": 31,
+        "dscp": 0,
+        "ackable": 0,
+        "has_ack_window": 0,
+        "ack_bitmap_hex": "0000000000000000",
+        "dack_bitmap_hex": "0000000000000000",
+        "control_type": "SNMP_START",
+        "control_payload": {
+          "DelaySeconds": 0,
+          "SourceId": 1,
+          "DestinationId": 3
+        },
+        "snmp_command": 1,
+        "snmp_source": 1,
+        "snmp_destination": 3,
+        "snmp_value": 0,
+        "snmp_nodes": ""
+      }
+    ]
+  },
+  "earlier_phy183_fourchild82_population2_sevenchild215_guards_pass": true,
+  "broadcasts": [
+    {
+      "time_s": 10,
+      "node": 1,
+      "outer_hop_sequence": 1,
+      "payload_discovery_sequence": 1,
+      "subtype": "broadcast"
+    },
+    {
+      "time_s": 15,
+      "node": 1,
+      "outer_hop_sequence": 2,
+      "payload_discovery_sequence": 1,
+      "subtype": "broadcast"
+    },
+    {
+      "time_s": 20,
+      "node": 1,
+      "outer_hop_sequence": 3,
+      "payload_discovery_sequence": 1,
+      "subtype": "broadcast"
+    },
+    {
+      "time_s": 25.385728077,
+      "node": 3,
+      "outer_hop_sequence": 1,
+      "payload_discovery_sequence": 1,
+      "subtype": "broadcast"
+    }
+  ],
+  "native_no_path_children_in_full_fixture": 0,
+  "no_path_network_effect_exercised": false,
+  "preflights": {
+    "key": {
+      "passed": true,
+      "checks": 7
+    },
+    "neighbor": {
+      "passed": true,
+      "checks": 8
+    },
+    "population": {
+      "passed": true,
+      "checks": 6
+    },
+    "route": {
+      "passed": true,
+      "checks": 8
+    },
+    "request_wire": {
+      "passed": true,
+      "checks": 6
+    },
+    "no_path_wire": {
+      "passed": true,
+      "checks": 3
+    }
+  },
+  "provenance": {
+    "manifest_equal": true,
+    "bound_files_verified": 294,
+    "resolved_matlab_files_verified": 127,
+    "source_candidate_transforms_equal": true,
+    "runtime": {
+      "version": "25.1.0.2943329 (R2025a)",
+      "release": "2025a",
+      "computer": "PCWIN64"
+    },
+    "accepted_natural_reused": true,
+    "fresh_natural_run": false,
+    "natural_trace_rows": {
+      "protocol_trace.csv": 12200,
+      "phy_trace.csv": 12198,
+      "application_admission_trace.csv": 9000
+    },
+    "natural_trace_bytes_equal": true,
+    "configuration_equal_except_source_path": true
+  },
+  "service_capture_complete_through_stop": true,
+  "no_new_simulation_executed_by_auditor": true,
+  "no_kit_or_guard_edits": true,
+  "scope": "Unconditional logged request/TX prefix through rejected attempt only. Does not prove all internal state equality or full-network/6000-second/15-percent parity.",
+  "input_hashes": {
+    "autonomous/native_capture/fixture/random_draws.csv": "6ab5f1e03a77de23bd11f5920d0acb570183a386d1b91fcb91368aeec0042838",
+    "autonomous/native_capture/fixture/tx_signatures.csv": "40f51355e02c0950e7608d9eeb6efb590a539bdef37c0381780db5fc086ad5e1",
+    "autonomous_sixth/kit/autocase/FILES.json": "62cd5d1c495d69b2aa4dba2b5e4e33cdfbca0bfc4808b9bcf89d3672aa75a696",
+    "autonomous_seventh/data/provenance.json": "7b82c38cd01ec199a0e3e40adc4e6d853d9ca013d5de73e9b2de9072e685d122",
+    "autonomous_seventh/data/report.json": "41b71ed15e8230e8d9bdf819820f24d19fdd6845535157f52eaa9e5af2f0f7e5",
+    "autonomous_seventh/data/I_control_wire/random_requests.jsonl": "9c48517e907a53bb4baba529bf907fb0b90bb9bed1164d021198f9891af9057b",
+    "autonomous_seventh/data/I_control_wire/ordered_events.jsonl": "5d9d8dd2ff64969f251da795c95342e63d27098b283481fb23763f1a24591cf8",
+    "autonomous_seventh/data/I_control_wire/first_divergence.json": "d8809c4a6c2409791e12c19978e203ac8f7e144dbd2bed8424740c5a50e6e343"
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "scope": "Read-only direct natural observations, independently checked against passed prefix gate; no new simulations.",
+  "prefix_gate": {
+    "schema": "csr-autonomous-natural-prefix-v1",
+    "passed": true,
+    "window": "0 <= time < 330",
+    "comparison": "Exact table values after identical CSV import options; no timing tolerance",
+    "reference": "Corrected owner 6,000-second seed-132 return, R2025a",
+    "checks": [
+      {
+        "file": "protocol_trace.csv",
+        "actual_rows": 12200,
+        "reference_rows": 12200,
+        "passed": true,
+        "first_row": null,
+        "first_column": ""
+      },
+      {
+        "file": "phy_trace.csv",
+        "actual_rows": 12198,
+        "reference_rows": 12198,
+        "passed": true,
+        "first_row": null,
+        "first_column": ""
+      },
+      {
+        "file": "application_admission_trace.csv",
+        "actual_rows": 9000,
+        "reference_rows": 9000,
+        "passed": true,
+        "first_row": null,
+        "first_column": ""
+      }
+    ]
+  },
+  "event_counts": {
+    "mac_boundary": 383134,
+    "phy_state_request": 3168,
+    "phy_boundary": 49912,
+    "phy_state_transition": 7493,
+    "mac_state_transition": 5867,
+    "protocol": 11065,
+    "mac_cancel_timer": 10955,
+    "scheduler_schedule": 120614,
+    "scheduler_fire": 118001,
+    "scheduler_return": 118001,
+    "scheduler_cancel": 2587,
+    "random_request": 4460,
+    "physical_tx_identity": 814,
+    "phy": 12198,
+    "application_attempt": 9000
+  },
+  "first_gateway_draw": {
+    "node": 1,
+    "matlab_time_s": 10.01,
+    "matlab_ordinal": 1,
+    "matlab_draw": 10,
+    "native_time_ns": "10010000000",
+    "native_ordinal": "1",
+    "native_draw": "11",
+    "matlab_active_nodes": 1,
+    "native_active_nodes": "1",
+    "matlab_low": 0,
+    "matlab_high": 31,
+    "native_low": "0",
+    "native_high": "31",
+    "matlab_counter": -1,
+    "native_counter": "-1",
+    "matlab_state": "search",
+    "native_state": "search"
+  },
+  "application_start_states_direct": {
+    "2": "Idle",
+    "4": "Search",
+    "7": "Search",
+    "8": "Search"
+  },
+  "node8_data": {
+    "time_s": 300.144,
+    "node": 8,
+    "destination": 2,
+    "preamble": "long",
+    "duration_s": 1.23726,
+    "reservation_slot": 26,
+    "children": [
+      {
+        "kind": "DATA",
+        "sequence": 13,
+        "source": 8,
+        "destination": 2,
+        "application_source": 8,
+        "application_destination": 1,
+        "application_generated_s": 300,
+        "application_id": 6,
+        "application_flow_index": 6,
+        "application_attempt_index": 1
+      }
+    ]
+  },
+  "node8_last_heard2_s": 268.73055534556323,
+  "node8_freshness_limit_s": 20.0,
+  "node8_freshness_age_at_first_data_s": 31.413444654436773,
+  "node7_first_data": {
+    "time_s": 301.496,
+    "node": 7,
+    "destination": 8,
+    "preamble": "short",
+    "duration_s": 0.24480000000000002,
+    "reservation_slot": 18,
+    "children": [
+      {
+        "kind": "DATA",
+        "sequence": 12,
+        "source": 7,
+        "destination": 8,
+        "application_source": 7,
+        "application_destination": 1,
+        "application_generated_s": 300,
+        "application_id": 5,
+        "application_flow_index": 5,
+        "application_attempt_index": 1
+      }
+    ]
+  },
+  "node7_frozen_track_ticks": 95,
+  "node7_frozen_counter": 8,
+  "node7_first_track_tick": 300.157,
+  "node7_last_track_tick": 301.379,
+  "node7_first_hop_ack": {
+    "TimeSeconds": "302.029292441945",
+    "Event": "hop_ack",
+    "NodeId": "7",
+    "PeerId": "8",
+    "PacketId": "5",
+    "ApplicationBytes": "185",
+    "Reason": "",
+    "FrameKind": "DATA",
+    "Sequence": "12",
+    "Dscp": "0",
+    "QueueDepth": "0",
+    "ControlType": "",
+    "HopCount": "0"
+  },
+  "limitation": "B_common failed harness import normalization before its first native sample at10.01; these findings do not establish coupled parity or a same-input production defect."
+}

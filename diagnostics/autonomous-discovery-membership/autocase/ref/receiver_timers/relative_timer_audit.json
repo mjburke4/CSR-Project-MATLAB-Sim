@@ -1,0 +1,76 @@
+{
+  "method": "Source-derived binary64 arithmetic on existing records; no MATLAB/network execution.",
+  "observed_J": {
+    "acquisition": {
+      "scheduled": 230,
+      "fired": 230,
+      "different_binary64": 58,
+      "different_binary64_and_fired": 58
+    },
+    "phy_tx_finish": {
+      "scheduled": 129,
+      "fired": 127,
+      "different_binary64": 36,
+      "different_binary64_and_fired": 36
+    },
+    "mac_tx_finish": {
+      "scheduled": 129,
+      "fired": 127,
+      "different_binary64": 36,
+      "different_binary64_and_fired": 36
+    },
+    "rejected_return": {
+      "scheduled": 0,
+      "fired": 0,
+      "different_binary64": 0,
+      "different_binary64_and_fired": 0
+    }
+  },
+  "all_J_acquisition_lifecycle_keys_match_native": true,
+  "paired_MAC_PHY_TX_finish_deadlines_and_insertion_order_match": true,
+  "native_acquisition_counterfactual": {
+    "scheduled": 1352,
+    "using_ns_division_old_double_add_differs": 335,
+    "using_pinned_native_GetSeconds_old_double_add_differs": 336,
+    "all_native_deadlines_equal_start_ns_plus_6630000": true
+  },
+  "native_TX_finish_counterfactual": {
+    "scheduled": 811,
+    "old_double_add_differs": 216,
+    "native_completion_observed": 810,
+    "unobserved_completion_deadlines_ns": [
+      330054800000
+    ]
+  },
+  "first_stop": {
+    "interval_start_ns": 45656008077,
+    "interval_end_ns": 45662638077,
+    "start_double_17g": "45.656008077000003",
+    "actual_end_double_17g": "45.662638077000004",
+    "native_end_double_17g": "45.662638076999997",
+    "actual_product_17g": "52.00000000000977",
+    "native_product_17g": "51.999999999954042",
+    "actual_bits": 52,
+    "native_bits": 51
+  },
+  "limits": [
+    "Future native-row arithmetic counterfactuals are not a corrected MATLAB trajectory.",
+    "Observed J comparison targets and native TX arithmetic use integer-ns/1e9. This is not a bitwise-equivalent implementation of every ns-3 GetSeconds value.",
+    "J has no rejected-return28ns execution.",
+    "Native TX completion after330s is only a scheduled target.",
+    "Do not change continuous physical signal fields or Model truncation.",
+    "Global scheduler rounding requires broader call-site mapping and is not established by this scope."
+  ],
+  "inputs_sha256": {
+    "autonomous_eighth/data/J_discovery_identity/ordered_events.jsonl": "b72f3b925b12f1f133927fc0b7d7051da7b18217fad5ad61cdfc2bd1af23ba3f",
+    "autonomous_eighth/data/J_discovery_identity/first_divergence.json": "ff1d690c8c2ea264503250f394eb4911a4f277e5cefb8c830e2ee48e6108379d",
+    "autonomous/native_capture/fixture/receiver_history.csv": "d1a075e6895ef3725f5b0081c9137a62c2b3768248f7ed1802776de2710876e1",
+    "autonomous/native_capture/fixture/tx_signatures.csv": "40f51355e02c0950e7608d9eeb6efb590a539bdef37c0381780db5fc086ad5e1",
+    "autonomous_eighth/native/clock_values.csv": "86325199dc107146381b523361c09fd915ce0cddf8072b42e2ffcf06ac5c5e09",
+    "autonomous_seventh/kit/autocase/model/+csr/+phy/SignalEngine.m": "2c488667c0a5a4d46074229415c97d4e3a325d36883b444cd9f6a2a872828fb6",
+    "autonomous_seventh/kit/autocase/model/+csr/+phy/Model.m": "bf290155af0b26d7a4ae31395808a3740b1035d53fe146083e60a60ba3b8a896",
+    "autonomous_seventh/kit/autocase/model/+csr/+mac/Layer.m": "b7c24b8b7cf9f019249677db3e83425d6e583a2dc07f3343c6de9f1887b19556",
+    "autonomous_seventh/kit/autocase/model/+csr/+sim/TransportTiming.m": "3e160d63bf38ffc647617a1f212d4e08c7be7cf6d71977cc63a22f1ee9e46131",
+    "autonomous_seventh/kit/autocase/model/+csr/+sim/EventScheduler.m": "270b644379bd4e48e0e6c5ae9efc8b6d27bae42ce00b6b85da593a203cbb9c78"
+  }
+}

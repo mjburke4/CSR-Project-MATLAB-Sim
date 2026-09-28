@@ -1,0 +1,75 @@
+{
+  "scope_review": "pass",
+  "matlab_executed_by_reviewer": false,
+  "candidate_transform_sha256": "1c91cc37c293003d2899dcf52332052daa76f8762f5c1a219aff6cc9da7176d3",
+  "runner_sha256": "62e51267f447d0299193409a976d30f573e3f029ab55fca6baa8e5d89a15bf1e",
+  "transforms": [
+    {
+      "target": "+ac/InlineKeyNwk.m",
+      "sha256": "ae267f6cc5a0bd3bb8378b6b72e49ca5987ba8b07e8b41175b85519f539b728f",
+      "edit_count": 3,
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/InlineKeySimulation.m",
+      "sha256": "fc62a43eb1b0e317586b9a2882e4b9b95ebf7cf0567715caf007b81fbf6740fc",
+      "edit_count": 3,
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/CheckGateNeighbors.m",
+      "sha256": "40ac1ba5dd1fc5ffb13f9c7d0c53152f948995a74301fd4e18246cf492b50dde",
+      "edit_count": 3,
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/CheckGateNwk.m",
+      "sha256": "5b4e26f9743cd01efd39766cb0b062211d4bb4b4c9ae1a1bb5798fc8162bf3cd",
+      "edit_count": 3,
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/CheckGateSimulation.m",
+      "sha256": "bbd3847c50c7cf75226cdacdc810c56021f17004cf30f6da52ec171b500b6da8",
+      "edit_count": 3,
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/MessageFlagNeighbors.m",
+      "sha256": "b6092d3c2dbf0e4d23a697b43bf9bf932c4d5972c2b99eb5cd2022ab865764f6",
+      "edit_count": 3,
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/MessageFlagNwk.m",
+      "sha256": "eb986d403bda5b6bdbfec392cbaadff850baf4333aec39d1c93fa50d5f60c64c",
+      "edit_count": 3,
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/MessageFlagSimulation.m",
+      "sha256": "daadc55e32df158b010964813b35a6ee4f1f68c4af8b4cb8d5049d64b6170f70",
+      "edit_count": 3,
+      "forward_and_reverse_exact": true
+    }
+  ],
+  "unchanged_baseline_model_files": 99,
+  "natural_gate_precedes_E_and_F": true,
+  "E_diagnostic_stop_does_not_conditionally_skip_F": true,
+  "E_behavioral_delta": "Only remove active-proof exclusion from Overheard send eligibility",
+  "F_behavioral_delta_from_E": "Only set CheckActive for Message, retain existing clears and independent DiscoveryCheckActive",
+  "preserved": [
+    "Overheard validity/timestamp/exponential delay",
+    "Original not-due retry elseif",
+    "Discovery-active Message suppression",
+    "NeighborCheck completion/failure/reset paths",
+    "Distinct control owners",
+    "Generic pump/HOP/MAC/PHY implementation"
+  ],
+  "limits": [
+    "MATLAB E/F runtime remains owner-side",
+    "Baseline not-due retry rescheduling is not native timer fidelity; F changes flag state and can change reachability of that existing branch",
+    "Existing inline KEY_REQUEST failed-admission fallback remains inherited and not fully validated against native outside motivating empty-queue successful-admission case",
+    "No full network or performance parity established"
+  ]
+}

@@ -1,0 +1,295 @@
+{
+  "mode": "native",
+  "draw_count": 2731,
+  "counts": [
+    {
+      "key": "1:mac_slot",
+      "requested": 125,
+      "consumed": 125,
+      "native_available": 171,
+      "unused": 46
+    },
+    {
+      "key": "1:phy_binomial",
+      "requested": 172,
+      "consumed": 172,
+      "native_available": 287,
+      "unused": 115
+    },
+    {
+      "key": "1:sync_threshold",
+      "requested": 256,
+      "consumed": 256,
+      "native_available": 384,
+      "unused": 128
+    },
+    {
+      "key": "2:mac_slot",
+      "requested": 66,
+      "consumed": 66,
+      "native_available": 130,
+      "unused": 64
+    },
+    {
+      "key": "2:phy_binomial",
+      "requested": 62,
+      "consumed": 62,
+      "native_available": 156,
+      "unused": 94
+    },
+    {
+      "key": "2:sync_threshold",
+      "requested": 111,
+      "consumed": 111,
+      "native_available": 216,
+      "unused": 105
+    },
+    {
+      "key": "3:mac_slot",
+      "requested": 103,
+      "consumed": 103,
+      "native_available": 148,
+      "unused": 45
+    },
+    {
+      "key": "3:phy_binomial",
+      "requested": 202,
+      "consumed": 202,
+      "native_available": 278,
+      "unused": 76
+    },
+    {
+      "key": "3:sync_threshold",
+      "requested": 207,
+      "consumed": 207,
+      "native_available": 287,
+      "unused": 80
+    },
+    {
+      "key": "4:mac_slot",
+      "requested": 84,
+      "consumed": 84,
+      "native_available": 137,
+      "unused": 53
+    },
+    {
+      "key": "4:phy_binomial",
+      "requested": 231,
+      "consumed": 231,
+      "native_available": 332,
+      "unused": 101
+    },
+    {
+      "key": "4:sync_threshold",
+      "requested": 264,
+      "consumed": 264,
+      "native_available": 397,
+      "unused": 133
+    },
+    {
+      "key": "5:mac_slot",
+      "requested": 112,
+      "consumed": 112,
+      "native_available": 153,
+      "unused": 41
+    },
+    {
+      "key": "5:phy_binomial",
+      "requested": 185,
+      "consumed": 185,
+      "native_available": 315,
+      "unused": 130
+    },
+    {
+      "key": "5:sync_threshold",
+      "requested": 265,
+      "consumed": 265,
+      "native_available": 401,
+      "unused": 136
+    },
+    {
+      "key": "7:mac_slot",
+      "requested": 31,
+      "consumed": 31,
+      "native_available": 78,
+      "unused": 47
+    },
+    {
+      "key": "7:sync_threshold",
+      "requested": 39,
+      "consumed": 39,
+      "native_available": 98,
+      "unused": 59
+    },
+    {
+      "key": "8:mac_slot",
+      "requested": 42,
+      "consumed": 42,
+      "native_available": 111,
+      "unused": 69
+    },
+    {
+      "key": "8:phy_binomial",
+      "requested": 90,
+      "consumed": 90,
+      "native_available": 174,
+      "unused": 84
+    },
+    {
+      "key": "8:sync_threshold",
+      "requested": 84,
+      "consumed": 84,
+      "native_available": 177,
+      "unused": 93
+    }
+  ],
+  "native_unrequested_draws": 1699,
+  "native_transmissions_available": 811,
+  "native_transmissions_checked": 487,
+  "native_transmissions_unused": 324,
+  "native_tape_exhausted": false,
+  "first_time_difference": {
+    "node": 3,
+    "purpose": "mac_slot",
+    "ordinal": 102,
+    "actual_time_s": 116.35,
+    "expected_time_ns": 3.00001E+11,
+    "rounded_delta_ns": -1.83651E+11
+  },
+  "first_context_mismatch": {
+    "node": 3,
+    "purpose": "physical_tx",
+    "ordinal": 86,
+    "actual_time_s": 116.415,
+    "fields": [
+      "parent.preamble",
+      "parent.total_wire_bytes",
+      "child1.hop_destination",
+      "child1.hop_sequence",
+      "child1.kind",
+      "child1.wire_bytes",
+      "child1.ackable",
+      "child1.snmp_command",
+      "child1.snmp_source",
+      "child1.snmp_destination",
+      "child1.snmp_value"
+    ],
+    "actual": {
+      "source": 3,
+      "rate_kbps": 8,
+      "tx_power_dbm": 33,
+      "preamble": 0,
+      "reservation_slot": 28,
+      "child_count": 1,
+      "total_wire_bytes": 31,
+      "children": [
+        {
+          "child_index": 0,
+          "hop_source": 3,
+          "hop_destination": 5,
+          "hop_sequence": 0,
+          "kind": 7,
+          "wire_bytes": 31,
+          "dscp": 0,
+          "ackable": 0,
+          "has_ack_window": 0,
+          "ack_bitmap_hex": "0000000000000000",
+          "dack_bitmap_hex": "0000000000000000",
+          "control_type": "SNMP_START",
+          "control_payload": {
+            "DelaySeconds": 0,
+            "SourceId": 3,
+            "DestinationId": 7
+          },
+          "snmp_command": 1,
+          "snmp_source": 3,
+          "snmp_destination": 7,
+          "snmp_value": 0,
+          "snmp_nodes": ""
+        }
+      ]
+    },
+    "expected": {
+      "time_ns": 3.00365E+11,
+      "event_order": 83787,
+      "tx_id": 1.2884901974E+10,
+      "source": 3,
+      "source_tx_ordinal": 86,
+      "rate_kbps": 8,
+      "tx_power_dbm": 33,
+      "preamble": 1,
+      "reservation_slot": 28,
+      "consumed_slot": 4,
+      "child_count": 1,
+      "total_wire_bytes": 217,
+      "child_index": 0,
+      "hop_source": 3,
+      "hop_destination": 1,
+      "hop_sequence": 18,
+      "kind": 0,
+      "wire_bytes": 217,
+      "frame_id": 440,
+      "dscp": 0,
+      "flags": 33,
+      "ackable": 1,
+      "is_ack": 0,
+      "is_dack": 0,
+      "has_ack_window": 0,
+      "ack_bitmap": "0",
+      "dack_bitmap": "0",
+      "ack_bitmap_hex": "0000000000000000",
+      "dack_bitmap_hex": "0000000000000000",
+      "destination_type": 0,
+      "speed_key": 8,
+      "has_link_control": 1,
+      "child_tx_power_dbm": 33,
+      "child_rx_power_dbm": -103,
+      "security_count": null,
+      "destination_sequences": "",
+      "compatibility_header_bytes": 17,
+      "compatibility_payload_bytes": 192,
+      "network_source": 3,
+      "network_destination": 1,
+      "network_dscp": 0,
+      "application_bytes": 185,
+      "payload_hex": "000003000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "packet_hex": "00000300000100120021000008014afbfa000003000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "app_attempt_index": 1,
+      "app_flow_index": 1,
+      "app_generated_time_ns": 3.0E+11,
+      "native_app_sequence": 880,
+      "routing_section_hex": "",
+      "routing_sequence": null,
+      "routing_section": null,
+      "routing_total_sections": null,
+      "routing_operation": null,
+      "routing_sender": null,
+      "routing_active_nodes": null,
+      "routing_section_origin": "",
+      "snmp_source": null,
+      "snmp_destination": null,
+      "snmp_destination_type": null,
+      "snmp_command": null,
+      "snmp_value": null,
+      "snmp_nodes": "",
+      "discover_subtype": "",
+      "discover_sequence": null,
+      "discover_active_peers": "",
+      "check_subtype": "",
+      "check_sequence": null,
+      "check_target": null,
+      "check_active": null,
+      "control_native_active_nodes": null,
+      "control_node_type": null,
+      "control_speed_key": null,
+      "control_s0_dbm": null,
+      "control_payload_origin": ""
+    }
+  },
+  "strict_context_matched": false,
+  "numeric_parity_established": false,
+  "time_is_endogenous": true,
+  "probability_absolute_tolerance": 0,
+  "probability_relative_tolerance": 1E-12,
+  "reported_population_gate": "Recorded only; fixed native MAC profile 4 does not use this field"
+}

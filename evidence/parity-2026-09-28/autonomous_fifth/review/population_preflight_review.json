@@ -1,0 +1,54 @@
+{
+  "schema": "csr-population-preflight-static-review-v1",
+  "matlab_execution": "pending_owner_runtime",
+  "preflight_check_count": 6,
+  "blockers": [],
+  "files": {
+    "+ac/populationPreflight.m": "ba9bcaad010f46254e891a5973b03ee6b80af5b4e7aac7bd1ac558c28faf06a4",
+    "+ac/PopulationProbe.m": "f9e80ef5a79626d0a461887eded532ed8788dfaabd18f74d303bca04ae6d994a",
+    "+ac/PopulationNeighbors.m": "016762b7d8b9c0a4ea139fa7dfaea32b891bba1bf77522909d9d74aa1ad1a641",
+    "+ac/PopulationNwk.m": "0fb306a57a40656c511e0a20a5c155b2bc8357c877d8449309a74f3efbfd26fb",
+    "+ac/PopulationSimulation.m": "aec99858386da09cf5584d6a3794b557542f109665f0be4fc09d78c6b8e5d902",
+    "+ac/MessageFlagNeighbors.m": "b6092d3c2dbf0e4d23a697b43bf9bf932c4d5972c2b99eb5cd2022ab865764f6",
+    "+ac/MessageFlagNwk.m": "eb986d403bda5b6bdbfec392cbaadff850baf4333aec39d1c93fa50d5f60c64c",
+    "+ac/MessageFlagSimulation.m": "daadc55e32df158b010964813b35a6ee4f1f68c4af8b4cb8d5049d64b6170f70",
+    "model/+csr/+hop/Layer.m": "21d4a56d782fde35d45f102c137b6c78c3bf4cdc05593d15fb9a7db8f26c2649",
+    "model/+csr/+hop/Frames.m": "a2efd2e79d28cf9b090b6bb4f4e708ae978739ce96d9a1564f32628b990c39a5",
+    "model/+csr/+mac/Layer.m": "b7c24b8b7cf9f019249677db3e83425d6e583a2dc07f3343c6de9f1887b19556",
+    "ref/accepted/configuration.json": "1395006fe685b87cd4eea0038f44658153ed788c01189e7ff78864652e11ca5b",
+    "candidate_transform.json": "a54d3b9e09ddf85321ddf3858b4e44a31cd1568b6d4d15c91cb0c64da078b136"
+  },
+  "candidate_transforms": [
+    {
+      "target": "+ac/PopulationNeighbors.m",
+      "source_sha256": "b6092d3c2dbf0e4d23a697b43bf9bf932c4d5972c2b99eb5cd2022ab865764f6",
+      "target_sha256": "016762b7d8b9c0a4ea139fa7dfaea32b891bba1bf77522909d9d74aa1ad1a641",
+      "exact_transform_and_reverse_pass": true
+    },
+    {
+      "target": "+ac/PopulationNwk.m",
+      "source_sha256": "eb986d403bda5b6bdbfec392cbaadff850baf4333aec39d1c93fa50d5f60c64c",
+      "target_sha256": "0fb306a57a40656c511e0a20a5c155b2bc8357c877d8449309a74f3efbfd26fb",
+      "exact_transform_and_reverse_pass": true
+    },
+    {
+      "target": "+ac/PopulationSimulation.m",
+      "source_sha256": "daadc55e32df158b010964813b35a6ee4f1f68c4af8b4cb8d5049d64b6170f70",
+      "target_sha256": "aec99858386da09cf5584d6a3794b557542f109665f0be4fc09d78c6b8e5d902",
+      "exact_transform_and_reverse_pass": true
+    }
+  ],
+  "claims": {
+    "public_api_only": true,
+    "actual_simulation_bridge": true,
+    "network_run_not_called": true,
+    "runtime_zero_rng_and_tx_assertions_present": true,
+    "runtime_assertions_executed_here": false,
+    "no_original_model_edits_by_reviewer": true
+  },
+  "limits": [
+    "Static source/API review is not MATLAB execution.",
+    "Public injected ACK component inputs validate callback ownership, not physical reception.",
+    "Candidate source binding and preflight do not establish autonomous network or 6000-second parity."
+  ]
+}

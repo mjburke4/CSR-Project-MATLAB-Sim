@@ -1,0 +1,87 @@
+{
+  "schema": "csr.mac-history-repair.v1",
+  "parent_package": "mac-scheduling-batch.zip",
+  "parent_package_sha256": "c2f5a9a66f18ef386de294d708a05a181dc280298d8a9baf0c6cc7632bc01455",
+  "parent_run_manifest_sha256": "2bd8b7cd2ee4540a472f7e8e65c2b99d516b446ff7c271d90759ec8b0e328062",
+  "returned_archive": "out_mac_20260923_090933.zip",
+  "returned_archive_sha256": "471fcf3464371573742f6eafb114d2b14c57c8fe866a020f6681f296eb47a651",
+  "repair_scope": "Validation-only replayCancelWindow empty-selection scalar iteration; accepted core unchanged",
+  "production_core_files_unchanged": 99,
+  "native_inputs_and_references_unchanged": {
+    "inputs": 8,
+    "reference": 25
+  },
+  "runtime_entrypoint": "run_mac_history_recheck",
+  "new_regression_cases": 12,
+  "matlab_repair_executed_here": false,
+  "changes_before_manifest_regeneration": [
+    {
+      "path": "READINESS.md",
+      "kind": "modified",
+      "old_sha256": "30ecea66bff5784ef60a9f900828bffbc7643cd07a68cebb6412bb089e8e36fc",
+      "new_sha256": "05aff694245b17d43841b052145a2562f29f01e4b2cb5378e34c765d8e42cbe3"
+    },
+    {
+      "path": "README.md",
+      "kind": "modified",
+      "old_sha256": "37098366b9942ceceda21010f6f45e7f526c889f57a50f01cd2916ed41d027a3",
+      "new_sha256": "e78932e7c2ff4e63dadc90bdd0faa9d1624dcc78ec3ec1e8a49b4f73aae97b2b"
+    },
+    {
+      "path": "matlab/+mac_replay/MacLayer.m",
+      "kind": "modified",
+      "old_sha256": "08cd70bad9242e402529a18f3143d0d8ac27f49dc352098244bb72247bae566f",
+      "new_sha256": "1e58de0651856340750d0a782f42c9071ab6301b792f3f74ff3ea26e4944ad42"
+    },
+    {
+      "path": "matlab/+mac_replay/MacLayer.patch",
+      "kind": "modified",
+      "old_sha256": "b26819ce0a05c43ba93e1afa28ef580cbc78c0e01fb35e60c98e61838f30d07c",
+      "new_sha256": "94d5ef49e4c02d282c75c128b3a39a50ef2b2cbbbd957a2798f410394e5a3c99"
+    },
+    {
+      "path": "matlab/adapter_provenance.json",
+      "kind": "modified",
+      "old_sha256": "e488dc08c83f09dd2474abd279d867f8c86d84904a3ea962dd1f0e23cae08715",
+      "new_sha256": "98f7d5126b458d24f3a0021ad5bed9f1debdf739d7aff3b474669fa0b7a188f2"
+    },
+    {
+      "path": "matlab/generate_mac_adapter.py",
+      "kind": "modified",
+      "old_sha256": "f8a25025970a24be2b256fc2afaf2c5aec685ea620492e6ea26e9cf1b55f9ba3",
+      "new_sha256": "15236a68487a87c5a55e76bf40a70cba7ddafa7a509e17effa9f74ad5453875f"
+    },
+    {
+      "path": "matlab/run_cancel_boundary_regression.m",
+      "kind": "added",
+      "old_sha256": null,
+      "new_sha256": "b9dbd87cfdb04d68eee6a586296dc2494577c59503604d0dbdc1fdcf51414c61"
+    },
+    {
+      "path": "package_bundle.py",
+      "kind": "modified",
+      "old_sha256": "dbbc35838bd3f5311241390fb0f2af9c8260786b2f45fc872ae61517563e5c08",
+      "new_sha256": "20cba5f665616cfb0e51f486913289209aa0a20022134ac80705539a4230e13c"
+    },
+    {
+      "path": "run_mac_history_recheck.m",
+      "kind": "added",
+      "old_sha256": null,
+      "new_sha256": "4a3483d9756e7aad532a1779537e5373cd75f82deaafbf0ef19ed70ffc661361"
+    }
+  ],
+  "known_production_grouped_retry_difference_fixed": false,
+  "network_parity_claim": false,
+  "parent_matlab_run": {
+    "release": "25.1.0.2943329 (R2025a)",
+    "runtime_hashes_verified": 157,
+    "reservation_cases_passed": 694,
+    "hop_cases_passed": 32,
+    "hop_checks_reported": 236,
+    "grouped_difference_confirmed_policies": 2,
+    "history_prefix_transmissions_matched": 41,
+    "history_prefix_draws_matched": 51,
+    "target_transmissions_exercised": 0
+  },
+  "language_reference": "https://www.mathworks.com/help/matlab/ref/for.html"
+}

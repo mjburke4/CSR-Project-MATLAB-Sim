@@ -1,0 +1,67 @@
+{
+  "schema": "csr-discovery-observed-history-v1",
+  "window_ns": [
+    25000000000,
+    85000000000
+  ],
+  "scope": "recorded native TX and MAC state input; independent MATLAB PHY draws; no aggregate children",
+  "cases": [
+    {
+      "seed": 131,
+      "source_path": "routing_work/grfix/native/s131/window-0-200.csv.gz",
+      "source_sha256": "87cd2ab93b58fffd40b15e8527001e5134f79c50fc1399b0f73a9fb8a43a6113",
+      "scenario_sha256": "e10d210590c80cb839442b7847ee6c7e8b8c21d043da5fe5dcf1f2abb402ca7a",
+      "tx_count": 162,
+      "state_count": 1345,
+      "power_source": "measured_rx_power_plus_pathloss_for_every_tx",
+      "power_observation_count": 442,
+      "initial_states": {
+        "1": "search",
+        "2": "idle",
+        "3": "search",
+        "4": "idle",
+        "5": "search",
+        "7": "idle",
+        "8": "idle"
+      },
+      "target_count": 22,
+      "target_successes": 1,
+      "fixture_sha256": {
+        "tx_csv": "ae5a1df3654fad138ac5b168e6a5b5621a8b1880f20bc1bb0135d8a3cc5d76d4",
+        "states_csv": "4b3d362257028192a560e86f21d6c336904fef7941a8ed212f377d76bbd3444e",
+        "initial_states_csv": "aa85f96fbbb8bb8eaaaabd38b6fbb8b8f5800ccfaa5321d219d57a06adce9ed4",
+        "expected_csv": "512c0d2fb3e3f4b89dc8522c2aed4c54daf342d456220aa4091be254463aa7c1",
+        "scenario_csv": "e10d210590c80cb839442b7847ee6c7e8b8c21d043da5fe5dcf1f2abb402ca7a"
+      }
+    },
+    {
+      "seed": 132,
+      "source_path": "routing_recovery/t25/evidence/tranche-25-ns3-reference/s132/ns3-trace.csv.gz",
+      "source_sha256": "3da17e3397756f8890964d571932a44f7c94573b4d38eac9387342588883a4ef",
+      "scenario_sha256": "fa45217f8631f34d203580842d8a1a12cb18c53a3efbe0b702b2e17aaeb30d48",
+      "tx_count": 288,
+      "state_count": 1913,
+      "power_source": "measured_rx_power_plus_pathloss_for_every_tx",
+      "power_observation_count": 770,
+      "initial_states": {
+        "1": "search",
+        "2": "idle",
+        "3": "search",
+        "4": "idle",
+        "5": "search",
+        "7": "idle",
+        "8": "idle"
+      },
+      "target_count": 3,
+      "target_successes": 3,
+      "fixture_sha256": {
+        "tx_csv": "9f7baa16b3115f062d8879778e27d92da5b7426d1d706fafac6a2d4c827062b2",
+        "states_csv": "43fc8ef56f108220a34523b9cb10847dc13c5a76285ff1a812b96a0ea2903fd6",
+        "initial_states_csv": "8db557b490bd0eab9b314c9a6643b45d32264556311c8210de0b7e3da5932f90",
+        "expected_csv": "942d4dd89d7f0a2ddca7e589346ac7bfadd822b5c7f68a845583a4b1a9889d9d",
+        "scenario_csv": "fa45217f8631f34d203580842d8a1a12cb18c53a3efbe0b702b2e17aaeb30d48"
+      }
+    }
+  ],
+  "complete_common_input": false
+}

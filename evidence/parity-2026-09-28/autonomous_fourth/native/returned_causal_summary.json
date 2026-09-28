@@ -1,0 +1,156 @@
+{
+  "C_timing": {
+    "node5_neighbor_sends": [
+      {
+        "time_s": 11.500311086,
+        "observation_order": 5010,
+        "Kind": "KEY_REQUEST",
+        "Reliable": false,
+        "Accepted": true,
+        "Payload": {
+          "Generation": 0,
+          "SecurityProfile": "behavioral-admission"
+        }
+      },
+      {
+        "time_s": 11.799711086,
+        "observation_order": 5905,
+        "Kind": "KEY_UPDATE",
+        "Reliable": true,
+        "Accepted": true,
+        "Payload": {
+          "Generation": 0,
+          "SecurityProfile": "behavioral-admission"
+        }
+      },
+      {
+        "time_s": 12.314891086,
+        "observation_order": 7500,
+        "Kind": "NEIGHBOR_CHECK",
+        "Reliable": true,
+        "Accepted": true,
+        "Payload": {
+          "Subtype": "discovery",
+          "Sequence": 1,
+          "Active": false,
+          "Generation": 0,
+          "SecurityProfile": "behavioral-admission"
+        }
+      }
+    ],
+    "mismatching_tx": {
+      "time_s": 12.402,
+      "observation_order": 7713,
+      "wire_bytes": 66,
+      "children": [
+        {
+          "kind": "ACK",
+          "hop_sequence": 1,
+          "destination": 1,
+          "wire_bytes": 25,
+          "control_type": null,
+          "control_payload": null
+        },
+        {
+          "kind": "ACK",
+          "hop_sequence": 3,
+          "destination": 1,
+          "wire_bytes": 25,
+          "control_type": null,
+          "control_payload": null
+        },
+        {
+          "kind": "CONTROL",
+          "hop_sequence": 3,
+          "destination": 1,
+          "wire_bytes": 16,
+          "control_type": "NEIGHBOR_CHECK",
+          "control_payload": {
+            "Subtype": "discovery",
+            "Sequence": 1,
+            "Active": false,
+            "Generation": 0,
+            "SecurityProfile": "behavioral-admission"
+          }
+        }
+      ]
+    }
+  },
+  "D_inline_key": {
+    "node5_neighbor_sends": [
+      {
+        "time_s": 11.500311086,
+        "observation_order": 5017,
+        "Kind": "KEY_REQUEST",
+        "Reliable": false,
+        "Accepted": true,
+        "Payload": {
+          "Generation": 0,
+          "SecurityProfile": "behavioral-admission"
+        }
+      },
+      {
+        "time_s": 11.799711086,
+        "observation_order": 5887,
+        "Kind": "KEY_UPDATE",
+        "Reliable": true,
+        "Accepted": true,
+        "Payload": {
+          "Generation": 0,
+          "SecurityProfile": "behavioral-admission"
+        }
+      },
+      {
+        "time_s": 12.314891086,
+        "observation_order": 7482,
+        "Kind": "NEIGHBOR_CHECK",
+        "Reliable": true,
+        "Accepted": true,
+        "Payload": {
+          "Subtype": "discovery",
+          "Sequence": 1,
+          "Active": false,
+          "Generation": 0,
+          "SecurityProfile": "behavioral-admission"
+        }
+      }
+    ],
+    "mismatching_tx": {
+      "time_s": 12.402,
+      "observation_order": 7695,
+      "wire_bytes": 66,
+      "children": [
+        {
+          "kind": "ACK",
+          "hop_sequence": 1,
+          "destination": 1,
+          "wire_bytes": 25,
+          "control_type": null,
+          "control_payload": null
+        },
+        {
+          "kind": "ACK",
+          "hop_sequence": 3,
+          "destination": 1,
+          "wire_bytes": 25,
+          "control_type": null,
+          "control_payload": null
+        },
+        {
+          "kind": "CONTROL",
+          "hop_sequence": 3,
+          "destination": 1,
+          "wire_bytes": 16,
+          "control_type": "NEIGHBOR_CHECK",
+          "control_payload": {
+            "Subtype": "discovery",
+            "Sequence": 1,
+            "Active": false,
+            "Generation": 0,
+            "SecurityProfile": "behavioral-admission"
+          }
+        }
+      ]
+    }
+  }
+}

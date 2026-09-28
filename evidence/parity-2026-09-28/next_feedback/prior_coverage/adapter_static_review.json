@@ -1,0 +1,63 @@
+{
+  "scope": "Static fixture and source audit only; no MATLAB execution performed.",
+  "existing_adapter_binding_all_hashes_match": true,
+  "node_checks": [
+    {
+      "node": 2,
+      "inputs": 2155,
+      "frames": 101,
+      "draws": 130,
+      "warmup_txs": 110,
+      "target_txs": 50,
+      "assertions": {
+        "zero_time_idle_input": true,
+        "all_enqueue_ids_bound": true,
+        "all_tx_ids_bound_and_enqueued": true,
+        "unique_frame_ids": true,
+        "unique_input_orders": true,
+        "draw_ordinals_contiguous": true,
+        "supported_input_kinds": true,
+        "explicit_frame_link_control": true,
+        "valid_mac_rate_power": true,
+        "integer_exact_times": true,
+        "all_draws_before_stop": true
+      }
+    },
+    {
+      "node": 8,
+      "inputs": 1920,
+      "frames": 91,
+      "draws": 111,
+      "warmup_txs": 98,
+      "target_txs": 50,
+      "assertions": {
+        "zero_time_idle_input": true,
+        "all_enqueue_ids_bound": true,
+        "all_tx_ids_bound_and_enqueued": true,
+        "unique_frame_ids": true,
+        "unique_input_orders": true,
+        "draw_ordinals_contiguous": true,
+        "supported_input_kinds": true,
+        "explicit_frame_link_control": true,
+        "valid_mac_rate_power": true,
+        "integer_exact_times": true,
+        "all_draws_before_stop": true
+      }
+    }
+  ],
+  "diff_interpretation": [
+    "class/constructor rename",
+    "suppress periodic native wake in favor of supplied receiver state",
+    "suppress post-TX Search-to-Idle in favor of supplied receiver state",
+    "suppress Track-to-Search sleep timer in favor of supplied receiver state",
+    "additional reservation tick observation",
+    "native bitmap cancellation boundary translation to production per-sequence cancel; protected structured-destination frames and collision assertion"
+  ],
+  "no_queue_packing_reservation_backoff_algorithm_edit": true,
+  "genuine_limits": [
+    "All exogenous inputs are scheduled before runtime-generated callbacks; a mismatch involving an equal timestamp requires boundary-order diagnosis before calling it a production mismatch.",
+    "Receiver availability, queue admission and feedback cancellations are inputs, so a pass cannot validate discovery, ACK generation, HOP custody, or autonomous duty-cycle behavior.",
+    "Existing fidelity manifest nodes list node5 because only node5 was replayed earlier; new nodes must be described as pending MATLAB comparison.",
+    "Original binding origin mentions older nodes2/4/8 acceptance, but those original results were not inspected in this audit."
+  ]
+}

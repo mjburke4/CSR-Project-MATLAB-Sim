@@ -1,0 +1,47 @@
+{
+  "schema": "csr-tenth-discovery-membership-native-evidence-v1",
+  "status": "actual_capture_and_source_audit_pass",
+  "new_native_network_or_component_run": false,
+  "matlab_executed_here": false,
+  "production_fixture_or_guard_edited": false,
+  "full_capture_counts": {
+    "snmp_tx": 36,
+    "start_tx": 28,
+    "done_tx": 8,
+    "start_nwk_receive": 8,
+    "done_nwk_receive": 7,
+    "local_completions": 8,
+    "table_appends": 34,
+    "handoffs": 28,
+    "watchdog_callbacks": 17
+  },
+  "input_sha256": {
+    "autonomous/native_capture/fixture/tx_signatures.csv": "40f51355e02c0950e7608d9eeb6efb590a539bdef37c0381780db5fc086ad5e1",
+    "autonomous/native_capture/run/run.log": "282ed068740ccba5481bf7a35aca3696c54d422e31976107cfee05889c690cee",
+    "autonomous_tenth/data/L_discovery_lifecycle/first_divergence.json": "63cb80d02459e5a4f24cf759d2f22e440d94c50bbf615a9f9742ae496b7c9c19",
+    "autonomous_tenth/data/L_discovery_lifecycle/random_summary.json": "22484cd1f30bbfac98a7220733ecd9bd9b13180f3c82a1b7acd826eb7c970f11",
+    "autonomous_tenth/data/L_discovery_lifecycle/ordered_events.jsonl": "eb2e3d91741b52f03b804cb1cfa3471987a607adac27ebd97fbceee34edbce0a"
+  },
+  "source_sha256": {
+    "autonomous/native_env/csr/model/csr-nwk-layer.h": "bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc",
+    "autonomous/native_env/csr/model/csr-common.h": "f1e0a962862ef1cc5a6994f24988858a2bea70385ce02b1264285de194fe6ae1",
+    "autonomous_ninth/kit/autocase/+ac/DiscoveryLifecycleNwk.m": "8cd20bcb21529638f1cfe6cac68b4e07c19998bba691010ef44cef45dfcf8b29",
+    "autonomous_tenth/kit/autocase/+ac/DiscoveryMembershipNwk.m": "bb4532788c3220a5dc9eba1766c01935dda405a4ea6b62eb163a1f1eb5a18918",
+    "autonomous_tenth/kit/autocase/+ac/DiscoveryMembershipSimulation.m": "017b1742a6eac2520c6b29e170c05a609ab9373637395ae9d770b90c2fce920a"
+  },
+  "artifact_sha256": {
+    "REVIEW.md": "308772ec369ab83e212d65af8cb53ee7d1c1033acc814548de93a7816dba59eb",
+    "audit_membership.py": "8e501b06f792ec40e59f68d881f6f2e10b9723512e058a212d7c1043e2a5dcfb",
+    "candidate_scope_review.json": "9d08c67dd24268a80e29923ef790535e2fdac33a441a568738687d8d613e9886",
+    "finalize_receipt.py": "bd2a7ffbc610d74f895bcca0dc565288b57b9dacbbcfffaa5aac4b97c6244b34",
+    "membership_audit.json": "25a50aa3523b32e99bd40df354d3683f2e9ad0cc0e7e00504f53ed8de203e6e9",
+    "review_candidate.py": "4b95b78e45d678b42f993bc943cfa67a648a3d2fb61024e5a63e9b7e30ca0bbb",
+    "source_path_proof.json": "0cac68cf969011eec24b3ad6959563f88e871a452c3bd870adef5fd50a698e36"
+  },
+  "limits": [
+    "All7 native delivered DONEs match pending targets; broader DONE interruption gates are not exercised here.",
+    "Native requester cap10 is not reached (maximum2); completion known-node snapshot maximum6, so truncation is source-proven but not exercised.",
+    "No new native or MATLAB simulation; continuation remains owner-side.",
+    "Per-node draw and TX ordinal matching does not establish global callback order or 15-percent network parity."
+  ]
+}

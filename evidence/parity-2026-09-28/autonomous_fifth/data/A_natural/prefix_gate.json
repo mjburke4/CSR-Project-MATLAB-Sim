@@ -1,0 +1,33 @@
+{
+  "schema": "csr-autonomous-natural-prefix-v1",
+  "passed": true,
+  "window": "0 <= time < 330",
+  "comparison": "Exact table values after identical CSV import options; no timing tolerance",
+  "reference": "Corrected owner 6,000-second seed-132 return, R2025a",
+  "checks": [
+    {
+      "file": "protocol_trace.csv",
+      "actual_rows": 12200,
+      "reference_rows": 12200,
+      "passed": true,
+      "first_row": null,
+      "first_column": ""
+    },
+    {
+      "file": "phy_trace.csv",
+      "actual_rows": 12198,
+      "reference_rows": 12198,
+      "passed": true,
+      "first_row": null,
+      "first_column": ""
+    },
+    {
+      "file": "application_admission_trace.csv",
+      "actual_rows": 9000,
+      "reference_rows": 9000,
+      "passed": true,
+      "first_row": null,
+      "first_column": ""
+    }
+  ]
+}

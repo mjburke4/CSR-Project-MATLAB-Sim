@@ -1,0 +1,235 @@
+{
+  "2": {
+    "observation_order": 661153,
+    "time_s": 300,
+    "node": 2,
+    "kind": "mac_boundary",
+    "details": {
+      "Cause": "start_before",
+      "State": "Idle",
+      "DataQueueCount": 0,
+      "AckQueueCount": 0,
+      "ReservationSlot": -1,
+      "ReservationCounter": -1,
+      "LastAdvertisedReservation": 15,
+      "LastOpportunitySlot": 26,
+      "PreparationActive": false,
+      "HoldoffOver": false,
+      "PostTxWaitActive": false,
+      "InReceiverUpdate": false,
+      "ActiveNodes": 3,
+      "ReportedActiveNodes": 3,
+      "SlotProfile": "hist-2014-next-tslot-modulo-probe",
+      "Neighbors": [
+        {
+          "PeerId": 4,
+          "ReservationCounter": -1,
+          "LastHeardSeconds": 297.4085536323647
+        },
+        {
+          "PeerId": 8,
+          "ReservationCounter": -449,
+          "LastHeardSeconds": 282.6620953455632
+        }
+      ],
+      "SlotEvent": 0,
+      "HoldoffEvent": 0,
+      "IdleRtsEvent": 0,
+      "FinishEvent": 0,
+      "WakeEvent": 89924,
+      "SleepEvent": 0,
+      "PostTxEvent": 0,
+      "PackingRetryEvent": 0
+    },
+    "timers": {
+      "WakeEvent": {
+        "EventId": 89924,
+        "pending": true,
+        "DeadlineSeconds": 300.3519999999999,
+        "Callback": "@()obj.periodicWake()"
+      }
+    }
+  },
+  "4": {
+    "observation_order": 661177,
+    "time_s": 300,
+    "node": 4,
+    "kind": "mac_boundary",
+    "details": {
+      "Cause": "start_before",
+      "State": "Search",
+      "DataQueueCount": 0,
+      "AckQueueCount": 0,
+      "ReservationSlot": -1,
+      "ReservationCounter": -1,
+      "LastAdvertisedReservation": 0,
+      "LastOpportunitySlot": 12,
+      "PreparationActive": false,
+      "HoldoffOver": true,
+      "PostTxWaitActive": true,
+      "InReceiverUpdate": false,
+      "ActiveNodes": 3,
+      "ReportedActiveNodes": 4,
+      "SlotProfile": "hist-2014-next-tslot-modulo-probe",
+      "Neighbors": [
+        {
+          "PeerId": 2,
+          "ReservationCounter": -221,
+          "LastHeardSeconds": 268.7305536323647
+        },
+        {
+          "PeerId": 5,
+          "ReservationCounter": -2061,
+          "LastHeardSeconds": 193.92409244446938
+        }
+      ],
+      "SlotEvent": 90085,
+      "HoldoffEvent": 0,
+      "IdleRtsEvent": 0,
+      "FinishEvent": 0,
+      "WakeEvent": 89932,
+      "SleepEvent": 0,
+      "PostTxEvent": 89446,
+      "PackingRetryEvent": 0
+    },
+    "timers": {
+      "SlotEvent": {
+        "EventId": 90085,
+        "pending": true,
+        "DeadlineSeconds": 300.001,
+        "Callback": "@()obj.slotTick()"
+      },
+      "WakeEvent": {
+        "EventId": 89932,
+        "pending": true,
+        "DeadlineSeconds": 300.3519999999999,
+        "Callback": "@()obj.periodicWake()"
+      },
+      "PostTxEvent": {
+        "EventId": 89446,
+        "pending": true,
+        "DeadlineSeconds": 317.40854,
+        "Callback": "@()obj.postTxExpired()"
+      }
+    }
+  },
+  "7": {
+    "observation_order": 661200,
+    "time_s": 300,
+    "node": 7,
+    "kind": "mac_boundary",
+    "details": {
+      "Cause": "start_before",
+      "State": "Search",
+      "DataQueueCount": 0,
+      "AckQueueCount": 0,
+      "ReservationSlot": -1,
+      "ReservationCounter": -1,
+      "LastAdvertisedReservation": 31,
+      "LastOpportunitySlot": 23,
+      "PreparationActive": false,
+      "HoldoffOver": true,
+      "PostTxWaitActive": true,
+      "InReceiverUpdate": false,
+      "ActiveNodes": 2,
+      "ReportedActiveNodes": 3,
+      "SlotProfile": "hist-2014-next-tslot-modulo-probe",
+      "Neighbors": {
+        "PeerId": 8,
+        "ReservationCounter": -1310,
+        "LastHeardSeconds": 282.66209244194516
+      },
+      "SlotEvent": 90084,
+      "HoldoffEvent": 0,
+      "IdleRtsEvent": 0,
+      "FinishEvent": 0,
+      "WakeEvent": 89937,
+      "SleepEvent": 0,
+      "PostTxEvent": 86140,
+      "PackingRetryEvent": 0
+    },
+    "timers": {
+      "SlotEvent": {
+        "EventId": 90084,
+        "pending": true,
+        "DeadlineSeconds": 300.001,
+        "Callback": "@()obj.slotTick()"
+      },
+      "WakeEvent": {
+        "EventId": 89937,
+        "pending": true,
+        "DeadlineSeconds": 300.3519999999999,
+        "Callback": "@()obj.periodicWake()"
+      },
+      "PostTxEvent": {
+        "EventId": 86140,
+        "pending": true,
+        "DeadlineSeconds": 301.25307999999995,
+        "Callback": "@()obj.postTxExpired()"
+      }
+    }
+  },
+  "8": {
+    "observation_order": 661211,
+    "time_s": 300,
+    "node": 8,
+    "kind": "mac_boundary",
+    "details": {
+      "Cause": "start_before",
+      "State": "Search",
+      "DataQueueCount": 0,
+      "AckQueueCount": 0,
+      "ReservationSlot": -1,
+      "ReservationCounter": -1,
+      "LastAdvertisedReservation": 19,
+      "LastOpportunitySlot": 10,
+      "PreparationActive": false,
+      "HoldoffOver": true,
+      "PostTxWaitActive": true,
+      "InReceiverUpdate": false,
+      "ActiveNodes": 3,
+      "ReportedActiveNodes": 3,
+      "SlotProfile": "hist-2014-next-tslot-modulo-probe",
+      "Neighbors": [
+        {
+          "PeerId": 2,
+          "ReservationCounter": -1349,
+          "LastHeardSeconds": 268.73055534556323
+        },
+        {
+          "PeerId": 7,
+          "ReservationCounter": -1295,
+          "LastHeardSeconds": 282.7530924419451
+        }
+      ],
+      "SlotEvent": 90083,
+      "HoldoffEvent": 0,
+      "IdleRtsEvent": 0,
+      "FinishEvent": 0,
+      "WakeEvent": 89938,
+      "SleepEvent": 0,
+      "PostTxEvent": 86106,
+      "PackingRetryEvent": 0
+    },
+    "timers": {
+      "SlotEvent": {
+        "EventId": 90083,
+        "pending": true,
+        "DeadlineSeconds": 300.001,
+        "Callback": "@()obj.slotTick()"
+      },
+      "WakeEvent": {
+        "EventId": 89938,
+        "pending": true,
+        "DeadlineSeconds": 300.3519999999999,
+        "Callback": "@()obj.periodicWake()"
+      },
+      "PostTxEvent": {
+        "EventId": 86106,
+        "pending": true,
+        "DeadlineSeconds": 302.66208,
+        "Callback": "@()obj.postTxExpired()"
+      }
+    }
+  }
+}

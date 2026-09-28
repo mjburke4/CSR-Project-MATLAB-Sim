@@ -1,0 +1,323 @@
+{
+  "scope": "Actual returned natural capture; read-only traffic/custody and random-input evidence",
+  "exact_prefix_independent_checks": [
+    {
+      "file": "protocol_trace.csv",
+      "rows": 12200,
+      "exact_csv_cell_match": true
+    },
+    {
+      "file": "phy_trace.csv",
+      "rows": 12198,
+      "exact_csv_cell_match": true
+    },
+    {
+      "file": "application_admission_trace.csv",
+      "rows": 9000,
+      "exact_csv_cell_match": true
+    }
+  ],
+  "attempt_rows": 9000,
+  "all_9000_attempt_nsdp_values_close_against_passive_admit_release_history": true,
+  "all_9000_attempt_admission_decisions_match_nsdp_less_than_16": true,
+  "different_paired_admission_decisions": 226,
+  "first_admission_differences": {
+    "7": {
+      "source": 7,
+      "attempt_index": 29,
+      "time_s": "300.56",
+      "matlab_admitted": false,
+      "native_admitted": true,
+      "matlab_nsdp": 16,
+      "native_nsdp": 15
+    },
+    "4": {
+      "source": 4,
+      "attempt_index": 82,
+      "time_s": "301.62",
+      "matlab_admitted": true,
+      "native_admitted": false,
+      "matlab_nsdp": 15,
+      "native_nsdp": 16
+    },
+    "3": {
+      "source": 3,
+      "attempt_index": 104,
+      "time_s": "302.06",
+      "matlab_admitted": true,
+      "native_admitted": false,
+      "matlab_nsdp": 15,
+      "native_nsdp": 16
+    },
+    "2": {
+      "source": 2,
+      "attempt_index": 111,
+      "time_s": "302.2",
+      "matlab_admitted": false,
+      "native_admitted": true,
+      "matlab_nsdp": 16,
+      "native_nsdp": 15
+    },
+    "8": {
+      "source": 8,
+      "attempt_index": 135,
+      "time_s": "302.68",
+      "matlab_admitted": true,
+      "native_admitted": false,
+      "matlab_nsdp": 15,
+      "native_nsdp": 16
+    },
+    "5": {
+      "source": 5,
+      "attempt_index": 250,
+      "time_s": "304.98",
+      "matlab_admitted": false,
+      "native_admitted": true,
+      "matlab_nsdp": 16,
+      "native_nsdp": 15
+    }
+  },
+  "source_summary": [
+    {
+      "source": 2,
+      "attempts": 1500,
+      "admitted": 29,
+      "nsdp_blocked": 1471,
+      "own_custody_releases": 13,
+      "source_owned_at_330": 16,
+      "all_attempt_nsdp_values_match_admit_minus_release_history": true,
+      "first_different_admission_time_s": "302.2"
+    },
+    {
+      "source": 3,
+      "attempts": 1500,
+      "admitted": 60,
+      "nsdp_blocked": 1440,
+      "own_custody_releases": 44,
+      "source_owned_at_330": 16,
+      "all_attempt_nsdp_values_match_admit_minus_release_history": true,
+      "first_different_admission_time_s": "302.06"
+    },
+    {
+      "source": 4,
+      "attempts": 1500,
+      "admitted": 24,
+      "nsdp_blocked": 1476,
+      "own_custody_releases": 8,
+      "source_owned_at_330": 16,
+      "all_attempt_nsdp_values_match_admit_minus_release_history": true,
+      "first_different_admission_time_s": "301.62"
+    },
+    {
+      "source": 5,
+      "attempts": 1500,
+      "admitted": 26,
+      "nsdp_blocked": 1474,
+      "own_custody_releases": 10,
+      "source_owned_at_330": 16,
+      "all_attempt_nsdp_values_match_admit_minus_release_history": true,
+      "first_different_admission_time_s": "304.98"
+    },
+    {
+      "source": 7,
+      "attempts": 1500,
+      "admitted": 37,
+      "nsdp_blocked": 1463,
+      "own_custody_releases": 21,
+      "source_owned_at_330": 16,
+      "all_attempt_nsdp_values_match_admit_minus_release_history": true,
+      "first_different_admission_time_s": "300.56"
+    },
+    {
+      "source": 8,
+      "attempts": 1500,
+      "admitted": 31,
+      "nsdp_blocked": 1469,
+      "own_custody_releases": 15,
+      "source_owned_at_330": 16,
+      "all_attempt_nsdp_values_match_admit_minus_release_history": true,
+      "first_different_admission_time_s": "302.68"
+    }
+  ],
+  "sampled_request_contexts": [
+    {
+      "time_s": 10.01,
+      "node": 1,
+      "matlab_draw": 10,
+      "native_draw": 11,
+      "matlab_ordinal": 1,
+      "native_ordinal": 1,
+      "active_nodes": 1,
+      "low": 0,
+      "high": 31,
+      "profile": 4,
+      "state": "search",
+      "reservation_counter": -1,
+      "reservation_slot": -1,
+      "matlab_reported_nodes": 1,
+      "native_reported_nodes": 0,
+      "selected_request_context_matches": true
+    },
+    {
+      "time_s": 300.001,
+      "node": 7,
+      "matlab_draw": 19,
+      "native_draw": 6,
+      "matlab_ordinal": 40,
+      "native_ordinal": 45,
+      "active_nodes": 2,
+      "low": 0,
+      "high": 31,
+      "profile": 4,
+      "state": "search",
+      "reservation_counter": -1,
+      "reservation_slot": -1,
+      "matlab_reported_nodes": 3,
+      "native_reported_nodes": 3,
+      "selected_request_context_matches": true
+    },
+    {
+      "time_s": 300.001,
+      "node": 8,
+      "matlab_draw": 10,
+      "native_draw": 18,
+      "matlab_ordinal": 70,
+      "native_ordinal": 56,
+      "active_nodes": 3,
+      "low": 0,
+      "high": 31,
+      "profile": 4,
+      "state": "search",
+      "reservation_counter": -1,
+      "reservation_slot": -1,
+      "matlab_reported_nodes": 3,
+      "native_reported_nodes": 3,
+      "selected_request_context_matches": true
+    }
+  ],
+  "initial_source_transfer_chain": [
+    {
+      "source": 7,
+      "peer": 8,
+      "matlab_packet_id": 5,
+      "native_packet_id": 883,
+      "matlab_first_data_tx_s": "301.496",
+      "native_first_data_tx_s": "300.09199999999998",
+      "matlab_first_data_rx_s": "301.740812441945",
+      "native_first_data_rx_s": "300.336812442",
+      "matlab_first_custody_release_s": "302.029292441945",
+      "native_first_custody_release_s": "300.54729244200001",
+      "matlab_first_replacement_admission_s": "302.04",
+      "native_first_replacement_admission_s": "300.56"
+    },
+    {
+      "source": 8,
+      "peer": 2,
+      "matlab_packet_id": 6,
+      "native_packet_id": 884,
+      "matlab_first_data_tx_s": "300.144",
+      "native_first_data_tx_s": "316.71899999999999",
+      "matlab_first_data_rx_s": "301.381275345563",
+      "native_first_data_rx_s": "316.96381534599999",
+      "matlab_first_custody_release_s": "302.679295345563",
+      "native_first_custody_release_s": "317.29129534600003",
+      "matlab_first_replacement_admission_s": "302.68",
+      "native_first_replacement_admission_s": "317.3"
+    }
+  ],
+  "verified_initial_data_lineage": [
+    {
+      "source": 7,
+      "peer": 8,
+      "flow_index_0based": 4,
+      "attempt_index": 1,
+      "generated_time_ns": 300000000000,
+      "matlab_tx_time_s": 301.496,
+      "native_tx_time_ns": 300092000000,
+      "matlab_hop_sequence": 12,
+      "native_hop_sequence": 11,
+      "matlab_application_id": 5,
+      "native_application_id": "883",
+      "native_tx_id": "30064771109"
+    },
+    {
+      "source": 8,
+      "peer": 2,
+      "flow_index_0based": 5,
+      "attempt_index": 1,
+      "generated_time_ns": 300000000000,
+      "matlab_tx_time_s": 300.144,
+      "native_tx_time_ns": 316719000000,
+      "matlab_hop_sequence": 13,
+      "native_hop_sequence": 14,
+      "matlab_application_id": 6,
+      "native_application_id": "884",
+      "native_tx_id": "34359738451"
+    }
+  ],
+  "traffic_rng_draws": 0,
+  "case_B_error": {
+    "identifier": "MATLAB:string:CannotConvertMissingElementToChar",
+    "message": "Conversion of element 1 from <missing> to character vector is not supported.",
+    "stack": [
+      {
+        "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-seed132-tests\\autocase\\+ac\\Streams.m",
+        "name": "Streams.take",
+        "line": 150
+      },
+      {
+        "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-seed132-tests\\autocase\\+ac\\MacStream.m",
+        "name": "MacStream.randi",
+        "line": 24
+      },
+      {
+        "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-seed132-tests\\autocase\\model\\+csr\\+mac\\Layer.m",
+        "name": "Layer.pickSlot",
+        "line": 474
+      },
+      {
+        "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-seed132-tests\\autocase\\model\\+csr\\+mac\\Layer.m",
+        "name": "Layer.prepare",
+        "line": 440
+      },
+      {
+        "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-seed132-tests\\autocase\\model\\+csr\\+mac\\Layer.m",
+        "name": "Layer.idleRts",
+        "line": 375
+      },
+      {
+        "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-seed132-tests\\autocase\\model\\+csr\\+mac\\Layer.m",
+        "name": "@()obj.idleRts()",
+        "line": 366
+      },
+      {
+        "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-seed132-tests\\autocase\\model\\+csr\\+sim\\EventScheduler.m",
+        "name": "EventScheduler.run",
+        "line": 158
+      },
+      {
+        "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-seed132-tests\\autocase\\model\\+csr\\+sim\\NetworkSimulation.m",
+        "name": "NetworkSimulation.run",
+        "line": 183
+      },
+      {
+        "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-seed132-tests\\autocase\\run_autonomous_tests.m",
+        "name": "runCase",
+        "line": 106
+      },
+      {
+        "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-seed132-tests\\autocase\\run_autonomous_tests.m",
+        "name": "run_autonomous_tests",
+        "line": 59
+      }
+    ]
+  },
+  "case_B_random_request_rows": 0,
+  "inference": "The new natural capture directly observes different MAC samples preceding the traffic/custody divergence. It does not test equal-input protocol equivalence because caseB failed in the harness before sample consumption.",
+  "production_fix_supported": false,
+  "limits": [
+    "Matching listed draw-request fields is not a complete network-state equality claim.",
+    "Natural draw ordinals differ by300s; align by semantic event context, not equal ordinals.",
+    "Natural sources7 and8 do not remain persistently advantaged by their first completion; full6000s attribution remains separate."
+  ]
+}

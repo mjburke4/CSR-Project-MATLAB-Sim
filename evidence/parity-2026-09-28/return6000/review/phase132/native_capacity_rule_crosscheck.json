@@ -1,0 +1,52 @@
+{
+  "schema": "csr-current-matlab-capacity-rule-arithmetic-vs-ns3-v1",
+  "scope": "Translate current Layer.m capacity arithmetic and supply ns-3 ordered admission/completion/expiry inputs. Not executable MATLAB or receiver-ACK-decision validation.",
+  "inputs": [
+    {
+      "path": "return6000/kit/csr6000/model/+csr/+hop/Layer.m",
+      "sha256": "21d4a56d782fde35d45f102c137b6c78c3bf4cdc05593d15fb9a7db8f26c2649"
+    },
+    {
+      "path": "return6000/history/longrun_recovery/extracted/latency-review/latency-review/native/output/s132-capacity-events.csv",
+      "sha256": "023777f9ad5221efa3664d1d906ebcdda6bb110f41eb3fc43b4c33af0ad97227"
+    }
+  ],
+  "links": [
+    {
+      "node": 8,
+      "peer": 2,
+      "events": 3482,
+      "scalar_state_checks": 17410,
+      "event_counts": {
+        "hop_admission:admitted": 1271,
+        "hop_completion:ack": 300,
+        "hop_completion:dack": 945,
+        "hop_capacity_release:dack_expiry": 940,
+        "hop_completion:no_ack": 26
+      },
+      "mismatches": [],
+      "final_outstanding": 5,
+      "final_threshold": 4,
+      "final_dack_held": 5,
+      "final_resends": 0
+    },
+    {
+      "node": 2,
+      "peer": 4,
+      "events": 4871,
+      "scalar_state_checks": 24355,
+      "event_counts": {
+        "hop_admission:admitted": 1760,
+        "hop_completion:ack": 370,
+        "hop_completion:dack": 1360,
+        "hop_capacity_release:dack_expiry": 1351,
+        "hop_completion:no_ack": 30
+      },
+      "mismatches": [],
+      "final_outstanding": 9,
+      "final_threshold": 8,
+      "final_dack_held": 9,
+      "final_resends": 0
+    }
+  ]
+}

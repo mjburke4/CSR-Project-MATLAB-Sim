@@ -1,0 +1,149 @@
+{
+  "schema": "csr-two-case-capture-v1",
+  "case_id": "source5_132",
+  "seed": 132,
+  "window_ns": [
+    300000000000,
+    330000000000
+  ],
+  "source_files": [
+    {
+      "role": "instrumentation_generator",
+      "path": "provenance/prepare_overlay.py",
+      "sha256": "04a6d555177a44638aeba7863e7ed977e69173c692e1d14afa92422147f7b425"
+    },
+    {
+      "role": "native_capture_source",
+      "path": "provenance/capture.cc",
+      "sha256": "b859a78a9e260e87689126569aeb6693861ffb78f28da2d296ff9eaa4287cc4d"
+    },
+    {
+      "role": "native_overlay",
+      "path": "overlay/ns3/csr-net-device.h",
+      "sha256": "d70027396a1700122f432dbb3e3a5e1d28eac5d848da7f72c8a24201ef7dc664"
+    },
+    {
+      "role": "native_reference",
+      "path": "provenance/native_s132_prefix_0_330.csv.gz",
+      "sha256": "6819889725eb891112b57dbc9f8e63c35af7e87fcf64f77c6dbe3f490d3c63a8"
+    },
+    {
+      "role": "overlay_csr-hop-layer.h",
+      "path": "overlay/ns3/csr-hop-layer.h",
+      "sha256": "0e8728148762d27cefffe01e7f5ce5c6e87876a6a50f451967a660dafc8fbfef"
+    },
+    {
+      "role": "overlay_csr-mac-core.h",
+      "path": "overlay/ns3/csr-mac-core.h",
+      "sha256": "f70b5e076ff59148c2df5b24ce66bce706bff37b35b33754ba4319d68e60e7cf"
+    },
+    {
+      "role": "overlay_csr-nwk-layer.h",
+      "path": "overlay/ns3/csr-nwk-layer.h",
+      "sha256": "08e0c44570eac3315643e086458694d432a24e4d99f7744aa8e56d16f434aae6"
+    },
+    {
+      "role": "overlay_csr-phy-model.h",
+      "path": "overlay/ns3/csr-phy-model.h",
+      "sha256": "a524e392e9e06a7499cf29b41db9de3a0a43f328b3e211f21883458013330af4"
+    },
+    {
+      "role": "overlay_mac-replay-hooks.h",
+      "path": "overlay/ns3/mac-replay-hooks.h",
+      "sha256": "7b1982d8d49a22cba53668787c9e63129d1df4420b6a189ceb2e16bfd786d3ea"
+    },
+    {
+      "role": "overlay_source5-observer.h",
+      "path": "overlay/ns3/source5-observer.h",
+      "sha256": "76e4149619df3f5b36810f359c77dc74114d81fc30b441a27913da807190a80e"
+    },
+    {
+      "role": "scenario",
+      "path": "provenance/scenario_s132.csv",
+      "sha256": "fa45217f8631f34d203580842d8a1a12cb18c53a3efbe0b702b2e17aaeb30d48"
+    }
+  ],
+  "reference_lineage": {
+    "original_full_trace_sha256": "3da17e3397756f8890964d571932a44f7c94573b4d38eac9387342588883a4ef",
+    "strict_stop_ns": 330000000000,
+    "rows": 48919,
+    "extractor": "run_bounded_capture.py:copy_compact_reference"
+  },
+  "capture": {
+    "status": "verified",
+    "prefix_fidelity": "passed",
+    "prefix_end_ns": 330000000000,
+    "prefix_rows": 48919,
+    "trace_path": "capture/ns3-trace.csv",
+    "observations_path": "capture/source5_native.tsv",
+    "mac_tape_paths": {
+      "inputs": "inputs/inputs.csv",
+      "frames": "inputs/frames.csv",
+      "draws": "inputs/draws.csv",
+      "tx": "inputs/tx.csv",
+      "tx_frames": "inputs/tx_frames.csv"
+    }
+  },
+  "coverage": {
+    "counts": {
+      "mac_inputs": 17881,
+      "mac_draws": 928,
+      "tx": 811,
+      "tx_children": 1495,
+      "observer_events": 25298
+    },
+    "event_counts": {
+      "boundary_state": 1,
+      "nwk_submit": 180,
+      "node5_nwk_submit": 35,
+      "nwk_scan": 369,
+      "hop_gate": 5627,
+      "nwk_gate": 5627,
+      "hop_admit": 120,
+      "node5_nwk_scan": 69,
+      "node5_hop_gate": 856,
+      "node5_nwk_gate": 856,
+      "node5_hop_admit": 26,
+      "receiver_state": 926,
+      "mac_service": 264,
+      "mac_tx": 264,
+      "mac_tx_child": 334,
+      "rx_signal_arrival": 689,
+      "rx_sync_draw": 689,
+      "rx_sync_gate": 689,
+      "sync_change": 2268,
+      "rx_acquisition_candidate": 468,
+      "rx_acquire": 461,
+      "rx_error_interval": 1557,
+      "rx_preamble_end": 594,
+      "rx_phy_decision": 459,
+      "rx_child": 526,
+      "relay_rx": 54,
+      "mac_pack_blocked": 159,
+      "hop_feedback": 100,
+      "rx_prior_stage": 228,
+      "rx_binomial_draw": 568,
+      "node5_relay_rx": 2,
+      "node5_mac_service": 35,
+      "node5_mac_pack_blocked": 31,
+      "node5_mac_tx": 35,
+      "node4_ack_drop": 88,
+      "node4_ack_rx": 24,
+      "node5_hop_feedback": 20
+    },
+    "observability": {
+      "aggregate_children": "observed",
+      "receiver_state": "observed",
+      "competing_signals": "observed",
+      "mac_integer_draws": "observed",
+      "phy_random_tape": "observed",
+      "nwk_hop_capacity": "observed"
+    }
+  },
+  "replay": {
+    "status": "replay_pending"
+  },
+  "claims": {
+    "full_network_parity": false
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema": "csr-current6000-owner-kit-readiness-v1",
+  "package_revision": "v1",
+  "matlab_command": "report = run_6000_batch;",
+  "return_artifact": "out_6000_*.zip",
+  "matlab_runtime_required": "R2025a or later",
+  "matlab_execution": "pending owner run",
+  "native_reference_reuse_verified": true,
+  "new_native_simulation_required": false,
+  "new_native_simulation_executed": false,
+  "seeds": [
+    131,
+    132
+  ],
+  "duration_seconds_per_seed": 6000,
+  "comparison_target_percent": 15,
+  "production_model_changed": false,
+  "candidate_matlab_files": 96,
+  "candidate_matlab_tree_sha256": "fcf84980619b6902660eb9192b4d71f3f912cafd8fb74074fc752560372d1b4e",
+  "candidate_matches_successful_owner_return": true,
+  "candidate_owner_return": "out_next_20260924_100916.zip",
+  "candidate_owner_return_sha256": "38a841bacf3f6095d3c5b8dbab388559de3fbf5cb2d55988b461e33109cb0882",
+  "preflight": "review/preflight.json",
+  "independent_review": "review/final_review.md",
+  "native_binding": "review/native_binding.json",
+  "phase_analysis": "Full protocol/PHY traces retained for independent causal-path analysis after return.",
+  "runtime_selfcheck": "Synthetic reporting boundaries and both actual native ledgers, without a simulator, before either long case.",
+  "completed_case_resume": "Exact runtime/plan identity and sealed CSV/JSON/log hashes; interrupted simulations restart in separate attempts.",
+  "prior_owner_case_wall_seconds": {
+    "s131": 6442.5303491,
+    "s132": 10953.4569905
+  },
+  "runtime_estimate_is_guarantee": false,
+  "network_parity_established": false,
+  "five_seed_acceptance_claimed": false,
+  "statistical_equivalence_claimed": false
+}

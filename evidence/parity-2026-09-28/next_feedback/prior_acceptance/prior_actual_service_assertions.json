@@ -1,0 +1,165 @@
+{
+  "schema": "csr-prior-actual-service-crosscheck-v1",
+  "owner_archive": "next_feedback/recovered/NS3 to MATLAB Network Simulation/out_mh_20260923_121427.zip",
+  "owner_archive_sha256": "a513c157d7ba79d86cf32555fa412b6087a745e6a301c4771f14e1f4e8e5d7c4",
+  "native_reference_sha256": "60029a35f6c375987bc3bb3a026eef38f88d2bdcfe61a9977d3b823e5b2cef30",
+  "scope": "Prior real R2025a conditional MAC outputs under common native inputs; not autonomous-network parity.",
+  "new_owner_run_required_for_these_mac_assertions": false,
+  "nodes": [
+    {
+      "node": 8,
+      "full_0_330_tx": {
+        "pass": true,
+        "expected_rows": 98,
+        "actual_rows": 98
+      },
+      "target_300_330_tx": {
+        "pass": true,
+        "expected_rows": 50,
+        "actual_rows": 50
+      }
+    },
+    {
+      "node": 2,
+      "full_0_330_tx": {
+        "pass": true,
+        "expected_rows": 110,
+        "actual_rows": 110
+      },
+      "target_300_330_tx": {
+        "pass": true,
+        "expected_rows": 50,
+        "actual_rows": 50
+      }
+    }
+  ],
+  "targets": [
+    {
+      "node": 8,
+      "new_capture_frame_id": 444,
+      "prior_capture_frame_id": 172,
+      "enqueue_time_ns": 300000000028,
+      "native_first_tx": {
+        "time_ns": "316719000000",
+        "node": "8",
+        "consumed_slot": "13",
+        "next_slot": "1",
+        "wirebytes": "217",
+        "rate": "8",
+        "power": "33",
+        "preamble_bits": "104",
+        "duration_ns": "244800000",
+        "frame_ids": "444"
+      },
+      "actual_first_tx": {
+        "time_ns": "316719000000",
+        "node": "8",
+        "consumed_slot": "13",
+        "next_slot": "1",
+        "wirebytes": "217",
+        "rate": "8",
+        "power": "33",
+        "preamble_bits": "104",
+        "duration_ns": "244800000",
+        "frame_ids": "444"
+      },
+      "waiting_ns": 16718999972,
+      "preceding_tx_count": 34,
+      "feedback_peer": 7,
+      "checks": {
+        "first_tx_exact": true,
+        "enqueue_applied_at_expected_time": true,
+        "preceding_tx_exact": true,
+        "preceding_feedback_peer_matches": true
+      },
+      "pass": true
+    },
+    {
+      "node": 2,
+      "new_capture_frame_id": 439,
+      "prior_capture_frame_id": 170,
+      "enqueue_time_ns": 300000000028,
+      "native_first_tx": {
+        "time_ns": "301639000000",
+        "node": "2",
+        "consumed_slot": "30",
+        "next_slot": "8",
+        "wirebytes": "217",
+        "rate": "8",
+        "power": "33",
+        "preamble_bits": "104",
+        "duration_ns": "244800000",
+        "frame_ids": "439"
+      },
+      "actual_first_tx": {
+        "time_ns": "301639000000",
+        "node": "2",
+        "consumed_slot": "30",
+        "next_slot": "8",
+        "wirebytes": "217",
+        "rate": "8",
+        "power": "33",
+        "preamble_bits": "104",
+        "duration_ns": "244800000",
+        "frame_ids": "439"
+      },
+      "waiting_ns": 1638999972,
+      "preceding_tx_count": 0,
+      "feedback_peer": null,
+      "checks": {
+        "first_tx_exact": true,
+        "enqueue_applied_at_expected_time": true,
+        "preceding_tx_exact": true,
+        "preceding_feedback_peer_matches": true
+      },
+      "pass": true
+    },
+    {
+      "node": 2,
+      "new_capture_frame_id": 619,
+      "prior_capture_frame_id": 238,
+      "enqueue_time_ns": 316756000028,
+      "native_first_tx": {
+        "time_ns": "319215000000",
+        "node": "2",
+        "consumed_slot": "30",
+        "next_slot": "15",
+        "wirebytes": "217",
+        "rate": "8",
+        "power": "33",
+        "preamble_bits": "104",
+        "duration_ns": "244800000",
+        "frame_ids": "619"
+      },
+      "actual_first_tx": {
+        "time_ns": "319215000000",
+        "node": "2",
+        "consumed_slot": "30",
+        "next_slot": "15",
+        "wirebytes": "217",
+        "rate": "8",
+        "power": "33",
+        "preamble_bits": "104",
+        "duration_ns": "244800000",
+        "frame_ids": "619"
+      },
+      "waiting_ns": 2458999972,
+      "preceding_tx_count": 5,
+      "feedback_peer": 8,
+      "checks": {
+        "first_tx_exact": true,
+        "enqueue_applied_at_expected_time": true,
+        "preceding_tx_exact": true,
+        "preceding_feedback_peer_matches": true
+      },
+      "pass": true
+    }
+  ],
+  "frame_identity_binding": {
+    "method": "Ordered equal enqueue fields plus every frame field including packet_hex; frame_id/event_order are capture-local",
+    "bijective_frame_count": 192
+  },
+  "original_history_completed": true,
+  "original_history_behavioral_pass": true,
+  "all_passed": true
+}

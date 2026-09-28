@@ -1,0 +1,52 @@
+{
+  "schema": "csr-discovery-membership-preflight-static-review-v1",
+  "checks": 5,
+  "blockers": [],
+  "runtime_status": "New M preflight and network continuation not executed; MATLAB owner runtime pending.",
+  "files": {
+    "+ac/discoveryMembershipPreflight.m": "ed48bfe07db7b97a7dce67d0320a98213cdb1989726e1ccf42dfc8f73031345a",
+    "+ac/DiscoveryMembershipProbe.m": "51f9e9c658087f41c266e320a0bd2b81b4a9d4ca435fcc8b245427e266cbafa3",
+    "+ac/DiscoveryMembershipNwk.m": "bb4532788c3220a5dc9eba1766c01935dda405a4ea6b62eb163a1f1eb5a18918",
+    "+ac/DiscoveryMembershipSimulation.m": "017b1742a6eac2520c6b29e170c05a609ab9373637395ae9d770b90c2fce920a",
+    "+ac/DiscoveryLifecycleNwk.m": "8cd20bcb21529638f1cfe6cac68b4e07c19998bba691010ef44cef45dfcf8b29",
+    "+ac/DiscoveryLifecycleSimulation.m": "13c7b9d7f94311127902177c940698176d0a7fece480a5ded5521343e91c8c84",
+    "+ac/AdmissionRoutes.m": "8f4ac059cc6ac2819527b84535b5cf329e4f78cfbb109a78e040fe826cb1422d",
+    "model/+csr/+nwk/RoutingCodec.m": "09ed97af746dbcc7427da868c977e7be334aa67aaf1824142b2f3bf004783121",
+    "run_autonomous_tests.m": "b01b7edd53b6d3ec316ba6a4e316426b6099cd1bf8057b1c2ec191f9cf32f98c",
+    "candidate_transform.json": "82ea2a817d0d509699b9034c275b4e24e1e5a8d9456151c945a878427ef50d8b"
+  },
+  "source_bound_candidate_transforms": {
+    "count": 26,
+    "all_forward_reproduce_target": true,
+    "all_reverse_recover_source": true
+  },
+  "original_model_files_byte_unchanged": 99,
+  "candidate_behavioral_scope": "Only remove reachable-route merge from advanceScan; preserve local-completion and received-DONE population, existing controls, timing and guards.",
+  "public_api_checks": [
+    "Baseline late route7 via5 yields extra START at watchdog",
+    "Candidate watchdog preserves existing membership/order and late route metadata",
+    "Public transit DATA input4\u21923\u21927 still submits via5 without populating scan membership",
+    "Legitimate received DONE report adds late member7 with existing SNMP address/size semantics",
+    "A subsequent local discovery completion can populate late route7"
+  ],
+  "bindings": {
+    "runner_preflight": "ac.discoveryMembershipPreflight(config,...)",
+    "runner_case": "M_discovery_membership",
+    "simulation": "ac.DiscoveryMembershipSimulation",
+    "network": "ac.DiscoveryMembershipNwk"
+  },
+  "scope": [
+    "Public observe and ROUTING UPDATE create real selected component routes; no private state hooks",
+    "Transit DATA verifies next-hop5 without changing local application destination policy",
+    "No PHY/MAC/network run or random draws in new preflight",
+    "Existing snapshot cap and insertion ordering remain unchanged",
+    "Repeated-DONE watchdog policy intentionally not asserted; outside this candidate scope"
+  ],
+  "independent_builder_manual_review": "No blockers reported; repeated-DONE assertion removed as requested",
+  "receiver_peer_review": "Final corrected-helper static review passed with no blockers; repeated-DONE removal verified.",
+  "frozen": true,
+  "receiver_peer_review_receipt": {
+    "path": "autonomous_tenth/receiver/membership_preflight_peer_review.json",
+    "sha256": "e55695d64d6c7cc6df853477789f16d91ed414953a1e5588a5361cabe4f5efdb"
+  }
+}

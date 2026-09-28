@@ -1,0 +1,72 @@
+{
+  "schema": "csr-population-publication-preflight-v1",
+  "passed": true,
+  "checks": [
+    {
+      "name": "actual_bridge_publishes_before_key_request_enqueue",
+      "passed": true,
+      "details": {
+        "raw_count": 2,
+        "mac_count": 2,
+        "publication_precedes_response": true
+      }
+    },
+    {
+      "name": "acked_proof_changes_raw_count_without_publishing",
+      "passed": true,
+      "details": {
+        "raw_count": 3,
+        "latched_mac_count": 2,
+        "published_values": 2
+      }
+    },
+    {
+      "name": "passive_key_data_ack_and_routing_enqueue_do_not_publish",
+      "passed": true,
+      "details": {
+        "actual_ack_enqueued": true,
+        "actual_routing_enqueued": true,
+        "raw_count": 3,
+        "mac_count": 2
+      }
+    },
+    {
+      "name": "qualifying_discover_check_routing_publish_current_count",
+      "passed": true,
+      "details": {
+        "published_values": [
+          2,
+          3,
+          3,
+          3
+        ],
+        "raw_count": 3,
+        "mac_count": 3
+      }
+    },
+    {
+      "name": "stale_peer_retains_count_until_qualified_republication",
+      "passed": true,
+      "details": {
+        "persistent_count": 2,
+        "published_values": [
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "name": "admission_disabled_publishes_before_changed_and_response",
+      "passed": true,
+      "details": {
+        "first_event": "publish",
+        "second_event": "neighbor_changed"
+      }
+    }
+  ],
+  "network_run_method_called": false,
+  "physical_transmissions": 0,
+  "random_variates_requested": 0,
+  "integrated_component_clock_s": 0,
+  "scope": "Actual G public NWK/HOP/MAC callback bridge plus separate public Neighbors timer; not network parity"
+}

@@ -1,0 +1,117 @@
+{
+  "schema": "csr-two-case-capture-v1",
+  "case_id": "discovery131",
+  "seed": 131,
+  "window_ns": [
+    25000000000,
+    85000000000
+  ],
+  "source_files": [
+    {
+      "role": "scenario",
+      "path": "../schema_review/scenario_s131.csv",
+      "sha256": "e10d210590c80cb839442b7847ee6c7e8b8c21d043da5fe5dcf1f2abb402ca7a"
+    },
+    {
+      "role": "native_reference",
+      "path": "../schema_review/native_s131_prefix_0_85.csv.gz",
+      "sha256": "5b7ea32822f91e9404afd9ff25e31973c6c9f462e7360967bc0dcf5d8eab6bac"
+    },
+    {
+      "role": "instrumentation_generator",
+      "path": "../schema_review/discovery_instrumentation_generator.py",
+      "sha256": "93b2fc4ac5512f59d2aef9f01750f395f9da4540f339b0bd0997b4d386690dec"
+    },
+    {
+      "role": "native_overlay",
+      "path": "seed131/compiled_overlay/overlay/ns3/csr-net-device.h",
+      "sha256": "021845ded9de62e77e1aee6921eb7d71ae340eab0ea9cdd1369d1dd4fe313c66"
+    },
+    {
+      "role": "native_capture_source",
+      "path": "seed131/compiled_overlay/capture.cc",
+      "sha256": "9e9e19e1bd7b50ccb430bef3d6f5ef701f0e347721e7272940537ea7ca5ac01b"
+    },
+    {
+      "role": "native_capture_runner",
+      "path": "../discovery_capture/run_seed131_capture.py",
+      "sha256": "db6730f8d0cabfaf82db6c703c5c36f6b412950e360de0141ac4f63761289153"
+    },
+    {
+      "role": "native_overlay_phy",
+      "path": "seed131/compiled_overlay/overlay/ns3/csr-phy-model.h",
+      "sha256": "e6717f25c4c5c7e13a142792907ec79913fc310459f57bfa22461a3b5e85f3aa"
+    },
+    {
+      "role": "native_overlay_mac",
+      "path": "seed131/compiled_overlay/overlay/ns3/mac-replay-hooks.h",
+      "sha256": "ed81bf0e1e14a86ca323bd2637d25091623358d9610605d3c343d8fbac85b31c"
+    },
+    {
+      "role": "native_observer",
+      "path": "seed131/compiled_overlay/overlay/ns3/csr-discovery-capture.h",
+      "sha256": "fd370ccbe2fa88d53fd1ef518248322fb7738abf82ed125ec9566787420c6ec0"
+    }
+  ],
+  "reference_lineage": {
+    "original_full_trace_sha256": "8daa3cea2bcfae1162c373b39110745fe8889066fdaab3bd22fbb0c685fe3878",
+    "strict_stop_ns": 85000000000,
+    "rows": 8710,
+    "extractor": "extract_exact_prefix.py"
+  },
+  "capture": {
+    "status": "verified",
+    "prefix_fidelity": "passed",
+    "prefix_end_ns": 85000000000,
+    "prefix_rows": 8710,
+    "trace_path": "seed131/ns3-trace.csv",
+    "observations_path": "seed131/capture.jsonl",
+    "mac_tape_paths": {
+      "inputs": "seed131/mac_csv/inputs.csv",
+      "frames": "seed131/mac_csv/frames.csv",
+      "draws": "seed131/mac_csv/draws.csv",
+      "tx": "seed131/mac_csv/tx.csv",
+      "tx_frames": "seed131/mac_csv/tx_frames.csv"
+    }
+  },
+  "coverage": {
+    "counts": {
+      "mac_inputs": 5316,
+      "mac_draws": 249,
+      "tx": 209,
+      "tx_children": 490,
+      "observer_events": 5703
+    },
+    "observability": {
+      "aggregate_children": "observed",
+      "receiver_state": "observed",
+      "competing_signals": "observed",
+      "mac_integer_draws": "observed",
+      "phy_random_tape": "observed",
+      "nwk_hop_capacity": "unavailable"
+    },
+    "event_counts": {
+      "boundary_state": 7,
+      "tx_start": 162,
+      "tx_child": 346,
+      "rx_end": 972,
+      "sync_decision": 442,
+      "rx_begin": 442,
+      "acquisition_scheduled": 330,
+      "rx_arrival_state": 442,
+      "acquisition_attempt": 325,
+      "ber_interval": 831,
+      "acquire_track": 325,
+      "preamble_expire": 366,
+      "phy_uniform": 344,
+      "receiver_wake": 185,
+      "receiver_sleep": 184
+    }
+  },
+  "replay": {
+    "status": "replay_pending"
+  },
+  "claims": {
+    "full_network_parity": false
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "case": "seed132_node4_receiver",
+  "returned_report": {
+    "schema": "csr-source5-node4-rx-replay-v1",
+    "status": "mismatch_or_runtime_failure",
+    "completed": false,
+    "native_capture_bound": true,
+    "bounded_outcome_alignment": false,
+    "same_input_outcome_alignment": false,
+    "node4_receiver_rule_parity": false,
+    "rule_parity_limit": "Native prior_stage does not distinguish every sync/acquisition/state rejection subtype.",
+    "full_network_parity": false,
+    "scope": "Node-4 PHY decisions 300 <= t < 330 s, 299 recorded physical TXs, all 255 node-4 outcomes, native node-4 Idle/Search history, child ACK outcomes, every draw and BER interval.",
+    "native_decision_count": 255,
+    "observed_decision_count": 7,
+    "matched_decisions": 7,
+    "native_interval_count": 306,
+    "observed_interval_count": 0,
+    "matched_intervals": 0,
+    "ack_child_count": 10,
+    "matched_ack_children": 0,
+    "ack_child_scope": "ACK child membership verified in native capture; MATLAB ACK outcomes are inferred from the common physical aggregate decision, not from a separate MATLAB child delivery callback.",
+    "source5_ack_child_count": 10,
+    "source5_ack_children_matched": 0,
+    "draw_usage": {},
+    "error_identifier": "csr:phy:ReceiverBusy",
+    "error_message": "Cannot override an active half-duplex transmission.",
+    "fixture_manifest_sha256": "44e47e83d76472b93a24d8c945af7bc36dea04c568b0af001d4a201b7db26e99",
+    "native_capture_manifest_sha256": "8e0e58ab7c2363c7d56ed80a5e32f4f0630312043f165b5b55def6258aece411",
+    "replay_drain_until_ns": 330054832604.0
+  },
+  "first_failure": {
+    "time_ns": 301628260000,
+    "tx_start_ns": 300391000000,
+    "tx_id": 22873,
+    "duration_ns": 1237260000,
+    "error": "csr:phy:ReceiverBusy",
+    "cause": "Every recorded receiver request was pre-scheduled before runtime-generated PHY callbacks. Search refresh at exact own-TX completion therefore runs before finishTx. Both double timestamps are exactly equal."
+  },
+  "evidence": {
+    "receiver_request_count": 235,
+    "receiver_request_states": [
+      "search"
+    ],
+    "tx_completion_refreshes": 44,
+    "actual_idle_search": [
+      {
+        "time_ns": "300001000000",
+        "event_order": "33",
+        "state_before": "idle",
+        "state_after": "search"
+      }
+    ],
+    "actual_search_track_count": 61,
+    "actual_track_search_count": 61
+  },
+  "interpretation": "7 executed decisions matched; the other248 native decisions,306 intervals and10ACK children were unexecuted, not demonstrated behavioral mismatches. Returned booleans are gate failures not estimators of receiver parity.",
+  "minimal_robust_correction": "Generate external receiver input tape from actual Idle/Search transitions in bounded observer (includes300.001s IdleRTS wake missing from current input tape); retain235 Search refresh requests as audit evidence and123actual transitions as output oracle. Inject only actual Idle\u2194Search; let engine own Tx andTrack transitions, then compare61Search\u2192Track and61Track\u2192Search outputs without forcing them. No production guard change or blanket catch/skip."
+}

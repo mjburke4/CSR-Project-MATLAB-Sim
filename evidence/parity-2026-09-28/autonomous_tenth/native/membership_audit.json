@@ -1,0 +1,1503 @@
+{
+  "status": "source_and_existing_capture_consistent",
+  "new_native_network_or_component_run": false,
+  "returned_stop": {
+    "time_s": 116.415,
+    "node": 3,
+    "source_tx_ordinal": 86,
+    "actual_kind": "SNMP_START",
+    "actual_hop_destination": 5,
+    "actual_final_destination": 7,
+    "actual_wire_bytes": 31,
+    "native_next_kind": "DATA",
+    "native_next_time_ns": 300365000000.0,
+    "native_next_hop_destination": 1,
+    "native_next_wire_bytes": 217
+  },
+  "first_time_difference": {
+    "node": 3,
+    "purpose": "mac_slot",
+    "ordinal": 102,
+    "actual_time_s": 116.35,
+    "expected_time_ns": 300001000000.0,
+    "rounded_delta_ns": -183651000000.0
+  },
+  "interpretation": "Extra scan traffic consumes a future per-node MAC/TX ordinal; the observed watchdog boundary is shared. This is not evidence of a 183.651-second watchdog timing error.",
+  "native_inventory": {
+    "snmp_tx": 36,
+    "start_tx": 28,
+    "done_tx": 8,
+    "start_nwk_receive": 8,
+    "done_nwk_receive": 7,
+    "local_completions": 8,
+    "table_appends": 34,
+    "handoffs": 28,
+    "watchdog_callbacks": 17
+  },
+  "all_registration_boundaries_accounted": true,
+  "all_handoffs_use_first_existing_needed_entry": true,
+  "native_table_appends": [
+    {
+      "time_ns": 25000000000,
+      "node": 1,
+      "log_line": 2243,
+      "text": "Discovery table append node=3 needed=1 position=0",
+      "destination": 3,
+      "needed": 1,
+      "position": 0,
+      "matching_registration_boundaries": [
+        "local_completion"
+      ]
+    },
+    {
+      "time_ns": 25000000000,
+      "node": 1,
+      "log_line": 2244,
+      "text": "Discovery table append node=5 needed=1 position=1",
+      "destination": 5,
+      "needed": 1,
+      "position": 1,
+      "matching_registration_boundaries": [
+        "local_completion"
+      ]
+    },
+    {
+      "time_ns": 25385728077,
+      "node": 3,
+      "log_line": 2287,
+      "text": "Discovery table append node=1 needed=0 position=0",
+      "destination": 1,
+      "needed": 0,
+      "position": 0,
+      "matching_registration_boundaries": [
+        "idle_start_requester"
+      ]
+    },
+    {
+      "time_ns": 40385728077,
+      "node": 3,
+      "log_line": 4494,
+      "text": "Discovery table append node=5 needed=1 position=1",
+      "destination": 5,
+      "needed": 1,
+      "position": 1,
+      "matching_registration_boundaries": [
+        "local_completion"
+      ]
+    },
+    {
+      "time_ns": 40900359163,
+      "node": 5,
+      "log_line": 4574,
+      "text": "Discovery table append node=3 needed=0 position=0",
+      "destination": 3,
+      "needed": 0,
+      "position": 0,
+      "matching_registration_boundaries": [
+        "idle_start_requester"
+      ]
+    },
+    {
+      "time_ns": 55900359163,
+      "node": 5,
+      "log_line": 6798,
+      "text": "Discovery table append node=4 needed=1 position=1",
+      "destination": 4,
+      "needed": 1,
+      "position": 1,
+      "matching_registration_boundaries": [
+        "local_completion"
+      ]
+    },
+    {
+      "time_ns": 55900359163,
+      "node": 5,
+      "log_line": 6799,
+      "text": "Discovery table append node=1 needed=1 position=2",
+      "destination": 1,
+      "needed": 1,
+      "position": 2,
+      "matching_registration_boundaries": [
+        "local_completion"
+      ]
+    },
+    {
+      "time_ns": 56340291086,
+      "node": 1,
+      "log_line": 6851,
+      "text": "Discovery table append node=4 needed=1 position=2",
+      "destination": 4,
+      "needed": 1,
+      "position": 2,
+      "matching_registration_boundaries": [
+        "received_done"
+      ]
+    },
+    {
+      "time_ns": 56340292444,
+      "node": 4,
+      "log_line": 6887,
+      "text": "Discovery table append node=5 needed=0 position=0",
+      "destination": 5,
+      "needed": 0,
+      "position": 0,
+      "matching_registration_boundaries": [
+        "idle_start_requester"
+      ]
+    },
+    {
+      "time_ns": 56340299163,
+      "node": 3,
+      "log_line": 6923,
+      "text": "Discovery table append node=4 needed=1 position=2",
+      "destination": 4,
+      "needed": 1,
+      "position": 2,
+      "matching_registration_boundaries": [
+        "received_done"
+      ]
+    },
+    {
+      "time_ns": 71340292444,
+      "node": 4,
+      "log_line": 10211,
+      "text": "Discovery table append node=2 needed=1 position=1",
+      "destination": 2,
+      "needed": 1,
+      "position": 1,
+      "matching_registration_boundaries": [
+        "local_completion"
+      ]
+    },
+    {
+      "time_ns": 71340292444,
+      "node": 4,
+      "log_line": 10212,
+      "text": "Discovery table append node=3 needed=1 position=2",
+      "destination": 3,
+      "needed": 1,
+      "position": 2,
+      "matching_registration_boundaries": [
+        "local_completion"
+      ]
+    },
+    {
+      "time_ns": 71340292444,
+      "node": 4,
+      "log_line": 10213,
+      "text": "Discovery table append node=1 needed=1 position=3",
+      "destination": 1,
+      "needed": 1,
+      "position": 3,
+      "matching_registration_boundaries": [
+        "local_completion"
+      ]
+    },
+    {
+      "time_ns": 71827352444,
+      "node": 5,
+      "log_line": 10320,
+      "text": "Discovery table append node=2 needed=1 position=3",
+      "destination": 2,
+      "needed": 1,
+      "position": 3,
+      "matching_registration_boundaries": [
+        "received_done"
+      ]
+    },
+    {
+      "time_ns": 71827353632,
+      "node": 2,
+      "log_line": 10356,
+      "text": "Discovery table append node=4 needed=0 position=0",
+      "destination": 4,
+      "needed": 0,
+      "position": 0,
+      "matching_registration_boundaries": [
+        "idle_start_requester"
+      ]
+    },
+    {
+      "time_ns": 86827353632,
+      "node": 2,
+      "log_line": 14080,
+      "text": "Discovery table append node=8 needed=1 position=1",
+      "destination": 8,
+      "needed": 1,
+      "position": 1,
+      "matching_registration_boundaries": [
+        "local_completion"
+      ]
+    },
+    {
+      "time_ns": 86827353632,
+      "node": 2,
+      "log_line": 14081,
+      "text": "Discovery table append node=3 needed=1 position=2",
+      "destination": 3,
+      "needed": 1,
+      "position": 2,
+      "matching_registration_boundaries": [
+        "local_completion"
+      ]
+    },
+    {
+      "time_ns": 86827353632,
+      "node": 2,
+      "log_line": 14082,
+      "text": "Discovery table append node=1 needed=1 position=3",
+      "destination": 1,
+      "needed": 1,
+      "position": 3,
+      "matching_registration_boundaries": [
+        "local_completion"
+      ]
+    },
+    {
+      "time_ns": 86827353632,
+      "node": 2,
+      "log_line": 14083,
+      "text": "Discovery table append node=5 needed=1 position=4",
+      "destination": 5,
+      "needed": 1,
+      "position": 4,
+      "matching_registration_boundaries": [
+        "local_completion"
+      ]
+    },
+    {
+      "time_ns": 87102353632,
+      "node": 4,
+      "log_line": 14129,
+      "text": "Discovery table append node=8 needed=1 position=4",
+      "destination": 8,
+      "needed": 1,
+      "position": 4,
+      "matching_registration_boundaries": [
+        "received_done"
+      ]
+    },
+    {
+      "time_ns": 87102355346,
+      "node": 8,
+      "log_line": 14164,
+      "text": "Discovery table append node=2 needed=0 position=0",
+      "destination": 2,
+      "needed": 0,
+      "position": 0,
+      "matching_registration_boundaries": [
+        "idle_start_requester"
+      ]
+    },
+    {
+      "time_ns": 87134791086,
+      "node": 1,
+      "log_line": 14208,
+      "text": "Discovery table append node=8 needed=1 position=3",
+      "destination": 8,
+      "needed": 1,
+      "position": 3,
+      "matching_registration_boundaries": [
+        "local_completion"
+      ]
+    },
+    {
+      "time_ns": 87134791086,
+      "node": 1,
+      "log_line": 14209,
+      "text": "Discovery table append node=2 needed=1 position=4",
+      "destination": 2,
+      "needed": 1,
+      "position": 4,
+      "matching_registration_boundaries": [
+        "local_completion"
+      ]
+    },
+    {
+      "time_ns": 102102355346,
+      "node": 8,
+      "log_line": 18560,
+      "text": "Discovery table append node=7 needed=1 position=1",
+      "destination": 7,
+      "needed": 1,
+      "position": 1,
+      "matching_registration_boundaries": [
+        "local_completion"
+      ]
+    },
+    {
+      "time_ns": 102102355346,
+      "node": 8,
+      "log_line": 18561,
+      "text": "Discovery table append node=3 needed=1 position=2",
+      "destination": 3,
+      "needed": 1,
+      "position": 2,
+      "matching_registration_boundaries": [
+        "local_completion"
+      ]
+    },
+    {
+      "time_ns": 102102355346,
+      "node": 8,
+      "log_line": 18562,
+      "text": "Discovery table append node=1 needed=1 position=3",
+      "destination": 1,
+      "needed": 1,
+      "position": 3,
+      "matching_registration_boundaries": [
+        "local_completion"
+      ]
+    },
+    {
+      "time_ns": 102102355346,
+      "node": 8,
+      "log_line": 18563,
+      "text": "Discovery table append node=5 needed=1 position=4",
+      "destination": 5,
+      "needed": 1,
+      "position": 4,
+      "matching_registration_boundaries": [
+        "local_completion"
+      ]
+    },
+    {
+      "time_ns": 102102355346,
+      "node": 8,
+      "log_line": 18564,
+      "text": "Discovery table append node=4 needed=1 position=5",
+      "destination": 4,
+      "needed": 1,
+      "position": 5,
+      "matching_registration_boundaries": [
+        "local_completion"
+      ]
+    },
+    {
+      "time_ns": 102364352442,
+      "node": 7,
+      "log_line": 18611,
+      "text": "Discovery table append node=8 needed=0 position=0",
+      "destination": 8,
+      "needed": 0,
+      "position": 0,
+      "matching_registration_boundaries": [
+        "idle_start_requester"
+      ]
+    },
+    {
+      "time_ns": 102364355346,
+      "node": 2,
+      "log_line": 18647,
+      "text": "Discovery table append node=7 needed=1 position=5",
+      "destination": 7,
+      "needed": 1,
+      "position": 5,
+      "matching_registration_boundaries": [
+        "received_done"
+      ]
+    },
+    {
+      "time_ns": 117364352442,
+      "node": 7,
+      "log_line": 19546,
+      "text": "Discovery table append node=3 needed=1 position=1",
+      "destination": 3,
+      "needed": 1,
+      "position": 1,
+      "matching_registration_boundaries": [
+        "local_completion"
+      ]
+    },
+    {
+      "time_ns": 117364352442,
+      "node": 7,
+      "log_line": 19547,
+      "text": "Discovery table append node=1 needed=1 position=2",
+      "destination": 1,
+      "needed": 1,
+      "position": 2,
+      "matching_registration_boundaries": [
+        "local_completion"
+      ]
+    },
+    {
+      "time_ns": 117364352442,
+      "node": 7,
+      "log_line": 19548,
+      "text": "Discovery table append node=5 needed=1 position=3",
+      "destination": 5,
+      "needed": 1,
+      "position": 3,
+      "matching_registration_boundaries": [
+        "local_completion"
+      ]
+    },
+    {
+      "time_ns": 117364352442,
+      "node": 7,
+      "log_line": 19549,
+      "text": "Discovery table append node=4 needed=1 position=4",
+      "destination": 4,
+      "needed": 1,
+      "position": 4,
+      "matching_registration_boundaries": [
+        "local_completion"
+      ]
+    }
+  ],
+  "native_handoffs": [
+    {
+      "time_ns": 25000000000,
+      "node": 1,
+      "log_line": 2249,
+      "text": "SNMP discovery handoff target=3 watchdog=60s",
+      "target": 3,
+      "registered_pending_order_before_send": [
+        3,
+        5
+      ]
+    },
+    {
+      "time_ns": 40385728077,
+      "node": 3,
+      "log_line": 4502,
+      "text": "SNMP discovery handoff target=5 watchdog=60s",
+      "target": 5,
+      "registered_pending_order_before_send": [
+        5
+      ]
+    },
+    {
+      "time_ns": 40900348077,
+      "node": 1,
+      "log_line": 4543,
+      "text": "SNMP discovery handoff target=5 watchdog=60s",
+      "target": 5,
+      "registered_pending_order_before_send": [
+        5
+      ]
+    },
+    {
+      "time_ns": 55900359163,
+      "node": 5,
+      "log_line": 6810,
+      "text": "SNMP discovery handoff target=4 watchdog=60s",
+      "target": 4,
+      "registered_pending_order_before_send": [
+        4,
+        1
+      ]
+    },
+    {
+      "time_ns": 56340291086,
+      "node": 1,
+      "log_line": 6855,
+      "text": "SNMP discovery handoff target=4 watchdog=60s",
+      "target": 4,
+      "registered_pending_order_before_send": [
+        4
+      ]
+    },
+    {
+      "time_ns": 56340299163,
+      "node": 3,
+      "log_line": 6927,
+      "text": "SNMP discovery handoff target=4 watchdog=60s",
+      "target": 4,
+      "registered_pending_order_before_send": [
+        4
+      ]
+    },
+    {
+      "time_ns": 71340292444,
+      "node": 4,
+      "log_line": 10221,
+      "text": "SNMP discovery handoff target=2 watchdog=60s",
+      "target": 2,
+      "registered_pending_order_before_send": [
+        2,
+        3,
+        1
+      ]
+    },
+    {
+      "time_ns": 71827352444,
+      "node": 5,
+      "log_line": 10324,
+      "text": "SNMP discovery handoff target=1 watchdog=60s",
+      "target": 1,
+      "registered_pending_order_before_send": [
+        1,
+        2
+      ]
+    },
+    {
+      "time_ns": 86827353632,
+      "node": 2,
+      "log_line": 14091,
+      "text": "SNMP discovery handoff target=8 watchdog=60s",
+      "target": 8,
+      "registered_pending_order_before_send": [
+        8,
+        3,
+        1,
+        5
+      ]
+    },
+    {
+      "time_ns": 87102353632,
+      "node": 4,
+      "log_line": 14133,
+      "text": "SNMP discovery handoff target=3 watchdog=60s",
+      "target": 3,
+      "registered_pending_order_before_send": [
+        3,
+        1,
+        8
+      ]
+    },
+    {
+      "time_ns": 87134791086,
+      "node": 1,
+      "log_line": 14217,
+      "text": "SNMP discovery handoff target=8 watchdog=60s",
+      "target": 8,
+      "registered_pending_order_before_send": [
+        8,
+        2
+      ]
+    },
+    {
+      "time_ns": 102102355346,
+      "node": 8,
+      "log_line": 18572,
+      "text": "SNMP discovery handoff target=7 watchdog=60s",
+      "target": 7,
+      "registered_pending_order_before_send": [
+        7,
+        3,
+        1,
+        5,
+        4
+      ]
+    },
+    {
+      "time_ns": 102364355346,
+      "node": 2,
+      "log_line": 18651,
+      "text": "SNMP discovery handoff target=3 watchdog=60s",
+      "target": 3,
+      "registered_pending_order_before_send": [
+        3,
+        1,
+        5,
+        7
+      ]
+    },
+    {
+      "time_ns": 117364352442,
+      "node": 7,
+      "log_line": 19557,
+      "text": "SNMP discovery handoff target=3 watchdog=60s",
+      "target": 3,
+      "registered_pending_order_before_send": [
+        3,
+        1,
+        5,
+        4
+      ]
+    },
+    {
+      "time_ns": 117649032442,
+      "node": 8,
+      "log_line": 19596,
+      "text": "SNMP discovery handoff target=3 watchdog=60s",
+      "target": 3,
+      "registered_pending_order_before_send": [
+        3,
+        1,
+        5,
+        4
+      ]
+    },
+    {
+      "time_ns": 131827352444,
+      "node": 5,
+      "log_line": 19969,
+      "text": "SNMP discovery handoff target=2 watchdog=60s",
+      "target": 2,
+      "registered_pending_order_before_send": [
+        2
+      ]
+    },
+    {
+      "time_ns": 147102353632,
+      "node": 4,
+      "log_line": 20009,
+      "text": "SNMP discovery handoff target=1 watchdog=60s",
+      "target": 1,
+      "registered_pending_order_before_send": [
+        1,
+        8
+      ]
+    },
+    {
+      "time_ns": 147134791086,
+      "node": 1,
+      "log_line": 20020,
+      "text": "SNMP discovery handoff target=2 watchdog=60s",
+      "target": 2,
+      "registered_pending_order_before_send": [
+        2
+      ]
+    },
+    {
+      "time_ns": 162364355346,
+      "node": 2,
+      "log_line": 20075,
+      "text": "SNMP discovery handoff target=1 watchdog=60s",
+      "target": 1,
+      "registered_pending_order_before_send": [
+        1,
+        5,
+        7
+      ]
+    },
+    {
+      "time_ns": 177364352442,
+      "node": 7,
+      "log_line": 20110,
+      "text": "SNMP discovery handoff target=1 watchdog=60s",
+      "target": 1,
+      "registered_pending_order_before_send": [
+        1,
+        5,
+        4
+      ]
+    },
+    {
+      "time_ns": 177649032442,
+      "node": 8,
+      "log_line": 20120,
+      "text": "SNMP discovery handoff target=1 watchdog=60s",
+      "target": 1,
+      "registered_pending_order_before_send": [
+        1,
+        5,
+        4
+      ]
+    },
+    {
+      "time_ns": 207102353632,
+      "node": 4,
+      "log_line": 20179,
+      "text": "SNMP discovery handoff target=8 watchdog=60s",
+      "target": 8,
+      "registered_pending_order_before_send": [
+        8
+      ]
+    },
+    {
+      "time_ns": 222364355346,
+      "node": 2,
+      "log_line": 20216,
+      "text": "SNMP discovery handoff target=5 watchdog=60s",
+      "target": 5,
+      "registered_pending_order_before_send": [
+        5,
+        7
+      ]
+    },
+    {
+      "time_ns": 237364352442,
+      "node": 7,
+      "log_line": 20249,
+      "text": "SNMP discovery handoff target=5 watchdog=60s",
+      "target": 5,
+      "registered_pending_order_before_send": [
+        5,
+        4
+      ]
+    },
+    {
+      "time_ns": 237649032442,
+      "node": 8,
+      "log_line": 20259,
+      "text": "SNMP discovery handoff target=5 watchdog=60s",
+      "target": 5,
+      "registered_pending_order_before_send": [
+        5,
+        4
+      ]
+    },
+    {
+      "time_ns": 282364355346,
+      "node": 2,
+      "log_line": 20316,
+      "text": "SNMP discovery handoff target=7 watchdog=60s",
+      "target": 7,
+      "registered_pending_order_before_send": [
+        7
+      ]
+    },
+    {
+      "time_ns": 297364352442,
+      "node": 7,
+      "log_line": 20349,
+      "text": "SNMP discovery handoff target=4 watchdog=60s",
+      "target": 4,
+      "registered_pending_order_before_send": [
+        4
+      ]
+    },
+    {
+      "time_ns": 297649032442,
+      "node": 8,
+      "log_line": 20359,
+      "text": "SNMP discovery handoff target=4 watchdog=60s",
+      "target": 4,
+      "registered_pending_order_before_send": [
+        4
+      ]
+    }
+  ],
+  "native_watchdogs": [
+    {
+      "time_ns": 116340299163,
+      "node": 3,
+      "log_line": 19531,
+      "text": "SNMP discovery report watchdog expired",
+      "prior_target": 4,
+      "existing_pending_entries": []
+    },
+    {
+      "time_ns": 131827352444,
+      "node": 5,
+      "log_line": 19964,
+      "text": "SNMP discovery report watchdog expired",
+      "prior_target": 1,
+      "existing_pending_entries": [
+        2
+      ]
+    },
+    {
+      "time_ns": 147102353632,
+      "node": 4,
+      "log_line": 20004,
+      "text": "SNMP discovery report watchdog expired",
+      "prior_target": 3,
+      "existing_pending_entries": [
+        1,
+        8
+      ]
+    },
+    {
+      "time_ns": 147134791086,
+      "node": 1,
+      "log_line": 20015,
+      "text": "SNMP discovery report watchdog expired",
+      "prior_target": 8,
+      "existing_pending_entries": [
+        2
+      ]
+    },
+    {
+      "time_ns": 162364355346,
+      "node": 2,
+      "log_line": 20070,
+      "text": "SNMP discovery report watchdog expired",
+      "prior_target": 3,
+      "existing_pending_entries": [
+        1,
+        5,
+        7
+      ]
+    },
+    {
+      "time_ns": 177364352442,
+      "node": 7,
+      "log_line": 20105,
+      "text": "SNMP discovery report watchdog expired",
+      "prior_target": 3,
+      "existing_pending_entries": [
+        1,
+        5,
+        4
+      ]
+    },
+    {
+      "time_ns": 177649032442,
+      "node": 8,
+      "log_line": 20115,
+      "text": "SNMP discovery report watchdog expired",
+      "prior_target": 3,
+      "existing_pending_entries": [
+        1,
+        5,
+        4
+      ]
+    },
+    {
+      "time_ns": 191827352444,
+      "node": 5,
+      "log_line": 20173,
+      "text": "SNMP discovery report watchdog expired",
+      "prior_target": 2,
+      "existing_pending_entries": []
+    },
+    {
+      "time_ns": 207102353632,
+      "node": 4,
+      "log_line": 20174,
+      "text": "SNMP discovery report watchdog expired",
+      "prior_target": 1,
+      "existing_pending_entries": [
+        8
+      ]
+    },
+    {
+      "time_ns": 207134791086,
+      "node": 1,
+      "log_line": 20184,
+      "text": "SNMP discovery report watchdog expired",
+      "prior_target": 2,
+      "existing_pending_entries": []
+    },
+    {
+      "time_ns": 222364355346,
+      "node": 2,
+      "log_line": 20211,
+      "text": "SNMP discovery report watchdog expired",
+      "prior_target": 1,
+      "existing_pending_entries": [
+        5,
+        7
+      ]
+    },
+    {
+      "time_ns": 237364352442,
+      "node": 7,
+      "log_line": 20244,
+      "text": "SNMP discovery report watchdog expired",
+      "prior_target": 1,
+      "existing_pending_entries": [
+        5,
+        4
+      ]
+    },
+    {
+      "time_ns": 237649032442,
+      "node": 8,
+      "log_line": 20254,
+      "text": "SNMP discovery report watchdog expired",
+      "prior_target": 1,
+      "existing_pending_entries": [
+        5,
+        4
+      ]
+    },
+    {
+      "time_ns": 267102353632,
+      "node": 4,
+      "log_line": 20310,
+      "text": "SNMP discovery report watchdog expired",
+      "prior_target": 8,
+      "existing_pending_entries": []
+    },
+    {
+      "time_ns": 282364355346,
+      "node": 2,
+      "log_line": 20311,
+      "text": "SNMP discovery report watchdog expired",
+      "prior_target": 5,
+      "existing_pending_entries": [
+        7
+      ]
+    },
+    {
+      "time_ns": 297364352442,
+      "node": 7,
+      "log_line": 20344,
+      "text": "SNMP discovery report watchdog expired",
+      "prior_target": 5,
+      "existing_pending_entries": [
+        4
+      ]
+    },
+    {
+      "time_ns": 297649032442,
+      "node": 8,
+      "log_line": 20354,
+      "text": "SNMP discovery report watchdog expired",
+      "prior_target": 5,
+      "existing_pending_entries": [
+        4
+      ]
+    }
+  ],
+  "native_start_receives": [
+    {
+      "time_ns": 25385728077,
+      "node": 3,
+      "log_line": 2286,
+      "text": "RX SNMP_START_DISCOVERY source=1 hopSource=1 delay=0 state=0",
+      "source": 1,
+      "state": 0
+    },
+    {
+      "time_ns": 40900359163,
+      "node": 5,
+      "log_line": 4573,
+      "text": "RX SNMP_START_DISCOVERY source=3 hopSource=3 delay=0 state=0",
+      "source": 3,
+      "state": 0
+    },
+    {
+      "time_ns": 41202171086,
+      "node": 5,
+      "log_line": 4643,
+      "text": "RX SNMP_START_DISCOVERY source=1 hopSource=1 delay=0 state=2",
+      "source": 1,
+      "state": 2
+    },
+    {
+      "time_ns": 56340292444,
+      "node": 4,
+      "log_line": 6886,
+      "text": "RX SNMP_START_DISCOVERY source=5 hopSource=5 delay=0 state=0",
+      "source": 5,
+      "state": 0
+    },
+    {
+      "time_ns": 71827353632,
+      "node": 2,
+      "log_line": 10355,
+      "text": "RX SNMP_START_DISCOVERY source=4 hopSource=4 delay=0 state=0",
+      "source": 4,
+      "state": 0
+    },
+    {
+      "time_ns": 72134791086,
+      "node": 1,
+      "log_line": 10401,
+      "text": "RX SNMP_START_DISCOVERY source=5 hopSource=5 delay=0 state=0",
+      "source": 5,
+      "state": 0
+    },
+    {
+      "time_ns": 87102355346,
+      "node": 8,
+      "log_line": 14163,
+      "text": "RX SNMP_START_DISCOVERY source=2 hopSource=2 delay=0 state=0",
+      "source": 2,
+      "state": 0
+    },
+    {
+      "time_ns": 102364352442,
+      "node": 7,
+      "log_line": 18610,
+      "text": "RX SNMP_START_DISCOVERY source=8 hopSource=8 delay=0 state=0",
+      "source": 8,
+      "state": 0
+    }
+  ],
+  "native_done_receives": [
+    {
+      "time_ns": 40900348077,
+      "node": 1,
+      "log_line": 4539,
+      "text": "RX SNMP_DISCOVERY_DONE source=3 hopSource=3 advertisedNodes=2",
+      "source": 3,
+      "pending_target": 3,
+      "matches_pending": true
+    },
+    {
+      "time_ns": 56340291086,
+      "node": 1,
+      "log_line": 6850,
+      "text": "RX SNMP_DISCOVERY_DONE source=5 hopSource=5 advertisedNodes=3",
+      "source": 5,
+      "pending_target": 5,
+      "matches_pending": true
+    },
+    {
+      "time_ns": 56340299163,
+      "node": 3,
+      "log_line": 6922,
+      "text": "RX SNMP_DISCOVERY_DONE source=5 hopSource=5 advertisedNodes=3",
+      "source": 5,
+      "pending_target": 5,
+      "matches_pending": true
+    },
+    {
+      "time_ns": 71827352444,
+      "node": 5,
+      "log_line": 10319,
+      "text": "RX SNMP_DISCOVERY_DONE source=4 hopSource=4 advertisedNodes=4",
+      "source": 4,
+      "pending_target": 4,
+      "matches_pending": true
+    },
+    {
+      "time_ns": 87102353632,
+      "node": 4,
+      "log_line": 14128,
+      "text": "RX SNMP_DISCOVERY_DONE source=2 hopSource=2 advertisedNodes=5",
+      "source": 2,
+      "pending_target": 2,
+      "matches_pending": true
+    },
+    {
+      "time_ns": 102364355346,
+      "node": 2,
+      "log_line": 18646,
+      "text": "RX SNMP_DISCOVERY_DONE source=8 hopSource=8 advertisedNodes=6",
+      "source": 8,
+      "pending_target": 8,
+      "matches_pending": true
+    },
+    {
+      "time_ns": 117649032442,
+      "node": 8,
+      "log_line": 19592,
+      "text": "RX SNMP_DISCOVERY_DONE source=7 hopSource=7 advertisedNodes=5",
+      "source": 7,
+      "pending_target": 7,
+      "matches_pending": true
+    }
+  ],
+  "native_local_completions": [
+    {
+      "time_ns": 25000000000,
+      "node": 1,
+      "log_line": 2245,
+      "text": "Legacy discovery lifecycle complete initiator=1 knownNodes=2 completionReports=0",
+      "initiator": 1,
+      "known_nodes": 2,
+      "completion_reports": 0
+    },
+    {
+      "time_ns": 40385728077,
+      "node": 3,
+      "log_line": 4498,
+      "text": "Legacy discovery lifecycle complete initiator=1 knownNodes=2 completionReports=1",
+      "initiator": 1,
+      "known_nodes": 2,
+      "completion_reports": 1
+    },
+    {
+      "time_ns": 55900359163,
+      "node": 5,
+      "log_line": 6806,
+      "text": "Legacy discovery lifecycle complete initiator=3 knownNodes=3 completionReports=2",
+      "initiator": 3,
+      "known_nodes": 3,
+      "completion_reports": 2
+    },
+    {
+      "time_ns": 71340292444,
+      "node": 4,
+      "log_line": 10217,
+      "text": "Legacy discovery lifecycle complete initiator=5 knownNodes=4 completionReports=1",
+      "initiator": 5,
+      "known_nodes": 4,
+      "completion_reports": 1
+    },
+    {
+      "time_ns": 86827353632,
+      "node": 2,
+      "log_line": 14087,
+      "text": "Legacy discovery lifecycle complete initiator=4 knownNodes=5 completionReports=1",
+      "initiator": 4,
+      "known_nodes": 5,
+      "completion_reports": 1
+    },
+    {
+      "time_ns": 87134791086,
+      "node": 1,
+      "log_line": 14213,
+      "text": "Legacy discovery lifecycle complete initiator=5 knownNodes=5 completionReports=1",
+      "initiator": 5,
+      "known_nodes": 5,
+      "completion_reports": 1
+    },
+    {
+      "time_ns": 102102355346,
+      "node": 8,
+      "log_line": 18568,
+      "text": "Legacy discovery lifecycle complete initiator=2 knownNodes=6 completionReports=1",
+      "initiator": 2,
+      "known_nodes": 6,
+      "completion_reports": 1
+    },
+    {
+      "time_ns": 117364352442,
+      "node": 7,
+      "log_line": 19553,
+      "text": "Legacy discovery lifecycle complete initiator=8 knownNodes=5 completionReports=1",
+      "initiator": 8,
+      "known_nodes": 5,
+      "completion_reports": 1
+    }
+  ],
+  "native_final_tables_source_reconstruction": {
+    "1": [
+      {
+        "destination": 3,
+        "needed": false
+      },
+      {
+        "destination": 5,
+        "needed": false
+      },
+      {
+        "destination": 4,
+        "needed": false
+      },
+      {
+        "destination": 8,
+        "needed": false
+      },
+      {
+        "destination": 2,
+        "needed": false
+      }
+    ],
+    "2": [
+      {
+        "destination": 4,
+        "needed": false
+      },
+      {
+        "destination": 8,
+        "needed": false
+      },
+      {
+        "destination": 3,
+        "needed": false
+      },
+      {
+        "destination": 1,
+        "needed": false
+      },
+      {
+        "destination": 5,
+        "needed": false
+      },
+      {
+        "destination": 7,
+        "needed": false
+      }
+    ],
+    "3": [
+      {
+        "destination": 1,
+        "needed": false
+      },
+      {
+        "destination": 5,
+        "needed": false
+      },
+      {
+        "destination": 4,
+        "needed": false
+      }
+    ],
+    "4": [
+      {
+        "destination": 5,
+        "needed": false
+      },
+      {
+        "destination": 2,
+        "needed": false
+      },
+      {
+        "destination": 3,
+        "needed": false
+      },
+      {
+        "destination": 1,
+        "needed": false
+      },
+      {
+        "destination": 8,
+        "needed": false
+      }
+    ],
+    "5": [
+      {
+        "destination": 3,
+        "needed": false
+      },
+      {
+        "destination": 4,
+        "needed": false
+      },
+      {
+        "destination": 1,
+        "needed": false
+      },
+      {
+        "destination": 2,
+        "needed": false
+      }
+    ],
+    "7": [
+      {
+        "destination": 8,
+        "needed": false
+      },
+      {
+        "destination": 3,
+        "needed": false
+      },
+      {
+        "destination": 1,
+        "needed": false
+      },
+      {
+        "destination": 5,
+        "needed": false
+      },
+      {
+        "destination": 4,
+        "needed": false
+      }
+    ],
+    "8": [
+      {
+        "destination": 2,
+        "needed": false
+      },
+      {
+        "destination": 7,
+        "needed": false
+      },
+      {
+        "destination": 3,
+        "needed": false
+      },
+      {
+        "destination": 1,
+        "needed": false
+      },
+      {
+        "destination": 5,
+        "needed": false
+      },
+      {
+        "destination": 4,
+        "needed": false
+      }
+    ]
+  },
+  "node3_lifecycle": [
+    {
+      "time_ns": 25385728077,
+      "node": 3,
+      "log_line": 2286,
+      "text": "RX SNMP_START_DISCOVERY source=1 hopSource=1 delay=0 state=0",
+      "source_reconstructed_table": []
+    },
+    {
+      "time_ns": 25385728077,
+      "node": 3,
+      "log_line": 2287,
+      "text": "Discovery table append node=1 needed=0 position=0",
+      "source_reconstructed_table": [
+        {
+          "destination": 1,
+          "needed": false
+        }
+      ]
+    },
+    {
+      "time_ns": 40385728077,
+      "node": 3,
+      "log_line": 4494,
+      "text": "Discovery table append node=5 needed=1 position=1",
+      "source_reconstructed_table": [
+        {
+          "destination": 1,
+          "needed": false
+        },
+        {
+          "destination": 5,
+          "needed": true
+        }
+      ]
+    },
+    {
+      "time_ns": 40385728077,
+      "node": 3,
+      "log_line": 4498,
+      "text": "Legacy discovery lifecycle complete initiator=1 knownNodes=2 completionReports=1",
+      "source_reconstructed_table": [
+        {
+          "destination": 1,
+          "needed": false
+        },
+        {
+          "destination": 5,
+          "needed": true
+        }
+      ]
+    },
+    {
+      "time_ns": 40385728077,
+      "node": 3,
+      "log_line": 4502,
+      "text": "SNMP discovery handoff target=5 watchdog=60s",
+      "source_reconstructed_table": [
+        {
+          "destination": 1,
+          "needed": false
+        },
+        {
+          "destination": 5,
+          "needed": false
+        }
+      ]
+    },
+    {
+      "time_ns": 56340299163,
+      "node": 3,
+      "log_line": 6922,
+      "text": "RX SNMP_DISCOVERY_DONE source=5 hopSource=5 advertisedNodes=3",
+      "source_reconstructed_table": [
+        {
+          "destination": 1,
+          "needed": false
+        },
+        {
+          "destination": 5,
+          "needed": false
+        }
+      ]
+    },
+    {
+      "time_ns": 56340299163,
+      "node": 3,
+      "log_line": 6923,
+      "text": "Discovery table append node=4 needed=1 position=2",
+      "source_reconstructed_table": [
+        {
+          "destination": 1,
+          "needed": false
+        },
+        {
+          "destination": 5,
+          "needed": false
+        },
+        {
+          "destination": 4,
+          "needed": true
+        }
+      ]
+    },
+    {
+      "time_ns": 56340299163,
+      "node": 3,
+      "log_line": 6927,
+      "text": "SNMP discovery handoff target=4 watchdog=60s",
+      "source_reconstructed_table": [
+        {
+          "destination": 1,
+          "needed": false
+        },
+        {
+          "destination": 5,
+          "needed": false
+        },
+        {
+          "destination": 4,
+          "needed": false
+        }
+      ]
+    },
+    {
+      "time_ns": 116340299163,
+      "node": 3,
+      "log_line": 19531,
+      "text": "SNMP discovery report watchdog expired",
+      "source_reconstructed_table": [
+        {
+          "destination": 1,
+          "needed": false
+        },
+        {
+          "destination": 5,
+          "needed": false
+        },
+        {
+          "destination": 4,
+          "needed": false
+        }
+      ]
+    }
+  ],
+  "node3_late_route_additions": [
+    {
+      "time_ns": 65832808077,
+      "node": 3,
+      "log_line": 8807,
+      "text": "Added route candidate dst=2 nextHop=1 hops=4 cost=25937 linkCost=3587 advCost=22350 learnedFrom=1 selectionDeferred=0 selected=1"
+    },
+    {
+      "time_ns": 67922259163,
+      "node": 3,
+      "log_line": 9445,
+      "text": "Added route candidate dst=2 nextHop=5 hops=3 cost=22350 linkCost=7450 advCost=14900 learnedFrom=5 selectionDeferred=0 selected=1"
+    },
+    {
+      "time_ns": 78858819163,
+      "node": 3,
+      "log_line": 12555,
+      "text": "Added route candidate dst=8 nextHop=5 hops=4 cost=29800 linkCost=7450 advCost=22350 learnedFrom=5 selectionDeferred=0 selected=1"
+    },
+    {
+      "time_ns": 79056868077,
+      "node": 3,
+      "log_line": 12687,
+      "text": "Added route candidate dst=8 nextHop=1 hops=5 cost=33387 linkCost=3587 advCost=29800 learnedFrom=1 selectionDeferred=0 selected=0"
+    },
+    {
+      "time_ns": 96268879163,
+      "node": 3,
+      "log_line": 17482,
+      "text": "Added route candidate dst=7 nextHop=5 hops=5 cost=37250 linkCost=7450 advCost=29800 learnedFrom=5 selectionDeferred=0 selected=1"
+    },
+    {
+      "time_ns": 96388928077,
+      "node": 3,
+      "log_line": 17576,
+      "text": "Added route candidate dst=7 nextHop=1 hops=6 cost=40837 linkCost=3587 advCost=37250 learnedFrom=1 selectionDeferred=0 selected=0"
+    }
+  ],
+  "node3_at_stop": {
+    "native_registered_order": [
+      1,
+      5,
+      4
+    ],
+    "all_registered_complete": true,
+    "route7_first_added_ns": 96268879163,
+    "watchdog_ns": 116340299163,
+    "route7_never_registered_in_full_native_capture": true
+  },
+  "table_reconstruction_method": "Replay logged append/hand-off operations and source-defined idle START marking; not a private runtime state dump.",
+  "limits": [
+    "All7 native delivered DONEs match pending targets; broader DONE interruption gates are not exercised here.",
+    "Native requester cap10 is not reached (maximum2); completion known-node snapshot maximum6, so truncation is source-proven but not exercised.",
+    "No new native or MATLAB simulation; continuation remains owner-side.",
+    "Per-node draw and TX ordinal matching does not establish global callback order or 15-percent network parity."
+  ],
+  "input_sha256": {
+    "autonomous/native_capture/fixture/tx_signatures.csv": "40f51355e02c0950e7608d9eeb6efb590a539bdef37c0381780db5fc086ad5e1",
+    "autonomous/native_capture/run/run.log": "282ed068740ccba5481bf7a35aca3696c54d422e31976107cfee05889c690cee",
+    "autonomous_tenth/data/L_discovery_lifecycle/first_divergence.json": "63cb80d02459e5a4f24cf759d2f22e440d94c50bbf615a9f9742ae496b7c9c19",
+    "autonomous_tenth/data/L_discovery_lifecycle/random_summary.json": "22484cd1f30bbfac98a7220733ecd9bd9b13180f3c82a1b7acd826eb7c970f11"
+  }
+}

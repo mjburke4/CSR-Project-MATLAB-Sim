@@ -1,0 +1,108 @@
+{
+  "seed": 132,
+  "link": "8->2",
+  "trace_records": 615508,
+  "checks": {
+    "enqueue_depth": 1532,
+    "submit_owner": 1500,
+    "receiver_choice_vs_emitted_feedback_kind": 1132,
+    "custody_release_owner": 1498,
+    "reception_to_same_packet_sequence_completion": 1132,
+    "end_counter_closure": 7
+  },
+  "data_admissions": 1149,
+  "receiver_receptions": 1132,
+  "unique_received_packets": 1132,
+  "emitted_data_ack": 139,
+  "emitted_data_dack": 993,
+  "data_completion_counts": {
+    "hop_ack": 139,
+    "hop_dack": 993,
+    "hop_failed": 16,
+    "unfinished": 1
+  },
+  "final_node2_custody": 34,
+  "final_node2_custody_by_original_source": {
+    "2": 16,
+    "7": 17,
+    "8": 1
+  },
+  "flow_summary": [
+    {
+      "source": 7,
+      "admissions": 926,
+      "receptions": 911,
+      "receiver_acks": 75,
+      "receiver_dacks": 836,
+      "ack_fraction_of_receptions": 0.08232711306256861,
+      "no_reception_failures": 14,
+      "unfinished": 1,
+      "first_reception_s": 330.626815345563,
+      "first_dack_s": 346.330815345563,
+      "first_dack_nsdp": 16,
+      "mean_nsdp_at_arrival": 75.90889132821076,
+      "max_nsdp_at_arrival": 163,
+      "max_ack_nsdp": 15,
+      "min_dack_nsdp": 16,
+      "mean_receipt_to_completion_s": 0.3225711086717917,
+      "end_custody": 17
+    },
+    {
+      "source": 8,
+      "admissions": 223,
+      "receptions": 221,
+      "receiver_acks": 64,
+      "receiver_dacks": 157,
+      "ack_fraction_of_receptions": 0.2895927601809955,
+      "no_reception_failures": 2,
+      "unfinished": 0,
+      "first_reception_s": 301.381275345563,
+      "first_dack_s": 331.367815345563,
+      "first_dack_nsdp": 16,
+      "mean_nsdp_at_arrival": 19.760180995475114,
+      "max_nsdp_at_arrival": 37,
+      "max_ack_nsdp": 15,
+      "min_dack_nsdp": 16,
+      "mean_receipt_to_completion_s": 0.34787158371039795,
+      "end_custody": 1
+    }
+  ],
+  "raw_feedback_queue_events": 1143,
+  "longest_consecutive_dack_runs": [
+    {
+      "source": 7,
+      "receptions": 665,
+      "start_s": 420.521815345563,
+      "end_s": 4485.73881534556,
+      "elapsed_s": 4065.2169999999974,
+      "first_packet_id": 135,
+      "last_packet_id": 6422,
+      "min_nsdp_before": 16,
+      "max_nsdp_before": 163
+    },
+    {
+      "source": 8,
+      "receptions": 87,
+      "start_s": 1128.72281534556,
+      "end_s": 3394.57081534556,
+      "elapsed_s": 2265.848,
+      "first_packet_id": 1691,
+      "last_packet_id": 5469,
+      "min_nsdp_before": 16,
+      "max_nsdp_before": 37
+    }
+  ],
+  "limitations": [
+    "ACK/DACK bitmaps are not exported. MAC queue feedback kind predicts the new reception classification, not every bit in that cumulative frame.",
+    "Same-packet/sequence completion matches do not identify the physical ACK envelope that caused completion; cumulative later feedback can complete an earlier packet.",
+    "All audited receptions are first/unique accepted DATA, verified by full trace and node counters. Conclusions do not validate duplicate, no-route, or custody-refusal branches.",
+    "NSDP reconstructed from actual enqueue/release stream using production custody definition; this is observational consistency, not a MATLAB runtime common-input test.",
+    "No per-application identity alignment exists across engines. Compare per-flow cohorts, never join MATLAB PacketId to native application_sequence."
+  ],
+  "input_sha256": {
+    "return6000/data/s132/attempt_001/raw/protocol_trace.csv": "6c80ddf664f54598253cf054ad0240a35ddd11c00658eb36b659208affbf0572",
+    "return6000/data/s132/attempt_001/raw/hop_nodes.csv": "8313233bb6bed796f5b2de8abacb83c0393f11c82d3c5a01972494ec69e3d66f",
+    "return6000/data/s132/attempt_001/raw/nwk_nodes.csv": "92b144b5198a028b96c738dce1e11be15942780a5f34ba682deaa7e66dec4051",
+    "return6000/data/s132/attempt_001/analysis/applications.csv": "3a0b642f2cb76b0778f31e445c4052efa1216c4170bdc1daff6816e6e4b194f7"
+  }
+}

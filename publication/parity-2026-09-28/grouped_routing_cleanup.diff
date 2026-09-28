@@ -1,0 +1,16 @@
+--- main/+csr/+hop/Layer.m
++++ corrected/+csr/+hop/Layer.m
+@@ -418,7 +418,12 @@
+                 obj.controlResult(e.Frame.Control,peer,true,finished,remaining);
+                 if finished
+                     obj.removeResend(groupKey);
+-                    cancellation=[e.Peer double(e.Sequence)];
++                    % Native exact-ACK cleanup leaves structured ROUTING
++                    % frames queued, including a single-target routing frame.
++                    % Finish HOP ownership without canceling its queued retry.
++                    if ~strcmp(e.Frame.Control.Type,'ROUTING')
++                        cancellation=[e.Peer double(e.Sequence)];
++                    end
+                 end
+                 obj.emit('hop_control_ack',e.Frame,struct('Peer',peer,'Complete',finished, ...
+                     'RemainingPeers',remaining));

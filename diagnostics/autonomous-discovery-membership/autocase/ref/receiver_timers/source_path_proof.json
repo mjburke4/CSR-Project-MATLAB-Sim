@@ -1,0 +1,77 @@
+{
+  "source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "spans": [
+    {
+      "purpose": "Native acquisition relative schedule",
+      "file": "csr-net-device.h",
+      "first_line": 1198,
+      "last_line": 1213,
+      "file_sha256": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+      "source": "\nvoid\nCsrNetDevice::ScheduleAcquisition ()\n{\n  if (m_mac.GetState () != CsrMacCore::State::SEARCH ||\n      !m_mac.IsSyncPresent () ||\n      m_acquisitionEvent.IsPending ())\n    {\n      return;\n    }\n\n  m_acquisitionEvent = Simulator::Schedule (Seconds (m_syncToTrackSec),\n                                             &CsrNetDevice::AcquireSignal,\n                                             this);\n}\n\n"
+    },
+    {
+      "purpose": "Native acquisition closes intervals before Track",
+      "file": "csr-net-device.h",
+      "first_line": 1741,
+      "last_line": 1799,
+      "file_sha256": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+      "source": "CsrNetDevice::AcquireSignal ()\n{\n  if (m_mac.GetState () != CsrMacCore::State::SEARCH)\n    {\n      return;\n    }\n\n  double now = Simulator::Now ().GetSeconds ();\n  std::vector<RxSignal *> candidates;\n  for (auto &[id, signal] : m_rxSignals)\n    {\n      (void) id;\n      if (signal.syncEligible &&\n          signal.preambleActive &&\n          (!signal.rejected || signal.rejectedDuringTrack))\n        {\n          candidates.push_back (&signal);\n        }\n    }\n\n  if (candidates.empty ())\n    {\n      return;\n    }\n\n  std::sort (candidates.begin (),\n             candidates.end (),\n             [] (const RxSignal *left, const RxSignal *right) {\n               if (left->startSec != right->startSec)\n                 {\n                   return left->startSec < right->startSec;\n                 }\n               return left->arrivalOrder < right->arrivalOrder;\n             });\n\n  RxSignal *selected = candidates.front ();\n  for (std::size_t index = 1; index < candidates.size (); ++index)\n    {\n      RxSignal *candidate = candidates[index];\n      if (now - candidate->startSec > m_syncToTrackSec &&\n          candidate->rxPowerDbm > selected->rxPowerDbm)\n        {\n          selected = candidate;\n        }\n    }\n\n  // Snapshot the receiver-global br_inoise state through the exact\n  // start_track() boundary.  The JSR/offset overwrite below applies only to\n  // the following interval; it must not be retroactively attached to time\n  // elapsed while the receiver was still in Search.\n  CloseAllSignalIntervals (now);\n\n  // start_track() explicitly accepts the chosen packet, including a surviving\n  // preamble that the preceding Track epoch rejected.\n  selected->rejected = false;\n  selected->rejectedDuringTrack = false;\n  selected->tracked = true;\n  selected->missedByState = false;\n  m_trackedSignalId = selected->id;\n"
+    },
+    {
+      "purpose": "Native interval close bounds by physical end",
+      "file": "csr-net-device.h",
+      "first_line": 1284,
+      "last_line": 1340,
+      "file_sha256": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+      "source": "void\nCsrNetDevice::CloseSignalInterval (RxSignal &signal, double endSec)\n{\n  double boundedEndSec = std::min (endSec, signal.endSec);\n  if (boundedEndSec <= signal.intervalStartSec)\n    {\n      return;\n    }\n\n  CsrBerInterval interval;\n  interval.startSec = signal.intervalStartSec;\n  interval.endSec = boundedEndSec;\n  interval.noisePowerWatts = signal.frontEnd.backgroundNoiseWatts +\n    signal.currentInterferenceWatts;\n  interval.collisionCount = signal.collisionCount;\n  // Preserve br_ber's receiver-global last-collision state for the S0 header\n  // and supplied spread-rate curves.  The high-rate payload fallback carries\n  // a separate, signed per-signal jammer ratio so a stronger or shorter\n  // jammer is represented only over the interval where it is active.\n  interval.sameRateInterference = m_rxSameSpeed;\n  interval.jsrDb = m_rxJsrDb;\n  interval.timeOffsetSeconds = m_rxTimeOffsetSeconds;\n  if (CsrIsHighRateDifferentialMode (signal.rateKbps))\n    {\n      interval.highRatePayloadJammer = signal.sameRateInterference;\n      interval.highRatePayloadJsrDb = signal.jsrDb;\n    }\n  signal.berIntervals.push_back (interval);\n  uint32_t preambleBits = signal.preamble == PREAMBLE_LONG ? 7888 : 104;\n  CsrErrorAllocation allocated = m_phy.AllocateErrors (\n    signal.frontEnd,\n    signal.startSec,\n    preambleBits,\n    signal.packetBits,\n    signal.rateKbps,\n    {interval},\n    m_rng);\n  signal.errorAllocation.headerBits += allocated.headerBits;\n  signal.errorAllocation.payloadBits += allocated.payloadBits;\n  signal.errorAllocation.headerErrors += allocated.headerErrors;\n  signal.errorAllocation.payloadErrors += allocated.payloadErrors;\n  signal.errorAllocation.totalErrors += allocated.totalErrors;\n  signal.errorAllocation.actualBer = allocated.actualBer;\n  signal.errorAllocation.headerBer = allocated.headerBer;\n  signal.errorAllocation.payloadBer = allocated.payloadBer;\n  signal.errorAllocation.minimumSnrDb = std::min (\n    signal.errorAllocation.minimumSnrDb,\n    allocated.minimumSnrDb);\n  signal.errorAllocation.peakNoisePowerWatts = std::max (\n    signal.errorAllocation.peakNoisePowerWatts,\n    allocated.peakNoisePowerWatts);\n  signal.errorAllocation.packetErrorProbability = 1.0 -\n    (1.0 - signal.errorAllocation.packetErrorProbability) *\n    (1.0 - allocated.packetErrorProbability);\n  signal.intervalStartSec = boundedEndSec;\n}\n\n"
+    },
+    {
+      "purpose": "PHY component boundaries and truncation",
+      "file": "csr-phy-model.h",
+      "first_line": 699,
+      "last_line": 769,
+      "file_sha256": "d690b4c572491a9ea8c48735b1726770938b118dcbcd931e92920e602cae18fc",
+      "source": "  {\n    CsrErrorAllocation result;\n    double headerRate = CsrRateKeyToBps (8);\n    double payloadRate = CsrRateKeyToBps (rateKbps);\n    double headerStartSec = signalStartSec +\n      static_cast<double> (preambleBits) / headerRate;\n    double payloadStartSec = signalStartSec +\n      static_cast<double> (preambleBits + 48) / headerRate;\n    uint32_t payloadRegionBits = packetBits > preambleBits + 48\n      ? packetBits - preambleBits - 48\n      : 0;\n    double packetEndSec = payloadStartSec +\n      static_cast<double> (payloadRegionBits) / payloadRate;\n    double noErrorProbability = 1.0;\n\n    std::vector<CsrBerInterval> ordered = intervals;\n    std::stable_sort (\n      ordered.begin (),\n      ordered.end (),\n      [] (const CsrBerInterval &left, const CsrBerInterval &right) {\n        return left.startSec < right.startSec;\n      });\n\n    for (const CsrBerInterval &interval : ordered)\n      {\n        double intervalEndSec = std::min (interval.endSec, packetEndSec);\n        if (intervalEndSec < interval.startSec ||\n            interval.startSec >= packetEndSec)\n          {\n            continue;\n          }\n        CsrBerValues ber = CalculateBer (frontEnd,\n                                        rateKbps,\n                                        interval,\n                                        packetBits);\n        result.headerBer = ber.headerBer;\n        result.payloadBer = ber.payloadBer;\n        result.minimumSnrDb = std::min (result.minimumSnrDb, ber.snrDb);\n        result.peakNoisePowerWatts = std::max (\n          result.peakNoisePowerWatts,\n          interval.noisePowerWatts);\n\n        if (intervalEndSec < headerStartSec)\n          {\n            result.actualBer = ber.headerBer;\n            continue;\n          }\n\n        double headerBeginSec = std::max (interval.startSec,\n                                          headerStartSec);\n        double headerEndSec = std::min (intervalEndSec,\n                                        payloadStartSec);\n        uint32_t headerBits = headerEndSec > headerBeginSec\n          ? static_cast<uint32_t> (\n              (headerEndSec - headerBeginSec) * headerRate)\n          : 0;\n        double payloadBeginSec = std::max (interval.startSec,\n                                           payloadStartSec);\n        uint32_t payloadBits = intervalEndSec > payloadBeginSec\n          ? static_cast<uint32_t> (\n              (intervalEndSec - payloadBeginSec) * payloadRate)\n          : 0;\n\n        uint32_t headerErrors = SampleSourceBinomial (\n          headerBits,\n          ber.headerBer,\n          rng);\n        uint32_t payloadErrors = SampleSourceBinomial (\n          payloadBits,\n          ber.payloadBer,\n          rng);\n"
+    },
+    {
+      "purpose": "Native duration and time conversion",
+      "file": "csr-net-device.h",
+      "first_line": 680,
+      "last_line": 704,
+      "file_sha256": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+      "source": "\n  uint32_t payloadBytes = 0;\n  std::vector<Ptr<Packet>> frameCopies;\n  frameCopies.reserve (frames.size ());\n  for (const auto &segment : frames)\n    {\n      payloadBytes += CsrGetOpnetWireSize (segment);\n      frameCopies.push_back (segment->Copy ());\n    }\n\n  // br_txdel.ps.c sends the preamble, SOF, speed, and length at S0, then\n  // sends the inherited payload and 32-bit FCS at the selected payload rate.\n  static constexpr double s0DurationSec = 0.00051;\n  uint32_t preambleBits = preamble == PREAMBLE_LONG ? 7888 : 104;\n  uint32_t s0HeaderBits = preambleBits + 16 + 16 + 16;\n  uint32_t payloadAndFcsBits = payloadBytes * 8 + 32;\n  uint32_t packetBits = s0HeaderBits + payloadAndFcsBits;\n  double rbps = CsrRateKeyToBps (rateKbps);\n  double preambleSec = preambleBits / 4.0 * s0DurationSec;\n  double duration = s0HeaderBits / 4.0 * s0DurationSec\n                  + payloadAndFcsBits / rbps;\n\n  double txTime = Simulator::Now ().GetSeconds ();\n\n  // For log: peek header\n"
+    },
+    {
+      "purpose": "Native TX starts shared MAC completion owner",
+      "file": "csr-net-device.h",
+      "first_line": 750,
+      "last_line": 755,
+      "file_sha256": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+      "source": "\n  // A direct SendToPeer call and a queued MAC transmission both occupy the\n  // local half-duplex radio for the complete OTA duration.\n  m_mac.NotifyPhyTxStart (Seconds (duration));\n\n  for (const auto &peer : m_peers)\n"
+    },
+    {
+      "purpose": "Single native TX completion callback",
+      "file": "csr-net-device.h",
+      "first_line": 2634,
+      "last_line": 2690,
+      "file_sha256": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+      "source": "CsrMacCore::NotifyPhyTxStart (Time duration)\n{\n  if (m_dev != nullptr)\n    {\n      // send_pk() cancels a previous post-Tx wait when a new transmission\n      // actually starts, including a direct-device transmission.\n      m_dev->CancelPostTxWait ();\n    }\n  m_txInProgress = true;\n  m_state = State::TX;\n\n  CsrDifferentialTraceEvent event;\n  event.event = \"mac_state\";\n  event.node = CsrTraceInteger (m_nodeId);\n  event.detail = StateName (State::TX);\n  WriteDifferentialTrace (event);\n\n  if (m_finishTxEvent.IsPending ())\n    {\n      Simulator::Cancel (m_finishTxEvent);\n    }\n  m_finishTxEvent = Simulator::Schedule (duration,\n                                         &CsrMacCore::FinishTx,\n                                         this);\n}\n\nvoid\nCsrMacCore::FinishTx ()\n{\n  m_txInProgress = false;\n  m_state = State::SEARCH;\n\n  CsrDifferentialTraceEvent event;\n  event.event = \"mac_state\";\n  event.node = CsrTraceInteger (m_nodeId);\n  event.detail = StateName (State::SEARCH);\n  WriteDifferentialTrace (event);\n\n  if (HasPendingFrame ())\n    {\n      // post_tx() enables PREP_TX immediately for frames that arrived or\n      // remained during Tx, reusing the slot advertised by this frame.\n      ActivateTxPreparation ();\n    }\n\n  if (m_dev != nullptr)\n    {\n      // Source post_tx() starts WAIT_FOR_ACK only after DONE_TX and only when\n      // both ACK and data queues are empty.\n      m_dev->OnMacTxFinished (!HasPendingFrame ());\n    }\n}\n\nint\nCsrMacCore::ChooseRateForDest (CsrNodeId dest)\n{\n  auto it = m_neighbors.find (dest);\n"
+    },
+    {
+      "purpose": "Native rejected-return nanosecond delay",
+      "file": "csr-net-device.h",
+      "first_line": 2101,
+      "last_line": 2122,
+      "file_sha256": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+      "source": "  m_rxSignals.erase (it);\n  RefreshHighRateInterference ();\n  StartAllSignalIntervals (now);\n  UpdateSyncPresence ();\n\n  if (wasTracked && m_mac.GetState () != CsrMacCore::State::TX)\n    {\n      if (pipelineRejectedTracked)\n        {\n          // start_track() installs a fallback DONE_RX_PK at END_RX + TIC for\n          // packets suppressed by the receiver pipeline.  A delivered packet\n          // instead runs proc_rx_pk() and returns immediately at END_RX.\n          m_doneRxEvent = Simulator::Schedule (\n            CsrOpnetTic (),\n            &CsrNetDevice::ReturnRejectedReceiveToSearch,\n            this);\n        }\n      else\n        {\n          ReturnToSearchAfterReceive ();\n        }\n    }\n"
+    },
+    {
+      "purpose": "Shared TIC constant quantizes to28ns",
+      "file": "csr-common.h",
+      "first_line": 28,
+      "last_line": 38,
+      "file_sha256": "f1e0a962862ef1cc5a6994f24988858a2bea70385ce02b1264285de194fe6ae1",
+      "source": " *\n * br_support.h defines TIC as 1 / 36 MHz.  Keep the expression in one place\n * so HOP self interrupts and NWK remote interrupts use the same ns-3 Time\n * quantization (28 ns when the simulator resolution is nanoseconds).\n */\nstatic inline Time\nCsrOpnetTic ()\n{\n  return Seconds (1.0 / 36.0e6);\n}\n\n"
+    }
+  ]
+}

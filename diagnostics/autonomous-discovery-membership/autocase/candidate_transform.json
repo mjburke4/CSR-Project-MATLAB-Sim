@@ -1,0 +1,694 @@
+{
+  "schema": "csr-isolated-discovery-membership-candidate-v1",
+  "matlab_executed": false,
+  "production_model_changed": false,
+  "natural_path_changed": false,
+  "scope": "M retains L control/timer/comparison paths; advanceScan selects only existing discovery members, populated by local discovery completion or received DONE. Ordinary route learning no longer adds work at advancement/watchdog.",
+  "unsupported_claims": [
+    "No production fix acceptance",
+    "No full-network performance parity",
+    "No generic control/data pump timing change"
+  ],
+  "transforms": [
+    {
+      "source": "model/+csr/+nwk/Layer.m",
+      "source_sha256": "7ef09931c83c55697ce96b400ee1d90459a44af4c0527b396829d62ab9125300",
+      "target": "+ac/InlineKeyNwk.m",
+      "target_sha256": "ae267f6cc5a0bd3bb8378b6b72e49ca5987ba8b07e8b41175b85519f539b728f",
+      "reverse_recovers_source": true,
+      "edits": [
+        {
+          "old": "classdef Layer < handle",
+          "new": "classdef InlineKeyNwk < handle"
+        },
+        {
+          "old": "function obj = Layer(nodeId,scheduler,streams,fullScenarioConfig,callbacks)",
+          "new": "function obj = InlineKeyNwk(nodeId,scheduler,streams,fullScenarioConfig,callbacks)"
+        },
+        {
+          "old": "            obj.Controls{end+1}=owner;\n            if scheduleWake, obj.wake(); end",
+          "new": "            obj.Controls{end+1}=owner;\n            if scheduleWake && strcmp(kind,'KEY_REQUEST') && ~reliable\n                % Diagnostic candidate: native NWK admits this newly-created\n                % no-ACK request while the receive callback is still Track.\n                % Preserve replacement/capacity above; never pump other owners.\n                controlId=control.Id;\n                position=obj.controlPosition(controlId);\n                obj.Controls{position}.Submitted=true;\n                options=obj.radioOptions(peers,struct()); options.AckRequired=false;\n                submitted=false;\n                if isfield(obj.Callbacks,'SendControl')\n                    submitted=obj.Callbacks.SendControl(control,peers,options);\n                end\n                % A synchronous sent/completion callback may remove the owner.\n                position=obj.controlPosition(controlId);\n                if ~submitted && position>0, obj.Controls{position}.Submitted=false; end\n                if submitted, return; end\n                % Failed admission retains the original deferred retry path.\n            end\n            if scheduleWake, obj.wake(); end"
+        }
+      ]
+    },
+    {
+      "source": "model/+csr/+sim/NetworkSimulation.m",
+      "source_sha256": "95b83ad8d6b3ae7d56f026bb360b703e800a251f4b4546a34e40f36025e99f58",
+      "target": "+ac/InlineKeySimulation.m",
+      "target_sha256": "fc62a43eb1b0e317586b9a2882e4b9b95ebf7cf0567715caf007b81fbf6740fc",
+      "reverse_recovers_source": true,
+      "edits": [
+        {
+          "old": "classdef NetworkSimulation < handle",
+          "new": "classdef InlineKeySimulation < handle"
+        },
+        {
+          "old": "function obj = NetworkSimulation(config,linkObserver,transportTiming,autonomousOptions)",
+          "new": "function obj = InlineKeySimulation(config,linkObserver,transportTiming,autonomousOptions)"
+        },
+        {
+          "old": "obj.Networks{k} = csr.nwk.Layer(nodeId,obj.Scheduler,obj.Streams,config,networkCallbacks);",
+          "new": "obj.Networks{k} = ac.InlineKeyNwk(nodeId,obj.Scheduler,obj.Streams,config,networkCallbacks);"
+        }
+      ]
+    },
+    {
+      "source": "model/+csr/+nwk/Neighbors.m",
+      "source_sha256": "65cb269a9b7e3cade654aad4b262bc6d7ebdf103743fa2581d8694bc6e45aed7",
+      "target": "+ac/CheckGateNeighbors.m",
+      "target_sha256": "40ac1ba5dd1fc5ffb13f9c7d0c53152f948995a74301fd4e18246cf492b50dde",
+      "reverse_recovers_source": true,
+      "edits": [
+        {
+          "old": "classdef Neighbors < handle",
+          "new": "classdef CheckGateNeighbors < handle"
+        },
+        {
+          "old": "function obj = Neighbors(nodeId,scheduler,options,callbacks)",
+          "new": "function obj = CheckGateNeighbors(nodeId,scheduler,options,callbacks)"
+        },
+        {
+          "old": "if ~entry.CheckActive && (~entry.OverheardValid || now>=deadline)",
+          "new": "if ~entry.OverheardValid || now>=deadline"
+        }
+      ]
+    },
+    {
+      "source": "+ac/InlineKeyNwk.m",
+      "source_sha256": "ae267f6cc5a0bd3bb8378b6b72e49ca5987ba8b07e8b41175b85519f539b728f",
+      "target": "+ac/CheckGateNwk.m",
+      "target_sha256": "5b4e26f9743cd01efd39766cb0b062211d4bb4b4c9ae1a1bb5798fc8162bf3cd",
+      "reverse_recovers_source": true,
+      "edits": [
+        {
+          "old": "classdef InlineKeyNwk < handle",
+          "new": "classdef CheckGateNwk < handle"
+        },
+        {
+          "old": "function obj = InlineKeyNwk(nodeId,scheduler,streams,fullScenarioConfig,callbacks)",
+          "new": "function obj = CheckGateNwk(nodeId,scheduler,streams,fullScenarioConfig,callbacks)"
+        },
+        {
+          "old": "obj.Neighbors=csr.nwk.Neighbors(obj.NodeId,scheduler,obj.Config.Neighbor,neighborCallbacks);",
+          "new": "obj.Neighbors=ac.CheckGateNeighbors(obj.NodeId,scheduler,obj.Config.Neighbor,neighborCallbacks);"
+        }
+      ]
+    },
+    {
+      "source": "+ac/InlineKeySimulation.m",
+      "source_sha256": "fc62a43eb1b0e317586b9a2882e4b9b95ebf7cf0567715caf007b81fbf6740fc",
+      "target": "+ac/CheckGateSimulation.m",
+      "target_sha256": "bbd3847c50c7cf75226cdacdc810c56021f17004cf30f6da52ec171b500b6da8",
+      "reverse_recovers_source": true,
+      "edits": [
+        {
+          "old": "classdef InlineKeySimulation < handle",
+          "new": "classdef CheckGateSimulation < handle"
+        },
+        {
+          "old": "function obj = InlineKeySimulation(config,linkObserver,transportTiming,autonomousOptions)",
+          "new": "function obj = CheckGateSimulation(config,linkObserver,transportTiming,autonomousOptions)"
+        },
+        {
+          "old": "obj.Networks{k} = ac.InlineKeyNwk(nodeId,obj.Scheduler,obj.Streams,config,networkCallbacks);",
+          "new": "obj.Networks{k} = ac.CheckGateNwk(nodeId,obj.Scheduler,obj.Streams,config,networkCallbacks);"
+        }
+      ]
+    },
+    {
+      "source": "+ac/CheckGateNeighbors.m",
+      "source_sha256": "40ac1ba5dd1fc5ffb13f9c7d0c53152f948995a74301fd4e18246cf492b50dde",
+      "target": "+ac/MessageFlagNeighbors.m",
+      "target_sha256": "b6092d3c2dbf0e4d23a697b43bf9bf932c4d5972c2b99eb5cd2022ab865764f6",
+      "reverse_recovers_source": true,
+      "edits": [
+        {
+          "old": "classdef CheckGateNeighbors < handle",
+          "new": "classdef MessageFlagNeighbors < handle"
+        },
+        {
+          "old": "function obj = CheckGateNeighbors(nodeId,scheduler,options,callbacks)",
+          "new": "function obj = MessageFlagNeighbors(nodeId,scheduler,options,callbacks)"
+        },
+        {
+          "old": "entry=obj.Peers(peer); entry.CheckActive=true; obj.Peers(peer)=entry;",
+          "new": "entry=obj.Peers(peer);\n            if strcmp(subtype,'message')\n                entry.CheckActive=true; obj.Peers(peer)=entry;\n            end"
+        }
+      ]
+    },
+    {
+      "source": "+ac/CheckGateNwk.m",
+      "source_sha256": "5b4e26f9743cd01efd39766cb0b062211d4bb4b4c9ae1a1bb5798fc8162bf3cd",
+      "target": "+ac/MessageFlagNwk.m",
+      "target_sha256": "eb986d403bda5b6bdbfec392cbaadff850baf4333aec39d1c93fa50d5f60c64c",
+      "reverse_recovers_source": true,
+      "edits": [
+        {
+          "old": "classdef CheckGateNwk < handle",
+          "new": "classdef MessageFlagNwk < handle"
+        },
+        {
+          "old": "function obj = CheckGateNwk(nodeId,scheduler,streams,fullScenarioConfig,callbacks)",
+          "new": "function obj = MessageFlagNwk(nodeId,scheduler,streams,fullScenarioConfig,callbacks)"
+        },
+        {
+          "old": "obj.Neighbors=ac.CheckGateNeighbors(obj.NodeId,scheduler,obj.Config.Neighbor,neighborCallbacks);",
+          "new": "obj.Neighbors=ac.MessageFlagNeighbors(obj.NodeId,scheduler,obj.Config.Neighbor,neighborCallbacks);"
+        }
+      ]
+    },
+    {
+      "source": "+ac/CheckGateSimulation.m",
+      "source_sha256": "bbd3847c50c7cf75226cdacdc810c56021f17004cf30f6da52ec171b500b6da8",
+      "target": "+ac/MessageFlagSimulation.m",
+      "target_sha256": "daadc55e32df158b010964813b35a6ee4f1f68c4af8b4cb8d5049d64b6170f70",
+      "reverse_recovers_source": true,
+      "edits": [
+        {
+          "old": "classdef CheckGateSimulation < handle",
+          "new": "classdef MessageFlagSimulation < handle"
+        },
+        {
+          "old": "function obj = CheckGateSimulation(config,linkObserver,transportTiming,autonomousOptions)",
+          "new": "function obj = MessageFlagSimulation(config,linkObserver,transportTiming,autonomousOptions)"
+        },
+        {
+          "old": "obj.Networks{k} = ac.CheckGateNwk(nodeId,obj.Scheduler,obj.Streams,config,networkCallbacks);",
+          "new": "obj.Networks{k} = ac.MessageFlagNwk(nodeId,obj.Scheduler,obj.Streams,config,networkCallbacks);"
+        }
+      ]
+    },
+    {
+      "source": "+ac/MessageFlagNeighbors.m",
+      "source_sha256": "b6092d3c2dbf0e4d23a697b43bf9bf932c4d5972c2b99eb5cd2022ab865764f6",
+      "target": "+ac/PopulationNeighbors.m",
+      "target_sha256": "016762b7d8b9c0a4ea139fa7dfaea32b891bba1bf77522909d9d74aa1ad1a641",
+      "reverse_recovers_source": true,
+      "edits": [
+        {
+          "old": "classdef MessageFlagNeighbors < handle",
+          "new": "classdef PopulationNeighbors < handle"
+        },
+        {
+          "old": "function obj = MessageFlagNeighbors(nodeId,scheduler,options,callbacks)",
+          "new": "function obj = PopulationNeighbors(nodeId,scheduler,options,callbacks)"
+        },
+        {
+          "old": "            if ~obj.Config.AdmissionEnabled && ~entry.Active\n                entry.Active=true; obj.Peers(peer)=entry;\n                obj.changed(peer,true); return\n            end\n            obj.Peers(peer)=entry;\n        end\n        function receiveControl",
+          "new": "            if ~obj.Config.AdmissionEnabled && ~entry.Active\n                entry.Active=true; obj.Peers(peer)=entry;\n                if isfield(obj.Callbacks,'PopulationObserved'), obj.Callbacks.PopulationObserved(); end\n                obj.changed(peer,true); return\n            end\n            obj.Peers(peer)=entry;\n            if isfield(obj.Callbacks,'PopulationObserved'), obj.Callbacks.PopulationObserved(); end\n        end\n        function receiveControl"
+        }
+      ]
+    },
+    {
+      "source": "+ac/MessageFlagNwk.m",
+      "source_sha256": "eb986d403bda5b6bdbfec392cbaadff850baf4333aec39d1c93fa50d5f60c64c",
+      "target": "+ac/PopulationNwk.m",
+      "target_sha256": "0fb306a57a40656c511e0a20a5c155b2bc8357c877d8449309a74f3efbfd26fb",
+      "reverse_recovers_source": true,
+      "edits": [
+        {
+          "old": "classdef MessageFlagNwk < handle",
+          "new": "classdef PopulationNwk < handle"
+        },
+        {
+          "old": "function obj = MessageFlagNwk(nodeId,scheduler,streams,fullScenarioConfig,callbacks)",
+          "new": "function obj = PopulationNwk(nodeId,scheduler,streams,fullScenarioConfig,callbacks)"
+        },
+        {
+          "old": "                'NeighborChanged',@(peer,active)obj.neighborChanged(peer,active),",
+          "new": "                'PopulationObserved',@()obj.publishMacPopulation(), ...\n                'NeighborChanged',@(peer,active)obj.neighborChanged(peer,active),"
+        },
+        {
+          "old": "obj.Neighbors=ac.MessageFlagNeighbors(obj.NodeId,scheduler,obj.Config.Neighbor,neighborCallbacks);",
+          "new": "obj.Neighbors=ac.PopulationNeighbors(obj.NodeId,scheduler,obj.Config.Neighbor,neighborCallbacks);"
+        },
+        {
+          "old": "        function accepted = queueControl(obj,kind,peers,payload,reliable,scheduleWake)",
+          "new": "        function publishMacPopulation(obj)\n            % Native publishes from qualifying NWK observation boundaries;\n            % ACK completion can change this count without publishing it.\n            if isfield(obj.Callbacks,'PublishMacPopulation')\n                state=obj.applicationState();\n                obj.Callbacks.PublishMacPopulation(state.ActiveNodeCount);\n            end\n        end\n\n        function accepted = queueControl(obj,kind,peers,payload,reliable,scheduleWake)"
+        }
+      ]
+    },
+    {
+      "source": "+ac/MessageFlagSimulation.m",
+      "source_sha256": "daadc55e32df158b010964813b35a6ee4f1f68c4af8b4cb8d5049d64b6170f70",
+      "target": "+ac/PopulationSimulation.m",
+      "target_sha256": "aec99858386da09cf5584d6a3794b557542f109665f0be4fc09d78c6b8e5d902",
+      "reverse_recovers_source": true,
+      "edits": [
+        {
+          "old": "classdef MessageFlagSimulation < handle",
+          "new": "classdef PopulationSimulation < handle"
+        },
+        {
+          "old": "function obj = MessageFlagSimulation(config,linkObserver,transportTiming,autonomousOptions)",
+          "new": "function obj = PopulationSimulation(config,linkObserver,transportTiming,autonomousOptions)"
+        },
+        {
+          "old": "                networkCallbacks = struct('CanSendData',@(peer)obj.Hops{k}.canSend(peer), ...",
+          "new": "                networkCallbacks = struct('PublishMacPopulation',@(count)obj.publishMacPopulation(nodeId,count), ...\n                    'CanSendData',@(peer)obj.Hops{k}.canSend(peer), ..."
+        },
+        {
+          "old": "obj.Networks{k} = ac.MessageFlagNwk(nodeId,obj.Scheduler,obj.Streams,config,networkCallbacks);",
+          "new": "obj.Networks{k} = ac.PopulationNwk(nodeId,obj.Scheduler,obj.Streams,config,networkCallbacks);"
+        },
+        {
+          "old": "            index = obj.NodeIndex(nodeId);\n            obj.refreshHistoricalPopulation(index);\n            powerDefaulted",
+          "new": "            index = obj.NodeIndex(nodeId);\n            powerDefaulted"
+        },
+        {
+          "old": "                    obj.refreshHistoricalPopulation(index);\n                end\n            end\n            if ~addressed",
+          "new": "                end\n            end\n            if ~addressed"
+        },
+        {
+          "old": "        function refreshHistoricalPopulation(obj,index)",
+          "new": "        function publishMacPopulation(obj,nodeId,count)\n            if ~strcmp(obj.Config.ApplicationGenerator,'historical-opnet-gated'), return; end\n            index=obj.NodeIndex(nodeId);\n            obj.Macs{index}.setActiveNodes(count);\n            ac.Trace.record(obj.Scheduler.Now,'mac_population_publish',nodeId, ...\n                struct('ActiveNodes',count,'Cause','qualified_nwk_observation'));\n        end\n\n        function refreshHistoricalPopulation(obj,index)"
+        }
+      ]
+    },
+    {
+      "source": "model/+csr/+nwk/Routes.m",
+      "source_sha256": "6c12979d4215ae286d5efd2be65bce51fd1f8fb54876cdc32041bbb413eb5cc0",
+      "target": "+ac/AdmissionRoutes.m",
+      "target_sha256": "8f4ac059cc6ac2819527b84535b5cf329e4f78cfbb109a78e040fe826cb1422d",
+      "reverse_recovers_source": true,
+      "edits": [
+        {
+          "old": "classdef Routes < handle",
+          "new": "classdef AdmissionRoutes < handle"
+        },
+        {
+          "old": "function obj = Routes(nodeId,capability,options)",
+          "new": "function obj = AdmissionRoutes(nodeId,capability,options)"
+        },
+        {
+          "old": "classdef AdmissionRoutes < handle\n    %ROUTES Source-backed ARL candidate selection and routing record state.\n    % The scheduler, discovery admission and reliable control transport are\n    % owned by Layer. Route changes remain pending until drainChanges().\n    properties (SetAccess = private)\n        NodeId\n        Capability\n        Config\n        Candidates\n    end\n    properties (Access = private)\n        Peers\n        PeerOrder = []\n        DestinationOrder = []\n        Preferred\n        Reverse\n        Changed = []\n        InfoChanged = false\n    end\n    methods\n        function obj = AdmissionRoutes(nodeId,capability,options)\n            if nargin < 2, capability = 1; end\n            if nargin < 3, options = struct(); end\n            csr.nwk.Routes.number(nodeId,0,16777214);\n            csr.nwk.Routes.number(capability,0,255);\n            obj.NodeId = double(nodeId); obj.Capability = double(capability);\n            obj.Config = csr.nwk.Routes.defaults();\n            if ~isstruct(options) || ~isscalar(options)\n                error('csr:nwk:InvalidConfig','Route options must be a scalar struct.');\n            end\n            names = fieldnames(options);\n            for k = 1:numel(names)\n                if ~isfield(obj.Config,names{k})\n                    error('csr:nwk:InvalidConfig','Unknown route option: %s.',names{k});\n                end\n                obj.Config.(names{k}) = options.(names{k});\n            end\n            csr.nwk.Routes.number(obj.Config.MaxPathHops,1,32);\n            obj.Config.LocalInfo = csr.nwk.Routes.validateInfo(obj.Config.LocalInfo);\n            obj.Candidates = repmat(csr.nwk.Routes.emptyCandidate(),1,0);\n            obj.Peers = containers.Map('KeyType','double','ValueType','any');\n            obj.Preferred = containers.Map('KeyType','double','ValueType','double');\n            obj.Reverse = containers.Map('KeyType','double','ValueType','any');\n            if obj.Capability ~= 0, obj.Changed = obj.NodeId; end\n        end\n\n        function setCapability(obj,capability)\n            csr.nwk.Routes.number(capability,0,255);\n            if obj.Capability ~= capability\n                obj.Capability = double(capability);\n                obj.mark(obj.NodeId);\n            end\n        end\n\n        function setLocalInfo(obj,info)\n            info = csr.nwk.Routes.validateInfo(info);\n            if ~isequal(obj.Config.LocalInfo,info)\n                obj.Config.LocalInfo = info;\n                obj.InfoChanged = true;\n            end\n        end\n\n        function setNeighbor(obj,peer,active,linkCost,now)\n            obj.checkPeer(peer,linkCost,now);\n            if ~(islogical(active) || isnumeric(active)) || ~isscalar(active) || ...\n                    ~isreal(active) || ~ismember(active,[0 1])\n                error('csr:nwk:InvalidField','Neighbor active must be logical.');\n            end\n            peer = double(peer); linkCost = double(linkCost); active = logical(active);\n            affected = unique([peer [obj.Candidates([obj.Candidates.NextHop] == peer).DestinationId]],'stable');\n            before = obj.states(affected);\n            oldActive = false; oldLinkCost = NaN;\n            if isKey(obj.Peers,peer)\n                entry = obj.Peers(peer); oldActive = entry.Active; oldLinkCost = entry.LinkCost;\n            else\n                entry = obj.emptyPeer(peer);\n                obj.PeerOrder = [peer obj.PeerOrder];\n            end\n            entry.Active = active; entry.LinkCost = linkCost;\n            if oldActive && ~active\n                entry.InfoValid = false; entry.InfoSequence = 0;\n                obj.Candidates(~[obj.Candidates.Immediate] & [obj.Candidates.NextHop] == peer) = [];\n            end\n            obj.Peers(peer) = entry;\n            index = obj.findCandidate(peer,peer);\n            if index == 0\n                route = csr.nwk.Routes.emptyCandidate();\n                route.DestinationId = peer; route.NextHop = peer;\n                route.HopCount = 1; route.Path = peer; route.Immediate = true;\n                obj.Candidates(end+1) = route; index = numel(obj.Candidates);\n            end\n            route = obj.Candidates(index);\n            route.Valid = true; route.LinkCost = linkCost; route.Cost = max(1,linkCost);\n            route.LastUpdatedSeconds = double(now);\n            if oldActive && ~active\n                route.Capability = 0; route.SequenceValid = false; route.Sequence = 0;\n            end\n            obj.Candidates(index) = route;\n            if active, obj.noteDestination(peer); end\n            % Admission recomputes direct destination only. A measured link\n            % change on an already-active peer revisits its valid routes.\n            if active && oldActive && oldLinkCost ~= linkCost\n                for k = 1:numel(obj.Candidates)\n                    route = obj.Candidates(k);\n                    if route.NextHop == peer && route.Valid\n                        route.LinkCost = linkCost;\n                        route.Cost = obj.totalCost(linkCost,route.AdvertisedCost);\n                        obj.Candidates(k) = route;\n                        position = find(affected == route.DestinationId,1);\n                        if ~isempty(before{position}), obj.release(route.DestinationId); end\n                    end\n                end\n            end\n            if active, obj.release(peer); end\n            for k = 1:numel(affected)\n                if oldActive && ~active && ~isempty(before{k}) && before{k}.NextHop == peer\n                    obj.release(affected(k));\n                end\n                obj.finish(affected(k),before{k},false);\n            end\n        end\n\n        function invalidateNeighbor(obj,peer,now)\n            % Explicit failure is stronger than an observation that a peer\n            % has not yet been admitted: discard its pre-admission routes too.\n            obj.checkPeer(peer,1,now); peer = double(peer);\n            if ~isKey(obj.Peers,peer), return; end\n            entry = obj.Peers(peer);\n            affected = unique([peer [obj.Candidates([obj.Candidates.NextHop] == peer).DestinationId]],'stable');\n            before = obj.states(affected);\n            obj.setNeighbor(peer,false,entry.LinkCost,now);\n            obj.Candidates(~[obj.Candidates.Immediate] & [obj.Candidates.NextHop] == peer) = [];\n            index = obj.findCandidate(peer,peer);\n            if index ~= 0\n                obj.Candidates(index).Capability = 0;\n                obj.Candidates(index).SequenceValid = false;\n                obj.Candidates(index).Sequence = 0;\n            end\n            entry = obj.Peers(peer); entry.InfoValid = false; entry.InfoSequence = 0;\n            obj.Peers(peer) = entry;\n            for k = 1:numel(affected)\n                if ~isempty(before{k}) && before{k}.NextHop == peer, obj.release(affected(k)); end\n                obj.finish(affected(k),before{k},false);\n            end\n        end\n\n        function effects = apply(obj,peer,sequence,records,linkCost,now)\n            obj.checkPeer(peer,linkCost,now);\n            csr.nwk.Routes.number(sequence,0,4294967295);\n            peer = double(peer); sequence = double(sequence);\n            effects = struct('RequestSnapshot',false,'AppliedRecords',0, ...\n                'IgnoredRecords',0,'InfoChanged',false);\n            if ~iscell(records), records = num2cell(records); end\n            sawInfo = false; sawFlush = false; sawReporterSelfRecord = false;\n            if ~isKey(obj.Peers,peer)\n                obj.setNeighbor(peer,false,linkCost,now);\n            end\n            for k = 1:numel(records)\n                record = records{k}; accepted = false;\n                if ~isstruct(record) || ~isscalar(record) || ~isfield(record,'Operation')\n                    error('csr:nwk:InvalidRecord','Every route record requires Operation.');\n                end\n                switch upper(char(record.Operation))\n                    case 'REQUEST'\n                        effects.RequestSnapshot = true; accepted = true;\n                    case 'INFO'\n                        sawInfo = true;\n                        info = csr.nwk.Routes.validateInfo(record.Info);\n                        entry = obj.Peers(peer);\n                        if obj.newer(entry.InfoValid,entry.InfoSequence,sequence)\n                            entry.InfoValid = true; entry.InfoSequence = sequence; entry.Info = info;\n                            obj.Peers(peer) = entry; accepted = true; effects.InfoChanged = true;\n                        end\n                    case 'UPDATE'\n                        accepted = obj.update(peer,sequence,record,linkCost,now);\n                        if all(isfield(record,{'NodeId','HopCount','Cost','Path'})) && ...\n                                record.NodeId == peer && record.HopCount == 0 && ...\n                                record.Cost == 0 && isempty(record.Path)\n                            sawReporterSelfRecord = true;\n                        end\n                    case 'DELETE'\n                        csr.nwk.Routes.number(record.NodeId,0,16777215);\n                        if record.NodeId < 16777215 && record.NodeId ~= obj.NodeId\n                            if record.NodeId == peer\n                                accepted = obj.selfUpdate(peer,sequence,0,linkCost,now);\n                                sawReporterSelfRecord = true;\n                            else\n                                accepted = obj.delete(peer,sequence,double(record.NodeId),now);\n                            end\n                        end\n                    case 'FLUSH'\n                        sawFlush = true;\n                        accepted = obj.flush(peer,sequence,now);\n                    otherwise\n                        error('csr:nwk:InvalidRecord','Unknown route operation.');\n                end\n                effects.AppliedRecords = effects.AppliedRecords + double(accepted);\n                effects.IgnoredRecords = effects.IgnoredRecords + double(~accepted);\n            end\n            if sawInfo && sawFlush && ~sawReporterSelfRecord\n                obj.selfUpdate(peer,sequence,0,linkCost,now);\n            end\n        end\n\n        function route = select(obj,destination)\n            csr.nwk.Routes.number(destination,0,16777214);\n            obj.noteDestination(double(destination));\n            route = obj.best(double(destination));\n        end\n\n        function route = relay(obj,destination)\n            route = obj.select(destination);\n            if ~isempty(route) && route.Capability ~= 0\n                route.UsedReverse = false; return\n            end\n            if isKey(obj.Reverse,double(destination))\n                reverse = obj.Reverse(double(destination));\n                if obj.usable(reverse.NextHop)\n                    route = reverse; route.UsedReverse = true; return\n                end\n            end\n            if ~isempty(route), route.UsedReverse = false; end\n        end\n\n        function route = discoveryRelay(obj,destination)\n            % Legacy SNMP prefers a capable forward route, otherwise a\n            % usable reverse route, then a direct/non-capable forward route.\n            route = obj.select(destination);\n            if ~isempty(route) && route.Capability ~= 0\n                route.UsedReverse = false; return\n            end\n            if obj.Capability ~= 0 && isKey(obj.Reverse,double(destination))\n                reverse = obj.Reverse(double(destination));\n                if obj.usable(reverse.NextHop)\n                    route = reverse; route.UsedReverse = true; return\n                end\n            end\n            if ~isempty(route), route.UsedReverse = false; end\n        end\n\n        function learnReverse(obj,source,peer,now)\n            obj.checkPeer(peer,1,now);\n            csr.nwk.Routes.number(source,0,16777214);\n            if source == obj.NodeId, return; end\n            obj.noteDestination(double(peer));\n            if ~isKey(obj.Peers,double(peer)), return; end\n            obj.noteDestination(double(source));\n            route = csr.nwk.Routes.emptyCandidate();\n            route.DestinationId = double(source); route.NextHop = double(peer);\n            route.Path = double(peer); route.HopCount = 1; route.Valid = true;\n            route.LastUpdatedSeconds = double(now);\n            obj.Reverse(double(source)) = route;\n        end\n\n        function removed = noteNoPath(obj,peer,destination,now)\n            % CHECK_NO_PATH is informational for all forward candidates. It\n            % clears a reverse path only when its reporting hop matches.\n            if nargin < 4, now = 0; end\n            obj.checkPeer(peer,1,now);\n            csr.nwk.Routes.number(destination,0,16777215);\n            destination = double(destination); peer = double(peer); removed = false;\n            if destination == 16777215, return; end\n            obj.noteDestination(destination);\n            if ~isKey(obj.Reverse,destination), return; end\n            reverse = obj.Reverse(destination);\n            if reverse.NextHop ~= peer, return; end\n            remove(obj.Reverse,destination); removed = true;\n        end\n\n        function [records,destinations,infoChanged] = drainChanges(obj)\n            destinations = obj.DestinationOrder(ismember(obj.DestinationOrder,obj.Changed));\n            if ismember(obj.NodeId,obj.Changed), destinations(end+1) = obj.NodeId; end\n            records = {};\n            infoChanged = obj.InfoChanged;\n            if obj.InfoChanged\n                records{end+1} = struct('Operation','INFO','Info',obj.Config.LocalInfo);\n            end\n            for destination = destinations\n                records{end+1} = obj.changeRecord(destination); %#ok<AGROW>\n            end\n            obj.Changed = []; obj.InfoChanged = false;\n        end\n\n        function restoreChanges(obj,destinations,infoChanged)\n            % A bounded outbound backlog may reject semantic admission after\n            % drainChanges. Restore dirty flags so convergence is delayed,\n            % never silently lost. No callback can interleave this operation.\n            for destination=reshape(double(destinations),1,[])\n                if ~ismember(destination,obj.Changed)\n                    obj.Changed(end+1)=destination;\n                end\n            end\n            obj.InfoChanged=obj.InfoChanged || logical(infoChanged);\n        end\n\n        function destinations = pendingChanges(obj)\n            % Read-only flags used by independently scheduled snapshot replies.\n            destinations = obj.Changed;\n        end\n\n        function records = snapshot(obj,excludeDestinations)\n            if nargin < 2, excludeDestinations = []; end\n            records = {struct('Operation','INFO','Info',obj.Config.LocalInfo)};\n            if obj.Capability ~= 0 && ~ismember(obj.NodeId,excludeDestinations)\n                records{end+1} = obj.changeRecord(obj.NodeId);\n            end\n            % Snapshot follows candidate insertion order; incremental changes\n            % use the newest-created destination order in drainChanges().\n            for k = 1:numel(obj.Candidates)\n                candidate = obj.Candidates(k);\n                destination = candidate.DestinationId;\n                if ismember(destination,excludeDestinations), continue; end\n                route = obj.best(destination);\n                if ~isempty(route) && route.Capability ~= 0 && candidate.NextHop == route.NextHop\n                    records{end+1} = obj.changeRecord(destination); %#ok<AGROW>\n                end\n            end\n            records{end+1} = struct('Operation','FLUSH');\n        end\n\n        function entries = neighbors(obj)\n            entries = repmat(obj.emptyPeer(0),1,0);\n            for peer = obj.PeerOrder, entries(end+1) = obj.Peers(peer); end %#ok<AGROW>\n        end\n\n        function info = neighborInfo(obj,peer)\n            info = [];\n            if isKey(obj.Peers,double(peer))\n                entry = obj.Peers(double(peer));\n                if entry.InfoValid, info = entry.Info; end\n            end\n        end\n\n        function gateway = applicationGateway(obj)\n            gateway = []; scanned = [];\n            for k = 1:numel(obj.Candidates)\n                destination = obj.Candidates(k).DestinationId;\n                if ismember(destination,scanned), continue; end\n                scanned(end+1) = destination; %#ok<AGROW>\n                route = obj.best(destination);\n                if ~isempty(route) && route.Capability == 2, gateway = destination; end\n            end\n        end\n\n        function destinations = applicationDestinationCandidates(obj)\n            % Source GetApplicationDestinationCandidates scans every stored\n            % route, including unselected/invalid entries, in insertion order.\n            % Neighbor fallback belongs to Layer, which owns persistent peers.\n            % This observation must not run selection or alter preferences.\n            destinations=unique([obj.Candidates.DestinationId],'stable');\n            destinations=destinations(destinations~=obj.NodeId);\n        end\n\n        function destinations = reachableDestinations(obj)\n            destinations = [];\n            for destination = obj.DestinationOrder\n                if ~isempty(obj.discoveryRelay(destination))\n                    destinations(end+1) = destination; %#ok<AGROW>\n                end\n            end\n        end\n    end\n    methods (Access = private)\n        function accepted = update(obj,peer,sequence,record,linkCost,now)\n            required = {'NodeId','Capability','HopCount','Cost','Path'};\n            if ~all(isfield(record,required))\n                error('csr:nwk:InvalidRecord','UPDATE fields are missing.');\n            end\n            csr.nwk.Routes.number(record.NodeId,0,16777215);\n            csr.nwk.Routes.number(record.Capability,0,255);\n            csr.nwk.Routes.number(record.HopCount,0,65535);\n            csr.nwk.Routes.number(record.Cost,0,4294967295);\n            path = record.Path;\n            if ~isnumeric(path) || (~isempty(path) && ~isvector(path)) || ~isreal(path) || ...\n                    any(~isfinite(path(:))) || any(path(:)<0 | path(:)>16777215 | fix(path(:))~=path(:)) || ...\n                    numel(path) ~= record.HopCount\n                error('csr:nwk:InvalidRecord','UPDATE Path must contain HopCount node identifiers.');\n            end\n            accepted = false;\n            destination = double(record.NodeId); path = reshape(double(path),1,[]);\n            if destination == obj.NodeId || destination == 16777215, return; end\n            if destination == peer\n                if record.HopCount ~= 0 || record.Cost ~= 0 || ~isempty(path), return; end\n                accepted = obj.selfUpdate(peer,sequence,double(record.Capability),linkCost,now);\n                return\n            end\n            if record.HopCount >= obj.Config.MaxPathHops || any(path == 16777215), return; end\n            index = obj.findCandidate(destination,peer);\n            if index ~= 0 && ~obj.newer(obj.Candidates(index).SequenceValid,obj.Candidates(index).Sequence,sequence)\n                return\n            end\n            obj.noteDestination(destination); before = obj.best(destination);\n            replacingSelected = ~isempty(before) && before.NextHop == peer;\n            if index == 0\n                route = csr.nwk.Routes.emptyCandidate();\n                route.DestinationId = destination; route.NextHop = peer;\n                obj.Candidates(end+1) = route; index = numel(obj.Candidates);\n            end\n            route = obj.Candidates(index);\n            route.Capability = double(record.Capability);\n            route.HopCount = double(record.HopCount)+1;\n            route.LinkCost = double(linkCost); route.AdvertisedCost = double(record.Cost);\n            route.Cost = obj.totalCost(linkCost,record.Cost);\n            route.Valid = ~ismember(obj.NodeId,path);\n            route.SelectionDeferred = ~obj.usable(peer);\n            route.Path = [peer path];\n            route.SequenceValid = true; route.Sequence = sequence;\n            route.LastUpdatedSeconds = double(now);\n            obj.Candidates(index) = route;\n            obj.release(destination);\n            obj.finish(destination,before,replacingSelected && route.Valid);\n            accepted = true;\n        end\n\n        function accepted = selfUpdate(obj,peer,sequence,capability,linkCost,now)\n            index = obj.findCandidate(peer,peer); accepted = false;\n            if index == 0, return; end\n            route = obj.Candidates(index);\n            if ~obj.newer(route.SequenceValid,route.Sequence,sequence), return; end\n            obj.noteDestination(peer); before = obj.best(peer);\n            route.Capability = capability; route.HopCount = 1; route.Path = peer;\n            route.Valid = true; route.SelectionDeferred = false;\n            route.LinkCost = double(linkCost); route.AdvertisedCost = 0;\n            route.Cost = max(1,double(linkCost)); route.LastUpdatedSeconds = double(now);\n            route.SequenceValid = true; route.Sequence = sequence;\n            obj.Candidates(index) = route;\n            obj.finish(peer,before,false); accepted = true;\n        end\n\n        function accepted = delete(obj,peer,sequence,destination,now)\n            obj.noteDestination(destination); before = obj.best(destination);\n            index = obj.findCandidate(destination,peer); accepted = false;\n            if index == 0\n                route = csr.nwk.Routes.emptyCandidate();\n                route.DestinationId = destination; route.NextHop = peer;\n                obj.Candidates(end+1) = route; index = numel(obj.Candidates);\n            else\n                route = obj.Candidates(index);\n                if ~obj.newer(route.SequenceValid,route.Sequence,sequence), return; end\n            end\n            invalidated = route.Valid;\n            route.Valid = false; route.SequenceValid = true; route.Sequence = sequence;\n            route.LastUpdatedSeconds = double(now); obj.Candidates(index) = route;\n            if invalidated && ~isempty(before) && before.NextHop == peer\n                obj.release(destination);\n            end\n            obj.finish(destination,before,false); accepted = true;\n        end\n\n        function accepted = flush(obj,peer,sequence,now)\n            affected = []; before = {};\n            for k = 1:numel(obj.Candidates)\n                route = obj.Candidates(k);\n                if route.Immediate || route.NextHop ~= peer || ...\n                        ~obj.newer(route.SequenceValid,route.Sequence,sequence), continue; end\n                if ~ismember(route.DestinationId,affected)\n                    affected(end+1) = route.DestinationId; %#ok<AGROW>\n                    before{end+1} = obj.best(route.DestinationId); %#ok<AGROW>\n                end\n                route.Valid = false; route.SequenceValid = true; route.Sequence = sequence;\n                route.LastUpdatedSeconds = double(now); obj.Candidates(k) = route;\n            end\n            entry = obj.Peers(peer);\n            if obj.newer(entry.InfoValid,entry.InfoSequence,sequence)\n                entry.InfoValid = false; entry.InfoSequence = sequence; obj.Peers(peer) = entry;\n            end\n            for k = 1:numel(affected)\n                if ~isempty(before{k}) && before{k}.NextHop == peer, obj.release(affected(k)); end\n                obj.finish(affected(k),before{k},false);\n            end\n            accepted = true;\n        end\n\n        function route = best(obj,destination)\n            route = [];\n            preferred = -1;\n            if isKey(obj.Preferred,destination), preferred = obj.Preferred(destination); end\n            for k = 1:numel(obj.Candidates)\n                candidate = obj.Candidates(k);\n                if candidate.DestinationId ~= destination || ~candidate.Valid || ...\n                        candidate.SelectionDeferred || ~obj.usable(candidate.NextHop), continue; end\n                if isempty(route) || candidate.Cost < route.Cost || ...\n                        (candidate.Cost == route.Cost && candidate.HopCount < route.HopCount) || ...\n                        (candidate.Cost == route.Cost && candidate.HopCount == route.HopCount && ...\n                        candidate.NextHop == preferred && route.NextHop ~= preferred)\n                    route = candidate;\n                end\n            end\n        end\n\n        function release(obj,destination)\n            for k = 1:numel(obj.Candidates)\n                if obj.Candidates(k).DestinationId == destination && obj.usable(obj.Candidates(k).NextHop)\n                    obj.Candidates(k).SelectionDeferred = false;\n                end\n            end\n        end\n\n        function finish(obj,destination,before,force)\n            after = obj.best(destination);\n            if force || ~obj.sameSelection(before,after), obj.mark(destination); end\n        end\n\n        function mark(obj,destination)\n            route = obj.best(destination);\n            if isempty(route)\n                if isKey(obj.Preferred,destination), remove(obj.Preferred,destination); end\n            else\n                obj.Preferred(destination) = route.NextHop;\n            end\n            if ~ismember(destination,obj.Changed), obj.Changed(end+1) = destination; end\n        end\n\n        function record = changeRecord(obj,destination)\n            route = obj.best(destination);\n            if destination == obj.NodeId && obj.Capability ~= 0\n                record = struct('Operation','UPDATE','NodeId',obj.NodeId, ...\n                    'Capability',obj.Capability,'HopCount',0,'Cost',0,'Path',[]);\n            elseif destination ~= obj.NodeId && ~isempty(route) && route.Capability ~= 0\n                record = struct('Operation','UPDATE','NodeId',destination, ...\n                    'Capability',route.Capability,'HopCount',route.HopCount, ...\n                    'Cost',route.Cost,'Path',route.Path);\n            else\n                record = struct('Operation','DELETE','NodeId',destination);\n            end\n        end\n\n        function noteDestination(obj,destination)\n            if destination ~= obj.NodeId && ~ismember(destination,obj.DestinationOrder)\n                obj.DestinationOrder = [destination obj.DestinationOrder];\n            end\n        end\n\n        function states = states(obj,destinations)\n            states = cell(1,numel(destinations));\n            for k = 1:numel(destinations), states{k} = obj.best(destinations(k)); end\n        end\n\n        function index = findCandidate(obj,destination,peer)\n            index = find([obj.Candidates.DestinationId] == destination & ...\n                [obj.Candidates.NextHop] == peer,1);\n            if isempty(index), index = 0; end\n        end\n\n        function value = usable(obj,peer)\n            value = false;\n            if isKey(obj.Peers,peer), entry = obj.Peers(peer); value = entry.Active; end\n        end\n\n        function checkPeer(obj,peer,linkCost,now)\n            csr.nwk.Routes.number(peer,0,16777214);\n            csr.nwk.Routes.number(linkCost,0,4294967295);\n            validateattributes(now,{'numeric'},{'scalar','real','finite','nonnegative'});\n            if peer == obj.NodeId, error('csr:nwk:InvalidField','A neighbor cannot be the local node.'); end\n        end\n    end\n    methods (Static)\n        function config = defaults()\n            info = struct('MinSpeedKbps',8,'MaxSpeedKbps',128, ...\n                'MinPowerDbmX10',0,'MaxPowerDbmX10',300, ...\n                'LinkMarginDbX10',100,'LowPowerDbmX10',140, ...\n                'TempLowCx10',0,'TempHighCx10',0);\n            config = struct('MaxPathHops',32,'LocalInfo',info);\n        end\n    end\n    methods (Static, Access = private)\n        function route = emptyCandidate()\n            route = struct('DestinationId',0,'NextHop',0,'Capability',0, ...\n                'HopCount',0,'Cost',0,'Path',[],'Immediate',false,'Valid',false, ...\n                'SelectionDeferred',false,'LinkCost',0,'AdvertisedCost',0, ...\n                'SequenceValid',false,'Sequence',0,'LastUpdatedSeconds',0);\n        end\n\n        function entry = emptyPeer(peer)\n            entry = struct('PeerId',peer,'Active',false,'LinkCost',1, ...\n                'InfoValid',false,'InfoSequence',0,'Info',struct());\n        end\n\n        function value = newer(valid,current,incoming)\n            % Match CompareRoutingSequence(current,incoming)<0, including\n            % rejecting an exactly half-range ambiguous sequence advance.\n            value = ~valid || mod(double(current)-double(incoming),4294967296) > 2147483648;\n        end\n\n        function cost = totalCost(linkCost,advertisedCost)\n            % Preserve the source uint32 addition rather than MATLAB's\n            % saturating integer arithmetic.\n            cost = max(1,mod(double(linkCost)+double(advertisedCost),4294967296));\n        end\n\n        function equal = sameSelection(first,second)\n            if isempty(first) || isempty(second), equal = isempty(first) && isempty(second); return; end\n            fields = {'NextHop','Cost','HopCount','Immediate','Capability','Path'};\n            equal = true;\n            for k = 1:numel(fields)\n                if ~isequal(first.(fields{k}),second.(fields{k})), equal = false; return; end\n            end\n        end\n\n        function number(value,minimum,maximum)\n            if ~isnumeric(value) || ~isscalar(value) || ~isreal(value) || ~isfinite(value) || ...\n                    value < minimum || value > maximum || fix(value) ~= value\n                error('csr:nwk:InvalidField','Invalid unsigned routing field.');\n            end\n        end\n\n        function info = validateInfo(info)\n            names = {'MinSpeedKbps','MaxSpeedKbps','MinPowerDbmX10','MaxPowerDbmX10', ...\n                'LinkMarginDbX10','LowPowerDbmX10','TempLowCx10','TempHighCx10'};\n            if ~isstruct(info) || ~isscalar(info) || numel(fieldnames(info)) ~= numel(names) || ...\n                    ~all(isfield(info,names))\n                error('csr:nwk:InvalidRecord','INFO requires all eight operating-limit fields.');\n            end\n            for k = 1:numel(names)\n                if k <= 2, minimum = 0; maximum = 65535;\n                else, minimum = -32768; maximum = 32767; end\n                csr.nwk.Routes.number(info.(names{k}),minimum,maximum);\n                info.(names{k}) = double(info.(names{k}));\n            end\n        end\n    end\nend\n",
+          "new": "classdef AdmissionRoutes < handle\n    %ROUTES Source-backed ARL candidate selection and routing record state.\n    % The scheduler, discovery admission and reliable control transport are\n    % owned by Layer. Route changes remain pending until drainChanges().\n    properties (SetAccess = private)\n        NodeId\n        Capability\n        Config\n        Candidates\n    end\n    properties (Access = private)\n        Peers\n        PeerOrder = []\n        DestinationOrder = []\n        Preferred\n        Reverse\n        Changed = []\n        InfoChanged = false\n    end\n    methods\n        function obj = AdmissionRoutes(nodeId,capability,options)\n            if nargin < 2, capability = 1; end\n            if nargin < 3, options = struct(); end\n            ac.AdmissionRoutes.number(nodeId,0,16777214);\n            ac.AdmissionRoutes.number(capability,0,255);\n            obj.NodeId = double(nodeId); obj.Capability = double(capability);\n            obj.Config = ac.AdmissionRoutes.defaults();\n            if ~isstruct(options) || ~isscalar(options)\n                error('csr:nwk:InvalidConfig','Route options must be a scalar struct.');\n            end\n            names = fieldnames(options);\n            for k = 1:numel(names)\n                if ~isfield(obj.Config,names{k})\n                    error('csr:nwk:InvalidConfig','Unknown route option: %s.',names{k});\n                end\n                obj.Config.(names{k}) = options.(names{k});\n            end\n            ac.AdmissionRoutes.number(obj.Config.MaxPathHops,1,32);\n            obj.Config.LocalInfo = ac.AdmissionRoutes.validateInfo(obj.Config.LocalInfo);\n            obj.Candidates = repmat(ac.AdmissionRoutes.emptyCandidate(),1,0);\n            obj.Peers = containers.Map('KeyType','double','ValueType','any');\n            obj.Preferred = containers.Map('KeyType','double','ValueType','double');\n            obj.Reverse = containers.Map('KeyType','double','ValueType','any');\n            if obj.Capability ~= 0, obj.Changed = obj.NodeId; end\n        end\n\n        function setCapability(obj,capability)\n            ac.AdmissionRoutes.number(capability,0,255);\n            if obj.Capability ~= capability\n                obj.Capability = double(capability);\n                obj.mark(obj.NodeId);\n            end\n        end\n\n        function setLocalInfo(obj,info)\n            info = ac.AdmissionRoutes.validateInfo(info);\n            if ~isequal(obj.Config.LocalInfo,info)\n                obj.Config.LocalInfo = info;\n                obj.InfoChanged = true;\n            end\n        end\n\n        function setNeighbor(obj,peer,active,linkCost,now)\n            obj.checkPeer(peer,linkCost,now);\n            if ~(islogical(active) || isnumeric(active)) || ~isscalar(active) || ...\n                    ~isreal(active) || ~ismember(active,[0 1])\n                error('csr:nwk:InvalidField','Neighbor active must be logical.');\n            end\n            peer = double(peer); linkCost = double(linkCost); active = logical(active);\n            affected = unique([peer [obj.Candidates([obj.Candidates.NextHop] == peer).DestinationId]],'stable');\n            before = obj.states(affected);\n            oldActive = false; oldLinkCost = NaN;\n            if isKey(obj.Peers,peer)\n                entry = obj.Peers(peer); oldActive = entry.Active; oldLinkCost = entry.LinkCost;\n            else\n                entry = obj.emptyPeer(peer);\n                obj.PeerOrder = [peer obj.PeerOrder];\n            end\n            entry.Active = active; entry.LinkCost = linkCost;\n            if oldActive && ~active\n                entry.InfoValid = false; entry.InfoSequence = 0;\n                obj.Candidates(~[obj.Candidates.Immediate] & [obj.Candidates.NextHop] == peer) = [];\n            end\n            obj.Peers(peer) = entry;\n            index = obj.findCandidate(peer,peer);\n            if index == 0\n                route = ac.AdmissionRoutes.emptyCandidate();\n                route.DestinationId = peer; route.NextHop = peer;\n                route.HopCount = 1; route.Path = peer; route.Immediate = true;\n                obj.Candidates(end+1) = route; index = numel(obj.Candidates);\n            end\n            route = obj.Candidates(index);\n            route.Valid = true; route.LinkCost = linkCost; route.Cost = max(1,linkCost);\n            route.LastUpdatedSeconds = double(now);\n            if oldActive && ~active\n                route.Capability = 0; route.SequenceValid = false; route.Sequence = 0;\n            end\n            obj.Candidates(index) = route;\n            if active, obj.noteDestination(peer); end\n            % Admission recomputes direct destination only. A measured link\n            % change on an already-active peer revisits its valid routes.\n            if active && oldActive && oldLinkCost ~= linkCost\n                for k = 1:numel(obj.Candidates)\n                    route = obj.Candidates(k);\n                    if route.NextHop == peer && route.Valid\n                        route.LinkCost = linkCost;\n                        route.Cost = obj.totalCost(linkCost,route.AdvertisedCost);\n                        obj.Candidates(k) = route;\n                        position = find(affected == route.DestinationId,1);\n                        if ~isempty(before{position}), obj.release(route.DestinationId); end\n                    end\n                end\n            end\n            if active, obj.release(peer); end\n            for k = 1:numel(affected)\n                if oldActive && ~active && ~isempty(before{k}) && before{k}.NextHop == peer\n                    obj.release(affected(k));\n                end\n                obj.finish(affected(k),before{k},false);\n            end\n        end\n\n        function invalidateNeighbor(obj,peer,now)\n            % Explicit failure is stronger than an observation that a peer\n            % has not yet been admitted: discard its pre-admission routes too.\n            obj.checkPeer(peer,1,now); peer = double(peer);\n            if ~isKey(obj.Peers,peer), return; end\n            entry = obj.Peers(peer);\n            affected = unique([peer [obj.Candidates([obj.Candidates.NextHop] == peer).DestinationId]],'stable');\n            before = obj.states(affected);\n            obj.setNeighbor(peer,false,entry.LinkCost,now);\n            obj.Candidates(~[obj.Candidates.Immediate] & [obj.Candidates.NextHop] == peer) = [];\n            index = obj.findCandidate(peer,peer);\n            if index ~= 0\n                obj.Candidates(index).Capability = 0;\n                obj.Candidates(index).SequenceValid = false;\n                obj.Candidates(index).Sequence = 0;\n            end\n            entry = obj.Peers(peer); entry.InfoValid = false; entry.InfoSequence = 0;\n            obj.Peers(peer) = entry;\n            for k = 1:numel(affected)\n                if ~isempty(before{k}) && before{k}.NextHop == peer, obj.release(affected(k)); end\n                obj.finish(affected(k),before{k},false);\n            end\n        end\n\n        function effects = apply(obj,peer,sequence,records,linkCost,now)\n            obj.checkPeer(peer,linkCost,now);\n            ac.AdmissionRoutes.number(sequence,0,4294967295);\n            peer = double(peer); sequence = double(sequence);\n            effects = struct('RequestSnapshot',false,'AppliedRecords',0, ...\n                'IgnoredRecords',0,'InfoChanged',false);\n            if ~iscell(records), records = num2cell(records); end\n            sawInfo = false; sawFlush = false; sawReporterSelfRecord = false;\n            if ~isKey(obj.Peers,peer)\n                obj.setNeighbor(peer,false,linkCost,now);\n            end\n            for k = 1:numel(records)\n                record = records{k}; accepted = false;\n                if ~isstruct(record) || ~isscalar(record) || ~isfield(record,'Operation')\n                    error('csr:nwk:InvalidRecord','Every route record requires Operation.');\n                end\n                switch upper(char(record.Operation))\n                    case 'REQUEST'\n                        effects.RequestSnapshot = true; accepted = true;\n                    case 'INFO'\n                        sawInfo = true;\n                        info = ac.AdmissionRoutes.validateInfo(record.Info);\n                        entry = obj.Peers(peer);\n                        if obj.newer(entry.InfoValid,entry.InfoSequence,sequence)\n                            entry.InfoValid = true; entry.InfoSequence = sequence; entry.Info = info;\n                            obj.Peers(peer) = entry; accepted = true; effects.InfoChanged = true;\n                        end\n                    case 'UPDATE'\n                        accepted = obj.update(peer,sequence,record,linkCost,now);\n                        if all(isfield(record,{'NodeId','HopCount','Cost','Path'})) && ...\n                                record.NodeId == peer && record.HopCount == 0 && ...\n                                record.Cost == 0 && isempty(record.Path)\n                            sawReporterSelfRecord = true;\n                        end\n                    case 'DELETE'\n                        ac.AdmissionRoutes.number(record.NodeId,0,16777215);\n                        if record.NodeId < 16777215 && record.NodeId ~= obj.NodeId\n                            if record.NodeId == peer\n                                accepted = obj.selfUpdate(peer,sequence,0,linkCost,now);\n                                sawReporterSelfRecord = true;\n                            else\n                                accepted = obj.delete(peer,sequence,double(record.NodeId),now);\n                            end\n                        end\n                    case 'FLUSH'\n                        sawFlush = true;\n                        accepted = obj.flush(peer,sequence,now);\n                    otherwise\n                        error('csr:nwk:InvalidRecord','Unknown route operation.');\n                end\n                effects.AppliedRecords = effects.AppliedRecords + double(accepted);\n                effects.IgnoredRecords = effects.IgnoredRecords + double(~accepted);\n            end\n            if sawInfo && sawFlush && ~sawReporterSelfRecord\n                obj.selfUpdate(peer,sequence,0,linkCost,now);\n            end\n        end\n\n        function route = select(obj,destination)\n            ac.AdmissionRoutes.number(destination,0,16777214);\n            obj.noteDestination(double(destination));\n            route = obj.best(double(destination));\n        end\n\n        function route = relay(obj,destination)\n            route = obj.select(destination);\n            if ~isempty(route) && route.Capability ~= 0\n                route.UsedReverse = false; return\n            end\n            if isKey(obj.Reverse,double(destination))\n                reverse = obj.Reverse(double(destination));\n                if obj.usable(reverse.NextHop)\n                    route = reverse; route.UsedReverse = true; return\n                end\n            end\n            if ~isempty(route), route.UsedReverse = false; end\n        end\n\n        function route = discoveryRelay(obj,destination)\n            % Legacy SNMP prefers a capable forward route, otherwise a\n            % usable reverse route, then a direct/non-capable forward route.\n            route = obj.select(destination);\n            if ~isempty(route) && route.Capability ~= 0\n                route.UsedReverse = false; return\n            end\n            if obj.Capability ~= 0 && isKey(obj.Reverse,double(destination))\n                reverse = obj.Reverse(double(destination));\n                if obj.usable(reverse.NextHop)\n                    route = reverse; route.UsedReverse = true; return\n                end\n            end\n            if ~isempty(route), route.UsedReverse = false; end\n        end\n\n        function learnReverse(obj,source,peer,now)\n            obj.checkPeer(peer,1,now);\n            ac.AdmissionRoutes.number(source,0,16777214);\n            if source == obj.NodeId, return; end\n            obj.noteDestination(double(peer));\n            if ~isKey(obj.Peers,double(peer)), return; end\n            obj.noteDestination(double(source));\n            route = ac.AdmissionRoutes.emptyCandidate();\n            route.DestinationId = double(source); route.NextHop = double(peer);\n            route.Path = double(peer); route.HopCount = 1; route.Valid = true;\n            route.LastUpdatedSeconds = double(now);\n            obj.Reverse(double(source)) = route;\n        end\n\n        function removed = noteNoPath(obj,peer,destination,now)\n            % CHECK_NO_PATH is informational for all forward candidates. It\n            % clears a reverse path only when its reporting hop matches.\n            if nargin < 4, now = 0; end\n            obj.checkPeer(peer,1,now);\n            ac.AdmissionRoutes.number(destination,0,16777215);\n            destination = double(destination); peer = double(peer); removed = false;\n            if destination == 16777215, return; end\n            obj.noteDestination(destination);\n            if ~isKey(obj.Reverse,destination), return; end\n            reverse = obj.Reverse(destination);\n            if reverse.NextHop ~= peer, return; end\n            remove(obj.Reverse,destination); removed = true;\n        end\n\n        function [records,destinations,infoChanged] = drainChanges(obj)\n            destinations = obj.DestinationOrder(ismember(obj.DestinationOrder,obj.Changed));\n            if ismember(obj.NodeId,obj.Changed), destinations(end+1) = obj.NodeId; end\n            records = {};\n            infoChanged = obj.InfoChanged;\n            if obj.InfoChanged\n                records{end+1} = struct('Operation','INFO','Info',obj.Config.LocalInfo);\n            end\n            for destination = destinations\n                records{end+1} = obj.changeRecord(destination); %#ok<AGROW>\n            end\n            obj.Changed = []; obj.InfoChanged = false;\n        end\n\n        function restoreChanges(obj,destinations,infoChanged)\n            % A bounded outbound backlog may reject semantic admission after\n            % drainChanges. Restore dirty flags so convergence is delayed,\n            % never silently lost. No callback can interleave this operation.\n            for destination=reshape(double(destinations),1,[])\n                if ~ismember(destination,obj.Changed)\n                    obj.Changed(end+1)=destination;\n                end\n            end\n            obj.InfoChanged=obj.InfoChanged || logical(infoChanged);\n        end\n\n        function destinations = pendingChanges(obj)\n            % Read-only flags used by independently scheduled snapshot replies.\n            destinations = obj.Changed;\n        end\n\n        function records = snapshot(obj,excludeDestinations)\n            if nargin < 2, excludeDestinations = []; end\n            records = {struct('Operation','INFO','Info',obj.Config.LocalInfo)};\n            if obj.Capability ~= 0 && ~ismember(obj.NodeId,excludeDestinations)\n                records{end+1} = obj.changeRecord(obj.NodeId);\n            end\n            % Snapshot follows candidate insertion order; incremental changes\n            % use the newest-created destination order in drainChanges().\n            for k = 1:numel(obj.Candidates)\n                candidate = obj.Candidates(k);\n                destination = candidate.DestinationId;\n                if ismember(destination,excludeDestinations), continue; end\n                route = obj.best(destination);\n                if ~isempty(route) && route.Capability ~= 0 && candidate.NextHop == route.NextHop\n                    records{end+1} = obj.changeRecord(destination); %#ok<AGROW>\n                end\n            end\n            records{end+1} = struct('Operation','FLUSH');\n        end\n\n        function entries = neighbors(obj)\n            entries = repmat(obj.emptyPeer(0),1,0);\n            for peer = obj.PeerOrder, entries(end+1) = obj.Peers(peer); end %#ok<AGROW>\n        end\n\n        function info = neighborInfo(obj,peer)\n            info = [];\n            if isKey(obj.Peers,double(peer))\n                entry = obj.Peers(double(peer));\n                if entry.InfoValid, info = entry.Info; end\n            end\n        end\n\n        function gateway = applicationGateway(obj)\n            gateway = []; scanned = [];\n            for k = 1:numel(obj.Candidates)\n                destination = obj.Candidates(k).DestinationId;\n                if ismember(destination,scanned), continue; end\n                scanned(end+1) = destination; %#ok<AGROW>\n                route = obj.best(destination);\n                if ~isempty(route) && route.Capability == 2, gateway = destination; end\n            end\n        end\n\n        function destinations = applicationDestinationCandidates(obj)\n            % Source GetApplicationDestinationCandidates scans every stored\n            % route, including unselected/invalid entries, in insertion order.\n            % Neighbor fallback belongs to Layer, which owns persistent peers.\n            % This observation must not run selection or alter preferences.\n            destinations=unique([obj.Candidates.DestinationId],'stable');\n            destinations=destinations(destinations~=obj.NodeId);\n        end\n\n        function destinations = reachableDestinations(obj)\n            destinations = [];\n            for destination = obj.DestinationOrder\n                if ~isempty(obj.discoveryRelay(destination))\n                    destinations(end+1) = destination; %#ok<AGROW>\n                end\n            end\n        end\n    end\n    methods (Access = private)\n        function accepted = update(obj,peer,sequence,record,linkCost,now)\n            required = {'NodeId','Capability','HopCount','Cost','Path'};\n            if ~all(isfield(record,required))\n                error('csr:nwk:InvalidRecord','UPDATE fields are missing.');\n            end\n            ac.AdmissionRoutes.number(record.NodeId,0,16777215);\n            ac.AdmissionRoutes.number(record.Capability,0,255);\n            ac.AdmissionRoutes.number(record.HopCount,0,65535);\n            ac.AdmissionRoutes.number(record.Cost,0,4294967295);\n            path = record.Path;\n            if ~isnumeric(path) || (~isempty(path) && ~isvector(path)) || ~isreal(path) || ...\n                    any(~isfinite(path(:))) || any(path(:)<0 | path(:)>16777215 | fix(path(:))~=path(:)) || ...\n                    numel(path) ~= record.HopCount\n                error('csr:nwk:InvalidRecord','UPDATE Path must contain HopCount node identifiers.');\n            end\n            accepted = false;\n            destination = double(record.NodeId); path = reshape(double(path),1,[]);\n            if destination == obj.NodeId || destination == 16777215, return; end\n            if destination == peer\n                if record.HopCount ~= 0 || record.Cost ~= 0 || ~isempty(path), return; end\n                accepted = obj.selfUpdate(peer,sequence,double(record.Capability),linkCost,now);\n                return\n            end\n            if record.HopCount >= obj.Config.MaxPathHops || any(path == 16777215), return; end\n            index = obj.findCandidate(destination,peer);\n            if index ~= 0 && ~obj.newer(obj.Candidates(index).SequenceValid,obj.Candidates(index).Sequence,sequence)\n                return\n            end\n            obj.noteDestination(destination); before = obj.best(destination);\n            replacingSelected = ~isempty(before) && before.NextHop == peer;\n            if index == 0\n                route = ac.AdmissionRoutes.emptyCandidate();\n                route.DestinationId = destination; route.NextHop = peer;\n                obj.Candidates(end+1) = route; index = numel(obj.Candidates);\n            end\n            route = obj.Candidates(index);\n            route.Capability = double(record.Capability);\n            route.HopCount = double(record.HopCount)+1;\n            route.LinkCost = double(linkCost); route.AdvertisedCost = double(record.Cost);\n            route.Cost = obj.totalCost(linkCost,record.Cost);\n            route.Valid = ~ismember(obj.NodeId,path);\n            route.SelectionDeferred = ~obj.usable(peer);\n            route.Path = [peer path];\n            route.SequenceValid = true; route.Sequence = sequence;\n            route.LastUpdatedSeconds = double(now);\n            obj.Candidates(index) = route;\n            obj.release(destination);\n            obj.finish(destination,before,replacingSelected && route.Valid);\n            accepted = true;\n        end\n\n        function accepted = selfUpdate(obj,peer,sequence,capability,linkCost,now)\n            index = obj.findCandidate(peer,peer); accepted = false;\n            if index == 0, return; end\n            route = obj.Candidates(index);\n            if ~obj.newer(route.SequenceValid,route.Sequence,sequence), return; end\n            obj.noteDestination(peer); before = obj.best(peer);\n            route.Capability = capability; route.HopCount = 1; route.Path = peer;\n            route.Valid = true; route.SelectionDeferred = false;\n            route.LinkCost = double(linkCost); route.AdvertisedCost = 0;\n            route.Cost = max(1,double(linkCost)); route.LastUpdatedSeconds = double(now);\n            route.SequenceValid = true; route.Sequence = sequence;\n            obj.Candidates(index) = route;\n            obj.finish(peer,before,false); accepted = true;\n        end\n\n        function accepted = delete(obj,peer,sequence,destination,now)\n            obj.noteDestination(destination); before = obj.best(destination);\n            index = obj.findCandidate(destination,peer); accepted = false;\n            if index == 0\n                route = ac.AdmissionRoutes.emptyCandidate();\n                route.DestinationId = destination; route.NextHop = peer;\n                obj.Candidates(end+1) = route; index = numel(obj.Candidates);\n            else\n                route = obj.Candidates(index);\n                if ~obj.newer(route.SequenceValid,route.Sequence,sequence), return; end\n            end\n            invalidated = route.Valid;\n            route.Valid = false; route.SequenceValid = true; route.Sequence = sequence;\n            route.LastUpdatedSeconds = double(now); obj.Candidates(index) = route;\n            if invalidated && ~isempty(before) && before.NextHop == peer\n                obj.release(destination);\n            end\n            obj.finish(destination,before,false); accepted = true;\n        end\n\n        function accepted = flush(obj,peer,sequence,now)\n            affected = []; before = {};\n            for k = 1:numel(obj.Candidates)\n                route = obj.Candidates(k);\n                if route.Immediate || route.NextHop ~= peer || ...\n                        ~obj.newer(route.SequenceValid,route.Sequence,sequence), continue; end\n                if ~ismember(route.DestinationId,affected)\n                    affected(end+1) = route.DestinationId; %#ok<AGROW>\n                    before{end+1} = obj.best(route.DestinationId); %#ok<AGROW>\n                end\n                route.Valid = false; route.SequenceValid = true; route.Sequence = sequence;\n                route.LastUpdatedSeconds = double(now); obj.Candidates(k) = route;\n            end\n            entry = obj.Peers(peer);\n            if obj.newer(entry.InfoValid,entry.InfoSequence,sequence)\n                entry.InfoValid = false; entry.InfoSequence = sequence; obj.Peers(peer) = entry;\n            end\n            for k = 1:numel(affected)\n                if ~isempty(before{k}) && before{k}.NextHop == peer, obj.release(affected(k)); end\n                obj.finish(affected(k),before{k},false);\n            end\n            accepted = true;\n        end\n\n        function route = best(obj,destination)\n            route = [];\n            preferred = -1;\n            if isKey(obj.Preferred,destination), preferred = obj.Preferred(destination); end\n            for k = 1:numel(obj.Candidates)\n                candidate = obj.Candidates(k);\n                if candidate.DestinationId ~= destination || ~candidate.Valid || ...\n                        candidate.SelectionDeferred || ~obj.usable(candidate.NextHop), continue; end\n                if isempty(route) || candidate.Cost < route.Cost || ...\n                        (candidate.Cost == route.Cost && candidate.HopCount < route.HopCount) || ...\n                        (candidate.Cost == route.Cost && candidate.HopCount == route.HopCount && ...\n                        candidate.NextHop == preferred && route.NextHop ~= preferred)\n                    route = candidate;\n                end\n            end\n        end\n\n        function release(obj,destination)\n            for k = 1:numel(obj.Candidates)\n                if obj.Candidates(k).DestinationId == destination && obj.usable(obj.Candidates(k).NextHop)\n                    obj.Candidates(k).SelectionDeferred = false;\n                end\n            end\n        end\n\n        function finish(obj,destination,before,force)\n            after = obj.best(destination);\n            if force || ~obj.sameSelection(before,after), obj.mark(destination); end\n        end\n\n        function mark(obj,destination)\n            route = obj.best(destination);\n            if isempty(route)\n                if isKey(obj.Preferred,destination), remove(obj.Preferred,destination); end\n            else\n                obj.Preferred(destination) = route.NextHop;\n            end\n            if ~ismember(destination,obj.Changed), obj.Changed(end+1) = destination; end\n        end\n\n        function record = changeRecord(obj,destination)\n            route = obj.best(destination);\n            if destination == obj.NodeId && obj.Capability ~= 0\n                record = struct('Operation','UPDATE','NodeId',obj.NodeId, ...\n                    'Capability',obj.Capability,'HopCount',0,'Cost',0,'Path',[]);\n            elseif destination ~= obj.NodeId && ~isempty(route) && route.Capability ~= 0\n                record = struct('Operation','UPDATE','NodeId',destination, ...\n                    'Capability',route.Capability,'HopCount',route.HopCount, ...\n                    'Cost',route.Cost,'Path',route.Path);\n            else\n                record = struct('Operation','DELETE','NodeId',destination);\n            end\n        end\n\n        function noteDestination(obj,destination)\n            if destination ~= obj.NodeId && ~ismember(destination,obj.DestinationOrder)\n                obj.DestinationOrder = [destination obj.DestinationOrder];\n            end\n        end\n\n        function states = states(obj,destinations)\n            states = cell(1,numel(destinations));\n            for k = 1:numel(destinations), states{k} = obj.best(destinations(k)); end\n        end\n\n        function index = findCandidate(obj,destination,peer)\n            index = find([obj.Candidates.DestinationId] == destination & ...\n                [obj.Candidates.NextHop] == peer,1);\n            if isempty(index), index = 0; end\n        end\n\n        function value = usable(obj,peer)\n            value = false;\n            if isKey(obj.Peers,peer), entry = obj.Peers(peer); value = entry.Active; end\n        end\n\n        function checkPeer(obj,peer,linkCost,now)\n            ac.AdmissionRoutes.number(peer,0,16777214);\n            ac.AdmissionRoutes.number(linkCost,0,4294967295);\n            validateattributes(now,{'numeric'},{'scalar','real','finite','nonnegative'});\n            if peer == obj.NodeId, error('csr:nwk:InvalidField','A neighbor cannot be the local node.'); end\n        end\n    end\n    methods (Static)\n        function config = defaults()\n            info = struct('MinSpeedKbps',8,'MaxSpeedKbps',128, ...\n                'MinPowerDbmX10',0,'MaxPowerDbmX10',300, ...\n                'LinkMarginDbX10',100,'LowPowerDbmX10',140, ...\n                'TempLowCx10',0,'TempHighCx10',0);\n            config = struct('MaxPathHops',32,'LocalInfo',info);\n        end\n    end\n    methods (Static, Access = private)\n        function route = emptyCandidate()\n            route = struct('DestinationId',0,'NextHop',0,'Capability',0, ...\n                'HopCount',0,'Cost',0,'Path',[],'Immediate',false,'Valid',false, ...\n                'SelectionDeferred',false,'LinkCost',0,'AdvertisedCost',0, ...\n                'SequenceValid',false,'Sequence',0,'LastUpdatedSeconds',0);\n        end\n\n        function entry = emptyPeer(peer)\n            entry = struct('PeerId',peer,'Active',false,'LinkCost',1, ...\n                'InfoValid',false,'InfoSequence',0,'Info',struct());\n        end\n\n        function value = newer(valid,current,incoming)\n            % Match CompareRoutingSequence(current,incoming)<0, including\n            % rejecting an exactly half-range ambiguous sequence advance.\n            value = ~valid || mod(double(current)-double(incoming),4294967296) > 2147483648;\n        end\n\n        function cost = totalCost(linkCost,advertisedCost)\n            % Preserve the source uint32 addition rather than MATLAB's\n            % saturating integer arithmetic.\n            cost = max(1,mod(double(linkCost)+double(advertisedCost),4294967296));\n        end\n\n        function equal = sameSelection(first,second)\n            if isempty(first) || isempty(second), equal = isempty(first) && isempty(second); return; end\n            fields = {'NextHop','Cost','HopCount','Immediate','Capability','Path'};\n            equal = true;\n            for k = 1:numel(fields)\n                if ~isequal(first.(fields{k}),second.(fields{k})), equal = false; return; end\n            end\n        end\n\n        function number(value,minimum,maximum)\n            if ~isnumeric(value) || ~isscalar(value) || ~isreal(value) || ~isfinite(value) || ...\n                    value < minimum || value > maximum || fix(value) ~= value\n                error('csr:nwk:InvalidField','Invalid unsigned routing field.');\n            end\n        end\n\n        function info = validateInfo(info)\n            names = {'MinSpeedKbps','MaxSpeedKbps','MinPowerDbmX10','MaxPowerDbmX10', ...\n                'LinkMarginDbX10','LowPowerDbmX10','TempLowCx10','TempHighCx10'};\n            if ~isstruct(info) || ~isscalar(info) || numel(fieldnames(info)) ~= numel(names) || ...\n                    ~all(isfield(info,names))\n                error('csr:nwk:InvalidRecord','INFO requires all eight operating-limit fields.');\n            end\n            for k = 1:numel(names)\n                if k <= 2, minimum = 0; maximum = 65535;\n                else, minimum = -32768; maximum = 32767; end\n                ac.AdmissionRoutes.number(info.(names{k}),minimum,maximum);\n                info.(names{k}) = double(info.(names{k}));\n            end\n        end\n    end\nend\n"
+        },
+        {
+          "old": "        function setNeighbor(obj,peer,active,linkCost,now)\n",
+          "new": "        function admitNeighbor(obj,peer,linkCost,now)\n            % ACK admission mirrors native TryMakeNeighborActive: a logical\n            % destination is created, but a missing route candidate is not.\n            % HELLO/measurement processing continues to use setNeighbor().\n            obj.checkPeer(peer,linkCost,now);\n            peer = double(peer); linkCost = double(linkCost);\n            if isKey(obj.Peers,peer)\n                entry = obj.Peers(peer);\n                if entry.Active, return; end\n            else\n                entry = obj.emptyPeer(peer);\n                entry.LinkCost = linkCost;\n                obj.PeerOrder = [peer obj.PeerOrder];\n            end\n            % Native NoteDestinationCreated is unconditional at admission,\n            % including when no observed direct candidate exists yet.\n            obj.noteDestination(peer);\n            before = obj.best(peer);\n            entry.Active = true;\n            obj.Peers(peer) = entry;\n            % ReleaseDeferredRouteCandidates visits this destination only;\n            % invalid entries and unrelated transit destinations stay intact.\n            for k = 1:numel(obj.Candidates)\n                route = obj.Candidates(k);\n                if route.DestinationId == peer && route.Valid && ...\n                        route.SelectionDeferred && obj.usable(route.NextHop)\n                    obj.Candidates(k).SelectionDeferred = false;\n                end\n            end\n            obj.finish(peer,before,false);\n        end\n\n        function setNeighbor(obj,peer,active,linkCost,now)\n"
+        }
+      ]
+    },
+    {
+      "source": "+ac/PopulationNwk.m",
+      "source_sha256": "0fb306a57a40656c511e0a20a5c155b2bc8357c877d8449309a74f3efbfd26fb",
+      "target": "+ac/AdmissionNwk.m",
+      "target_sha256": "6c7b63fa9b0be3c61d4a84a7ee47d027e07944cb1a7389c546eaa4b6bd119bae",
+      "reverse_recovers_source": true,
+      "edits": [
+        {
+          "old": "classdef PopulationNwk < handle",
+          "new": "classdef AdmissionNwk < handle"
+        },
+        {
+          "old": "function obj = PopulationNwk(nodeId,scheduler,streams,fullScenarioConfig,callbacks)",
+          "new": "function obj = AdmissionNwk(nodeId,scheduler,streams,fullScenarioConfig,callbacks)"
+        },
+        {
+          "old": "obj.Routes=csr.nwk.Routes(obj.NodeId,obj.Capability,obj.Config.Routing);",
+          "new": "obj.Routes=ac.AdmissionRoutes(obj.NodeId,obj.Capability,obj.Config.Routing);"
+        },
+        {
+          "old": "obj.Routes.setNeighbor(peer,true,obj.peerCost(peer),obj.Scheduler.Now);",
+          "new": "obj.Routes.admitNeighbor(peer,obj.peerCost(peer),obj.Scheduler.Now);"
+        }
+      ]
+    },
+    {
+      "source": "+ac/PopulationSimulation.m",
+      "source_sha256": "aec99858386da09cf5584d6a3794b557542f109665f0be4fc09d78c6b8e5d902",
+      "target": "+ac/AdmissionSimulation.m",
+      "target_sha256": "d1bcdf200b69212e3324ac1aaf200deacfed06fc3c0276492c1344df2217be2e",
+      "reverse_recovers_source": true,
+      "edits": [
+        {
+          "old": "classdef PopulationSimulation < handle",
+          "new": "classdef AdmissionSimulation < handle"
+        },
+        {
+          "old": "function obj = PopulationSimulation(config,linkObserver,transportTiming,autonomousOptions)",
+          "new": "function obj = AdmissionSimulation(config,linkObserver,transportTiming,autonomousOptions)"
+        },
+        {
+          "old": "obj.Networks{k} = ac.PopulationNwk(nodeId,obj.Scheduler,obj.Streams,config,networkCallbacks);",
+          "new": "obj.Networks{k} = ac.AdmissionNwk(nodeId,obj.Scheduler,obj.Streams,config,networkCallbacks);"
+        }
+      ]
+    },
+    {
+      "source": "+ac/AdmissionNwk.m",
+      "source_sha256": "6c7b63fa9b0be3c61d4a84a7ee47d027e07944cb1a7389c546eaa4b6bd119bae",
+      "target": "+ac/ControlWireNwk.m",
+      "target_sha256": "499f65ef3c894162fda0440ab39c98551537d84821ec4b7563d0a47135973677",
+      "reverse_recovers_source": true,
+      "edits": [
+        {
+          "old": "classdef AdmissionNwk < handle",
+          "new": "classdef ControlWireNwk < handle"
+        },
+        {
+          "old": "function obj = AdmissionNwk(nodeId,scheduler,streams,fullScenarioConfig,callbacks)",
+          "new": "function obj = ControlWireNwk(nodeId,scheduler,streams,fullScenarioConfig,callbacks)"
+        },
+        {
+          "old": "'WirePayloadBytes',csr.nwk.controlWireBytes(kind,payload,numel(peers),",
+          "new": "'WirePayloadBytes',ac.controlWireBytes(kind,payload,numel(peers),"
+        },
+        {
+          "old": "owner.Control.WirePayloadBytes=csr.nwk.controlWireBytes( ...\n                        owner.Control.Type",
+          "new": "owner.Control.WirePayloadBytes=ac.controlWireBytes( ...\n                        owner.Control.Type"
+        },
+        {
+          "old": "owner.Control.WirePayloadBytes=csr.nwk.controlWireBytes( ...\n                        'ROUTING'",
+          "new": "owner.Control.WirePayloadBytes=ac.controlWireBytes( ...\n                        'ROUTING'"
+        },
+        {
+          "old": "        function accepted = sendRecords(obj,records,peers,mode)\n            if nargin<4, mode='changes'; end",
+          "new": "        function accepted = sendRecords(obj,records,peers,mode,wireRepresentation)\n            if nargin<4, mode='changes'; end\n            if nargin<5, wireRepresentation='arl_section'; end\n            if strcmp(wireRepresentation,'legacy_request_header')\n                assert(strcmp(mode,'changes') && numel(peers)==1 && numel(records)==1 && ...\n                    isstruct(records{1}) && isscalar(records{1}) && ...\n                    isfield(records{1},'Operation') && strcmp(records{1}.Operation,'REQUEST'), ...\n                    'autocase:RequestRepresentation','Compact representation requires one generated unicast REQUEST.');\n            else\n                assert(strcmp(wireRepresentation,'arl_section'), ...\n                    'autocase:RequestRepresentation','Unknown routing wire representation.');\n            end"
+        },
+        {
+          "old": "'NextSection',nextSection,'NextPeer',nextPeer,'Mode',mode);",
+          "new": "'NextSection',nextSection,'NextPeer',nextPeer,'Mode',mode, ...\n                'WireRepresentation',wireRepresentation);"
+        },
+        {
+          "old": "                    obj.queueControl('ROUTING',group, ...\n                        struct('Bytes',message.Sections{message.NextSection}),true,false);",
+          "new": "                    payload=struct('Bytes',message.Sections{message.NextSection});\n                    if strcmp(message.WireRepresentation,'legacy_request_header')\n                        % Bytes retain receiver semantics; the native sender\n                        % carries this request in its compatibility header.\n                        payload.WireRepresentation=message.WireRepresentation;\n                    end\n                    obj.queueControl('ROUTING',group,payload,true,false);"
+        },
+        {
+          "old": "obj.sendRecords({struct('Operation','REQUEST')},peer,'changes');",
+          "new": "obj.sendRecords({struct('Operation','REQUEST')},peer,'changes','legacy_request_header');"
+        }
+      ]
+    },
+    {
+      "source": "+ac/AdmissionSimulation.m",
+      "source_sha256": "d1bcdf200b69212e3324ac1aaf200deacfed06fc3c0276492c1344df2217be2e",
+      "target": "+ac/ControlWireSimulation.m",
+      "target_sha256": "9130dd33e98017bae77d76cf54d15048e0ad6d95aee8bea2d30fd75e5df07493",
+      "reverse_recovers_source": true,
+      "edits": [
+        {
+          "old": "classdef AdmissionSimulation < handle",
+          "new": "classdef ControlWireSimulation < handle"
+        },
+        {
+          "old": "function obj = AdmissionSimulation(config,linkObserver,transportTiming,autonomousOptions)",
+          "new": "function obj = ControlWireSimulation(config,linkObserver,transportTiming,autonomousOptions)"
+        },
+        {
+          "old": "obj.Networks{k} = ac.AdmissionNwk(nodeId,obj.Scheduler,obj.Streams,config,networkCallbacks);",
+          "new": "obj.Networks{k} = ac.ControlWireNwk(nodeId,obj.Scheduler,obj.Streams,config,networkCallbacks);"
+        }
+      ]
+    },
+    {
+      "source": "+ac/TxSignature.m",
+      "source_sha256": "f8111a1d06d68659f74eae555bc2ae94bf803e1a73a69a6c583983df511ad201",
+      "target": "+ac/DiscoveryTxSignature.m",
+      "target_sha256": "ac2d0dcf116607ce2d4e6756727c106aa6e11941542694c9889ea5b5f43db8fa",
+      "reverse_recovers_source": true,
+      "edits": [
+        {
+          "old": "classdef TxSignature",
+          "new": "classdef DiscoveryTxSignature"
+        },
+        {
+          "old": "'kind',ac.TxSignature.kind(child)",
+          "new": "'kind',ac.DiscoveryTxSignature.kind(child)"
+        },
+        {
+          "old": "                fields=fieldnames(item);",
+          "new": "                % The native outer broadcast DISCOVER counter is process-\n                % scoped; MATLAB's is per sender. Source audit proves that\n                % this field is trace-only for this exact observed subtype.\n                % Payload discovery-session sequence remains strictly checked.\n                discoveryTraceIdentity=strcmp(child.Kind,'CONTROL') && ...\n                    strcmp(child.Control.Type,'DISCOVER') && ...\n                    double(child.DestinationId)==16777215 && ...\n                    numel(child.DestinationIds)==1 && double(child.DestinationIds(1))==16777215 && ...\n                    ~child.AckRequired && ~child.HasAckWindow && ...\n                    strcmp(char(child.Control.Payload.Subtype),'broadcast') && ...\n                    double(wanted.kind)==4 && double(wanted.hop_destination)==16777215 && ...\n                    double(wanted.ackable)==0 && double(wanted.has_ack_window)==0 && ...\n                    double(wanted.destination_type)==1 && ...\n                    bitand(uint16(wanted.flags),uint16(128))~=0 && isfinite(double(wanted.security_count)) && ...\n                    strcmp(char(wanted.discover_subtype),'broadcast');\n                if discoveryTraceIdentity\n                    item.discovery_outer_sequence_identity=struct( ...\n                        'actual',item.hop_sequence,'native',double(wanted.hop_sequence), ...\n                        'policy','trace_only_broadcast_discover_identifier', ...\n                        'reason','Native process counter versus MATLAB per-sender counter; receiver/MAC/PHY do not use this outer field');\n                end\n                fields=fieldnames(item);"
+        },
+        {
+          "old": "                    if endsWith(name,'_ns') || ~isfield(wanted,name), continue; end",
+          "new": "                    if endsWith(name,'_ns') || ~isfield(wanted,name), continue; end\n                    if discoveryTraceIdentity && strcmp(name,'hop_sequence'), continue; end"
+        }
+      ]
+    },
+    {
+      "source": "+ac/Streams.m",
+      "source_sha256": "2217e0c46874757e190d8ad3669228c47a8134775aaf1ba96af300e3e001ecce",
+      "target": "+ac/DiscoveryStreams.m",
+      "target_sha256": "a5572a122a7497288b1a64fb1bbb6ca44742652eba949a47874117589cce7b7f",
+      "reverse_recovers_source": true,
+      "edits": [
+        {
+          "old": "classdef Streams < handle",
+          "new": "classdef DiscoveryStreams < handle"
+        },
+        {
+          "old": "function obj=Streams(seed,scheduler,mode,fixture,folder)",
+          "new": "function obj=DiscoveryStreams(seed,scheduler,mode,fixture,folder)"
+        },
+        {
+          "old": "[actual,mismatches]=ac.TxSignature.compare(frame,rows);",
+          "new": "[actual,mismatches]=ac.DiscoveryTxSignature.compare(frame,rows);"
+        }
+      ]
+    },
+    {
+      "source": "+ac/ControlWireSimulation.m",
+      "source_sha256": "9130dd33e98017bae77d76cf54d15048e0ad6d95aee8bea2d30fd75e5df07493",
+      "target": "+ac/DiscoveryIdentitySimulation.m",
+      "target_sha256": "cdf489d279b0115add230493b3e5c520dbc04cc5c20d29c91709f525f8da5bce",
+      "reverse_recovers_source": true,
+      "edits": [
+        {
+          "old": "classdef ControlWireSimulation < handle",
+          "new": "classdef DiscoveryIdentitySimulation < handle"
+        },
+        {
+          "old": "function obj = ControlWireSimulation(config,linkObserver,transportTiming,autonomousOptions)",
+          "new": "function obj = DiscoveryIdentitySimulation(config,linkObserver,transportTiming,autonomousOptions)"
+        },
+        {
+          "old": "obj.Streams = ac.Streams(config.Seed,obj.Scheduler, ...",
+          "new": "obj.Streams = ac.DiscoveryStreams(config.Seed,obj.Scheduler, ..."
+        }
+      ]
+    },
+    {
+      "source": "model/+csr/+phy/SignalEngine.m",
+      "source_sha256": "2c488667c0a5a4d46074229415c97d4e3a325d36883b444cd9f6a2a872828fb6",
+      "target": "+ac/ReceiverTimerSignalEngine.m",
+      "target_sha256": "5b428f578acaea2ae3158bfdcf34aed4b90c4ae35a2531abd152d47eef7bffa3",
+      "reverse_recovers_source": true,
+      "edits": [
+        {
+          "old": "classdef SignalEngine < handle",
+          "new": "classdef ReceiverTimerSignalEngine < handle"
+        },
+        {
+          "old": "function obj = SignalEngine(config, scheduler, streams, onReceive, onTrace, onState, transportTiming)",
+          "new": "function obj = ReceiverTimerSignalEngine(config, scheduler, streams, onReceive, onTrace, onState, transportTiming, relativeTimer)"
+        },
+        {
+          "old": "        TransportTiming = []",
+          "new": "        TransportTiming = []\n        RelativeTimer = []"
+        },
+        {
+          "old": "            obj.Config=config; obj.Scheduler=scheduler; obj.Streams=streams;",
+          "new": "            if nargin>7 && ~isempty(relativeTimer)\n                assert(isa(relativeTimer,'ac.ReceiverTimer') && isscalar(relativeTimer), ...\n                    'autocase:ReceiverTimer','Expected one relative timer recorder.');\n                obj.RelativeTimer=relativeTimer;\n            else\n                obj.RelativeTimer=ac.ReceiverTimer();\n            end\n            obj.Config=config; obj.Scheduler=scheduler; obj.Streams=streams;"
+        },
+        {
+          "old": "        function count=get.ActiveSignalCount(obj)",
+          "new": "        function value=receiverTimingSnapshot(obj)\n            value=obj.RelativeTimer.snapshot();\n        end\n        function count=get.ActiveSignalCount(obj)"
+        },
+        {
+          "old": "            id=obj.NextSignalId; obj.NextSignalId=id+1;",
+          "new": "            txDeadline=obj.relativeDeadline(txIndex,duration,'phy_tx_finish');\n            id=obj.NextSignalId; obj.NextSignalId=id+1;"
+        },
+        {
+          "old": "obj.Receivers(txIndex).TxUntil=now+duration;",
+          "new": "obj.Receivers(txIndex).TxUntil=txDeadline;"
+        },
+        {
+          "old": "obj.Receivers(txIndex).TxEvent=obj.Scheduler.scheduleAt(now+duration,@()obj.finishTx(txIndex));",
+          "new": "obj.Receivers(txIndex).TxEvent=obj.Scheduler.scheduleAt(txDeadline,@()obj.finishTx(txIndex));"
+        },
+        {
+          "old": "        function index=nodeIndex(obj,id)",
+          "new": "        function deadline=relativeDeadline(obj,index,delay,purpose)\n            deadline=obj.Scheduler.Now+delay;\n            if ~isempty(obj.TransportTiming) && strcmp(obj.TransportTiming.Mode,'nanoseconds')\n                deadline=obj.RelativeTimer.plan(obj.Scheduler.Now,double(delay), ...\n                    double(obj.Receivers(index).Id),purpose);\n            end\n        end\n        function index=nodeIndex(obj,id)"
+        },
+        {
+          "old": "obj.Scheduler.Now+obj.SyncToTrackSeconds,@()obj.acquire(index));",
+          "new": "obj.relativeDeadline(index,obj.SyncToTrackSeconds,'acquisition'),@()obj.acquire(index));"
+        },
+        {
+          "old": "obj.Scheduler.scheduleAt(obj.Scheduler.Now+28e-9,@()obj.returnRejectedToSearch(index));",
+          "new": "obj.Scheduler.scheduleAt(obj.relativeDeadline(index,28e-9,'rejected_return'), ...\n                        @()obj.returnRejectedToSearch(index));"
+        }
+      ]
+    },
+    {
+      "source": "model/+csr/+mac/Layer.m",
+      "source_sha256": "b7c24b8b7cf9f019249677db3e83425d6e583a2dc07f3343c6de9f1887b19556",
+      "target": "+ac/ReceiverTimerMac.m",
+      "target_sha256": "593d0709214e1b83031cd6c796164b2e3df995d702028bb5485320ade4eb5335",
+      "reverse_recovers_source": true,
+      "edits": [
+        {
+          "old": "classdef Layer < handle",
+          "new": "classdef ReceiverTimerMac < handle"
+        },
+        {
+          "old": "function obj = Layer(nodeId, scheduler, streams, config, callbacks)",
+          "new": "function obj = ReceiverTimerMac(nodeId, scheduler, streams, config, callbacks, relativeTimer)"
+        },
+        {
+          "old": "        Scheduler\n        Stream",
+          "new": "        Scheduler\n        RelativeTimer = []\n        Stream"
+        },
+        {
+          "old": "            obj.NodeId = double(nodeId);",
+          "new": "            if nargin>5 && ~isempty(relativeTimer)\n                assert(isa(relativeTimer,'ac.ReceiverTimer') && isscalar(relativeTimer), ...\n                    'autocase:ReceiverTimer','Expected one relative timer recorder.');\n                obj.RelativeTimer=relativeTimer;\n            end\n            obj.NodeId = double(nodeId);"
+        },
+        {
+          "old": "            obj.FinishEvent = obj.after(duration, @() obj.finishTx());",
+          "new": "            if isempty(obj.RelativeTimer)\n                obj.FinishEvent = obj.after(duration, @() obj.finishTx());\n            else\n                deadline=obj.RelativeTimer.plan(obj.Scheduler.Now,double(duration), ...\n                    obj.NodeId,'mac_tx_finish');\n                obj.FinishEvent=obj.Scheduler.scheduleAt(deadline,@()obj.finishTx());\n            end"
+        }
+      ]
+    },
+    {
+      "source": "+ac/DiscoveryIdentitySimulation.m",
+      "source_sha256": "cdf489d279b0115add230493b3e5c520dbc04cc5c20d29c91709f525f8da5bce",
+      "target": "+ac/ReceiverTimerSimulation.m",
+      "target_sha256": "ae14f3a7408b259fd90a80a4af20a8bcd708d80d3ca8a1661b415fbfb3db286c",
+      "reverse_recovers_source": true,
+      "edits": [
+        {
+          "old": "classdef DiscoveryIdentitySimulation < handle",
+          "new": "classdef ReceiverTimerSimulation < handle"
+        },
+        {
+          "old": "    % Each node owns independent NWK, HOP and MAC state. The unchanged source",
+          "new": "    % Each node owns independent NWK, HOP and MAC state. The isolated timer"
+        },
+        {
+          "old": "function obj = DiscoveryIdentitySimulation(config,linkObserver,transportTiming,autonomousOptions)",
+          "new": "function obj = ReceiverTimerSimulation(config,linkObserver,transportTiming,autonomousOptions)"
+        },
+        {
+          "old": "        TransportTiming = []",
+          "new": "        TransportTiming = []\n        RelativeTimer = []"
+        },
+        {
+          "old": "            obj.Engine = csr.phy.SignalEngine(config,obj.Scheduler,obj.Streams, ...",
+          "new": "            obj.RelativeTimer=ac.ReceiverTimer();\n            macRelativeTimer=[];\n            if ~isempty(obj.TransportTiming) && strcmp(obj.TransportTiming.Mode,'nanoseconds')\n                macRelativeTimer=obj.RelativeTimer;\n            end\n            obj.Engine = ac.ReceiverTimerSignalEngine(config,obj.Scheduler,obj.Streams, ..."
+        },
+        {
+          "old": "@(nodeId,state)obj.receiverChanged(nodeId,state),obj.TransportTiming);",
+          "new": "@(nodeId,state)obj.receiverChanged(nodeId,state),obj.TransportTiming,obj.RelativeTimer);"
+        },
+        {
+          "old": "obj.Macs{k} = csr.mac.Layer(nodeId,obj.Scheduler,obj.Streams,config,macCallbacks);",
+          "new": "obj.Macs{k} = ac.ReceiverTimerMac(nodeId,obj.Scheduler,obj.Streams,config,macCallbacks,macRelativeTimer);"
+        },
+        {
+          "old": "        function value=autonomousRandomSummary(obj)",
+          "new": "        function value=autonomousReceiverTimingSummary(obj)\n            value=obj.RelativeTimer.snapshot();\n        end\n        function value=autonomousRandomSummary(obj)"
+        }
+      ]
+    },
+    {
+      "source": "+ac/ControlWireNwk.m",
+      "source_sha256": "499f65ef3c894162fda0440ab39c98551537d84821ec4b7563d0a47135973677",
+      "target": "+ac/DiscoveryLifecycleNwk.m",
+      "target_sha256": "8cd20bcb21529638f1cfe6cac68b4e07c19998bba691010ef44cef45dfcf8b29",
+      "reverse_recovers_source": true,
+      "edits": [
+        {
+          "old": "classdef ControlWireNwk < handle",
+          "new": "classdef DiscoveryLifecycleNwk < handle"
+        },
+        {
+          "old": "function obj = ControlWireNwk(nodeId,scheduler,streams,fullScenarioConfig,callbacks)",
+          "new": "function obj = DiscoveryLifecycleNwk(nodeId,scheduler,streams,fullScenarioConfig,callbacks)"
+        },
+        {
+          "old": "                    if ~obj.ScanStarted || obj.ScanComplete\n                        obj.startDiscovery(max(0,option(payload,'DelaySeconds',0)));\n                    end\n                    if ~ismember(source,obj.ScanRequested), obj.ScanRequested(end+1)=source; end",
+          "new": "                    if ~obj.ScanStarted || obj.ScanComplete\n                        % Only an idle/new-session initiator is marked done.\n                        % An active duplicate still receives DONE and remains\n                        % eligible for a later outbound discovery handoff.\n                        if ~ismember(source,obj.ScanRequested), obj.ScanRequested(end+1)=source; end\n                        obj.startDiscovery(max(0,option(payload,'DelaySeconds',0)));\n                    end"
+        },
+        {
+          "old": "            if scheduleWake && strcmp(kind,'KEY_REQUEST') && ~reliable\n                % Diagnostic candidate: native NWK admits this newly-created\n                % no-ACK request while the receive callback is still Track.\n                % Preserve replacement/capacity above; never pump other owners.\n                controlId=control.Id;\n                position=obj.controlPosition(controlId);\n                obj.Controls{position}.Submitted=true;\n                options=obj.radioOptions(peers,struct()); options.AckRequired=false;\n                submitted=false;\n                if isfield(obj.Callbacks,'SendControl')\n                    submitted=obj.Callbacks.SendControl(control,peers,options);\n                end\n                % A synchronous sent/completion callback may remove the owner.\n                position=obj.controlPosition(controlId);\n                if ~submitted && position>0, obj.Controls{position}.Submitted=false; end\n                if submitted, return; end\n                % Failed admission retains the original deferred retry path.\n            end",
+          "new": "            if scheduleWake && ((strcmp(kind,'KEY_REQUEST') && ~reliable) || ...\n                    (strcmp(kind,'KEY_UPDATE') && reliable))\n                % Native admits fresh key traffic inside the receive callback.\n                % Retain each reliable owner's HOP gate and ACK/radio options;\n                % never pump unrelated owners or application traffic here.\n                canSubmit=~reliable || ~isfield(obj.Callbacks,'CanSendControl') || ...\n                    obj.Callbacks.CanSendControl(peers);\n                if canSubmit\n                    controlId=control.Id;\n                    position=obj.controlPosition(controlId);\n                    obj.Controls{position}.Submitted=true;\n                    options=obj.radioOptions(peers,struct()); options.AckRequired=logical(reliable);\n                    submitted=false;\n                    if isfield(obj.Callbacks,'SendControl')\n                        submitted=obj.Callbacks.SendControl(control,peers,options);\n                    end\n                    % A synchronous completion may remove or append owners.\n                    position=obj.controlPosition(controlId);\n                    if ~submitted && position>0, obj.Controls{position}.Submitted=false; end\n                    if submitted, return; end\n                end\n                % Blocked or failed admission retains ordinary deferred retry.\n            end"
+        }
+      ]
+    },
+    {
+      "source": "+ac/ReceiverTimerSimulation.m",
+      "source_sha256": "ae14f3a7408b259fd90a80a4af20a8bcd708d80d3ca8a1661b415fbfb3db286c",
+      "target": "+ac/DiscoveryLifecycleSimulation.m",
+      "target_sha256": "13c7b9d7f94311127902177c940698176d0a7fece480a5ded5521343e91c8c84",
+      "reverse_recovers_source": true,
+      "edits": [
+        {
+          "old": "classdef ReceiverTimerSimulation < handle",
+          "new": "classdef DiscoveryLifecycleSimulation < handle"
+        },
+        {
+          "old": "function obj = ReceiverTimerSimulation(config,linkObserver,transportTiming,autonomousOptions)",
+          "new": "function obj = DiscoveryLifecycleSimulation(config,linkObserver,transportTiming,autonomousOptions)"
+        },
+        {
+          "old": "obj.Networks{k} = ac.ControlWireNwk(nodeId,obj.Scheduler,obj.Streams,config,networkCallbacks);",
+          "new": "obj.Networks{k} = ac.DiscoveryLifecycleNwk(nodeId,obj.Scheduler,obj.Streams,config,networkCallbacks);"
+        }
+      ]
+    },
+    {
+      "source": "+ac/DiscoveryLifecycleNwk.m",
+      "source_sha256": "8cd20bcb21529638f1cfe6cac68b4e07c19998bba691010ef44cef45dfcf8b29",
+      "target": "+ac/DiscoveryMembershipNwk.m",
+      "target_sha256": "bb4532788c3220a5dc9eba1766c01935dda405a4ea6b62eb163a1f1eb5a18918",
+      "reverse_recovers_source": true,
+      "edits": [
+        {
+          "old": "classdef DiscoveryLifecycleNwk < handle",
+          "new": "classdef DiscoveryMembershipNwk < handle"
+        },
+        {
+          "old": "function obj = DiscoveryLifecycleNwk(nodeId,scheduler,streams,fullScenarioConfig,callbacks)",
+          "new": "function obj = DiscoveryMembershipNwk(nodeId,scheduler,streams,fullScenarioConfig,callbacks)"
+        },
+        {
+          "old": "        function advanceScan(obj)\n            if ~obj.ScanComplete || obj.Capability==0 || ~isempty(obj.ScanWaiting), return; end\n            obj.mergeScanKnown(obj.Routes.reachableDestinations());\n            pending=obj.ScanKnown(~ismember(obj.ScanKnown,obj.ScanRequested));",
+          "new": "        function advanceScan(obj)\n            if ~obj.ScanComplete || obj.Capability==0 || ~isempty(obj.ScanWaiting), return; end\n            % Native advances existing discovery entries. New routing knowledge\n            % enters this table only at discovery completion or received DONE.\n            pending=obj.ScanKnown(~ismember(obj.ScanKnown,obj.ScanRequested));"
+        }
+      ]
+    },
+    {
+      "source": "+ac/DiscoveryLifecycleSimulation.m",
+      "source_sha256": "13c7b9d7f94311127902177c940698176d0a7fece480a5ded5521343e91c8c84",
+      "target": "+ac/DiscoveryMembershipSimulation.m",
+      "target_sha256": "017b1742a6eac2520c6b29e170c05a609ab9373637395ae9d770b90c2fce920a",
+      "reverse_recovers_source": true,
+      "edits": [
+        {
+          "old": "classdef DiscoveryLifecycleSimulation < handle",
+          "new": "classdef DiscoveryMembershipSimulation < handle"
+        },
+        {
+          "old": "function obj = DiscoveryLifecycleSimulation(config,linkObserver,transportTiming,autonomousOptions)",
+          "new": "function obj = DiscoveryMembershipSimulation(config,linkObserver,transportTiming,autonomousOptions)"
+        },
+        {
+          "old": "obj.Networks{k} = ac.DiscoveryLifecycleNwk(nodeId,obj.Scheduler,obj.Streams,config,networkCallbacks);",
+          "new": "obj.Networks{k} = ac.DiscoveryMembershipNwk(nodeId,obj.Scheduler,obj.Streams,config,networkCallbacks);"
+        }
+      ]
+    }
+  ],
+  "current_limitation": "Unrelated portable/native SNMP DONE gating, requester capacity and reliable overflow differences remain unchanged. No full-network parity claim.",
+  "prior_D_owner_executed": true,
+  "prior_E_F_owner_executed": true,
+  "route_namespace_rename_count": 25,
+  "prior_G_H_owner_executed": true,
+  "prior_I_owner_executed": true,
+  "prior_J_owner_executed": true,
+  "prior_K_owner_executed": true,
+  "prior_L_owner_executed": true,
+  "new_M_matlab_executed": false
+}

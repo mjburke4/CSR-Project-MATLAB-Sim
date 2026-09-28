@@ -1,0 +1,115 @@
+{
+  "schema": "csr-seed131-native-discovery-capture-v1",
+  "status": "verified_exact_native_prefix",
+  "source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "engine_commit": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+  "scenario_sha256": "e10d210590c80cb839442b7847ee6c7e8b8c21d043da5fe5dcf1f2abb402ca7a",
+  "overlay": {
+    "schema": "csr-seed131-native-overlay-v1",
+    "base_native_source_sha256": {
+      "capture.cc": "b859a78a9e260e87689126569aeb6693861ffb78f28da2d296ff9eaa4287cc4d",
+      "overlay/ns3/csr-net-device.h": "5ab14e72414fb9e95a4ece15e5ca2d3e7b8dacd0095116d24e72e08fb9382151",
+      "overlay/ns3/csr-phy-model.h": "d690b4c572491a9ea8c48735b1726770938b118dcbcd931e92920e602cae18fc",
+      "overlay/ns3/mac-replay-hooks.h": "a6a791c7374b33769e096a19046ca14d82f583d7241abcd077c7d48fe09b7984"
+    },
+    "modified_files": {
+      "capture.cc": "9e9e19e1bd7b50ccb430bef3d6f5ef701f0e347721e7272940537ea7ca5ac01b",
+      "overlay/ns3/csr-net-device.h": "021845ded9de62e77e1aee6921eb7d71ae340eab0ea9cdd1369d1dd4fe313c66",
+      "overlay/ns3/csr-phy-model.h": "e6717f25c4c5c7e13a142792907ec79913fc310459f57bfa22461a3b5e85f3aa",
+      "overlay/ns3/mac-replay-hooks.h": "ed81bf0e1e14a86ca323bd2637d25091623358d9610605d3c343d8fbac85b31c",
+      "overlay/ns3/csr-discovery-capture.h": "fd370ccbe2fa88d53fd1ef518248322fb7738abf82ed125ec9566787420c6ec0"
+    },
+    "simulation_window_s": [
+      0,
+      85
+    ],
+    "capture_window_s": [
+      25,
+      85
+    ],
+    "source_commit_required": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+    "engine_commit_required": "6b5cd24ea80713ce16d88575869aedd6f432bdae"
+  },
+  "gate": {
+    "exact_prefix": true,
+    "rows": 8710,
+    "window": "[0,85)",
+    "reference_sha256": "5b7ea32822f91e9404afd9ff25e31973c6c9f462e7360967bc0dcf5d8eab6bac",
+    "observed_sha256": "4f9267c081cc1b754a4038f05749df6ba60610b5ab4dd7a8aa27be694a11cf19"
+  },
+  "tape": {
+    "events": {
+      "boundary_state": 7,
+      "tx_start": 162,
+      "tx_child": 346,
+      "rx_end": 972,
+      "sync_decision": 442,
+      "rx_begin": 442,
+      "acquisition_scheduled": 330,
+      "rx_arrival_state": 442,
+      "acquisition_attempt": 325,
+      "ber_interval": 831,
+      "acquire_track": 325,
+      "preamble_expire": 366,
+      "phy_uniform": 344,
+      "receiver_wake": 185,
+      "receiver_sleep": 184
+    },
+    "boundary_states": {
+      "1": "search",
+      "2": "idle",
+      "3": "search",
+      "4": "idle",
+      "5": "search",
+      "7": "idle",
+      "8": "idle"
+    }
+  },
+  "parent_full_reference_sha256": "8daa3cea2bcfae1162c373b39110745fe8889066fdaab3bd22fbb0c685fe3878",
+  "compile_command": [
+    "g++",
+    "-std=c++23",
+    "-O0",
+    "-g",
+    "-DNS3_ASSERT_ENABLE",
+    "-DNS3_BUILD_PROFILE_DEBUG",
+    "-DNS3_LOG_ENABLE",
+    "-DSTACKTRACE_LIBRARY_IS_LINKED=1",
+    "-D__LINUX__",
+    "-I/workspace/scratch/db3d3caa011d/two_case_next/native/seed131/compiled_overlay/overlay",
+    "-I/workspace/scratch/db3d3caa011d/native_restore/engine/build/include",
+    "/workspace/scratch/db3d3caa011d/two_case_next/native/seed131/compiled_overlay/capture.cc",
+    "-L/workspace/scratch/db3d3caa011d/native_restore/engine/build/lib",
+    "-Wl,-rpath,/workspace/scratch/db3d3caa011d/native_restore/engine/build/lib",
+    "-Wl,--no-as-needed",
+    "-lns3-dev-csr-debug",
+    "-Wl,--as-needed",
+    "-lns3-dev-spectrum-debug",
+    "-lns3-dev-buildings-debug",
+    "-lns3-dev-propagation-debug",
+    "-lns3-dev-mobility-debug",
+    "-lns3-dev-antenna-debug",
+    "-lns3-dev-network-debug",
+    "-lns3-dev-stats-debug",
+    "-lns3-dev-core-debug",
+    "-lstdc++exp",
+    "-o",
+    "/workspace/scratch/db3d3caa011d/two_case_next/native/seed131/capture_seed131"
+  ],
+  "run_command": [
+    "/workspace/scratch/db3d3caa011d/two_case_next/native/seed131/capture_seed131",
+    "--scenario=/workspace/scratch/db3d3caa011d/two_case_next/schema_review/scenario_s131.csv",
+    "--trace=/workspace/scratch/db3d3caa011d/two_case_next/native/seed131/ns3-trace.csv",
+    "--appDiagnostics=/workspace/scratch/db3d3caa011d/two_case_next/native/seed131/app-admission.csv",
+    "--stop=85",
+    "--flowLimit=0",
+    "--dutyCycling=1",
+    "--opnetAlignedDutyCycle=1",
+    "--gatewayDiscovery=1",
+    "--opnetAppGating=1",
+    "--aggregateTraceOnly=0",
+    "--admissionTrace=1",
+    "--quietModelLogs=0",
+    "--stochasticSyncThreshold=1"
+  ]
+}

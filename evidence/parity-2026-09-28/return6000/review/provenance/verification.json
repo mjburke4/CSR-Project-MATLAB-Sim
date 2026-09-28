@@ -1,0 +1,144 @@
+{
+  "schema": "csr-corrected6000-return-verification-v1",
+  "status": "pass",
+  "input_archive": "upload/out_6000_20260924_152302.zip",
+  "input_archive_sha256": "a3f7fd6fc09a5b0505c6a759a5c025390151bef484e7e15c9818e51a3f4f1484",
+  "issued_kit_sha256": "fc3e8acff9b1fda90693a7ba299c0d201b7ad7d4edcd1dddf85d706ca92683bf",
+  "plan_sha256": "94979adabf87b2e144b0d309dac8ab2661fd0720d7e7d21c3c9e3b62717c5037",
+  "target_percent": 15,
+  "invocations": [
+    {
+      "name": "run_20260924_114103",
+      "completed": false,
+      "error_identifier": "csr6000:CachedModel",
+      "wall_seconds": 0.1356463,
+      "runtime": {
+        "version": "25.1.0.2943329 (R2025a)",
+        "release": "2025a",
+        "computer": "PCWIN64"
+      }
+    },
+    {
+      "name": "run_20260924_114140",
+      "completed": false,
+      "error_identifier": "csr6000:CachedModel",
+      "wall_seconds": 0.0056481,
+      "runtime": {
+        "version": "25.1.0.2943329 (R2025a)",
+        "release": "2025a",
+        "computer": "PCWIN64"
+      }
+    },
+    {
+      "name": "run_20260924_114424",
+      "completed": true,
+      "error_identifier": "",
+      "wall_seconds": 13117.7548386,
+      "runtime": {
+        "version": "25.1.0.2943329 (R2025a)",
+        "release": "2025a",
+        "computer": "PCWIN64"
+      }
+    }
+  ],
+  "cases": [
+    {
+      "seed": 131,
+      "complete": true,
+      "sealed_files_verified": 26,
+      "capture_rows": {
+        "application_admission_statistics.csv": 6,
+        "application_admission_trace.csv": 100000,
+        "hop_nodes.csv": 7,
+        "mac_nodes.csv": 7,
+        "neighbors.csv": 14,
+        "nodes.csv": 7,
+        "nwk_nodes.csv": 7,
+        "phy_trace.csv": 757634,
+        "protocol_trace.csv": 610870,
+        "research_summary.csv": 1,
+        "routes.csv": 42,
+        "scenario.csv": 14,
+        "summary.json": [],
+        "trace.csv": 610870
+      },
+      "wall_seconds": 6409.3303838,
+      "admitted": 12437,
+      "delivered": 11811,
+      "dropped": 384,
+      "pending": 242,
+      "protocol_omissions": 0,
+      "phy_omissions": 0,
+      "admission_prefix_omissions": 1610000,
+      "source_files_verified": 99,
+      "scenario_sha256": "e10d210590c80cb839442b7847ee6c7e8b8c21d043da5fe5dcf1f2abb402ca7a"
+    },
+    {
+      "seed": 132,
+      "complete": true,
+      "sealed_files_verified": 26,
+      "capture_rows": {
+        "application_admission_statistics.csv": 6,
+        "application_admission_trace.csv": 100000,
+        "hop_nodes.csv": 7,
+        "mac_nodes.csv": 7,
+        "neighbors.csv": 14,
+        "nodes.csv": 7,
+        "nwk_nodes.csv": 7,
+        "phy_trace.csv": 762758,
+        "protocol_trace.csv": 615508,
+        "research_summary.csv": 1,
+        "routes.csv": 42,
+        "scenario.csv": 14,
+        "summary.json": [],
+        "trace.csv": 615508
+      },
+      "wall_seconds": 6690.3027132,
+      "admitted": 12635,
+      "delivered": 11887,
+      "dropped": 376,
+      "pending": 372,
+      "protocol_omissions": 0,
+      "phy_omissions": 0,
+      "admission_prefix_omissions": 1610000,
+      "source_files_verified": 99,
+      "scenario_sha256": "fa45217f8631f34d203580842d8a1a12cb18c53a3efbe0b702b2e17aaeb30d48"
+    }
+  ],
+  "owner_analysis_preflight": {
+    "schema": "csr6000-analysis-selfcheck-v1",
+    "completed": true,
+    "simulation_executed": false,
+    "synthetic_outcomes_verified": true,
+    "undefined_reference_metrics_verified": true,
+    "native_duplicate_events_verified": true,
+    "all_four_half_open_horizons_verified": true,
+    "deadline_equality_verified": true,
+    "common_source_weights_verified": true,
+    "unfinished_age_semantics_verified": true,
+    "real_native_reference_checks": [
+      {
+        "seed": 131,
+        "completed": true,
+        "native_admitted": 12630,
+        "native_unique_delivered": 12261,
+        "native_duplicate_delivery_events": 0
+      },
+      {
+        "seed": 132,
+        "completed": true,
+        "native_admitted": 12460,
+        "native_unique_delivered": 11794,
+        "native_duplicate_delivery_events": 4
+      }
+    ],
+    "scope": "Reporter execution over synthetic MATLAB outcomes and both actual bundled native references; no network simulation or parity claim."
+  },
+  "archiving_note": "Successful invocation was serialized before ZIP creation, so archive_completed=false inside batch_status is expected. Received ZIP integrity and all sealed case hashes verify. Earlier two invocations stopped before simulation on stale CSR cache guard.",
+  "matlab_runtime": {
+    "version": "25.1.0.2943329 (R2025a)",
+    "release": "2025a",
+    "computer": "PCWIN64"
+  },
+  "new_simulations_in_review": 0
+}

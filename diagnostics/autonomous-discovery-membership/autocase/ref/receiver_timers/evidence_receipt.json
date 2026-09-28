@@ -1,0 +1,127 @@
+{
+  "schema": "csr-eighth-receiver-time-arithmetic-v1",
+  "status": "native_arithmetic_probe_and_fixed_history_sweep_pass",
+  "network_simulation_run": false,
+  "matlab_executed_here": false,
+  "production_fixture_or_guard_edited": false,
+  "native_component_scope": "Pinned Time/GetSeconds/PHY rate and explicit-uniform binomial arithmetic only; no Simulator::Run and no RNG consumption.",
+  "local_tested_bits": {
+    "native": 51,
+    "floating": 52
+  },
+  "same_uniform_errors": {
+    "native": 0,
+    "floating": 0
+  },
+  "full_capture_counts": {
+    "observed_components": 1542,
+    "reconstructed_intervals": 4070,
+    "clock_ticks": 10301,
+    "acquisition_schedules": 1352
+  },
+  "source_pins": {
+    "csr": {
+      "url": "https://github.com/mjburke4/CSR-Project-NS3-part2.git",
+      "commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+      "tree": "b611b233fb369569b98f0914ece24d029ccc2f42",
+      "tracked_files_clean": true
+    },
+    "engine": {
+      "url": "https://github.com/nsnam/ns-3-dev-git.git",
+      "commit": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+      "tree": "f30343185fb057e3a9cdd54f496cca0cef49ae23",
+      "tracked_files_clean": true
+    }
+  },
+  "toolchain": {
+    "g++": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+    "cmake": "cmake version 3.31.10",
+    "ninja": "1.13.2.git.kitware.jobserver-pipe-1"
+  },
+  "input_sha256": {
+    "autonomous/native_capture/run/observations.tsv": "3156069106cf3db451dce3fca4c9de91e09b5c9da07dd9ccc8d84615957de7f6",
+    "autonomous/native_capture/fixture/tx_signatures.csv": "40f51355e02c0950e7608d9eeb6efb590a539bdef37c0381780db5fc086ad5e1",
+    "autonomous_eighth/data/J_discovery_identity/first_divergence.json": "ff1d690c8c2ea264503250f394eb4911a4f277e5cefb8c830e2ee48e6108379d",
+    "autonomous_eighth/data/J_discovery_identity/ordered_events.jsonl": "b72f3b925b12f1f133927fc0b7d7051da7b18217fad5ad61cdfc2bd1af23ba3f",
+    "autonomous/native_env/build.json": "e4bc375f516d4b21b20e1fea9a9685bdc4c26f98338b27389b08ec3a3ffcdad9"
+  },
+  "source_sha256": {
+    "autonomous/native_env/csr/model/csr-common.h": "f1e0a962862ef1cc5a6994f24988858a2bea70385ce02b1264285de194fe6ae1",
+    "autonomous/native_env/csr/model/csr-net-device.h": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+    "autonomous/native_env/csr/model/csr-phy-model.h": "d690b4c572491a9ea8c48735b1726770938b118dcbcd931e92920e602cae18fc",
+    "autonomous/native_env/engine/src/core/model/nstime.h": "c58ddd2dcb4ce328bc4a4eb7d225bb236fbf5407224d379f0e0638b5b4be03bd",
+    "autonomous/native_env/engine/src/core/model/int64x64-128.h": "5d468f0693029779d52ece7567cb1f9a84e8de60ae48cc001aa7b7c8290d94c7",
+    "autonomous_seventh/kit/autocase/model/+csr/+phy/SignalEngine.m": "2c488667c0a5a4d46074229415c97d4e3a325d36883b444cd9f6a2a872828fb6",
+    "autonomous_seventh/kit/autocase/model/+csr/+phy/Model.m": "bf290155af0b26d7a4ae31395808a3740b1035d53fe146083e60a60ba3b8a896",
+    "autonomous_seventh/kit/autocase/model/+csr/+mac/Layer.m": "b7c24b8b7cf9f019249677db3e83425d6e583a2dc07f3343c6de9f1887b19556",
+    "autonomous_seventh/kit/autocase/model/+csr/+sim/TransportTiming.m": "3e160d63bf38ffc647617a1f212d4e08c7be7cf6d71977cc63a22f1ee9e46131"
+  },
+  "runtime_library_sha256": {
+    "libns3-dev-antenna-debug.so": "86c433f54a806e08224c1f4a1dd2e3fe76bb71677a50e3707329449f95827504",
+    "libns3-dev-buildings-debug.so": "55b913985774a57a5d5687431f9086274bd869a6919d8b87d5124a5f4361bfbb",
+    "libns3-dev-core-debug.so": "c3cc4ad37ff809ec4d0e12cdae8862ecac7ac3059186ae306973fe203aa8fd43",
+    "libns3-dev-csr-debug.so": "b27ef8615595ab2fba7af508136db7288d4852cb01c5eb0a8d57161721dc52d3",
+    "libns3-dev-mobility-debug.so": "934c0f3b6846902250b699a65ac0de03b048825bd7d49ce00a44a61790fa6fc4",
+    "libns3-dev-network-debug.so": "6596bf4a7923d9e59ec061e84438b9f22e42575cdc45cdab2d9491a267f32979",
+    "libns3-dev-propagation-debug.so": "a85a8bff3b8bfa41eeb5d333d7c25b8c8801668acd959528e9f942ac5e8baa1e",
+    "libns3-dev-spectrum-debug.so": "891bfaf493b8b2cab4e6b3e111e0addf6aadf1b644b1c3ae898763b62f151a79",
+    "libns3-dev-stats-debug.so": "0c39521ca00e5dbe8495b54d35a821598ee10ab23dbd985fa1b297ca310828d5"
+  },
+  "artifact_sha256": {
+    "REVIEW.md": "8ebd462a6c9fbb81692f482c32a63448cf8f4a583f25441bb452df20604700f3",
+    "acquisition_schedule_fixture.csv": "63bab9e5b9fb6bb676871dfba9c138155acb671979e82e71b3f0e6add9202fa5",
+    "all_interval_arithmetic.csv": "faa0fe0e6454d6681ec355f9dfc7d8bfced782afb6e862266fc2cfce12344db9",
+    "all_sample_arithmetic.csv": "54b47f028777bf6e89e7aac41def2c235196378a71df9215ffb4d22523a757f4",
+    "arithmetic_probe.cc": "28de1e3ed82560c6b440beffe27377ee8b0af20ec0dfeace166acf32af6c6250",
+    "arithmetic_summary.json": "c693d524c894f3e09a6e6d0c2a0257aa101299d1a39778bcc81c6f0fd95c9c62",
+    "arithmetic_values.csv": "1814ad0d36ef8d2ce0064d807c8d431deb64cbad65b12e40b4116a6eaa380c0e",
+    "audit_intervals.py": "8f3c36452dc4d6f357b10b99cf1f9f786b6fe21f2c31ed979a75093d9e637e0f",
+    "candidate_scope_review.json": "b57d4970a4bf154e914392b417ab0d9b825e14e5a171307e301c233a07c7b05b",
+    "clock_ticks.txt": "e366db00082cbacd223db3425d18f24b728287a12f5795679ed31451a4c12e8a",
+    "clock_values.csv": "86325199dc107146381b523361c09fd915ce0cddf8072b42e2ffcf06ac5c5e09",
+    "compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compile_command.json": "d8a2a791ab5fd01995a00364db805779097c2be94261f6cfa57aea66a5edc4d7",
+    "finalize_receipt.py": "89e729131a084f6b6fc38194cf15ffa003f7b9bc11e6e1178ea82dacf669ebf8",
+    "phy_component_fixture.csv": "5bb859ae492f83aee4869045ece60053baacb576bad62e17bb0967f92373db85",
+    "review_candidate.py": "8ce9dc69351012f7d34ea51a25694f0e6a489c3c6dd17dea30cf349af724337b",
+    "run_arithmetic_probe.py": "20713d03c11b78019db72c73019be396df6e46638ab970218f203249bff4b18e",
+    "source_path_proof.json": "8ce405b71e2a8e5b68422e4645c9e858f06790a1cad363c692f79bdc9742ac59"
+  },
+  "compile_argv": [
+    "g++",
+    "-std=c++23",
+    "-O0",
+    "-g",
+    "-DNS3_ASSERT_ENABLE",
+    "-DNS3_BUILD_PROFILE_DEBUG",
+    "-DNS3_LOG_ENABLE",
+    "-I/workspace/scratch/db3d3caa011d/autonomous_eighth/native/include",
+    "-I/workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/include",
+    "/workspace/scratch/db3d3caa011d/autonomous_eighth/native/arithmetic_probe.cc",
+    "-L/workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib",
+    "-Wl,-rpath,/workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib",
+    "-lns3-dev-csr-debug",
+    "-lns3-dev-core-debug",
+    "-lns3-dev-network-debug",
+    "-lstdc++exp",
+    "-o",
+    "/workspace/scratch/db3d3caa011d/autonomous_eighth/native/arithmetic_probe"
+  ],
+  "run_argv": [
+    [
+      "/workspace/scratch/db3d3caa011d/autonomous_eighth/native/arithmetic_probe"
+    ],
+    [
+      "/workspace/scratch/db3d3caa011d/autonomous_eighth/native/arithmetic_probe",
+      "--clock"
+    ]
+  ],
+  "limits": [
+    "Local n51/n52 case has identical sampled error count and prior rejected signal; no delivery difference established.",
+    "All-interval sweep holds native traffic/event history fixed and is not a K trajectory.",
+    "ns/1e9 differs from native fixed-point GetSeconds at two audited ticks; no bit-count impact in this fixed history.",
+    "Rejected-return28ns has source/component evidence only, no returned J execution.",
+    "Native TX completion is one callback; MATLAB retains its existing two-callback decomposition and order.",
+    "K owner execution and network parity remain unmeasured."
+  ]
+}

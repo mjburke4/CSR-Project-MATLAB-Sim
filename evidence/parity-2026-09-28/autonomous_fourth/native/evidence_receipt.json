@@ -1,0 +1,95 @@
+{
+  "task": "seed132 node5 TX3 missing Overheard control, fourth owner return",
+  "native_csr_pin": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "native_engine_pin": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+  "network_run": false,
+  "production_or_fixture_edit": false,
+  "component_probe_executed": true,
+  "component_probe_uses_private_state": false,
+  "component_probe_calls_simulator_run": false,
+  "component_probe_actual_types": {
+    "overheard_only": [
+      "Overheard",
+      "Message"
+    ],
+    "discovery_active": [
+      "Discovery",
+      "Overheard"
+    ]
+  },
+  "component_probe_scope": "Public NWK/HOP security and HELLO callbacks with unattached MAC; real authenticated key install and ACK; no PHY, channel, delivery, or network parity claim.",
+  "sources": [
+    {
+      "path": "autonomous/native_capture/run/run.log",
+      "sha256": "282ed068740ccba5481bf7a35aca3696c54d422e31976107cfee05889c690cee"
+    },
+    {
+      "path": "autonomous_fourth/data/C_timing/ordered_events.jsonl",
+      "sha256": "21d6489979366beeb90d5b2542b84c72626e4182b3892e6c898857915c8313db"
+    },
+    {
+      "path": "autonomous_fourth/data/C_timing/first_divergence.json",
+      "sha256": "3edbfcf7137903c71dc986f4166d58821f552a3849b64a7145049ad9cb1e5dfe"
+    },
+    {
+      "path": "autonomous_fourth/data/D_inline_key/ordered_events.jsonl",
+      "sha256": "739bc5cf1e5402f1f14dda6fc2285017764e086b0f2e9c77746a330f0d27ae04"
+    },
+    {
+      "path": "autonomous_fourth/data/D_inline_key/first_divergence.json",
+      "sha256": "3edbfcf7137903c71dc986f4166d58821f552a3849b64a7145049ad9cb1e5dfe"
+    },
+    {
+      "path": "autonomous/native_capture/fixture/tx_signatures.csv",
+      "sha256": "40f51355e02c0950e7608d9eeb6efb590a539bdef37c0381780db5fc086ad5e1"
+    },
+    {
+      "path": "autonomous/native_env/csr/model/csr-nwk-layer.h",
+      "sha256": "bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc"
+    },
+    {
+      "path": "autonomous/native_env/csr/model/csr-hop-layer.h",
+      "sha256": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b"
+    },
+    {
+      "path": "autonomous/native_env/csr/model/csr-net-device.h",
+      "sha256": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb"
+    },
+    {
+      "path": "autonomous_third/kit/autocase/model/+csr/+nwk/Neighbors.m",
+      "sha256": "65cb269a9b7e3cade654aad4b262bc6d7ebdf103743fa2581d8694bc6e45aed7"
+    },
+    {
+      "path": "autonomous_third/kit/autocase/model/+csr/+nwk/Layer.m",
+      "sha256": "7ef09931c83c55697ce96b400ee1d90459a44af4c0527b396829d62ab9125300"
+    },
+    {
+      "path": "autonomous_fourth/native/check_ownership_probe.log",
+      "sha256": "45c944e626629a92e1532047179405124ef7e851f017a69e948729e343dbf04f"
+    },
+    {
+      "path": "autonomous/native_env/build.json",
+      "sha256": "e4bc375f516d4b21b20e1fea9a9685bdc4c26f98338b27389b08ec3a3ffcdad9"
+    }
+  ],
+  "probe_source_sha256": "35a98e09aa45f3cb5ec834b9e693ee6b37a4c6e5b1460552c9ef92af00869733",
+  "compile_command": [
+    "g++",
+    "-std=c++23",
+    "-O0",
+    "-g",
+    "-DNS3_ASSERT_ENABLE",
+    "-DNS3_BUILD_PROFILE_DEBUG",
+    "-DNS3_LOG_ENABLE",
+    "-I/workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/include",
+    "/workspace/scratch/db3d3caa011d/autonomous_fourth/native/check_ownership_probe.cc",
+    "-L/workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib",
+    "-Wl,-rpath,/workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib",
+    "-lns3-dev-csr-debug",
+    "-lns3-dev-core-debug",
+    "-lns3-dev-network-debug",
+    "-lstdc++exp",
+    "-o",
+    "/workspace/scratch/db3d3caa011d/autonomous_fourth/native/check_ownership_probe"
+  ]
+}

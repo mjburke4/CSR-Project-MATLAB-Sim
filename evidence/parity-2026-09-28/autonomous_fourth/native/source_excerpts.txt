@@ -1,0 +1,669 @@
+
+FILE autonomous/native_env/csr/model/csr-nwk-layer.h
+SHA256 bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc
+LINES 622-667
+622:   void SetSecurityResetStateForTest (
+623:     CsrNodeId neighbor,
+624:     const SecurityResetStateForTest &state)
+625:   {
+626:     NwkNeighborEntry &entry = GetOrCreateNwkNeighbor (neighbor);
+627:     entry.discoverySequenceValid = state.discoverySequenceValid;
+628:     entry.keyUpdateComplete = state.keyUpdateComplete;
+629:     entry.keyRequestSentValid = state.keyRequestSentValid;
+630:     entry.keySendComplete = state.keySendComplete;
+631:     entry.keySendActive = state.keySendActive;
+632:     entry.keySendValid = state.keySendValid;
+633:     entry.overheardValid = state.overheardValid;
+634:     entry.keyRequestDelay = state.keyRequestDelay;
+635:     entry.keySendDelay = state.keySendDelay;
+636:     entry.overheardDelay = state.overheardDelay;
+637:     entry.numFailures = state.numFailures;
+638:     if (state.admissionRetryPending)
+639:       {
+640:         ScheduleAdmissionRetry (neighbor, Hours (1));
+641:       }
+642:   }
+643: 
+644:   SecurityResetStateForTest GetSecurityResetStateForTest (
+645:     CsrNodeId neighbor) const
+646:   {
+647:     SecurityResetStateForTest state;
+648:     auto it = m_nwkNeighbors.find (neighbor);
+649:     if (it == m_nwkNeighbors.end ())
+650:       {
+651:         return state;
+652:       }
+653:     const NwkNeighborEntry &entry = it->second;
+654:     state.discoverySequenceValid = entry.discoverySequenceValid;
+655:     state.keyUpdateComplete = entry.keyUpdateComplete;
+656:     state.keyRequestSentValid = entry.keyRequestSentValid;
+657:     state.keySendComplete = entry.keySendComplete;
+658:     state.keySendActive = entry.keySendActive;
+659:     state.keySendValid = entry.keySendValid;
+660:     state.overheardValid = entry.overheardValid;
+661:     state.keyRequestDelay = entry.keyRequestDelay;
+662:     state.keySendDelay = entry.keySendDelay;
+663:     state.overheardDelay = entry.overheardDelay;
+664:     state.numFailures = entry.numFailures;
+665:     state.admissionRetryPending = entry.admissionRetryEvent.IsPending ();
+666:     return state;
+667:   }
+LINES 958-975
+958:         }
+959: 
+960:       if (type == CsrNeighborCheckType::Discovery)
+961:         {
+962:           ne.admissionDiscoveryCheckActive = false;
+963:           ne.discoverySequence = discoverySequence;
+964:           ne.discoverySequenceValid = true;
+965:         }
+966: 
+967:       ne.checkMessageActive = false;
+968: 
+969:       // routesHopSecSentPacket() makes an ACKed NeighborCheck an admission
+970:       // proof.  routesMakeNeighborActive() still enforces both key directions.
+971:       TryMakeNeighborActive (
+972:         neighbor,
+973:         "ACKed NeighborCheck");
+974:   }
+975: 
+LINES 3835-3865
+3835: void
+3836: CsrNetLayer::ScheduleAdmissionRetry (
+3837:   CsrNodeId neighbor,
+3838:   Time delay)
+3839: {
+3840:   auto it = m_nwkNeighbors.find (neighbor);
+3841:   if (it == m_nwkNeighbors.end () || it->second.arlActive)
+3842:     {
+3843:       return;
+3844:     }
+3845: 
+3846:   // There is one legacy-admission deadline per neighbor.  A new packet or a
+3847:   // transition to the next key/check phase replaces the obsolete deadline.
+3848:   if (it->second.admissionRetryEvent.IsPending ())
+3849:     {
+3850:       Simulator::Cancel (it->second.admissionRetryEvent);
+3851:     }
+3852: 
+3853:   it->second.admissionRetryEvent = Simulator::Schedule (
+3854:     delay,
+3855:     &CsrNetLayer::AdmissionRetry,
+3856:     this,
+3857:     neighbor);
+3858: }
+3859: 
+3860: void
+3861: CsrNetLayer::AdmissionRetry (CsrNodeId neighbor)
+3862: {
+3863:   EvaluateNeighborAdmission (neighbor, false);
+3864: }
+3865: 
+LINES 3937-4002
+3937: 
+3938: void
+3939: CsrNetLayer::SendPendingDiscoveryCheck (CsrNodeId neighbor)
+3940: {
+3941:   auto it = m_nwkNeighbors.find (neighbor);
+3942:   if (it == m_nwkNeighbors.end ())
+3943:     {
+3944:       return;
+3945:     }
+3946: 
+3947:   NwkNeighborEntry &entry = it->second;
+3948: 
+3949:   if (!entry.admissionDiscoveryCheckPending ||
+3950:       entry.admissionDiscoveryCheckActive ||
+3951:       !entry.keySendComplete ||
+3952:       !m_discoveryResponseEnabled)
+3953:     {
+3954:       return;
+3955:     }
+3956: 
+3957:   entry.admissionDiscoveryCheckPending = false;
+3958:   entry.admissionDiscoveryCheckActive = true;
+3959: 
+3960:   std::cout << "[NWK " << m_nodeId
+3961:             << "] Sending deferred Discovery NeighborCheck"
+3962:             << " neighbor=" << neighbor
+3963:             << " sequence=" << entry.admissionDiscoverySequence
+3964:             << " afterKeySend=1"
+3965:             << std::endl;
+3966: 
+3967:   SendNeighborCheck (neighbor,
+3968:                      CsrNeighborCheckType::Discovery,
+3969:                      CSR_BROADCAST_ID,
+3970:                      entry.admissionDiscoverySequence);
+3971: }
+3972: 
+3973: void
+3974: CsrNetLayer::EnsureCheckMessage (
+3975:   CsrNodeId neighbor,
+3976:   const char *reason)
+3977: {
+3978:   if (!m_arlNeighborAdmissionEnabled || m_hop == nullptr)
+3979:     {
+3980:       return;
+3981:     }
+3982: 
+3983:   NwkNeighborEntry &entry = GetOrCreateNwkNeighbor (neighbor);
+3984:   entry.nodeId = neighbor;
+3985: 
+3986:   if (entry.arlActive ||
+3987:       entry.checkMessageActive ||
+3988:       entry.admissionDiscoveryCheckActive)
+3989:     {
+3990:       return;
+3991:     }
+3992: 
+3993:   entry.checkMessageActive = true;
+3994: 
+3995:   std::cout << "[NWK " << m_nodeId
+3996:             << "] Starting CHECK_MESSAGE admission proof"
+3997:             << " neighbor=" << neighbor
+3998:             << " reason=" << reason
+3999:             << std::endl;
+4000: 
+4001:   SendNeighborCheck (neighbor, CsrNeighborCheckType::Message);
+4002: }
+LINES 4199-4282
+4199: CsrNetLayer::EvaluateNeighborAdmission (
+4200:   CsrNodeId neighbor,
+4201:   bool receivedDiscovery)
+4202: {
+4203:   if (!m_arlNeighborAdmissionEnabled || m_hop == nullptr)
+4204:     {
+4205:       return;
+4206:     }
+4207: 
+4208:   auto it = m_nwkNeighbors.find (neighbor);
+4209:   if (it == m_nwkNeighbors.end ())
+4210:     {
+4211:       return;
+4212:     }
+4213: 
+4214:   SyncNeighborKeyState (neighbor);
+4215:   NwkNeighborEntry &entry = it->second;
+4216: 
+4217:   if (entry.stale || entry.arlActive)
+4218:     {
+4219:       return;
+4220:     }
+4221: 
+4222:   Time now = Simulator::Now ();
+4223: 
+4224:   if (!entry.keyUpdateComplete)
+4225:     {
+4226:       if (receivedDiscovery)
+4227:         {
+4228:           // routesRcvUnAuthedMsg() resets both delays to 5000 ms and sends a
+4229:           // new no-ACK KeyRequest for the authenticated-but-not-decryptable
+4230:           // Discover.
+4231:           SendKeyRequest (neighbor, true);
+4232:         }
+4233:       else if (!entry.keyRequestSentValid ||
+4234:                now - entry.keyRequestSentWhen >= entry.keyRequestDelay)
+4235:         {
+4236:           // routesValidRx() doubles the next eligibility interval before it
+4237:           // emits a retry.  routesRcvUnAuthedMsg() is the special initial
+4238:           // Discover path above and keeps the reset 5000-ms interval.
+4239:           entry.keyRequestDelay = entry.keyRequestDelay * 2;
+4240:           SendKeyRequest (neighbor, false);
+4241:         }
+4242:       return;
+4243:     }
+4244: 
+4245:   if (!entry.keySendComplete)
+4246:     {
+4247:       if (!entry.keySendActive &&
+4248:           (!entry.keySendValid ||
+4249:            now - entry.keySendWhen >= entry.keySendDelay))
+4250:         {
+4251:           if (entry.keySendValid)
+4252:             {
+4253:               entry.keySendDelay = entry.keySendDelay * 2;
+4254:             }
+4255:           SendKeyUpdate (neighbor);
+4256:         }
+4257:       return;
+4258:     }
+4259: 
+4260:   if (entry.admissionDiscoveryCheckPending)
+4261:     {
+4262:       SendPendingDiscoveryCheck (neighbor);
+4263:       return;
+4264:     }
+4265: 
+4266:   if (!entry.overheardValid ||
+4267:       now - entry.overheardWhen >= entry.overheardDelay)
+4268:     {
+4269:       entry.overheardValid = true;
+4270:       entry.overheardWhen = now;
+4271:       entry.overheardDelay = entry.overheardDelay * 2;
+4272: 
+4273:       std::cout << "[NWK " << m_nodeId
+4274:                 << "] Sending CHECK_OVERHEARD after two-sided key exchange"
+4275:                 << " neighbor=" << neighbor
+4276:                 << std::endl;
+4277: 
+4278:       SendNeighborCheck (neighbor, CsrNeighborCheckType::Overheard);
+4279:       ScheduleAdmissionRetry (neighbor, entry.overheardDelay);
+4280:     }
+4281: }
+4282: 
+LINES 4358-4375
+4358: CsrNetLayer::NoteKeyUpdateCompletion (
+4359:   CsrNodeId neighbor,
+4360:   bool acknowledged)
+4361: {
+4362:   NwkNeighborEntry &entry = GetOrCreateNwkNeighbor (neighbor);
+4363:   entry.nodeId = neighbor;
+4364:   entry.keySendActive = false;
+4365:   SyncNeighborKeyState (neighbor);
+4366: 
+4367:   std::cout << "[NWK " << m_nodeId
+4368:             << "] KeyUpdate send completion"
+4369:             << " neighbor=" << neighbor
+4370:             << " acknowledged=" << (acknowledged ? 1 : 0)
+4371:             << " sentKey=" << (entry.keySendComplete ? 1 : 0)
+4372:             << std::endl;
+4373: 
+4374:   EvaluateNeighborAdmission (neighbor, false);
+4375: }
+LINES 4453-4482
+4453: CsrNetLayer::NoteNeighborCheckFailure (
+4454:   CsrNodeId neighbor,
+4455:   CsrNeighborCheckType type,
+4456:   uint32_t discoverySequence)
+4457: {
+4458:   auto it = m_nwkNeighbors.find (neighbor);
+4459:   if (it == m_nwkNeighbors.end ())
+4460:     {
+4461:       return;
+4462:     }
+4463: 
+4464:   NwkNeighborEntry &entry = it->second;
+4465:   entry.checkMessageActive = false;
+4466: 
+4467:   if (type == CsrNeighborCheckType::Discovery)
+4468:     {
+4469:       entry.admissionDiscoveryCheckActive = false;
+4470:       entry.admissionDiscoveryCheckPending = true;
+4471:       entry.admissionDiscoverySequence = discoverySequence;
+4472:     }
+4473: 
+4474:   std::cout << "[NWK " << m_nodeId
+4475:             << "] NeighborCheck admission proof failed"
+4476:             << " neighbor=" << neighbor
+4477:             << " subtype=" << NeighborCheckTypeName (type)
+4478:             << std::endl;
+4479: 
+4480:   ScheduleAdmissionRetry (neighbor, MilliSeconds (5000));
+4481: }
+4482: 
+LINES 4672-4686
+4672:     // ------------------------------------------------------------
+4673: 
+4674:   ProcessArlRouteMessage (hh,
+4675:                         helloPayload,
+4676:                         src,
+4677:                         pathlossDb,
+4678:                         snrDb,
+4679:                         linkCost);
+4680: 
+4681:   EvaluateNeighborAdmission (
+4682:     src,
+4683:     hh.GetArlRouteMsgType () == CsrArlRouteMsgType::Discover &&
+4684:       !ne.keyUpdateComplete);
+4685: 
+4686:     DumpRoutes ();
+LINES 7336-7350
+7336:     case CsrNeighborCheckType::Overheard:
+7337:       {
+7338:         std::cout << "[NWK " << m_nodeId
+7339:                   << "] NeighborCheck Overheard received from "
+7340:                   << helloSrc
+7341:                   << std::endl;
+7342: 
+7343:         EnsureCheckMessage (
+7344:           helloSrc,
+7345:           "received CHECK_OVERHEARD");
+7346:         break;
+7347:       }
+7348: 
+7349:     /*case CsrNeighborCheckType::NoPath:
+7350:       std::cout << "[NWK " << m_nodeId
+LINES 7881-7948
+7881: CsrNetLayer::SendNeighborCheck (
+7882:   CsrNodeId neighbor,
+7883:   CsrNeighborCheckType type,
+7884:   CsrNodeId target,
+7885:   uint32_t discoverySequence)
+7886: {
+7887:   if (m_hop == nullptr)
+7888:     {
+7889:       return;
+7890:     }
+7891: 
+7892:   Ptr<Packet> p = Create<Packet> ();
+7893: 
+7894:   CsrHelloHeader hh;
+7895:   hh.SetNodeId (m_nodeId);
+7896:   hh.SetHelloSeq (++m_neighborCheckSeq);
+7897:   hh.SetSpeedKey (m_minSpeedKey);
+7898: 
+7899:   hh.SetNodeType (m_nodeType);
+7900: 
+7901:   double s0PowerDbm = m_rxS0BaseLevelDbm + m_linkMarginDb;
+7902:   hh.SetRxPowerDbmX10 (
+7903:     static_cast<int16_t> (std::round (s0PowerDbm * 10.0)));
+7904: 
+7905:   if (type == CsrNeighborCheckType::Discovery &&
+7906:       m_arlNeighborAdmissionEnabled)
+7907:     {
+7908:       // CHECK_DISCOVERY carries the sender's neighbor state byte.  The
+7909:       // legacy value is NEIGHBOR_ACTIVE == 3, not the global node count used
+7910:       // by ordinary HELLOs.
+7911:       hh.SetActiveNodes (
+7912:         IsArlNeighborActive (neighbor) ? 3 : 0);
+7913:     }
+7914:   else
+7915:     {
+7916:       hh.SetActiveNodes (
+7917:         static_cast<uint8_t> (GetActiveNodeCount ()));
+7918:     }
+7919: 
+7920:   hh.SetArlRouteMsgType (
+7921:     CsrArlRouteMsgType::NeighborCheck);
+7922: 
+7923:   hh.SetNeighborCheckType (type);
+7924:   hh.SetNeighborCheckTarget (target);
+7925:   hh.SetDiscoverySequence (discoverySequence);
+7926:   hh.ClearAdvertisedRoutes ();
+7927: 
+7928:   p->AddHeader (hh);
+7929:   std::cout << "[NWK " << m_nodeId
+7930:             << "] Sending targeted ARL NeighborCheck"
+7931:             << " neighbor=" << neighbor
+7932:             << " subtype=" << NeighborCheckTypeName (type);
+7933: 
+7934:   if (type == CsrNeighborCheckType::NoPath)
+7935:     {
+7936:       std::cout << " unreachableDest=" << target;
+7937:     }
+7938: 
+7939:   if (type == CsrNeighborCheckType::Discovery ||
+7940:       type == CsrNeighborCheckType::Verify)
+7941:     {
+7942:       std::cout << " discoverySequence=" << discoverySequence;
+7943:     }
+7944: 
+7945:   std::cout << std::endl;
+7946: 
+7947:   m_hop->SendNeighborCheck (neighbor, p);
+7948: }
+
+FILE autonomous/native_env/csr/model/csr-hop-layer.h
+SHA256 0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b
+LINES 1856-1930
+1856: CsrHopLayer::SendNeighborCheck (CsrNodeId dst, Ptr<Packet> payload)
+1857: {
+1858:   NS_ASSERT (m_mac != nullptr);
+1859: 
+1860:   CsrHelloHeader neighborCheckMetadata;
+1861:   bool neighborCheckMetadataValid =
+1862:     payload != nullptr && payload->PeekHeader (neighborCheckMetadata);
+1863: 
+1864:   uint32_t rawPayloadSize = payload->GetSize ();
+1865:   if (neighborCheckMetadataValid)
+1866:     {
+1867:       Ptr<Packet> rawPayload = payload->Copy ();
+1868:       rawPayload->RemoveHeader (neighborCheckMetadata);
+1869:       rawPayloadSize = rawPayload->GetSize ();
+1870:     }
+1871: 
+1872:   uint16_t &lastSeq = m_lastSentSeqByDest[dst];
+1873:   uint16_t seq = static_cast<uint16_t> ((lastSeq + 1) & 0xFFFF);
+1874:   lastSeq = seq;
+1875: 
+1876:   CsrHeader hdr (m_nodeId,
+1877:                  dst,
+1878:                  seq,
+1879:                  7,     // robust control priority
+1880:                  true,  // ACKable
+1881:                  false);
+1882: 
+1883:   hdr.SetType (CSR_PKT_NEIGHBOR_CHECK);
+1884:   hdr.SetDestType (CSR_DEST_UNICAST);
+1885:   hdr.SetSecurityCount (m_hopSecurity.GetOwnSecurityCount ());
+1886:   ApplyLinkControl (hdr, {dst});
+1887: 
+1888:   // packetTypes.c maps NeighborCheck (packet type 9) to Pairwise16. Protect
+1889:   // once here so every HOP retry reuses the original pairwise key/sequence.
+1890:   Ptr<Packet> frame = ProtectPairwisePayload (
+1891:     dst,
+1892:     CsrPairwiseSecurityMode::Pairwise16,
+1893:     LEGACY_NEIGHBOR_CHECK_PACKET_TYPE,
+1894:     payload);
+1895:   frame->AddHeader (hdr);
+1896:   CsrSetOpnetEnvelope (
+1897:     frame,
+1898:     CsrOpnetPacketFormat::Routes,
+1899:     CsrOpnetPacketModel::GetFixedSizeBytes (
+1900:       CsrOpnetPacketFormat::Routes) +
+1901:       LEGACY_NEIGHBOR_CHECK_SECURITY_OVERHEAD +
+1902:       rawPayloadSize);
+1903: 
+1904:   EnqueueResend (
+1905:     dst,
+1906:     seq,
+1907:     frame->Copy (),
+1908:     false);
+1909: 
+1910:   ResendEntry *resendEntry = FindResendEntry (dst, seq);
+1911:   if (resendEntry != nullptr && neighborCheckMetadataValid)
+1912:     {
+1913:       resendEntry->neighborCheckMetadataValid = true;
+1914:       resendEntry->neighborCheckType =
+1915:         neighborCheckMetadata.GetNeighborCheckType ();
+1916:       resendEntry->neighborCheckDiscoverySequence =
+1917:         neighborCheckMetadata.GetDiscoverySequence ();
+1918:     }
+1919: 
+1920:   std::cout << "[HOP " << m_nodeId
+1921:             << "] TX reliable NeighborCheck to " << dst
+1922:             << " seq=" << seq
+1923:             << std::endl;
+1924: 
+1925:   m_mac->EnqueueTxFrame (frame,
+1926:                          dst,
+1927:                          7,
+1928:                          true);
+1929: }
+1930: 
+
+FILE autonomous/native_env/csr/model/csr-net-device.h
+SHA256 112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb
+LINES 2402-2410
+2402: CsrMacCore::MaybeScheduleNextTx ()
+2403: {
+2404:   if (m_dev == nullptr)
+2405:     {
+2406:       return;
+2407:     }
+2408: 
+2409:   if (!HasPendingFrame ())
+2410:     {
+
+FILE autonomous_third/kit/autocase/model/+csr/+nwk/Neighbors.m
+SHA256 65cb269a9b7e3cade654aad4b262bc6d7ebdf103743fa2581d8694bc6e45aed7
+LINES 120-175
+120:                     elseif any(strcmp(subtype,{'discovery','message','verify'}))
+121:                         obj.tryActivate(peer,['received_' subtype]);
+122:                     end
+123:                     if strcmp(subtype,'discovery') && strcmp(obj.DiscoveryState,'active') && ...
+124:                             sequenceValue(value(payload,'Sequence',0))==obj.DiscoverySequence
+125:                         entry=obj.Peers(peer); entry.DiscoveryVerified=true; obj.Peers(peer)=entry;
+126:                     end
+127:                     obj.evaluate(peer,false);
+128:             end
+129:         end
+130:         function controlCompleted(obj,kind,peer,payload,success)
+131:             % The transport invokes this only after ACK or final exhaustion.
+132:             validPeer(peer); peer=double(peer);
+133:             if ~isKey(obj.Peers,peer), return; end
+134:             entry=obj.Peers(peer);
+135:             if value(payload,'Generation',entry.Generation)~=entry.Generation
+136:                 obj.Counters.StaleCompletions=obj.Counters.StaleCompletions+1; return
+137:             end
+138:             switch upper(char(kind))
+139:                 case 'KEY_UPDATE'
+140:                     entry.KeySendActive=false;
+141:                     if success, entry.SentKey=true; end
+142:                     obj.Peers(peer)=entry; obj.evaluate(peer,false);
+143:                     if ~success && ~entry.Active
+144:                         obj.scheduleRetry(peer,max(0,entry.KeySendWhen+entry.KeySendDelay-obj.Scheduler.Now));
+145:                     end
+146:                 case 'NEIGHBOR_CHECK'
+147:                     subtype=lower(char(value(payload,'Subtype','message')));
+148:                     entry.CheckActive=false;
+149:                     if strcmp(subtype,'discovery')
+150:                         entry.DiscoveryCheckActive=false;
+151:                         if ~success
+152:                             entry.PendingDiscoveryCheck=true;
+153:                             entry.PendingDiscoverySequence=sequenceValue(value(payload,'Sequence',0));
+154:                         end
+155:                     end
+156:                     obj.Peers(peer)=entry;
+157:                     if success
+158:                         if strcmp(subtype,'verify') && value(payload,'Sequence',0)~=0 && ...
+159:                                 sequenceValue(payload.Sequence)~=obj.DiscoverySequence
+160:                             return
+161:                         end
+162:                         entry=obj.Peers(peer); entry.LastHeardSeconds=obj.Scheduler.Now;
+163:                         entry.Stale=false; entry.Failures=max(0,entry.Failures-1);
+164:                         obj.Peers(peer)=entry; obj.tryActivate(peer,['acked_' subtype]);
+165:                     else
+166:                         obj.scheduleRetry(peer,obj.Config.AdmissionRetrySeconds);
+167:                     end
+168:             end
+169:         end
+170:         function yes = isActive(obj,peer)
+171:             yes=false;
+172:             if isKey(obj.Peers,double(peer))
+173:                 entry=obj.Peers(double(peer)); yes=entry.Active && ~entry.Stale;
+174:             end
+175:         end
+LINES 270-317
+270:         end
+271:         function evaluate(obj,peer,receivedDiscovery)
+272:             if ~obj.Config.AdmissionEnabled, return; end
+273:             entry=obj.Peers(peer);
+274:             if entry.Stale || entry.Active, return; end
+275:             now=obj.Scheduler.Now;
+276:             % Compare with the same absolute deadline used to schedule a
+277:             % retry. With double seconds, (when+delay)-when can be slightly
+278:             % less than delay at that very deadline, otherwise rearming an
+279:             % endless same-time retry. Native ns-3 Time has integer ticks.
+280:             if ~entry.ReceivedKey
+281:                 deadline=entry.KeyRequestWhen+entry.KeyRequestDelay;
+282:                 if receivedDiscovery
+283:                     entry.KeyRequestDelay=obj.Config.AdmissionRetrySeconds;
+284:                     entry.KeySendDelay=obj.Config.AdmissionRetrySeconds;
+285:                 elseif ~entry.KeyRequestValid || now>=deadline
+286:                     entry.KeyRequestDelay=2*entry.KeyRequestDelay;
+287:                 else
+288:                     obj.scheduleRetryAt(peer,deadline); return
+289:                 end
+290:                 entry.KeyRequestValid=true; entry.KeyRequestWhen=now; obj.Peers(peer)=entry;
+291:                 obj.Counters.KeyRequests=obj.Counters.KeyRequests+1;
+292:                 obj.send('KEY_REQUEST',peer,obj.keyPayload(entry),false);
+293:                 obj.scheduleRetry(peer,entry.KeyRequestDelay); return
+294:             end
+295:             if ~entry.SentKey
+296:                 deadline=entry.KeySendWhen+entry.KeySendDelay;
+297:                 if ~entry.KeySendActive && (~entry.KeySendValid || now>=deadline)
+298:                     if entry.KeySendValid, entry.KeySendDelay=2*entry.KeySendDelay; end
+299:                     obj.Peers(peer)=entry; obj.sendKeyUpdate(peer);
+300:                 elseif ~entry.KeySendActive
+301:                     obj.scheduleRetryAt(peer,deadline);
+302:                 end
+303:                 return
+304:             end
+305:             if entry.PendingDiscoveryCheck
+306:                 obj.pendingDiscoveryCheck(peer,entry.Generation); return
+307:             end
+308:             deadline=entry.OverheardWhen+entry.OverheardDelay;
+309:             if ~entry.CheckActive && (~entry.OverheardValid || now>=deadline)
+310:                 entry.OverheardValid=true; entry.OverheardWhen=now;
+311:                 entry.OverheardDelay=2*entry.OverheardDelay; obj.Peers(peer)=entry;
+312:                 obj.sendCheck(peer,'overheard',uint32(0));
+313:                 obj.scheduleRetry(peer,entry.OverheardDelay);
+314:             elseif ~entry.CheckActive
+315:                 obj.scheduleRetryAt(peer,deadline);
+316:             end
+317:         end
+LINES 330-361
+330:         function pendingDiscoveryCheck(obj,peer,generation)
+331:             entry=obj.Peers(peer);
+332:             if entry.Generation~=generation || ~entry.PendingDiscoveryCheck || ...
+333:                     entry.DiscoveryCheckActive || ~obj.Config.DiscoveryResponseEnabled || ...
+334:                     (obj.Config.AdmissionEnabled && ~entry.SentKey), return; end
+335:             entry.PendingDiscoveryCheck=false; entry.DiscoveryCheckActive=true;
+336:             obj.Peers(peer)=entry;
+337:             obj.sendCheck(peer,'discovery',entry.PendingDiscoverySequence);
+338:         end
+339:         function delayedCheck(obj,peer,subtype,sequence,generation)
+340:             entry=obj.Peers(peer);
+341:             if entry.Generation==generation, obj.sendCheck(peer,subtype,sequence); end
+342:         end
+343:         function ensureMessage(obj,peer)
+344:             entry=obj.Peers(peer);
+345:             if entry.Active || entry.CheckActive || entry.DiscoveryCheckActive, return; end
+346:             obj.sendCheck(peer,'message',uint32(0));
+347:         end
+348:         function sendCheck(obj,peer,subtype,sequence)
+349:             entry=obj.Peers(peer); entry.CheckActive=true; obj.Peers(peer)=entry;
+350:             payload=struct('Subtype',subtype,'Sequence',sequence,'Active',entry.Active, ...
+351:                 'Generation',entry.Generation,'SecurityProfile','behavioral-admission');
+352:             obj.Counters.Checks=obj.Counters.Checks+1;
+353:             if ~obj.send('NEIGHBOR_CHECK',peer,payload,true)
+354:                 obj.controlCompleted('NEIGHBOR_CHECK',peer,payload,false);
+355:             end
+356:         end
+357:         function tryActivate(obj,peer,reason)
+358:             entry=obj.Peers(peer);
+359:             if entry.Active || (obj.Config.AdmissionEnabled && (~entry.ReceivedKey || ~entry.SentKey))
+360:                 return
+361:             end
+
+FILE autonomous_third/kit/autocase/model/+csr/+nwk/Layer.m
+SHA256 7ef09931c83c55697ce96b400ee1d90459a44af4c0527b396829d62ab9125300
+LINES 503-529
+503:         function accepted = queueControl(obj,kind,peers,payload,reliable,scheduleWake)
+504:             if nargin<6, scheduleWake=true; end
+505:             peers=reshape(double(peers),1,[]);
+506:             if isempty(peers), accepted=false; return; end
+507:             if strcmp(kind,'KEY_REQUEST')
+508:                 for index=numel(obj.Controls):-1:1
+509:                     old=obj.Controls{index};
+510:                     if strcmp(old.Control.Type,kind) && isequal(old.Peers,peers)
+511:                         if old.Submitted && isfield(obj.Callbacks,'CancelControl')
+512:                             obj.Callbacks.CancelControl(peers(1),kind);
+513:                         end
+514:                         obj.Controls(index)=[];
+515:                     end
+516:                 end
+517:             end
+518:             accepted=numel(obj.Controls)<obj.Config.ControlQueueLimit;
+519:             if ~accepted
+520:                 obj.Counters.ControlQueueRejections=obj.Counters.ControlQueueRejections+1; return
+521:             end
+522:             control=struct('Id',obj.nextControlId(),'Type',char(kind),'Payload',payload, ...
+523:                 'WirePayloadBytes',csr.nwk.controlWireBytes(kind,payload,numel(peers), ...
+524:                 obj.Config.SecurityProfile));
+525:             owner=struct('Control',control,'Peers',peers,'Remaining',peers, ...
+526:                 'Reliable',logical(reliable),'Submitted',false,'Cycles',1);
+527:             obj.Controls{end+1}=owner;
+528:             if scheduleWake, obj.wake(); end
+529:         end

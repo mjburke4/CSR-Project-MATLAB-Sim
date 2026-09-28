@@ -1,0 +1,222 @@
+{
+  "schema": "csr-autonomous-owner-v1",
+  "completed": false,
+  "matlab_execution_required": true,
+  "numerical_parity_established": false,
+  "target_percent": 15,
+  "runtime": {
+    "version": "25.1.0.2943329 (R2025a)",
+    "release": "2025a",
+    "computer": "PCWIN64"
+  },
+  "cases": [
+    {
+      "name": "A_natural",
+      "mode": "natural",
+      "completed": true,
+      "natural_prefix_passed": true,
+      "reached_time_s": 330,
+      "diagnostic_status": "accepted_prior_run_reused",
+      "error_identifier": "",
+      "error_message": "",
+      "wall_seconds": 0
+    },
+    {
+      "name": "C_timing",
+      "mode": "native",
+      "completed": false,
+      "natural_prefix_passed": false,
+      "reached_time_s": 12.402,
+      "diagnostic_status": "context_divergence",
+      "error_identifier": "autocase:TxContextDivergence",
+      "error_message": "Physical transmission context diverged at 12.401999999999999 s, node 5, TX #3 (parent.child_count,parent.total_wire_bytes,ordered_child_count).",
+      "wall_seconds": 12.5182037
+    },
+    {
+      "name": "D_inline_key",
+      "mode": "native",
+      "completed": false,
+      "natural_prefix_passed": false,
+      "reached_time_s": 12.402,
+      "diagnostic_status": "context_divergence",
+      "error_identifier": "autocase:TxContextDivergence",
+      "error_message": "Physical transmission context diverged at 12.401999999999999 s, node 5, TX #3 (parent.child_count,parent.total_wire_bytes,ordered_child_count).",
+      "wall_seconds": 8.2400878
+    }
+  ],
+  "archive": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-control-timing-tests\\autocase\\out_auto_20260925_133710.zip",
+  "error_identifier": "",
+  "error_message": "",
+  "case_design": {
+    "A_natural": "Accepted natural run reused if exact gates match; otherwise fresh natural run",
+    "C_timing": "Native random inputs with existing nanosecond receiver callback option",
+    "D_inline_key": "Same timing option plus isolated fresh no-ACK KEY_REQUEST admission candidate"
+  },
+  "previous_common_case": {
+    "schema": "csr-prior-common-case-history-v1",
+    "previous_owner_case": "B_common",
+    "new_execution": false,
+    "actual_owner_matlab_execution": true,
+    "case_summary": {
+      "name": "B_common",
+      "mode": "native",
+      "completed": false,
+      "natural_prefix_passed": false,
+      "reached_time_s": 11.500323527005154,
+      "diagnostic_status": "context_divergence",
+      "error_identifier": "autocase:DrawContextDivergence",
+      "error_message": "Native random request context diverged at 11.500323527005154 s, node 4, phy_binomial #2 (bits). Partial evidence is preserved.",
+      "wall_seconds": 12.1081817
+    },
+    "diagnosis": "Native CSV preflight and accepted natural reuse passed. Common native-input case stopped at node4 PHY sample2: payload bits184 versus183 due receiver callback endpoint quantization. This stored B is historical, not rerun by this kit.",
+    "source_issued_manifest_sha256": "64e135edd1843a2ec009c677f91918eda61258fe7331b779d88eb1822eb9a742",
+    "evidence_folder": "ref/history/B_common",
+    "new_cases": [
+      "C_timing",
+      "D_inline_key"
+    ]
+  },
+  "import_preflight": {
+    "schema": "csr-native-import-regression-v1",
+    "passed": true,
+    "native_random_rows": 4430,
+    "native_tx_children": 1495,
+    "first_mac_value": 11,
+    "legitimate_empty_mac_component_accepted": true,
+    "invalid_required_fields_rejected": [
+      "empty_phy_component",
+      "empty_mac_state",
+      "missing_sync_mean",
+      "empty_routing_section"
+    ],
+    "scheduled_events": 0,
+    "executed_events": 0,
+    "network_simulation_executed": false,
+    "scope": "CSV/runtime import regression only; no network parity claim"
+  },
+  "accepted_natural_reuse": {
+    "reused": true,
+    "runtime_matches": true,
+    "configuration_matches": true,
+    "accepted_runtime": {
+      "version": "25.1.0.2943329 (R2025a)",
+      "release": "2025a",
+      "computer": "PCWIN64"
+    },
+    "fresh_natural_simulation_executed": false,
+    "source_basis": "All model and natural producer bytes match; Streams edits are confined to native-only import and matching.",
+    "prefix_gate_recomputed": true,
+    "configuration_metadata_path_only": {
+      "accepted": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-seed132-tests\\autocase\\inputs\\s132.csv",
+      "current": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-control-timing-tests\\autocase\\inputs\\s132.csv"
+    },
+    "configuration_path_rule": "Only SharedScenario.SourcePath is canonicalized; input CSV hash and every behavioral field are checked",
+    "accepted_previous_wall_seconds": 308.1675283
+  },
+  "key_request_preflight": {
+    "schema": "csr-inline-key-request-preflight-v1",
+    "passed": true,
+    "checks": [
+      {
+        "name": "baseline_key_request_is_deferred",
+        "passed": true,
+        "details": {
+          "send_callbacks_before_scheduler": 0,
+          "pending_controls": 1
+        }
+      },
+      {
+        "name": "fresh_key_request_is_inline",
+        "passed": true,
+        "details": {
+          "control": {
+            "Id": 1,
+            "Type": "KEY_REQUEST",
+            "Payload": {
+              "Generation": 0,
+              "SecurityProfile": "behavioral-admission"
+            },
+            "WirePayloadBytes": 18
+          },
+          "peers": 1,
+          "options": {
+            "RateKeyKbps": 8,
+            "TxPowerDbm": 33,
+            "Preamble": "long",
+            "EnvelopeProfile": "bare",
+            "AckRequired": false
+          },
+          "time_s": 0,
+          "accepted": true
+        }
+      },
+      {
+        "name": "other_owners_are_not_flushed",
+        "passed": true,
+        "details": {
+          "pending_controls": 2,
+          "pending_applications": 1,
+          "send_callbacks": 1,
+          "data_callbacks": 0
+        }
+      },
+      {
+        "name": "submitted_owner_replaced_after_cancellation",
+        "passed": true,
+        "details": {
+          "ledger": [
+            {
+              "event": "send",
+              "kind": "KEY_REQUEST",
+              "id": 1,
+              "peer": 1
+            },
+            {
+              "event": "cancel",
+              "kind": "KEY_REQUEST",
+              "id": 0,
+              "peer": 1
+            },
+            {
+              "event": "send",
+              "kind": "KEY_REQUEST",
+              "id": 2,
+              "peer": 1
+            }
+          ],
+          "pending_controls": 1
+        }
+      },
+      {
+        "name": "capacity_checked_before_inline_submission",
+        "passed": true,
+        "details": {
+          "pending_controls": 1,
+          "rejections": 1
+        }
+      },
+      {
+        "name": "rejected_submission_uses_original_wake_retry",
+        "passed": true,
+        "details": {
+          "owner_id": 1,
+          "send_callbacks": 2,
+          "same_time_callbacks_executed": 3
+        }
+      },
+      {
+        "name": "synchronous_completion_does_not_resurrect_owner",
+        "passed": true,
+        "details": {
+          "send_callbacks": 1,
+          "pending_controls": 0
+        }
+      }
+    ],
+    "network_simulation_executed": false,
+    "random_variates_requested": 0,
+    "scope": "Public NWK receiveControl and callback boundary; not an end-to-end PHY/MAC parity result"
+  },
+  "wall_seconds": 31.6094469,
+  "archive_status": "Archive construction follows this report; successful archive receipt is saved beside the archive."
+}

@@ -1,0 +1,49 @@
+{
+  "schema": "csr-ninth-discovery-lifecycle-native-evidence-v1",
+  "status": "actual_capture_and_source_audit_pass",
+  "new_native_network_or_component_run": false,
+  "matlab_executed_here": false,
+  "production_fixture_or_guard_edited": false,
+  "full_capture_counts": {
+    "snmp_tx": 36,
+    "snmp_start_tx": 28,
+    "snmp_done_tx": 8,
+    "snmp_start_nwk_receive": 8,
+    "active_duplicate_start": 1,
+    "snmp_done_nwk_receive": 7,
+    "key_update_generated": 14,
+    "key_update_transmitted": 14,
+    "key_update_acknowledged": 14
+  },
+  "input_sha256": {
+    "autonomous/native_capture/fixture/tx_signatures.csv": "40f51355e02c0950e7608d9eeb6efb590a539bdef37c0381780db5fc086ad5e1",
+    "autonomous/native_capture/run/observations.tsv": "3156069106cf3db451dce3fca4c9de91e09b5c9da07dd9ccc8d84615957de7f6",
+    "autonomous/native_capture/run/run.log": "282ed068740ccba5481bf7a35aca3696c54d422e31976107cfee05889c690cee",
+    "autonomous_ninth/data/K_receiver_timers/first_divergence.json": "efcf273d35b634657c5c70d00bf4b0bc2b489cb7f83eca61040f16ee209001b3",
+    "autonomous_ninth/data/K_receiver_timers/ordered_events.jsonl": "5dc2d9fb404eaff5dbf207f57caf500e37d1dd7f251b2a676797f45e7fbd2cb0"
+  },
+  "source_sha256": {
+    "autonomous/native_env/csr/model/csr-nwk-layer.h": "bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc",
+    "autonomous/native_env/csr/model/csr-hop-layer.h": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+    "autonomous/native_env/csr/model/csr-net-device.h": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+    "autonomous_eighth/kit/autocase/+ac/ControlWireNwk.m": "499f65ef3c894162fda0440ab39c98551537d84821ec4b7563d0a47135973677",
+    "autonomous_eighth/kit/autocase/+ac/PopulationNeighbors.m": "016762b7d8b9c0a4ea139fa7dfaea32b891bba1bf77522909d9d74aa1ad1a641",
+    "autonomous_eighth/kit/autocase/model/+csr/+hop/Layer.m": "21d4a56d782fde35d45f102c137b6c78c3bf4cdc05593d15fb9a7db8f26c2649"
+  },
+  "artifact_sha256": {
+    "REVIEW.md": "90f8977a0724dff191d2f3e6b0df4dd1281ed6c3bcd67c81f9219482214ceddc",
+    "audit_lifecycle.py": "d53e36a9a1d531da58302fde8ccf16882bb1c506af5d1ea302d4b6deede49246",
+    "candidate_scope_review.json": "3cf1b0cb3e85a483cd41246efa45e57ef75268d98c51babfba3b12873f01bf85",
+    "finalize_receipt.py": "8b34051933380c92b793cf0f76522d83c0a1057cea760f4ce8838539a591189e",
+    "lifecycle_audit.json": "e19912c574d7a3df2d1a2e28a9b7f850a5a23fd2aafc355c3a02779cd4a628f1",
+    "review_candidate.py": "841b39158d7a7cb476315a7a28c5cfc2aeea84031c8104ecd7e1320009132a4a",
+    "source_path_proof.json": "1186cd7c2f50a8279f5d8fe1fb4083abd306c8be37256e5112b65037bda1fd5d"
+  },
+  "limits": [
+    "Wrong active-requester marking is observed before the separate key-response callback drift.",
+    "Native table order is logged; MATLAB pending list is reconstructed from source and received messages, not privately sampled.",
+    "Delivered DONEs all match pending targets; broader DONE interruption/capacity differences remain outside this fix.",
+    "Native resend-overflow forwarding differs from retained MATLAB admission gating; saturation parity is not claimed.",
+    "No full callback-time prefix equality, corrected L trajectory or15percent-performance claim."
+  ]
+}

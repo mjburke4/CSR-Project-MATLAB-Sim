@@ -1,0 +1,121 @@
+{
+  "method": "Existing evidence extraction; no MATLAB execution, simulation or production edits.",
+  "watchdogs_scheduled": 14,
+  "all_watchdog_delays_ns": 60000000000,
+  "node3_superseded_watchdog": {
+    "event_id": 9815,
+    "node": 3,
+    "target": 5,
+    "creation_time_s": 40.385728076999996,
+    "creation_ns": 40385728077,
+    "deadline_s": 100.385728077,
+    "deadline_ns": 100385728077,
+    "delay_ns": 60000000000,
+    "fired": true,
+    "fire_ns": 100385728077,
+    "spawned_events_during_callback": 0
+  },
+  "node3_current_watchdog": {
+    "event_id": 16021,
+    "node": 3,
+    "target": 4,
+    "creation_time_s": 56.340299163,
+    "creation_ns": 56340299163,
+    "deadline_s": 116.340299163,
+    "deadline_ns": 116340299163,
+    "delay_ns": 60000000000,
+    "fired": true,
+    "fire_ns": 116340299163,
+    "spawned_events_during_callback": 2
+  },
+  "node3_explicit_discovery_membership_inputs": [
+    {
+      "order": 74964,
+      "time_s": 40.385728076999996,
+      "time_ns": 40385728077,
+      "node": 3,
+      "event": "mac_enqueue",
+      "kind": "SNMP_DONE",
+      "source": 3,
+      "destination": 1,
+      "hop_peer": 1,
+      "advertised_nodes": "5;1"
+    },
+    {
+      "order": 120772,
+      "time_s": 56.340299163,
+      "time_ns": 56340299163,
+      "node": 3,
+      "event": "hop_control_receive",
+      "kind": "SNMP_DONE",
+      "source": 5,
+      "destination": 3,
+      "hop_peer": 5,
+      "advertised_nodes": "4;3;1"
+    }
+  ],
+  "node3_received_route7_updates": [
+    {
+      "time_s": 96.268879163,
+      "order": 295313,
+      "receiver": 3,
+      "peer": 5,
+      "routing_sequence": 18,
+      "destination": 7,
+      "capability": 1,
+      "advertised_hops": 4,
+      "advertised_cost": 29800,
+      "advertised_path": "4;2;8;7"
+    },
+    {
+      "time_s": 96.388928077,
+      "order": 296144,
+      "receiver": 3,
+      "peer": 1,
+      "routing_sequence": 16,
+      "destination": 7,
+      "capability": 1,
+      "advertised_hops": 5,
+      "advertised_cost": 37250,
+      "advertised_path": "5;4;2;8;7"
+    }
+  ],
+  "first_draw_time_difference": {
+    "node": 3,
+    "purpose": "mac_slot",
+    "ordinal": 102,
+    "actual_time_ns": 116350000000,
+    "expected_time_ns": 300001000000,
+    "interpretation": "Extra scan traffic consumes the next slot draw before native application traffic; not a clock-delay measurement."
+  },
+  "prior_milestones": [
+    {
+      "name": "KEY_UPDATE first draw",
+      "time_ns": 62870833632,
+      "passed": true
+    },
+    {
+      "name": "KEY_UPDATE transmission",
+      "time_ns": 62985000000,
+      "passed": true
+    },
+    {
+      "name": "SNMP requester target1 transmission",
+      "time_ns": 71942000000,
+      "passed": true
+    }
+  ],
+  "conclusion": "Correct watchdog scheduling and superseded-callback invalidation; extra target7 arises from live-route membership refresh in advanceScan.",
+  "limits": [
+    "Membership seeding is source-reviewed; private ScanKnown was not logged.",
+    "A received valid route update is not a discovery advertisement.",
+    "Unmatched or duplicate DONE semantics are outside this actual failure; do not change ownership gates based on this trace.",
+    "No corrected autonomous continuation or full-run parity claim."
+  ],
+  "inputs_sha256": {
+    "autonomous_tenth/data/L_discovery_lifecycle/ordered_events.jsonl": "eb2e3d91741b52f03b804cb1cfa3471987a607adac27ebd97fbceee34edbce0a",
+    "autonomous_tenth/data/L_discovery_lifecycle/random_requests.jsonl": "14fa0a5ae889194e72e6b3d697489495357183044534fe2c4ce142e3d3c7aa16",
+    "autonomous_ninth/kit/autocase/+ac/DiscoveryLifecycleNwk.m": "8cd20bcb21529638f1cfe6cac68b4e07c19998bba691010ef44cef45dfcf8b29",
+    "autonomous/native_env/csr/model/csr-nwk-layer.h": "bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc"
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "schema": "csr-native-environment-restore-v1",
+  "status": "built_and_linked",
+  "sources": {
+    "csr": {
+      "url": "https://github.com/mjburke4/CSR-Project-NS3-part2.git",
+      "commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+      "tree": "b611b233fb369569b98f0914ece24d029ccc2f42",
+      "tracked_files_clean": true
+    },
+    "engine": {
+      "url": "https://github.com/nsnam/ns-3-dev-git.git",
+      "commit": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+      "tree": "f30343185fb057e3a9cdd54f496cca0cef49ae23",
+      "tracked_files_clean": true
+    }
+  },
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "toolchain": {
+    "g++": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+    "cmake": "cmake version 3.31.10",
+    "ninja": "1.13.2.git.kitware.jobserver-pipe-1"
+  },
+  "commands": {
+    "configure": {
+      "argv": [
+        "/workspace/scratch/db3d3caa011d/autonomous/native_env/toolchain/cmake/data/bin/cmake",
+        "-S",
+        "/workspace/scratch/db3d3caa011d/autonomous/native_env/engine",
+        "-B",
+        "/workspace/scratch/db3d3caa011d/autonomous/native_env/engine/cmake-cache",
+        "-G",
+        "Ninja",
+        "-DCMAKE_MAKE_PROGRAM=/workspace/scratch/db3d3caa011d/autonomous/native_env/toolchain/bin/ninja",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DNS3_ENABLED_MODULES=csr;spectrum;buildings;propagation;mobility;antenna;network;stats;core",
+        "-DNS3_EXAMPLES=OFF",
+        "-DNS3_TESTS=OFF",
+        "-DNS3_WARNINGS_AS_ERRORS=OFF",
+        "-DNS3_PRECOMPILE_HEADERS=OFF",
+        "-DNS3_CCACHE=OFF",
+        "-DNS3_GTK3=OFF",
+        "-DNS3_GSL=OFF",
+        "-DNS3_SQLITE=OFF",
+        "-DNS3_EIGEN=OFF",
+        "-DNS3_VISUALIZER=OFF",
+        "-DNS3_ASSERT=ON",
+        "-DNS3_LOG=ON"
+      ],
+      "elapsed_seconds": 0.3085169640003187,
+      "exit_code": 0
+    },
+    "build": {
+      "argv": [
+        "/workspace/scratch/db3d3caa011d/autonomous/native_env/toolchain/cmake/data/bin/cmake",
+        "--build",
+        "/workspace/scratch/db3d3caa011d/autonomous/native_env/engine/cmake-cache",
+        "--parallel",
+        "2"
+      ],
+      "elapsed_seconds": 0.17669535400000314,
+      "exit_code": 0
+    }
+  },
+  "libraries": {
+    "libns3-dev-csr-debug.so": {
+      "sha256": "b27ef8615595ab2fba7af508136db7288d4852cb01c5eb0a8d57161721dc52d3",
+      "bytes": 3001424,
+      "defined_symbols": 1400,
+      "ldd": "linux-vdso.so.1 (0x00007f545cd38000)\n\tlibns3-dev-spectrum-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-spectrum-debug.so (0x00007f545c877000)\n\tlibns3-dev-network-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-network-debug.so (0x00007f545c3fe000)\n\tlibns3-dev-core-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-core-debug.so (0x00007f545bf77000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007f545bcf0000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f545bc07000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f545bbd7000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f545b9c5000)\n\tlibns3-dev-buildings-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-buildings-debug.so (0x00007f545b881000)\n\tlibns3-dev-propagation-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-propagation-debug.so (0x00007f545b70c000)\n\tlibns3-dev-mobility-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-mobility-debug.so (0x00007f545b544000)\n\tlibns3-dev-antenna-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-antenna-debug.so (0x00007f545b4ce000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007f545cd3a000)\n\tlibns3-dev-stats-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-stats-debug.so (0x00007f545b2e6000)"
+    },
+    "libns3-dev-spectrum-debug.so": {
+      "sha256": "891bfaf493b8b2cab4e6b3e111e0addf6aadf1b644b1c3ae898763b62f151a79",
+      "bytes": 14767312,
+      "defined_symbols": 10222,
+      "ldd": "linux-vdso.so.1 (0x00007f74c4b3b000)\n\tlibns3-dev-buildings-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-buildings-debug.so (0x00007f74c4646000)\n\tlibns3-dev-propagation-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-propagation-debug.so (0x00007f74c44d1000)\n\tlibns3-dev-mobility-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-mobility-debug.so (0x00007f74c4309000)\n\tlibns3-dev-antenna-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-antenna-debug.so (0x00007f74c4295000)\n\tlibns3-dev-network-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-network-debug.so (0x00007f74c3e1a000)\n\tlibns3-dev-core-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-core-debug.so (0x00007f74c3993000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007f74c370c000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f74c3623000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f74c35f5000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f74c33e1000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007f74c4b3d000)\n\tlibns3-dev-stats-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-stats-debug.so (0x00007f74c31f9000)"
+    },
+    "libns3-dev-buildings-debug.so": {
+      "sha256": "55b913985774a57a5d5687431f9086274bd869a6919d8b87d5124a5f4361bfbb",
+      "bytes": 4699088,
+      "defined_symbols": 3668,
+      "ldd": "linux-vdso.so.1 (0x00007f854e60b000)\n\tlibns3-dev-propagation-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-propagation-debug.so (0x00007f854e34a000)\n\tlibns3-dev-mobility-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-mobility-debug.so (0x00007f854e182000)\n\tlibns3-dev-network-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-network-debug.so (0x00007f854dd09000)\n\tlibns3-dev-core-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-core-debug.so (0x00007f854d882000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007f854d5f9000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f854d510000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f854d4e2000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f854d2d0000)\n\tlibns3-dev-antenna-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-antenna-debug.so (0x00007f854d25c000)\n\tlibns3-dev-stats-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-stats-debug.so (0x00007f854d072000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007f854e60d000)"
+    },
+    "libns3-dev-propagation-debug.so": {
+      "sha256": "a85a8bff3b8bfa41eeb5d333d7c25b8c8801668acd959528e9f942ac5e8baa1e",
+      "bytes": 5068712,
+      "defined_symbols": 4154,
+      "ldd": "linux-vdso.so.1 (0x00007f5dd737c000)\n\tlibns3-dev-mobility-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-mobility-debug.so (0x00007f5dd7037000)\n\tlibns3-dev-network-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-network-debug.so (0x00007f5dd6bbe000)\n\tlibns3-dev-core-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-core-debug.so (0x00007f5dd6737000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007f5dd64b0000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f5dd63c7000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f5dd6397000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f5dd6185000)\n\tlibns3-dev-antenna-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-antenna-debug.so (0x00007f5dd6111000)\n\tlibns3-dev-stats-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-stats-debug.so (0x00007f5dd5f29000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007f5dd737e000)"
+    },
+    "libns3-dev-mobility-debug.so": {
+      "sha256": "934c0f3b6846902250b699a65ac0de03b048825bd7d49ce00a44a61790fa6fc4",
+      "bytes": 7196448,
+      "defined_symbols": 5546,
+      "ldd": "linux-vdso.so.1 (0x00007f2756970000)\n\tlibns3-dev-antenna-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-antenna-debug.so (0x00007f275672c000)\n\tlibns3-dev-network-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-network-debug.so (0x00007f27562b3000)\n\tlibns3-dev-core-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-core-debug.so (0x00007f2755e2c000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007f2755ba5000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f2755abc000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f2755a8c000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f275587a000)\n\tlibns3-dev-stats-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-stats-debug.so (0x00007f2755692000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007f2756972000)"
+    },
+    "libns3-dev-antenna-debug.so": {
+      "sha256": "86c433f54a806e08224c1f4a1dd2e3fe76bb71677a50e3707329449f95827504",
+      "bytes": 1721536,
+      "defined_symbols": 1329,
+      "ldd": "linux-vdso.so.1 (0x00007f038233a000)\n\tlibns3-dev-core-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-core-debug.so (0x00007f0381e37000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007f0381bb0000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f0381ac7000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f0381a99000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f0381887000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007f038233c000)"
+    },
+    "libns3-dev-network-debug.so": {
+      "sha256": "6596bf4a7923d9e59ec061e84438b9f22e42575cdc45cdab2d9491a267f32979",
+      "bytes": 17950944,
+      "defined_symbols": 12465,
+      "ldd": "linux-vdso.so.1 (0x00007f6ceb4f9000)\n\tlibns3-dev-stats-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-stats-debug.so (0x00007f6ceae90000)\n\tlibns3-dev-core-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-core-debug.so (0x00007f6ceaa09000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007f6cea782000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f6cea699000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f6cea66b000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f6cea457000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007f6ceb4fb000)"
+    },
+    "libns3-dev-stats-debug.so": {
+      "sha256": "0c39521ca00e5dbe8495b54d35a821598ee10ab23dbd985fa1b297ca310828d5",
+      "bytes": 8091904,
+      "defined_symbols": 6036,
+      "ldd": "linux-vdso.so.1 (0x00007f7378e95000)\n\tlibns3-dev-core-debug.so => /workspace/scratch/db3d3caa011d/autonomous/native_env/engine/build/lib/libns3-dev-core-debug.so (0x00007f737881e000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007f7378597000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f73784ae000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f7378480000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f737826e000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007f7378e97000)"
+    },
+    "libns3-dev-core-debug.so": {
+      "sha256": "c3cc4ad37ff809ec4d0e12cdae8862ecac7ac3059186ae306973fe203aa8fd43",
+      "bytes": 17184192,
+      "defined_symbols": 12902,
+      "ldd": "linux-vdso.so.1 (0x00007f6b1b110000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007f6b1a9fa000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f6b1a911000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f6b1a8e3000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f6b1a6d1000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007f6b1b112000)"
+    }
+  },
+  "configure_log_sha256": "76d60388894513abbe37b767a7ffcb56a31a115e51db4f4a507abc22605583e7",
+  "build_log_sha256": "be51e777dca69c406432d59ee3c0f8c9372a97d1fe54fce45807bac79293ab8c",
+  "capture_prefix_validation": "must be run separately by capture drivers",
+  "generated_library_recovery": {
+    "record": "generated-library-recovery.json",
+    "initial_build_log": "build-initial-empty-library.log",
+    "description": "A zero-byte generated CSR shared library was removed and relinked; final ELF, dynamic symbol, and ldd relocation validation passed for all nine required libraries."
+  }
+}

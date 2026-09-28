@@ -1,0 +1,499 @@
+
+FILE autonomous/native_env/csr/model/csr-nwk-layer.h
+SHA256 bc871898c628eec08c82636507cb23cbf6b29d80a3738be18466cb0a9525ecfc
+LINES 842-854
+842:                   << neighbor
+843:                   << std::endl;
+844:         return;
+845:       }
+846: 
+847:     uint32_t oldFailures = ne.numFailures;
+848:     bool wasStale = ne.stale;
+849: 
+850:     ne.stale = false;
+851:     ne.lastHeardSec = Simulator::Now ().GetSeconds ();
+852: 
+853:     // Conservative recovery: one successful check removes one failure.
+854:     // Do not immediately erase all historical failures.
+LINES 958-992
+958:         }
+959: 
+960:       if (type == CsrNeighborCheckType::Discovery)
+961:         {
+962:           ne.admissionDiscoveryCheckActive = false;
+963:           ne.discoverySequence = discoverySequence;
+964:           ne.discoverySequenceValid = true;
+965:         }
+966: 
+967:       ne.checkMessageActive = false;
+968: 
+969:       // routesHopSecSentPacket() makes an ACKed NeighborCheck an admission
+970:       // proof.  routesMakeNeighborActive() still enforces both key directions.
+971:       TryMakeNeighborActive (
+972:         neighbor,
+973:         "ACKed NeighborCheck");
+974:   }
+975: 
+976:   void
+977:   RecomputeRoutesViaNextHop (
+978:     CsrNodeId nextHop);
+979: 
+980:   void UpdateMacActiveNodes ()
+981:   {
+982:     if (m_hop != nullptr)
+983:       {
+984:         uint32_t active = GetActiveNodeCount ();
+985:         m_hop->SetActiveNodesForPostTx (active);
+986: 
+987:         std::cout << "[NWK " << m_nodeId
+988:                   << "] active_nodes=" << active
+989:                   << " pushed to MAC"
+990:                   << std::endl;
+991:       }
+992:   }
+LINES 1074-1089
+1074:       }
+1075: 
+1076:     uint32_t selectedPreferencesCleared =
+1077:       m_selectedRoutePreferredNextHop.size ();
+1078: 
+1079:     m_selectedRoutePreferredNextHop.clear ();
+1080: 
+1081:     UpdateMacActiveNodes ();
+1082: 
+1083:     std::cout << "[NWK " << m_nodeId
+1084:               << "] routesClearTable parity reset"
+1085:               << " activeNeighborsCleared="
+1086:               << activeNeighborsCleared
+1087:               << " routesInvalidated="
+1088:               << routesInvalidated
+1089:               << " reverseRoutesInvalidated="
+LINES 4397-4423
+4397: 
+4398: void
+4399: CsrNetLayer::NoteAuthenticatedGroupKeyNeeded (
+4400:   CsrNodeId neighbor,
+4401:   double pathlossDb,
+4402:   double snrDb)
+4403: {
+4404:   bool isNew = false;
+4405:   NwkNeighborEntry &entry =
+4406:     GetOrCreateNwkNeighbor (neighbor, &isNew);
+4407: 
+4408:   entry.nodeId = neighbor;
+4409:   entry.lastHeardSec = Simulator::Now ().GetSeconds ();
+4410:   entry.lastPathlossDb = pathlossDb;
+4411:   entry.lastSnrDb = snrDb;
+4412:   entry.stale = false;
+4413:   SyncNeighborKeyState (neighbor);
+4414:   UpdateMacActiveNodes ();
+4415: 
+4416:   std::cout << "[NWK " << m_nodeId
+4417:             << "] Authenticated Discover awaits group key"
+4418:             << " neighbor=" << neighbor
+4419:             << " newNeighbor=" << (isNew ? 1 : 0)
+4420:             << std::endl;
+4421: 
+4422:   // routesRcvUnAuthedMsg() sends a fresh KeyRequest for every authenticated
+4423:   // Discover whose payload cannot yet be decrypted, including active peers
+LINES 4534-4587
+4534: 
+4535:     // ------------------------------------------------------------
+4536:     // 1) Update NWK neighbor table, similar to OPNET proc_hello()
+4537:     // ------------------------------------------------------------
+4538:   auto &ne = GetOrCreateNwkNeighbor (src);
+4539:   bool isNew = (ne.lastHeardSec < 0.0);
+4540:   bool wasStale = ne.stale;
+4541: 
+4542:   ne.nodeType = senderType;
+4543: 
+4544:   ne.wasActiveBeforeLastHello =
+4545:     m_arlNeighborAdmissionEnabled
+4546:       ? ne.arlActive
+4547:       : (!isNew && !wasStale);
+4548: 
+4549:   ne.nodeId = src;
+4550:   ne.lastHeardSec = now;
+4551:   ne.lastPathlossDb = pathlossDb;
+4552:   ne.lastSnrDb = snrDb;
+4553:   ne.speedKey = hh.GetSpeedKey ();
+4554:   ne.rxPowerDbmX10 = hh.GetRxPowerDbmX10 ();
+4555:   ne.activeNodes = hh.GetActiveNodes ();
+4556:   ne.stale = false;
+4557: 
+4558:   if (!m_arlNeighborAdmissionEnabled)
+4559:     {
+4560:       ne.arlActive = true;
+4561:     }
+4562: 
+4563:   SyncNeighborKeyState (src);
+4564: 
+4565:   if (wasStale)
+4566:     {
+4567:       std::cout << "[NWK " << m_nodeId
+4568:                 << "] Neighbor " << src
+4569:                 << " is fresh again after receiving "
+4570:                 << ArlRouteMsgTypeName (hh.GetArlRouteMsgType ())
+4571:                 << std::endl;
+4572:     }
+4573: 
+4574:   UpdateMacActiveNodes ();
+4575: 
+4576:   if (m_hop != nullptr)
+4577:     {
+4578:       m_hop->NoteReportedActiveNodes (ne.activeNodes);
+4579:     }
+4580: 
+4581:   std::cout << "[NWK " << m_nodeId << "] "
+4582:               << (isNew ? "New" : "Updated")
+4583:               << " HELLO neighbor=" << src
+4584:               << " hopSrc=" << hopSrc
+4585:               << " speedKey=" << unsigned (ne.speedKey)
+4586:               << " activeNodes=" << unsigned (ne.activeNodes)
+4587:               << " pathloss=" << pathlossDb
+LINES 7779-7805
+7779:       {
+7780:         m_hop->SendHello (p);
+7781:       }
+7782: 
+7783: }
+7784: 
+7785: uint32_t
+7786: CsrNetLayer::GetActiveNodeCount () const
+7787: {
+7788:   // br_nwk proc_hello() raises active_nodes from the shared HOP neighbor-list
+7789:   // size + 1.  That list contains directly heard link peers, not every node
+7790:   // named in an advertised route path.  A NWK entry receives lastHeardSec
+7791:   // only after direct link traffic; route-only placeholders retain -1.  Since
+7792:   // entries and their last-heard marker survive ClearRoutes(), this remains
+7793:   // the source's monotonic historical direct-neighbor population.
+7794:   uint32_t directlyHeard = 0;
+7795:   for (const auto &entry : m_nwkNeighbors)
+7796:     {
+7797:       if (entry.second.lastHeardSec >= 0.0)
+7798:         {
+7799:           directlyHeard++;
+7800:         }
+7801:     }
+7802: 
+7803:   return directlyHeard + 1;
+7804: }
+7805: 
+
+FILE autonomous/native_env/csr/model/csr-net-device.h
+SHA256 112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb
+LINES 469-495
+469:   // OPNET br_mac.pr.c:
+470:   // POST_TX_WAIT_TIME = STAY_AWAKE_BASE_TIME + 1.5*active_nodes + STAY_AWAKE_GUARD_TIME
+471:   double m_stayAwakeBaseSec  { 15.0 };
+472:   double m_stayAwakeGuardSec { 0.5 };
+473: 
+474:   // Placeholder until active_nodes is plumbed from NWK/MAC state.
+475:   // br_mac initializes active_nodes to 1.
+476:   uint32_t m_activeNodesForPostTx { 1 };
+477: 
+478:   uint32_t m_maxReportedActiveNodes {0};
+479: 
+480: 
+481:   /*void NoteReportedActiveNodes (uint32_t n)
+482:   {
+483:     if (n > m_maxReportedActiveNodes)
+484:       {
+485:         m_maxReportedActiveNodes = n;
+486:       }
+487:   }*/
+488: 
+489:   double GetPostTxWaitSeconds () const
+490:   {
+491:     return m_stayAwakeBaseSec
+492:         + 1.5 * static_cast<double> (m_activeNodesForPostTx)
+493:         + m_stayAwakeGuardSec;
+494:   }
+495: 
+LINES 523-542
+523: CsrMacCore::SetActiveNodesForPostTx (uint32_t n)
+524: {
+525:   uint32_t active = std::max<uint32_t> (1, n);
+526: 
+527:   // Local active_nodes used by MAC slotting.
+528:   // Keep separate from max_reported_active_nodes.
+529:   m_activeNodesForPostTx = active;
+530: 
+531:   // Device copy used by OPNET-style POST_TX_WAIT_TIME.
+532:   if (m_dev != nullptr)
+533:     {
+534:       m_dev->SetActiveNodesForPostTx (active);
+535:     }
+536: 
+537:   std::cout << "[MAC " << m_nodeId
+538:             << "] active_nodes set to "
+539:             << active
+540:             << " for local slotting and post-TX wait"
+541:             << std::endl;
+542: }
+LINES 1060-1076
+1060: void
+1061: CsrNetDevice::StartPostTxWait ()
+1062: {
+1063:   CancelPostTxWait ();
+1064:   m_postTxWaitActive = true;
+1065:   double waitSeconds = GetPostTxWaitSeconds ();
+1066:   m_postTxWaitEvent = Simulator::Schedule (
+1067:     Seconds (waitSeconds),
+1068:     &CsrNetDevice::PostTxWaitExpired,
+1069:     this);
+1070: 
+1071:   std::cout << "[MAC " << m_id
+1072:             << "] post-TX WAIT_FOR_ACK until "
+1073:             << (Simulator::Now ().GetSeconds () + waitSeconds)
+1074:             << " (POST_TX_WAIT=" << waitSeconds << " s)"
+1075:             << std::endl;
+1076: }
+LINES 2129-2139
+2129: void
+2130: CsrNetDevice::OnMacTxFinished (bool queuesEmpty)
+2131: {
+2132:   UpdateSyncPresence ();
+2133:   if (queuesEmpty)
+2134:     {
+2135:       StartPostTxWait ();
+2136:     }
+2137:   ScheduleAcquisition ();
+2138:   RefreshDutyState ();
+2139: }
+LINES 2716-2727
+2716: 
+2717:   // OPNET chooses the preamble from neighbor freshness even when duty
+2718:   // cycling is enabled.  It uses the current local active_nodes value here,
+2719:   // not max_reported_active_nodes (the latter only expands slot selection).
+2720:   // This is the same expression as br_mac's POST_TX_WAIT_TIME macro.
+2721:   double threshold =
+2722:     15.0 + 1.5 * static_cast<double> (m_activeNodesForPostTx) + 0.5;
+2723: 
+2724:   if (lastHeard < 0.0 || (now - lastHeard) > threshold)
+2725:     {
+2726:       return PREAMBLE_LONG;
+2727:     }
+LINES 2892-2902
+2892:       return PREAMBLE_LONG;
+2893:     }
+2894: 
+2895:   double freshnessSeconds =
+2896:     15.0 + 1.5 * static_cast<double> (m_activeNodesForPostTx) + 0.5;
+2897:   return now - time0 > freshnessSeconds
+2898:     ? PREAMBLE_LONG
+2899:     : PREAMBLE_SHORT;
+2900: }
+2901: 
+2902: void
+
+FILE autonomous/native_env/csr/model/csr-mac-core.h
+SHA256 64a71ad280ba14ab2b00d5d2b9dac708fabea939dfa385ad62dd73e5e40203e9
+LINES 239-264
+239:   uint32_t GetReportedActiveNodesForSlotting () const
+240:   {
+241:     // Supplied later br_mac.pr.c behavior:
+242:     // get_slot(max_reported_active_nodes > active_nodes ?
+243:     //          max_reported_active_nodes : active_nodes, rn_range)
+244:     return std::max<uint32_t> (m_activeNodesForPostTx,
+245:                               m_maxReportedActiveNodes);
+246:   }
+247: 
+248:   uint32_t GetActiveNodesForSlotting () const
+249:   {
+250:     // adb97c... has no max_reported_active_nodes process-state member.  Its
+251:     // five get_slot() call sites reload nwk_IFptr->int_1 into active_nodes and
+252:     // pass that one value.  Keep the supplied later-source
+253:     // max(local, reported) behavior available to profiles whose provenance is
+254:     // not the adb97 campus-multihop executable.
+255:     if (m_slotSelectionProfile ==
+256:           SlotSelectionProfile::HIST_2014_COARSE_INCLUSIVE_NO_AVOID ||
+257:         m_slotSelectionProfile ==
+258:           SlotSelectionProfile::HIST_2014_NEXT_TSLOT_MODULO_PROBE)
+259:       {
+260:         return m_activeNodesForPostTx;
+261:       }
+262: 
+263:     return GetReportedActiveNodesForSlotting ();
+264:   }
+LINES 350-408
+350:   void
+351:   DiscoveryStart ()
+352:   {
+353:     m_discoveryActive = true;
+354: 
+355:     // Jitter so nodes do not all HELLO at the exact same instant.
+356:     Ptr<UniformRandomVariable> rng = CreateObject<UniformRandomVariable> ();
+357:     double jitter = rng->GetValue (0.05, 0.20);
+358: 
+359:     Simulator::Schedule (Seconds (jitter), &CsrMacCore::SendHelloInternal, this, false);
+360:   }
+361: 
+362:   void
+363:   DiscoveryStop ()
+364:   {
+365:     m_discoveryActive = false;
+366:   }
+367: 
+368:   int
+369:   GetOpnetSlotRange (uint32_t activeNodesForSlotting) const
+370:   {
+371:     int slotRange = 255;
+372:     if (m_slotSelectionProfile ==
+373:           SlotSelectionProfile::HIST_2014_COARSE_INCLUSIVE_NO_AVOID ||
+374:         m_slotSelectionProfile ==
+375:           SlotSelectionProfile::HIST_2014_ZERO_BASED_REBUILD_LIST ||
+376:         m_slotSelectionProfile ==
+377:           SlotSelectionProfile::HIST_2014_NEXT_TSLOT_MODULO_PROBE)
+378:       {
+379:         if (activeNodesForSlotting <= 4)
+380:           {
+381:             slotRange = 31;
+382:           }
+383:         else if (activeNodesForSlotting <= 8)
+384:           {
+385:             slotRange = 63;
+386:           }
+387:         else if (activeNodesForSlotting <= 12)
+388:           {
+389:             slotRange = 127;
+390:           }
+391:       }
+392:     else
+393:       {
+394:         switch (activeNodesForSlotting)
+395:           {
+396:           case 0:  slotRange = 15; break;
+397:           case 1:  slotRange = 18; break;
+398:           case 2:  slotRange = 21; break;
+399:           case 3:  slotRange = 25; break;
+400:           case 4:  slotRange = 31; break;
+401:           case 5:  slotRange = 37; break;
+402:           case 6:  slotRange = 44; break;
+403:           case 7:  slotRange = 52; break;
+404:           case 8:  slotRange = 63; break;
+405:           case 9:  slotRange = 75; break;
+406:           case 10: slotRange = 89; break;
+407:           case 11: slotRange = 106; break;
+408:           case 12: slotRange = 127; break;
+
+FILE autonomous_fourth/kit/autocase/model/+csr/+sim/NetworkSimulation.m
+SHA256 95b83ad8d6b3ae7d56f026bb360b703e800a251f4b4546a34e40f36025e99f58
+LINES 513-520
+513: 
+514:         function accepted = enqueueMac(obj,nodeId,frame)
+515:             index = obj.NodeIndex(nodeId);
+516:             obj.refreshHistoricalPopulation(index);
+517:             powerDefaulted = isempty(frame.TxPowerDbm);
+518:             if powerDefaulted
+519:                 frame.TxPowerDbm = obj.Config.Nodes(index).RadioProfile.TxPowerDbm;
+520:             end
+LINES 576-604
+576:                 any(strcmp(member.Control.Type,{'SNMP_START','SNMP_DONE'})),members);
+577:             if any(~isSnmp), obj.Networks{index}.observeRadio(frame.SourceId,decision); end
+578:             obj.Macs{index}.receive(frame,decision);
+579:             addressed = false;
+580:             for k = 1:numel(members)
+581:                 member = members{k};
+582:                 if obj.addressedTo(member,nodeId)
+583:                     addressed = true;
+584:                     if ~isempty(obj.LinkObserver)
+585:                         obj.FeedbackContext = struct('Frame',member, ...
+586:                             'AggregateId',frame.Id,'Decision',decision,'NodeId',nodeId);
+587:                     end
+588:                     obj.Hops{index}.receive(member,decision);
+589:                     if ~isempty(obj.LinkObserver), obj.FeedbackContext = []; end
+590:                     obj.refreshHistoricalPopulation(index);
+591:                 end
+592:             end
+593:             if ~addressed, obj.Counters.Overheard = obj.Counters.Overheard+1; end
+594:         end
+595: 
+596:         function refreshHistoricalPopulation(obj,index)
+597:             if ~strcmp(obj.Config.ApplicationGenerator,'historical-opnet-gated'), return; end
+598:             % Pinned GetActiveNodeCount includes persistent direct NWK peers
+599:             % with a qualifying last-heard marker, including stale peers. It
+600:             % excludes transitive routes and passive DATA/ACK observations.
+601:             state = obj.Networks{index}.applicationState();
+602:             obj.Macs{index}.setActiveNodes(state.ActiveNodeCount);
+603:         end
+604: 
+
+FILE autonomous_fourth/kit/autocase/model/+csr/+nwk/Layer.m
+SHA256 7ef09931c83c55697ce96b400ee1d90459a44af4c0527b396829d62ab9125300
+LINES 365-385
+365:             if isempty(destinations) && ~isempty(neighbors.Peers)
+366:                 % Source m_nwkNeighbors is a std::map keyed by node ID.
+367:                 destinations=sort([neighbors.Peers.Id]);
+368:                 destinations=destinations(destinations~=obj.NodeId);
+369:             end
+370:             waiting=0;
+371:             for index=1:numel(obj.Pending)
+372:                 waiting=waiting+double(~obj.Pending{index}.Submitted);
+373:             end
+374:             pair=struct('SourceId',obj.NodeId,'DestinationId',double(destination));
+375:             state=struct('DiscoveryActive',strcmp(obj.Neighbors.DiscoveryState,'active'), ...
+376:                 'TopologyKnown',~isempty(obj.Routes.Candidates) || ~isempty(neighbors.Peers), ...
+377:                 'GatewayId',obj.Routes.applicationGateway(), ...
+378:                 'DestinationCandidates',reshape(destinations,1,[]), ...
+379:                 'NsdpCount',obj.nsdpCount(pair),'NsdpLimit',16, ...
+380:                 'NwkQueueSize',waiting,'PendingCustody',numel(obj.Pending), ...
+381:                 'ActiveNodeCount',1+sum([neighbors.Peers.LastHeardSeconds]>=0));
+382:             % Source m_nwkQueue drops an item at HOP handoff. MATLAB keeps its
+383:             % Submitted custody owner until feedback; do not count that owner
+384:             % as a still-queued NWK item. Direct-peer population includes stale
+385:             % or inactive entries that retain a qualifying last-heard marker.
+
+FILE autonomous_fourth/kit/autocase/model/+csr/+nwk/Neighbors.m
+SHA256 65cb269a9b7e3cade654aad4b262bc6d7ebdf103743fa2581d8694bc6e45aed7
+LINES 155-168
+155:                     end
+156:                     obj.Peers(peer)=entry;
+157:                     if success
+158:                         if strcmp(subtype,'verify') && value(payload,'Sequence',0)~=0 && ...
+159:                                 sequenceValue(payload.Sequence)~=obj.DiscoverySequence
+160:                             return
+161:                         end
+162:                         entry=obj.Peers(peer); entry.LastHeardSeconds=obj.Scheduler.Now;
+163:                         entry.Stale=false; entry.Failures=max(0,entry.Failures-1);
+164:                         obj.Peers(peer)=entry; obj.tryActivate(peer,['acked_' subtype]);
+165:                     else
+166:                         obj.scheduleRetry(peer,obj.Config.AdmissionRetrySeconds);
+167:                     end
+168:             end
+
+FILE autonomous_fourth/kit/autocase/model/+csr/+mac/Layer.m
+SHA256 b7c24b8b7cf9f019249677db3e83425d6e583a2dc07f3343c6de9f1887b19556
+LINES 48-58
+48:             value = struct('DataQueueLimit', 512, 'AckQueueLimit', 256, ...
+49:                 'AckTransmissions', 5, 'MaxConcatSegments', 16, ...
+50:                 'SlotSeconds', 0.013, 'HoldoffSeconds', 0.3, ...
+51:                 'ActiveNodes', 1, 'ReportedActiveNodes', 1, ...
+52:                 'SlotProfile', 'current-fine-free-slot', ...
+53:                 'SlotReduction', 0, 'ReservationSlotOverride', -1, ...
+54:                 'DutyCycleEnabled', true, 'WakeCycleSeconds', 0.988, ...
+55:                 'SearchSeconds', 0.0078, 'BootSeconds', 0.0011, ...
+56:                 'PostTxBaseSeconds', 15, 'PostTxPerNodeSeconds', 1.5, ...
+57:                 'PostTxGuardSeconds', 0.5, 'ConcatenationEnabled', true);
+58:         end
+LINES 651-670
+651:                 obj.PostTxEvent = obj.after(obj.postTxSeconds(), @() obj.postTxExpired());
+652:             end
+653:         end
+654: 
+655:         function postTxExpired(obj)
+656:             obj.autonomousObserve('postTxExpired_before');
+657:             acMethodExit = onCleanup(@()obj.autonomousObserve('postTxExpired_after')); %#ok<NASGU>
+658:             obj.PostTxEvent = uint64(0);
+659:             obj.PostTxWaitActive = false;
+660:             obj.pollReceiver();
+661:             if obj.Config.DutyCycleEnabled && strcmp(obj.State, 'Search')
+662:                 obj.cancelTimer('SleepEvent');
+663:                 obj.setState('Idle');
+664:             end
+665:         end
+666: 
+667:         function seconds = postTxSeconds(obj)
+668:             seconds = obj.Config.PostTxBaseSeconds + ...
+669:                 obj.Config.PostTxPerNodeSeconds * obj.Config.ActiveNodes + obj.Config.PostTxGuardSeconds;
+670:         end

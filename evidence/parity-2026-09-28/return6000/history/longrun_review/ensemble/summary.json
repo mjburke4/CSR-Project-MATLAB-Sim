@@ -1,0 +1,150 @@
+{
+  "schema": "csr-original-6000s-ensemble-accounting-v1",
+  "new_simulations": 0,
+  "production_changes": 0,
+  "seeds": [
+    128,
+    129,
+    130,
+    131,
+    132
+  ],
+  "duration_s": 6000.0,
+  "application_start_s": 300.0,
+  "attempt_interval_s": 0.02,
+  "attempt_schedule_end_exclusive": true,
+  "accepted_metric_checks_passed": 210,
+  "ledger_provenance": "Original latency-review admitted ledgers; fresh131/132 separately revalidated against original traces by companion audits. Older128\u2013130 reuse archived audit provenance.",
+  "totals": {
+    "matlab": {
+      "scheduled_attempts": 8550000,
+      "admitted": 62795,
+      "not_admitted": 8487205,
+      "delivered": 59273,
+      "known_terminal_dropped": 2029,
+      "known_pending": 1493,
+      "unresolved_fate": 0,
+      "undelivered_total": 3522,
+      "pooled_delivered_mean_s": 119.09527906782697,
+      "equal_seed_mean_s": 118.95035550675182,
+      "mean_nwk_wait_s": 102.92778885483325,
+      "mean_post_admission_s": 16.16749021299078
+    },
+    "native": {
+      "scheduled_attempts": 8550000,
+      "admitted": 62631,
+      "not_admitted": 8487369,
+      "delivered": 59376,
+      "known_terminal_dropped": null,
+      "known_pending": null,
+      "unresolved_fate": 3255,
+      "undelivered_total": 3255,
+      "pooled_delivered_mean_s": 97.99720296562474,
+      "equal_seed_mean_s": 98.59896714352865,
+      "mean_nwk_wait_s": 82.92734710696219,
+      "mean_post_admission_s": 15.069855858662542
+    }
+  },
+  "pooled_residual_percent": 21.52926355418834,
+  "equal_seed_mean_residual_percent": 20.640569524017472,
+  "unmatched_seed_source_partition": {
+    "unmatched_matlab_delivery_count": 1304,
+    "unmatched_native_delivery_count": 0,
+    "unmatched_matlab_mean_s": 962.0300304112153,
+    "unmatched_term_s": 19.008634740759707,
+    "common_support_term_s": 2.089441361442513,
+    "common_support_own_weights_matlab_mean_s": 100.13364585435461,
+    "native_mean_s": 97.99720296562474,
+    "sum_s": 21.09807610220222,
+    "causal_attribution": false
+  },
+  "pooled_source_symmetric_partition": {
+    "mix_s": 11.78733134756528,
+    "within_s": 9.310744754636941
+  },
+  "scheduled_attempt_sensitivity": {
+    "jointly_admitted": 1827,
+    "jointly_delivered": 1726,
+    "jointly_delivered_matlab_mean_s": 39.14355418743318,
+    "jointly_delivered_native_mean_s": 41.549367628604294,
+    "residual_percent": -5.790252844943067,
+    "jointly_delivered_source_counts": {
+      "2": 41,
+      "3": 1385,
+      "4": 64,
+      "5": 142,
+      "7": 51,
+      "8": 43
+    },
+    "fraction_of_matlab_deliveries": 0.02911949791642063,
+    "fraction_of_native_deliveries": 0.0290689841013204,
+    "max_grid_residual_s": 9.094947017729282e-13,
+    "is_rng_coupled_pair": false,
+    "interpretation": "Shared source and scheduled interrupt; admission outcomes and stochastic paths remain different. Small, highly selected intersection cannot establish parity."
+  },
+  "fixed_age_method": "For horizon T use scheduled times in [300,6000-T), count final delivery by generation+T. Every included attempt has full follow-up. Report same numerator over all scheduled attempts and over admitted applications. Nonadmitted attempts did not create retained application objects. No pending age is substituted for completion latency.",
+  "native_terminal_fate_limit": "No trace event globally proves terminal application discard. Known terminal drop totals and live pending totals remain unknown; all nondelivered native identities labelled unresolved, including possibly unobserved terminal drops.",
+  "interpretation": "All standardized/matched estimates are descriptive sensitivity checks, not parity gates or causal effects. Missing seed131 source means remain undefined.",
+  "inputs": [
+    {
+      "path": "longrun_recovery/extracted/t25review/analysis/per-seed-comparisons.csv",
+      "sha256": "0dd9c4665a48b0d2d8a70d6aea1ac65277006dd4657b6979a5f604c53fa27b33"
+    },
+    {
+      "path": "longrun_recovery/extracted/latency-review/latency-review/matlab/packets-128.csv",
+      "sha256": "b3c21f404016385cce8b720967861ddaa503cfae03f0c47eb98231d8508fdd85"
+    },
+    {
+      "path": "longrun_recovery/extracted/latency-review/latency-review/matlab/packets-129.csv",
+      "sha256": "2b351b512c8b79ab3e3e380b1f3e94dc99add102da11994b61f430d49953315f"
+    },
+    {
+      "path": "longrun_recovery/extracted/latency-review/latency-review/matlab/packets-130.csv",
+      "sha256": "70c61fac3cfc42b1239c8987b71ce3d4d40c515e3ad23925293e081f6b988820"
+    },
+    {
+      "path": "longrun_recovery/extracted/latency-review/latency-review/matlab/packets-131.csv",
+      "sha256": "beb95c49c034c108a745e4bf43f1fdf537e52b77b5b1c876416e8d7308d9c9d1"
+    },
+    {
+      "path": "longrun_recovery/extracted/latency-review/latency-review/matlab/packets-132.csv",
+      "sha256": "313c1150ac31505315285e01c86aca854cee57b959cf05388759cf34fef578eb"
+    },
+    {
+      "path": "longrun_recovery/extracted/latency-review/latency-review/native/output/s128-packets.csv",
+      "sha256": "7e0f6be7af6b80622f9ce82f98e6e4d7bcad69deca992f90b79fc6980a95a885"
+    },
+    {
+      "path": "longrun_recovery/extracted/latency-review/latency-review/native/output/s129-packets.csv",
+      "sha256": "0729114bb4e61eb650c3b89e7ea144e9d182ff2b24694ef5a30cf428fa344f40"
+    },
+    {
+      "path": "longrun_recovery/extracted/latency-review/latency-review/native/output/s130-packets.csv",
+      "sha256": "d5ccf4f805d9aaa1a3d02fd2b9eddd9bda41eaf25b1cfad19093d6d03baea901"
+    },
+    {
+      "path": "longrun_recovery/extracted/latency-review/latency-review/native/output/s131-packets.csv",
+      "sha256": "9ba3aef28186975a5118d5f345c82e8e353d83b73422189ec4519ea550f02614"
+    },
+    {
+      "path": "longrun_recovery/extracted/latency-review/latency-review/native/output/s132-packets.csv",
+      "sha256": "e0d88d735f37a26750d58c76e3201d1fcbfbdedc023706b893dcb115cc6f6f90"
+    },
+    {
+      "path": "longrun_recovery/extracted/t25/s131/raw/application_admission_statistics.csv",
+      "sha256": "1d740da8d2f7a207b507609c488a904b52e88a9fbb62dfdff860d79fa3b58c01"
+    },
+    {
+      "path": "longrun_recovery/extracted/t25/s132/raw/application_admission_statistics.csv",
+      "sha256": "9511241ca94697f31d1abeaca2aad44677e9efabe55438c41b328dbe421ee5fa"
+    },
+    {
+      "path": "routing_recovery/t25/evidence/tranche-25-ns3-reference/s131/app-admission-diagnostics.csv",
+      "sha256": "6cdd70a7c5e3a5b8f139b0ad35eb9700a1afe0d7c9e9c8c5999b0c008fcf369c"
+    },
+    {
+      "path": "routing_recovery/t25/evidence/tranche-25-ns3-reference/s132/app-admission-diagnostics.csv",
+      "sha256": "1485df0f5a5bb9d96f4d7dc0c13628ae2cf10c2990985a2e34e4a9a42bc080c0"
+    }
+  ]
+}

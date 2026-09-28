@@ -1,0 +1,156 @@
+{
+  "schema": "csr-mac-replay-native-fidelity-v1",
+  "scope": "Production MAC under captured external receiver availability, queue arrivals/cancellations, neighbor observations, active counts, and raw integer draws. Duty-cycle receiver lifecycle is outside this replay boundary.",
+  "time_tolerance_ns": 0,
+  "source_capture": {
+    "exact_prefix": true,
+    "rows": 362584,
+    "fields": [
+      "schema",
+      "event_index",
+      "time_s",
+      "event",
+      "node",
+      "peer",
+      "packet_type",
+      "src",
+      "dst",
+      "sequence",
+      "rate_kbps",
+      "size_bytes",
+      "success",
+      "reason",
+      "pathloss_db",
+      "rx_power_dbm",
+      "noise_dbm",
+      "snr_db",
+      "jsr_db",
+      "header_errors",
+      "payload_errors",
+      "total_errors",
+      "route_cost",
+      "next_hop",
+      "security_count",
+      "reservation_slot",
+      "reservation_counter",
+      "detail",
+      "statistic",
+      "value"
+    ],
+    "seconds": 23.727020745998743,
+    "command": [
+      "/workspace/scratch/db3d3caa011d/mac_replay/native/capture-exe",
+      "--scenario=/workspace/scratch/db3d3caa011d/original_extracted/t25up/evidence/tranche-25-ns3-reference/s132/scenario.csv",
+      "--trace=/workspace/scratch/db3d3caa011d/mac_replay/native/capture/ns3-trace.csv",
+      "--appDiagnostics=/workspace/scratch/db3d3caa011d/mac_replay/native/capture/app-admission.csv",
+      "--stop=665",
+      "--flowLimit=0",
+      "--dutyCycling=1",
+      "--opnetAlignedDutyCycle=1",
+      "--gatewayDiscovery=1",
+      "--opnetAppGating=1",
+      "--aggregateTraceOnly=0",
+      "--admissionTrace=1",
+      "--quietModelLogs=0",
+      "--stochasticSyncThreshold=1"
+    ]
+  },
+  "nodes": [
+    {
+      "node": 2,
+      "full_warmup_tx": 607,
+      "target_window_tx": 11,
+      "raw_draws": 682,
+      "unused_draws": 0,
+      "mac_trace_rows": 17380,
+      "mac_event_counts": {
+        "mac_state": 3330,
+        "statistic_sample": 780,
+        "reservation_prepare": 608,
+        "reservation_holdoff": 5,
+        "reservation_tick": 11443,
+        "reservation_advertise": 607,
+        "tx_start": 607
+      },
+      "canonical_tx_exact": true,
+      "draw_time_range_ordinal_value_exact": true,
+      "mac_trace_exact_except_global_event_index": true
+    },
+    {
+      "node": 4,
+      "full_warmup_tx": 589,
+      "target_window_tx": 14,
+      "raw_draws": 689,
+      "unused_draws": 0,
+      "mac_trace_rows": 16848,
+      "mac_event_counts": {
+        "mac_state": 3325,
+        "reservation_holdoff": 5,
+        "statistic_sample": 817,
+        "reservation_prepare": 590,
+        "reservation_tick": 10933,
+        "reservation_advertise": 589,
+        "tx_start": 589
+      },
+      "canonical_tx_exact": true,
+      "draw_time_range_ordinal_value_exact": true,
+      "mac_trace_exact_except_global_event_index": true
+    },
+    {
+      "node": 8,
+      "full_warmup_tx": 565,
+      "target_window_tx": 14,
+      "raw_draws": 647,
+      "unused_draws": 0,
+      "mac_trace_rows": 15805,
+      "mac_event_counts": {
+        "mac_state": 2836,
+        "statistic_sample": 804,
+        "reservation_prepare": 565,
+        "reservation_holdoff": 5,
+        "reservation_tick": 10465,
+        "reservation_advertise": 565,
+        "tx_start": 565
+      },
+      "canonical_tx_exact": true,
+      "draw_time_range_ordinal_value_exact": true,
+      "mac_trace_exact_except_global_event_index": true
+    }
+  ],
+  "reference_sha256": {
+    "tx.csv": "8261be3ecbcc960e81379a0621fbb74b37a3cfcc13eff2d38692f25f504d08ee",
+    "draws.csv": "69764042db85ad3040a1a90520d700478497c5271547abe1f60436e5b9a4d17b",
+    "mac_events.csv": "038ef253c6880a23c539aa6ebe33a57d26b428567732a2ee95bb279d28a002a0"
+  },
+  "reference_readback_counts": {
+    "tx.csv": 1761,
+    "draws.csv": 2018,
+    "mac_events.csv": 50033
+  },
+  "input_sha256": {
+    "counts.json": "46cfd035cf0692769abeae31ed7fa8b76f8c0204ec5502449526b21bab4074d8",
+    "draws.csv": "bd6ee490a34d80c44b0578b320356c285e1c63d68fb21e5d80e9feac6403082f",
+    "frames.csv": "a562ee8d7abc280a983d696cae1f94580d0df82e7d6bf99fa46dada1290e1b35",
+    "inputs.csv": "c1840d20e9a71ff0496dd2d1484c9010856d3e72996ad1ef4dd13bade128d89b",
+    "profile.json": "bc0aa2b81f2304ca1043cd815b7537898197301147ec8a6a7ca3288a7cd8ac55",
+    "tx.csv": "96029ab335338b0707bdcfffc1e133e676c53697d69ca291f9162d79a8e695e6",
+    "tx_frames.csv": "efb0ef67102f1082083ecaf6380b679ca9973641829257eca42129eb8f07feca",
+    "tx_raw.csv": "97d63fb9c931bbd544d1a4f777f8a0afd7b9f0e9d2a996c5bddc2f4547f58a83"
+  },
+  "original_source_sha256": {
+    "csr-mac-core.h": "64a71ad280ba14ab2b00d5d2b9dac708fabea939dfa385ad62dd73e5e40203e9",
+    "csr-net-device.h": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+    "csr-phy-model.h": "d690b4c572491a9ea8c48735b1726770938b118dcbcd931e92920e602cae18fc"
+  },
+  "fixture_source_sha256": {
+    "build_capture.py": "a13c772835eed6390033ab436d0dfe67f0a1bd4b57bad41793621df62d7e821e",
+    "build_replay.py": "5841d221a14cc488cabe92dfc33f180f28a32df5290affb3bb57767ae0c927c7",
+    "convert_capture.py": "d14451843ae0d5b9a242b19cfd087cd3787b94bb82a260b59e8650f18105e76a",
+    "prepare_overlay.py": "eb6fdb1c9b8d32ba370f3fcaaa8ec5cbdaf0a9a425776d40bc2d80c37c7a5b8e",
+    "verify_fidelity.py": "daaa6acb99d59a7fe2fc03ce9932a7fd9c8c0bcfcb75d464cba695634161d042",
+    "mac-replay-hooks.h": "a6a791c7374b33769e096a19046ca14d82f583d7241abcd077c7d48fe09b7984",
+    "capture.cc": "b859a78a9e260e87689126569aeb6693861ffb78f28da2d296ff9eaa4287cc4d",
+    "replay.cc": "b20876f349a96d1d48e718190f3db2142a70ecf7f8f5ac1c8fd059105bd0c5f8"
+  },
+  "all_passed": true
+}

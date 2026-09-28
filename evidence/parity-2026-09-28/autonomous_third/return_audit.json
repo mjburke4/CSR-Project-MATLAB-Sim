@@ -1,0 +1,72 @@
+{
+  "schema": "csr-autonomous-coupled-return-audit-v1",
+  "status": "pass",
+  "archive": "out_auto_20260925_131150.zip",
+  "archive_sha256": "8b3b7c85d89bd2b39db19d1e4657b6fee03ec48c234b235a3af4dca0c7cc030b",
+  "archive_members": 27,
+  "issued_bound_files": 134,
+  "issued_manifest_matches_return": true,
+  "runtime": {
+    "version": "25.1.0.2943329 (R2025a)",
+    "release": "2025a",
+    "computer": "PCWIN64"
+  },
+  "import_preflight_passed_in_matlab": true,
+  "accepted_natural_reuse_passed": true,
+  "per_channel_samples_consumed": 6,
+  "requests_logged": 7,
+  "physical_transmissions_semantically_verified": 1,
+  "first_guarded_difference": {
+    "node": 4,
+    "purpose": "phy_binomial",
+    "ordinal": 2,
+    "actual_time_s": 11.500323527005154,
+    "fields": [
+      "bits"
+    ],
+    "actual": {
+      "tx_id": 4294967297.0,
+      "interval_ordinal": 1,
+      "interval_start_ns": 10465023527.0,
+      "interval_end_ns": 11500323527.0,
+      "bits": 184,
+      "probability": 0.015116561887016548,
+      "component": "payload",
+      "component_start_ns": 11476863527.0,
+      "component_end_ns": 11500323527.0
+    },
+    "expected": {
+      "event_order": 1099,
+      "time_ns": 11500323527.0,
+      "node": 4,
+      "purpose": "phy_binomial",
+      "ordinal": 2,
+      "value": 0.4555911702949003,
+      "low": 0,
+      "high": 1,
+      "mean": null,
+      "variance": null,
+      "tx_id": 4294967297.0,
+      "interval_ordinal": 1,
+      "component": "payload",
+      "interval_start_ns": 10465023527.0,
+      "interval_end_ns": 11500323527.0,
+      "component_start_ns": 11476863527.0,
+      "component_end_ns": 11500323527.0,
+      "bits": 183,
+      "probability": 0.015116561887016548,
+      "rng_consumed": 1,
+      "active_nodes": null,
+      "reported_nodes": null,
+      "reservation_counter": null,
+      "reservation_slot": null,
+      "profile": null,
+      "state": "",
+      "cause": "CsrNetDevice::EndReceiveSignal"
+    }
+  },
+  "global_draw_order_parity_claimed": false,
+  "global_order_note": "See independent review: two earlier native MAC requests have not occurred in MATLAB.",
+  "network_parity_established": false,
+  "target_percent": 15
+}

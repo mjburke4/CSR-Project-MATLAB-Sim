@@ -1,0 +1,75 @@
+{
+  "schema": "csr-autonomous-neighbor-return-v1",
+  "status": "pass",
+  "archive": "out_auto_20260925_135836.zip",
+  "archive_sha256": "fe57cce08371cc469995afd5fbdd6a2aa52518aa3296057b7edd7f053324d6e6",
+  "archive_members": 47,
+  "issued_manifest_sha256": "2d37baf35c91024375a6272790dfc00480c361576da4aeee02e37430d022ca6d",
+  "issued_bound_files": 198,
+  "runtime": {
+    "version": "25.1.0.2943329 (R2025a)",
+    "release": "2025a",
+    "computer": "PCWIN64"
+  },
+  "import_preflight_passed_in_matlab": true,
+  "key_preflight_checks_passed_in_matlab": 7,
+  "neighbor_preflight_checks_passed_in_matlab": 8,
+  "accepted_natural_reused": true,
+  "cases": [
+    {
+      "name": "E_check_gate",
+      "endpoint_s": 14.534,
+      "status": "context_divergence",
+      "requests": 97,
+      "consumed_matched_samples": 96,
+      "consumed_by_purpose": {
+        "mac_slot": 20,
+        "sync_threshold": 44,
+        "phy_binomial": 32
+      },
+      "verified_transmissions": 16,
+      "first_time_difference": [],
+      "previous_missing_frame_resolved": true,
+      "gateway_mac_population_actual": 3,
+      "gateway_mac_population_expected": 2,
+      "raw_rows": {
+        "protocol_trace.csv": 446,
+        "phy_trace.csv": 242,
+        "application_admission_trace.csv": 0
+      },
+      "ordered_event_rows": 13386,
+      "timing_records": 96,
+      "service_records": 446,
+      "wall_seconds": 17.2786848
+    },
+    {
+      "name": "F_message_flag",
+      "endpoint_s": 14.534,
+      "status": "context_divergence",
+      "requests": 97,
+      "consumed_matched_samples": 96,
+      "consumed_by_purpose": {
+        "mac_slot": 20,
+        "sync_threshold": 44,
+        "phy_binomial": 32
+      },
+      "verified_transmissions": 16,
+      "first_time_difference": [],
+      "previous_missing_frame_resolved": true,
+      "gateway_mac_population_actual": 3,
+      "gateway_mac_population_expected": 2,
+      "raw_rows": {
+        "protocol_trace.csv": 446,
+        "phy_trace.csv": 242,
+        "application_admission_trace.csv": 0
+      },
+      "ordered_event_rows": 13386,
+      "timing_records": 96,
+      "service_records": 446,
+      "wall_seconds": 10.7130896
+    }
+  ],
+  "target_percent": 15,
+  "network_parity_established": false,
+  "scope": "Actual startup captures stop before application traffic begins at 300 seconds."
+}

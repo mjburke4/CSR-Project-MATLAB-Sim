@@ -1,0 +1,64 @@
+{
+  "schema": "csr-discovery-identity-preflight-v1",
+  "passed": true,
+  "checks": [
+    {
+      "name": "captured_I_frame_passes_with_explicit_raw_identity_record",
+      "passed": true,
+      "details": {
+        "actual": 1,
+        "native": 4,
+        "policy": "trace_only_broadcast_discover_identifier",
+        "reason": "Native process counter versus MATLAB per-sender counter; receiver/MAC/PHY do not use this outer field"
+      }
+    },
+    {
+      "name": "discovery_payload_sequence_remains_strict",
+      "passed": true,
+      "details": {
+        "expected_failure": "child3.discover_sequence"
+      }
+    },
+    {
+      "name": "child_and_aggregate_wire_sizes_remain_strict",
+      "passed": true,
+      "details": {
+        "changed_child_bytes": 20,
+        "changed_total_bytes": 110
+      }
+    },
+    {
+      "name": "actual_address_ack_window_and_group_eligibility_are_required",
+      "passed": true,
+      "details": {
+        "negative_cases": 4
+      }
+    },
+    {
+      "name": "native_kind_address_ack_window_subtype_and_protection_are_required",
+      "passed": true,
+      "details": {
+        "negative_cases": 8
+      }
+    },
+    {
+      "name": "reliable_routing_and_ack_outer_sequences_remain_strict",
+      "passed": true,
+      "details": {
+        "negative_cases": 2
+      }
+    },
+    {
+      "name": "uncovered_chirp_and_other_control_kinds_remain_strict",
+      "passed": true,
+      "details": {
+        "negative_cases": 2
+      }
+    }
+  ],
+  "network_simulation_executed": false,
+  "scheduled_events": 0,
+  "random_variates_requested": 0,
+  "captured_native_tx_identity": 1.2884901905E+10,
+  "scope": "Public Frames reconstruction of actual I stop plus comparator mutation checks; no network behavior change or full-parity claim"
+}
