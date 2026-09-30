@@ -1,0 +1,42 @@
+{
+  "schema": "csr-discovery-identity-preflight-static-review-v1",
+  "checks": 7,
+  "matlab_execution": "pending_owner",
+  "blockers": [],
+  "public_frames_reconstruction": true,
+  "actual_I_failure_reproduced_by_baseline_assertion": true,
+  "network_or_random_execution_added": false,
+  "raw_actual_and_native_sequence_retained": true,
+  "strict_fields_tested": [
+    "discovery payload sequence",
+    "child and aggregate bytes",
+    "actual/native destination",
+    "actual/native ACK and ACK-window flags",
+    "actual multiple-target broadcast shape",
+    "native kind/subtype",
+    "reliable ROUTING and ACK HOP sequence",
+    "uncovered chirp and other control kind",
+    "native protected broadcast: destination_type1, group-security flag128, finite security_count"
+  ],
+  "files": {
+    "+ac/discoveryIdentityPreflight.m": "5c707f82a5ded410647ef24065689d5931d1890cf69e81cd079c38ec0e0a1c13",
+    "+ac/DiscoveryTxSignature.m": "ac2d0dcf116607ce2d4e6756727c106aa6e11941542694c9889ea5b5f43db8fa",
+    "+ac/DiscoveryStreams.m": "a5572a122a7497288b1a64fb1bbb6ca44742652eba949a47874117589cce7b7f",
+    "+ac/DiscoveryIdentitySimulation.m": "cdf489d279b0115add230493b3e5c520dbc04cc5c20d29c91709f525f8da5bce",
+    "+ac/TxSignature.m": "f8111a1d06d68659f74eae555bc2ae94bf803e1a73a69a6c583983df511ad201",
+    "+ac/Streams.m": "2217e0c46874757e190d8ad3669228c47a8134775aaf1ba96af300e3e001ecce",
+    "+ac/ControlWireSimulation.m": "9130dd33e98017bae77d76cf54d15048e0ad6d95aee8bea2d30fd75e5df07493",
+    "ref/history/I_control_wire/first_divergence.json": "d8809c4a6c2409791e12c19978e203ac8f7e144dbd2bed8424740c5a50e6e343",
+    "ref/native/tx_signatures.csv": "40f51355e02c0950e7608d9eeb6efb590a539bdef37c0381780db5fc086ad5e1"
+  },
+  "limitations": [
+    "Static source/API review, not MATLAB execution.",
+    "Mutated comparison records are negative guard tests, not new network inputs.",
+    "Identity normalization does not establish performance parity or prove all internal states equivalent."
+  ],
+  "exact_forward_and_reverse_targets": [
+    "+ac/DiscoveryTxSignature.m",
+    "+ac/DiscoveryStreams.m",
+    "+ac/DiscoveryIdentitySimulation.m"
+  ]
+}

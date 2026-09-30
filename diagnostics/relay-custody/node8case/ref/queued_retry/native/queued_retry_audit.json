@@ -1,0 +1,77 @@
+{
+  "schema": "csr-twelfth-data-queued-retry-native-audit-v1",
+  "status": "source_and_existing_capture_cause_confirmed",
+  "new_native_network_or_component_run": false,
+  "new_matlab_execution_here": false,
+  "returned_policy": "actual-tx",
+  "existing_matching_data_policy": "native-provisional",
+  "actual_stop_seconds": 324.753,
+  "first_identified_missing_hop_handoff_native_ns": 318498000028,
+  "first_missing_frame": 633,
+  "missing_data_owner": {
+    "node": 5,
+    "peer": 1,
+    "hop_sequence": 29,
+    "source_attempt": 11
+  },
+  "shared_scan_trigger": {
+    "node": 5,
+    "hop_sequence": 32,
+    "physical_sent_ns": 316498000000,
+    "resend_seconds": 2,
+    "tic_nanoseconds": 28,
+    "scan_ns": 318498000028
+  },
+  "causal_queue_order": {
+    "native": [
+      "seq29 retry2 @318.498000028",
+      "seq36 initial @322.260111114"
+    ],
+    "matlab_actual_tx": [
+      "seq36 initial @322.260111113778",
+      "seq29 retry2 @322.879000027778"
+    ]
+  },
+  "accepted_native_mac_enqueue_count": 734,
+  "native_data_enqueues": 177,
+  "native_data_owners": 146,
+  "native_data_transmitted_children": 150,
+  "data_tx_without_matching_sent_confirmation_log": 0,
+  "repeated_same_owner_enqueues_by_packet_kind": {
+    "0": 31,
+    "5": 7,
+    "6": 22
+  },
+  "directly_proven_pending_retry_overlaps": 3,
+  "directly_proven_overlap_node_sequence": [
+    [
+      5,
+      29
+    ],
+    [
+      5,
+      33
+    ],
+    [
+      5,
+      35
+    ]
+  ],
+  "prefix_random_draws": 4202,
+  "prefix_transmissions_checked": 769,
+  "source_contract": [
+    "Initial resend ownership is unconfirmed until the first real MAC sent notification.",
+    "MAC sent notification confirms ownership, replaces provisional lastTxTime with actual sent time, and schedules an independent list-wide scan.",
+    "Native retry handoff increments resendCount, sets provisional lastTxTime, and retains initialTxConfirmed.",
+    "Retry handoff installs no timer; a scan from another sent owner may enqueue the next retry while the previous one waits in MAC.",
+    "MATLAB native-provisional implements that confirmation behavior for all DATA, including forwarded DATA; actual-tx clears confirmation."
+  ],
+  "limits": [
+    "Three overlap cases are directly proven by a later physical TX of the older copy; never-transmitted older copies are not classified.",
+    "Native confirmation retention also applies to reliable controls. Existing MATLAB option is DATA-only; the observed fixture has no directly proven pending-retry overlap for controls.",
+    "The existing option also enables latest-global-timer bookkeeping and unmatched-DATA-sent fallback. Native source supports both; every150 captured DATA transmission has matched owner confirmation, so the unmatched branch is not exercised in this network capture.",
+    "Later sibling copies676 and718 remain untransmitted at the330s native capture boundary; no completed-delivery claim follows.",
+    "The current returned run stops at the DATA identity guard. The proposed policy selection is not yet MATLAB-executed here.",
+    "No native network rerun, production edit, fixture edit, tolerance relaxation, or15-percent parity claim."
+  ]
+}

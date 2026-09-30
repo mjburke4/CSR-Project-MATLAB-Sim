@@ -1,0 +1,28 @@
+Publication scope review — 2026-09-30
+
+Current runnable kit: relay_return/kit/node8case (497 files; 50,364,583 bytes), all496 manifest rows verified.
+FILES SHA-256: 34381129534133a938015e661c35669fe2386fd2c738e3d0eb463952e05b61fb
+Current ZIP SHA-256: d14bd7d85772b8e9e833130026762cc409fc3bcde539bb996ab4e4335c4bf31a
+
+Recommend one complete extracted current kit, plus compact evidence folders listed in scope_review.json. Do not alter sealed kit contents when moving into the repository; relative structure is required.
+Selected supplemental evidence: 318 files / 26,422,199 bytes. Exclude the optional original returned ZIP if avoiding its small duplicate.
+
+VALIDATION STATUS
+- [pending_runtime] Latest corrected kit revision 2 remains awaiting owner MATLAB rerun. Evidence: relay_return/REVIEW.txt, relay_return/corrected_package_receipt.json.
+- [observed] 17/17 existing preflight groups and 20/22 relay-custody groups passed on MATLAB R2025a 25.1.0.2943329 PCWIN64; both failed groups are the same queue-limit fixture bug; network never started. Evidence: relay_return/provenance/audit.json, relay_return/review/audit.json, relay_return/data/S132_1200/case_summary.json.
+- [static_verified] Constructor nargin guards were wrong by one because obj is an output. Revision 2 changes only RelayCustodyProbe, relayCustodyPreflight, README and FILES versus returned kit. No network code/runner/reference changes. Evidence: relay_return/test_helper_correction.patch, relay_return/corrected_package_receipt.json.
+- [observed_partial] Prior seed132 replay reached 895.115s; first observed physical payload mismatch originated in native-only second relay enqueue at 694.821813632s. Unique admitted/delivered/unresolved totals before stop are1582/1229/353 with matching first delivery timestamps. Evidence: node8_return2/REVIEW.txt, node8_return2/node4_cause/findings.json, node8_return2/accounting/prefix_accounting.json.
+- [observed_historical] Latest measured full autonomous +/-20% target not met:5/9 defined source-seed cells pass both metrics;3 native-zero cells remain undefined/population mismatches. Weighted delivered latency gap+40.7025128612%, raw+102.9699562105%. These are pre-relay-repair results. Evidence: node8_1200/milestone_20.json, terminal6000_return/accounting/audit.json.
+- [observed_historical] The standardized26.251732649s latency gap decomposes into+26.197863248s NWK wait,-0.252737119s initial MAC wait,+0.306606520s after first TX. This is descriptive and does not exclude upstream influence of MAC/HOP. Evidence: terminal6000_return/phases/REVIEW.txt, terminal6000_return/phases/audit.json.
+- [historical_pass] Historical short-v2 common-input gates passed seed1310-200s and seed1320-400s, but are not current repaired-model acceptance. Evidence: relay_return/kit/node8case/review/validated_short_v2/return_audit.json, relay_return/kit/node8case/FILES.json.
+
+LIMITS
+- Runnable current replay kit is self-contained and includes all native fixtures.
+- Included forensic audit scripts retain original workspace path assumptions and large raw-input dependencies. Do not advertise entire historical full-run audit as standalone reproducible from summaries alone.
+- For full forensic reproduction preserve archive hashes and Library retrieval references; raw evidence archives exceed GitHub normal per-file limits. Alternatively use release assets authorized by owner if needed; PR does not require that expansion.
+- Static parser and package checks are not MATLAB runtime acceptance.
+- Do not count historical accepted natural330/source167 proof as current repaired model acceptance.
+- No new native capture needed; capture is pinned source486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b and engine6b5cd24ea80713ce16d88575869aedd6f432bdae.
+
+HISTORICAL FULL-RUN SOURCE BINDING
+Include recovered/csr-6000-terminal-parity-tests.zip extracted unchanged at diagnostics/terminal-campus6000/csr6000. The 202-file,10,884,748-byte tree is the exact issued kit of both completed6,000-second MATLAB runs. All201sealedfiles and allfour plan manifests independently verified; both returned model snapshots and native pins match. See full6000_source_binding.json. Preserve historical15% target in this sealed artifact; apply20% interpretation only in current guide/regrade.

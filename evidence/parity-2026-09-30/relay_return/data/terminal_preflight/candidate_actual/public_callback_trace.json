@@ -1,0 +1,797 @@
+{
+  "schema": "csr-terminal-public-callback-trace-v1",
+  "events": [
+    {
+      "time_s": 0,
+      "event": "enqueue_callback",
+      "details": {
+        "frame": {
+          "Id": 0,
+          "SourceId": 1,
+          "DestinationId": 2,
+          "GeneratedSeconds": 0,
+          "ApplicationPayloadBytes": 185,
+          "WirePayloadBytes": 217,
+          "RateKeyKbps": 8,
+          "Preamble": "long",
+          "TxPowerDbm": 33,
+          "EnvelopeProfile": "bare",
+          "Kind": "DATA",
+          "Sequence": 1,
+          "Dscp": 0,
+          "AckRequired": true,
+          "HasAckWindow": false,
+          "AckBitmap": 0,
+          "DackBitmap": 0,
+          "App": {
+            "Id": 1,
+            "SourceId": 1,
+            "DestinationId": 2,
+            "GeneratedSeconds": 0,
+            "ApplicationPayloadBytes": 185,
+            "WirePayloadBytes": 217,
+            "RateKeyKbps": 8,
+            "Preamble": "long",
+            "TxPowerDbm": 33,
+            "EnvelopeProfile": "bare"
+          },
+          "RetryCount": 0
+        },
+        "accepted": true,
+        "mac_queue": 0
+      }
+    },
+    {
+      "time_s": 0,
+      "event": "sender_hop_admit",
+      "details": {
+        "frame": {
+          "Id": 0,
+          "SourceId": 1,
+          "DestinationId": 2,
+          "GeneratedSeconds": 0,
+          "ApplicationPayloadBytes": 185,
+          "WirePayloadBytes": 217,
+          "RateKeyKbps": 8,
+          "Preamble": "long",
+          "TxPowerDbm": 33,
+          "EnvelopeProfile": "bare",
+          "Kind": "DATA",
+          "Sequence": 1,
+          "Dscp": 0,
+          "AckRequired": true,
+          "HasAckWindow": false,
+          "AckBitmap": 0,
+          "DackBitmap": 0,
+          "App": {
+            "Id": 1,
+            "SourceId": 1,
+            "DestinationId": 2,
+            "GeneratedSeconds": 0,
+            "ApplicationPayloadBytes": 185,
+            "WirePayloadBytes": 217,
+            "RateKeyKbps": 8,
+            "Preamble": "long",
+            "TxPowerDbm": 33,
+            "EnvelopeProfile": "bare"
+          },
+          "RetryCount": 0
+        },
+        "details": {
+          "PendingData": 1,
+          "PendingThreshold": 16,
+          "GlobalSpare": 16,
+          "NeighborOutstanding": 1,
+          "NeighborThreshold": 0,
+          "NeighborSpare": 0,
+          "GlobalAllowed": true,
+          "NeighborAllowed": false,
+          "TimeSeconds": 0
+        }
+      }
+    },
+    {
+      "time_s": 0,
+      "event": "sender_hop_sent",
+      "details": {
+        "frame": {
+          "Id": 0,
+          "SourceId": 1,
+          "DestinationId": 2,
+          "GeneratedSeconds": 0,
+          "ApplicationPayloadBytes": 185,
+          "WirePayloadBytes": 217,
+          "RateKeyKbps": 8,
+          "Preamble": "long",
+          "TxPowerDbm": 33,
+          "EnvelopeProfile": "bare",
+          "Kind": "DATA",
+          "Sequence": 1,
+          "Dscp": 0,
+          "AckRequired": true,
+          "HasAckWindow": false,
+          "AckBitmap": 0,
+          "DackBitmap": 0,
+          "App": {
+            "Id": 1,
+            "SourceId": 1,
+            "DestinationId": 2,
+            "GeneratedSeconds": 0,
+            "ApplicationPayloadBytes": 185,
+            "WirePayloadBytes": 217,
+            "RateKeyKbps": 8,
+            "Preamble": "long",
+            "TxPowerDbm": 33,
+            "EnvelopeProfile": "bare"
+          },
+          "RetryCount": 0
+        },
+        "details": {
+          "ResendCount": 0,
+          "AckWaitSeconds": 2,
+          "TimeSeconds": 0
+        }
+      }
+    },
+    {
+      "time_s": 2.000001,
+      "event": "sender_hop_retry",
+      "details": {
+        "frame": {
+          "Id": 0,
+          "SourceId": 1,
+          "DestinationId": 2,
+          "GeneratedSeconds": 0,
+          "ApplicationPayloadBytes": 185,
+          "WirePayloadBytes": 217,
+          "RateKeyKbps": 8,
+          "Preamble": "long",
+          "TxPowerDbm": 33,
+          "EnvelopeProfile": "bare",
+          "Kind": "DATA",
+          "Sequence": 1,
+          "Dscp": 0,
+          "AckRequired": true,
+          "HasAckWindow": false,
+          "AckBitmap": 0,
+          "DackBitmap": 0,
+          "App": {
+            "Id": 1,
+            "SourceId": 1,
+            "DestinationId": 2,
+            "GeneratedSeconds": 0,
+            "ApplicationPayloadBytes": 185,
+            "WirePayloadBytes": 217,
+            "RateKeyKbps": 8,
+            "Preamble": "long",
+            "TxPowerDbm": 33,
+            "EnvelopeProfile": "bare"
+          },
+          "RetryCount": 1
+        },
+        "details": {
+          "ResendCount": 1,
+          "TimeSeconds": 2.000001
+        }
+      }
+    },
+    {
+      "time_s": 2.000001,
+      "event": "mac_mac_enqueue",
+      "details": {
+        "frame": {
+          "Id": 0,
+          "SourceId": 1,
+          "DestinationId": 2,
+          "GeneratedSeconds": 0,
+          "ApplicationPayloadBytes": 185,
+          "WirePayloadBytes": 217,
+          "RateKeyKbps": 8,
+          "Preamble": "long",
+          "TxPowerDbm": 33,
+          "EnvelopeProfile": "bare",
+          "Kind": "DATA",
+          "Sequence": 1,
+          "Dscp": 0,
+          "AckRequired": true,
+          "HasAckWindow": false,
+          "AckBitmap": 0,
+          "DackBitmap": 0,
+          "App": {
+            "Id": 1,
+            "SourceId": 1,
+            "DestinationId": 2,
+            "GeneratedSeconds": 0,
+            "ApplicationPayloadBytes": 185,
+            "WirePayloadBytes": 217,
+            "RateKeyKbps": 8,
+            "Preamble": "long",
+            "TxPowerDbm": 33,
+            "EnvelopeProfile": "bare"
+          },
+          "RetryCount": 1
+        },
+        "details": {
+          "DataDepth": 1,
+          "AckDepth": 0
+        }
+      }
+    },
+    {
+      "time_s": 2.000001,
+      "event": "mac_mac_state",
+      "details": {
+        "frame": {},
+        "details": {
+          "State": "Track"
+        }
+      }
+    },
+    {
+      "time_s": 2.000001,
+      "event": "enqueue_callback",
+      "details": {
+        "frame": {
+          "Id": 0,
+          "SourceId": 1,
+          "DestinationId": 2,
+          "GeneratedSeconds": 0,
+          "ApplicationPayloadBytes": 185,
+          "WirePayloadBytes": 217,
+          "RateKeyKbps": 8,
+          "Preamble": "long",
+          "TxPowerDbm": 33,
+          "EnvelopeProfile": "bare",
+          "Kind": "DATA",
+          "Sequence": 1,
+          "Dscp": 0,
+          "AckRequired": true,
+          "HasAckWindow": false,
+          "AckBitmap": 0,
+          "DackBitmap": 0,
+          "App": {
+            "Id": 1,
+            "SourceId": 1,
+            "DestinationId": 2,
+            "GeneratedSeconds": 0,
+            "ApplicationPayloadBytes": 185,
+            "WirePayloadBytes": 217,
+            "RateKeyKbps": 8,
+            "Preamble": "long",
+            "TxPowerDbm": 33,
+            "EnvelopeProfile": "bare"
+          },
+          "RetryCount": 1
+        },
+        "accepted": true,
+        "mac_queue": 1
+      }
+    },
+    {
+      "time_s": 2.300001,
+      "event": "mac_mac_holdoff",
+      "details": {
+        "frame": {},
+        "details": {
+          "ReservationCounter": -1
+        }
+      }
+    },
+    {
+      "time_s": 3,
+      "event": "enqueue_callback",
+      "details": {
+        "frame": {
+          "Id": 50,
+          "SourceId": 1,
+          "DestinationId": 9,
+          "GeneratedSeconds": 3,
+          "ApplicationPayloadBytes": 0,
+          "WirePayloadBytes": 16,
+          "RateKeyKbps": 8,
+          "Preamble": "long",
+          "TxPowerDbm": 33,
+          "EnvelopeProfile": "bare",
+          "Kind": "CONTROL",
+          "Sequence": 1,
+          "Dscp": 7,
+          "AckRequired": true,
+          "HasAckWindow": false,
+          "AckBitmap": 0,
+          "DackBitmap": 0,
+          "App": {},
+          "RetryCount": 0,
+          "Control": {
+            "Id": 50,
+            "Type": "KEY_UPDATE",
+            "Payload": {},
+            "WirePayloadBytes": 16
+          },
+          "DestinationIds": 9,
+          "HopSequences": 1
+        },
+        "accepted": true,
+        "mac_queue": 1
+      }
+    },
+    {
+      "time_s": 3,
+      "event": "sender_hop_control_admit",
+      "details": {
+        "frame": {
+          "Id": 50,
+          "SourceId": 1,
+          "DestinationId": 9,
+          "GeneratedSeconds": 3,
+          "ApplicationPayloadBytes": 0,
+          "WirePayloadBytes": 16,
+          "RateKeyKbps": 8,
+          "Preamble": "long",
+          "TxPowerDbm": 33,
+          "EnvelopeProfile": "bare",
+          "Kind": "CONTROL",
+          "Sequence": 1,
+          "Dscp": 7,
+          "AckRequired": true,
+          "HasAckWindow": false,
+          "AckBitmap": 0,
+          "DackBitmap": 0,
+          "App": {},
+          "RetryCount": 0,
+          "Control": {
+            "Id": 50,
+            "Type": "KEY_UPDATE",
+            "Payload": {},
+            "WirePayloadBytes": 16
+          },
+          "DestinationIds": 9,
+          "HopSequences": 1
+        },
+        "details": {
+          "Targets": 9,
+          "TimeSeconds": 3
+        }
+      }
+    },
+    {
+      "time_s": 3,
+      "event": "sender_hop_sent",
+      "details": {
+        "frame": {
+          "Id": 50,
+          "SourceId": 1,
+          "DestinationId": 9,
+          "GeneratedSeconds": 3,
+          "ApplicationPayloadBytes": 0,
+          "WirePayloadBytes": 16,
+          "RateKeyKbps": 8,
+          "Preamble": "long",
+          "TxPowerDbm": 33,
+          "EnvelopeProfile": "bare",
+          "Kind": "CONTROL",
+          "Sequence": 1,
+          "Dscp": 7,
+          "AckRequired": true,
+          "HasAckWindow": false,
+          "AckBitmap": 0,
+          "DackBitmap": 0,
+          "App": {},
+          "RetryCount": 0,
+          "Control": {
+            "Id": 50,
+            "Type": "KEY_UPDATE",
+            "Payload": {},
+            "WirePayloadBytes": 16
+          },
+          "DestinationIds": 9,
+          "HopSequences": 1
+        },
+        "details": {
+          "ResendCount": 0,
+          "AckWaitSeconds": 2,
+          "TimeSeconds": 3
+        }
+      }
+    },
+    {
+      "time_s": 5.000001,
+      "event": "sender_hop_retry",
+      "details": {
+        "frame": {
+          "Id": 50,
+          "SourceId": 1,
+          "DestinationId": 9,
+          "GeneratedSeconds": 3,
+          "ApplicationPayloadBytes": 0,
+          "WirePayloadBytes": 16,
+          "RateKeyKbps": 8,
+          "Preamble": "long",
+          "TxPowerDbm": 33,
+          "EnvelopeProfile": "bare",
+          "Kind": "CONTROL",
+          "Sequence": 1,
+          "Dscp": 7,
+          "AckRequired": true,
+          "HasAckWindow": false,
+          "AckBitmap": 0,
+          "DackBitmap": 0,
+          "App": {},
+          "RetryCount": 1,
+          "Control": {
+            "Id": 50,
+            "Type": "KEY_UPDATE",
+            "Payload": {},
+            "WirePayloadBytes": 16
+          },
+          "DestinationIds": 9,
+          "HopSequences": 1
+        },
+        "details": {
+          "ResendCount": 1,
+          "TimeSeconds": 5.000001
+        }
+      }
+    },
+    {
+      "time_s": 5.000001,
+      "event": "enqueue_callback",
+      "details": {
+        "frame": {
+          "Id": 50,
+          "SourceId": 1,
+          "DestinationId": 9,
+          "GeneratedSeconds": 3,
+          "ApplicationPayloadBytes": 0,
+          "WirePayloadBytes": 16,
+          "RateKeyKbps": 8,
+          "Preamble": "long",
+          "TxPowerDbm": 33,
+          "EnvelopeProfile": "bare",
+          "Kind": "CONTROL",
+          "Sequence": 1,
+          "Dscp": 7,
+          "AckRequired": true,
+          "HasAckWindow": false,
+          "AckBitmap": 0,
+          "DackBitmap": 0,
+          "App": {},
+          "RetryCount": 1,
+          "Control": {
+            "Id": 50,
+            "Type": "KEY_UPDATE",
+            "Payload": {},
+            "WirePayloadBytes": 16
+          },
+          "DestinationIds": 9,
+          "HopSequences": 1
+        },
+        "accepted": true,
+        "mac_queue": 1
+      }
+    },
+    {
+      "time_s": 8,
+      "event": "enqueue_callback",
+      "details": {
+        "frame": {
+          "Id": 51,
+          "SourceId": 1,
+          "DestinationId": 10,
+          "GeneratedSeconds": 8,
+          "ApplicationPayloadBytes": 0,
+          "WirePayloadBytes": 16,
+          "RateKeyKbps": 8,
+          "Preamble": "long",
+          "TxPowerDbm": 33,
+          "EnvelopeProfile": "bare",
+          "Kind": "CONTROL",
+          "Sequence": 1,
+          "Dscp": 7,
+          "AckRequired": true,
+          "HasAckWindow": false,
+          "AckBitmap": 0,
+          "DackBitmap": 0,
+          "App": {},
+          "RetryCount": 0,
+          "Control": {
+            "Id": 51,
+            "Type": "KEY_UPDATE",
+            "Payload": {},
+            "WirePayloadBytes": 16
+          },
+          "DestinationIds": 10,
+          "HopSequences": 1
+        },
+        "accepted": true,
+        "mac_queue": 1
+      }
+    },
+    {
+      "time_s": 8,
+      "event": "sender_hop_control_admit",
+      "details": {
+        "frame": {
+          "Id": 51,
+          "SourceId": 1,
+          "DestinationId": 10,
+          "GeneratedSeconds": 8,
+          "ApplicationPayloadBytes": 0,
+          "WirePayloadBytes": 16,
+          "RateKeyKbps": 8,
+          "Preamble": "long",
+          "TxPowerDbm": 33,
+          "EnvelopeProfile": "bare",
+          "Kind": "CONTROL",
+          "Sequence": 1,
+          "Dscp": 7,
+          "AckRequired": true,
+          "HasAckWindow": false,
+          "AckBitmap": 0,
+          "DackBitmap": 0,
+          "App": {},
+          "RetryCount": 0,
+          "Control": {
+            "Id": 51,
+            "Type": "KEY_UPDATE",
+            "Payload": {},
+            "WirePayloadBytes": 16
+          },
+          "DestinationIds": 10,
+          "HopSequences": 1
+        },
+        "details": {
+          "Targets": 10,
+          "TimeSeconds": 8
+        }
+      }
+    },
+    {
+      "time_s": 8,
+      "event": "sender_hop_sent",
+      "details": {
+        "frame": {
+          "Id": 51,
+          "SourceId": 1,
+          "DestinationId": 10,
+          "GeneratedSeconds": 8,
+          "ApplicationPayloadBytes": 0,
+          "WirePayloadBytes": 16,
+          "RateKeyKbps": 8,
+          "Preamble": "long",
+          "TxPowerDbm": 33,
+          "EnvelopeProfile": "bare",
+          "Kind": "CONTROL",
+          "Sequence": 1,
+          "Dscp": 7,
+          "AckRequired": true,
+          "HasAckWindow": false,
+          "AckBitmap": 0,
+          "DackBitmap": 0,
+          "App": {},
+          "RetryCount": 0,
+          "Control": {
+            "Id": 51,
+            "Type": "KEY_UPDATE",
+            "Payload": {},
+            "WirePayloadBytes": 16
+          },
+          "DestinationIds": 10,
+          "HopSequences": 1
+        },
+        "details": {
+          "ResendCount": 0,
+          "AckWaitSeconds": 2,
+          "TimeSeconds": 8
+        }
+      }
+    },
+    {
+      "time_s": 10.000001,
+      "event": "sender_hop_retry",
+      "details": {
+        "frame": {
+          "Id": 51,
+          "SourceId": 1,
+          "DestinationId": 10,
+          "GeneratedSeconds": 8,
+          "ApplicationPayloadBytes": 0,
+          "WirePayloadBytes": 16,
+          "RateKeyKbps": 8,
+          "Preamble": "long",
+          "TxPowerDbm": 33,
+          "EnvelopeProfile": "bare",
+          "Kind": "CONTROL",
+          "Sequence": 1,
+          "Dscp": 7,
+          "AckRequired": true,
+          "HasAckWindow": false,
+          "AckBitmap": 0,
+          "DackBitmap": 0,
+          "App": {},
+          "RetryCount": 1,
+          "Control": {
+            "Id": 51,
+            "Type": "KEY_UPDATE",
+            "Payload": {},
+            "WirePayloadBytes": 16
+          },
+          "DestinationIds": 10,
+          "HopSequences": 1
+        },
+        "details": {
+          "ResendCount": 1,
+          "TimeSeconds": 10.000001
+        }
+      }
+    },
+    {
+      "time_s": 10.000001,
+      "event": "enqueue_callback",
+      "details": {
+        "frame": {
+          "Id": 51,
+          "SourceId": 1,
+          "DestinationId": 10,
+          "GeneratedSeconds": 8,
+          "ApplicationPayloadBytes": 0,
+          "WirePayloadBytes": 16,
+          "RateKeyKbps": 8,
+          "Preamble": "long",
+          "TxPowerDbm": 33,
+          "EnvelopeProfile": "bare",
+          "Kind": "CONTROL",
+          "Sequence": 1,
+          "Dscp": 7,
+          "AckRequired": true,
+          "HasAckWindow": false,
+          "AckBitmap": 0,
+          "DackBitmap": 0,
+          "App": {},
+          "RetryCount": 1,
+          "Control": {
+            "Id": 51,
+            "Type": "KEY_UPDATE",
+            "Payload": {},
+            "WirePayloadBytes": 16
+          },
+          "DestinationIds": 10,
+          "HopSequences": 1
+        },
+        "accepted": true,
+        "mac_queue": 1
+      }
+    }
+  ],
+  "state": {
+    "hop": {
+      "Admitted": 1,
+      "AdmissionBlocked": 0,
+      "MacAdmissionRejected": 0,
+      "ResendQueueOverflow": 0,
+      "Transmitted": 1,
+      "Retransmissions": 1,
+      "Acknowledged": 0,
+      "Dacked": 0,
+      "Failed": 0,
+      "DataReceived": 0,
+      "Duplicates": 0,
+      "Delivered": 0,
+      "CustodyRefused": 0,
+      "NoRouteSuppressed": 0,
+      "AckGenerated": 0,
+      "DackGenerated": 0,
+      "FeedbackQueueDrops": 0,
+      "FeedbackReceived": 0,
+      "UnknownFeedback": 0,
+      "DackExpired": 0,
+      "QueueWakes": 0,
+      "PeakPendingData": 1,
+      "ControlAdmitted": 2,
+      "ControlAdmissionBlocked": 0,
+      "ControlTransmitted": 2,
+      "ControlRetransmissions": 2,
+      "ControlAcknowledged": 0,
+      "ControlCompleted": 0,
+      "ControlFailed": 0,
+      "ControlTargetFailures": 0,
+      "ControlReceived": 0,
+      "ControlDuplicates": 0,
+      "ControlDelivered": 0,
+      "ControlUnexpectedDack": 0,
+      "PendingData": 1,
+      "ResendQueueDepth": 3,
+      "DackHoldCount": 0,
+      "ControlPending": 2,
+      "ControlPendingTargets": 2
+    },
+    "pending": 1,
+    "mac_queue": 1,
+    "releases": 0,
+    "terminals": 0,
+    "cancel_calls": 0,
+    "admission": {
+      "PendingData": 1,
+      "PendingThreshold": 16,
+      "GlobalSpare": 16,
+      "NeighborOutstanding": 1,
+      "NeighborThreshold": 0,
+      "NeighborSpare": 0,
+      "GlobalAllowed": true,
+      "NeighborAllowed": false
+    },
+    "mac_counters": {
+      "Enqueued": 1,
+      "AckEnqueued": 0,
+      "DataQueueDrops": 0,
+      "AckQueueDrops": 0,
+      "AckReplacements": 0,
+      "Canceled": 0,
+      "Transmissions": 0,
+      "SegmentsTransmitted": 0,
+      "AckTransmissions": 0,
+      "LongPreambles": 0,
+      "ShortPreambles": 0,
+      "MaxDataQueueDepth": 1,
+      "MaxAckQueueDepth": 0,
+      "ConcatenatedTransmissions": 0,
+      "PackingBlocked": 0,
+      "DataQueueDelaySeconds": 0,
+      "DataDequeued": 0
+    },
+    "mac_state": "Track",
+    "scheduler_pending": 1,
+    "time_s": 10.1,
+    "receiver": {
+      "Admitted": 0,
+      "AdmissionBlocked": 0,
+      "MacAdmissionRejected": 0,
+      "ResendQueueOverflow": 0,
+      "Transmitted": 0,
+      "Retransmissions": 0,
+      "Acknowledged": 0,
+      "Dacked": 0,
+      "Failed": 0,
+      "DataReceived": 0,
+      "Duplicates": 0,
+      "Delivered": 0,
+      "CustodyRefused": 0,
+      "NoRouteSuppressed": 0,
+      "AckGenerated": 0,
+      "DackGenerated": 0,
+      "FeedbackQueueDrops": 0,
+      "FeedbackReceived": 0,
+      "UnknownFeedback": 0,
+      "DackExpired": 0,
+      "QueueWakes": 0,
+      "PeakPendingData": 0,
+      "ControlAdmitted": 0,
+      "ControlAdmissionBlocked": 0,
+      "ControlTransmitted": 0,
+      "ControlRetransmissions": 0,
+      "ControlAcknowledged": 0,
+      "ControlCompleted": 0,
+      "ControlFailed": 0,
+      "ControlTargetFailures": 0,
+      "ControlReceived": 0,
+      "ControlDuplicates": 0,
+      "ControlDelivered": 0,
+      "ControlUnexpectedDack": 0,
+      "PendingData": 0,
+      "ResendQueueDepth": 0,
+      "DackHoldCount": 0,
+      "ControlPending": 0,
+      "ControlPendingTargets": 0
+    },
+    "delivery_count": 0,
+    "transmission_times_s": [],
+    "terminal_times_s": [],
+    "release_reasons": [],
+    "getter_counts": {
+      "releases": 0,
+      "terminals": 0,
+      "deliveries": 0,
+      "cancel_calls": 0
+    }
+  },
+  "scope": "Public component callbacks and state only; no private state injection"
+}

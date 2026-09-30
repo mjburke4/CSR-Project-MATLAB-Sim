@@ -1,0 +1,42 @@
+{
+  "schema": "csr-feedback-identity-preflight-static-review-v1",
+  "frozen": true,
+  "blockers": [],
+  "checks": 8,
+  "passed_static_review": true,
+  "matlab_runtime_executed_by_reviewer": false,
+  "owner_execution_pending": true,
+  "peer_review_complete": true,
+  "files": {
+    "+ac/feedbackIdentityPreflight.m": "c5779426d4f1d48be47243fd6ce9746d07f3b268576485bd265bec18635daf76",
+    "+ac/FeedbackTxSignature.m": "501b4a5643971d538be78c902ba0e1fc85d03521b7b7a5a4dfc357e541ebf6ac",
+    "+ac/FeedbackStreams.m": "81bf38d7f4aad5b150cf578a5dbbeb96b0964766f2965ead6c9d8c1e3104aa5f",
+    "+ac/FeedbackIdentitySimulation.m": "3c92a3874b9e40ca0792a65ad8d1bdbb4a9b854ac2b11a9c80e909d55a236706",
+    "+ac/DiscoveryMembershipSimulation.m": "017b1742a6eac2520c6b29e170c05a609ab9373637395ae9d770b90c2fce920a",
+    "+ac/DiscoveryMembershipNwk.m": "bb4532788c3220a5dc9eba1766c01935dda405a4ea6b62eb163a1f1eb5a18918",
+    "+ac/DiscoveryStreams.m": "a5572a122a7497288b1a64fb1bbb6ca44742652eba949a47874117589cce7b7f",
+    "+ac/DiscoveryTxSignature.m": "ac2d0dcf116607ce2d4e6756727c106aa6e11941542694c9889ea5b5f43db8fa",
+    "model/+csr/+hop/Frames.m": "a2efd2e79d28cf9b090b6bb4f4e708ae978739ce96d9a1564f32628b990c39a5",
+    "run_autonomous_tests.m": "8becf4648532ad4151e497e810e0ee4f938b299e85858e4aad9cee1f2ed4b7d7",
+    "ref/native/tx_signatures.csv": "40f51355e02c0950e7608d9eeb6efb590a539bdef37c0381780db5fc086ad5e1",
+    "ref/history/M_discovery_membership/first_divergence.json": "b2d933cb45cf088bda8627da5e379d0a0dd33b845ad2dfd4dbcd41845ebe42cf"
+  },
+  "scope": [
+    "Public Frames reconstruction reproduces actual M kind-only rejection under historical comparator, then verifies explicit outer type projection and both logical flags.",
+    "Public Frames independently reconstructs all 1104 captured native feedback children:1083 ACK and21 DACK. Each uses an explicit isolated single-child envelope scaffold.",
+    "Two additional source-supported synthetic positive cases prove independence from window presence and retained DACK bitmap content. They are not counted as captured fixture rows.",
+    "Negative checks preserve required flag schema, finite encoded byte, four encoded flag bits, independent ACK/DACK columns, full64bit maps, source/destination, sequence, bytes, DSCP, reliability/window, kind and reliable-control exclusion.",
+    "Streams source is exactly the historical provider after its class and comparator binding renames; simulation is exactly M after its class and stream binding renames.",
+    "All99 original model files remain byte-identical. Of151 previously issued MATLAB files, only the runner changes; four new files are added."
+  ],
+  "validation_limits": [
+    "Static source and fixture review only. Root performs final MATLAB parser; owner must execute all8 new preflights and N case.",
+    "No forced timing, receiver availability, RNG, network state or transport changes. The1,104-row sweep is a comparator/constructor test, not a HOP completion or network replay.",
+    "No post312.143 result or15percent/6000second parity claim."
+  ],
+  "reviewers": [
+    "builder confirmed publicFrames and finalsource binding",
+    "receiver confirmed strictflag/map/window behavior including two extra positivecases"
+  ],
+  "companion_audit": "autonomous_eleventh/review/m_audit.json"
+}

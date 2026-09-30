@@ -1,0 +1,40 @@
+{
+  "status": "pass_static_review",
+  "blocking_findings": [],
+  "scope": "Final O case-only retry policy selection, 16 byte-exact recovered public tests, and two public HOP/MAC component checks.",
+  "reviewed_claims": [
+    "Only O caseConfig.Hop.DataQueuedRetryPolicy changes; validation is followed by restoring that field and checking whole configuration equality. The base natural configuration and actual-tx default remain unchanged.",
+    "All99 model files and all existing candidate/helper files are byte-identical to N; O retains the same simulation, random provider and strict transmission guards.",
+    "The recovered16-test source has its exact historical Git blob identity and exercises public retry ownership, timer-handle, ACK/DACK, rejection, cancellation and unchanged CONTROL behavior.",
+    "Three explicit public DATA/sent/ACK exchanges open a two-owner window, drain their timers, and are recorded separately from the captured episode. No private HOP state is set.",
+    "Public sequence allocation yields DATA29, DATA32 and DATA36. Corrected admission/application-attempt identities and actual-TX/ACK times match the bounded existing episode.",
+    "ACK32 removes its owner while its shared scan remains scheduled, exposing policy-dependent eligibility of queued DATA29 at318.498seconds.",
+    "MaxResends2 and ResendSeconds2 are required; exactly five captured DATA admissions, two surviving owners and DATA29 retry-count history[0,1,2] prevent the residual selection from hiding a third copy.",
+    "The two residual frames are drained by real csr.mac.Layer, with normal seeded MAC draws, no forced slots, no concatenation and no duty cycle. Exactly two transmitted segments and empty queues are asserted.",
+    "Isolated HOP stimuli and MAC FIFO checks explicitly do not claim captured full-network timing or post-stop parity."
+  ],
+  "historical_test_methods": 16,
+  "new_component_checks": 2,
+  "new_preflight_checks": 18,
+  "historical_test_git_blob": "741a5e311c813c8b9498429d20a1222caceeec0e",
+  "unchanged_model_file_count": 99,
+  "unchanged_existing_ac_file_count": 58,
+  "matlab_runtime_executed": false,
+  "network_simulation_executed": false,
+  "limitations": [
+    "Static peer review does not assert that the MATLAB92-check package has executed successfully.",
+    "The capacity warm-up and exact ACK32 callback are controlled component setup, not replay of all native traffic.",
+    "The public MAC runs establish residual service order only; they do not reconstruct receiver contention or the324.753second network transmission.",
+    "Native CONTROL queued-confirmation semantics and longer-run parity are outside this DATA-policy selection."
+  ],
+  "files_sha256": {
+    "autonomous_twelfth/kit/autocase/+ac/retryPolicyPreflight.m": "ae0fbb51b333ca27ce03f992a1919b00dfcc8f7d60b0d66523e2d22a75a53336",
+    "autonomous_twelfth/kit/autocase/TestQueuedRetryPolicy.m": "603eef79184d92c5b217039b234c98815c1b68409321da8c18441a4e7c74ccee",
+    "autonomous_twelfth/kit/autocase/run_autonomous_tests.m": "b7d05a59759fdc13371a5b79358b9ccb35d243167ce22c3e27015f3b62b21733",
+    "autonomous_twelfth/kit/autocase/model/+csr/+hop/Layer.m": "21d4a56d782fde35d45f102c137b6c78c3bf4cdc05593d15fb9a7db8f26c2649",
+    "autonomous_twelfth/kit/autocase/model/+csr/+mac/Layer.m": "b7c24b8b7cf9f019249677db3e83425d6e583a2dc07f3343c6de9f1887b19556",
+    "autonomous_twelfth/kit/autocase/+ac/FeedbackIdentitySimulation.m": "3c92a3874b9e40ca0792a65ad8d1bdbb4a9b854ac2b11a9c80e909d55a236706",
+    "autonomous_twelfth/kit/autocase/+ac/FeedbackStreams.m": "81bf38d7f4aad5b150cf578a5dbbeb96b0964766f2965ead6c9d8c1e3104aa5f",
+    "autonomous_twelfth/kit/autocase/+ac/FeedbackTxSignature.m": "501b4a5643971d538be78c902ba0e1fc85d03521b7b7a5a4dfc357e541ebf6ac"
+  }
+}

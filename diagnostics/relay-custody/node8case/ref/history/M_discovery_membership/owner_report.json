@@ -1,0 +1,1154 @@
+{
+  "schema": "csr-autonomous-owner-v1",
+  "completed": false,
+  "matlab_execution_required": true,
+  "numerical_parity_established": false,
+  "target_percent": 15,
+  "runtime": {
+    "version": "25.1.0.2943329 (R2025a)",
+    "release": "2025a",
+    "computer": "PCWIN64"
+  },
+  "cases": [
+    {
+      "name": "A_natural",
+      "mode": "natural",
+      "completed": true,
+      "natural_prefix_passed": true,
+      "reached_time_s": 330,
+      "diagnostic_status": "accepted_prior_run_reused",
+      "error_identifier": "",
+      "error_message": "",
+      "wall_seconds": 0
+    },
+    {
+      "name": "M_discovery_membership",
+      "mode": "native",
+      "completed": false,
+      "natural_prefix_passed": false,
+      "reached_time_s": 312.143,
+      "diagnostic_status": "context_divergence",
+      "error_identifier": "autocase:TxContextDivergence",
+      "error_message": "Physical transmission context diverged at 312.14299999999997 s, node 8, TX #74 (child1.kind).",
+      "wall_seconds": 257.845566
+    }
+  ],
+  "archive": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-discovery-membership-tests\\autocase\\out_auto_20260928_093251.zip",
+  "error_identifier": "",
+  "error_message": "",
+  "case_design": {
+    "A_natural": "Accepted natural run reused if exact gates match; otherwise fresh natural run",
+    "M_discovery_membership": "Prior L with discovery membership populated only at local completion or received DONE"
+  },
+  "previous_common_case": {
+    "schema": "csr-prior-common-case-history-v8",
+    "new_execution": false,
+    "actual_owner_matlab_execution": true,
+    "prior_history": {
+      "schema": "csr-prior-common-case-history-v7",
+      "new_execution": false,
+      "actual_owner_matlab_execution": true,
+      "prior_history": {
+        "schema": "csr-prior-common-case-history-v6",
+        "new_execution": false,
+        "actual_owner_matlab_execution": true,
+        "prior_history": {
+          "schema": "csr-prior-common-case-history-v5",
+          "new_execution": false,
+          "actual_owner_matlab_execution": true,
+          "prior_history": {
+            "schema": "csr-prior-common-case-history-v4",
+            "new_execution": false,
+            "actual_owner_matlab_execution": true,
+            "prior_history": {
+              "schema": "csr-prior-common-case-history-v3",
+              "new_execution": false,
+              "actual_owner_matlab_execution": true,
+              "prior_history": {
+                "schema": "csr-prior-common-case-history-v2",
+                "new_execution": false,
+                "actual_owner_matlab_execution": true,
+                "prior_B": {
+                  "schema": "csr-prior-common-case-history-v1",
+                  "previous_owner_case": "B_common",
+                  "new_execution": false,
+                  "actual_owner_matlab_execution": true,
+                  "case_summary": {
+                    "name": "B_common",
+                    "mode": "native",
+                    "completed": false,
+                    "natural_prefix_passed": false,
+                    "reached_time_s": 11.500323527005154,
+                    "diagnostic_status": "context_divergence",
+                    "error_identifier": "autocase:DrawContextDivergence",
+                    "error_message": "Native random request context diverged at 11.500323527005154 s, node 4, phy_binomial #2 (bits). Partial evidence is preserved.",
+                    "wall_seconds": 12.1081817
+                  },
+                  "diagnosis": "Native CSV preflight and accepted natural reuse passed. Common native-input case stopped at node4 PHY sample2: payload bits184 versus183 due receiver callback endpoint quantization. This stored B is historical, not rerun by this kit.",
+                  "source_issued_manifest_sha256": "64e135edd1843a2ec009c677f91918eda61258fe7331b779d88eb1822eb9a742",
+                  "evidence_folder": "ref/history/B_common",
+                  "new_cases": [
+                    "C_timing",
+                    "D_inline_key"
+                  ]
+                },
+                "cases": [
+                  {
+                    "name": "C_timing",
+                    "mode": "native",
+                    "completed": false,
+                    "natural_prefix_passed": false,
+                    "reached_time_s": 12.402,
+                    "diagnostic_status": "context_divergence",
+                    "error_identifier": "autocase:TxContextDivergence",
+                    "error_message": "Physical transmission context diverged at 12.401999999999999 s, node 5, TX #3 (parent.child_count,parent.total_wire_bytes,ordered_child_count).",
+                    "wall_seconds": 12.5182037
+                  },
+                  {
+                    "name": "D_inline_key",
+                    "mode": "native",
+                    "completed": false,
+                    "natural_prefix_passed": false,
+                    "reached_time_s": 12.402,
+                    "diagnostic_status": "context_divergence",
+                    "error_identifier": "autocase:TxContextDivergence",
+                    "error_message": "Physical transmission context diverged at 12.401999999999999 s, node 5, TX #3 (parent.child_count,parent.total_wire_bytes,ordered_child_count).",
+                    "wall_seconds": 8.2400878
+                  }
+                ],
+                "successful_prior_preflights": [
+                  "Native CSV import",
+                  "Accepted natural A reuse",
+                  "All 7 KEY_REQUEST checks"
+                ],
+                "diagnosis": "Both C and D stopped at12.402 seconds with node5 TX3 containing ACK1, ACK3 and discovery-check3 (66 bytes), missing native Overheard-check4 (16 bytes). D removed the earlier KEY_REQUEST request-time mismatch. These are historical actual owner cases, not rerun by this kit.",
+                "source_issued_manifest_sha256": "6ee680f14978219f217c6d20f634af389ab24631017966e85b24fe2e0a7a0924",
+                "evidence_folders": [
+                  "ref/history/C_timing",
+                  "ref/history/D_inline_key"
+                ],
+                "new_cases": [
+                  "E_check_gate",
+                  "F_message_flag"
+                ]
+              },
+              "cases": [
+                {
+                  "name": "E_check_gate",
+                  "mode": "native",
+                  "completed": false,
+                  "natural_prefix_passed": false,
+                  "reached_time_s": 14.534,
+                  "diagnostic_status": "context_divergence",
+                  "error_identifier": "autocase:DrawContextDivergence",
+                  "error_message": "Native random request context diverged at 14.534000000000001 s, node 1, mac_slot #8 (active_nodes). Partial evidence is preserved.",
+                  "wall_seconds": 17.2786848
+                },
+                {
+                  "name": "F_message_flag",
+                  "mode": "native",
+                  "completed": false,
+                  "natural_prefix_passed": false,
+                  "reached_time_s": 14.534,
+                  "diagnostic_status": "context_divergence",
+                  "error_identifier": "autocase:DrawContextDivergence",
+                  "error_message": "Native random request context diverged at 14.534000000000001 s, node 1, mac_slot #8 (active_nodes). Partial evidence is preserved.",
+                  "wall_seconds": 10.7130896
+                }
+              ],
+              "successful_prior_preflights": [
+                "Native CSV import",
+                "Accepted natural A reuse",
+                "All7 KEY_REQUEST checks",
+                "All8 neighbor-condition checks"
+              ],
+              "diagnosis": "Both E/F stopped at14.534 node1 MACdraw8: prematurely published local population3 versus native latch2. Current NWK count3 is correct. Same returned prefix also contains an extra grouped routing control after peer3 admission.",
+              "source_issued_manifest_sha256": "2d37baf35c91024375a6272790dfc00480c361576da4aeee02e37430d022ca6d",
+              "evidence_folders": [
+                "ref/history/E_check_gate",
+                "ref/history/F_message_flag"
+              ],
+              "new_cases": [
+                "G_population",
+                "H_admission_route"
+              ]
+            },
+            "cases": [
+              {
+                "name": "G_population",
+                "mode": "native",
+                "completed": false,
+                "natural_prefix_passed": false,
+                "reached_time_s": 14.534,
+                "diagnostic_status": "context_divergence",
+                "error_identifier": "autocase:TxContextDivergence",
+                "error_message": "Physical transmission context diverged at 14.534000000000001 s, node 1, TX #7 (parent.child_count,parent.total_wire_bytes,ordered_child_count).",
+                "wall_seconds": 16.5067753
+              },
+              {
+                "name": "H_admission_route",
+                "mode": "native",
+                "completed": false,
+                "natural_prefix_passed": false,
+                "reached_time_s": 25.298,
+                "diagnostic_status": "context_divergence",
+                "error_identifier": "autocase:TxContextDivergence",
+                "error_message": "Physical transmission context diverged at 25.297999999999998 s, node 1, TX #18 (parent.total_wire_bytes,child1.wire_bytes,child2.wire_bytes).",
+                "wall_seconds": 23.8073516
+              }
+            ],
+            "successful_prior_preflights": [
+              "Native CSV import",
+              "Accepted natural A reuse",
+              "All7 KEY_REQUEST checks",
+              "All8 neighbor-condition checks",
+              "All6 population checks",
+              "All8 route-admission checks"
+            ],
+            "diagnosis": "G cleared the earlier MAC population guard and exposed the predicted extra DELETE at14.534. H removed that extra control and reached25.298, where two compatibility-header REQUESTs were charged23bytes each instead of native16; ordered payload semantics matched.",
+            "source_issued_manifest_sha256": "e3fea26d3deddaed2049d5facc562866ffb6350d1e865e50426560cdd7de4f87",
+            "evidence_folders": [
+              "ref/history/G_population",
+              "ref/history/H_admission_route"
+            ],
+            "new_cases": [
+              "I_control_wire"
+            ]
+          },
+          "cases": {
+            "name": "I_control_wire",
+            "mode": "native",
+            "completed": false,
+            "natural_prefix_passed": false,
+            "reached_time_s": 25.74,
+            "diagnostic_status": "context_divergence",
+            "error_identifier": "autocase:TxContextDivergence",
+            "error_message": "Physical transmission context diverged at 25.739999999999998 s, node 3, TX #17 (child3.hop_sequence).",
+            "wall_seconds": 37.3751923
+          },
+          "successful_prior_preflights": [
+            "Native CSV import",
+            "Accepted natural A reuse",
+            "All7 KEY_REQUEST checks",
+            "All8 neighbor-condition checks",
+            "All6 population checks",
+            "All8 route-admission checks",
+            "All6 REQUEST wire checks",
+            "All3 NoPath wire checks"
+          ],
+          "diagnosis": "I passed all38 component checks and the prior REQUEST wire boundary; at25.74 node3TX17, the sole mismatch is outer DISCOVER HOP identifier1 versus4. Native allocates this trace-only counter across the process; MATLAB uses a per-sender broadcast counter. Payload discovery-session sequence1 and all other aggregate fields match.",
+          "source_issued_manifest_sha256": "62cd5d1c495d69b2aa4dba2b5e4e33cdfbca0bfc4808b9bcf89d3672aa75a696",
+          "evidence_folders": [
+            "ref/history/I_control_wire"
+          ],
+          "new_cases": [
+            "J_discovery_identity"
+          ]
+        },
+        "cases": {
+          "name": "J_discovery_identity",
+          "mode": "native",
+          "completed": false,
+          "natural_prefix_passed": false,
+          "reached_time_s": 45.662638077000004,
+          "diagnostic_status": "context_divergence",
+          "error_identifier": "autocase:DrawContextDivergence",
+          "error_message": "Native random request context diverged at 45.662638077000004 s, node 3, phy_binomial #75 (bits). Partial evidence is preserved.",
+          "wall_seconds": 85.3465217
+        },
+        "successful_prior_preflights": [
+          "Native CSV import",
+          "Accepted natural A reuse",
+          "All45 component checks including discovery identity"
+        ],
+        "diagnosis": "J passed45 component checks and reached45.662638077: node3PHY draw75 payload52bits versus native51. Acquisition callback double-addition endpoint was oneULP higher than native integer-nanosecond target despite identical rounded nanoseconds; payload geometry/truncation and BER match.",
+        "source_issued_manifest_sha256": "d6911e998e2aff2d16a27c7bf082741ed261029e5ba366ce99d6a89ece99e7db",
+        "evidence_folders": [
+          "ref/history/J_discovery_identity"
+        ],
+        "new_cases": [
+          "K_receiver_timers"
+        ]
+      },
+      "cases": {
+        "name": "K_receiver_timers",
+        "mode": "native",
+        "completed": false,
+        "natural_prefix_passed": false,
+        "reached_time_s": 71.942,
+        "diagnostic_status": "context_divergence",
+        "error_identifier": "autocase:TxContextDivergence",
+        "error_message": "Physical transmission context diverged at 71.941999999999993 s, node 5, TX #68 (child3.hop_destination,child3.snmp_destination).",
+        "wall_seconds": 134.3718398
+      },
+      "successful_prior_preflights": [
+        "Native CSV import",
+        "Accepted natural A reuse",
+        "All53 component checks including receiver timers"
+      ],
+      "diagnosis": "K passed53 checks and stopped71.942 at node5TX68: SNMP_START hop/final destination4/2 versusnative1/1. Earlier node4MACdraw25 was10.166368ms late because KEY_UPDATE was deferred beyond Track exit. Both causes are source-confirmed; strict guards remain unchanged.",
+      "source_issued_manifest_sha256": "3721006cdd23beac861cf9356a78b859b2599345e06625204034bbff7dabafa2",
+      "evidence_folders": [
+        "ref/history/K_receiver_timers"
+      ],
+      "new_cases": [
+        "L_discovery_lifecycle"
+      ]
+    },
+    "cases": {
+      "name": "L_discovery_lifecycle",
+      "mode": "native",
+      "completed": false,
+      "natural_prefix_passed": false,
+      "reached_time_s": 116.415,
+      "diagnostic_status": "context_divergence",
+      "error_identifier": "autocase:TxContextDivergence",
+      "error_message": "Physical transmission context diverged at 116.41500000000001 s, node 3, TX #86 (parent.preamble,parent.total_wire_bytes,child1.hop_destination,child1.hop_sequence,child1.kind,child1.wire_bytes,child1.ackable,child1.snmp_command,child1.snmp_source,child1.snmp_destination,child1.snmp_value).",
+      "wall_seconds": 196.5239422
+    },
+    "successful_prior_preflights": [
+      "Native CSV import",
+      "Accepted natural A reuse",
+      "All61 component checks including discovery lifecycle"
+    ],
+    "diagnosis": "L passed61 checks and matched487TX and2729draws before node3watchdog116.340299163 manufactured a new discovery member from a late route. Its extra31byteSNMP_START final7 via5 failed at116.415; native next node3TX is application DATA at300.365. Watchdog expiry itself is correct.",
+    "source_issued_manifest_sha256": "0125e2c6e70c5047a604a9a77fa1155dfabcb8251c1cc461d9b54aaeff592bae",
+    "evidence_folders": [
+      "ref/history/L_discovery_lifecycle"
+    ],
+    "new_cases": [
+      "M_discovery_membership"
+    ]
+  },
+  "import_preflight": {
+    "schema": "csr-native-import-regression-v1",
+    "passed": true,
+    "native_random_rows": 4430,
+    "native_tx_children": 1495,
+    "first_mac_value": 11,
+    "legitimate_empty_mac_component_accepted": true,
+    "invalid_required_fields_rejected": [
+      "empty_phy_component",
+      "empty_mac_state",
+      "missing_sync_mean",
+      "empty_routing_section"
+    ],
+    "scheduled_events": 0,
+    "executed_events": 0,
+    "network_simulation_executed": false,
+    "scope": "CSV/runtime import regression only; no network parity claim"
+  },
+  "accepted_natural_reuse": {
+    "reused": true,
+    "runtime_matches": true,
+    "configuration_matches": true,
+    "accepted_runtime": {
+      "version": "25.1.0.2943329 (R2025a)",
+      "release": "2025a",
+      "computer": "PCWIN64"
+    },
+    "fresh_natural_simulation_executed": false,
+    "source_basis": "All model and natural producer bytes match; Streams edits are confined to native-only import and matching.",
+    "prefix_gate_recomputed": true,
+    "configuration_metadata_path_only": {
+      "accepted": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-seed132-tests\\autocase\\inputs\\s132.csv",
+      "current": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-discovery-membership-tests\\autocase\\inputs\\s132.csv"
+    },
+    "configuration_path_rule": "Only SharedScenario.SourcePath is canonicalized; input CSV hash and every behavioral field are checked",
+    "accepted_previous_wall_seconds": 308.1675283
+  },
+  "key_request_preflight": {
+    "schema": "csr-inline-key-request-preflight-v1",
+    "passed": true,
+    "checks": [
+      {
+        "name": "baseline_key_request_is_deferred",
+        "passed": true,
+        "details": {
+          "send_callbacks_before_scheduler": 0,
+          "pending_controls": 1
+        }
+      },
+      {
+        "name": "fresh_key_request_is_inline",
+        "passed": true,
+        "details": {
+          "control": {
+            "Id": 1,
+            "Type": "KEY_REQUEST",
+            "Payload": {
+              "Generation": 0,
+              "SecurityProfile": "behavioral-admission"
+            },
+            "WirePayloadBytes": 18
+          },
+          "peers": 1,
+          "options": {
+            "RateKeyKbps": 8,
+            "TxPowerDbm": 33,
+            "Preamble": "long",
+            "EnvelopeProfile": "bare",
+            "AckRequired": false
+          },
+          "time_s": 0,
+          "accepted": true
+        }
+      },
+      {
+        "name": "other_owners_are_not_flushed",
+        "passed": true,
+        "details": {
+          "pending_controls": 2,
+          "pending_applications": 1,
+          "send_callbacks": 1,
+          "data_callbacks": 0
+        }
+      },
+      {
+        "name": "submitted_owner_replaced_after_cancellation",
+        "passed": true,
+        "details": {
+          "ledger": [
+            {
+              "event": "send",
+              "kind": "KEY_REQUEST",
+              "id": 1,
+              "peer": 1
+            },
+            {
+              "event": "cancel",
+              "kind": "KEY_REQUEST",
+              "id": 0,
+              "peer": 1
+            },
+            {
+              "event": "send",
+              "kind": "KEY_REQUEST",
+              "id": 2,
+              "peer": 1
+            }
+          ],
+          "pending_controls": 1
+        }
+      },
+      {
+        "name": "capacity_checked_before_inline_submission",
+        "passed": true,
+        "details": {
+          "pending_controls": 1,
+          "rejections": 1
+        }
+      },
+      {
+        "name": "rejected_submission_uses_original_wake_retry",
+        "passed": true,
+        "details": {
+          "owner_id": 1,
+          "send_callbacks": 2,
+          "same_time_callbacks_executed": 3
+        }
+      },
+      {
+        "name": "synchronous_completion_does_not_resurrect_owner",
+        "passed": true,
+        "details": {
+          "send_callbacks": 1,
+          "pending_controls": 0
+        }
+      }
+    ],
+    "network_simulation_executed": false,
+    "random_variates_requested": 0,
+    "scope": "Public NWK receiveControl and callback boundary; not an end-to-end PHY/MAC parity result"
+  },
+  "check_gate_preflight": {
+    "schema": "csr-check-gate-preflight-v1",
+    "passed": true,
+    "checks": [
+      {
+        "name": "baseline_discovery_suppresses_overheard",
+        "passed": true,
+        "details": {
+          "discovery": 1,
+          "overheard": 0
+        }
+      },
+      {
+        "name": "E_keys_discovery_and_absolute_deadline",
+        "passed": true,
+        "details": {
+          "first_deadline_s": 10,
+          "overheard_requests": 2,
+          "discovery_requests": 1,
+          "initial_check_active": true,
+          "retry_delay_s": 20
+        }
+      },
+      {
+        "name": "E_active_and_stale_gates",
+        "passed": true,
+        "details": {
+          "active_peer_suppresses_new_proofs": true,
+          "stale_key_input_suppressed": true
+        }
+      },
+      {
+        "name": "F_keys_discovery_and_absolute_deadline",
+        "passed": true,
+        "details": {
+          "first_deadline_s": 10,
+          "overheard_requests": 2,
+          "discovery_requests": 1,
+          "initial_check_active": false,
+          "retry_delay_s": 20
+        }
+      },
+      {
+        "name": "F_active_and_stale_gates",
+        "passed": true,
+        "details": {
+          "active_peer_suppresses_new_proofs": true,
+          "stale_key_input_suppressed": true
+        }
+      },
+      {
+        "name": "message_flag_E_characterization_F_expectation",
+        "passed": true,
+        "details": {
+          "message_requests": {
+            "E": 0,
+            "F": 1
+          },
+          "outstanding_message_flag_preserved": true
+        }
+      },
+      {
+        "name": "E_independent_reliable_proof_owners",
+        "passed": true,
+        "details": {
+          "control_ids": [
+            3,
+            4
+          ],
+          "pending_after_first_completion": 1,
+          "pending_after_second_completion": 0
+        }
+      },
+      {
+        "name": "F_independent_reliable_proof_owners",
+        "passed": true,
+        "details": {
+          "control_ids": [
+            3,
+            4
+          ],
+          "pending_after_first_completion": 1,
+          "pending_after_second_completion": 0
+        }
+      }
+    ],
+    "network_simulation_executed": false,
+    "random_variates_requested": 0,
+    "scope": "Public admission, deadline and callback custody checks; full E/F network results remain separate",
+    "E_limitation": "Broad CheckActive still suppresses Message while a non-Message proof is outstanding",
+    "F_scope": "Only Message sets CheckActive; existing true state and original completion clearing remain"
+  },
+  "population_preflight": {
+    "schema": "csr-population-publication-preflight-v1",
+    "passed": true,
+    "checks": [
+      {
+        "name": "actual_bridge_publishes_before_key_request_enqueue",
+        "passed": true,
+        "details": {
+          "raw_count": 2,
+          "mac_count": 2,
+          "publication_precedes_response": true
+        }
+      },
+      {
+        "name": "acked_proof_changes_raw_count_without_publishing",
+        "passed": true,
+        "details": {
+          "raw_count": 3,
+          "latched_mac_count": 2,
+          "published_values": 2
+        }
+      },
+      {
+        "name": "passive_key_data_ack_and_routing_enqueue_do_not_publish",
+        "passed": true,
+        "details": {
+          "actual_ack_enqueued": true,
+          "actual_routing_enqueued": true,
+          "raw_count": 3,
+          "mac_count": 2
+        }
+      },
+      {
+        "name": "qualifying_discover_check_routing_publish_current_count",
+        "passed": true,
+        "details": {
+          "published_values": [
+            2,
+            3,
+            3,
+            3
+          ],
+          "raw_count": 3,
+          "mac_count": 3
+        }
+      },
+      {
+        "name": "stale_peer_retains_count_until_qualified_republication",
+        "passed": true,
+        "details": {
+          "persistent_count": 2,
+          "published_values": [
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "name": "admission_disabled_publishes_before_changed_and_response",
+        "passed": true,
+        "details": {
+          "first_event": "publish",
+          "second_event": "neighbor_changed"
+        }
+      }
+    ],
+    "network_run_method_called": false,
+    "physical_transmissions": 0,
+    "random_variates_requested": 0,
+    "integrated_component_clock_s": 0,
+    "scope": "Actual G public NWK/HOP/MAC callback bridge plus separate public Neighbors timer; not network parity"
+  },
+  "route_admission_preflight": {
+    "schema": "csr-route-admission-preflight-v1",
+    "passed": true,
+    "checks": [
+      {
+        "name": "baseline_unobserved_admission_reproduces_delete3",
+        "passed": true,
+        "details": {
+          "routing_section_hex": "00000004000101000003",
+          "selected_cost": 3587
+        }
+      },
+      {
+        "name": "unobserved_admission_has_no_candidate_or_change",
+        "passed": true,
+        "details": {
+          "candidate_count": 0,
+          "change_count": 0
+        }
+      },
+      {
+        "name": "later_observation_creates_direct_route_and_legitimate_delete",
+        "passed": true,
+        "details": {
+          "cost": 3587,
+          "operation": "DELETE"
+        }
+      },
+      {
+        "name": "observed_capability_zero_candidate_is_selected_without_mutation",
+        "passed": true,
+        "details": {
+          "cost_before": 3587,
+          "admission_cost_argument": 9999,
+          "cost_after": 3587
+        }
+      },
+      {
+        "name": "observed_capable_candidate_admission_and_repeat",
+        "passed": true,
+        "details": {
+          "cost": 3587,
+          "capability": 1,
+          "sequence": 7,
+          "updated_seconds": 2
+        }
+      },
+      {
+        "name": "unrelated_transit_candidate_stays_deferred",
+        "passed": true,
+        "details": {
+          "destination": 4,
+          "selection_deferred": true
+        }
+      },
+      {
+        "name": "invalid_cached_candidate_preserved",
+        "passed": true,
+        "details": {
+          "destination": 3,
+          "next_hop": 5,
+          "valid": false,
+          "selection_deferred": true
+        }
+      },
+      {
+        "name": "admission_preserves_logical_destination_creation_order",
+        "passed": true,
+        "details": {
+          "changed_destination_order": [
+            5,
+            3
+          ]
+        }
+      }
+    ],
+    "network_simulation_executed": false,
+    "random_variates_requested": 0,
+    "scope": "Public Routes API: admission allocation, legitimate changes, deferred state and ordering",
+    "limitation": "Full H network continuation is a separate result; no private candidate state was injected"
+  },
+  "request_wire_preflight": {
+    "schema": "csr-request-wire-preflight-v1",
+    "passed": true,
+    "checks": [
+      {
+        "name": "explicit_origin_distinguishes_compact_request_from_raw_arl",
+        "passed": true,
+        "details": {
+          "unmarked_request_bytes": 23,
+          "marked_request_bytes": 16,
+          "mixed_raw_bytes": 27
+        }
+      },
+      {
+        "name": "malformed_compact_markers_and_invalid_raw_bytes_are_rejected",
+        "passed": true,
+        "details": {
+          "rejections": 7
+        }
+      },
+      {
+        "name": "public_discovery_completion_preserves_request_origin_through_backlog",
+        "passed": true,
+        "details": {
+          "wire_bytes": 16,
+          "destination": 3,
+          "payload_bytes": [
+            0,
+            0,
+            0,
+            2,
+            0,
+            1,
+            3
+          ],
+          "ack_required": true
+        }
+      },
+      {
+        "name": "rejected_admission_retry_preserves_owner_payload_and_sizing",
+        "passed": true,
+        "details": {
+          "owner_id": 7,
+          "attempts": 2,
+          "wire_bytes": 16
+        }
+      },
+      {
+        "name": "residual_routing_cycle_recalculation_retains_compact_size",
+        "passed": true,
+        "details": {
+          "old_owner_id": 7,
+          "new_owner_id": 9,
+          "wire_bytes": 16
+        }
+      },
+      {
+        "name": "scheduled_request_renewal_remains_compact_with_new_sequence",
+        "passed": true,
+        "details": {
+          "request_callbacks": 4,
+          "wire_bytes": 16,
+          "time_s": 8.001,
+          "payload_bytes": [
+            0,
+            0,
+            0,
+            4,
+            0,
+            1,
+            3
+          ]
+        }
+      }
+    ],
+    "network_simulation_executed": false,
+    "random_variates_requested": 0,
+    "scope": "Public NWK discovery/completion and HOP Frames API; no PHY reception or full-network parity claim"
+  },
+  "no_path_wire_preflight": {
+    "schema": "csr-no-path-wire-preflight-v1",
+    "passed": true,
+    "checks": [
+      {
+        "name": "no_path_metadata_is_not_charged_as_raw_body",
+        "passed": true,
+        "details": {
+          "baseline_bytes": 19,
+          "candidate_bytes": 16,
+          "target_id": 8
+        }
+      },
+      {
+        "name": "public_data_rejection_emits_reliable_compact_no_path",
+        "passed": true,
+        "details": {
+          "reason": "transit_disabled",
+          "destination": 3,
+          "target_id": 8,
+          "wire_bytes": 16,
+          "ack_required": true
+        }
+      },
+      {
+        "name": "other_neighbor_checks_and_sibling_controls_keep_baseline_sizes",
+        "passed": true,
+        "details": {
+          "neighbor_subtypes_checked": 4,
+          "sibling_control_types_checked": 5
+        }
+      }
+    ],
+    "network_simulation_executed": false,
+    "random_variates_requested": 0,
+    "scope": "Public NWK forwarded-DATA rejection and HOP Frames API; native 0-330 s fixture has no NoPath, so network effect is unexercised"
+  },
+  "discovery_identity_preflight": {
+    "schema": "csr-discovery-identity-preflight-v1",
+    "passed": true,
+    "checks": [
+      {
+        "name": "captured_I_frame_passes_with_explicit_raw_identity_record",
+        "passed": true,
+        "details": {
+          "actual": 1,
+          "native": 4,
+          "policy": "trace_only_broadcast_discover_identifier",
+          "reason": "Native process counter versus MATLAB per-sender counter; receiver/MAC/PHY do not use this outer field"
+        }
+      },
+      {
+        "name": "discovery_payload_sequence_remains_strict",
+        "passed": true,
+        "details": {
+          "expected_failure": "child3.discover_sequence"
+        }
+      },
+      {
+        "name": "child_and_aggregate_wire_sizes_remain_strict",
+        "passed": true,
+        "details": {
+          "changed_child_bytes": 20,
+          "changed_total_bytes": 110
+        }
+      },
+      {
+        "name": "actual_address_ack_window_and_group_eligibility_are_required",
+        "passed": true,
+        "details": {
+          "negative_cases": 4
+        }
+      },
+      {
+        "name": "native_kind_address_ack_window_subtype_and_protection_are_required",
+        "passed": true,
+        "details": {
+          "negative_cases": 8
+        }
+      },
+      {
+        "name": "reliable_routing_and_ack_outer_sequences_remain_strict",
+        "passed": true,
+        "details": {
+          "negative_cases": 2
+        }
+      },
+      {
+        "name": "uncovered_chirp_and_other_control_kinds_remain_strict",
+        "passed": true,
+        "details": {
+          "negative_cases": 2
+        }
+      }
+    ],
+    "network_simulation_executed": false,
+    "scheduled_events": 0,
+    "random_variates_requested": 0,
+    "captured_native_tx_identity": 1.2884901905E+10,
+    "scope": "Public Frames reconstruction of actual I stop plus comparator mutation checks; no network behavior change or full-parity claim"
+  },
+  "receiver_timer_preflight": {
+    "schema": "csr-receiver-timer-preflight-v1",
+    "passed": true,
+    "checks": [
+      {
+        "name": "all_native_acquisition_schedule_targets_match",
+        "passed": true,
+        "details": {
+          "records": 1352,
+          "changed_floating_sums": 336
+        }
+      },
+      {
+        "name": "all_native_tx_finish_targets_match_source_deadlines",
+        "passed": true,
+        "details": {
+          "scheduled_targets": 811,
+          "observed_native_completions": 810,
+          "pending_at_capture_end": 1
+        }
+      },
+      {
+        "name": "source_only_rejected_return_uses_28_nanosecond_target",
+        "passed": true,
+        "details": {
+          "delay_ns": 28,
+          "target_ns": 4.5662638105E+10,
+          "native_observed_callbacks": 0
+        }
+      },
+      {
+        "name": "captured_raw_geometry_reproduces_52_and_corrected_51_bits",
+        "passed": true,
+        "details": {
+          "old_payload_bits": 52,
+          "fixed_payload_bits": 51,
+          "old_end_seconds": 45.662638077000004,
+          "fixed_end_seconds": 45.662638077,
+          "same_uniform_errors": [
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "name": "unchanged_public_model_matches_all_native_component_geometries",
+        "passed": true,
+        "details": {
+          "component_rows": 1542,
+          "header_and_payload_counts_checked": 3084,
+          "raw_signal_geometry_preserved": true,
+          "geometry_only_high_snr": true
+        }
+      },
+      {
+        "name": "actual_public_receiver_acquisition_uses_integer_sum_deadline",
+        "passed": true,
+        "details": {
+          "baseline_state_at_native_deadline": "Search",
+          "candidate_state_at_native_deadline": "Track",
+          "baseline_state_at_old_deadline": "Track",
+          "protected_bit_random_draws": 0
+        }
+      },
+      {
+        "name": "continuous_and_absent_transport_retain_original_acquisition",
+        "passed": true,
+        "details": {
+          "continuous_timer_records": 0,
+          "absent_timer_records": 0
+        }
+      },
+      {
+        "name": "actual_phy_and_mac_completion_share_deadline_and_keep_existing_order",
+        "passed": true,
+        "details": {
+          "physical_transmissions": 1,
+          "deadline_seconds": 47.1463,
+          "callback_order": [
+            {
+              "kind": "phy_search",
+              "time_s": 47.1463
+            },
+            {
+              "kind": "mac_search",
+              "time_s": 47.1463
+            }
+          ],
+          "seeded_mac_draws": 2,
+          "matlab_completion_callbacks": 2
+        }
+      }
+    ],
+    "network_simulation_executed": false,
+    "random_variates_requested": 2,
+    "scope": "Unchanged public PHY allocator, controlled receiver acquisition, and one-radio public MAC/PHY TX component; no full-network parity claim",
+    "random_scope": "Only the one-radio MAC component uses measured seed-owned MAC draws; geometry/acquisition probes use none",
+    "native_callback_scope": "Native has one TX completion callback; two same-deadline callbacks preserve MATLAB existing decomposition",
+    "rejected_return_limitation": "28 ns arithmetic and source binding only; no captured rejected-return callback is claimed"
+  },
+  "discovery_lifecycle_preflight": {
+    "schema": "csr-discovery-lifecycle-preflight-v1",
+    "passed": true,
+    "checks": [
+      {
+        "name": "no_ack_key_request_still_inline_with_reliable_gate_closed",
+        "passed": true,
+        "details": {
+          "send_callbacks": 1,
+          "reliable_gate_calls": 0
+        }
+      },
+      {
+        "name": "reliable_key_update_inline_preserves_owner_ack_and_wire_fields",
+        "passed": true,
+        "details": {
+          "wire_bytes": 62,
+          "dscp": 7,
+          "ack_required": true,
+          "owner_present_at_callback": true
+        }
+      },
+      {
+        "name": "blocked_and_failed_reliable_admissions_keep_normal_retry",
+        "passed": true,
+        "details": {
+          "blocked_then_open_callbacks": 1,
+          "failed_then_accepted_callbacks": 2,
+          "same_owner_retried": true
+        }
+      },
+      {
+        "name": "capacity_rejection_preserves_existing_owner_before_submission",
+        "passed": true,
+        "details": {
+          "pending_controls": 1,
+          "rejections": 1,
+          "scope": "retained MATLAB safety, not native overflow parity"
+        }
+      },
+      {
+        "name": "inline_key_update_does_not_pump_unrelated_owners",
+        "passed": true,
+        "details": {
+          "pending_controls": 2,
+          "pending_applications": 1,
+          "data_callbacks": 0
+        }
+      },
+      {
+        "name": "reentrant_key_completion_keeps_followon_owner_without_resurrection",
+        "passed": true,
+        "details": {
+          "key_update_callbacks": 1,
+          "followon_neighbor_check_present": true,
+          "peer_sent_key": true
+        }
+      },
+      {
+        "name": "active_duplicate_kept_for_done_and_outbound_scan_idle_initiator_skipped",
+        "passed": true,
+        "details": {
+          "done_destinations": [
+            3,
+            1
+          ],
+          "baseline_next_target": 2,
+          "candidate_next_target": 1,
+          "discovery_sessions": 1,
+          "duplicate_start_requests_from_1": 2
+        }
+      },
+      {
+        "name": "completion_progression_retains_single_outstanding_handoff",
+        "passed": true,
+        "details": {
+          "start_destinations": [
+            1,
+            2
+          ],
+          "done_destinations": [
+            3,
+            1
+          ]
+        }
+      }
+    ],
+    "network_simulation_executed": false,
+    "random_variates_requested": 0,
+    "scope": "Public NWK callback boundary and isolated discovery requester lifecycle; no PHY/MAC timing parity claim",
+    "capacity_limitation": "Retained MATLAB queue/retry safety only; native overflow policy is not claimed identical",
+    "scan_fixture": "Admission-disabled public observations create three direct routes; no private state is injected"
+  },
+  "discovery_membership_preflight": {
+    "schema": "csr-discovery-membership-preflight-v1",
+    "passed": true,
+    "checks": [
+      {
+        "name": "baseline_watchdog_adds_late_route_to_scan",
+        "passed": true,
+        "details": {
+          "start_destinations": [
+            4,
+            7
+          ],
+          "late_route_next_hop": 5,
+          "watchdogs": 1
+        }
+      },
+      {
+        "name": "watchdog_preserves_membership_order_and_late_route",
+        "passed": true,
+        "details": {
+          "start_destinations": 4,
+          "done_destinations": 5,
+          "watchdogs": 1,
+          "route_destination": 7,
+          "route_next_hop": 5,
+          "route_unchanged": true
+        }
+      },
+      {
+        "name": "late_route_remains_usable_for_transit_data",
+        "passed": true,
+        "details": {
+          "source": 4,
+          "receiver": 3,
+          "destination": 7,
+          "next_hop": 5,
+          "send_callbacks": 1
+        }
+      },
+      {
+        "name": "received_done_populates_late_member",
+        "passed": true,
+        "details": {
+          "start_destinations": [
+            4,
+            7
+          ],
+          "final_destination": 7,
+          "next_hop": 5,
+          "wire_bytes": 31
+        }
+      },
+      {
+        "name": "new_local_completion_populates_late_route",
+        "passed": true,
+        "details": {
+          "discovery_sessions": 2,
+          "start_destinations": [
+            4,
+            7
+          ]
+        }
+      }
+    ],
+    "network_simulation_executed": false,
+    "random_variates_requested": 0,
+    "scope": "Public NWK discovery membership and ordinary transit DATA callback boundaries",
+    "fixture_scope": "Admission-disabled observe establishes two direct component peers; a public ROUTING UPDATE learns7 via5",
+    "limitations": "No full-network/PHY/MAC parity claim. Existing completion snapshot cap and population ordering are not changed."
+  },
+  "wall_seconds": 306.7911014,
+  "archive_status": "Archive construction follows this report; successful archive receipt is saved beside the archive."
+}

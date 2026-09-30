@@ -1,0 +1,417 @@
+{
+  "schema": "csr-relay-custody-public-trace-v1",
+  "state": {
+    "time_s": 0,
+    "network": {
+      "QueueAdmissionRejections": 0,
+      "QueueDrops": 0,
+      "MaxNetworkQueueDepth": 2,
+      "RoutingMessagesSent": 3,
+      "RoutingMessagesReceived": 0,
+      "RouteChanges": 3,
+      "NeighborActivations": 2,
+      "NeighborDeactivations": 0,
+      "ControlQueueRejections": 0,
+      "ControlFailures": 0,
+      "ControlResidualRetries": 0,
+      "MalformedControl": 0,
+      "DuplicateApplications": 0,
+      "SnapshotTimeouts": 0,
+      "RouteRequests": 0,
+      "ScanStartsSent": 0,
+      "ScanDoneSent": 0,
+      "ScanWatchdogs": 0,
+      "NoPathSent": 0,
+      "NoPathReceived": 0,
+      "PendingCustody": 2,
+      "WaitingForHop": 2,
+      "WaitingForRoute": 0,
+      "PendingControlMessages": 3,
+      "DiscoveryStarts": 0,
+      "DiscoveryCompletions": 0
+    },
+    "hop": {
+      "Admitted": 0,
+      "AdmissionBlocked": 0,
+      "MacAdmissionRejected": 0,
+      "ResendQueueOverflow": 0,
+      "Transmitted": 0,
+      "Retransmissions": 0,
+      "Acknowledged": 0,
+      "Dacked": 0,
+      "Failed": 0,
+      "DataReceived": 2,
+      "Duplicates": 0,
+      "Delivered": 2,
+      "CustodyRefused": 0,
+      "NoRouteSuppressed": 0,
+      "AckGenerated": 0,
+      "DackGenerated": 2,
+      "FeedbackQueueDrops": 0,
+      "FeedbackReceived": 0,
+      "UnknownFeedback": 0,
+      "DackExpired": 0,
+      "QueueWakes": 0,
+      "PeakPendingData": 0,
+      "ControlAdmitted": 0,
+      "ControlAdmissionBlocked": 0,
+      "ControlTransmitted": 0,
+      "ControlRetransmissions": 0,
+      "ControlAcknowledged": 0,
+      "ControlCompleted": 0,
+      "ControlFailed": 0,
+      "ControlTargetFailures": 0,
+      "ControlReceived": 0,
+      "ControlDuplicates": 0,
+      "ControlDelivered": 0,
+      "ControlUnexpectedDack": 0,
+      "PendingData": 0,
+      "ResendQueueDepth": 0,
+      "DackHoldCount": 0,
+      "ControlPending": 0,
+      "ControlPendingTargets": 0
+    },
+    "accepted_copies": 2,
+    "outgoing_copies": 0,
+    "releases": 0,
+    "terminals": 0,
+    "unique_delivery_callbacks": 0,
+    "drop_callbacks": 0
+  },
+  "checks": {
+    "label": "each acceptance replaces inherited upstream ownership with a fresh local token",
+    "passed": true,
+    "actual": {
+      "incoming": {
+        "Id": 2873,
+        "SourceId": 7,
+        "DestinationId": 2,
+        "GeneratedSeconds": 0,
+        "ApplicationPayloadBytes": 185,
+        "Dscp": 0,
+        "HopCount": 1,
+        "Traversal": [
+          7,
+          8
+        ],
+        "NwkCustodyNodeId": 8,
+        "NwkCustodyId": 999999
+      },
+      "first": {
+        "Id": 2873,
+        "SourceId": 7,
+        "DestinationId": 2,
+        "GeneratedSeconds": 0,
+        "ApplicationPayloadBytes": 185,
+        "Dscp": 0,
+        "HopCount": 2,
+        "Traversal": [
+          7,
+          8,
+          4
+        ],
+        "NwkCustodyNodeId": 4,
+        "NwkCustodyId": 1
+      },
+      "second": {
+        "Id": 2873,
+        "SourceId": 7,
+        "DestinationId": 2,
+        "GeneratedSeconds": 0,
+        "ApplicationPayloadBytes": 185,
+        "Dscp": 0,
+        "HopCount": 2,
+        "Traversal": [
+          7,
+          8,
+          4
+        ],
+        "NwkCustodyNodeId": 4,
+        "NwkCustodyId": 2
+      }
+    },
+    "expected": {
+      "local_node": 4,
+      "fresh_tokens": true,
+      "application_identity_preserved": true
+    }
+  },
+  "owned": [
+    {
+      "Id": 2873,
+      "SourceId": 7,
+      "DestinationId": 2,
+      "GeneratedSeconds": 0,
+      "ApplicationPayloadBytes": 185,
+      "Dscp": 0,
+      "HopCount": 2,
+      "Traversal": [
+        7,
+        8,
+        4
+      ],
+      "NwkCustodyNodeId": 4,
+      "NwkCustodyId": 1
+    },
+    {
+      "Id": 2873,
+      "SourceId": 7,
+      "DestinationId": 2,
+      "GeneratedSeconds": 0,
+      "ApplicationPayloadBytes": 185,
+      "Dscp": 0,
+      "HopCount": 2,
+      "Traversal": [
+        7,
+        8,
+        4
+      ],
+      "NwkCustodyNodeId": 4,
+      "NwkCustodyId": 2
+    }
+  ],
+  "frames": [],
+  "feedback": [
+    {
+      "Id": 0,
+      "SourceId": 4,
+      "DestinationId": 8,
+      "GeneratedSeconds": 0,
+      "ApplicationPayloadBytes": 0,
+      "WirePayloadBytes": 41,
+      "RateKeyKbps": 8,
+      "Preamble": "short",
+      "TxPowerDbm": [],
+      "EnvelopeProfile": "bare",
+      "Kind": "DACK",
+      "Sequence": 1,
+      "Dscp": 7,
+      "AckRequired": false,
+      "HasAckWindow": true,
+      "AckBitmap": 0,
+      "DackBitmap": 1,
+      "App": {},
+      "RetryCount": 0
+    },
+    {
+      "Id": 0,
+      "SourceId": 4,
+      "DestinationId": 8,
+      "GeneratedSeconds": 0,
+      "ApplicationPayloadBytes": 0,
+      "WirePayloadBytes": 41,
+      "RateKeyKbps": 8,
+      "Preamble": "short",
+      "TxPowerDbm": [],
+      "EnvelopeProfile": "bare",
+      "Kind": "DACK",
+      "Sequence": 1,
+      "Dscp": 7,
+      "AckRequired": false,
+      "HasAckWindow": true,
+      "AckBitmap": 0,
+      "DackBitmap": 1,
+      "App": {},
+      "RetryCount": 0
+    }
+  ],
+  "release_callbacks": [],
+  "terminal_callbacks": [],
+  "delivery_callbacks": [],
+  "drop_callbacks": [],
+  "events": [
+    {
+      "time_s": 0,
+      "layer": "nwk",
+      "event": "network_enqueue",
+      "app": {
+        "Id": 2873,
+        "SourceId": 7,
+        "DestinationId": 2,
+        "GeneratedSeconds": 0,
+        "ApplicationPayloadBytes": 185,
+        "Dscp": 0,
+        "HopCount": 2,
+        "Traversal": [
+          7,
+          8,
+          4
+        ],
+        "NwkCustodyNodeId": 4,
+        "NwkCustodyId": 1
+      },
+      "details": {
+        "QueueDepth": 1
+      }
+    },
+    {
+      "time_s": 0,
+      "layer": "callback",
+      "event": "custody_accepted",
+      "app": {
+        "Id": 2873,
+        "SourceId": 7,
+        "DestinationId": 2,
+        "GeneratedSeconds": 0,
+        "ApplicationPayloadBytes": 185,
+        "Dscp": 0,
+        "HopCount": 2,
+        "Traversal": [
+          7,
+          8,
+          4
+        ],
+        "NwkCustodyNodeId": 4,
+        "NwkCustodyId": 1
+      },
+      "details": {
+        "previous_hop": 8
+      }
+    },
+    {
+      "time_s": 0,
+      "layer": "hop",
+      "event": "hop_receive",
+      "app": {
+        "Id": 0,
+        "SourceId": 8,
+        "DestinationId": 4,
+        "GeneratedSeconds": 0,
+        "ApplicationPayloadBytes": 185,
+        "WirePayloadBytes": 217,
+        "RateKeyKbps": 8,
+        "Preamble": "long",
+        "TxPowerDbm": [],
+        "EnvelopeProfile": "bare",
+        "Kind": "DATA",
+        "Sequence": 1,
+        "Dscp": 0,
+        "AckRequired": true,
+        "HasAckWindow": false,
+        "AckBitmap": 0,
+        "DackBitmap": 0,
+        "App": {
+          "Id": 2873,
+          "SourceId": 7,
+          "DestinationId": 2,
+          "GeneratedSeconds": 0,
+          "ApplicationPayloadBytes": 185,
+          "Dscp": 0,
+          "HopCount": 1,
+          "Traversal": [
+            7,
+            8
+          ],
+          "NwkCustodyNodeId": 8,
+          "NwkCustodyId": 999999
+        },
+        "RetryCount": 0
+      },
+      "details": {
+        "FirstReception": true,
+        "IsDack": true,
+        "LocalDelivery": false,
+        "NsdpBefore": 0,
+        "NsdpAfter": 1,
+        "TimeSeconds": 0
+      }
+    },
+    {
+      "time_s": 0,
+      "layer": "nwk",
+      "event": "network_enqueue",
+      "app": {
+        "Id": 2873,
+        "SourceId": 7,
+        "DestinationId": 2,
+        "GeneratedSeconds": 0,
+        "ApplicationPayloadBytes": 185,
+        "Dscp": 0,
+        "HopCount": 2,
+        "Traversal": [
+          7,
+          8,
+          4
+        ],
+        "NwkCustodyNodeId": 4,
+        "NwkCustodyId": 2
+      },
+      "details": {
+        "QueueDepth": 2
+      }
+    },
+    {
+      "time_s": 0,
+      "layer": "callback",
+      "event": "custody_accepted",
+      "app": {
+        "Id": 2873,
+        "SourceId": 7,
+        "DestinationId": 2,
+        "GeneratedSeconds": 0,
+        "ApplicationPayloadBytes": 185,
+        "Dscp": 0,
+        "HopCount": 2,
+        "Traversal": [
+          7,
+          8,
+          4
+        ],
+        "NwkCustodyNodeId": 4,
+        "NwkCustodyId": 2
+      },
+      "details": {
+        "previous_hop": 8
+      }
+    },
+    {
+      "time_s": 0,
+      "layer": "hop",
+      "event": "hop_receive",
+      "app": {
+        "Id": 0,
+        "SourceId": 8,
+        "DestinationId": 4,
+        "GeneratedSeconds": 0,
+        "ApplicationPayloadBytes": 185,
+        "WirePayloadBytes": 217,
+        "RateKeyKbps": 8,
+        "Preamble": "long",
+        "TxPowerDbm": [],
+        "EnvelopeProfile": "bare",
+        "Kind": "DATA",
+        "Sequence": 1,
+        "Dscp": 0,
+        "AckRequired": true,
+        "HasAckWindow": false,
+        "AckBitmap": 0,
+        "DackBitmap": 0,
+        "App": {
+          "Id": 2873,
+          "SourceId": 7,
+          "DestinationId": 2,
+          "GeneratedSeconds": 0,
+          "ApplicationPayloadBytes": 185,
+          "Dscp": 0,
+          "HopCount": 1,
+          "Traversal": [
+            7,
+            8
+          ],
+          "NwkCustodyNodeId": 8,
+          "NwkCustodyId": 999999
+        },
+        "RetryCount": 0
+      },
+      "details": {
+        "FirstReception": true,
+        "IsDack": true,
+        "LocalDelivery": false,
+        "NsdpBefore": 1,
+        "NsdpAfter": 2,
+        "TimeSeconds": 0
+      }
+    }
+  ],
+  "scope": "Real NWK/HOP objects; scripted decoded receives/sent inputs, no RF or physical MAC simulation"
+}

@@ -1,0 +1,238 @@
+{
+  "schema": "csr-autonomous-passive-native-capture-v1",
+  "status": "verified_exact_native_prefix",
+  "canonical_rows": 48919,
+  "canonical_fields": [
+    "schema",
+    "event_index",
+    "time_s",
+    "event",
+    "node",
+    "peer",
+    "packet_type",
+    "src",
+    "dst",
+    "sequence",
+    "rate_kbps",
+    "size_bytes",
+    "success",
+    "reason",
+    "pathloss_db",
+    "rx_power_dbm",
+    "noise_dbm",
+    "snr_db",
+    "jsr_db",
+    "header_errors",
+    "payload_errors",
+    "total_errors",
+    "route_cost",
+    "next_hop",
+    "security_count",
+    "reservation_slot",
+    "reservation_counter",
+    "detail",
+    "statistic",
+    "value"
+  ],
+  "stop_ns_exclusive": 330000000000,
+  "observation_rows": 110206,
+  "random_rows": 4430,
+  "receiver_history_rows": 70441,
+  "tx_count": 811,
+  "tx_children": 1495,
+  "event_counts": {
+    "receiver_boundary": 53454,
+    "receiver_state": 5274,
+    "timer_lifecycle": 5327,
+    "discovery_plaintext": 24,
+    "mac_draw": 928,
+    "mac_service": 676,
+    "mac_tx": 676,
+    "mac_tx_child": 1495,
+    "rx_signal_arrival": 1960,
+    "rx_sync_draw": 1960,
+    "rx_sync_gate": 1960,
+    "sync_change": 6386,
+    "rx_acquisition_candidate": 1342,
+    "rx_acquire": 1329,
+    "rx_error_interval": 4070,
+    "rx_preamble_end": 1658,
+    "rx_phy_decision": 1327,
+    "rx_child": 2509,
+    "rx_binomial_draw": 1542,
+    "rx_prior_stage": 631,
+    "node5_mac_service": 135,
+    "node5_mac_tx": 135,
+    "hop_feedback": 208,
+    "nwk_scan": 758,
+    "node4_ack_drop": 387,
+    "node5_hop_feedback": 49,
+    "node5_nwk_scan": 188,
+    "node4_ack_rx": 240,
+    "mac_pack_blocked": 164,
+    "nwk_submit": 180,
+    "node5_nwk_submit": 35,
+    "hop_gate": 5627,
+    "nwk_gate": 5627,
+    "hop_admit": 120,
+    "node5_hop_gate": 856,
+    "node5_nwk_gate": 856,
+    "node5_hop_admit": 26,
+    "relay_rx": 54,
+    "node5_relay_rx": 2,
+    "node5_mac_pack_blocked": 31
+  },
+  "draw_counts": [
+    {
+      "node": "1",
+      "purpose": "mac_slot",
+      "rows": 171
+    },
+    {
+      "node": "1",
+      "purpose": "phy_binomial",
+      "rows": 287
+    },
+    {
+      "node": "1",
+      "purpose": "sync_threshold",
+      "rows": 384
+    },
+    {
+      "node": "2",
+      "purpose": "mac_slot",
+      "rows": 130
+    },
+    {
+      "node": "2",
+      "purpose": "phy_binomial",
+      "rows": 156
+    },
+    {
+      "node": "2",
+      "purpose": "sync_threshold",
+      "rows": 216
+    },
+    {
+      "node": "3",
+      "purpose": "mac_slot",
+      "rows": 148
+    },
+    {
+      "node": "3",
+      "purpose": "phy_binomial",
+      "rows": 278
+    },
+    {
+      "node": "3",
+      "purpose": "sync_threshold",
+      "rows": 287
+    },
+    {
+      "node": "4",
+      "purpose": "mac_slot",
+      "rows": 137
+    },
+    {
+      "node": "4",
+      "purpose": "phy_binomial",
+      "rows": 332
+    },
+    {
+      "node": "4",
+      "purpose": "sync_threshold",
+      "rows": 397
+    },
+    {
+      "node": "5",
+      "purpose": "mac_slot",
+      "rows": 153
+    },
+    {
+      "node": "5",
+      "purpose": "phy_binomial",
+      "rows": 315
+    },
+    {
+      "node": "5",
+      "purpose": "sync_threshold",
+      "rows": 401
+    },
+    {
+      "node": "7",
+      "purpose": "mac_slot",
+      "rows": 78
+    },
+    {
+      "node": "7",
+      "purpose": "sync_threshold",
+      "rows": 98
+    },
+    {
+      "node": "8",
+      "purpose": "mac_slot",
+      "rows": 111
+    },
+    {
+      "node": "8",
+      "purpose": "phy_binomial",
+      "rows": 174
+    },
+    {
+      "node": "8",
+      "purpose": "sync_threshold",
+      "rows": 177
+    }
+  ],
+  "source_pin": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "engine_pin": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+  "sha256": {
+    "autonomous/native_capture/fixture/native_s132_prefix_0_330.csv.gz": "6819889725eb891112b57dbc9f8e63c35af7e87fcf64f77c6dbe3f490d3c63a8",
+    "autonomous/native_capture/run/ns3-trace.csv": "bbced35b9d6f850bd22640e5deef825db5659c2b622c4befe758cf019cdf88fa",
+    "autonomous/native_capture/run/observations.tsv": "3156069106cf3db451dce3fca4c9de91e09b5c9da07dd9ccc8d84615957de7f6",
+    "autonomous/native_capture/fixture/random_draws.csv": "6ab5f1e03a77de23bd11f5920d0acb570183a386d1b91fcb91368aeec0042838",
+    "autonomous/native_capture/fixture/receiver_history.csv": "d1a075e6895ef3725f5b0081c9137a62c2b3768248f7ed1802776de2710876e1",
+    "autonomous/native_capture/fixture/tx_signatures.csv": "40f51355e02c0950e7608d9eeb6efb590a539bdef37c0381780db5fc086ad5e1",
+    "autonomous/native_capture/prepare_overlay.py": "82446eb877b7cf853b178448bdcafe96d859f3991ec09f022e443e3d402b96dc",
+    "autonomous/native_capture/base_prepare_overlay.py": "04a6d555177a44638aeba7863e7ed977e69173c692e1d14afa92422147f7b425"
+  },
+  "limitations": [
+    "Native EventId IDs have no cross-engine identity; compare cause,deadline and state.",
+    "Receiver history is reference-only; coupled MATLAB test must not inject it.",
+    "MAC integer values are returned inclusive discrete samples, not raw uniforms.",
+    "SYNC values are sampled dB thresholds, not standard-normal samples.",
+    "MAC slots/holdoff callback internals remain in canonical trace; extra lifecycle captures device timers.",
+    "No network parity or MATLAB execution claim is made by this native gate."
+  ],
+  "source_and_build_sha256": {
+    "autonomous/native_capture/run_capture.py": "a65a1cdde9dc7926a0da9d6579be4b6921eb1b9bded88f90361725bbac1ca7ad",
+    "autonomous/native_capture/normalize.py": "4d789713feb0dc92534aa553584fa6d9132d6f542060860b00c3a4a63e1251fe",
+    "autonomous/native_capture/base_prepare_overlay.py": "04a6d555177a44638aeba7863e7ed977e69173c692e1d14afa92422147f7b425",
+    "autonomous/native_capture/prepare_overlay.py": "82446eb877b7cf853b178448bdcafe96d859f3991ec09f022e443e3d402b96dc",
+    "autonomous/native_capture/build_capture.py": "bd890316f0dce95c422124fdcea016e6a4a9f46d823ee3e54f0e3495e2394365",
+    "autonomous/native_capture/source5-observer.h": "76e4149619df3f5b36810f359c77dc74114d81fc30b441a27913da807190a80e",
+    "autonomous/native_capture/mac-replay-hooks.h": "7b1982d8d49a22cba53668787c9e63129d1df4420b6a189ceb2e16bfd786d3ea",
+    "autonomous/native_capture/run/overlay/ns3/csr-hello-header.h": "741ccff278e1694ea40c4c6c5b1cb14a3a6034864d0328c6a2e04420935fb7d4",
+    "autonomous/native_capture/run/overlay/ns3/csr-opnet-ber-tables.h": "8034348552990ce6a0aa0fd673a319299762fbd75c402de59a64ac160eb7cfb5",
+    "autonomous/native_capture/run/overlay/ns3/csr-arl-routing-message.h": "0eddd945d264965c90bcea60d73b14cab2159bc0664e0e526d38e50b0d363a8c",
+    "autonomous/native_capture/run/overlay/ns3/csr-wire-format.h": "eb9097e1588c8e235a06cec5f0b28c13a22a3f3c88c6b8581e4186d69fc94c2f",
+    "autonomous/native_capture/run/overlay/ns3/csr-legacy-crypto.h": "ce2e76387addc44e63601b8638d066b484dbd13f301bc09882bd21959a118306",
+    "autonomous/native_capture/run/overlay/ns3/csr-net-device.h": "c8bad7e998483530320487d5873192485fa63b9ee935ed0d5b4224af2f3a103d",
+    "autonomous/native_capture/run/overlay/ns3/csr-hop-layer.h": "d7dc1705fb7f0998a792b4ac76f1210cb8b8afbd550ba3e057185f24e3acf0d8",
+    "autonomous/native_capture/run/overlay/ns3/csr-opnet-packet-model.h": "59eb4ccd19d109f623fb8ea4d9ad23b2d936f081268261c100231c26cb2dccc6",
+    "autonomous/native_capture/run/overlay/ns3/source5-observer.h": "40661c03a51a8ec922e2662570a437492a5cc3543355c1ed814205e6367d14b1",
+    "autonomous/native_capture/run/overlay/ns3/csr-nwk-layer.h": "08e0c44570eac3315643e086458694d432a24e4d99f7744aa8e56d16f434aae6",
+    "autonomous/native_capture/run/overlay/ns3/csr-differential-trace.h": "78b443af6e91e927c398450ef71245e815ba4bd02ad9369a06fd95f98e2dff84",
+    "autonomous/native_capture/run/overlay/ns3/csr-common.h": "f1e0a962862ef1cc5a6994f24988858a2bea70385ce02b1264285de194fe6ae1",
+    "autonomous/native_capture/run/overlay/ns3/csr-mac-core.h": "4c1e7a7d655e594cf0abf4e303ffd1d4f8faab52a6a369258c57b2db471bc04d",
+    "autonomous/native_capture/run/overlay/ns3/csr-opnet-envelope.h": "e67b526126907f43f2ee4199552c583ac9c2a0f927cf942fe76aa328900e001a",
+    "autonomous/native_capture/run/overlay/ns3/csr-hop-security.h": "9bca9c9a6e4ae04a20a3309ac8a8787589ac4ad65785cbf57fbe20c5e8e37d5e",
+    "autonomous/native_capture/run/overlay/ns3/mac-replay-hooks.h": "a759ff8565d72faebbaa3764b71440aa58f7b17ed61346f22805fb4b76a745a7",
+    "autonomous/native_capture/run/overlay/ns3/csr-phy-model.h": "a524e392e9e06a7499cf29b41db9de3a0a43f328b3e211f21883458013330af4",
+    "autonomous/native_capture/vendor/capture.cc": "b859a78a9e260e87689126569aeb6693861ffb78f28da2d296ff9eaa4287cc4d",
+    "autonomous/native_capture/fixture/scenario_s132.csv": "fa45217f8631f34d203580842d8a1a12cb18c53a3efbe0b702b2e17aaeb30d48",
+    "autonomous/native_capture/compile-command.json": "589b33a605f630d8998485861e6c8f734e58abe07b03b4e839fb66e4b180747b",
+    "autonomous/native_capture/command.json": "41390f744e99e4d918793140809c34642dfd70eb3b558b7e0672bcf4e726d36a",
+    "autonomous/native_capture/native-build.json": "e4bc375f516d4b21b20e1fea9a9685bdc4c26f98338b27389b08ec3a3ffcdad9"
+  }
+}

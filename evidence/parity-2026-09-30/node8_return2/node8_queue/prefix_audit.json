@@ -1,0 +1,1940 @@
+{
+  "schema": "csr-node8-partial-prefix-audit-v1",
+  "status": "node8_semantic_prefix_pass",
+  "completed_1200_second_run": false,
+  "stop_ns_exclusive": 895115000000,
+  "first_tx_context_divergence_node": 4,
+  "scope": "Observed complete prefix strictly before the failed TX context at 895.115 s; no extrapolation.",
+  "checks": {
+    "nwk_arrival_identity_order_time": {
+      "equal": true,
+      "matlab_count": 269,
+      "native_count": 269,
+      "first_difference": null
+    },
+    "hop_handoff_identity_order_peer_sequence": {
+      "equal": true,
+      "matlab_count": 231,
+      "native_count": 231,
+      "first_difference": null
+    },
+    "custody_release_identity_order_time_reason": {
+      "equal": true,
+      "matlab_count": 229,
+      "native_count": 229,
+      "first_difference": null
+    },
+    "ordered_queue_and_custody_checkpoints_equal": true,
+    "final_ordered_queue_and_custody_equal": true
+  },
+  "matlab": {
+    "events": {
+      "application_state_checks": 29756,
+      "network_enqueue": 269,
+      "hop_admit": 231,
+      "post_event_capacity_checks": 453,
+      "network_submit": 231,
+      "receive_nsdp_checks": 152,
+      "custody_release_reason_ack": 32,
+      "network_custody_release": 229,
+      "hop_ack": 32,
+      "custody_release_reason_dack": 193,
+      "hop_dack": 193,
+      "hop_dack_expired": 190,
+      "custody_release_reason_retry_exhausted": 4,
+      "hop_failed": 4
+    },
+    "queue_checkpoints": {
+      "400000000000": {
+        "waiting": 42,
+        "waiting_by_source": {
+          "8": 16,
+          "7": 26
+        },
+        "ordered_source_attempts": [
+          [
+            8,
+            2609
+          ],
+          [
+            8,
+            2610
+          ],
+          [
+            7,
+            270
+          ],
+          [
+            7,
+            343
+          ],
+          [
+            7,
+            390
+          ],
+          [
+            7,
+            441
+          ],
+          [
+            7,
+            507
+          ],
+          [
+            7,
+            540
+          ],
+          [
+            7,
+            581
+          ],
+          [
+            7,
+            612
+          ],
+          [
+            7,
+            681
+          ],
+          [
+            7,
+            772
+          ],
+          [
+            7,
+            773
+          ],
+          [
+            7,
+            993
+          ],
+          [
+            7,
+            1968
+          ],
+          [
+            7,
+            1986
+          ],
+          [
+            7,
+            2717
+          ],
+          [
+            7,
+            2752
+          ],
+          [
+            7,
+            1784
+          ],
+          [
+            7,
+            1813
+          ],
+          [
+            7,
+            2772
+          ],
+          [
+            8,
+            3387
+          ],
+          [
+            8,
+            3419
+          ],
+          [
+            8,
+            3486
+          ],
+          [
+            8,
+            3487
+          ],
+          [
+            8,
+            3527
+          ],
+          [
+            8,
+            3564
+          ],
+          [
+            8,
+            3587
+          ],
+          [
+            8,
+            3658
+          ],
+          [
+            8,
+            3684
+          ],
+          [
+            7,
+            2819
+          ],
+          [
+            7,
+            2871
+          ],
+          [
+            7,
+            2872
+          ],
+          [
+            7,
+            2873
+          ],
+          [
+            7,
+            2906
+          ],
+          [
+            7,
+            2820
+          ],
+          [
+            7,
+            2907
+          ],
+          [
+            8,
+            4429
+          ],
+          [
+            8,
+            4459
+          ],
+          [
+            8,
+            4698
+          ],
+          [
+            8,
+            4732
+          ],
+          [
+            8,
+            4916
+          ]
+        ],
+        "custody_count": 42,
+        "custody_by_source": {
+          "8": 16,
+          "7": 26
+        }
+      },
+      "600000000000": {
+        "waiting": 37,
+        "waiting_by_source": {
+          "7": 21,
+          "8": 16
+        },
+        "ordered_source_attempts": [
+          [
+            7,
+            6591
+          ],
+          [
+            7,
+            6421
+          ],
+          [
+            8,
+            10020
+          ],
+          [
+            8,
+            10041
+          ],
+          [
+            8,
+            10081
+          ],
+          [
+            8,
+            10082
+          ],
+          [
+            8,
+            10136
+          ],
+          [
+            7,
+            7235
+          ],
+          [
+            7,
+            7253
+          ],
+          [
+            7,
+            7353
+          ],
+          [
+            7,
+            7607
+          ],
+          [
+            8,
+            11157
+          ],
+          [
+            8,
+            11199
+          ],
+          [
+            7,
+            7875
+          ],
+          [
+            7,
+            7937
+          ],
+          [
+            7,
+            8271
+          ],
+          [
+            7,
+            8396
+          ],
+          [
+            7,
+            8272
+          ],
+          [
+            7,
+            8643
+          ],
+          [
+            7,
+            8732
+          ],
+          [
+            7,
+            9303
+          ],
+          [
+            8,
+            13085
+          ],
+          [
+            7,
+            9351
+          ],
+          [
+            8,
+            13287
+          ],
+          [
+            8,
+            13288
+          ],
+          [
+            8,
+            13334
+          ],
+          [
+            7,
+            9769
+          ],
+          [
+            7,
+            9424
+          ],
+          [
+            8,
+            13751
+          ],
+          [
+            7,
+            9910
+          ],
+          [
+            8,
+            14404
+          ],
+          [
+            8,
+            14405
+          ],
+          [
+            8,
+            14479
+          ],
+          [
+            7,
+            10349
+          ],
+          [
+            8,
+            14573
+          ],
+          [
+            7,
+            10372
+          ],
+          [
+            7,
+            10463
+          ]
+        ],
+        "custody_count": 37,
+        "custody_by_source": {
+          "7": 21,
+          "8": 16
+        }
+      },
+      "675000000000": {
+        "waiting": 33,
+        "waiting_by_source": {
+          "7": 18,
+          "8": 15
+        },
+        "ordered_source_attempts": [
+          [
+            7,
+            9910
+          ],
+          [
+            8,
+            14404
+          ],
+          [
+            8,
+            14405
+          ],
+          [
+            8,
+            14479
+          ],
+          [
+            7,
+            10349
+          ],
+          [
+            8,
+            14573
+          ],
+          [
+            7,
+            10372
+          ],
+          [
+            7,
+            10463
+          ],
+          [
+            7,
+            10794
+          ],
+          [
+            7,
+            11375
+          ],
+          [
+            8,
+            15554
+          ],
+          [
+            7,
+            11410
+          ],
+          [
+            7,
+            11497
+          ],
+          [
+            8,
+            15761
+          ],
+          [
+            8,
+            15762
+          ],
+          [
+            8,
+            15788
+          ],
+          [
+            7,
+            11943
+          ],
+          [
+            8,
+            15947
+          ],
+          [
+            7,
+            12447
+          ],
+          [
+            7,
+            12448
+          ],
+          [
+            8,
+            16617
+          ],
+          [
+            7,
+            12757
+          ],
+          [
+            8,
+            16849
+          ],
+          [
+            7,
+            13197
+          ],
+          [
+            7,
+            13505
+          ],
+          [
+            7,
+            13583
+          ],
+          [
+            7,
+            14075
+          ],
+          [
+            8,
+            17929
+          ],
+          [
+            7,
+            14537
+          ],
+          [
+            8,
+            18149
+          ],
+          [
+            8,
+            18150
+          ],
+          [
+            8,
+            18183
+          ],
+          [
+            7,
+            14621
+          ]
+        ],
+        "custody_count": 35,
+        "custody_by_source": {
+          "7": 19,
+          "8": 16
+        }
+      },
+      "895115000000": {
+        "waiting": 38,
+        "waiting_by_source": {
+          "8": 15,
+          "7": 23
+        },
+        "ordered_source_attempts": [
+          [
+            8,
+            23411
+          ],
+          [
+            8,
+            23554
+          ],
+          [
+            8,
+            23647
+          ],
+          [
+            7,
+            18969
+          ],
+          [
+            7,
+            19842
+          ],
+          [
+            7,
+            20028
+          ],
+          [
+            7,
+            19843
+          ],
+          [
+            8,
+            24464
+          ],
+          [
+            8,
+            24596
+          ],
+          [
+            8,
+            24644
+          ],
+          [
+            8,
+            24678
+          ],
+          [
+            7,
+            20618
+          ],
+          [
+            8,
+            24955
+          ],
+          [
+            7,
+            20920
+          ],
+          [
+            7,
+            21075
+          ],
+          [
+            7,
+            20874
+          ],
+          [
+            7,
+            21663
+          ],
+          [
+            8,
+            25907
+          ],
+          [
+            7,
+            21919
+          ],
+          [
+            7,
+            22115
+          ],
+          [
+            7,
+            21947
+          ],
+          [
+            8,
+            26556
+          ],
+          [
+            7,
+            22688
+          ],
+          [
+            8,
+            26991
+          ],
+          [
+            8,
+            27035
+          ],
+          [
+            8,
+            27132
+          ],
+          [
+            7,
+            22988
+          ],
+          [
+            7,
+            23066
+          ],
+          [
+            7,
+            23166
+          ],
+          [
+            8,
+            27632
+          ],
+          [
+            7,
+            23720
+          ],
+          [
+            7,
+            24132
+          ],
+          [
+            7,
+            24232
+          ],
+          [
+            7,
+            24208
+          ],
+          [
+            8,
+            28745
+          ],
+          [
+            7,
+            24763
+          ],
+          [
+            7,
+            25301
+          ],
+          [
+            7,
+            25244
+          ]
+        ],
+        "custody_count": 40,
+        "custody_by_source": {
+          "7": 24,
+          "8": 16
+        }
+      }
+    },
+    "final": {
+      "waiting": 38,
+      "waiting_by_source": {
+        "8": 15,
+        "7": 23
+      },
+      "ordered_source_attempts": [
+        [
+          8,
+          23411
+        ],
+        [
+          8,
+          23554
+        ],
+        [
+          8,
+          23647
+        ],
+        [
+          7,
+          18969
+        ],
+        [
+          7,
+          19842
+        ],
+        [
+          7,
+          20028
+        ],
+        [
+          7,
+          19843
+        ],
+        [
+          8,
+          24464
+        ],
+        [
+          8,
+          24596
+        ],
+        [
+          8,
+          24644
+        ],
+        [
+          8,
+          24678
+        ],
+        [
+          7,
+          20618
+        ],
+        [
+          8,
+          24955
+        ],
+        [
+          7,
+          20920
+        ],
+        [
+          7,
+          21075
+        ],
+        [
+          7,
+          20874
+        ],
+        [
+          7,
+          21663
+        ],
+        [
+          8,
+          25907
+        ],
+        [
+          7,
+          21919
+        ],
+        [
+          7,
+          22115
+        ],
+        [
+          7,
+          21947
+        ],
+        [
+          8,
+          26556
+        ],
+        [
+          7,
+          22688
+        ],
+        [
+          8,
+          26991
+        ],
+        [
+          8,
+          27035
+        ],
+        [
+          8,
+          27132
+        ],
+        [
+          7,
+          22988
+        ],
+        [
+          7,
+          23066
+        ],
+        [
+          7,
+          23166
+        ],
+        [
+          8,
+          27632
+        ],
+        [
+          7,
+          23720
+        ],
+        [
+          7,
+          24132
+        ],
+        [
+          7,
+          24232
+        ],
+        [
+          7,
+          24208
+        ],
+        [
+          8,
+          28745
+        ],
+        [
+          7,
+          24763
+        ],
+        [
+          7,
+          25301
+        ],
+        [
+          7,
+          25244
+        ]
+      ],
+      "custody_count": 40,
+      "custody_by_source": {
+        "7": 24,
+        "8": 16
+      }
+    },
+    "live_hop_owners": 2,
+    "dack_holds": 3
+  },
+  "native": {
+    "events": {
+      "application_state_checks": 29756,
+      "nwk_enqueue": 269,
+      "candidate_queue_checks": 34686,
+      "hop_admission": 231,
+      "hop_completion": 229
+    },
+    "queue_checkpoints": {
+      "400000000000": {
+        "waiting": 42,
+        "waiting_by_source": {
+          "8": 16,
+          "7": 26
+        },
+        "ordered_source_attempts": [
+          [
+            8,
+            2609
+          ],
+          [
+            8,
+            2610
+          ],
+          [
+            7,
+            270
+          ],
+          [
+            7,
+            343
+          ],
+          [
+            7,
+            390
+          ],
+          [
+            7,
+            441
+          ],
+          [
+            7,
+            507
+          ],
+          [
+            7,
+            540
+          ],
+          [
+            7,
+            581
+          ],
+          [
+            7,
+            612
+          ],
+          [
+            7,
+            681
+          ],
+          [
+            7,
+            772
+          ],
+          [
+            7,
+            773
+          ],
+          [
+            7,
+            993
+          ],
+          [
+            7,
+            1968
+          ],
+          [
+            7,
+            1986
+          ],
+          [
+            7,
+            2717
+          ],
+          [
+            7,
+            2752
+          ],
+          [
+            7,
+            1784
+          ],
+          [
+            7,
+            1813
+          ],
+          [
+            7,
+            2772
+          ],
+          [
+            8,
+            3387
+          ],
+          [
+            8,
+            3419
+          ],
+          [
+            8,
+            3486
+          ],
+          [
+            8,
+            3487
+          ],
+          [
+            8,
+            3527
+          ],
+          [
+            8,
+            3564
+          ],
+          [
+            8,
+            3587
+          ],
+          [
+            8,
+            3658
+          ],
+          [
+            8,
+            3684
+          ],
+          [
+            7,
+            2819
+          ],
+          [
+            7,
+            2871
+          ],
+          [
+            7,
+            2872
+          ],
+          [
+            7,
+            2873
+          ],
+          [
+            7,
+            2906
+          ],
+          [
+            7,
+            2820
+          ],
+          [
+            7,
+            2907
+          ],
+          [
+            8,
+            4429
+          ],
+          [
+            8,
+            4459
+          ],
+          [
+            8,
+            4698
+          ],
+          [
+            8,
+            4732
+          ],
+          [
+            8,
+            4916
+          ]
+        ],
+        "custody_count": 42,
+        "custody_by_source": {
+          "8": 16,
+          "7": 26
+        }
+      },
+      "600000000000": {
+        "waiting": 37,
+        "waiting_by_source": {
+          "7": 21,
+          "8": 16
+        },
+        "ordered_source_attempts": [
+          [
+            7,
+            6591
+          ],
+          [
+            7,
+            6421
+          ],
+          [
+            8,
+            10020
+          ],
+          [
+            8,
+            10041
+          ],
+          [
+            8,
+            10081
+          ],
+          [
+            8,
+            10082
+          ],
+          [
+            8,
+            10136
+          ],
+          [
+            7,
+            7235
+          ],
+          [
+            7,
+            7253
+          ],
+          [
+            7,
+            7353
+          ],
+          [
+            7,
+            7607
+          ],
+          [
+            8,
+            11157
+          ],
+          [
+            8,
+            11199
+          ],
+          [
+            7,
+            7875
+          ],
+          [
+            7,
+            7937
+          ],
+          [
+            7,
+            8271
+          ],
+          [
+            7,
+            8396
+          ],
+          [
+            7,
+            8272
+          ],
+          [
+            7,
+            8643
+          ],
+          [
+            7,
+            8732
+          ],
+          [
+            7,
+            9303
+          ],
+          [
+            8,
+            13085
+          ],
+          [
+            7,
+            9351
+          ],
+          [
+            8,
+            13287
+          ],
+          [
+            8,
+            13288
+          ],
+          [
+            8,
+            13334
+          ],
+          [
+            7,
+            9769
+          ],
+          [
+            7,
+            9424
+          ],
+          [
+            8,
+            13751
+          ],
+          [
+            7,
+            9910
+          ],
+          [
+            8,
+            14404
+          ],
+          [
+            8,
+            14405
+          ],
+          [
+            8,
+            14479
+          ],
+          [
+            7,
+            10349
+          ],
+          [
+            8,
+            14573
+          ],
+          [
+            7,
+            10372
+          ],
+          [
+            7,
+            10463
+          ]
+        ],
+        "custody_count": 37,
+        "custody_by_source": {
+          "7": 21,
+          "8": 16
+        }
+      },
+      "675000000000": {
+        "waiting": 33,
+        "waiting_by_source": {
+          "7": 18,
+          "8": 15
+        },
+        "ordered_source_attempts": [
+          [
+            7,
+            9910
+          ],
+          [
+            8,
+            14404
+          ],
+          [
+            8,
+            14405
+          ],
+          [
+            8,
+            14479
+          ],
+          [
+            7,
+            10349
+          ],
+          [
+            8,
+            14573
+          ],
+          [
+            7,
+            10372
+          ],
+          [
+            7,
+            10463
+          ],
+          [
+            7,
+            10794
+          ],
+          [
+            7,
+            11375
+          ],
+          [
+            8,
+            15554
+          ],
+          [
+            7,
+            11410
+          ],
+          [
+            7,
+            11497
+          ],
+          [
+            8,
+            15761
+          ],
+          [
+            8,
+            15762
+          ],
+          [
+            8,
+            15788
+          ],
+          [
+            7,
+            11943
+          ],
+          [
+            8,
+            15947
+          ],
+          [
+            7,
+            12447
+          ],
+          [
+            7,
+            12448
+          ],
+          [
+            8,
+            16617
+          ],
+          [
+            7,
+            12757
+          ],
+          [
+            8,
+            16849
+          ],
+          [
+            7,
+            13197
+          ],
+          [
+            7,
+            13505
+          ],
+          [
+            7,
+            13583
+          ],
+          [
+            7,
+            14075
+          ],
+          [
+            8,
+            17929
+          ],
+          [
+            7,
+            14537
+          ],
+          [
+            8,
+            18149
+          ],
+          [
+            8,
+            18150
+          ],
+          [
+            8,
+            18183
+          ],
+          [
+            7,
+            14621
+          ]
+        ],
+        "custody_count": 35,
+        "custody_by_source": {
+          "7": 19,
+          "8": 16
+        }
+      },
+      "895115000000": {
+        "waiting": 38,
+        "waiting_by_source": {
+          "8": 15,
+          "7": 23
+        },
+        "ordered_source_attempts": [
+          [
+            8,
+            23411
+          ],
+          [
+            8,
+            23554
+          ],
+          [
+            8,
+            23647
+          ],
+          [
+            7,
+            18969
+          ],
+          [
+            7,
+            19842
+          ],
+          [
+            7,
+            20028
+          ],
+          [
+            7,
+            19843
+          ],
+          [
+            8,
+            24464
+          ],
+          [
+            8,
+            24596
+          ],
+          [
+            8,
+            24644
+          ],
+          [
+            8,
+            24678
+          ],
+          [
+            7,
+            20618
+          ],
+          [
+            8,
+            24955
+          ],
+          [
+            7,
+            20920
+          ],
+          [
+            7,
+            21075
+          ],
+          [
+            7,
+            20874
+          ],
+          [
+            7,
+            21663
+          ],
+          [
+            8,
+            25907
+          ],
+          [
+            7,
+            21919
+          ],
+          [
+            7,
+            22115
+          ],
+          [
+            7,
+            21947
+          ],
+          [
+            8,
+            26556
+          ],
+          [
+            7,
+            22688
+          ],
+          [
+            8,
+            26991
+          ],
+          [
+            8,
+            27035
+          ],
+          [
+            8,
+            27132
+          ],
+          [
+            7,
+            22988
+          ],
+          [
+            7,
+            23066
+          ],
+          [
+            7,
+            23166
+          ],
+          [
+            8,
+            27632
+          ],
+          [
+            7,
+            23720
+          ],
+          [
+            7,
+            24132
+          ],
+          [
+            7,
+            24232
+          ],
+          [
+            7,
+            24208
+          ],
+          [
+            8,
+            28745
+          ],
+          [
+            7,
+            24763
+          ],
+          [
+            7,
+            25301
+          ],
+          [
+            7,
+            25244
+          ]
+        ],
+        "custody_count": 40,
+        "custody_by_source": {
+          "7": 24,
+          "8": 16
+        }
+      }
+    },
+    "final": {
+      "waiting": 38,
+      "waiting_by_source": {
+        "8": 15,
+        "7": 23
+      },
+      "ordered_source_attempts": [
+        [
+          8,
+          23411
+        ],
+        [
+          8,
+          23554
+        ],
+        [
+          8,
+          23647
+        ],
+        [
+          7,
+          18969
+        ],
+        [
+          7,
+          19842
+        ],
+        [
+          7,
+          20028
+        ],
+        [
+          7,
+          19843
+        ],
+        [
+          8,
+          24464
+        ],
+        [
+          8,
+          24596
+        ],
+        [
+          8,
+          24644
+        ],
+        [
+          8,
+          24678
+        ],
+        [
+          7,
+          20618
+        ],
+        [
+          8,
+          24955
+        ],
+        [
+          7,
+          20920
+        ],
+        [
+          7,
+          21075
+        ],
+        [
+          7,
+          20874
+        ],
+        [
+          7,
+          21663
+        ],
+        [
+          8,
+          25907
+        ],
+        [
+          7,
+          21919
+        ],
+        [
+          7,
+          22115
+        ],
+        [
+          7,
+          21947
+        ],
+        [
+          8,
+          26556
+        ],
+        [
+          7,
+          22688
+        ],
+        [
+          8,
+          26991
+        ],
+        [
+          8,
+          27035
+        ],
+        [
+          8,
+          27132
+        ],
+        [
+          7,
+          22988
+        ],
+        [
+          7,
+          23066
+        ],
+        [
+          7,
+          23166
+        ],
+        [
+          8,
+          27632
+        ],
+        [
+          7,
+          23720
+        ],
+        [
+          7,
+          24132
+        ],
+        [
+          7,
+          24232
+        ],
+        [
+          7,
+          24208
+        ],
+        [
+          8,
+          28745
+        ],
+        [
+          7,
+          24763
+        ],
+        [
+          7,
+          25301
+        ],
+        [
+          7,
+          25244
+        ]
+      ],
+      "custody_count": 40,
+      "custody_by_source": {
+        "7": 24,
+        "8": 16
+      }
+    }
+  },
+  "handoff_matlab_minus_native_time_ns_counts": {
+    "-28": 1,
+    "0": 230
+  },
+  "handoff_timing_differences": [
+    {
+      "ordinal_1based": 1,
+      "matlab": [
+        300000000000,
+        [
+          8,
+          1
+        ],
+        2,
+        14
+      ],
+      "native": [
+        300000000028,
+        [
+          8,
+          1
+        ],
+        2,
+        14
+      ],
+      "delta_ns": -28
+    }
+  ],
+  "timing_policy": "The first local handoff retains its previously known -28 ns delta; this audit changes no comparator tolerance. All later node8 handoff times match.",
+  "application_accounting": {
+    "admitted_identity_order_time_comparison": {
+      "equal": true,
+      "matlab_count": 1582,
+      "native_count": 1582,
+      "first_difference": null
+    },
+    "delivered_identity_order_time_comparison": {
+      "equal": true,
+      "matlab_count": 1229,
+      "native_count": 1229,
+      "first_difference": null
+    },
+    "node8_application_snapshot_comparison": {
+      "equal": true,
+      "matlab_count": 29756,
+      "native_count": 29756,
+      "first_difference": null
+    },
+    "attempts": {
+      "matlab": {
+        "2": 29756,
+        "3": 29756,
+        "4": 29756,
+        "5": 29756,
+        "7": 29756,
+        "8": 29756
+      },
+      "native": {
+        "2": 29756,
+        "3": 29756,
+        "4": 29756,
+        "5": 29756,
+        "7": 29756,
+        "8": 29756
+      }
+    },
+    "source_populations": [
+      {
+        "source": 2,
+        "matlab": {
+          "attempted": 29756,
+          "admitted": 84,
+          "delivered_unique": 41,
+          "delivered_raw_rows": 41,
+          "admitted_unresolved_at_cutoff": 43,
+          "delivered_mean_latency_s": 289.8447379152683,
+          "first_delivery_s": 436.979811086,
+          "unresolved_with_prior_provisional_drop": 6,
+          "unresolved_without_prior_drop": 37,
+          "delivered_with_prior_provisional_drop": 8
+        },
+        "native": {
+          "attempted": 29756,
+          "admitted": 84,
+          "delivered_unique": 41,
+          "delivered_raw_rows": 41,
+          "admitted_unresolved_at_cutoff": 43,
+          "delivered_mean_latency_s": 289.8447379152683,
+          "first_delivery_s": 436.979811086
+        }
+      },
+      {
+        "source": 3,
+        "matlab": {
+          "attempted": 29756,
+          "admitted": 919,
+          "delivered_unique": 903,
+          "delivered_raw_rows": 903,
+          "admitted_unresolved_at_cutoff": 16,
+          "delivered_mean_latency_s": 10.200469715981175,
+          "first_delivery_s": 301.602268077,
+          "unresolved_with_prior_provisional_drop": 0,
+          "unresolved_without_prior_drop": 16,
+          "delivered_with_prior_provisional_drop": 41
+        },
+        "native": {
+          "attempted": 29756,
+          "admitted": 919,
+          "delivered_unique": 903,
+          "delivered_raw_rows": 903,
+          "admitted_unresolved_at_cutoff": 16,
+          "delivered_mean_latency_s": 10.200469715981175,
+          "first_delivery_s": 301.602268077
+        }
+      },
+      {
+        "source": 4,
+        "matlab": {
+          "attempted": 29756,
+          "admitted": 70,
+          "delivered_unique": 34,
+          "delivered_raw_rows": 34,
+          "admitted_unresolved_at_cutoff": 36,
+          "delivered_mean_latency_s": 194.67972285070587,
+          "first_delivery_s": 329.183811086,
+          "unresolved_with_prior_provisional_drop": 11,
+          "unresolved_without_prior_drop": 25,
+          "delivered_with_prior_provisional_drop": 7
+        },
+        "native": {
+          "attempted": 29756,
+          "admitted": 70,
+          "delivered_unique": 34,
+          "delivered_raw_rows": 34,
+          "admitted_unresolved_at_cutoff": 36,
+          "delivered_mean_latency_s": 194.67972285070587,
+          "first_delivery_s": 329.183811086
+        }
+      },
+      {
+        "source": 5,
+        "matlab": {
+          "attempted": 29756,
+          "admitted": 220,
+          "delivered_unique": 203,
+          "delivered_raw_rows": 203,
+          "admitted_unresolved_at_cutoff": 17,
+          "delivered_mean_latency_s": 43.14976675102463,
+          "first_delivery_s": 304.561811086,
+          "unresolved_with_prior_provisional_drop": 2,
+          "unresolved_without_prior_drop": 15,
+          "delivered_with_prior_provisional_drop": 26
+        },
+        "native": {
+          "attempted": 29756,
+          "admitted": 220,
+          "delivered_unique": 203,
+          "delivered_raw_rows": 203,
+          "admitted_unresolved_at_cutoff": 17,
+          "delivered_mean_latency_s": 43.14976675102463,
+          "first_delivery_s": 304.561811086
+        }
+      },
+      {
+        "source": 7,
+        "matlab": {
+          "attempted": 29756,
+          "admitted": 172,
+          "delivered_unique": 20,
+          "delivered_raw_rows": 20,
+          "admitted_unresolved_at_cutoff": 152,
+          "delivered_mean_latency_s": 474.504011086,
+          "first_delivery_s": 733.288811086,
+          "unresolved_with_prior_provisional_drop": 16,
+          "unresolved_without_prior_drop": 136,
+          "delivered_with_prior_provisional_drop": 4
+        },
+        "native": {
+          "attempted": 29756,
+          "admitted": 172,
+          "delivered_unique": 20,
+          "delivered_raw_rows": 20,
+          "admitted_unresolved_at_cutoff": 152,
+          "delivered_mean_latency_s": 474.504011086,
+          "first_delivery_s": 733.288811086
+        }
+      },
+      {
+        "source": 8,
+        "matlab": {
+          "attempted": 29756,
+          "admitted": 117,
+          "delivered_unique": 28,
+          "delivered_raw_rows": 28,
+          "admitted_unresolved_at_cutoff": 89,
+          "delivered_mean_latency_s": 459.90941822885713,
+          "first_delivery_s": 699.254811086,
+          "unresolved_with_prior_provisional_drop": 9,
+          "unresolved_without_prior_drop": 80,
+          "delivered_with_prior_provisional_drop": 7
+        },
+        "native": {
+          "attempted": 29756,
+          "admitted": 117,
+          "delivered_unique": 28,
+          "delivered_raw_rows": 28,
+          "admitted_unresolved_at_cutoff": 89,
+          "delivered_mean_latency_s": 459.90941822885713,
+          "first_delivery_s": 699.254811086
+        }
+      }
+    ],
+    "accounting_notes": [
+      "Application key is (source, scheduled attempt), independently mapped from each engine admitted packet IDs.",
+      "Delivered latency uses the first observed final delivery and that same key admission time.",
+      "Admitted minus unique delivered is unresolved at the partial cutoff, not a terminal loss count.",
+      "MATLAB app_drop is a provisional ownership event; late copies may deliver after it. No equivalence to a native end-to-end terminal drop is asserted.",
+      "The first divergence stops execution, so nothing is inferred about [895.115,1200] from this prefix."
+    ]
+  },
+  "limits": [
+    "Native candidate queue checks are verified against native reconstructed state. MATLAB does not log every rejected NWK pump candidate.",
+    "MATLAB post-event live HOP capacity and NSDP are checked against its actual callbacks; this is not a complete physical-copy reconstruction.",
+    "Checkpoint states are before every event at the exact checkpoint time."
+  ],
+  "inputs_sha256": {
+    "node8_return2/data/S132_1200/case_summary.json": "6b86fccaa70f96e8a3c579632ab39cb82dd0c39407891783753c7237a396339f",
+    "node8_return2/data/S132_1200/ordered_events.jsonl": "a65193ac249b00d4fc015246a83e669316de5e4aea721bb1a22240e8348ca82e",
+    "node8_return2/data/S132_1200/application_admission_trace.csv": "223b4fb87692fbeb65684338d6b03374d787f613778458a0969ac021be73d5fb",
+    "node8_return2/data/S132_1200/protocol_trace.csv": "3da0bf09d185fb2bd867b8e571ae4653b624c99cdfe14f14c5ed7790af2bb81a",
+    "node8_1200/native/s132_1200/run/ns3-trace.csv": "8ba737704536d469cae36873522c0216ba76277ddc2957c416e063fd32e01c8b"
+  },
+  "decoder_sha256": "7699bd000537777f53f3ffdb1bc524ab91762d272de45e4ee1da934c63237827"
+}

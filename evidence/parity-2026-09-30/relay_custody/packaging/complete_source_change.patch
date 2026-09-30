@@ -1,0 +1,1482 @@
+--- base/+ac/AccountingFixture.m
++++ repair/+ac/AccountingFixture.m
+@@ -14,6 +14,7 @@
+         File = -1
+         Order = 0
+         Admitted = {}
++        Retained = {}
+         DataEnqueues = 0
+         DataRemovals = 0
+         AllRemovals = 0
+@@ -45,6 +46,9 @@
+             row=struct('observation_order',obj.Order,'time_s',time, ...
+                 'kind',kind,'node',node,'details',details);
+             assert(fprintf(obj.File,'%s\n',jsonencode(row))>0,'batchcase:AccountingFile','Cannot write accounting trace.');
++            if strcmp(kind,'protocol') && strcmp(details.event,'network_enqueue')
++                obj.Retained{end+1}=struct('node',node,'app',details.frame);
++            end
+             if strcmp(kind,'protocol') && isfield(details,'frame') && ...
+                     isfield(details.frame,'Kind') && strcmp(details.frame.Kind,'DATA')
+                 if strcmp(details.event,'hop_admit')
+@@ -56,6 +60,9 @@
+         end
+         function execute(obj)
+             clock=obj.Simulation.Scheduler;
++            if strcmp(obj.Mode,'siblings')
++                obj.executeSiblings(); return
++            end
+             clock.scheduleAt(0,@()obj.establishPublicRoutes());
+             clock.scheduleAt(1,@()obj.sendInitial());
+             if strcmp(obj.Mode,'relay')
+@@ -87,7 +94,7 @@
+                 'execution_complete',~isempty(obj.Result), ...
+                 'final_checks_complete',obj.FinalChecksCompleted, ...
+                 'passed',~isempty(obj.Result) && obj.FinalChecksCompleted && ~isempty(obj.Checks) && all([obj.Checks.passed]), ...
+-                'scope','Real TerminalSimulation records/counters and NWK/HOP/MAC objects; scripted public sent/decoded-receive boundary inputs, no RF propagation or actual MAC transmission');
++                'scope','Real TerminalSimulation records/counters and NWK/HOP/MAC objects; scripted public sent/decoded-receive inputs and, in siblings, public NWK release/terminal boundaries; no RF propagation or actual MAC transmission');
+         end
+         function persist(obj)
+             ac.writeJson(fullfile(obj.Folder,'accounting_case.json'),obj.summary());
+@@ -104,10 +111,113 @@
+         function delete(obj), obj.close(); end
+     end
+     methods (Access=private)
++        function executeSiblings(obj)
++            clock=obj.Simulation.Scheduler;
++            clock.scheduleAt(0,@()obj.establishPublicRoutes());
++            clock.scheduleAt(1,@()obj.siblingReceive(0));
++            clock.scheduleAt(1.1,@()obj.siblingReceive(100));
++            clock.scheduleAt(1.2,@()obj.siblingCheckpoint('two_retained'));
++            clock.scheduleAt(2,@()obj.siblingFailure(1));
++            clock.scheduleAt(2.1,@()obj.siblingCheckpoint('one_failed'));
++            clock.scheduleAt(2.2,@()obj.siblingFailure(1));
++            clock.scheduleAt(2.3,@()obj.siblingCheckpoint('stale_failure'));
++            clock.scheduleAt(2.5,@()obj.retainLowerHopSibling());
++            clock.scheduleAt(3,@()obj.siblingFailure(2));
++            clock.scheduleAt(3.1,@()obj.siblingCheckpoint('lower_hop_survives'));
++            clock.scheduleAt(3.2,@()obj.failLowerHopSibling());
++            clock.scheduleAt(3.3,@()obj.siblingCheckpoint('last_failed'));
++            clock.scheduleAt(4,@()obj.siblingReceive(101));
++            clock.scheduleAt(4.1,@()obj.siblingFailure(1));
++            clock.scheduleAt(4.2,@()obj.siblingCheckpoint('same_hop_recovered'));
++            clock.scheduleAt(5,@()obj.siblingDelivery());
++            clock.scheduleAt(5.1,@()obj.siblingDelivery());
++            clock.scheduleAt(5.2,@()obj.siblingReceive(102));
++            clock.scheduleAt(5.3,@()obj.siblingFailure(3));
++            clock.scheduleAt(5.4,@()obj.siblingFailure(4));
++            clock.scheduleAt(5.5,@()obj.siblingCheckpoint('delivered_once'));
++            obj.Result=obj.Simulation.run(); obj.saveResult();
++            stats=obj.Result.Statistics;
++            rx=obj.Result.ProtocolTrace(strcmp(obj.Result.ProtocolTrace.Event,'app_receive'),:);
++            obj.expect('sibling integration final conservation and unique latency', ...
++                stats.Generated==1 && stats.Received==1 && stats.Dropped==0 && stats.Pending==0 && ...
++                stats.ApplicationBytesReceived==185 && abs(stats.LatencySumSeconds-4.5)<1e-12 && ...
++                stats.RelayAccepted==4 && stats.LateCustodyRecoveries==1 && height(rx)==1 && ...
++                stats.OmittedTraceRecords==0 && stats.OmittedPhyTraceRecords==0 && ...
++                stats.OmittedApplicationAdmissionRecords==0, ...
++                stats,struct('generated',1,'received',1,'dropped',0,'pending',0, ...
++                'bytes',185,'latency_sum_s',4.5,'relay_occurrences',4,'recoveries',1,'receive_rows',1));
++            obj.FinalChecksCompleted=true; obj.persist();
++        end
++        function siblingReceive(obj,offset)
++            frame=obj.original(); frame.Sequence=uint16(mod(double(frame.Sequence)+offset,65536));
++            obj.Simulation.Hops{2}.receive(frame);
++            % Retire only the registered source NWK copy. No lower-layer
++            % completion is synthesized; HOP release behavior is tested by
++            % the independent custody component suite.
++            if offset==0, obj.Simulation.Networks{1}.releaseFromHop(frame.App,'fixture_source_release'); end
++            obj.stimulus('scripted_sibling_decoded_receive',struct('sequence_offset',offset, ...
++                'physical_reception',false));
++        end
++        function retainLowerHopSibling(obj)
++            original=obj.original();
++            accepted=obj.Simulation.Networks{1}.sendApplication(original.App);
++            obj.expect('scripted lower-hop sibling retained at source NWK',accepted,accepted,true);
++            obj.stimulus('scripted_source_nwk_retain_same_application',struct( ...
++                'purpose','Adversarial accounting case; not an autonomous generator action'));
++        end
++        function failLowerHopSibling(obj)
++            found=find(cellfun(@(x)x.node==1 && x.app.Id==uint64(1),obj.Retained));
++            assert(numel(found)==2,'batchcase:AccountingSibling','Expected two source custody occurrences.');
++            app=obj.Retained{found(2)}.app;
++            obj.Simulation.Networks{1}.terminal(app,false,'fixture_copy_failure');
++            obj.stimulus('scripted_last_lower_hop_terminal_failure',struct('custody_id',app.NwkCustodyId));
++        end
++        function app=retainedRelay(obj,ordinal)
++            found=find(cellfun(@(x)x.node==2 && x.app.Id==uint64(1),obj.Retained));
++            assert(numel(found)>=ordinal,'batchcase:AccountingSibling','Missing retained relay occurrence.');
++            app=obj.Retained{found(ordinal)}.app;
++        end
++        function siblingFailure(obj,ordinal)
++            app=obj.retainedRelay(ordinal);
++            obj.Simulation.Networks{2}.terminal(app,false,'fixture_copy_failure');
++            obj.stimulus('scripted_public_nwk_terminal_failure',struct('occurrence',ordinal, ...
++                'custody_id',app.NwkCustodyId,'physical_copy_failure_claim',false));
++        end
++        function siblingDelivery(obj)
++            app=obj.retainedRelay(3);
++            [accepted,reason]=obj.Simulation.Networks{3}.receiveData(app,2);
++            obj.expect('public final NWK delivery is accepted',accepted, ...
++                struct('accepted',accepted,'reason',reason),struct('accepted',true));
++        end
++        function siblingCheckpoint(obj,label)
++            partial=obj.Simulation.autonomousPartial(); stats=partial.Statistics;
++            original=obj.original(); app=original.App;
++            counts=cellfun(@(nwk)nwk.custodyCount(app),obj.Simulation.Networks);
++            expectedCount=1; expectedDrop=0; expectedReceived=0; expectedRelay=2; expectedRecovery=0;
++            switch label
++                case 'two_retained', expectedCount=2;
++                case 'last_failed', expectedCount=0; expectedDrop=1;
++                case 'same_hop_recovered', expectedRelay=3; expectedRecovery=1;
++                case 'delivered_once'
++                    expectedCount=0; expectedReceived=1; expectedRelay=4; expectedRecovery=1;
++            end
++            obj.expect(['sibling accounting ' label], ...
++                sum(counts)==expectedCount && stats.Generated==1 && stats.Dropped==expectedDrop && ...
++                stats.Received==expectedReceived && stats.RelayAccepted==expectedRelay && ...
++                stats.LateCustodyRecoveries==expectedRecovery && ...
++                all(cellfun(@(node)node.Dropped,obj.Simulation.Nodes)>=0) && ...
++                sum(cellfun(@(node)node.Dropped,obj.Simulation.Nodes))==expectedDrop, ...
++                struct('custody_counts',counts,'statistics',stats), ...
++                struct('registered_copies',expectedCount,'dropped',expectedDrop, ...
++                'received',expectedReceived,'relay_occurrences',expectedRelay,'recoveries',expectedRecovery));
++            obj.Checkpoints(end+1)=struct('label',label,'value', ...
++                struct('time_s',obj.Simulation.Scheduler.Now,'custody_counts',counts,'statistics',stats));
++            obj.persist();
++        end
+         function establishPublicRoutes(obj)
+             sim=obj.Simulation;
+             sim.Networks{1}.observe(2,struct()); sim.Networks{2}.observe(1,struct());
+-            if strcmp(obj.Mode,'relay')
++            if any(strcmp(obj.Mode,{'relay','siblings'}))
+                 sim.Networks{2}.observe(3,struct()); sim.Networks{3}.observe(2,struct());
+                 route=struct('Operation','UPDATE','NodeId',3,'Capability',2,'HopCount',1,'Cost',10,'Path',3);
+                 sections=csr.nwk.RoutingCodec.sections(csr.nwk.RoutingCodec.encodeRecords({route}),uint32(17));
+@@ -183,14 +293,14 @@
+                 v.statistics.Received==double(~relay) && ...
+                 v.statistics.LateDeliveries==double(~relay) && ...
+                 v.statistics.LateCustodyRecoveries==double(relay) && ...
+-                v.statistics.RelayAccepted==double(relay),v, ...
++                v.statistics.RelayAccepted==2*double(relay),v, ...
+                 struct('dropped',0,'node_dropped',0,'received',double(~relay), ...
+-                'late_deliveries',double(~relay),'late_custody_recoveries',double(relay),'relay_accepted',double(relay)));
+-            obj.expect('both HOP and NWK duplicate guards execute', ...
++                'late_deliveries',double(~relay),'late_custody_recoveries',double(relay),'relay_accepted',2*double(relay)));
++            obj.expect('HOP suppresses its duplicate; only final NWK deduplicates applications', ...
+                 obj.Simulation.Hops{2}.stats().Duplicates==1 && ...
+-                obj.Simulation.Networks{2}.stats().DuplicateApplications==1, ...
++                obj.Simulation.Networks{2}.stats().DuplicateApplications==double(~relay), ...
+                 struct('hop',obj.Simulation.Hops{2}.stats(),'nwk',obj.Simulation.Networks{2}.stats()), ...
+-                struct('hop_duplicates',1,'nwk_duplicates',1));
++                struct('hop_duplicates',1,'nwk_duplicates',double(~relay)));
+             if relay
+                 frame=obj.relayFrame();
+                 obj.expect('fresh relay preserves advanced custody and traversal', ...
+@@ -278,9 +388,9 @@
+                     rx.NodeId==2+double(relay) && rx.HopCount==1+double(relay), ...
+                     table2struct(rx),struct('receive_rows',1,'sink',2+double(relay),'hop_count',1+double(relay)));
+                 obj.expect('integrated recovery branch totals',stats.LateDeliveries==double(~relay) && ...
+-                    stats.LateCustodyRecoveries==double(relay) && stats.RelayAccepted==double(relay), ...
++                    stats.LateCustodyRecoveries==double(relay) && stats.RelayAccepted==2*double(relay), ...
+                     struct('late_final',stats.LateDeliveries,'late_custody',stats.LateCustodyRecoveries,'relay',stats.RelayAccepted), ...
+-                    struct('late_final',double(~relay),'late_custody',double(relay),'relay',double(relay)));
++                    struct('late_final',double(~relay),'late_custody',double(relay),'relay',2*double(relay)));
+                 obj.expect('final receiver HOP duplicate path executed exactly once', ...
+                     obj.Simulation.Hops{end}.stats().Duplicates==1, ...
+                     obj.Simulation.Hops{end}.stats().Duplicates,1);
+@@ -306,9 +416,10 @@
+ 
+ function config=fixtureConfig(config,mode)
+ % Explicit test-only setup; never changed in the network replay scenario.
+-count=2+double(strcmp(mode,'relay'));
++count=2+double(any(strcmp(mode,{'relay','siblings'})));
+ config.Name=['terminal_integrated_accounting_' mode];
+ config.DurationSeconds=13; if strcmp(mode,'cutoff'), config.DurationSeconds=8.25; end
++if strcmp(mode,'siblings'), config.DurationSeconds=6; end
+ config.Backend='portable'; config.Stack='network';
+ config.ApplicationGenerator='configured-count'; config.ApplicationFlowLimit=0;
+ config.ApplicationProfile='current-send-only';
+--- base/+ac/DiscoveryMembershipNwk.m
++++ repair/+ac/DiscoveryMembershipNwk.m
+@@ -18,6 +18,7 @@
+         Metrics
+         Seen
+         Pending = {}
++        NextCustodyId = uint64(1)
+         Controls = {}
+         RoutingBacklog = {}
+         NextControlId = uint64(1)
+@@ -121,7 +122,10 @@
+                 accepted=false; reason='inactive_neighbor'; return
+             end
+             key=appKey(app);
+-            if isKey(obj.Seen,key)
++            % HOP owns its ACK/DACK receive window. A copy that HOP offers
++            % again (including a DACK-marked retry) needs distinct relay
++            % custody. Only the final destination deduplicates applications.
++            if app.DestinationId==obj.NodeId && isKey(obj.Seen,key)
+                 obj.Counters.DuplicateApplications=obj.Counters.DuplicateApplications+1;
+                 accepted=true; return
+             end
+@@ -147,10 +151,9 @@
+             if ~obj.routeAvailable(onward)
+                 accepted=false; reason='no_route'; return
+             end
+-            accepted=obj.enqueueApplication(onward);
++            [accepted,onward]=obj.enqueueApplication(onward);
+             if ~accepted, reason='network_queue_full'; end
+             if accepted
+-                obj.Seen(key)=true;
+                 if isfield(obj.Callbacks,'CustodyAccepted')
+                     obj.Callbacks.CustodyAccepted(onward,previousHop);
+                 end
+@@ -357,6 +360,16 @@
+             end
+         end
+ 
++        function count = custodyCount(obj,app)
++            % Read-only live occurrence count for unique-application accounting.
++            % NSDP uses a source/destination pair; this query uses the original
++            % source/application identity and includes submitted HOP owners.
++            count=0; key=appKey(app);
++            for index=1:numel(obj.Pending)
++                count=count+double(strcmp(appKey(obj.Pending{index}.App),key));
++            end
++        end
++
+         function state = applicationState(obj,destination)
+             % Read-only source br_app observations. Persistent topology and
+             % destination populations are broader than currently usable routes.
+@@ -391,10 +404,9 @@
+ 
+         function release(obj,app,reason)
+             position=obj.pendingPosition(app);
+-            if position>0
+-                obj.Pending(position)=[];
+-                obj.emit('network_custody_release',app,struct('Reason',reason));
+-            end
++            if position==0, return; end
++            obj.Pending(position)=[];
++            obj.emit('network_custody_release',app,struct('Reason',reason));
+             obj.wake();
+         end
+ 
+@@ -455,13 +467,21 @@
+         end
+     end
+     methods (Access = private)
+-        function accepted = enqueueApplication(obj,app)
+-            if obj.pendingPosition(app)>0, accepted=true; return; end
++        function [accepted,app] = enqueueApplication(obj,app)
+             accepted=numel(obj.Pending)<obj.Config.QueueLimit;
+             if ~accepted
+                 obj.Counters.QueueAdmissionRejections=obj.Counters.QueueAdmissionRejections+1;
+                 obj.emit('network_queue_reject',app,struct('Reason','network_queue_full')); return
+             end
++            % This is local custody metadata, not application or wire
++            % identity. Always replace the upstream node's token, even when
++            % another accepted occurrence of the same application is live.
++            if obj.NextCustodyId==intmax('uint64')
++                error('csr:nwk:CustodyIdExhausted','Local custody identifiers are exhausted.');
++            end
++            app.NwkCustodyNodeId=obj.NodeId;
++            app.NwkCustodyId=obj.NextCustodyId;
++            obj.NextCustodyId=obj.NextCustodyId+uint64(1);
+             row=struct('App',app,'Submitted',false,'PeerId',NaN);
+             % Source NWK pushes every positive DSCP at head; zero appends.
+             position=numel(obj.Pending)+1;
+@@ -978,9 +998,24 @@
+             id=obj.NextControlId; obj.NextControlId=obj.NextControlId+uint64(1);
+         end
+         function position = pendingPosition(obj,app)
++            % A delayed callback must identify its exact local occurrence.
++            % There is deliberately no application-identity fallback: after
++            % one copy leaves, such a fallback could release its sibling.
+             position=0;
++            if ~isstruct(app) || ~isscalar(app) || ...
++                    ~all(isfield(app,{'NwkCustodyNodeId','NwkCustodyId','SourceId','Id'})) || ...
++                    ~isnumeric(app.NwkCustodyNodeId) || ~isscalar(app.NwkCustodyNodeId) || ...
++                    ~isreal(app.NwkCustodyNodeId) || app.NwkCustodyNodeId~=obj.NodeId || ...
++                    ~isa(app.NwkCustodyId,'uint64') || ~isscalar(app.NwkCustodyId) || ...
++                    app.NwkCustodyId==0
++                return
++            end
+             for index=1:numel(obj.Pending)
+-                if strcmp(appKey(obj.Pending{index}.App),appKey(app)), position=index; return; end
++                other=obj.Pending{index}.App;
++                if other.NwkCustodyId==app.NwkCustodyId && ...
++                        strcmp(appKey(other),appKey(app))
++                    position=index; return
++                end
+             end
+         end
+         function position = controlPosition(obj,id)
+--- /dev/null
++++ repair/+ac/RelayCustodyProbe.m
+@@ -0,0 +1,158 @@
++classdef RelayCustodyProbe < handle
++    %RELAYCUSTODYPROBE Public-boundary NWK/HOP driver; no private state injection.
++    % Decoded HOP inputs and sent indications are scripted component stimuli.
++    % Captured callbacks observe real queue/custody ownership and HOP windows.
++    properties (SetAccess=private)
++        Network
++        Hop
++        Clock
++        Config
++        Folder
++        Owned = {}
++        Frames = {}
++        Feedback = {}
++        Releases = {}
++        Terminals = {}
++        Delivered = {}
++        Drops = {}
++        Events = struct('time_s',{},'layer',{},'event',{},'app',{},'details',{})
++        Checks = struct('label',{},'passed',{},'actual',{},'expected',{})
++    end
++    properties
++        Blocked = true
++        ReenterOnSend = false
++        ReentryFrame = []
++    end
++    methods
++        function obj=RelayCustodyProbe(config,folder,candidate,nsdpLimit,nodeId,queueLimit)
++            if nargin<5, nsdpLimit=16; end
++            if nargin<6, nodeId=4; end
++            if nargin<7, queueLimit=512; end
++            obj.Folder=folder; if ~isfolder(folder), mkdir(folder); end
++            config.Nwk.Neighbor.AdmissionEnabled=false;
++            config.Nwk.Neighbor.FreshnessEnabled=false;
++            config.Nwk.Neighbor.DiscoveryResponseEnabled=false;
++            config.Nwk.StartupMode='manual'; config.Nwk.SendOnlyToGateway=false;
++            config.Nwk.AdaptiveLinkControl=false; config.Nwk.QueueLimit=queueLimit;
++            config.Hop.NsdpLimit=nsdpLimit; config.Hop.TicSeconds=1e-6;
++            config.Hop.MaxResends=0; config.Hop.ResendSeconds=1;
++            config.Hop.DackHoldSeconds=2;
++            config.Hop.DataQueuedRetryPolicy='native-provisional';
++            obj.Config=config; obj.Clock=csr.sim.EventScheduler(10000);
++            streams=csr.sim.RandomStreams(config.Seed);
++            callbacks=struct('SendControl',@(control,peers,options)true, ...
++                'CanSendControl',@(peers)true,'CanSendData',@(peer)obj.canSend(peer), ...
++                'SendData',@(app,peer,options)obj.send(app,peer,options), ...
++                'CustodyAccepted',@(app,peer)obj.accepted(app,peer), ...
++                'Delivered',@(app,peer)obj.delivered(app,peer), ...
++                'Dropped',@(app,reason)obj.dropped(app,reason), ...
++                'Event',@(name,app,details)obj.event('nwk',name,app,details));
++            if candidate
++                obj.Network=ac.DiscoveryMembershipNwk(nodeId,obj.Clock,streams,config,callbacks);
++            else
++                obj.Network=csr.nwk.Layer(nodeId,obj.Clock,streams,config,callbacks);
++            end
++            hopCallbacks=struct('EnqueueMac',@(frame)obj.enqueue(frame), ...
++                'Deliver',@(app,peer)obj.Network.receiveData(app,peer), ...
++                'RouteAvailable',@(app)obj.Network.routeAvailable(app), ...
++                'NsdpCount',@(app)obj.Network.nsdpCount(app), ...
++                'NsdpRelease',@(app,reason)obj.release(app,reason), ...
++                'Terminal',@(app,success,reason)obj.terminal(app,success,reason), ...
++                'Wake',@()obj.Network.wake(), ...
++                'Event',@(name,frame,details)obj.event('hop',name,frame,details));
++            if candidate
++                obj.Hop=ac.TerminalHop(nodeId,obj.Clock,streams,config.Hop,hopCallbacks);
++            else
++                obj.Hop=csr.hop.Layer(nodeId,obj.Clock,streams,config.Hop,hopCallbacks);
++            end
++            for peer=[2 4 8]
++                if peer~=nodeId, obj.Network.observe(peer,struct()); end
++            end
++            obj.Clock.run(0);
++            ac.writeJson(fullfile(folder,'configuration.json'),config);
++            obj.persist();
++        end
++        function frame=input(obj,source,id,sequence,destination)
++            if nargin<5, destination=2; end
++            app=struct('Id',uint64(id),'SourceId',source,'DestinationId',destination, ...
++                'GeneratedSeconds',0,'ApplicationPayloadBytes',185,'Dscp',0, ...
++                'HopCount',1,'Traversal',[source 8]);
++            if source==8, app.HopCount=0; app.Traversal=8; end
++            frame=csr.hop.Frames.data(app,8,obj.Network.NodeId,uint16(sequence),struct());
++        end
++        function receive(obj,frame), obj.Hop.receive(frame); end
++        function open(obj)
++            obj.Blocked=false; obj.Network.wake(); obj.Clock.run(obj.Clock.Now);
++        end
++        function advance(obj,seconds), obj.Clock.run(obj.Clock.Now+seconds); end
++        function feedback(obj,frame,kind)
++            ack=uint64(1); dack=uint64(0);
++            if strcmp(kind,'dack'), ack=uint64(0); dack=uint64(1); end
++            f=csr.hop.Frames.acknowledgment(frame.DestinationId,obj.Network.NodeId, ...
++                frame.Sequence,ack,dack,struct('HasAckWindow',true));
++            obj.Hop.receive(f);
++        end
++        function expect(obj,label,condition,actual,expected)
++            obj.Checks(end+1)=struct('label',label,'passed',logical(condition), ...
++                'actual',actual,'expected',expected);
++            obj.persist();
++            assert(condition,'relaycase:CustodyPreflight','%s: actual=%s expected=%s', ...
++                label,jsonencode(actual),jsonencode(expected));
++        end
++        function value=snapshot(obj)
++            value=struct('time_s',obj.Clock.Now,'network',obj.Network.stats(), ...
++                'hop',obj.Hop.stats(),'accepted_copies',numel(obj.Owned), ...
++                'outgoing_copies',numel(obj.Frames),'releases',numel(obj.Releases), ...
++                'terminals',numel(obj.Terminals),'unique_delivery_callbacks',numel(obj.Delivered), ...
++                'drop_callbacks',numel(obj.Drops));
++        end
++        function persist(obj)
++            ac.writeJson(fullfile(obj.Folder,'public_custody_trace.json'),struct( ...
++                'schema','csr-relay-custody-public-trace-v1','state',obj.snapshot(), ...
++                'checks',obj.Checks,'owned', {obj.Owned},'frames',{obj.Frames}, ...
++                'feedback',{obj.Feedback},'release_callbacks',{obj.Releases}, ...
++                'terminal_callbacks',{obj.Terminals},'delivery_callbacks',{obj.Delivered}, ...
++                'drop_callbacks',{obj.Drops},'events',obj.Events, ...
++                'scope','Real NWK/HOP objects; scripted decoded receives/sent inputs, no RF or physical MAC simulation'));
++        end
++    end
++    methods (Access=private)
++        function okay=canSend(obj,peer), okay=~obj.Blocked && obj.Hop.canSend(peer); end
++        function okay=send(obj,app,peer,options)
++            if obj.ReenterOnSend
++                obj.ReenterOnSend=false; obj.Blocked=true;
++                obj.Network.releaseFromHop(app,'fixture_reentrant_release');
++                obj.Hop.receive(obj.ReentryFrame); okay=false; return
++            end
++            [okay,~]=obj.Hop.send(app,peer,options);
++        end
++        function okay=enqueue(obj,frame)
++            okay=true;
++            if strcmp(frame.Kind,'DATA'), obj.Frames{end+1}=frame;
++            else, obj.Feedback{end+1}=frame; end
++        end
++        function accepted(obj,app,peer)
++            obj.Owned{end+1}=app;
++            obj.event('callback','custody_accepted',app,struct('previous_hop',peer));
++        end
++        function okay=delivered(obj,app,peer)
++            obj.Delivered{end+1}=app; okay=true;
++            obj.event('callback','unique_delivered',app,struct('previous_hop',peer));
++        end
++        function dropped(obj,app,reason)
++            obj.Drops{end+1}=struct('app',app,'reason',reason);
++        end
++        function release(obj,app,reason)
++            obj.Releases{end+1}=struct('app',app,'reason',reason);
++            obj.Network.releaseFromHop(app,reason);
++        end
++        function terminal(obj,app,success,reason)
++            obj.Terminals{end+1}=struct('app',app,'success',success,'reason',reason);
++            obj.Network.terminal(app,success,reason);
++        end
++        function event(obj,layer,name,app,details)
++            obj.Events(end+1)=struct('time_s',obj.Clock.Now,'layer',layer, ...
++                'event',name,'app',app,'details',details);
++        end
++    end
++end
+--- base/+ac/TerminalSimulation.m
++++ repair/+ac/TerminalSimulation.m
+@@ -265,7 +265,7 @@
+             metadata.FaultInjection = 'Optional deterministic post-PHY receive erasures before MAC/HOP/NWK; default none';
+             metadata.LinkEvents = 'Post-PHY RF blackout at receive completion; protocol timers keep running';
+             metadata.MetricDefinitions = struct('Received','Unique final-destination application deliveries', ...
+-                'Dropped','Provisional recorded custody loss recoverable by a later copy; not final application loss while a MAC copy remains live', ...
++                'Dropped','Provisional unique-application loss after all registered NWK custody is released; not final loss while a MAC copy remains live', ...
+                 'Transmitted','OTA aggregate transmissions across all nodes, including control', ...
+                 'PhysicalTransmissions','OTA aggregate transmissions, including control-only frames', ...
+                 'PhysicalAttempts','OTA transmission at each non-self receiver', ...
+@@ -276,8 +276,9 @@
+                 'QueueAdmissionRejections','Source or relay queue admission refusals, including retried refusals', ...
+                 'AcksReceived','HOP DATA transactions acknowledged by ACK feedback, not raw ACK frames', ...
+                 'DacksReceived','HOP DATA transactions accepted through DACK feedback', ...
+-                'UnconfirmedHopTransfers','Hop feedback failure after custody moved onward or application delivered', ...
+-                'UnretainedHopAcks','ACK/DACK completion without onward custody; recorded as loss, recoverable by late reception');
++                'UnconfirmedHopTransfers','Hop feedback failure while another NWK occurrence is retained or the application is already delivered or provisionally dropped', ...
++                'RelayAccepted','Accepted relay NWK custody occurrences; multiple copies of one application each count', ...
++                'UnretainedHopAcks','ACK/DACK completion with no registered NWK custody and no unique delivery; provisional loss recoverable by late reception');
+             trace = struct2table(obj.TraceRows(1:obj.TraceCount),'AsArray',true);
+             templateGenerator = csr.sim.ApplicationGenerator(0, ...
+                 struct('SourceId',0,'DestinationId',1),false,0);
+@@ -433,20 +434,27 @@
+         end
+ 
+         function custodyAccepted(obj,nodeId,app,previousHop)
+-            % Called only after NWK retained fresh relay custody and advanced
+-            % HopCount/Traversal. Feedback loss never transfers custody back.
++            % Every accepted NWK occurrence counts, including a retry of an
++            % application already retained at this hop or delivered elsewhere.
++            % Unique delivery remains terminal; a new retained occurrence may
++            % recover a provisional loss even without increasing HopCount.
+             key = obj.key(app);
+             if ~isKey(obj.Records,key), error('csr:sim:UnknownApplication','Retained an unknown application.'); end
+             record = obj.Records(key);
+-            if strcmp(record.Status,'delivered') || app.HopCount <= record.CustodyHopCount, return; end
+-            if strcmp(record.Status,'dropped')
+-                obj.recoverDrop(record);
+-                obj.Counters.LateCustodyRecoveries = obj.Counters.LateCustodyRecoveries+1;
+-                record.Status = 'pending';
+-            end
+-            record.CustodyNodeId = nodeId; record.CustodyHopCount = app.HopCount;
+-            record.App = app; record.NoRouteSuppressed = false;
+-            obj.Records(key) = record;
++            if ~strcmp(record.Status,'delivered')
++                if strcmp(record.Status,'dropped')
++                    obj.recoverDrop(record);
++                    obj.Counters.LateCustodyRecoveries = obj.Counters.LateCustodyRecoveries+1;
++                    record.Status = 'pending';
++                end
++                % This high-water mark is diagnostic, not copy ownership.
++                if app.HopCount >= record.CustodyHopCount
++                    record.CustodyNodeId = nodeId; record.CustodyHopCount = app.HopCount;
++                    record.App = app;
++                end
++                record.NoRouteSuppressed = false;
++                obj.Records(key) = record;
++            end
+             obj.Counters.RelayAccepted = obj.Counters.RelayAccepted+1;
+             obj.record('relay_accept',app,nodeId,previousHop,'',struct());
+         end
+@@ -454,7 +462,7 @@
+         function terminal(obj,nodeId,app,success,reason)
+             record = obj.Records(obj.key(app));
+             if success && any(strcmp(reason,{'ack','dack_custody'})) && ...
+-                    strcmp(record.Status,'pending') && record.CustodyNodeId == nodeId
++                    strcmp(record.Status,'pending') && ~obj.hasRetainedCustody(app)
+                 % Source HOP records a first no-route sequence, so a later
+                 % duplicate can ACK without ever delivering to NWK. Preserve
+                 % that wire behavior while accounting the unretained app.
+@@ -464,7 +472,7 @@
+                 obj.dropApplication(nodeId,app,loss);
+             elseif ~success
+                 obj.Counters.HopFailures = obj.Counters.HopFailures+1;
+-                if ~strcmp(record.Status,'pending') || record.CustodyNodeId ~= nodeId
++                if ~strcmp(record.Status,'pending') || obj.hasRetainedCustody(app)
+                     obj.Counters.UnconfirmedHopTransfers = obj.Counters.UnconfirmedHopTransfers+1;
+                     obj.record('hop_delivery_unconfirmed',app,nodeId,app.DestinationId,reason,struct());
+                 end
+@@ -474,15 +482,29 @@
+ 
+         function dropApplication(obj,nodeId,app,reason)
+             key = obj.key(app); record = obj.Records(key);
+-            % An old sender may exhaust ACK retries after the receiver has
+-            % accepted custody or delivered. That failure is not app loss.
+-            if ~strcmp(record.Status,'pending') || record.CustodyNodeId ~= nodeId, return; end
++            % A failed occurrence is not unique-application loss while any
++            % NWK node retains a sibling. This deliberately does not claim a
++            % physical-copy ledger: queued MAC copies can still recover a
++            % provisional drop after all registered NWK custody is released.
++            if ~strcmp(record.Status,'pending') || obj.hasRetainedCustody(app), return; end
+             record.Status = 'dropped'; record.DropNodeId = nodeId;
+             record.DropReason = char(reason); obj.Records(key) = record;
+             obj.Counters.Dropped = obj.Counters.Dropped+1;
+             index = obj.NodeIndex(nodeId); obj.Nodes{index}.Dropped = obj.Nodes{index}.Dropped+1;
+             obj.incrementReason(obj.DropReasons,reason);
+             obj.record('app_drop',app,nodeId,app.DestinationId,reason,struct());
++        end
++
++        function retained = hasRetainedCustody(obj,app)
++            % Read-only query of actual registered NWK occurrences, including
++            % submitted owners. HOP completion releases its occurrence before
++            % the accounting callback; other nodes and siblings remain live.
++            retained = false;
++            for k = 1:numel(obj.Networks)
++                if obj.Networks{k}.custodyCount(app)>0
++                    retained = true; return
++                end
++            end
+         end
+ 
+         function recoverDrop(obj,record)
+--- base/+ac/integratedAccountingPreflight.m
++++ repair/+ac/integratedAccountingPreflight.m
+@@ -4,7 +4,7 @@
+ report=struct('schema','csr-integrated-accounting-preflight-v1','completed',false, ...
+     'passed',false,'network_parity_claim',false,'matlab_execution_required',true, ...
+     'checks',struct('name',{},'passed',{},'details',{}));
+-for mode={'cutoff','final','relay'}
++for mode={'cutoff','final','relay','siblings'}
+     name=mode{1}; fixture=[]; passed=false; details=struct();
+     resources=containers.Map('KeyType','char','ValueType','any');
+     cleanup=resourceGuard(resources); %#ok<NASGU>
+@@ -29,11 +29,11 @@
+     clear cleanup
+     fprintf('  Integrated accounting %s: %s\n',name,passLabel(passed));
+ end
+-report.completed=numel(report.checks)==3; report.passed=report.completed && all([report.checks.passed]);
++report.completed=numel(report.checks)==4; report.passed=report.completed && all([report.checks.passed]);
+ report.passed_groups=sum([report.checks.passed]); report.failed_groups=sum(~[report.checks.passed]);
+ ac.writeJson(fullfile(folder,'integrated_accounting_preflight.json'),report);
+ assert(report.passed,'batchcase:AccountingFailures', ...
+-    '%d of 3 integrated accounting groups failed; all groups attempted. Read integrated_accounting_preflight.json.',report.failed_groups);
++    '%d of 4 integrated accounting groups failed; all groups attempted. Read integrated_accounting_preflight.json.',report.failed_groups);
+ end
+ function guard=resourceGuard(resources)
+ guard=onCleanup(@()closeResources(resources));
+--- /dev/null
++++ repair/+ac/relayCustodyPreflight.m
+@@ -0,0 +1,223 @@
++function report=relayCustodyPreflight(config,folder)
++%RELAYCUSTODYPREFLIGHT Accepted-copy ownership at public NWK/HOP boundaries.
++% Runs production and replay-candidate classes independently. No private
++% state writes, comparator tolerance changes, or network simulation occurs.
++if ~isfolder(folder), mkdir(folder); end
++checks=struct('name',{},'passed',{},'details',{});
++report=struct('schema','csr-relay-custody-preflight-v1','passed',false, ...
++    'completed',false,'checks',checks,'network_simulation_executed',false, ...
++    'scope','Real HOP duplicate windows, NWK accepted-copy queue/custody, outgoing HOP sequences, public sink unique-delivery callbacks', ...
++    'fixture_limits','Two-copy edge cases use valid test-only HOP NsdpLimit=0. The captured-count case retains NsdpLimit=16 and reproduces 25/26/27 by public inputs. Neither is a replay of captured RF/MAC timing.', ...
++    'accounting_scope','Global Simulation statistics and provisional-drop recovery are tested separately by the integrated accounting preflight.');
++for candidate=[false true]
++    if candidate, prefix='candidate'; else, prefix='production'; end
++    runGroup([prefix '_captured_nsdp_25_26_27'],@capturedGate,candidate,16,4,512);
++    runGroup([prefix '_ack_duplicate_stays_filtered'],@ackDuplicate,candidate,16,4,512);
++    runGroup([prefix '_fifo_distinct_sequences_and_ack_ownership'],@fifoAck,candidate,0,4,512);
++    runGroup([prefix '_dack_release_hold_and_new_copy'],@dackRelease,candidate,0,4,512);
++    runGroup([prefix '_retry_failure_keeps_sibling'],@failureRelease,candidate,0,4,512);
++    runGroup([prefix '_no_ack_sent_releases_only_its_copy'],@noAckRelease,candidate,16,4,512);
++    runGroup([prefix '_out_of_order_and_invalid_release_tokens'],@outOfOrder,candidate,0,4,512);
++    runGroup([prefix '_upstream_token_replaced'],@upstreamToken,candidate,0,4,512);
++    runGroup([prefix '_final_sink_delivers_unique_application_once'],@sinkUnique,candidate,16,2,512);
++    runGroup([prefix '_queue_full_rejection_then_same_sequence_retry'],@queueFull,candidate,0,4,1);
++    runGroup([prefix '_nested_send_reject_does_not_reset_sibling'],@nestedReject,candidate,0,4,512);
++end
++report.checks=checks; report.completed=numel(checks)==22;
++report.passed=report.completed && all([checks.passed]);
++report.attempted_checks=numel(checks); report.passed_checks=sum([checks.passed]);
++report.failed_checks=sum(~[checks.passed]);
++ac.writeJson(fullfile(folder,'relay_custody_preflight.json'),report);
++assert(report.passed,'relaycase:CustodyComponentFailures', ...
++    '%d of %d relay custody groups failed. All groups were attempted; inspect relay_custody_preflight.json and public_custody_trace.json.', ...
++    report.failed_checks,report.attempted_checks);
++    function runGroup(name,callback,candidate,limit,node,queueLimit)
++        h=[]; details=struct(); passed=false;
++        try
++            h=ac.RelayCustodyProbe(config,fullfile(folder,name),candidate,limit,node,queueLimit);
++            callback(h); passed=true;
++        catch caught
++            details.error_identifier=caught.identifier; details.error_message=caught.message;
++            details.error_stack=caught.stack;
++        end
++        if ~isempty(h)
++            h.persist(); details.checks=h.Checks; details.final_state=h.snapshot();
++        end
++        checks(end+1)=struct('name',name,'passed',passed,'details',details); %#ok<AGROW>
++        report.checks=checks; ac.writeJson(fullfile(folder,'relay_custody_preflight.json'),report);
++        label='FAIL'; if passed, label='PASS'; end
++        fprintf('  Relay custody %d/22: %s -- %s\n',numel(checks),name,label);
++    end
++end
++function capturedGate(h)
++for k=1:25, h.receive(h.input(7,7000+k,k)); end
++app=h.input(7,2873,26);
++h.expect('public prefill has 25 accepted source7 copies',h.Network.nsdpCount(app.App)==25 && ...
++    h.Network.stats().WaitingForHop==25,h.snapshot(),struct('nsdp',25,'queue',25));
++h.receive(app);
++h.expect('first DACK-marked copy raises NSDP 25 to 26',h.Network.nsdpCount(app.App)==26 && ...
++    strcmp(h.Feedback{end}.Kind,'DACK'),h.snapshot(),struct('nsdp',26,'feedback','DACK'));
++h.receive(app);
++a=h.Owned{26}; b=h.Owned{27};
++h.expect('retry with identical incoming HOP sequence owns a second queue occurrence', ...
++    h.Network.nsdpCount(app.App)==27 && h.Network.stats().WaitingForHop==27 && ...
++    h.Hop.stats().Duplicates==0 && strcmp(h.Feedback{end}.Kind,'DACK') && ...
++    a.Id==b.Id && a.SourceId==b.SourceId && a.NwkCustodyId~=b.NwkCustodyId && ...
++    a.NwkCustodyNodeId==4 && b.NwkCustodyNodeId==4, ...
++    struct('state',h.snapshot(),'first',a,'second',b), ...
++    struct('nsdp',27,'queue',27,'hop_duplicates',0,'distinct_local_custody',true));
++end
++function ackDuplicate(h)
++f=h.input(7,2873,1); h.receive(f); h.receive(f);
++h.expect('ACK-marked incoming sequence duplicate never reaches NWK twice', ...
++    numel(h.Owned)==1 && h.Network.nsdpCount(f.App)==1 && h.Hop.stats().Duplicates==1 && ...
++    h.Network.stats().DuplicateApplications==0,h.snapshot(), ...
++    struct('accepted_copies',1,'hop_duplicates',1,'nwk_duplicates',0));
++end
++function fifoAck(h)
++f=h.input(7,2873,1); h.receive(f); h.receive(f); h.receive(h.input(8,3011,2)); h.open();
++h.expect('only first FIFO occurrence admitted under initial one-owner HOP capacity', ...
++    numel(h.Frames)==1 && h.Frames{1}.App.SourceId==7 && ...
++    h.Network.stats().PendingCustody==3 && h.Network.stats().WaitingForHop==2, ...
++    h.snapshot(),struct('outgoing',1,'pending_custody',3,'waiting',2));
++first=h.Frames{1}; h.feedback(first,'ack');
++h.expect('NsdpRelease followed by Terminal removes only first sibling', ...
++    h.Network.nsdpCount(f.App)==1 && h.Network.stats().PendingCustody==2, ...
++    h.snapshot(),struct('source7_nsdp',1,'pending_custody',2));
++h.Network.releaseFromHop(first.App,'stale_ack'); h.Network.release(first.App,'stale_release');
++h.Network.terminal(first.App,true,'stale_terminal'); h.feedback(first,'ack'); h.advance(2e-6);
++h.expect('stale callbacks cannot release waiting sibling; second source7 owns next sequence', ...
++    numel(h.Frames)==2 && h.Frames{2}.App.SourceId==7 && ...
++    h.Frames{2}.App.Id==first.App.Id && h.Frames{2}.Sequence~=first.Sequence && ...
++    h.Frames{2}.App.NwkCustodyId~=first.App.NwkCustodyId && ...
++    h.Network.nsdpCount(f.App)==1 && numel(h.Releases)==1, ...
++    h.snapshot(),struct('outgoing',2,'same_application',true,'distinct_sequence_and_copy',true,'source7_nsdp',1));
++h.feedback(h.Frames{2},'ack'); h.advance(2e-6);
++h.expect('source8 follows both source7 queue occurrences',numel(h.Frames)==3 && ...
++    isequal(cellfun(@(x)x.App.SourceId,h.Frames),[7 7 8]), ...
++    cellfun(@(x)x.App.SourceId,h.Frames),[7 7 8]);
++h.feedback(h.Frames{3},'ack'); h.advance(2e-6);
++h.expect('three independent ACK releases drain all custody exactly once', ...
++    h.Network.stats().PendingCustody==0 && numel(h.Releases)==3 && numel(h.Terminals)==3, ...
++    h.snapshot(),struct('pending_custody',0,'releases',3,'terminals',3));
++end
++function dackRelease(h)
++f=h.input(7,2873,1); h.receive(f); h.receive(f); h.open(); first=h.Frames{1};
++h.feedback(first,'dack'); h.feedback(first,'dack');
++h.expect('DACK releases first NWK copy once but retains HOP capacity', ...
++    h.Network.nsdpCount(f.App)==1 && numel(h.Releases)==1 && ...
++    h.Hop.stats().DackHoldCount==1 && h.Hop.PendingDataCount==1, ...
++    h.snapshot(),struct('nsdp',1,'releases',1,'dack_holds',1,'pending_hop',1));
++h.receive(f);
++h.expect('same incoming sequence accepted again after earlier local owner release', ...
++    h.Network.nsdpCount(f.App)==2 && numel(h.Owned)==3 && ...
++    numel(unique(cellfun(@(x)x.NwkCustodyId,h.Owned)))==3, ...
++    h.snapshot(),struct('nsdp',2,'distinct_copies',3));
++h.advance(4.01); % MaxResends=0 doubles the configured 2-second DACK hold.
++h.expect('DACK expiry releases capacity without releasing either remaining copy', ...
++    h.Hop.stats().DackExpired==1 && h.Hop.stats().DackHoldCount==0 && ...
++    h.Network.nsdpCount(f.App)==2 && numel(h.Releases)==1 && numel(h.Frames)==2, ...
++    h.snapshot(),struct('dack_expired',1,'nsdp',2,'releases',1,'outgoing',2));
++h.feedback(h.Frames{2},'ack'); h.advance(2e-6); h.feedback(h.Frames{3},'ack');
++h.expect('later copies release independently',h.Network.nsdpCount(f.App)==0 && ...
++    numel(h.Releases)==3,h.snapshot(),struct('nsdp',0,'releases',3));
++end
++function failureRelease(h)
++f=h.input(7,2873,1); h.receive(f); h.receive(f); h.open(); first=h.Frames{1};
++h.Hop.notifySent(first); h.advance(2.01);
++h.expect('terminal retry failure releases only failed owner and admits sibling', ...
++    h.Hop.stats().Failed==1 && numel(h.Releases)==1 && numel(h.Terminals)==1 && ...
++    h.Network.nsdpCount(f.App)==1 && numel(h.Frames)==2 && ...
++    h.Frames{2}.App.NwkCustodyId~=first.App.NwkCustodyId, ...
++    h.snapshot(),struct('failed',1,'releases',1,'terminals',1,'nsdp',1,'outgoing',2));
++h.Network.releaseFromHop(first.App,'retry_exhausted'); h.Network.terminal(first.App,true,'stale_completion');
++h.feedback(first,'ack'); h.Hop.notifySent(first); h.advance(2e-6);
++h.expect('late feedback and sent callback cannot release or resurrect retired owner', ...
++    h.Network.nsdpCount(f.App)==1 && numel(h.Releases)==1 && h.Hop.PendingDataCount==1, ...
++    h.snapshot(),struct('nsdp',1,'releases',1,'pending_hop',1));
++h.feedback(h.Frames{2},'ack');
++h.expect('surviving sibling completes normally',h.Network.nsdpCount(f.App)==0 && ...
++    numel(h.Releases)==2,h.snapshot(),struct('nsdp',0,'releases',2));
++end
++function outOfOrder(h)
++f=h.input(7,2873,1); h.receive(f); h.receive(f); a=h.Owned{1}; b=h.Owned{2};
++foreign=b; foreign.NwkCustodyNodeId=8; tokenless=rmfield(b,{'NwkCustodyNodeId','NwkCustodyId'});
++wrongApp=b; wrongApp.Id=uint64(9999); pendingTimers=h.Clock.PendingCount;
++h.Network.releaseFromHop(foreign,'foreign'); h.Network.release(tokenless,'missing');
++h.Network.releaseFromHop(wrongApp,'wrong_application');
++h.expect('foreign token, absent token, and wrong application cannot release siblings', ...
++    h.Network.nsdpCount(f.App)==2 && h.Clock.PendingCount==pendingTimers, ...
++    struct('state',h.snapshot(),'pending_timers',h.Clock.PendingCount), ...
++    struct('nsdp',2,'pending_timers',pendingTimers));
++h.Network.releaseFromHop(b,'scripted_out_of_order_ack'); h.Network.releaseFromHop(b,'repeated_ack');
++h.Network.terminal(b,true,'following_terminal');
++h.expect('releasing second occurrence first leaves first occurrence untouched', ...
++    h.Network.nsdpCount(f.App)==1,h.snapshot(),struct('nsdp',1));
++h.open();
++h.expect('remaining first occurrence preserves original ownership', ...
++    numel(h.Frames)==1 && h.Frames{1}.App.NwkCustodyId==a.NwkCustodyId, ...
++    h.Frames{1}.App,a);
++h.feedback(h.Frames{1},'ack');
++h.expect('last occurrence releases once',h.Network.nsdpCount(f.App)==0,h.snapshot(),struct('nsdp',0));
++end
++function upstreamToken(h)
++f=h.input(7,2873,1); f.App.NwkCustodyNodeId=8; f.App.NwkCustodyId=uint64(999999);
++h.receive(f); h.receive(f); a=h.Owned{1}; b=h.Owned{2};
++h.expect('each acceptance replaces inherited upstream ownership with a fresh local token', ...
++    a.NwkCustodyNodeId==4 && b.NwkCustodyNodeId==4 && ...
++    a.NwkCustodyId~=b.NwkCustodyId && a.NwkCustodyId~=f.App.NwkCustodyId && ...
++    a.Id==f.App.Id && b.Id==f.App.Id && a.HopCount==2 && isequal(a.Traversal,[7 8 4]), ...
++    struct('incoming',f.App,'first',a,'second',b),struct('local_node',4,'fresh_tokens',true,'application_identity_preserved',true));
++end
++function sinkUnique(h)
++f=h.input(7,2873,1); h.receive(f); h.receive(f); h.advance(10);
++late=f; late.Sequence=uint16(2); late.App.NwkCustodyNodeId=4; late.App.NwkCustodyId=uint64(99);
++h.receive(late); h.receive(late);
++h.expect('final sink counts one application despite same-sequence and late fresh-sequence copies', ...
++    numel(h.Delivered)==1 && h.Delivered{1}.Id==f.App.Id && ...
++    h.Hop.stats().Duplicates==2 && h.Network.stats().DuplicateApplications==1 && ...
++    h.Network.stats().PendingCustody==0,h.snapshot(), ...
++    struct('unique_delivery_callbacks',1,'hop_duplicates',2,'nwk_duplicates',1,'pending_custody',0));
++end
++function queueFull(h)
++f=h.input(7,2873,1); h.receive(f); h.receive(f);
++h.expect('full queue refuses second copy without creating ownership',numel(h.Owned)==1 && ...
++    h.Network.nsdpCount(f.App)==1 && h.Hop.stats().CustodyRefused==1 && ...
++    h.Network.stats().QueueAdmissionRejections==1,h.snapshot(), ...
++    struct('accepted_copies',1,'nsdp',1,'custody_refused',1,'queue_rejected',1));
++h.Network.releaseFromHop(h.Owned{1},'fixture_capacity_release'); h.receive(f);
++h.expect('refused HOP sequence remains retryable after capacity release',numel(h.Owned)==2 && ...
++    h.Network.nsdpCount(f.App)==1 && h.Owned{2}.NwkCustodyId~=h.Owned{1}.NwkCustodyId, ...
++    h.snapshot(),struct('accepted_copies',2,'nsdp',1,'fresh_token',true));
++end
++function nestedReject(h)
++f=h.input(7,2873,1); h.receive(f); first=h.Owned{1};
++h.ReentryFrame=f; h.ReenterOnSend=true; h.open();
++h.expect('nested public callback releases old copy and accepts sibling before rejected send returns', ...
++    numel(h.Owned)==2 && h.Network.nsdpCount(f.App)==1 && ...
++    h.Network.stats().WaitingForHop==1 && isempty(h.Frames),h.snapshot(), ...
++    struct('accepted_copies',2,'nsdp',1,'waiting',1,'outgoing',0));
++h.open();
++h.expect('old send return cannot reset or submit the newly accepted sibling under old token', ...
++    numel(h.Frames)==1 && h.Frames{1}.App.NwkCustodyId==h.Owned{2}.NwkCustodyId && ...
++    h.Frames{1}.App.NwkCustodyId~=first.NwkCustodyId && h.Network.stats().WaitingForHop==0, ...
++    h.snapshot(),struct('outgoing',1,'new_token',true,'waiting',0));
++end
++
++function noAckRelease(h)
++f=h.input(7,2873,1); f.AckRequired=false; f.App.AckRequired=false;
++h.receive(f); second=f; second.Sequence=uint16(2); h.receive(second); h.open();
++h.expect('two distinct incoming no-ACK copies both submit without HOP owners', ...
++    numel(h.Frames)==2 && h.Network.nsdpCount(f.App)==2 && h.Hop.PendingDataCount==0 && ...
++    ~h.Frames{1}.AckRequired && ~h.Frames{2}.AckRequired, ...
++    h.snapshot(),struct('outgoing',2,'nsdp',2,'pending_hop',0,'ack_required',false));
++h.Hop.notifySent(h.Frames{1}); h.Hop.notifySent(h.Frames{1});
++h.Network.terminal(h.Frames{1}.App,true,'repeated_no_ack_terminal');
++h.expect('direct no-ACK terminal and repeated old callbacks retain sibling', ...
++    h.Network.nsdpCount(f.App)==1 && isempty(h.Releases), ...
++    h.snapshot(),struct('nsdp',1,'hop_nsdp_release_callbacks',0));
++h.Hop.notifySent(h.Frames{2}); h.advance(2e-6);
++h.expect('second no-ACK sent indication releases final independent copy', ...
++    h.Network.nsdpCount(f.App)==0 && h.Network.stats().PendingCustody==0 && ...
++    numel(h.Frames)==2,h.snapshot(),struct('nsdp',0,'pending_custody',0,'outgoing',2));
++end
+--- base/README.md
++++ repair/README.md
+@@ -1,14 +1,7 @@
+-# Node-8 contention investigation: seed 132, 0–1,200 seconds
++# Relay-copy custody repair: seed 132, 0–1,200 seconds
+ 
+-Packaging correction, 2026-09-30: the first issued ZIP omitted the existing
+-`TestQueuedRetryPolicy.m` preflight dependency and therefore never started the
+-1,200-second network. This corrected package restores that exact accepted test
+-file and binds it in `FILES.json`. The runner, model, native inputs, and ±20%
+-target are unchanged. The returned failure evidence and repair audit are under
+-`review/packaging_repair/`. Extract this complete corrected ZIP into a fresh folder.
+-
+-Restart **MATLAB R2025a (25.1.0.2943329), Windows**, set Current Folder to this
+-freshly extracted `node8case` folder, and run:
++Restart **MATLAB R2025a (25.1.0.2943329), Windows**, extract this complete ZIP into
++a fresh folder, set Current Folder to its `node8case` folder, and run:
+ 
+ ```matlab
+ report = run_node8_tests;
+@@ -19,76 +12,97 @@
+ the printed **`out_node8_*.zip`**, even if the test reports a divergence or error.
+ The ZIP includes completed preflights and available partial network evidence.
+ 
+-## Purpose and acceptance target
++## Repair and purpose
+ 
+-The engineering target is now **±20%**, evaluated using the same source-by-source
+-delivery counts and delivered latency definitions. The latest two-seed 6,000-second
+-result passes both measurements in **5 of 9 defined source/seed cases**, with
+-3 further cases undefined because native delivery is zero. The source-weighted
+-latency difference remains about **+40.7%**. Changing the target does not establish
+-full-network parity.
++The previous replay found a concrete difference at node 4. At 694.821813632 s,
++ns-3 accepted another source-7 relay copy after a DACK-marked retry, while MATLAB
++suppressed it by application identity. The missing queue occurrence changed HOP
++admission at 894.464292500 s and transmission contents at 895.115 s.
+ 
+-This diagnostic investigates the longer waiting at node 8, particularly traffic
+-relayed from source 7. It extends the accepted seed-132 common-input comparison
+-from 400 to 1,200 seconds, covering native source-8/source-7 delivery and queue
+-growth. The ±20% engineering target does **not** relax the common-input context
+-checks or random-request timestamp checks in this diagnostic.
++This candidate gives each accepted relay copy separate queue and custody
++ownership, including its completion or release. Final delivery and latency remain
++counted once per unique application. The repair also handles sibling-copy and
++late-custody accounting. It does not count each relay copy as a newly generated
++or newly delivered application.
++
++The same verified native capture is reused as common input; no new ns-3 capture
++was required. MATLAB generates its own queue admissions, routes, receiver states,
++feedback, retries and deliveries. No reference queue entry, custody outcome or
++network state is injected.
+ 
+ ## What runs
+ 
+-- One full seven-node network starts at time zero and stops at 1,200 seconds.
++- The 17 existing preflight groups, plus focused relay-copy custody tests, run
++  before the network. Integrated accounting also exercises sibling-copy failure,
++  last-copy failure, same-hop recovery and unique final delivery.
++  The original typed native import and first MAC-request
++  check remain in place. The full 1,200-second fixture is checked separately.
++- One seven-node network starts at time zero and stops at 1,200 seconds.
+ - Original application traffic starts at 300 seconds: 45,000 opportunities per
+   source and **270,000 opportunities** across sources 2, 3, 4, 5, 7 and 8.
+-- Only recorded native random inputs are supplied. MATLAB independently creates
+-  traffic admissions, routes, receiver state, feedback, retries and deliveries.
+-- Every `model/` and `+ac/` file is unchanged from the accepted short v2 kit and
+-  the completed 6,000-second terminal candidate. The selected DATA retry policy
+-  remains `native-provisional`.
+-- Previously accepted natural 330-second evidence is checked against its exact
+-  source, runtime, configuration and tables; that simulation is not repeated.
+-  Component checks and the new native fixture import checks run before the network.
++- The selected DATA retry policy remains `native-provisional`; the model default
++  remains `actual-tx`.
+ - A semantic random-request or transmission-context mismatch stops the network
+-  and preserves partial evidence. An endogenous random-request timestamp difference
+-  also prevents acceptance; it is recorded by the existing provider and checked
+-  after the run. A separate runner-only gate checks every physical TX count,
+-  source/ordinal, global order and integer-nanosecond timestamp. Its preflight
+-  rechecks all 1,437 accepted 400-second TX records and rejects five deliberate
+-  time/count/order/source/duplication mutations before the network starts.
+-  Internal protocol boundaries remain available for independent raw-trace review.
++  and preserves partial evidence. An endogenous random-request timestamp
++  difference also prevents acceptance. A separate completion gate checks every
++  physical TX count, source/ordinal, global order and integer-nanosecond timestamp.
++  Its comparator preflight checks the historical 400-second TX table and rejects
++  five deliberate time/count/order/source/duplication mutations.
+ 
+-## Evidence retained
++## Provenance and historical evidence
+ 
+-The return includes complete application-attempt, protocol, PHY, receiver timing,
+-transport timing, service, feedback and ordered-event evidence, subject to explicit
+-bounded-capacity checks. Omitted required records prevent test acceptance.
+-The existing ordered recorder streams to disk without retaining its JSONL log
+-in memory. No extra simulation callback or sampling event is added.
++The runner verifies every file in the current `FILES.json` before and after the
++run. It independently compares the candidate with the accepted v2 source manifest:
++only the explicitly listed relay-custody/accounting repair files may differ, and
++only the listed focused-test files may be added. All other prior model and
++candidate files must match their accepted hashes exactly. Active MATLAB classes
++must resolve inside this freshly extracted kit.
+ 
+-The traces support reconstruction of node-8 queue arrivals, queue removals,
+-submitted custody, observed HOP capacity, NSDP counters and DACK hold/release
+-events. Analysis will compare checkpoints at 400, 600, 675, 900 and 1,200 seconds
+-where reached. The unchanged MATLAB code does not directly log every skipped
+-NWK-pump candidate or wake coalescing decision; those must not be presented as
+-observed decisions.
++The old 330-second natural tables are retained and checked for historical
++integrity. **They are not reused as acceptance evidence for this changed model.**
++No new 330-second natural network is run. The 330-second configuration used by
++isolated component preflights does not launch a natural network simulation.
++The return report identifies the candidate behavior change explicitly.
+ 
+-Application accounting keeps every admitted-but-undelivered application
+-**unresolved**. The native-provisional `Dropped` and `Pending` counters are
+-retained separately. HOP-owner expiry does not prove final application loss,
+-and aggregate counters do not classify every live physical copy.
++## Evidence and accounting
+ 
+-## Boundaries and limitations
++The return retains application-attempt, protocol, PHY, receiver timing,
++transport timing, service, feedback and ordered-event evidence. Omitted required
++records prevent acceptance. The ordered recorder streams to disk; no extra
++sampling or simulation callback is added by this runner.
+ 
+-Canonical trace comparison uses **0 ≤ time < 1,200 seconds**. If MATLAB processes
+-callbacks exactly at 1,200, those rows are saved separately. All-node warmup,
+-source traffic and receiver feedback are generated normally. There is no drain
+-interval and no replay of network state or outcomes.
++Independent analysis of the return will compare ordered relay occurrences,
++custody releases and unique-application accounting, including the previous
++694.822-s and 895.115-s boundaries. Those times are diagnostic reference points;
++they do not inject or force a queue or delivery result.
+ 
+-A completed test establishes the stated bounded common-input checks. Independent
+-raw-trace comparison is still required after you return the ZIP. It does not
+-establish autonomous 6,000-second parity or statistical agreement across seeds.
++Node-8 queue checkpoints remain 400, 600, 675, 900 and 1,200 seconds, where reached.
++The traces do not directly record every skipped NWK-pump candidate or coalesced
++wake decision; those must not be reported as observed decisions.
+ 
+-This kit was checked statically and independently reviewed; MATLAB itself is not
+-available in the preparation environment. Do not edit the source or reference
+-files: the runner verifies their hashes before and after the test. Historical
+-review files retain the old 15% target as historical evidence; the current target
+-in this runner and `review/milestone_20.json` is 20%.
++Every admitted-but-undelivered application remains **unresolved**. Raw
++native-provisional `Dropped` and `Pending` counters are retained separately.
++HOP-owner expiry does not prove final application loss, and aggregate counters
++do not classify every live physical copy. Unique delivery accounting remains
++separate from relay-copy and custody-occurrence counts.
++
++## Acceptance target and limits
++
++The engineering target remains **±20%**, using the same source-by-source delivery
++count and delivered-latency definitions. The latest autonomous 6,000-second
++measurement predates this repair: 5 of 9 defined source/seed cases pass both
++measurements, while source-weighted latency is about +40.7%. Three further cells
++are undefined because native delivery is zero. This candidate has not yet been
++measured against that milestone.
++
++The ±20% target does **not** relax this replay's strict common-input comparisons.
++Canonical comparison uses **0 ≤ time < 1,200 seconds**; callbacks exactly at the
++endpoint are saved separately. There is no drain interval. A completed replay
++establishes its stated bounded checks, subject to independent raw-trace review;
++it does not establish autonomous 6,000-second parity or agreement across seeds.
++
++The kit has static and independent reviews. MATLAB is unavailable in the
++preparation environment, so execution of this repaired candidate remains pending.
++Do not edit source or reference files. Historical documents may describe older
++candidates or targets; the current manifest, runner and this README describe this
++relay-copy custody candidate and the ±20% engineering target.
+--- base/model/+csr/+nwk/Layer.m
++++ repair/model/+csr/+nwk/Layer.m
+@@ -18,6 +18,7 @@
+         Metrics
+         Seen
+         Pending = {}
++        NextCustodyId = uint64(1)
+         Controls = {}
+         RoutingBacklog = {}
+         NextControlId = uint64(1)
+@@ -120,7 +121,10 @@
+                 accepted=false; reason='inactive_neighbor'; return
+             end
+             key=appKey(app);
+-            if isKey(obj.Seen,key)
++            % HOP owns its ACK/DACK receive window. A copy that HOP offers
++            % again (including a DACK-marked retry) needs distinct relay
++            % custody. Only the final destination deduplicates applications.
++            if app.DestinationId==obj.NodeId && isKey(obj.Seen,key)
+                 obj.Counters.DuplicateApplications=obj.Counters.DuplicateApplications+1;
+                 accepted=true; return
+             end
+@@ -146,10 +150,9 @@
+             if ~obj.routeAvailable(onward)
+                 accepted=false; reason='no_route'; return
+             end
+-            accepted=obj.enqueueApplication(onward);
++            [accepted,onward]=obj.enqueueApplication(onward);
+             if ~accepted, reason='network_queue_full'; end
+             if accepted
+-                obj.Seen(key)=true;
+                 if isfield(obj.Callbacks,'CustodyAccepted')
+                     obj.Callbacks.CustodyAccepted(onward,previousHop);
+                 end
+@@ -353,6 +356,16 @@
+             end
+         end
+ 
++        function count = custodyCount(obj,app)
++            % Read-only live occurrence count for unique-application accounting.
++            % NSDP uses a source/destination pair; this query uses the original
++            % source/application identity and includes submitted HOP owners.
++            count=0; key=appKey(app);
++            for index=1:numel(obj.Pending)
++                count=count+double(strcmp(appKey(obj.Pending{index}.App),key));
++            end
++        end
++
+         function state = applicationState(obj,destination)
+             % Read-only source br_app observations. Persistent topology and
+             % destination populations are broader than currently usable routes.
+@@ -387,10 +400,9 @@
+ 
+         function release(obj,app,reason)
+             position=obj.pendingPosition(app);
+-            if position>0
+-                obj.Pending(position)=[];
+-                obj.emit('network_custody_release',app,struct('Reason',reason));
+-            end
++            if position==0, return; end
++            obj.Pending(position)=[];
++            obj.emit('network_custody_release',app,struct('Reason',reason));
+             obj.wake();
+         end
+ 
+@@ -451,13 +463,21 @@
+         end
+     end
+     methods (Access = private)
+-        function accepted = enqueueApplication(obj,app)
+-            if obj.pendingPosition(app)>0, accepted=true; return; end
++        function [accepted,app] = enqueueApplication(obj,app)
+             accepted=numel(obj.Pending)<obj.Config.QueueLimit;
+             if ~accepted
+                 obj.Counters.QueueAdmissionRejections=obj.Counters.QueueAdmissionRejections+1;
+                 obj.emit('network_queue_reject',app,struct('Reason','network_queue_full')); return
+             end
++            % This is local custody metadata, not application or wire
++            % identity. Always replace the upstream node's token, even when
++            % another accepted occurrence of the same application is live.
++            if obj.NextCustodyId==intmax('uint64')
++                error('csr:nwk:CustodyIdExhausted','Local custody identifiers are exhausted.');
++            end
++            app.NwkCustodyNodeId=obj.NodeId;
++            app.NwkCustodyId=obj.NextCustodyId;
++            obj.NextCustodyId=obj.NextCustodyId+uint64(1);
+             row=struct('App',app,'Submitted',false,'PeerId',NaN);
+             % Source NWK pushes every positive DSCP at head; zero appends.
+             position=numel(obj.Pending)+1;
+@@ -925,9 +945,24 @@
+             id=obj.NextControlId; obj.NextControlId=obj.NextControlId+uint64(1);
+         end
+         function position = pendingPosition(obj,app)
++            % A delayed callback must identify its exact local occurrence.
++            % There is deliberately no application-identity fallback: after
++            % one copy leaves, such a fallback could release its sibling.
+             position=0;
++            if ~isstruct(app) || ~isscalar(app) || ...
++                    ~all(isfield(app,{'NwkCustodyNodeId','NwkCustodyId','SourceId','Id'})) || ...
++                    ~isnumeric(app.NwkCustodyNodeId) || ~isscalar(app.NwkCustodyNodeId) || ...
++                    ~isreal(app.NwkCustodyNodeId) || app.NwkCustodyNodeId~=obj.NodeId || ...
++                    ~isa(app.NwkCustodyId,'uint64') || ~isscalar(app.NwkCustodyId) || ...
++                    app.NwkCustodyId==0
++                return
++            end
+             for index=1:numel(obj.Pending)
+-                if strcmp(appKey(obj.Pending{index}.App),appKey(app)), position=index; return; end
++                other=obj.Pending{index}.App;
++                if other.NwkCustodyId==app.NwkCustodyId && ...
++                        strcmp(appKey(other),appKey(app))
++                    position=index; return
++                end
+             end
+         end
+         function position = controlPosition(obj,id)
+--- base/model/+csr/+sim/NetworkSimulation.m
++++ repair/model/+csr/+sim/NetworkSimulation.m
+@@ -257,7 +257,7 @@
+             metadata.FaultInjection = 'Optional deterministic post-PHY receive erasures before MAC/HOP/NWK; default none';
+             metadata.LinkEvents = 'Post-PHY RF blackout at receive completion; protocol timers keep running';
+             metadata.MetricDefinitions = struct('Received','Unique final-destination application deliveries', ...
+-                'Dropped','Terminal application loss at current custody owner; excludes feedback failure after delivery', ...
++                'Dropped','Provisional unique-application loss after all registered NWK custody is released; recoverable by a later copy', ...
+                 'Transmitted','OTA aggregate transmissions across all nodes, including control', ...
+                 'PhysicalTransmissions','OTA aggregate transmissions, including control-only frames', ...
+                 'PhysicalAttempts','OTA transmission at each non-self receiver', ...
+@@ -268,8 +268,9 @@
+                 'QueueAdmissionRejections','Source or relay queue admission refusals, including retried refusals', ...
+                 'AcksReceived','HOP DATA transactions acknowledged by ACK feedback, not raw ACK frames', ...
+                 'DacksReceived','HOP DATA transactions accepted through DACK feedback', ...
+-                'UnconfirmedHopTransfers','Hop feedback failure after custody moved onward or application delivered', ...
+-                'UnretainedHopAcks','ACK/DACK completion without onward custody; recorded as loss, recoverable by late reception');
++                'UnconfirmedHopTransfers','Hop feedback failure while another NWK occurrence is retained or the application is already delivered or provisionally dropped', ...
++                'RelayAccepted','Accepted relay NWK custody occurrences; multiple copies of one application each count', ...
++                'UnretainedHopAcks','ACK/DACK completion with no registered NWK custody and no unique delivery; provisional loss recoverable by late reception');
+             trace = struct2table(obj.TraceRows(1:obj.TraceCount),'AsArray',true);
+             templateGenerator = csr.sim.ApplicationGenerator(0, ...
+                 struct('SourceId',0,'DestinationId',1),false,0);
+@@ -422,20 +423,27 @@
+         end
+ 
+         function custodyAccepted(obj,nodeId,app,previousHop)
+-            % Called only after NWK retained fresh relay custody and advanced
+-            % HopCount/Traversal. Feedback loss never transfers custody back.
++            % Every accepted NWK occurrence counts, including a retry of an
++            % application already retained at this hop or delivered elsewhere.
++            % Unique delivery remains terminal; a new retained occurrence may
++            % recover a provisional loss even without increasing HopCount.
+             key = obj.key(app);
+             if ~isKey(obj.Records,key), error('csr:sim:UnknownApplication','Retained an unknown application.'); end
+             record = obj.Records(key);
+-            if strcmp(record.Status,'delivered') || app.HopCount <= record.CustodyHopCount, return; end
+-            if strcmp(record.Status,'dropped')
+-                obj.recoverDrop(record);
+-                obj.Counters.LateCustodyRecoveries = obj.Counters.LateCustodyRecoveries+1;
+-                record.Status = 'pending';
+-            end
+-            record.CustodyNodeId = nodeId; record.CustodyHopCount = app.HopCount;
+-            record.App = app; record.NoRouteSuppressed = false;
+-            obj.Records(key) = record;
++            if ~strcmp(record.Status,'delivered')
++                if strcmp(record.Status,'dropped')
++                    obj.recoverDrop(record);
++                    obj.Counters.LateCustodyRecoveries = obj.Counters.LateCustodyRecoveries+1;
++                    record.Status = 'pending';
++                end
++                % This high-water mark is diagnostic, not copy ownership.
++                if app.HopCount >= record.CustodyHopCount
++                    record.CustodyNodeId = nodeId; record.CustodyHopCount = app.HopCount;
++                    record.App = app;
++                end
++                record.NoRouteSuppressed = false;
++                obj.Records(key) = record;
++            end
+             obj.Counters.RelayAccepted = obj.Counters.RelayAccepted+1;
+             obj.record('relay_accept',app,nodeId,previousHop,'',struct());
+         end
+@@ -443,7 +451,7 @@
+         function terminal(obj,nodeId,app,success,reason)
+             record = obj.Records(obj.key(app));
+             if success && any(strcmp(reason,{'ack','dack_custody'})) && ...
+-                    strcmp(record.Status,'pending') && record.CustodyNodeId == nodeId
++                    strcmp(record.Status,'pending') && ~obj.hasRetainedCustody(app)
+                 % Source HOP records a first no-route sequence, so a later
+                 % duplicate can ACK without ever delivering to NWK. Preserve
+                 % that wire behavior while accounting the unretained app.
+@@ -453,7 +461,7 @@
+                 obj.dropApplication(nodeId,app,loss);
+             elseif ~success
+                 obj.Counters.HopFailures = obj.Counters.HopFailures+1;
+-                if ~strcmp(record.Status,'pending') || record.CustodyNodeId ~= nodeId
++                if ~strcmp(record.Status,'pending') || obj.hasRetainedCustody(app)
+                     obj.Counters.UnconfirmedHopTransfers = obj.Counters.UnconfirmedHopTransfers+1;
+                     obj.record('hop_delivery_unconfirmed',app,nodeId,app.DestinationId,reason,struct());
+                 end
+@@ -463,15 +471,29 @@
+ 
+         function dropApplication(obj,nodeId,app,reason)
+             key = obj.key(app); record = obj.Records(key);
+-            % An old sender may exhaust ACK retries after the receiver has
+-            % accepted custody or delivered. That failure is not app loss.
+-            if ~strcmp(record.Status,'pending') || record.CustodyNodeId ~= nodeId, return; end
++            % A failed occurrence is not unique-application loss while any
++            % NWK node retains a sibling. This deliberately does not claim a
++            % physical-copy ledger: queued MAC copies can still recover a
++            % provisional drop after all registered NWK custody is released.
++            if ~strcmp(record.Status,'pending') || obj.hasRetainedCustody(app), return; end
+             record.Status = 'dropped'; record.DropNodeId = nodeId;
+             record.DropReason = char(reason); obj.Records(key) = record;
+             obj.Counters.Dropped = obj.Counters.Dropped+1;
+             index = obj.NodeIndex(nodeId); obj.Nodes{index}.Dropped = obj.Nodes{index}.Dropped+1;
+             obj.incrementReason(obj.DropReasons,reason);
+             obj.record('app_drop',app,nodeId,app.DestinationId,reason,struct());
++        end
++
++        function retained = hasRetainedCustody(obj,app)
++            % Read-only query of actual registered NWK occurrences, including
++            % submitted owners. HOP completion releases its occurrence before
++            % the accounting callback; other nodes and siblings remain live.
++            retained = false;
++            for k = 1:numel(obj.Networks)
++                if obj.Networks{k}.custodyCount(app)>0
++                    retained = true; return
++                end
++            end
+         end
+ 
+         function recoverDrop(obj,record)
+--- base/run_node8_tests.m
++++ repair/run_node8_tests.m
+@@ -1,5 +1,5 @@
+ function report=run_node8_tests
+-%RUN_NODE8_TESTS Seed-132 common-input network, 0 <= t < 1200 seconds.
++%RUN_NODE8_TESTS Relay-copy custody repair: seed 132, 0 <= t < 1200 s.
+ % Restart MATLAB R2025a and set Current Folder to the extracted node8case.
+ %   report = run_node8_tests;
+ % Return the printed ZIP, including partial evidence on a divergence.
+@@ -7,7 +7,9 @@
+ oldPath=path; oldFolder=pwd;
+ restoreEnvironment=onCleanup(@()restore(oldPath,oldFolder)); %#ok<NASGU>
+ out=uniqueFolder(root,['out_node8_' datestr(now,'yyyymmdd_HHMMSS')]);
+-report=struct('schema','csr-node8-1200-v1','completed',false, ...
++report=struct('schema','csr-relay-custody-1200-v1','completed',false, ...
++    'candidate_behavior_changed',true, ...
++    'repair_scope','Distinct accepted relay-copy custody with unique-application delivery accounting', ...
+     'numerical_parity_established',false,'target_percent',20, ...
+     'common_input_context_tolerance','Unchanged strict semantic comparisons', ...
+     'independent_raw_trace_audit_pending',true, ...
+@@ -16,7 +18,7 @@
+     'error_identifier','','error_message','');
+ diary(fullfile(out,'console.log')); diaryCleanup=onCleanup(@()diary('off')); %#ok<NASGU>
+ started=tic;
+-fprintf('\nNode-8 investigation: seed 132, 0–1200 s, all seven nodes from time zero.\n');
++fprintf('\nRelay-copy custody repair: seed 132, 0–1200 s, all seven nodes from time zero.\n');
+ fprintf('Only common random inputs are supplied. MATLAB generates all network states and feedback.\n');
+ fprintf('The engineering target is now +/-20%%. This diagnostic keeps strict contexts and random-request timestamp checks.\n');
+ fprintf('Allow one to several hours; long quiet periods during simulation are expected.\n');
+@@ -35,31 +37,32 @@
+     cd(root); restoredefaultpath; addpath(root,model,'-begin'); rehash;
+     manifestPath=fullfile(root,'FILES.json'); manifestHash=hashFile(manifestPath);
+     manifest=jsondecode(fileread(manifestPath));
+-    assert(strcmp(manifest.schema,'csr-node8-1200-kit-v1') && manifest.target_percent==20, ...
++    assert(strcmp(manifest.schema,'csr-relay-custody-1200-kit-v1') && manifest.target_percent==20 && ...
++        manifest.model_behavior_changed && manifest.candidate_behavior_changed, ...
+         'node8:Manifest','Unexpected kit or acceptance target.');
+     verifyFiles(root,manifest.files); resolved=bindSource(root,manifest.files);
+-    accepted=verifyAcceptedCandidate(root,report.runtime);
++    delta=verifyCandidateDelta(root,manifest);
++    historical=verifyHistoricalReference(root,report.runtime);
++    report.historical_reference=historical;
+     ac.writeJson(fullfile(out,'provenance.json'),struct('runtime',report.runtime, ...
+         'manifest_sha256',manifestHash,'manifest',manifest,'resolved_matlab_files',resolved, ...
+-        'accepted_candidate',accepted,'production_model_changed',false, ...
+-        'candidate_behavior_changed',false,'receiver_state_or_feedback_replayed',false, ...
++        'candidate_delta',delta,'historical_reference',historical, ...
++        'production_model_changed',true,'candidate_behavior_changed',true, ...
++        'receiver_state_or_feedback_replayed',false, ...
+         'simulation_class','ac.TerminalSimulation','random_mode','native', ...
+         'ordered_trace_sink','Unchanged ac.Recorder; streamed directly to disk', ...
+         'node8_pump_skip_reasons','Not instrumented; reconstruct observable queue/capacity transitions only'));
+-    % Recheck accepted natural evidence without repeating a 330-second network.
++    % A short-duration configuration feeds isolated component checks only.
++    % Historical natural tables do not validate this changed candidate.
+     config=loadScenario(root,132,330);
+     config.Trace.MaxRecords=200000; config.Trace.MaxPhyRecords=200000;
+     config.Trace.MaxApplicationAdmissionRecords=20000; config.MaxEvents=2000000;
+     config=csr.scenario.validate(config);
+-    [reused,natural,reuse]=reuseNatural(root,out,config,report.runtime);
+-    assert(reused && natural.completed && natural.natural_prefix_passed, ...
+-        'node8:AcceptedBaseline','Packaged natural-source evidence did not pass.');
+-    report.natural_baseline=natural; report.accepted_natural_reuse=reuse;
+     report.preflights=runPreflight('original_native_import', ...
+         @()ac.nativeImportPreflight(root,fullfile(out,'import_preflight')),out);
+     names={'tx_timing_comparator','receiver_interval_order','key_request','check_gate','population','route_admission', ...
+         'request_wire','no_path_wire','discovery_identity','receiver_timer','discovery_lifecycle', ...
+-        'discovery_membership','feedback_identity','retry_policy','terminal','integrated_accounting'};
++        'discovery_membership','feedback_identity','retry_policy','terminal','integrated_accounting','relay_custody'};
+     callbacks={ ...
+         @()txTimingPreflight(root,fullfile(out,'tx_timing_preflight')), ...
+         @()ac.receiverOrderPreflight(root,config,fullfile(out,'receiver_order_preflight')), ...
+@@ -76,7 +79,8 @@
+         @()ac.feedbackIdentityPreflight(root,fullfile(out,'feedback_preflight')), ...
+         @()ac.retryPolicyPreflight(config,fullfile(out,'retry_preflight')), ...
+         @()ac.terminalPreflight(config,fullfile(out,'terminal_preflight')), ...
+-        @()ac.integratedAccountingPreflight(config,fullfile(out,'integrated_accounting'))};
++        @()ac.integratedAccountingPreflight(config,fullfile(out,'integrated_accounting')), ...
++        @()ac.relayCustodyPreflight(config,fullfile(out,'relay_custody_preflight'))};
+     for k=1:numel(names)
+         report.preflights(end+1)=runPreflight(names{k},callbacks{k},out);
+     end
+@@ -125,28 +129,56 @@
+     report.completed,report.archive_completed,toc(started)/60);
+ end
+ 
+-function proof=verifyAcceptedCandidate(root,runtime)
++function proof=verifyCandidateDelta(root,manifest)
++% The accepted source manifest is immutable history. The current manifest
++% hashes every packaged byte; this independent allowlist bounds the repair.
+ folder=fullfile(root,'review','validated_short_v2');
+ audit=jsondecode(fileread(fullfile(folder,'return_audit.json')));
+ assert(strcmp(audit.status,'pass') && ...
+     strcmp(audit.issued_manifest_sha256,'8c3a4e7f0dc4e9d956509f2399877377bad90ff531290980b64427cfe9fb3920'), ...
+-    'node8:AcceptedCandidate','The prior short-batch source receipt is not the accepted v2.');
++    'node8:AcceptedCandidate','The historical short-batch source receipt is not the accepted v2.');
+ issuedPath=fullfile(folder,'issued_FILES.json');
+ assert(strcmp(hashFile(issuedPath),audit.issued_manifest_sha256), ...
+-    'node8:AcceptedManifest','Accepted source manifest changed.');
+-issued=jsondecode(fileread(issuedPath)); count=0;
++    'node8:AcceptedManifest','Historical accepted source manifest changed.');
++issued=jsondecode(fileread(issuedPath));
++authorized={'+ac/AccountingFixture.m';'+ac/DiscoveryMembershipNwk.m'; ...
++    '+ac/TerminalSimulation.m';'+ac/integratedAccountingPreflight.m'; ...
++    'model/+csr/+nwk/Layer.m'; ...
++    'model/+csr/+sim/NetworkSimulation.m'};
++added={'+ac/RelayCustodyProbe.m';'+ac/relayCustodyPreflight.m'};
++assert(isequal(sort(string(manifest.authorized_existing_delta_paths(:))),sort(string(authorized))) && ...
++    isequal(sort(string(manifest.added_candidate_paths(:))),sort(string(added))), ...
++    'node8:RepairScope','Manifest repair scope differs from the reviewed exact allowlist.');
++oldPaths=string({issued.files.path}); newPaths=string({manifest.files.path});
++assert(numel(unique(newPaths))==numel(newPaths),'node8:ManifestDuplicate','Duplicate manifest path.');
++changed=struct('path',{},'historical_sha256',{},'candidate_sha256',{}); unchanged=0; count=0;
+ for k=1:numel(issued.files)
+     p=char(issued.files(k).path);
+-    if startsWith(p,'model/') || startsWith(p,'+ac/')
+-        verifyFiles(root,issued.files(k)); count=count+1;
+-    end
+-end
+-assert(count==167,'node8:CandidatePopulation','Expected 167 unchanged model/data and candidate files.');
+-proof=struct('accepted_short_archive_sha256',audit.archive.sha256, ...
+-    'issued_manifest_sha256',audit.issued_manifest_sha256, ...
+-    'unchanged_model_and_candidate_files',count,'model_behavior_changed',false, ...
+-    'prior_runtime',audit.runtime,'current_runtime',runtime, ...
+-    'all_prior_short_gates_passed',true,'current_common_input_window',[0 1200]);
++    if ~(startsWith(p,'model/') || startsWith(p,'+ac/')), continue; end
++    count=count+1;
++    index=find(newPaths==string(p));
++    assert(numel(index)==1,'node8:CandidatePopulation','Historical candidate file missing from current manifest: %s.',p);
++    currentHash=hashFile(fullfile(root,strrep(p,'/',filesep)));
++    if any(strcmp(p,authorized))
++        assert(~strcmp(currentHash,issued.files(k).sha256),'node8:RepairMissing', ...
++            'Expected reviewed repair is absent from %s.',p);
++        changed(end+1)=struct('path',p,'historical_sha256',issued.files(k).sha256, ...
++            'candidate_sha256',currentHash); %#ok<AGROW>
++    else
++        verifyFiles(root,issued.files(k)); unchanged=unchanged+1;
++    end
++end
++assert(count==167 && numel(changed)==numel(authorized),'node8:CandidatePopulation', ...
++    'Historical source population or authorized repair population changed.');
++extra=newPaths((startsWith(newPaths,'model/') | startsWith(newPaths,'+ac/')) & ~ismember(newPaths,oldPaths));
++assert(isequal(sort(extra(:)),sort(string(added))),'node8:AddedCandidateScope', ...
++    'Unexpected added candidate file, or a required focused-test dependency is missing.');
++proof=struct('historical_short_archive_sha256',audit.archive.sha256, ...
++    'historical_issued_manifest_sha256',audit.issued_manifest_sha256, ...
++    'historical_model_and_candidate_files',count,'unchanged_files',unchanged, ...
++    'authorized_changed_files',changed,'added_test_files',{added}, ...
++    'model_behavior_changed',true,'historical_acceptance_applies_to_current_model',false, ...
++    'current_common_input_window',[0 1200]);
+ end
+ 
+ function item=runPreflight(name,callback,out)
+@@ -425,60 +457,33 @@
+ value=struct('identifier',caught.identifier,'message',caught.message,'stack',caught.stack);
+ end
+ 
+-function [reused,item,details]=reuseNatural(root,out,config,runtime)
+-reused=false; item=[];
++function details=verifyHistoricalReference(root,runtime)
++% Revalidate archived evidence integrity only. Source bytes have changed;
++% this is not an accepted natural result for the repaired candidate.
+ folder=fullfile(root,'ref','accepted');
+ proof=jsondecode(fileread(fullfile(folder,'reuse_proof.json')));
+ assert(strcmp(proof.schema,'csr-accepted-natural-reuse-v1') && ...
+-    proof.static_natural_source_identity_proven,'autocase:ReuseProof','Invalid natural source-reuse proof.');
++    proof.static_natural_source_identity_proven,'autocase:ReuseProof','Invalid historical natural-source proof.');
+ verifyFiles(folder,proof.accepted_files);
+-verifyFiles(root,proof.unchanged_natural_source_files);
+-assert(strcmp(hashFile(fullfile(root,'+ac','Streams.m')),proof.current_streams_sha256), ...
+-    'autocase:ReuseSource','The source proof does not describe this repaired provider.');
+ runtimeMatches=strcmp(runtime.version,proof.accepted_runtime.version) && ...
+     strcmp(runtime.release,proof.accepted_runtime.release) && strcmp(runtime.computer,proof.accepted_runtime.computer);
+-acceptedConfig=jsondecode(fileread(fullfile(folder,'configuration.json')));
+-currentConfig=jsondecode(jsonencode(config));
+-% SourcePath describes where the already-hash-bound CSV was imported; the
+-% production simulator does not read it. A new extraction path is expected.
+-acceptedSourcePath=acceptedConfig.SharedScenario.SourcePath;
+-currentSourcePath=currentConfig.SharedScenario.SourcePath;
+-acceptedConfig.SharedScenario.SourcePath='hash-bound inputs/s132.csv';
+-currentConfig.SharedScenario.SourcePath='hash-bound inputs/s132.csv';
+-configMatches=isequaln(currentConfig,acceptedConfig);
+-details=struct('reused',false,'runtime_matches',runtimeMatches,'configuration_matches',configMatches, ...
+-    'accepted_runtime',proof.accepted_runtime,'fresh_natural_simulation_executed',false, ...
+-    'source_basis','All model and natural producer bytes match; Streams edits are confined to native-only import and matching.', ...
+-    'prefix_gate_recomputed',false, ...
+-    'configuration_metadata_path_only',struct('accepted',acceptedSourcePath,'current',currentSourcePath), ...
+-    'configuration_path_rule','Only SharedScenario.SourcePath is canonicalized; input CSV hash and every behavioral field are checked');
+-if ~runtimeMatches || ~configMatches
+-    error('node8:AcceptedBaselineIdentity', ...
+-        'Accepted natural baseline requires the packaged R2025a runtime and exact configuration. No extra simulation was launched.');
+-end
++assert(runtimeMatches,'node8:CandidateRuntime', ...
++    'This candidate kit targets MATLAB R2025a 25.1.0.2943329 on Windows; use that runtime.');
+ accepted=jsondecode(fileread(fullfile(folder,'case_summary.json')));
+ oldGate=jsondecode(fileread(fullfile(folder,'prefix_gate.json')));
+ assert(accepted.completed && accepted.natural_prefix_passed && accepted.reached_time_s==330 && ...
+-    oldGate.passed && all([oldGate.checks.passed]),'autocase:ReuseAcceptance','Packaged natural case was not accepted.');
+-% This is the same strict CSV comparison as a newly executed natural case.
++    oldGate.passed && all([oldGate.checks.passed]),'autocase:ReuseAcceptance','Historical natural evidence was not accepted.');
+ gate=comparePrefix(folder,fullfile(root,'ref','matlab'));
+-assert(gate.passed,'autocase:ReusePrefix','Packaged accepted tables no longer pass the original exact prefix gate.');
+-target=fullfile(out,'A_natural'); mkdir(target);
+-for name={'protocol_trace.csv','phy_trace.csv','application_admission_trace.csv', ...
+-        'observer_status.json','random_summary.json'}
+-    [okay,message]=copyfile(fullfile(folder,name{1}),fullfile(target,name{1}));
+-    assert(okay,'autocase:ReuseCopy','%s',message);
+-end
+-ac.writeJson(fullfile(target,'prefix_gate.json'),gate);
+-item=struct('name','A_natural','mode','natural','completed',true,'natural_prefix_passed',true, ...
+-    'reached_time_s',330,'diagnostic_status','accepted_prior_run_reused', ...
+-    'error_identifier','','error_message','','wall_seconds',0);
+-ac.writeJson(fullfile(target,'case_summary.json'),item);
+-details.reused=true; details.prefix_gate_recomputed=true;
+-details.accepted_previous_wall_seconds=accepted.wall_seconds;
+-ac.writeJson(fullfile(target,'accepted_reuse.json'),struct('reuse',details,'proof',proof));
+-reused=true;
+-fprintf('Case A: accepted prior run reused; all 3 exact prefix gates rechecked. No new natural simulation.\n');
++assert(gate.passed,'autocase:ReusePrefix','Historical tables no longer match the original exact prefix.');
++details=struct('schema','csr-relay-custody-historical-reference-v1', ...
++    'status','historical_reference_only','historical_integrity_passed',true, ...
++    'accepted_runtime',proof.accepted_runtime,'current_runtime',runtime, ...
++    'runtime_matches',runtimeMatches,'historical_prefix_gate',gate, ...
++    'historical_source_proof_current_model_validation',false, ...
++    'natural_result_reused_as_current_acceptance',false, ...
++    'fresh_natural_simulation_executed',false, ...
++    'reason','Relay-copy and unique-accounting behavior changed; prior natural evidence is reference only');
++fprintf('Historical 330-s tables verified as reference only; this changed model has no reused natural acceptance.\n');
+ end
+ 
+ function output=comparePrefix(folder,reference)
+@@ -512,6 +517,9 @@
+ for k=1:numel(files)
+     relative=char(files(k).path);
+     if ~endsWith(relative,'.m'), continue; end
++    % Archived source is hash-covered but must never resolve as active code.
++    active=startsWith(relative,'model/') || startsWith(relative,'+ac/') || ~contains(relative,'/');
++    if ~active, continue; end
+     % Hash verification covers this optional branch, but resolving its
+     % class definitions may load an unavailable wnet.Node on R2025a.
+     if startsWith(relative,'model/+csr/+sim/+native/'), continue; end

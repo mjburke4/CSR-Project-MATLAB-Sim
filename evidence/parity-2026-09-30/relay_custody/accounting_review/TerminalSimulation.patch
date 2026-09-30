@@ -1,0 +1,113 @@
+--- before/+ac/TerminalSimulation.m
++++ after/+ac/TerminalSimulation.m
+@@ -265,7 +265,7 @@
+             metadata.FaultInjection = 'Optional deterministic post-PHY receive erasures before MAC/HOP/NWK; default none';
+             metadata.LinkEvents = 'Post-PHY RF blackout at receive completion; protocol timers keep running';
+             metadata.MetricDefinitions = struct('Received','Unique final-destination application deliveries', ...
+-                'Dropped','Provisional recorded custody loss recoverable by a later copy; not final application loss while a MAC copy remains live', ...
++                'Dropped','Provisional unique-application loss after all registered NWK custody is released; not final loss while a MAC copy remains live', ...
+                 'Transmitted','OTA aggregate transmissions across all nodes, including control', ...
+                 'PhysicalTransmissions','OTA aggregate transmissions, including control-only frames', ...
+                 'PhysicalAttempts','OTA transmission at each non-self receiver', ...
+@@ -276,8 +276,9 @@
+                 'QueueAdmissionRejections','Source or relay queue admission refusals, including retried refusals', ...
+                 'AcksReceived','HOP DATA transactions acknowledged by ACK feedback, not raw ACK frames', ...
+                 'DacksReceived','HOP DATA transactions accepted through DACK feedback', ...
+-                'UnconfirmedHopTransfers','Hop feedback failure after custody moved onward or application delivered', ...
+-                'UnretainedHopAcks','ACK/DACK completion without onward custody; recorded as loss, recoverable by late reception');
++                'UnconfirmedHopTransfers','Hop feedback failure while another NWK occurrence is retained or the application is already delivered or provisionally dropped', ...
++                'RelayAccepted','Accepted relay NWK custody occurrences; multiple copies of one application each count', ...
++                'UnretainedHopAcks','ACK/DACK completion with no registered NWK custody and no unique delivery; provisional loss recoverable by late reception');
+             trace = struct2table(obj.TraceRows(1:obj.TraceCount),'AsArray',true);
+             templateGenerator = csr.sim.ApplicationGenerator(0, ...
+                 struct('SourceId',0,'DestinationId',1),false,0);
+@@ -433,20 +434,27 @@
+         end
+ 
+         function custodyAccepted(obj,nodeId,app,previousHop)
+-            % Called only after NWK retained fresh relay custody and advanced
+-            % HopCount/Traversal. Feedback loss never transfers custody back.
++            % Every accepted NWK occurrence counts, including a retry of an
++            % application already retained at this hop or delivered elsewhere.
++            % Unique delivery remains terminal; a new retained occurrence may
++            % recover a provisional loss even without increasing HopCount.
+             key = obj.key(app);
+             if ~isKey(obj.Records,key), error('csr:sim:UnknownApplication','Retained an unknown application.'); end
+             record = obj.Records(key);
+-            if strcmp(record.Status,'delivered') || app.HopCount <= record.CustodyHopCount, return; end
+-            if strcmp(record.Status,'dropped')
+-                obj.recoverDrop(record);
+-                obj.Counters.LateCustodyRecoveries = obj.Counters.LateCustodyRecoveries+1;
+-                record.Status = 'pending';
+-            end
+-            record.CustodyNodeId = nodeId; record.CustodyHopCount = app.HopCount;
+-            record.App = app; record.NoRouteSuppressed = false;
+-            obj.Records(key) = record;
++            if ~strcmp(record.Status,'delivered')
++                if strcmp(record.Status,'dropped')
++                    obj.recoverDrop(record);
++                    obj.Counters.LateCustodyRecoveries = obj.Counters.LateCustodyRecoveries+1;
++                    record.Status = 'pending';
++                end
++                % This high-water mark is diagnostic, not copy ownership.
++                if app.HopCount >= record.CustodyHopCount
++                    record.CustodyNodeId = nodeId; record.CustodyHopCount = app.HopCount;
++                    record.App = app;
++                end
++                record.NoRouteSuppressed = false;
++                obj.Records(key) = record;
++            end
+             obj.Counters.RelayAccepted = obj.Counters.RelayAccepted+1;
+             obj.record('relay_accept',app,nodeId,previousHop,'',struct());
+         end
+@@ -454,7 +462,7 @@
+         function terminal(obj,nodeId,app,success,reason)
+             record = obj.Records(obj.key(app));
+             if success && any(strcmp(reason,{'ack','dack_custody'})) && ...
+-                    strcmp(record.Status,'pending') && record.CustodyNodeId == nodeId
++                    strcmp(record.Status,'pending') && ~obj.hasRetainedCustody(app)
+                 % Source HOP records a first no-route sequence, so a later
+                 % duplicate can ACK without ever delivering to NWK. Preserve
+                 % that wire behavior while accounting the unretained app.
+@@ -464,7 +472,7 @@
+                 obj.dropApplication(nodeId,app,loss);
+             elseif ~success
+                 obj.Counters.HopFailures = obj.Counters.HopFailures+1;
+-                if ~strcmp(record.Status,'pending') || record.CustodyNodeId ~= nodeId
++                if ~strcmp(record.Status,'pending') || obj.hasRetainedCustody(app)
+                     obj.Counters.UnconfirmedHopTransfers = obj.Counters.UnconfirmedHopTransfers+1;
+                     obj.record('hop_delivery_unconfirmed',app,nodeId,app.DestinationId,reason,struct());
+                 end
+@@ -474,15 +482,29 @@
+ 
+         function dropApplication(obj,nodeId,app,reason)
+             key = obj.key(app); record = obj.Records(key);
+-            % An old sender may exhaust ACK retries after the receiver has
+-            % accepted custody or delivered. That failure is not app loss.
+-            if ~strcmp(record.Status,'pending') || record.CustodyNodeId ~= nodeId, return; end
++            % A failed occurrence is not unique-application loss while any
++            % NWK node retains a sibling. This deliberately does not claim a
++            % physical-copy ledger: queued MAC copies can still recover a
++            % provisional drop after all registered NWK custody is released.
++            if ~strcmp(record.Status,'pending') || obj.hasRetainedCustody(app), return; end
+             record.Status = 'dropped'; record.DropNodeId = nodeId;
+             record.DropReason = char(reason); obj.Records(key) = record;
+             obj.Counters.Dropped = obj.Counters.Dropped+1;
+             index = obj.NodeIndex(nodeId); obj.Nodes{index}.Dropped = obj.Nodes{index}.Dropped+1;
+             obj.incrementReason(obj.DropReasons,reason);
+             obj.record('app_drop',app,nodeId,app.DestinationId,reason,struct());
++        end
++
++        function retained = hasRetainedCustody(obj,app)
++            % Read-only query of actual registered NWK occurrences, including
++            % submitted owners. HOP completion releases its occurrence before
++            % the accounting callback; other nodes and siblings remain live.
++            retained = false;
++            for k = 1:numel(obj.Networks)
++                if obj.Networks{k}.custodyCount(app)>0
++                    retained = true; return
++                end
++            end
+         end
+ 
+         function recoverDrop(obj,record)

@@ -1,0 +1,116 @@
+CSR MATLAB/ns-3 common-input replay review — 30 September 2026
+Return: out_node8_20260930_074116.zip
+Engineering target: +/-20 percent; strict common-input comparisons unchanged.
+
+RESULT
+The package repair worked: all 17 preflight groups and the new native import
+passed. The seven-node seed-132 run stopped at 895.115 seconds of the requested
+1,200 seconds on the first physical-transmission payload mismatch. The 36.5-minute
+return is a useful partial diagnostic, not a completed 1,200-second acceptance.
+No simulator source was changed in this review.
+
+CONFIRMED CAUSE
+At 694.262813632 seconds, node 4 accepts source 7 application attempt 2873 from
+node 2 (ingress HOP sequence 162). Both models increase source-7 NSDP from 25 to
+26. At 694.821813632 seconds, another copy arrives. Both HOP implementations
+classify the DACK-marked retry as a first reception for this pass and generate
+DACK feedback. Native NWK accepts a second relay queue occurrence, increasing
+NSDP from 26 to 27. MATLAB returns success without enqueueing it, keeping 26.
+
+The active MATLAB class is ac.DiscoveryMembershipNwk, constructed by
+ac.TerminalSimulation. receiveData's Seen(appKey) guard suppresses the repeated
+relay application before it reaches enqueueApplication. The enqueue guard and
+pending/submission/release lookup also use application identity rather than a
+distinct local custody occurrence. The corresponding production NWK class has
+the same design constraints. Removing only the Seen guard is insufficient.
+
+Native csr-hop-layer.h explicitly treats DACK-marked retries as eligible for
+another NWK delivery; csr-nwk-layer.h increments NSDP and queues each accepted
+relay occurrence. This establishes a mismatch to the pinned ns-3 behavior. It
+does not independently prove whether that legacy behavior is the desired design
+for a different protocol or system.
+
+CAUSAL CHAIN
+- Node 4's first 198 NWK enqueue events agree in application identity and time.
+- Across all seven nodes before the stop, exactly one enqueue occurrence is
+  native-only: source 7, attempt 2873, node 4, at 694.821813632 seconds.
+- Before the first copy is submitted at 883.466 seconds, native's queue begins
+  [source7/2873, source7/2873, source8/3684]; MATLAB lacks the second source7 copy.
+- At 894.464292500 seconds, expiration of an earlier DACK hold releases capacity
+  under matching pending/outstanding/threshold conditions. Native assigns HOP
+  sequence 212 to the second source7 copy; MATLAB assigns it to source8/3684.
+- At 895.115 seconds, node 4's TX ordinal 962 uses the same time, destination 5,
+  HOP sequence 212, size, rate and reservation context, but different application
+  contents. The strict comparator stops the run. Native raw wire bytes encode
+  source7 directly, so the mismatch is not an application-ID mapping artifact.
+
+WHAT MATCHED
+All 34,260 observed RNG requests match native order, integer-nanosecond times,
+values and all compared context fields. The existing contract excludes reported
+population; this review does not treat that excluded field as an exact match.
+The first 6,007 physical TX contexts pass. All 6,008 recorded TX-start requests,
+including the rejected final request, match native source/order/integer-ns times;
+the last request throws before normal PHY completion. Required evidence streams
+report no omissions. These facts do not imply every internal state was equal.
+
+Node 8 has the same 269 NWK arrival events, 231 HOP handoff identities/order and
+229 custody releases. Its complete ordered queue/custody checkpoints agree at
+400, 600, 675 and immediately before 895.115 seconds. At the final checkpoint,
+both wait on 38 queue entries: 23 relayed source7 and 15 local source8 entries.
+The known first node8 HOP handoff at 300 seconds is 28 ns earlier in MATLAB;
+the other 230 handoff times are exact. No runtime comparator was relaxed.
+
+APPLICATION ACCOUNTING: STRICTLY BEFORE 895.115 SECONDS
+All six sources offer 29,756 attempts each (178,536 total). Every admission
+decision, identity and time agrees. Both models admit 1,582, deliver 1,229 unique
+applications and leave 353 admitted applications unresolved. All first-delivery
+identities and integer-nanosecond times agree; comparable delivered means are
+therefore identical. There are no duplicate final-delivery rows in this prefix.
+
+Source 2: admitted84, delivered41, unresolved43, mean289.844737915 s.
+Source 3: admitted919, delivered903, unresolved16, mean10.200469716 s.
+Source 4: admitted70, delivered34, unresolved36, mean194.679722851 s.
+Source 5: admitted220, delivered203, unresolved17, mean43.149766751 s.
+Source 7: admitted172, delivered20, unresolved152, mean474.504011086 s.
+Source 8: admitted117, delivered28, unresolved89, mean459.909418229 s.
+
+Unresolved means admitted without first delivery before this cutoff. Provisional
+app_drop events are not final losses, and retained custody is not a complete live
+physical-copy ledger. We do not compare this partial population to a complete
+native 1,200-second run or treat unfinished applications as zero-latency samples.
+
+RECOMMENDED REPAIR AND NEXT VALIDATION
+Make each accepted relay custody occurrence distinct while preserving the
+original end-to-end application identity for unique delivery accounting.
+Update the active candidate and its production counterpart consistently.
+Keep final-destination reporting deduplication separate from relay queue policy.
+
+One focused bundle should cover these boundaries together:
+1. An ACK-marked duplicate is suppressed at HOP; a DACK-marked retry accepted by
+   HOP creates another relay queue/NSDP occurrence, as in the captured case.
+2. Both occurrences coexist, preserve FIFO order, receive distinct outgoing HOP
+   ownership and release custody exactly once each. Completion/expiration of one
+   must not remove its sibling or double-release capacity.
+3. End-to-end accounting still counts the application once, including late-copy
+   delivery and orphan feedback behavior.
+4. Rerun the same seed132 0–1200 common-input replay with unchanged strict context
+   and timestamp gates, specifically checking 694.821813632, 894.464292500 and
+   895.115 seconds. The verified native fixture already exists.
+
+Do not run another unchanged long autonomous simulation first. After the repair
+passes this bounded replay, assess its effect on the original 6,000-second
+source-by-source counts and latency with unfinished traffic and source mix.
+The current full-run +/-20-percent milestone remains unmet; its previously
+measured source-weighted latency gap (+40.7 percent) is not re-estimated here.
+This review identifies a specific cause of replay divergence, not the full
+explanation or expected size of the autonomous latency gap.
+
+REPRODUCIBLE EVIDENCE
+accounting/prefix_accounting.json and source_prefix_accounting.csv:
+  independent unique-application reconciliation.
+node8_queue/prefix_audit.json: queue, custody and capacity reconstruction.
+node4_cause/findings.json and timelines: missing relay occurrence and later
+  FIFO/HOP consequence, checked against all-node enqueue populations.
+redteam/audit.json and retry_cause_proof.json: independent provenance, omissions,
+  random/TX prefix checks, raw native wire identity and source-level causality.
+packaging/REPRODUCE.txt: archive extraction and exact offline reproduction.

@@ -1,0 +1,33 @@
+{
+  "schema": "csr-relay-custody-core-static-review-v1",
+  "passed": true,
+  "checks": {
+    "receiveData_identical": true,
+    "enqueueApplication_identical": true,
+    "pendingPosition_identical": true,
+    "custodyCount_identical": true,
+    "release_identical": true,
+    "releaseFromHop_identical": true,
+    "terminal_identical": true,
+    "pump_identical": true,
+    "deliverLocal_identical": true,
+    "model/+csr/+nwk/Layer.m_syntax_clean": true,
+    "+ac/DiscoveryMembershipNwk.m_syntax_clean": true
+  },
+  "files": [
+    {
+      "path": "model/+csr/+nwk/Layer.m",
+      "baseline_sha256": "7ef09931c83c55697ce96b400ee1d90459a44af4c0527b396829d62ab9125300",
+      "candidate_sha256": "5a160e3bd6cc2ac8a5dda806f9f3f5bff7a9f6838d1b12346f2384eb318e3c4b",
+      "syntax_clean": true
+    },
+    {
+      "path": "+ac/DiscoveryMembershipNwk.m",
+      "baseline_sha256": "bb4532788c3220a5dc9eba1766c01935dda405a4ea6b62eb163a1f1eb5a18918",
+      "candidate_sha256": "90fea58d48fbefbac625dc15d034dab21e66634b1c97a096279261d3e6f5a60a",
+      "syntax_clean": true
+    }
+  ],
+  "runtime_execution": false,
+  "limitations": "Static parser and source-method parity only. Focused MATLAB preflight and common-input replay must run on the user runtime."
+}

@@ -1,0 +1,40 @@
+{
+  "schema": "csr-discovery-membership-preflight-peer-review-v1",
+  "reviewer": "autonomous_receiver",
+  "status": "pass_static_review",
+  "blocking_findings": [],
+  "scope": "Narrow static review of final five public membership checks and callback recorder against the one-line advanceScan membership correction.",
+  "checks_reviewed": [
+    "Historical public fixture has outstanding target4, then learns route7 via5 and reproduces extra START7 at watchdog.",
+    "Candidate watchdog advances existing membership without changing selected route7 values, START order or DONE addressing.",
+    "Public transit receiveData input source4\u2192receiver3\u2192destination7 reaches SendData for next hop5 with incremented hop count and traversal; route use remains independent of discovery membership.",
+    "Received DONE after prior watchdog clears the wait legitimately adds destination7 with final7/hop5/31-byte/no-ACK semantics.",
+    "Later local discovery completion populates the retained route7 without a DONE input."
+  ],
+  "source_and_ownership_review": [
+    "Candidate removes only live-route refresh from advanceScan; local-completion and received-DONE population remain.",
+    "Watchdog schedule/generation guard, ScanWaiting release, sender selection and retry behavior are unchanged.",
+    "Current failure has exact60s watchdog delay and a superseded callback that performs no work; no timer fix indicated.",
+    "Final helper removes repeated unsolicited DONE assertion; does not imply native cancellation ownership parity for that unexercised branch.",
+    "Completion snapshot cap and accumulated table membership/order are untouched by candidate."
+  ],
+  "probe_review": [
+    "Route fixture uses public observe and received ROUTING controls; no private membership or route state is injected.",
+    "Recorder supplies ordinary SendControl/SendData callbacks and captures endpoint/options/time fields.",
+    "Admission disabling is explicit component fixture setup; transit test preserves configured local-generation policy.",
+    "No forced PHY/MAC state, native variate replay or network simulation is claimed."
+  ],
+  "limitations": [
+    "Static review only; MATLAB runtime and parser were not executed by this reviewer.",
+    "Public callback checks do not establish live HOP/MAC/PHY behavior or full-network parity.",
+    "Unsolicited/duplicate DONE cancellation and ownership differences are outside this correction and its five assertions."
+  ],
+  "files_sha256": {
+    "autonomous_tenth/kit/autocase/+ac/discoveryMembershipPreflight.m": "ed48bfe07db7b97a7dce67d0320a98213cdb1989726e1ccf42dfc8f73031345a",
+    "autonomous_tenth/kit/autocase/+ac/DiscoveryMembershipProbe.m": "51f9e9c658087f41c266e320a0bd2b81b4a9d4ca435fcc8b245427e266cbafa3",
+    "autonomous_tenth/kit/autocase/+ac/DiscoveryMembershipNwk.m": "bb4532788c3220a5dc9eba1766c01935dda405a4ea6b62eb163a1f1eb5a18918",
+    "autonomous_tenth/kit/autocase/+ac/DiscoveryMembershipSimulation.m": "017b1742a6eac2520c6b29e170c05a609ab9373637395ae9d770b90c2fce920a",
+    "autonomous_tenth/kit/autocase/+ac/DiscoveryLifecycleNwk.m": "8cd20bcb21529638f1cfe6cac68b4e07c19998bba691010ef44cef45dfcf8b29",
+    "autonomous_tenth/kit/autocase/+ac/AdmissionRoutes.m": "8f4ac059cc6ac2819527b84535b5cf329e4f78cfbb109a78e040fe826cb1422d"
+  }
+}

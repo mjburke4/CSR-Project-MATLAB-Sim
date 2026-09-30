@@ -1,0 +1,9 @@
+Independent review: returned relay-custody preflight
+
+The run used R2025a and the issued RelayCustodyProbe hash. All 17 previous preflight groups passed; 20 of 22 custody groups passed. Both queue-full cases recorded QueueLimit=512 and failed while attempting to assert one-slot behavior. The requested seven-node replay did not start.
+
+Cause: RelayCustodyProbe has six input arguments. Its obj variable is an output, not an implicit input to the constructor. The original nargin<7 guard always reset queueLimit to512. Thresholds for optional nsdpLimit, nodeId, queueLimit must be4,5,6. The ordinary input method correctly includes its explicit obj input and needs no change.
+
+Reviewed correction: three constructor guards; an immediate pre-stimulus configuration assertion; README disclosure. The downstream queue-full retry branch remains valid: no custody is created on rejection, HOP unmarks the refused sequence, releasing the accepted owner frees capacity, and the repeated sequence can then obtain a fresh custody token. No production change is indicated by this failure.
+
+Decision: ready to reissue after normal package sealing. Corrected MATLAB execution remains pending; this audit does not report a passed rerun or network parity. Exact source hashes and the returned configuration evidence are in audit.json.

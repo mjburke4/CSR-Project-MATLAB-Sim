@@ -1,0 +1,126 @@
+{
+  "schema": "csr-native-receiver-order-probe-v1",
+  "passed": true,
+  "native_source_pin": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "ns3_source_pin": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+  "observer_scope": "Existing passive overlay; no scheduling, state override, RNG replacement or private access",
+  "fixture": {
+    "wire_payload_bytes": 198,
+    "rate_key_kbps": 8,
+    "preamble": "short",
+    "noise_floor_dbm": 0,
+    "tx_power_dbm": 0,
+    "distance_to_receiver_m": 1,
+    "receiver": 3,
+    "second_tx_seconds": 0.026009895
+  },
+  "reverse": {
+    "arrival_sources": [
+      2,
+      1
+    ],
+    "first_track_source": 2,
+    "close_sources": [
+      1,
+      2
+    ],
+    "close_time_ns": 225420003,
+    "draw_sources": [
+      1,
+      1,
+      2
+    ],
+    "draw_contexts": [
+      {
+        "tx_id": 4294967297,
+        "component": "header",
+        "probability": 0.25055827842209194,
+        "interval_ordinal": 1,
+        "bits": 48,
+        "interval_start_ns": 26009898,
+        "interval_end_ns": 225420003,
+        "component_start_ns": 39269898,
+        "component_end_ns": 45389898
+      },
+      {
+        "tx_id": 4294967297,
+        "component": "payload",
+        "probability": 0.25055827842209194,
+        "interval_ordinal": 1,
+        "bits": 1412,
+        "interval_start_ns": 26009898,
+        "interval_end_ns": 225420003,
+        "component_start_ns": 45389898,
+        "component_end_ns": 225420003
+      },
+      {
+        "tx_id": 8589934593,
+        "component": "payload",
+        "probability": 0.25055827842209194,
+        "interval_ordinal": 3,
+        "bits": 1564,
+        "interval_start_ns": 26009898,
+        "interval_end_ns": 225420003,
+        "component_start_ns": 26009898,
+        "component_end_ns": 225420003
+      }
+    ],
+    "native_total_receiver_uniform_draws": 4,
+    "raw_sha256": "50e306348026d7ca40f02f021c6835f35547d372b4fb90d7f77cf2a3c4b49fe0"
+  },
+  "ascending": {
+    "arrival_sources": [
+      1,
+      2
+    ],
+    "first_track_source": 1,
+    "close_sources": [
+      1,
+      2
+    ],
+    "close_time_ns": 225420003,
+    "draw_sources": [
+      1,
+      2,
+      2
+    ],
+    "draw_contexts": [
+      {
+        "tx_id": 4294967297,
+        "component": "payload",
+        "probability": 0.25055827842209194,
+        "interval_ordinal": 3,
+        "bits": 1564,
+        "interval_start_ns": 26009898,
+        "interval_end_ns": 225420003,
+        "component_start_ns": 26009898,
+        "component_end_ns": 225420003
+      },
+      {
+        "tx_id": 8589934593,
+        "component": "header",
+        "probability": 0.25055827842209194,
+        "interval_ordinal": 1,
+        "bits": 48,
+        "interval_start_ns": 26009898,
+        "interval_end_ns": 225420003,
+        "component_start_ns": 39269898,
+        "component_end_ns": 45389898
+      },
+      {
+        "tx_id": 8589934593,
+        "component": "payload",
+        "probability": 0.25055827842209194,
+        "interval_ordinal": 1,
+        "bits": 1412,
+        "interval_start_ns": 26009898,
+        "interval_end_ns": 225420003,
+        "component_start_ns": 45389898,
+        "component_end_ns": 225420003
+      }
+    ],
+    "native_total_receiver_uniform_draws": 4,
+    "raw_sha256": "81283e47815177952124e7f51a89f7d90fb539d0c3daaccac6766f1c552be357"
+  },
+  "driver_sha256": "d47bff5b69c9ab131df23c77798caf84036f81d1ba8d7adc7b9321993e6fb51e"
+}

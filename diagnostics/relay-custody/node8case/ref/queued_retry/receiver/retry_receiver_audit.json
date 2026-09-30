@@ -1,0 +1,337 @@
+{
+  "method": "Read-only existing capture and source audit; no new simulation, MATLAB execution, or kit edits.",
+  "stop_time_ns": 324753000000,
+  "physical_comparisons": 770,
+  "accepted_transmissions": 769,
+  "matched_draw_requests": 4202,
+  "draw_time_context_mismatches": 0,
+  "receiver_states": {
+    "matched_comparable_transitions": 5110,
+    "excluded_matlab_tx_finishes": 768,
+    "projection": "Per-node ordered time_ns, previous state, current state in SetReceiveState-compatible Idle/Search/Track transitions.",
+    "per_node": [
+      {
+        "node": 1,
+        "matched": 818,
+        "excluded_tx_finishes": 146
+      },
+      {
+        "node": 2,
+        "matched": 643,
+        "excluded_tx_finishes": 99
+      },
+      {
+        "node": 3,
+        "matched": 886,
+        "excluded_tx_finishes": 122
+      },
+      {
+        "node": 4,
+        "matched": 684,
+        "excluded_tx_finishes": 117
+      },
+      {
+        "node": 5,
+        "matched": 894,
+        "excluded_tx_finishes": 129
+      },
+      {
+        "node": 7,
+        "matched": 569,
+        "excluded_tx_finishes": 67
+      },
+      {
+        "node": 8,
+        "matched": 616,
+        "excluded_tx_finishes": 88
+      }
+    ]
+  },
+  "data_hop_completions": {
+    "globally_ordered_matches": 97,
+    "outcomes": {
+      "ack": 88,
+      "dack": 8,
+      "no_ack": 1
+    },
+    "dack_hold_and_capacity_decisions_matched": 8
+  },
+  "prior_feedback_stop": {
+    "time_ns": 312143000000,
+    "node": 8,
+    "passed": true,
+    "first_dack_received_time_ns": 312208292442
+  },
+  "configured_retry_policy": "actual-tx",
+  "first_queued_retry_fork": {
+    "native_enqueue": {
+      "time_ns": 318498000028,
+      "event_order": 113930,
+      "node": 5,
+      "frame_id": 633,
+      "peer": 1,
+      "sequence": 29,
+      "kind": 0,
+      "wire_bytes": 217
+    },
+    "matlab_callback": {
+      "event_id": 96821,
+      "time_ns": 318498000028,
+      "fire_observation": 718132,
+      "return_observation": 718133,
+      "nested_observations": 0
+    },
+    "trigger": "Node5 sequence32 actual TX316.498 plus2seconds plusoneTIC invokes list-wide resend scan.",
+    "native_reason": "Sequence29 remains confirmed with provisional timestamp315.820000028; second retry becomes eligible while first copy is still queued.",
+    "matlab_reason": "actual-tx clears Confirmed when first retry is queued; this scan skips sequence29."
+  },
+  "all_data_enqueue_differences": [
+    {
+      "node": 2,
+      "native": [
+        [
+          300000000028,
+          4,
+          16
+        ]
+      ],
+      "matlab": [
+        [
+          300000000000,
+          4,
+          16
+        ]
+      ]
+    },
+    {
+      "node": 3,
+      "native": [
+        [
+          300000000028,
+          1,
+          18
+        ]
+      ],
+      "matlab": [
+        [
+          300000000000,
+          1,
+          18
+        ]
+      ]
+    },
+    {
+      "node": 4,
+      "native": [
+        [
+          300000000028,
+          5,
+          14
+        ]
+      ],
+      "matlab": [
+        [
+          300000000000,
+          5,
+          14
+        ]
+      ]
+    },
+    {
+      "node": 5,
+      "native": [
+        [
+          300000000028,
+          1,
+          19
+        ]
+      ],
+      "matlab": [
+        [
+          300000000000,
+          1,
+          19
+        ]
+      ]
+    },
+    {
+      "node": 5,
+      "native": [
+        [
+          318498000028,
+          1,
+          29
+        ]
+      ],
+      "matlab": []
+    },
+    {
+      "node": 5,
+      "native": [],
+      "matlab": [
+        [
+          322879000028,
+          1,
+          29
+        ]
+      ]
+    },
+    {
+      "node": 5,
+      "native": [
+        [
+          324738000028,
+          1,
+          33
+        ]
+      ],
+      "matlab": []
+    },
+    {
+      "node": 7,
+      "native": [
+        [
+          300000000028,
+          8,
+          11
+        ]
+      ],
+      "matlab": [
+        [
+          300000000000,
+          8,
+          11
+        ]
+      ]
+    },
+    {
+      "node": 8,
+      "native": [
+        [
+          300000000028,
+          2,
+          14
+        ]
+      ],
+      "matlab": [
+        [
+          300000000000,
+          2,
+          14
+        ]
+      ]
+    }
+  ],
+  "enqueue_difference_bounds": "Six initial applications enqueue at300.0 inMATLAB versus300.000000028 native; masked by matched MAC timing. Remaining differences are source5 queued-retry policy cases.",
+  "source5_matlab_chronology": [
+    {
+      "TimeSeconds": "312.653111113778",
+      "Event": "hop_admit",
+      "Sequence": "29",
+      "ResendCount": "NaN",
+      "AckWaitSeconds": "NaN",
+      "DetailsJSON": "{\"PendingData\":2,\"PendingThreshold\":16,\"GlobalSpare\":15,\"NeighborOutstanding\":2,\"NeighborThreshold\":3,\"NeighborSpare\":2,\"GlobalAllowed\":true,\"NeighborAllowed\":true,\"TimeSeconds\":312.65311111377781}"
+    },
+    {
+      "TimeSeconds": "313.771111113778",
+      "Event": "hop_admit",
+      "Sequence": "32",
+      "ResendCount": "NaN",
+      "AckWaitSeconds": "NaN",
+      "DetailsJSON": "{\"PendingData\":4,\"PendingThreshold\":16,\"GlobalSpare\":13,\"NeighborOutstanding\":4,\"NeighborThreshold\":3,\"NeighborSpare\":0,\"GlobalAllowed\":true,\"NeighborAllowed\":false,\"TimeSeconds\":313.77111111377781}"
+    },
+    {
+      "TimeSeconds": "313.82",
+      "Event": "hop_sent",
+      "Sequence": "29",
+      "ResendCount": "0",
+      "AckWaitSeconds": "2",
+      "DetailsJSON": "{\"ResendCount\":0,\"AckWaitSeconds\":2,\"TimeSeconds\":313.82}"
+    },
+    {
+      "TimeSeconds": "315.201111113778",
+      "Event": "hop_admit",
+      "Sequence": "33",
+      "ResendCount": "NaN",
+      "AckWaitSeconds": "NaN",
+      "DetailsJSON": "{\"PendingData\":4,\"PendingThreshold\":16,\"GlobalSpare\":13,\"NeighborOutstanding\":4,\"NeighborThreshold\":3,\"NeighborSpare\":0,\"GlobalAllowed\":true,\"NeighborAllowed\":false,\"TimeSeconds\":315.20111111377781}"
+    },
+    {
+      "TimeSeconds": "315.820000027778",
+      "Event": "hop_retry",
+      "Sequence": "29",
+      "ResendCount": "1",
+      "AckWaitSeconds": "NaN",
+      "DetailsJSON": "{\"ResendCount\":1,\"TimeSeconds\":315.82000002777778}"
+    },
+    {
+      "TimeSeconds": "316.498",
+      "Event": "hop_sent",
+      "Sequence": "32",
+      "ResendCount": "0",
+      "AckWaitSeconds": "2",
+      "DetailsJSON": "{\"ResendCount\":0,\"AckWaitSeconds\":2,\"TimeSeconds\":316.498}"
+    },
+    {
+      "TimeSeconds": "320.411",
+      "Event": "hop_sent",
+      "Sequence": "33",
+      "ResendCount": "0",
+      "AckWaitSeconds": "2",
+      "DetailsJSON": "{\"ResendCount\":0,\"AckWaitSeconds\":2,\"TimeSeconds\":320.411}"
+    },
+    {
+      "TimeSeconds": "320.879",
+      "Event": "hop_sent",
+      "Sequence": "29",
+      "ResendCount": "1",
+      "AckWaitSeconds": "2",
+      "DetailsJSON": "{\"ResendCount\":1,\"AckWaitSeconds\":2,\"TimeSeconds\":320.879}"
+    },
+    {
+      "TimeSeconds": "322.260111113778",
+      "Event": "hop_admit",
+      "Sequence": "36",
+      "ResendCount": "NaN",
+      "AckWaitSeconds": "NaN",
+      "DetailsJSON": "{\"PendingData\":5,\"PendingThreshold\":16,\"GlobalSpare\":12,\"NeighborOutstanding\":5,\"NeighborThreshold\":4,\"NeighborSpare\":0,\"GlobalAllowed\":true,\"NeighborAllowed\":false,\"TimeSeconds\":322.26011111377778}"
+    },
+    {
+      "TimeSeconds": "322.411000027778",
+      "Event": "hop_retry",
+      "Sequence": "33",
+      "ResendCount": "1",
+      "AckWaitSeconds": "NaN",
+      "DetailsJSON": "{\"ResendCount\":1,\"TimeSeconds\":322.41100002777779}"
+    },
+    {
+      "TimeSeconds": "322.879000027778",
+      "Event": "hop_retry",
+      "Sequence": "29",
+      "ResendCount": "2",
+      "AckWaitSeconds": "NaN",
+      "DetailsJSON": "{\"ResendCount\":2,\"TimeSeconds\":322.87900002777781}"
+    }
+  ],
+  "recommendation": "Use and publicly verify the existing native-provisional configuration for this common-input parity case; no MAC, PHY, feedback, or retry implementation rewrite is indicated by this evidence.",
+  "limits": [
+    "No corrected policy network continuation has run.",
+    "Receiver transition equality does not imply all private queues match; queue divergence precedes the physical guard failure.",
+    "The8 DACK holds have not expired by this stop; their eventual completion is untested here.",
+    "The initial28ns admission difference is observed but is not the causal failure and does not justify another fix.",
+    "Common random-input prefix matching does not establish independent random-stream or6000-second parity."
+  ],
+  "inputs_sha256": {
+    "autonomous_twelfth/data/N_feedback_identity/ordered_events.jsonl": "2dd0aba2bd3b7d6ec5e5d342b21606a7db582f1ad291c403994df16a9ae2246c",
+    "autonomous_twelfth/data/N_feedback_identity/random_requests.jsonl": "827eae5914e10ea12a88991aeff3dc2b4057174a0cd1dbbb795f763fcdb98c82",
+    "autonomous_twelfth/data/N_feedback_identity/service_trace.csv": "a2f6c390cb3290f579f55e3f9f677c24b9e4049370977c602163c79af9960e57",
+    "autonomous_twelfth/data/configuration.json": "c66b0d56ffd084bf80ffa4f13966f602722dc9547ad9cdcfdcf3b1e4f6661ed1",
+    "autonomous/native_capture/fixture/receiver_history.csv": "d1a075e6895ef3725f5b0081c9137a62c2b3768248f7ed1802776de2710876e1",
+    "autonomous/native_capture/run/mac-input.log": "88e366af7d9ba5777ab224289ecb3f86a7abc55fce9511f8136c8b84101799de",
+    "autonomous/native_capture/run/ns3-trace.csv": "bbced35b9d6f850bd22640e5deef825db5659c2b622c4befe758cf019cdf88fa",
+    "autonomous/native_capture/run/run.log": "282ed068740ccba5481bf7a35aca3696c54d422e31976107cfee05889c690cee",
+    "autonomous_eleventh/kit/autocase/model/+csr/+hop/Layer.m": "21d4a56d782fde35d45f102c137b6c78c3bf4cdc05593d15fb9a7db8f26c2649",
+    "autonomous/native_env/csr/model/csr-hop-layer.h": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+    "autonomous/native_env/csr/model/csr-net-device.h": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb"
+  }
+}

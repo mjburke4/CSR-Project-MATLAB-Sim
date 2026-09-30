@@ -1,0 +1,49 @@
+{
+  "schema": "csr-publication-final-review-v1",
+  "decision": "No blockers to the owner-authorized checkpoint push and PR; no merge",
+  "baseline_commit": "8c976d0eebc914f160ea9fa54972ec68a18fd0fc",
+  "independent_audit_passed": true,
+  "scope": "Publication scope, exact source snapshot preservation, evidence provenance, status claims and original repository preservation. Not a new model behavior review or runtime test.",
+  "files_reviewed": {
+    "CHECKPOINT_2026_09_30.md": "4c18d423bcfa3ae672b934d4345ada0c0bdef3fa072e4df06643d2ebf76555c4",
+    "README.md": "9cbcf60660fa79c2c0a335271ee816ffcf8863fd3849b59dffa06fa64c44460f",
+    "docs/parity-ledger.csv": "33787fff3f5008ac9db1681c3180d263f9b2dda463c42cc68a1273d902bfe1c3",
+    ".gitattributes": "458c302899ab9964db7558317eb1f4991495885b1a12ac647934367b403909d9",
+    "publication/parity-2026-09-30/PUBLICATION.json": "308d58499c22e8c8b7d469e54858fd47f7abadf01f5b222eccd90bf2547428a3",
+    "publication/parity-2026-09-30/source_origins.json": "63ed696e15c195ce1dfa8df134469f84ee35f6f2349ef9bce23905642e51265b",
+    "evidence/parity-2026-09-30/README.md": "cfdffbf8253bb9f28c92fed00fb172514ef6c567f3ba5e4fd3bb024c1bfcae1b"
+  },
+  "findings": [],
+  "corrected_during_review": [
+    "PUBLICATION.json initially placed the 6000-second regrade under prior_relay_return_status. It now separates the autonomous regrade from the actual 17/17 prior, 4/4 accounting and 20/22 custody return."
+  ],
+  "limitations": [
+    "Revision-2 MATLAB execution and 1200-second network replay acceptance remain pending.",
+    "The historical 6000-second source remains at its original 15% reporting threshold; current 20% regrading is separately recorded with unchanged source population.",
+    "Large raw historical inputs are external; the compact Python forensic records are not advertised as self-contained.",
+    "The guide does not claim exact NWK handoff timing: the known first node-8 handoff is 28 ns early, while its stated strict TX request and delivery-time comparisons are separately supported.",
+    "Root +csr is preserved; current repair is isolated in the exact issued runnable snapshot.",
+    "Archived snapshot and evidence bytes, including original CRLF line endings and existing whitespace, are intentionally preserved. No unqualified whole-staged-tree whitespace-clean claim is made."
+  ],
+  "validation_summary": {
+    "original_paths_retained": 5215,
+    "existing_paths_changed": [
+      ".gitattributes",
+      "README.md",
+      "docs/parity-ledger.csv"
+    ],
+    "current_replay_snapshot_files": 497,
+    "historical_6000_snapshot_files": 202,
+    "copied_origin_files_verified": 1017,
+    "ledger_rows": 195,
+    "ledger_columns": 7,
+    "git_diff_check": {
+      "status": "passed",
+      "scope": "Newly authored or edited documentation and publication metadata only; staged comparison with core.whitespace=cr-at-eol",
+      "command": "git -c core.whitespace=cr-at-eol diff --cached --check -- .gitattributes README.md CHECKPOINT_2026_09_30.md docs/parity-ledger.csv evidence/parity-2026-09-30/README.md publication/parity-2026-09-30/PUBLICATION.json",
+      "source": "Root publication check reported passing; prior reviewer unstaged check is not a full staged-tree whitespace claim"
+    },
+    "new_matlab_execution": false,
+    "new_ns3_simulation": false
+  }
+}

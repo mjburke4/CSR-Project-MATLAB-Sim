@@ -1,0 +1,70 @@
+{
+  "schema": "csr-terminal-candidate-independent-source-review-v1",
+  "review_passed": true,
+  "runtime_executed": false,
+  "blockers": [],
+  "original_files": {
+    "model": {
+      "files": 99,
+      "all_byte_identical": true
+    },
+    "+ac": {
+      "files": 59,
+      "all_byte_identical": true
+    },
+    "ref/native": {
+      "files": 4,
+      "all_byte_identical": true
+    }
+  },
+  "exact_transforms": [
+    {
+      "target": "+ac/TerminalHop.m",
+      "sha256": "74df639fc26ae153af5916ece8e18484b08c99d5aebeddc1bbc050978d743a0c",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/TerminalMac.m",
+      "sha256": "a546a92ea71b9c1881650987aa3da96d44506c74a9918cf533653e4b2321b6f9",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/TerminalSimulation.m",
+      "sha256": "534a27f1532b68c0faa532cf319a10efdb1de8e0750d9408e7952068de9d8c16",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "run_terminal_tests.m",
+      "sha256": "6fc725a94070bbdf0798709c177c3899504f9f6a92dd0739a3a8239448779eb9",
+      "forward_and_reverse_exact": true
+    }
+  ],
+  "reviewed_files": {
+    "+ac/TerminalHop.m": "74df639fc26ae153af5916ece8e18484b08c99d5aebeddc1bbc050978d743a0c",
+    "+ac/TerminalMac.m": "a546a92ea71b9c1881650987aa3da96d44506c74a9918cf533653e4b2321b6f9",
+    "+ac/TerminalSimulation.m": "534a27f1532b68c0faa532cf319a10efdb1de8e0750d9408e7952068de9d8c16",
+    "+ac/terminalPreflight.m": "7308aba7b68a5414aedec12236f51615ea289f6541deee24e7add1d93ab417fa",
+    "run_terminal_tests.m": "6fc725a94070bbdf0798709c177c3899504f9f6a92dd0739a3a8239448779eb9",
+    "terminal_candidate_transform.json": "66891693b1aefe055a0e1eed1d06b112b2356952fede13def4b0605f825ce1e3",
+    "terminal_runner_transform.json": "d3d68023ad44a2c0435ed021e0bd4f06b975f6187e25cb209cec17d514a561fe",
+    "README.md": "17c1af605a19d1631da3488e9555e50f946d8b2a167ee5714cabca681c7bd6d9"
+  },
+  "planned_component_checks": 16,
+  "planned_total_component_checks": 108,
+  "findings": [
+    "Final expiry exemption is explicitly DATA + native-provisional + retry_exhausted; no queue-full or control exemption.",
+    "DATA-only MAC cancellation is invoked after HOP feedback completion loops and existing cancellations. No CONTROL or ROUTING removal through this added callback.",
+    "Cumulative window preserves modulo65536, ACK-over-DACK precedence; single non-window DACK collects no cancellations.",
+    "All component MAC/HOP/receiver callbacks share one monotonic scheduler. Public Track stimulus blocks queued retries; public Search release drains them, and assertions require actual TX after owner failure.",
+    "Terminal copy survival and no live owner imply unfinished/provisional application fate at the component cutoff. Integrated application drop counters are not modified.",
+    "Candidate MetricDefinitions.Dropped now explicitly describes provisional recorded custody loss recoverable by a later copy; the metadata-only change is a verified reversible transform.",
+    "Repeated orphan feedback and unmatched sent assertions check no additional NSDP or terminal release. Actual-tx and control boundary checks remain included.",
+    "Runner retains prior92 checks and immutable common-input fixture/context guards, then runs isolated P candidate at330 seconds."
+  ],
+  "limits": [
+    "No MATLAB or Octave runtime is available; these are source review and planned tests, not executed results.",
+    "Integrated recoverDrop/LateDeliveries counters remain unchanged and source-reviewed, not directly exercised by standalone receiver-HOP drain.",
+    "Component stimuli are controlled; they do not replay captured PHY timing.",
+    "Raw network Statistics.Dropped remains provisional until copy fate is reconciled; no full-network acceptance or default-policy promotion."
+  ]
+}

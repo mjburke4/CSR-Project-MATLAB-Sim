@@ -1,0 +1,245 @@
+{
+  "schema": "csr-autonomous-passive-native-capture-v1",
+  "status": "verified_exact_native_prefix",
+  "seed": 131,
+  "canonical_rows": 10220,
+  "canonical_fields": [
+    "schema",
+    "event_index",
+    "time_s",
+    "event",
+    "node",
+    "peer",
+    "packet_type",
+    "src",
+    "dst",
+    "sequence",
+    "rate_kbps",
+    "size_bytes",
+    "success",
+    "reason",
+    "pathloss_db",
+    "rx_power_dbm",
+    "noise_dbm",
+    "snr_db",
+    "jsr_db",
+    "header_errors",
+    "payload_errors",
+    "total_errors",
+    "route_cost",
+    "next_hop",
+    "security_count",
+    "reservation_slot",
+    "reservation_counter",
+    "detail",
+    "statistic",
+    "value"
+  ],
+  "stop_ns_exclusive": 200000000000,
+  "observation_rows": 35265,
+  "random_rows": 1255,
+  "receiver_history_rows": 27534,
+  "tx_count": 209,
+  "tx_children": 490,
+  "event_counts": {
+    "receiver_boundary": 19732,
+    "receiver_state": 2975,
+    "timer_lifecycle": 3015,
+    "discovery_plaintext": 12,
+    "mac_draw": 249,
+    "mac_service": 146,
+    "mac_tx": 146,
+    "mac_tx_child": 490,
+    "rx_signal_arrival": 568,
+    "rx_sync_draw": 568,
+    "rx_sync_gate": 568,
+    "sync_change": 1812,
+    "rx_acquisition_candidate": 414,
+    "rx_acquire": 412,
+    "rx_error_interval": 1046,
+    "rx_preamble_end": 467,
+    "rx_phy_decision": 412,
+    "rx_child": 977,
+    "rx_binomial_draw": 438,
+    "rx_prior_stage": 156,
+    "node5_mac_service": 63,
+    "node5_mac_tx": 63,
+    "hop_feedback": 42,
+    "nwk_scan": 152,
+    "node4_ack_drop": 162,
+    "node5_hop_feedback": 22,
+    "node5_nwk_scan": 70,
+    "node4_ack_rx": 88
+  },
+  "draw_counts": [
+    {
+      "node": "1",
+      "purpose": "mac_slot",
+      "rows": 83
+    },
+    {
+      "node": "1",
+      "purpose": "phy_binomial",
+      "rows": 40
+    },
+    {
+      "node": "1",
+      "purpose": "sync_threshold",
+      "rows": 138
+    },
+    {
+      "node": "2",
+      "purpose": "sync_threshold",
+      "rows": 16
+    },
+    {
+      "node": "3",
+      "purpose": "mac_slot",
+      "rows": 70
+    },
+    {
+      "node": "3",
+      "purpose": "phy_binomial",
+      "rows": 128
+    },
+    {
+      "node": "3",
+      "purpose": "sync_threshold",
+      "rows": 134
+    },
+    {
+      "node": "4",
+      "purpose": "mac_slot",
+      "rows": 23
+    },
+    {
+      "node": "4",
+      "purpose": "phy_binomial",
+      "rows": 145
+    },
+    {
+      "node": "4",
+      "purpose": "sync_threshold",
+      "rows": 134
+    },
+    {
+      "node": "5",
+      "purpose": "mac_slot",
+      "rows": 73
+    },
+    {
+      "node": "5",
+      "purpose": "phy_binomial",
+      "rows": 125
+    },
+    {
+      "node": "5",
+      "purpose": "sync_threshold",
+      "rows": 146
+    }
+  ],
+  "source_pin": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "engine_pin": "6b5cd24ea80713ce16d88575869aedd6f432bdae",
+  "sha256": {
+    "recovered/native_origin/evidence/tranche-25-ns3-reference/s131/ns3-trace.csv.gz": "8daa3cea2bcfae1162c373b39110745fe8889066fdaab3bd22fbb0c685fe3878",
+    "next_batch/native/s131_200/run/ns3-trace.csv": "a8622f265e83262087933bd63528efd9439ff92034399b9dfc4aabba7e1ec841",
+    "next_batch/native/s131_200/run/observations.tsv": "a0f36ba5b26ccd5028c6e54222237e5c4da0e7914a3b60fe409f8b5ef5a0a458",
+    "next_batch/native/s131_200/fixture/random_draws.csv": "2e4e40b1e6839cd49aca58d00c12ae981df6ccec2d2891475bcc026f3e07c988",
+    "next_batch/native/s131_200/fixture/receiver_history.csv": "12f2ff49727a8435f2eb9362fdf9e94669b074ac6ae1319c309894b0758a68b4",
+    "next_batch/native/s131_200/fixture/tx_signatures.csv": "facceb914dafc6b6311b19f21d59e7ec068b901b7c586e29d370cf6ba8272a03",
+    "next_batch/native/prepare_capture.py": "16848d4ec69e1cb11772d91266b4e1f37cead131f13288fa28d723d8ea9fad9c",
+    "next_batch/native/normalize.py": "1e3e7212d35c930f819862168dc5f180a8453772cf51eefd10633170896a0c5a",
+    "next_batch/native/s131_200/fixture/native_s131_prefix_0_200.csv.gz": "5237b3eb0c9fedf1c30131950f9b5bd99e8f54ee257de30ee39f0a78254c2ff8"
+  },
+  "limitations": [
+    "Native EventId IDs have no cross-engine identity; compare cause,deadline and state.",
+    "Receiver history is reference-only; coupled MATLAB test must not inject it.",
+    "MAC integer values are returned inclusive discrete samples, not raw uniforms.",
+    "SYNC values are sampled dB thresholds, not standard-normal samples.",
+    "MAC slots/holdoff callback internals remain in canonical trace; extra lifecycle captures device timers.",
+    "No network parity or MATLAB execution claim is made by this native gate."
+  ],
+  "coverage": {
+    "configured_nodes": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
+      8
+    ],
+    "nodes_with_random_draws": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "nodes_without_random_draws": [
+      7,
+      8
+    ],
+    "packet_kinds": {
+      "4": 12,
+      "8": 14,
+      "9": 9,
+      "1": 385,
+      "5": 18,
+      "6": 44,
+      "7": 8
+    },
+    "check_subtypes": {
+      "overheard": 8,
+      "discovery": 10
+    },
+    "discover_subtypes": {
+      "broadcast": 12
+    },
+    "snmp_commands": {
+      "1": 4,
+      "2": 4
+    }
+  },
+  "source_and_build_sha256": {
+    "next_batch/native/build/overlay/ns3/csr-opnet-packet-model.h": "59eb4ccd19d109f623fb8ea4d9ad23b2d936f081268261c100231c26cb2dccc6",
+    "next_batch/native/build/overlay/ns3/csr-wire-format.h": "eb9097e1588c8e235a06cec5f0b28c13a22a3f3c88c6b8581e4186d69fc94c2f",
+    "next_batch/native/build/overlay/ns3/csr-arl-routing-message.h": "0eddd945d264965c90bcea60d73b14cab2159bc0664e0e526d38e50b0d363a8c",
+    "next_batch/native/build/overlay/ns3/csr-common.h": "f1e0a962862ef1cc5a6994f24988858a2bea70385ce02b1264285de194fe6ae1",
+    "next_batch/native/build/overlay/ns3/csr-mac-core.h": "4c1e7a7d655e594cf0abf4e303ffd1d4f8faab52a6a369258c57b2db471bc04d",
+    "next_batch/native/build/overlay/ns3/csr-hello-header.h": "741ccff278e1694ea40c4c6c5b1cb14a3a6034864d0328c6a2e04420935fb7d4",
+    "next_batch/native/build/overlay/ns3/csr-hop-layer.h": "d7dc1705fb7f0998a792b4ac76f1210cb8b8afbd550ba3e057185f24e3acf0d8",
+    "next_batch/native/build/overlay/ns3/csr-nwk-layer.h": "bb39dc70ca8c3c8f0e466e17a94fae39de91b6b108cf572b91fc8c86523a0414",
+    "next_batch/native/build/overlay/ns3/csr-hop-security.h": "9bca9c9a6e4ae04a20a3309ac8a8787589ac4ad65785cbf57fbe20c5e8e37d5e",
+    "next_batch/native/build/overlay/ns3/csr-opnet-envelope.h": "e67b526126907f43f2ee4199552c583ac9c2a0f927cf942fe76aa328900e001a",
+    "next_batch/native/build/overlay/ns3/csr-phy-model.h": "a524e392e9e06a7499cf29b41db9de3a0a43f328b3e211f21883458013330af4",
+    "next_batch/native/build/overlay/ns3/source5-observer.h": "221928d4bf6bb5fd7cecbd3ab62f9f5b78f593de0da244d90a3be52c374a2e08",
+    "next_batch/native/build/overlay/ns3/csr-net-device.h": "c8bad7e998483530320487d5873192485fa63b9ee935ed0d5b4224af2f3a103d",
+    "next_batch/native/build/overlay/ns3/csr-opnet-ber-tables.h": "8034348552990ce6a0aa0fd673a319299762fbd75c402de59a64ac160eb7cfb5",
+    "next_batch/native/build/overlay/ns3/csr-differential-trace.h": "78b443af6e91e927c398450ef71245e815ba4bd02ad9369a06fd95f98e2dff84",
+    "next_batch/native/build/overlay/ns3/mac-replay-hooks.h": "4bf200128cf9acb484bb3b47db6aeca2af0a358034bff1fe6675a20e9a0d271f",
+    "next_batch/native/build/overlay/ns3/csr-legacy-crypto.h": "ce2e76387addc44e63601b8638d066b484dbd13f301bc09882bd21959a118306",
+    "next_batch/native/native-build.json": "30ebc5797c94ef5c763a6e2b5de5645b761e12f626058eba0940d3b57185aff7",
+    "next_batch/native/build/capture.cc": "b859a78a9e260e87689126569aeb6693861ffb78f28da2d296ff9eaa4287cc4d",
+    "next_batch/native/build/compile-command.json": "dc16e237bac7c031a98c0cd7f80db42cc88b3201a15a8fde958d9e81dc7de5f0",
+    "next_batch/native/s131_200/command.json": "3e75fa3e73e3cade27779f23d8f8b0825f018443833a2f1d53bd03f8c9d2e26c",
+    "next_batch/native/s131_200/execution.json": "c061699b161d336e31077234a67d91bb63c05f81c9a6aecb0e40d85ed4b1139f"
+  },
+  "canonical_event_counts": {
+    "mac_state": 3393,
+    "route_change": 29,
+    "scenario_node": 7,
+    "scenario_link": 21,
+    "statistic_sample": 598,
+    "reservation_prepare": 209,
+    "reservation_holdoff": 5,
+    "reservation_tick": 4286,
+    "reservation_advertise": 209,
+    "tx_start": 209,
+    "rx_drop": 842,
+    "rx_accept": 412
+  },
+  "scenario_sha256": "e10d210590c80cb839442b7847ee6c7e8b8c21d043da5fe5dcf1f2abb402ca7a",
+  "native_build_sha256": "30ebc5797c94ef5c763a6e2b5de5645b761e12f626058eba0940d3b57185aff7",
+  "capture_repeatability_validation": "../../capture_repetition_validation.json"
+}

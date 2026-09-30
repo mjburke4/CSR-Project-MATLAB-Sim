@@ -1,0 +1,140 @@
+{
+  "schema": "csr-terminal-v2-return-audit-v1",
+  "audit_passed": true,
+  "input_archive": "out_terminal_20260929_081150.zip",
+  "input_sha256": "7f7fed3773bd2591f8d320dfcd5f333f8940404454cfc8f4313d2f71bccc75cd",
+  "input_bytes": 330763,
+  "input_members": 38,
+  "issued_manifest_sha256": "bc1303579efe8ecc616c3400a47f9e9e9827dc970b81639263b67248a5f1c1d9",
+  "runtime": {
+    "version": "25.1.0.2943329 (R2025a)",
+    "release": "2025a",
+    "computer": "PCWIN64"
+  },
+  "wall_seconds": 48.9277299,
+  "source_and_manifest_match": true,
+  "prior_checks_passed": 92,
+  "prior_check_groups": [
+    {
+      "name": "key_request_preflight",
+      "checks": 7,
+      "passed": true
+    },
+    {
+      "name": "check_gate_preflight",
+      "checks": 8,
+      "passed": true
+    },
+    {
+      "name": "population_preflight",
+      "checks": 6,
+      "passed": true
+    },
+    {
+      "name": "route_admission_preflight",
+      "checks": 8,
+      "passed": true
+    },
+    {
+      "name": "request_wire_preflight",
+      "checks": 6,
+      "passed": true
+    },
+    {
+      "name": "no_path_wire_preflight",
+      "checks": 3,
+      "passed": true
+    },
+    {
+      "name": "discovery_identity_preflight",
+      "checks": 7,
+      "passed": true
+    },
+    {
+      "name": "receiver_timer_preflight",
+      "checks": 8,
+      "passed": true
+    },
+    {
+      "name": "discovery_lifecycle_preflight",
+      "checks": 8,
+      "passed": true
+    },
+    {
+      "name": "discovery_membership_preflight",
+      "checks": 5,
+      "passed": true
+    },
+    {
+      "name": "feedback_identity_preflight",
+      "checks": 8,
+      "passed": true
+    },
+    {
+      "name": "retry_policy_preflight",
+      "checks": 18,
+      "passed": true
+    }
+  ],
+  "accepted_natural_reused": true,
+  "exact_prefix_gates_passed": 3,
+  "new_terminal_checks_passed": 1,
+  "new_terminal_assertion_failed": 2,
+  "remaining_terminal_checks_not_reached": 14,
+  "new_network_replay_started": false,
+  "first_terminal_result": {
+    "name": "native_terminal_expiry_retains_two_previously_admitted_mac_copies",
+    "passed": true,
+    "details": {
+      "old_queue": 0,
+      "candidate_queue": 2,
+      "old_owner_failures": 1,
+      "candidate_owner_failures": 1
+    }
+  },
+  "failure_identifier": "MATLAB:assertion:failed",
+  "failure_stack": [
+    {
+      "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\terminal-retry-cleanup-tests-v2\\terminalcase\\+ac\\terminalPreflight.m",
+      "name": "terminalPreflight",
+      "line": 25
+    },
+    {
+      "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\terminal-retry-cleanup-tests-v2\\terminalcase\\run_terminal_tests.m",
+      "name": "run_terminal_tests",
+      "line": 93
+    }
+  ],
+  "cleanup_warning_observed": false,
+  "source_diagnosis": {
+    "value_snapshot_getters": [
+      [
+        "Releases",
+        "releases"
+      ],
+      [
+        "Terminals",
+        "terminals"
+      ],
+      [
+        "Deliveries",
+        "deliveries"
+      ],
+      [
+        "TransmissionTimes",
+        "txTimes"
+      ],
+      [
+        "TerminalTimes",
+        "terminalTimes"
+      ],
+      [
+        "CancelCalls",
+        "cancels"
+      ]
+    ],
+    "cause": "Anonymous zero-input getters capture empty arrays/zero counter when constructed; named nested callbacks mutate shared live variables.",
+    "evidence_limit": "The failed return did not record actual values from the failed compound assertion; snapshot behavior is established by the bound source and MATLAB language documentation."
+  },
+  "matlab_execution_performed_locally": false
+}

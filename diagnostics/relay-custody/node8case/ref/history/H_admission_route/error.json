@@ -1,0 +1,61 @@
+{
+  "identifier": "autocase:TxContextDivergence",
+  "message": "Physical transmission context diverged at 25.297999999999998 s, node 1, TX #18 (parent.total_wire_bytes,child1.wire_bytes,child2.wire_bytes).",
+  "stack": [
+    {
+      "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-population-routing-tests\\autocase\\+ac\\Streams.m",
+      "name": "Streams.registerTx",
+      "line": 89
+    },
+    {
+      "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-population-routing-tests\\autocase\\model\\+csr\\+phy\\SignalEngine.m",
+      "name": "SignalEngine.transmit",
+      "line": 118
+    },
+    {
+      "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-population-routing-tests\\autocase\\+ac\\AdmissionSimulation.m",
+      "name": "AdmissionSimulation.transmit",
+      "line": 505
+    },
+    {
+      "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-population-routing-tests\\autocase\\+ac\\AdmissionSimulation.m",
+      "name": "@(frame,duration)obj.transmit(frame,duration)",
+      "line": 119
+    },
+    {
+      "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-population-routing-tests\\autocase\\model\\+csr\\+mac\\Layer.m",
+      "name": "Layer.transmit",
+      "line": 544
+    },
+    {
+      "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-population-routing-tests\\autocase\\model\\+csr\\+mac\\Layer.m",
+      "name": "Layer.slotTick",
+      "line": 422
+    },
+    {
+      "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-population-routing-tests\\autocase\\model\\+csr\\+mac\\Layer.m",
+      "name": "@()obj.slotTick()",
+      "line": 325
+    },
+    {
+      "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-population-routing-tests\\autocase\\model\\+csr\\+sim\\EventScheduler.m",
+      "name": "EventScheduler.run",
+      "line": 158
+    },
+    {
+      "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-population-routing-tests\\autocase\\+ac\\AdmissionSimulation.m",
+      "name": "AdmissionSimulation.run",
+      "line": 184
+    },
+    {
+      "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-population-routing-tests\\autocase\\run_autonomous_tests.m",
+      "name": "runCase",
+      "line": 191
+    },
+    {
+      "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\autonomous-population-routing-tests\\autocase\\run_autonomous_tests.m",
+      "name": "run_autonomous_tests",
+      "line": 80
+    }
+  ]
+}

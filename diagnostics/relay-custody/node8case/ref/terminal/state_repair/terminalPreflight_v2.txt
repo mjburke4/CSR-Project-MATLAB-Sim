@@ -1,0 +1,241 @@
+function report=terminalPreflight(config,folder)
+%TERMINALPREFLIGHT Public HOP and MAC regression for terminal DATA copies.
+% One scheduler receives explicit initial sent/ACK callbacks. Public MAC
+% ReceiverState holds queued retries in Track until the test releases Search;
+% actual retry drain then uses ordinary seeded MAC timing on the same clock.
+% This isolates queue lifetime; it is not a captured PHY timing replay.
+if ~isfolder(folder), mkdir(folder); end
+checks=struct('name',{},'passed',{},'details',{});
+resources=containers.Map('KeyType','char','ValueType','any');
+cleanup=streamRegistryGuard(resources); %#ok<NASGU>
+radio=componentRadio(config);
+report=struct('schema','csr-terminal-preflight-v1','completed',false,'passed',false, ...
+    'checks',checks,'matlab_execution_required',true,'network_parity_claim',false, ...
+    'fixture_radio',radio,'cleanup_ownership','Stable stream-handle registry captured by a file-local cleanup factory', ...
+    'scope','Public component ownership, real MAC queue/cancellation/drain, receiver DATA duplicate suppression; one monotonic scheduler with public receiver-state stimuli', ...
+    'accounting_limit','A failed HOP owner with queued MAC copies is unresolved at cutoff. Raw network Statistics.Dropped is provisional and not a final application-loss ledger.');
+try
+    old=episode(false,'native-provisional','old_native');
+    candidate=episode(true,'native-provisional','candidate_native');
+    assert(old.Hop.stats().Failed==1 && old.Mac.DataQueueCount==0 && ...
+        candidate.Hop.stats().Failed==1 && candidate.Mac.DataQueueCount==2);
+    add('native_terminal_expiry_retains_two_previously_admitted_mac_copies', ...
+        struct('old_queue',old.Mac.DataQueueCount,'candidate_queue',candidate.Mac.DataQueueCount, ...
+        'old_owner_failures',old.Hop.stats().Failed,'candidate_owner_failures',candidate.Hop.stats().Failed));
+    assert(candidate.Hop.PendingDataCount==0 && candidate.Hop.admission(2).NeighborOutstanding==0 && ...
+        numel(candidate.Releases())==1 && numel(candidate.Terminals())==1);
+    add('owner_release_once_with_live_copies_is_unresolved_at_cutoff', ...
+        struct('hop_owner_failed',true,'live_mac_copies',2,'application_fate','unresolved', ...
+        'terminal_application_drop_inferred',false,'nsdp_releases',1));
+    a=episode(false,'actual-tx','old_actual'); b=episode(true,'actual-tx','candidate_actual');
+    assert(isequaln(a.Evidence(),b.Evidence()) && strcmp(csr.hop.Layer.defaults().DataQueuedRetryPolicy,'actual-tx'));
+    add('actual_tx_policy_and_default_remain_unchanged',a.Evidence());
+    candidate.Drain();
+    assert(candidate.Mac.Counters.Transmissions==2 && candidate.Mac.Counters.SegmentsTransmitted==2 && ...
+        candidate.Mac.DataQueueCount==0 && candidate.Hop.PendingDataCount==0 && ...
+        numel(candidate.Releases())==1 && numel(candidate.Terminals())==1 && ...
+        numel(candidate.Deliveries())==1 && candidate.Receiver.stats().Duplicates==1);
+    delivered=candidate.Deliveries(); txTimes=candidate.TransmissionTimes(); terminalTimes=candidate.TerminalTimes();
+    assert(numel(txTimes)==2 && all(txTimes>terminalTimes(1))); 
+    add('real_mac_drains_retained_copies_with_one_late_first_delivery', ...
+        struct('actual_mac_transmissions',2,'delivered_application_id',double(delivered{1}.Id), ...
+        'receiver_deliveries',1,'receiver_duplicates',1,'owner_recreated',false, ...
+        'owner_failed_at_seconds',terminalTimes(1),'late_mac_tx_seconds',txTimes, ...
+        'scope','Public receiver HOP delivery; integrated NetworkSimulation recoverDrop counter is unchanged and source-reviewed, not exercised here'));
+    for kind={'exact_ack','window_ack','window_dack'}
+        h=episode(true,'native-provisional',kind{1});
+        h.Hop.receive(feedback(2,h.Original.Sequence,kind{1}));
+        h.Hop.receive(feedback(2,h.Original.Sequence,kind{1}));
+        assert(h.Mac.DataQueueCount==0 && h.Mac.Counters.Canceled==2 && h.Hop.PendingDataCount==0 && ...
+            h.Hop.stats().Failed==1 && h.Hop.stats().Acknowledged==0 && h.Hop.stats().Dacked==0 && ...
+            h.Hop.stats().DackHoldCount==0 && numel(h.Releases())==1 && numel(h.Terminals())==1);
+        add(['orphan_' kind{1} '_cancels_data_without_releasing_owner_twice'],h.Evidence());
+    end
+    h=episode(true,'native-provisional','single_dack');
+    h.Hop.receive(feedback(2,h.Original.Sequence,'single_dack'));
+    assert(h.Mac.DataQueueCount==2 && h.Hop.stats().Dacked==0 && numel(h.Releases())==1);
+    add('nonwindow_dack_keeps_disabled_native_single_dack_path',h.Evidence());
+    h=fresh(true,'native-provisional','window_wrap');
+    for sequence=[0 65535 65534]
+        assert(h.Mac.enqueue(csr.hop.Frames.data(packet(100+sequence,radio),1,2,uint16(sequence),radio)));
+    end
+    assert(h.Mac.enqueue(csr.hop.Frames.data(packet(200,radio),1,3,uint16(0),radio)));
+    frame=csr.hop.Frames.acknowledgment(2,1,uint16(0),uint64(1),uint64(2),struct('HasAckWindow',true));
+    h.Hop.receive(frame);
+    assert(h.Mac.DataQueueCount==2 && h.Mac.Counters.Canceled==2 && h.Hop.PendingDataCount==0);
+    h.Mac.cancelData(2,uint16(65534)); h.Mac.cancelData(3,uint16(0));
+    assert(h.Mac.DataQueueCount==0);
+    add('window_ack_dack_union_wraps_at_uint16_and_respects_peer', ...
+        struct('removed_sequences',[0 65535],'retained_sequence',65534,'retained_other_peer',3));
+    h=fresh(true,'native-provisional','overlap'); [ok,frame]=h.Hop.send(packet(1,radio),2); assert(ok);
+    both=csr.hop.Frames.acknowledgment(2,1,frame.Sequence,uint64(1),uint64(1),struct('HasAckWindow',true));
+    h.Hop.receive(both); h.Hop.receive(both);
+    assert(h.Hop.stats().Acknowledged==1 && h.Hop.stats().Dacked==0 && ...
+        h.Hop.PendingDataCount==0 && numel(h.Releases())==1 && numel(h.Terminals())==1);
+    add('overlapping_window_bits_prefer_ack_and_release_once',h.Evidence());
+    h=fresh(true,'native-provisional','routing_exact');
+    [ok,route]=h.Hop.sendControl(control(55,'ROUTING'),[2 3],radio); assert(ok && h.Mac.enqueue(route));
+    h.Hop.receive(feedback(2,route.HopSequences(1),'exact_ack'));
+    assert(h.Hop.stats().ControlPending==1 && h.Mac.DataQueueCount==1);
+    h.Hop.receive(feedback(3,route.HopSequences(2),'exact_ack'));
+    h.Hop.receive(feedback(2,route.HopSequences(1),'exact_ack'));
+    assert(h.Hop.stats().ControlPending==0 && h.Hop.stats().ControlCompleted==1 && ...
+        h.Mac.DataQueueCount==1 && h.Mac.Counters.Canceled==0);
+    add('grouped_routing_survives_partial_complete_and_repeated_exact_ack', ...
+        struct('remaining_routing_copies',1,'control_completed',1,'canceled',0));
+    h=fresh(true,'native-provisional','routing_window');
+    [ok,route]=h.Hop.sendControl(control(56,'ROUTING'),[2 3],radio); assert(ok && h.Mac.enqueue(route));
+    h.Hop.receive(feedback(2,route.HopSequences(1),'window_ack'));
+    h.Hop.receive(feedback(3,route.HopSequences(2),'window_dack'));
+    assert(h.Hop.stats().ControlPending==1 && h.Mac.DataQueueCount==1 && ...
+        h.Hop.stats().ControlAcknowledged==0 && h.Hop.stats().ControlCompleted==0);
+    add('data_window_cleanup_cannot_cancel_or_complete_grouped_routing',struct('remaining_routing_copies',1));
+    h=fresh(true,'native-provisional','rejected_retry');
+    [ok,frame]=h.Hop.send(packet(1,radio),2); assert(ok); h.Hop.notifySent(frame); h.AcceptRetry(false); h.Clock.run(3);
+    released=h.Releases();
+    assert(h.Hop.stats().Failed==1 && h.Hop.PendingDataCount==0 && numel(released)==1 && ...
+        strcmp(released{1}.Reason,'mac_queue_full') && h.CancelCalls()==1);
+    add('mac_queue_full_retains_existing_cancel_and_release_behavior',h.Evidence());
+    h=episode(true,'native-provisional','fallback');
+    scheduledBefore=h.Clock.PendingCount; before=h.Hop.stats().Transmitted;
+    assert(scheduledBefore==1 && strcmp(h.Mac.State,'Track') && h.Mac.Counters.Transmissions==0, ...
+        'terminalcase:FallbackSetup','Expected one live MAC slot timer with queued copies still held in Track.');
+    h.Hop.notifySent(h.Original); assert(h.Clock.PendingCount==scheduledBefore+1);
+    h.Hop.notifySent(h.Original); assert(h.Clock.PendingCount==scheduledBefore+1);
+    h.Clock.run(13);
+    assert(h.Clock.PendingCount==scheduledBefore && h.Hop.PendingDataCount==0 && ...
+        h.Hop.stats().Transmitted==before+2 && numel(h.Releases())==1 && numel(h.Terminals())==1);
+    add('late_data_sent_restarts_only_one_scan_without_resurrecting_owner',h.Evidence());
+    h=fresh(true,'native-provisional','live_dack'); [ok,frame]=h.Hop.send(packet(1,radio),2); assert(ok);
+    h.Hop.notifySent(frame); h.Clock.run(2.1);
+    h.Hop.receive(feedback(2,frame.Sequence,'window_dack'));
+    h.Hop.receive(feedback(2,frame.Sequence,'window_dack'));
+    assert(h.Mac.DataQueueCount==0 && h.Hop.PendingDataCount==1 && ...
+        h.Hop.stats().DackHoldCount==1 && numel(h.Releases())==1);
+    h.Clock.run(23);
+    assert(h.Hop.PendingDataCount==0 && h.Hop.stats().DackExpired==1 && numel(h.Releases())==1);
+    add('live_dack_preserves_hold_and_exactly_once_capacity_release',h.Evidence());
+    h=fresh(true,'native-provisional','control_expiry');
+    [ok,frame]=h.Hop.sendControl(control(70,'KEY_UPDATE'),2,radio); assert(ok && h.Mac.enqueue(frame));
+    h.Hop.notifySent(frame); h.Clock.run(2.1); h.Hop.notifySent(frame);
+    h.Clock.run(4.2); h.Hop.notifySent(frame); h.Clock.run(8.3);
+    assert(h.Hop.stats().ControlFailed==1 && h.Hop.stats().Failed==0 && h.Mac.DataQueueCount==0 && h.CancelCalls()==1);
+    add('control_terminal_expiry_keeps_original_cleanup',struct('control_failed',1,'remaining_control_copies',0));
+    assert(numel(checks)==16);
+    report.checks=checks; report.completed=true; report.passed=all([checks.passed]);
+    ac.writeJson(fullfile(folder,'terminal_preflight.json'),report);
+catch caught
+    report.checks=checks; report.error_identifier=caught.identifier; report.error_message=caught.message;
+    report.error_stack=caught.stack; ac.writeJson(fullfile(folder,'terminal_preflight.json'),report); rethrow(caught);
+end
+    function add(name,details)
+        checks(end+1)=struct('name',name,'passed',true,'details',details); %#ok<AGROW>
+    end
+    function h=fresh(candidate,policy,name)
+        h=harness(config,fullfile(folder,name),candidate,policy,resources);
+    end
+    function h=episode(candidate,policy,name)
+        h=fresh(candidate,policy,name);
+        [okay,initial]=h.Hop.send(packet(1,radio),2); assert(okay); h.Original=initial;
+        h.Hop.notifySent(initial); h.Clock.run(2.1);
+        h.Clock.run(3); [okay,trigger]=h.Hop.sendControl(control(50,'KEY_UPDATE'),9,radio); assert(okay);
+        h.Hop.notifySent(trigger); h.Clock.run(5.1);
+        h.Clock.run(8); [okay,trigger]=h.Hop.sendControl(control(51,'KEY_UPDATE'),10,radio); assert(okay);
+        h.Hop.notifySent(trigger); h.Clock.run(10.1);
+    end
+end
+
+function h=harness(config,folder,candidate,policy,resources)
+mkdir(folder); clock=csr.sim.EventScheduler();
+streams=ac.Streams(config.Seed,clock,'natural','',folder);
+resources(folder)=streams;
+options=config.Hop; options.DataQueuedRetryPolicy=policy; options.TicSeconds=1e-6;
+options.MaxResends=2; options.ResendSeconds=2; options.DackHoldSeconds=20;
+macOptions=config.Mac; macOptions.DutyCycleEnabled=false; macOptions.ConcatenationEnabled=false;
+releases={}; terminals={}; deliveries={}; terminalTimes=[]; txTimes=[]; cancels=0; acceptedRetry=true; blocked=true;
+receiver=csr.hop.Layer(2,clock,streams,options,struct('EnqueueMac',@(frame)true,'Deliver',@deliver));
+mac=ac.TerminalMac(1,clock,streams,macOptions, ...
+    struct('Transmit',@transmit,'Sent',@sent,'ReceiverState',@receiverState));
+callbacks=struct('EnqueueMac',@enqueue,'NsdpRelease',@release,'Terminal',@terminal, ...
+    'CancelMac',@cancel,'CancelMacData',@(peer,seq)mac.cancelData(peer,seq));
+if candidate, hop=ac.TerminalHop(1,clock,streams,options,callbacks);
+else, hop=csr.hop.Layer(1,clock,streams,options,callbacks); end
+h=struct('Clock',clock,'Hop',hop,'Mac',mac,'Receiver',receiver, ...
+    'Releases',@()releases,'Terminals',@()terminals,'Deliveries',@()deliveries, ...
+    'TransmissionTimes',@()txTimes,'TerminalTimes',@()terminalTimes, ...
+    'CancelCalls',@()cancels,'AcceptRetry',@setAccepted,'Evidence',@evidence,'Drain',@drain);
+    function okay=enqueue(frame)
+        okay=true;
+        if strcmp(frame.Kind,'DATA') && frame.RetryCount>0
+            okay=acceptedRetry;
+            if okay, okay=mac.enqueue(frame); end
+        end
+    end
+    function setAccepted(value), acceptedRetry=value; end
+    function removed=cancel(peer,sequence), cancels=cancels+1; removed=mac.cancel(peer,sequence); end
+    function release(app,reason), releases{end+1}=struct('App',app,'Reason',reason); end
+    function terminal(app,success,reason)
+        terminals{end+1}=struct('App',app,'Success',success,'Reason',reason); terminalTimes(end+1)=clock.Now;
+    end
+    function okay=deliver(app,peer) %#ok<INUSD>
+        deliveries{end+1}=app; okay=true;
+    end
+    function transmit(frame,duration) %#ok<INUSD>
+        txTimes(end+1)=clock.Now;
+        for k=1:numel(frame.Segments), receiver.receive(frame.Segments{k}); end
+    end
+    function sent(frame), hop.notifySent(frame); end
+    function state=receiverState()
+        if blocked, state='Track'; else, state='Search'; end
+    end
+    function drain()
+        blocked=false; mac.receiverChanged('Search'); clock.run(clock.Now+20);
+    end
+    function value=evidence()
+        value=struct('hop',hop.stats(),'pending',hop.PendingDataCount,'mac_queue',mac.DataQueueCount, ...
+            'releases',numel(releases),'terminals',numel(terminals),'cancel_calls',cancels);
+    end
+end
+function app=packet(id,radio)
+flow=struct('SourceId',1,'DestinationId',2,'ApplicationPayloadBytes',185, ...
+    'TxPowerDbm',radio.TxPowerDbm);
+app=csr.packet(id,flow,0,radio);
+end
+function value=control(id,type)
+value=struct('Id',uint64(id),'Type',type,'Payload',struct(),'WirePayloadBytes',16);
+end
+function frame=feedback(peer,sequence,kind)
+ack=uint64(0); dack=uint64(0); hasWindow=false; frameKind='ACK';
+switch kind
+    case 'window_ack', ack=uint64(1); hasWindow=true;
+    case 'window_dack', dack=uint64(1); hasWindow=true; frameKind='DACK';
+    case 'single_dack', frameKind='DACK';
+end
+frame=csr.hop.Frames.acknowledgment(peer,1,sequence,ack,dack, ...
+    struct('HasAckWindow',hasWindow,'Kind',frameKind));
+end
+
+function radio=componentRadio(config)
+% csr.packet requires complete radio fields and reads TX power from FLOW.
+% Reuse the validated scenario's radio and source-node RF power, never an
+% incomplete struct or an invented per-test radio default.
+radio=config.Radio;
+required={'EnvelopeProfile','RateKeyKbps','Preamble'};
+assert(all(isfield(radio,required)),'terminalcase:ComponentRadio', ...
+    'The validated scenario must supply all packet radio fields.');
+index=find([config.Nodes.Id]==1);
+assert(isscalar(index),'terminalcase:ComponentRadio','Expected one component source node1.');
+radio.TxPowerDbm=config.Nodes(index).RadioProfile.TxPowerDbm;
+validateattributes(radio.TxPowerDbm,{'numeric'},{'scalar','real','finite'});
+end
+function guard=streamRegistryGuard(resources)
+% This local function captures its MAP HANDLE by value. Its cleanup never
+% accesses a nested caller's partially destroyed shared workspace.
+guard=onCleanup(@()closeStreamRegistry(resources));
+end
+function closeStreamRegistry(resources)
+items=values(resources);
+for k=1:numel(items)
+    items{k}.close();
+end
+end

@@ -1,0 +1,461 @@
+{
+  "schema": "csr-native-longrun-archived-ledger-audit-v1",
+  "seed": 131,
+  "cutoff_ns": 6000000000000,
+  "simulator_executed": false,
+  "production_changes": false,
+  "archived_paths_reused": true,
+  "original_trace_rows": 3092540,
+  "original_max_time_s": 5999.98,
+  "source_event_counts": {
+    "mac_state": 203814,
+    "route_change": 29,
+    "scenario_node": 7,
+    "scenario_link": 21,
+    "statistic_sample": 124177,
+    "reservation_prepare": 29493,
+    "reservation_holdoff": 41,
+    "reservation_tick": 518338,
+    "reservation_advertise": 29490,
+    "tx_start": 29490,
+    "rx_drop": 123671,
+    "rx_accept": 53267,
+    "app_admission": 1710000,
+    "app_send": 12630,
+    "nwk_enqueue": 14205,
+    "nwk_admission": 160742,
+    "nwk_forward": 14182,
+    "hop_admission": 14182,
+    "hop_feedback": 13851,
+    "nwk_delivery": 12261,
+    "nwk_nsdp_release": 14152,
+    "hop_completion": 14152,
+    "hop_capacity_release": 345
+  },
+  "totals": {
+    "attempted": 1710000,
+    "admitted": 12630,
+    "unique_delivered": 12261,
+    "delivery_events": 12261,
+    "proven_terminal_drop_count_lower_bound": 0,
+    "terminal_drop_total": null,
+    "unresolved_outcomes": 369
+  },
+  "per_source": [
+    {
+      "source": 2,
+      "destination": 1,
+      "attempted": 285000,
+      "admitted": 0,
+      "rejected_before_creation": 285000,
+      "rejection_reasons": {
+        "topology_unknown": 285000
+      },
+      "unique_delivered": 0,
+      "delivery_events": 0,
+      "duplicate_delivery_events": 0,
+      "proven_terminal_drop_count_lower_bound": 0,
+      "terminal_drop_total": null,
+      "unresolved_outcomes": 0,
+      "unresolved_is_live_pending": false,
+      "delivered_latency": {
+        "count": 0,
+        "mean_ns": null,
+        "median_ns": null,
+        "p95_ns": null,
+        "maximum_ns": null
+      },
+      "source_nwk_wait": {
+        "count": 0,
+        "mean_ns": null,
+        "median_ns": null,
+        "p95_ns": null,
+        "maximum_ns": null
+      },
+      "relay_nwk_wait": {
+        "count": 0,
+        "mean_ns": null,
+        "median_ns": null,
+        "p95_ns": null,
+        "maximum_ns": null
+      },
+      "post_admission": {
+        "count": 0,
+        "mean_ns": null,
+        "median_ns": null,
+        "p95_ns": null,
+        "maximum_ns": null
+      },
+      "unresolved_age": {
+        "count": 0,
+        "mean_ns": null,
+        "median_ns": null,
+        "p95_ns": null,
+        "maximum_ns": null
+      }
+    },
+    {
+      "source": 3,
+      "destination": 1,
+      "attempted": 285000,
+      "admitted": 8190,
+      "rejected_before_creation": 276810,
+      "rejection_reasons": {
+        "nsdp_full": 276810
+      },
+      "unique_delivered": 8172,
+      "delivery_events": 8172,
+      "duplicate_delivery_events": 0,
+      "proven_terminal_drop_count_lower_bound": 0,
+      "terminal_drop_total": null,
+      "unresolved_outcomes": 18,
+      "unresolved_is_live_pending": false,
+      "delivered_latency": {
+        "count": 8172,
+        "mean_ns": 10938747927.70974,
+        "median_ns": 10270308077.0,
+        "p95_ns": 20432758076.999996,
+        "maximum_ns": 30478808077
+      },
+      "source_nwk_wait": {
+        "count": 8172,
+        "mean_ns": 112926062.54148312,
+        "median_ns": 28.0,
+        "p95_ns": 722558104.9999998,
+        "maximum_ns": 10455108105
+      },
+      "relay_nwk_wait": {
+        "count": 8172,
+        "mean_ns": 0.0,
+        "median_ns": 0.0,
+        "p95_ns": 0.0,
+        "maximum_ns": 0
+      },
+      "post_admission": {
+        "count": 8172,
+        "mean_ns": 10825821865.168257,
+        "median_ns": 10200808049.0,
+        "p95_ns": 20341408049.0,
+        "maximum_ns": 30478808049
+      },
+      "unresolved_age": {
+        "count": 18,
+        "mean_ns": 548383333333.3333,
+        "median_ns": 7880000000.0,
+        "p95_ns": 4094392999999.999,
+        "maximum_ns": 4757240000000
+      }
+    },
+    {
+      "source": 4,
+      "destination": 1,
+      "attempted": 285000,
+      "admitted": 1897,
+      "rejected_before_creation": 283103,
+      "rejection_reasons": {
+        "nsdp_full": 283103
+      },
+      "unique_delivered": 1567,
+      "delivery_events": 1567,
+      "duplicate_delivery_events": 0,
+      "proven_terminal_drop_count_lower_bound": 0,
+      "terminal_drop_total": null,
+      "unresolved_outcomes": 330,
+      "unresolved_is_live_pending": false,
+      "delivered_latency": {
+        "count": 1567,
+        "mean_ns": 87545663670.55647,
+        "median_ns": 87230811086.0,
+        "p95_ns": 116705611085.99994,
+        "maximum_ns": 166840811086
+      },
+      "source_nwk_wait": {
+        "count": 1567,
+        "mean_ns": 44290166153.23038,
+        "median_ns": 44873292472.0,
+        "p95_ns": 69773592471.99992,
+        "maximum_ns": 97294292472
+      },
+      "relay_nwk_wait": {
+        "count": 1567,
+        "mean_ns": 20212602419.16273,
+        "median_ns": 19609298670.0,
+        "p95_ns": 35055898669.999985,
+        "maximum_ns": 55411298670
+      },
+      "post_admission": {
+        "count": 1567,
+        "mean_ns": 23042895098.16337,
+        "median_ns": 20961219944.0,
+        "p95_ns": 43532819924.39998,
+        "maximum_ns": 78837219944
+      },
+      "unresolved_age": {
+        "count": 330,
+        "mean_ns": 2799356545454.5454,
+        "median_ns": 2991480000000.0,
+        "p95_ns": 5436629000000.001,
+        "maximum_ns": 5699960000000
+      }
+    },
+    {
+      "source": 5,
+      "destination": 1,
+      "attempted": 285000,
+      "admitted": 2543,
+      "rejected_before_creation": 282457,
+      "rejection_reasons": {
+        "nsdp_full": 282457
+      },
+      "unique_delivered": 2522,
+      "delivery_events": 2522,
+      "duplicate_delivery_events": 0,
+      "proven_terminal_drop_count_lower_bound": 0,
+      "terminal_drop_total": null,
+      "unresolved_outcomes": 21,
+      "unresolved_is_live_pending": false,
+      "delivered_latency": {
+        "count": 2522,
+        "mean_ns": 36605005376.245834,
+        "median_ns": 34519811086.0,
+        "p95_ns": 61103111086.0,
+        "maximum_ns": 103964811086
+      },
+      "source_nwk_wait": {
+        "count": 2522,
+        "mean_ns": 13152557316.537668,
+        "median_ns": 13005611114.0,
+        "p95_ns": 30366011113.999996,
+        "maximum_ns": 55461111114
+      },
+      "relay_nwk_wait": {
+        "count": 2522,
+        "mean_ns": 0.0,
+        "median_ns": 0.0,
+        "p95_ns": 0.0,
+        "maximum_ns": 0
+      },
+      "post_admission": {
+        "count": 2522,
+        "mean_ns": 23452448059.708168,
+        "median_ns": 21750199972.0,
+        "p95_ns": 46818099971.99999,
+        "maximum_ns": 75667699972
+      },
+      "unresolved_age": {
+        "count": 21,
+        "mean_ns": 817343809523.8096,
+        "median_ns": 25560000000.0,
+        "p95_ns": 4309820000000.0,
+        "maximum_ns": 4315760000000
+      }
+    },
+    {
+      "source": 7,
+      "destination": 1,
+      "attempted": 285000,
+      "admitted": 0,
+      "rejected_before_creation": 285000,
+      "rejection_reasons": {
+        "topology_unknown": 285000
+      },
+      "unique_delivered": 0,
+      "delivery_events": 0,
+      "duplicate_delivery_events": 0,
+      "proven_terminal_drop_count_lower_bound": 0,
+      "terminal_drop_total": null,
+      "unresolved_outcomes": 0,
+      "unresolved_is_live_pending": false,
+      "delivered_latency": {
+        "count": 0,
+        "mean_ns": null,
+        "median_ns": null,
+        "p95_ns": null,
+        "maximum_ns": null
+      },
+      "source_nwk_wait": {
+        "count": 0,
+        "mean_ns": null,
+        "median_ns": null,
+        "p95_ns": null,
+        "maximum_ns": null
+      },
+      "relay_nwk_wait": {
+        "count": 0,
+        "mean_ns": null,
+        "median_ns": null,
+        "p95_ns": null,
+        "maximum_ns": null
+      },
+      "post_admission": {
+        "count": 0,
+        "mean_ns": null,
+        "median_ns": null,
+        "p95_ns": null,
+        "maximum_ns": null
+      },
+      "unresolved_age": {
+        "count": 0,
+        "mean_ns": null,
+        "median_ns": null,
+        "p95_ns": null,
+        "maximum_ns": null
+      }
+    },
+    {
+      "source": 8,
+      "destination": 1,
+      "attempted": 285000,
+      "admitted": 0,
+      "rejected_before_creation": 285000,
+      "rejection_reasons": {
+        "topology_unknown": 285000
+      },
+      "unique_delivered": 0,
+      "delivery_events": 0,
+      "duplicate_delivery_events": 0,
+      "proven_terminal_drop_count_lower_bound": 0,
+      "terminal_drop_total": null,
+      "unresolved_outcomes": 0,
+      "unresolved_is_live_pending": false,
+      "delivered_latency": {
+        "count": 0,
+        "mean_ns": null,
+        "median_ns": null,
+        "p95_ns": null,
+        "maximum_ns": null
+      },
+      "source_nwk_wait": {
+        "count": 0,
+        "mean_ns": null,
+        "median_ns": null,
+        "p95_ns": null,
+        "maximum_ns": null
+      },
+      "relay_nwk_wait": {
+        "count": 0,
+        "mean_ns": null,
+        "median_ns": null,
+        "p95_ns": null,
+        "maximum_ns": null
+      },
+      "post_admission": {
+        "count": 0,
+        "mean_ns": null,
+        "median_ns": null,
+        "p95_ns": null,
+        "maximum_ns": null
+      },
+      "unresolved_age": {
+        "count": 0,
+        "mean_ns": null,
+        "median_ns": null,
+        "p95_ns": null,
+        "maximum_ns": null
+      }
+    }
+  ],
+  "verified_application_rows": 12630,
+  "verified_causal_hops": 13828,
+  "verified_queue_departures": 14182,
+  "verified_endpoint_events": 67573,
+  "max_integer_ns_path_closure_error": 0,
+  "max_archived_phase_rounding_difference_ns": 0,
+  "schedule_max_text_residual_ns": "0.0004000000000",
+  "max_endpoint_text_rounding_ns": "0.0005000000000",
+  "attempt_schedule": "300s + zero-based attempt index*0.02s; attempts at6000s excluded",
+  "source_files": [
+    {
+      "path": "routing_recovery/t25/evidence/tranche-25-ns3-reference/s131/app-admission-diagnostics.csv",
+      "sha256": "6cdd70a7c5e3a5b8f139b0ad35eb9700a1afe0d7c9e9c8c5999b0c008fcf369c",
+      "bytes": 1045
+    },
+    {
+      "path": "routing_recovery/t25/evidence/tranche-25-ns3-reference/s131/execution-stages.json",
+      "sha256": "84494ac20bb2f4c3eeb4650f5d12a9753bc8bf7eb5fe303fb61d2ec29d422637",
+      "bytes": 1698
+    },
+    {
+      "path": "routing_recovery/t25/evidence/tranche-25-ns3-reference/s131/native-applications.json",
+      "sha256": "3ac5bd33cf6c85bf98fdc290443c6d62922c6846fa308b5e70ee07bedf0a005b",
+      "bytes": 25926
+    },
+    {
+      "path": "routing_recovery/t25/evidence/tranche-25-ns3-reference/s131/ns3-aggregate.log",
+      "sha256": "cd590e95dfa717fb5c4ffaf68c1808e593cc394efbd2cdd8f812445f5e30627a",
+      "bytes": 249
+    },
+    {
+      "path": "routing_recovery/t25/evidence/tranche-25-ns3-reference/s131/ns3-aggregates.csv",
+      "sha256": "8e5249477509e49049984c5685a85aeeada4a50c3281ea0ef2cf63e66886d5e1",
+      "bytes": 330084
+    },
+    {
+      "path": "routing_recovery/t25/evidence/tranche-25-ns3-reference/s131/ns3-aggregates.provenance.json",
+      "sha256": "a39bcca0e41a343ce2f454f2ccbee0abad2fd17f06c4ccf9b4d51063c7b77704",
+      "bytes": 12600
+    },
+    {
+      "path": "routing_recovery/t25/evidence/tranche-25-ns3-reference/s131/ns3-benchmark.provenance.json",
+      "sha256": "6ead06b6d7595fc9a5646ba88e7a33290bc124d09a73d4fb8fe672101758dc44",
+      "bytes": 1318
+    },
+    {
+      "path": "routing_recovery/t25/evidence/tranche-25-ns3-reference/s131/ns3-run.log",
+      "sha256": "6ed351ffbcb626842b7449d9ea2c374897032f1e39cd04778cad04ffec60ef26",
+      "bytes": 346
+    },
+    {
+      "path": "routing_recovery/t25/evidence/tranche-25-ns3-reference/s131/ns3-trace.csv.gz",
+      "sha256": "8daa3cea2bcfae1162c373b39110745fe8889066fdaab3bd22fbb0c685fe3878",
+      "bytes": 40260575
+    },
+    {
+      "path": "routing_recovery/t25/evidence/tranche-25-ns3-reference/s131/scenario.csv",
+      "sha256": "e10d210590c80cb839442b7847ee6c7e8b8c21d043da5fe5dcf1f2abb402ca7a",
+      "bytes": 2408
+    },
+    {
+      "path": "routing_recovery/t25/evidence/tranche-25-ns3-reference/s131/seed-recipe.json",
+      "sha256": "b647db17e367c938aa0e7eae0adf4d746a5b6c96086934c88492b62ae21313ea",
+      "bytes": 379
+    },
+    {
+      "path": "longrun_recovery/extracted/latency-review/latency-review/native/output/s131-packets.csv",
+      "sha256": "9ba3aef28186975a5118d5f345c82e8e353d83b73422189ec4519ea550f02614",
+      "bytes": 1846098
+    },
+    {
+      "path": "longrun_recovery/extracted/latency-review/latency-review/native/output/s131-hops.csv",
+      "sha256": "c4789c28b7a494f487ec75f280bd7d7fa8c01a6acd1d6de44df36c8b01f71359",
+      "bytes": 2525159
+    },
+    {
+      "path": "longrun_recovery/extracted/latency-review/latency-review/native/output/s131-all-queue-departures.csv",
+      "sha256": "372cef226b923506982230d3740da5499aa20506aead0447339cb823b90017a0",
+      "bytes": 783258
+    },
+    {
+      "path": "longrun_recovery/extracted/latency-review/latency-review/native/output/s131.json",
+      "sha256": "d63892f343eb62561235746c1ef8d3490dbf8c181853c1297074bea38f9bbf6b",
+      "bytes": 15533
+    },
+    {
+      "path": "longrun_recovery/extracted/latency-review/latency-review/native/analyze_native_latency.py",
+      "sha256": "1d6f1b7140e80b35eece7df95ec96da16c0943bd1ab739d54e0e48ca1bbe4f7b",
+      "bytes": 13449
+    }
+  ],
+  "uncompressed_trace_sha256": "fe373f6e5ab3d0776e957e481331abdad696ee97f656933bd3948dd62fe527fa",
+  "uncompressed_trace_bytes": 738762008,
+  "uncompressed_digest_verified": true,
+  "script_sha256": "31e05673d2e5f48938b6ecfe907655290243bead0ddf4b052ee01585c3d25562",
+  "limitations": [
+    "Native has no proven application-terminal-drop trace; unresolved mayinclude dropped or outstanding applications.",
+    "HOP no_ack/DACK completion and per-copy suppressed_no_route are not global application-terminal outcomes.",
+    "Delivery latency ends at first unique final receipt, excluding postdeliveryACK/owner duration.",
+    "Post-admission combines MAC/HOP waiting, airtime/retries/reception; aggregate-front-only physical traces do not support complete first-TX decomposition.",
+    "Same-seed histories are not common random tapes; cross-engine application matching uses scheduled attempt identity.",
+    "Only delivered critical paths have phase sums; unresolved age is not imputed eventual latency or livequeue residence."
+  ]
+}

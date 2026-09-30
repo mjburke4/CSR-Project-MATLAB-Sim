@@ -1,0 +1,18 @@
+{
+  "actual_config_policy": "actual-tx",
+  "actual_source": "autonomous_eleventh/kit/autocase/model/+csr/+hop/Layer.m",
+  "existing_option": "native-provisional",
+  "behavior_bundle": [
+    "Retains initial confirmation at DATA retry enqueue using provisional enqueue timestamp",
+    "Unmatched ACK-required DATA sent indication may schedule shared scan if most recently installed timer is no longer pending",
+    "CONTROL retry remains unconfirmed until actual TX",
+    "Timer callback ordering and ACK/custody/terminal callbacks otherwise retained"
+  ],
+  "documentation": "publication_sep28/repo/docs/tranche-19-retry-policy.md",
+  "known_contract": "Existing actual-tx default and accepted natural A are deliberately retained. Native-provisional is a separately selectable diagnostic policy, not a blanket production-default change.",
+  "prior_tests": "Exact16-test TestQueuedRetryPolicy class recovered from repository; reused byte-for-byte in O. Its execution in the new O kit remains pending.",
+  "new_matlab_runtime_executed": false,
+  "recovered_test_path": "autonomous_twelfth/prior_policy/TestQueuedRetryPolicy.m",
+  "recovered_test_sha256": "603eef79184d92c5b217039b234c98815c1b68409321da8c18441a4e7c74ccee",
+  "recovered_git_blob": "741a5e311c813c8b9498429d20a1222caceeec0e"
+}

@@ -1,0 +1,83 @@
+{
+  "status": "pass",
+  "queue_checks": [
+    {
+      "model": "native",
+      "node": 8,
+      "time_s": 400.0,
+      "raw_diagnostic_queue": 42,
+      "reconstructed_queue": 42
+    },
+    {
+      "model": "native",
+      "node": 8,
+      "time_s": 600.0,
+      "raw_diagnostic_queue": 37,
+      "reconstructed_queue": 37
+    },
+    {
+      "model": "native",
+      "node": 8,
+      "time_s": 675.0,
+      "raw_diagnostic_queue": 33,
+      "reconstructed_queue": 33
+    },
+    {
+      "model": "native",
+      "node": 8,
+      "time_s": 900.0,
+      "raw_diagnostic_queue": 40,
+      "reconstructed_queue": 40
+    },
+    {
+      "model": "native",
+      "node": 8,
+      "time_s": 1200.0,
+      "raw_diagnostic_queue": 51,
+      "reconstructed_queue": 51
+    },
+    {
+      "model": "native",
+      "node": 8,
+      "time_s": 2000.0,
+      "raw_diagnostic_queue": 69,
+      "reconstructed_queue": 69
+    },
+    {
+      "model": "native",
+      "node": 8,
+      "time_s": 3000.0,
+      "raw_diagnostic_queue": 76,
+      "reconstructed_queue": 76
+    },
+    {
+      "model": "native",
+      "node": 8,
+      "time_s": 4000.0,
+      "raw_diagnostic_queue": 31,
+      "reconstructed_queue": 31
+    },
+    {
+      "model": "native",
+      "node": 8,
+      "time_s": 5000.0,
+      "raw_diagnostic_queue": 33,
+      "reconstructed_queue": 33
+    },
+    {
+      "model": "matlab",
+      "node": 8,
+      "time_s": 600,
+      "raw_diagnostic_queue": 54,
+      "reconstructed_queue": 54
+    },
+    {
+      "model": "matlab",
+      "node": 8,
+      "time_s": 6000,
+      "raw_diagnostic_queue": 45,
+      "reconstructed_queue": 45
+    }
+  ],
+  "recommendation": "Extend seed132 common-input from time zero to1200s, with full node8 NWK/HOP admission/capacity/feedback tracing. This includes early queue growth and at least one completed native source7/source8 path (first at733.289/699.255s). If divergence precedes1200s stop at first consequential event; if prefix remains exact, compare natural-run ensembles rather than infer bugs from same numeric seed. Natural node8 queue difference visible by600s and strong by900s; do not assume autonomous trajectories should event-match."
+}

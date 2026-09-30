@@ -1,0 +1,25 @@
+--- before/+ac/integratedAccountingPreflight.m
++++ after/+ac/integratedAccountingPreflight.m
+@@ -4,7 +4,7 @@
+ report=struct('schema','csr-integrated-accounting-preflight-v1','completed',false, ...
+     'passed',false,'network_parity_claim',false,'matlab_execution_required',true, ...
+     'checks',struct('name',{},'passed',{},'details',{}));
+-for mode={'cutoff','final','relay'}
++for mode={'cutoff','final','relay','siblings'}
+     name=mode{1}; fixture=[]; passed=false; details=struct();
+     resources=containers.Map('KeyType','char','ValueType','any');
+     cleanup=resourceGuard(resources); %#ok<NASGU>
+@@ -29,11 +29,11 @@
+     clear cleanup
+     fprintf('  Integrated accounting %s: %s\n',name,passLabel(passed));
+ end
+-report.completed=numel(report.checks)==3; report.passed=report.completed && all([report.checks.passed]);
++report.completed=numel(report.checks)==4; report.passed=report.completed && all([report.checks.passed]);
+ report.passed_groups=sum([report.checks.passed]); report.failed_groups=sum(~[report.checks.passed]);
+ ac.writeJson(fullfile(folder,'integrated_accounting_preflight.json'),report);
+ assert(report.passed,'batchcase:AccountingFailures', ...
+-    '%d of 3 integrated accounting groups failed; all groups attempted. Read integrated_accounting_preflight.json.',report.failed_groups);
++    '%d of 4 integrated accounting groups failed; all groups attempted. Read integrated_accounting_preflight.json.',report.failed_groups);
+ end
+ function guard=resourceGuard(resources)
+ guard=onCleanup(@()closeResources(resources));

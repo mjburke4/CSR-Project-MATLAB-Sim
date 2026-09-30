@@ -1,0 +1,115 @@
+--- baseline/+ac/DiscoveryMembershipNwk.m
++++ candidate/+ac/DiscoveryMembershipNwk.m
+@@ -18,6 +18,7 @@
+         Metrics
+         Seen
+         Pending = {}
++        NextCustodyId = uint64(1)
+         Controls = {}
+         RoutingBacklog = {}
+         NextControlId = uint64(1)
+@@ -121,7 +122,10 @@
+                 accepted=false; reason='inactive_neighbor'; return
+             end
+             key=appKey(app);
+-            if isKey(obj.Seen,key)
++            % HOP owns its ACK/DACK receive window. A copy that HOP offers
++            % again (including a DACK-marked retry) needs distinct relay
++            % custody. Only the final destination deduplicates applications.
++            if app.DestinationId==obj.NodeId && isKey(obj.Seen,key)
+                 obj.Counters.DuplicateApplications=obj.Counters.DuplicateApplications+1;
+                 accepted=true; return
+             end
+@@ -147,10 +151,9 @@
+             if ~obj.routeAvailable(onward)
+                 accepted=false; reason='no_route'; return
+             end
+-            accepted=obj.enqueueApplication(onward);
++            [accepted,onward]=obj.enqueueApplication(onward);
+             if ~accepted, reason='network_queue_full'; end
+             if accepted
+-                obj.Seen(key)=true;
+                 if isfield(obj.Callbacks,'CustodyAccepted')
+                     obj.Callbacks.CustodyAccepted(onward,previousHop);
+                 end
+@@ -357,6 +360,16 @@
+             end
+         end
+ 
++        function count = custodyCount(obj,app)
++            % Read-only live occurrence count for unique-application accounting.
++            % NSDP uses a source/destination pair; this query uses the original
++            % source/application identity and includes submitted HOP owners.
++            count=0; key=appKey(app);
++            for index=1:numel(obj.Pending)
++                count=count+double(strcmp(appKey(obj.Pending{index}.App),key));
++            end
++        end
++
+         function state = applicationState(obj,destination)
+             % Read-only source br_app observations. Persistent topology and
+             % destination populations are broader than currently usable routes.
+@@ -391,10 +404,9 @@
+ 
+         function release(obj,app,reason)
+             position=obj.pendingPosition(app);
+-            if position>0
+-                obj.Pending(position)=[];
+-                obj.emit('network_custody_release',app,struct('Reason',reason));
+-            end
++            if position==0, return; end
++            obj.Pending(position)=[];
++            obj.emit('network_custody_release',app,struct('Reason',reason));
+             obj.wake();
+         end
+ 
+@@ -455,13 +467,21 @@
+         end
+     end
+     methods (Access = private)
+-        function accepted = enqueueApplication(obj,app)
+-            if obj.pendingPosition(app)>0, accepted=true; return; end
++        function [accepted,app] = enqueueApplication(obj,app)
+             accepted=numel(obj.Pending)<obj.Config.QueueLimit;
+             if ~accepted
+                 obj.Counters.QueueAdmissionRejections=obj.Counters.QueueAdmissionRejections+1;
+                 obj.emit('network_queue_reject',app,struct('Reason','network_queue_full')); return
+             end
++            % This is local custody metadata, not application or wire
++            % identity. Always replace the upstream node's token, even when
++            % another accepted occurrence of the same application is live.
++            if obj.NextCustodyId==intmax('uint64')
++                error('csr:nwk:CustodyIdExhausted','Local custody identifiers are exhausted.');
++            end
++            app.NwkCustodyNodeId=obj.NodeId;
++            app.NwkCustodyId=obj.NextCustodyId;
++            obj.NextCustodyId=obj.NextCustodyId+uint64(1);
+             row=struct('App',app,'Submitted',false,'PeerId',NaN);
+             % Source NWK pushes every positive DSCP at head; zero appends.
+             position=numel(obj.Pending)+1;
+@@ -978,9 +998,24 @@
+             id=obj.NextControlId; obj.NextControlId=obj.NextControlId+uint64(1);
+         end
+         function position = pendingPosition(obj,app)
++            % A delayed callback must identify its exact local occurrence.
++            % There is deliberately no application-identity fallback: after
++            % one copy leaves, such a fallback could release its sibling.
+             position=0;
++            if ~isstruct(app) || ~isscalar(app) || ...
++                    ~all(isfield(app,{'NwkCustodyNodeId','NwkCustodyId','SourceId','Id'})) || ...
++                    ~isnumeric(app.NwkCustodyNodeId) || ~isscalar(app.NwkCustodyNodeId) || ...
++                    ~isreal(app.NwkCustodyNodeId) || app.NwkCustodyNodeId~=obj.NodeId || ...
++                    ~isa(app.NwkCustodyId,'uint64') || ~isscalar(app.NwkCustodyId) || ...
++                    app.NwkCustodyId==0
++                return
++            end
+             for index=1:numel(obj.Pending)
+-                if strcmp(appKey(obj.Pending{index}.App),appKey(app)), position=index; return; end
++                other=obj.Pending{index}.App;
++                if other.NwkCustodyId==app.NwkCustodyId && ...
++                        strcmp(appKey(other),appKey(app))
++                    position=index; return
++                end
+             end
+         end
+         function position = controlPosition(obj,id)

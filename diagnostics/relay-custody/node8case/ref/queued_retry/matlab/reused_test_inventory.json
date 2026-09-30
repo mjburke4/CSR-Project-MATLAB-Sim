@@ -1,0 +1,24 @@
+{
+  "source": "tests/TestQueuedRetryPolicy.m",
+  "recovered_git_blob": "741a5e311c813c8b9498429d20a1222caceeec0e",
+  "methods": [
+    "defaultsAndExplicitActualTxProduceSameEvidence",
+    "policyValidationAcceptsOnlyDocumentedScalars",
+    "initialQueuedDataNeverExpiresUnderExternalScans",
+    "retryEnqueueDoesNotInstallItsOwnTimer",
+    "anotherActualTransmitScanAdvancesOnlyNativeQueuedRetry",
+    "finalQueuedExpiryReleasesCapacityForEitherFlowOrigin",
+    "actualRetryTransmitReplacesProvisionalDeadline",
+    "ackQueuedRetryCancelsAndReleasesExactlyOnce",
+    "dackQueuedRetryReleasesNsdpButRetainsDoubleHold",
+    "terminalCancellationCannotResurrectSelectedStaleCopy",
+    "unmatchedDataOnlyAddsNativeFallbackAfterLatestScanFired",
+    "olderScanFiringDoesNotClearLatestPendingHandle",
+    "latestInstalledMayFireBeforeOlderFinalGraceTimer",
+    "deletionPassReleasesBeforeAnyResendAdmission",
+    "controlsStillWaitForEveryActualRetryTransmit",
+    "rejectedRetryReleasesOnceForBothPolicies"
+  ],
+  "count": 16,
+  "execution_in_new_kit_pending": true
+}

@@ -1,0 +1,108 @@
+{
+  "schema": "csr-terminal-repaired-helper-independent-review-v1",
+  "review_passed": true,
+  "blockers": [],
+  "repair_forward_and_reverse_exact": true,
+  "matlab_executed": false,
+  "octave_executed": false,
+  "available_executables": {
+    "matlab": null,
+    "octave": null
+  },
+  "helper_sha256": "9b66a5fb44081126c902a880d0890ac07c3b30880c7d456b33d50379122bafd2",
+  "repair_manifest_sha256": "762230b378ea246ad4eaf7f9ce280ec60dd1ed256ea11942482f912dacd5b2af",
+  "observed_failed_report_path": "terminal_return/data/terminal_preflight/terminal_preflight.json",
+  "observed_failed_report_sha256": "6ce656b9d14bc63a84675ef9d5116bc68eb887157b3061cf59e2ab69a0fdbfb2",
+  "confirmed_failures_fixed": [
+    "MissingrequiredpacketRadio.EnvelopeProfile(andrate,preamble) inoriginalcsr.packetcall.",
+    "Nestedcleanupreadcloserswhileparentworkspacewasbeingdestroyed."
+  ],
+  "latent_fault_prevented": "packet() without flow.TxPowerDbm would preserve empty power in the HOP frame; real MAC transmit expects scalar power. The repair supplies node 1 RF power 33 dBm on FLOW and every explicit DATA/CONTROL frame radio.",
+  "actual_return_radio": {
+    "RateKeyKbps": 8,
+    "Preamble": "long",
+    "EnvelopeProfile": "bare",
+    "TxPowerDbm": 33
+  },
+  "unchanged_original_model_and_helpers": 161,
+  "runner_unchanged": true,
+  "candidate_sha256": {
+    "+ac/TerminalHop.m": "74df639fc26ae153af5916ece8e18484b08c99d5aebeddc1bbc050978d743a0c",
+    "+ac/TerminalMac.m": "a546a92ea71b9c1881650987aa3da96d44506c74a9918cf533653e4b2321b6f9",
+    "+ac/TerminalSimulation.m": "534a27f1532b68c0faa532cf319a10efdb1de8e0750d9408e7952068de9d8c16",
+    "run_terminal_tests.m": "6fc725a94070bbdf0798709c177c3899504f9f6a92dd0739a3a8239448779eb9"
+  },
+  "all_16_paths_source_reviewed": [
+    {
+      "case": "expiry_retains_copies",
+      "review": "DATA confirmed at0; retries2.000001 and5.000001 via public scans; owner expires10.000001; old cancels2, candidate preserves2."
+    },
+    {
+      "case": "cutoff_release_once",
+      "review": "Expiry removes owner and window exactly once. MAC copies remain live, hence unresolved/provisional fate; no integrated counter claim."
+    },
+    {
+      "case": "actual_tx_invariance",
+      "review": "Original and candidate actual-tx retain unconfirmed retry behavior; counter/evidence structs are compared and production default remainsactual-tx."
+    },
+    {
+      "case": "real_mac_drain",
+      "review": "Public Track keeps retries queued. Search at10.1 releases realMAC; seeded slot timing + long8kbps frames fit20s drain. Concrete scalar power33 reaches MAC through packet FLOW and HOP.makeData. Receiver callback is public and returns true; Segments exists on aggregate."
+    },
+    {
+      "case": "orphan_exact_ack",
+      "review": "Two duplicate exact ACKs remove only two live DATA copies; absent owner prevents additional NSDP/window/terminal releases."
+    },
+    {
+      "case": "orphan_window_ack",
+      "review": "Window ACK hasuint64bit1; same no-double-release assertions."
+    },
+    {
+      "case": "orphan_window_dack",
+      "review": "Window DACK cleans DATA copies despite no owner; no newDACKhold or Dacked increment."
+    },
+    {
+      "case": "single_dack_noop",
+      "review": "Nonwindow DACK has no accepted ACK branch and leaves2copies."
+    },
+    {
+      "case": "window_wrap_and_peer",
+      "review": "base0 ACKbit1 removes0; DACKbit2 removes65535; sequence65534 and peer3seq0 survive; directframefactory now getscomplete radio."
+    },
+    {
+      "case": "overlap_ack_precedence",
+      "review": "Live owner ACK+DACKbit1 takesACK only; repeatedwindow cannot release again."
+    },
+    {
+      "case": "grouped_routing_exact",
+      "review": "Two peerACKs complete one groupedowner; correctedoriginalROUTING protection and newDATA-only filter preserve queuedCONTROL through repeatedACK."
+    },
+    {
+      "case": "grouped_routing_window",
+      "review": "CumulativeDATA map cannot complete CONTROL or delete structuredROUTING; owner remainslive."
+    },
+    {
+      "case": "queue_full",
+      "review": "Publicenqueue rejects firstretry at2.000001; existing mac_queue_full failure still cancels/releaseonce."
+    },
+    {
+      "case": "unmatched_sent_fallback",
+      "review": "At10.1 only recurringMACslot remains: holdoff2.300001 and expirywake10.000002 drained; Track preventsTX. Two unmatchedsent callbacks addone12.100001scan; by13 the soleMACslot remains. Explicit setup assertion nowrequires1timer,Track,0TX."
+    },
+    {
+      "case": "live_dack_hold",
+      "review": "One retry at2.000001; DACK2.1 creates20shold becausecount1<2. RepeatedDACKcannot duplicatehold/release. Hold22.100001 pluswake finishesbefore23."
+    },
+    {
+      "case": "control_expiry",
+      "review": "KEY_UPDATE held inTrack; actualsent callbacks0,2.1,4.2 drive retries2.000001,4.100001 and finalexpiry8.200001;8.3 checksonecontrolfailure and unchangedqueuedcontrolcancel."
+    }
+  ],
+  "cleanup_review": "File-local streamRegistryGuard captures the containers.Map handle by value. Its destructor calls file-local closeStreamRegistry without reading the parent nested workspace. Streams are registered immediately after construction and before HOP/MAC construction. Streams.close is idempotent.",
+  "limits": [
+    "Static/source review only; the repaired 16 checks still require MATLAB execution.",
+    "Integrated recoverDrop/LateDeliveries counters are unchanged and remain source-reviewed only.",
+    "Controlled component timing is not a captured PHY replay.",
+    "Candidate network case P was not reached in the failed return; this provides no new parity result."
+  ]
+}

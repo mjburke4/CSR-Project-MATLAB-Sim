@@ -1,0 +1,56 @@
+{
+  "schema": "csr-discovery-lifecycle-preflight-static-review-v1",
+  "checks": 8,
+  "blockers": [],
+  "runtime_status": "New L preflight and network continuation not executed; MATLAB owner runtime pending.",
+  "files": {
+    "+ac/discoveryLifecyclePreflight.m": "d7e8bff54278fe7d223b816ba37189cf4874171a5e977afee3ac7306f0be2193",
+    "+ac/DiscoveryLifecycleProbe.m": "4b9f78052b157327e8abc77bb6d5e8178cdbfd936a992e5a2d156df60048106c",
+    "+ac/DiscoveryLifecycleNwk.m": "8cd20bcb21529638f1cfe6cac68b4e07c19998bba691010ef44cef45dfcf8b29",
+    "+ac/DiscoveryLifecycleSimulation.m": "13c7b9d7f94311127902177c940698176d0a7fece480a5ded5521343e91c8c84",
+    "+ac/ControlWireNwk.m": "499f65ef3c894162fda0440ab39c98551537d84821ec4b7563d0a47135973677",
+    "+ac/ReceiverTimerSimulation.m": "ae14f3a7408b259fd90a80a4af20a8bcd708d80d3ca8a1661b415fbfb3db286c",
+    "+ac/PopulationNeighbors.m": "016762b7d8b9c0a4ea139fa7dfaea32b891bba1bf77522909d9d74aa1ad1a641",
+    "model/+csr/+hop/Frames.m": "a2efd2e79d28cf9b090b6bb4f4e708ae978739ce96d9a1564f32628b990c39a5",
+    "run_autonomous_tests.m": "0ad3bd428a8b770886298eacc555e0792e4430c4b34ebbb27242eb4074f653b5",
+    "candidate_transform.json": "53f4bb4e5f04b7d58680cb3a9061d5e3c027db071d86e824d074608835c76665"
+  },
+  "source_bound_candidate_transforms": {
+    "count": 24,
+    "all_forward_reproduce_target": true,
+    "all_reverse_recover_source": true
+  },
+  "original_model_files_byte_unchanged": 99,
+  "public_api_checks": [
+    "No-ACK KEY_REQUEST remains inline with reliable gate false",
+    "Reliable KEY_UPDATE has owner before callback and preserves ACK/62-byte/DSCP7 fields",
+    "Blocked and failed reliable admission retain normal wake retry and original owner",
+    "Queue capacity rejects before submission without removing existing owner",
+    "Fresh inline owner does not pump other controls or DATA",
+    "Synchronous completion does not resurrect owner and retains legitimate NeighborCheck work",
+    "Idle initiator excluded; active repeated requester receives one DONE and remains outbound eligible; baseline negative control",
+    "DONE advances handoff and duplicate DONE does not duplicate outstanding START"
+  ],
+  "bindings": {
+    "runner_preflight": "ac.discoveryLifecyclePreflight(config,...)",
+    "runner_case": "L_discovery_lifecycle",
+    "simulation": "ac.DiscoveryLifecycleSimulation",
+    "network": "ac.DiscoveryLifecycleNwk",
+    "timer_and_comparison": "Inherited K receiver timers and J strict semantic comparator unchanged"
+  },
+  "scope": [
+    "Only helper/probe and review artifacts authored by this reviewer",
+    "Public NWK/control callbacks and public frame conversion; no private state hooks",
+    "SNMP component creates direct routes with public observe and admission disabled",
+    "No PHY/MAC/network run or random draw in new preflight",
+    "Capacity check preserves MATLAB safety; native overflow parity not claimed",
+    "No claim that callback-only tests establish Track-state MAC scheduling parity"
+  ],
+  "independent_builder_manual_review": "No blockers reported",
+  "receiver_peer_review": "Passed with no blockers; final narrow callback review complete.",
+  "receiver_peer_review_receipt": {
+    "path": "autonomous_ninth/receiver/lifecycle_preflight_peer_review.json",
+    "sha256": "c9ec984bbf3c695215934422371f8e9f530872d84fc90a9585bffbc70b7c9baf"
+  },
+  "frozen": true
+}

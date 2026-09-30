@@ -1,0 +1,35 @@
+{
+  "schema": "csr-control-wire-preflight-static-review-v1",
+  "matlab_runtime_execution": "pending_owner",
+  "request_checks": 6,
+  "no_path_checks": 3,
+  "blockers": [],
+  "public_api_only": true,
+  "no_network_simulation_run": true,
+  "sizing_callsite_count": 3,
+  "generated_request_origin_callsite_count": 1,
+  "helper_scope": [
+    "Public NWK key/proof completion activates one peer",
+    "Public short discovery completion generates tagged REQUEST via backlog",
+    "Public callback rejection retry retains owner and provenance",
+    "Public ROUTING completion failure changes owner ID and recomputes compact size",
+    "Public request timer renews section with provenance",
+    "Malformed tags rejected; ordinary raw REQUEST and mixed section keep normal byte size",
+    "Public DATA transit-disabled rejection emits reliable NoPath to prior peer with unchanged target metadata",
+    "Real HOP Frames constructed from actual NWK callback controls",
+    "No native captured NoPath network event; its network effect remains unexercised"
+  ],
+  "files": {
+    "+ac/ControlWireProbe.m": "6d47c57feea6f8d86727b5e06f6f548349899c16331e14bcef4c9771b8cfb3a4",
+    "+ac/requestWirePreflight.m": "2657b92e43a7528452b34ba5b1fdac3ccc1ff8c9b79486761e2c71601cbad7be",
+    "+ac/noPathWirePreflight.m": "f9db94bfaed11962f4794112f0a131a07f7fdedb6a2ce9729eda826fdb206017",
+    "+ac/controlWireBytes.m": "3d141ec44d628b6358461fde42b2c49edcf64249a884bdbab8378ee4b568d3cf",
+    "+ac/ControlWireNwk.m": "499f65ef3c894162fda0440ab39c98551537d84821ec4b7563d0a47135973677",
+    "+ac/ControlWireSimulation.m": "9130dd33e98017bae77d76cf54d15048e0ad6d95aee8bea2d30fd75e5df07493"
+  },
+  "limits": [
+    "Static source review is not owner MATLAB execution.",
+    "Completion outcomes are explicit component inputs, not claimed physical reception.",
+    "Component preflight cannot establish full-network or15percent parity."
+  ]
+}

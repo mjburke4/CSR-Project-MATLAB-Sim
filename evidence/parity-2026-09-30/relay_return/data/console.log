@@ -1,0 +1,74 @@
+
+Relay-copy custody repair: seed 132, 0–1200 s, all seven nodes from time zero.
+Only common random inputs are supplied. MATLAB generates all network states and feedback.
+The engineering target is now +/-20%. This diagnostic keeps strict contexts and random-request timestamp checks.
+Allow one to several hours; long quiet periods during simulation are expected.
+Return the final ZIP even if the test stops at a divergence.
+Historical 330-s tables verified as reference only; this changed model has no reused natural acceptance.
+Checking original_native_import.
+Checking tx_timing_comparator.
+Checking receiver_interval_order.
+Checking key_request.
+Checking check_gate.
+Checking population.
+Checking route_admission.
+Checking request_wire.
+Checking no_path_wire.
+Checking discovery_identity.
+Checking receiver_timer.
+Checking discovery_lifecycle.
+Checking discovery_membership.
+Checking feedback_identity.
+Checking retry_policy.
+Running TestQueuedRetryPolicy
+.......... ......
+Done TestQueuedRetryPolicy
+__________
+
+Checking terminal.
+  Terminal component 1/16: native_terminal_expiry_retains_two_previously_admitted_mac_copies -- PASS
+  Terminal component 2/16: owner_release_once_with_live_copies_is_unresolved_at_cutoff -- PASS
+  Terminal component 3/16: actual_tx_policy_and_default_remain_unchanged -- PASS
+  Terminal component 4/16: real_mac_drains_retained_copies_with_one_late_first_delivery -- PASS
+  Terminal component 5/16: orphan_exact_ack_cancels_data_without_releasing_owner_twice -- PASS
+  Terminal component 6/16: orphan_window_ack_cancels_data_without_releasing_owner_twice -- PASS
+  Terminal component 7/16: orphan_window_dack_cancels_data_without_releasing_owner_twice -- PASS
+  Terminal component 8/16: nonwindow_dack_keeps_disabled_native_single_dack_path -- PASS
+  Terminal component 9/16: window_ack_dack_union_wraps_at_uint16_and_respects_peer -- PASS
+  Terminal component 10/16: overlapping_window_bits_prefer_ack_and_release_once -- PASS
+  Terminal component 11/16: grouped_routing_survives_partial_complete_and_repeated_exact_ack -- PASS
+  Terminal component 12/16: data_window_cleanup_cannot_cancel_or_complete_grouped_routing -- PASS
+  Terminal component 13/16: mac_queue_full_retains_existing_cancel_and_release_behavior -- PASS
+  Terminal component 14/16: late_data_sent_restarts_only_one_scan_without_resurrecting_owner -- PASS
+  Terminal component 15/16: live_dack_preserves_hold_and_exactly_once_capacity_release -- PASS
+  Terminal component 16/16: control_terminal_expiry_keeps_original_cleanup -- PASS
+Checking integrated_accounting.
+  Integrated accounting cutoff: PASS
+  Integrated accounting final: PASS
+  Integrated accounting relay: PASS
+  Integrated accounting siblings: PASS
+Checking relay_custody.
+  Relay custody 1/22: production_captured_nsdp_25_26_27 -- PASS
+  Relay custody 2/22: production_ack_duplicate_stays_filtered -- PASS
+  Relay custody 3/22: production_fifo_distinct_sequences_and_ack_ownership -- PASS
+  Relay custody 4/22: production_dack_release_hold_and_new_copy -- PASS
+  Relay custody 5/22: production_retry_failure_keeps_sibling -- PASS
+  Relay custody 6/22: production_no_ack_sent_releases_only_its_copy -- PASS
+  Relay custody 7/22: production_out_of_order_and_invalid_release_tokens -- PASS
+  Relay custody 8/22: production_upstream_token_replaced -- PASS
+  Relay custody 9/22: production_final_sink_delivers_unique_application_once -- PASS
+  Relay custody 10/22: production_queue_full_rejection_then_same_sequence_retry -- FAIL
+  Relay custody 11/22: production_nested_send_reject_does_not_reset_sibling -- PASS
+  Relay custody 12/22: candidate_captured_nsdp_25_26_27 -- PASS
+  Relay custody 13/22: candidate_ack_duplicate_stays_filtered -- PASS
+  Relay custody 14/22: candidate_fifo_distinct_sequences_and_ack_ownership -- PASS
+  Relay custody 15/22: candidate_dack_release_hold_and_new_copy -- PASS
+  Relay custody 16/22: candidate_retry_failure_keeps_sibling -- PASS
+  Relay custody 17/22: candidate_no_ack_sent_releases_only_its_copy -- PASS
+  Relay custody 18/22: candidate_out_of_order_and_invalid_release_tokens -- PASS
+  Relay custody 19/22: candidate_upstream_token_replaced -- PASS
+  Relay custody 20/22: candidate_final_sink_delivers_unique_application_once -- PASS
+  Relay custody 21/22: candidate_queue_full_rejection_then_same_sequence_retry -- FAIL
+  Relay custody 22/22: candidate_nested_send_reject_does_not_reset_sibling -- PASS
+relay_custody failed: 2 of 22 relay custody groups failed. All groups were attempted; inspect relay_custody_preflight.json and public_custody_trace.json.
+Checking S132_1200_import.

@@ -1,0 +1,48 @@
+INDEPENDENT FULL 6000-SECOND ACCOUNTING REVIEW — 2026-09-30
+
+Verdict: valid completed evidence; 15% network parity is NOT met.
+Reconstruction: both current and prior MATLAB complete raw protocol traces. Native population: exact issued normalized application ledger and full admission counters. No simulations executed.
+Checks passed: 128. Native raw-ledger verification belongs to the separate independent phase review.
+
+POOLED POPULATIONS (BOTH SEEDS)
+model | attempted | admitted | delivered | unresolved | delivered mean (s)
+native | 3420000 | 25090 | 24055 | 1035 | 64.496589532
+prior O | 3420000 | 27358 | 23633 | 3725 | 103.432869871
+current P | 3420000 | 24998 | 23720 | 1278 | 130.908699529
+
+Current raw latency gap: +102.969956%; native-delivery-weighted gap: +40.702513% (90.748322181 s vs 64.496589532 s).
+Prior O raw gap: +60.369518%; weighted: +41.531208%.
+Current delivery count gap: -1.392642%. Current passed source/seed cells: 4/9 with both count and latency within 15%; prior O: 1/9.
+Three native-zero cells (seed 131, sources 2/7/8) have undefined relative metrics, and are retained as population mismatches.
+
+SOURCE MIX
+Seed 131, sources 2/7/8: native admits/delivers zero; current MATLAB admits 1727, delivers 1238, unresolved 489. Their delivered mean is 1016.437590569 s.
+Current MATLAB mean among the nine common nonzero source/seed cells is 82.145921880 s before weighting; native-delivery weights yield 90.748322181 s.
+The raw-minus-standardized component is 40.160377349 s now versus 12.150067289 s previously. Standardized latency improves only 0.534480401 s, while raw latency worsens 27.475829659 s. This is a descriptive weighting identity, not a causal separation.
+Largest positive contributions to the standardized 26.251732649-second gap: seed 132/source 7 +11.626402026 s; seed 131/source 4 +10.193043092 s; seed 132/source 8 +4.012968649 s. Other cells offset some of this total.
+
+LATE COPIES AND UNFINISHED TRAFFIC
+Reconstructed current status: raw provisional drops 769, raw pending 509, unresolved 1278. All remain unresolved until a final application outcome is proved; no all-copy-live or terminal-loss split is inferred.
+Direct late delivery count 2109 and late custody recovery count 46 exactly match raw event histories and counters.
+2139 delivered apps had any prior provisional app_drop: 9.0177066% of deliveries, mean 268.249503508 s, 18.4784917% of total delivered latency. This includes 2109 direct-late deliveries and 45 apps delivered after a custody recovery, with 15 in both categories. The remaining custody recovery is undelivered at cutoff.
+21581 delivered apps without a prior drop still average 117.296170930 s. Excluding recovered deliveries would change the measured population and would not prove parity; it also would not remove the large difference.
+The prior O and current P histories differ. Do not pair local application IDs or interpret O dropped apps as the same apps later recovered in P.
+
+FIXED-AGE COHORTS
+Each horizon uses identical generation windows [300,6000-horizon), distinct scheduled and admitted denominators, and delivery age <= horizon. All 112 returned per-case fixed-age rows independently reconstruct.
+horizon | native by-age delivery count | current by-age delivery count | relative delta
+60s | 19800 | 18846 | -4.8182%
+300s | 21526 | 20058 | -6.8197%
+600s | 21035 | 19701 | -6.3418%
+1200s | 19324 | 18209 | -5.7700%
+These aggregate timely-delivery counts are supplementary; passing them does not override failed per-source delivered-mean/count targets.
+
+METHOD LIMITS
+- Native-zero source cells have undefined relative ratios; they remain reported and block a complete 15% claim.
+- All admitted-but-undelivered applications are unresolved. Provisional dropped and pending counters do not prove final loss or all-copy liveness.
+- Autonomous engines with equal numeric seed do not share random streams; application IDs are not paired across engines.
+- Source standardization changes weights among delivered source/seed populations; it does not remove survivor bias or make admitted populations identical.
+- Fixed-age cohorts use [300,6000-horizon), with delivery age <= horizon and scheduled versus admitted denominators kept separate.
+- Raw terminal statistics may use a different sample quantile interpolation from CSV summaries; this audit uses linear interpolation at (n-1)*p.
+
+Reproduce: python terminal6000_return/accounting/audit.py from the workspace root. Exact input hashes are recorded in audit.json. Source tables, cohorts, reconstructed application ledgers, late-copy strata, and O/P comparisons accompany this review.

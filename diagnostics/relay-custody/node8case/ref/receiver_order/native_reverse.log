@@ -1,0 +1,11 @@
+PROBE source=2 wire_bytes=198
+... type=0 speedKey=8[t=0] TX from node 2 to dest 3 seq 1 size 198 bytes segments 1 at slot 0 rate 8 kbps txPower 0 dBm (7843.14 bps) preamble SHORT duration 0.22542 s
+[t=3e-09] RX SYNC at node 3 from node 2 seq 1 power -2.12777 dBm noise 0 dBm snr -2.12777 dB state=1
+[t=0.00663] MAC 3 enters Track on node 2 seq 1 power -2.12777 dBm
+PROBE source=1 wire_bytes=198
+... type=0 speedKey=8[t=0.0260099] TX from node 1 to dest 3 seq 1 size 198 bytes segments 1 at slot 0 rate 8 kbps txPower 0 dBm (7843.14 bps) preamble SHORT duration 0.22542 s
+[t=0.0260099] RX SYNC at node 3 from node 1 seq 1 power -2.12777 dBm noise 0 dBm snr -2.12777 dB state=2
+[MAC 2] post-TX WAIT_FOR_ACK until 17.2254 (POST_TX_WAIT=17 s)
+[t=0.22542] RX DROP at node 3 from node 2 seq 1 (collision)
+[MAC 1] post-TX WAIT_FOR_ACK until 17.2514 (POST_TX_WAIT=17 s)
+PROBE completed

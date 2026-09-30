@@ -1,0 +1,59 @@
+{
+  "schema": "csr-node8-return2-independent-redteam-v1",
+  "provenance_checks": {
+    "manifest_hash_matches": true,
+    "embedded_manifest_matches": true,
+    "all_sealed_files_match": true,
+    "all_resolved_runtime_hashes_match": true,
+    "preflights_all_pass": true
+  },
+  "physical_tx": {
+    "observed_tx_starts": 6008,
+    "successful_context_checked": 6007,
+    "all_observed_physical_source_ordinals_order_and_ns_times_equal": true,
+    "last_tx_start": {
+      "global_ordinal": 6008,
+      "actual_node": 4,
+      "native_node": 4,
+      "actual_source_ordinal": 962,
+      "native_source_ordinal": 962,
+      "actual_time_ns": 895115000000,
+      "native_time_ns": 895115000000,
+      "identity_order_match": true,
+      "time_match": true
+    },
+    "scope": "Includes the attempted mismatching TX start; it throws before Engine transmission completes and is not counted as a successful context check."
+  },
+  "random_prefix": {
+    "request_count": 34260,
+    "time_mismatch_count": 0,
+    "value_mismatch_count": 0,
+    "semantic_context_mismatch_count": 0,
+    "row_context_false_count": 0,
+    "excluded_interval_timestamp_mismatch_count": 0,
+    "global_draw_order_difference_count": 0,
+    "first_global_draw_order_difference": [],
+    "first_excluded_interval_timestamp_difference": [],
+    "scope": "Request ns and values compared to fixture keyed by node/purpose/ordinal. Also checked global request order and excluded interval timing fields independently; reported_nodes intentionally excluded by issued profile-4 contract."
+  },
+  "omissions": {
+    "protocol": 0,
+    "phy": 0,
+    "application_admission": 0,
+    "service": 0,
+    "receiver_timing": 0,
+    "transport_timing": 0,
+    "ordered_sink_gaps": 0
+  },
+  "all_recorded_partial_streams_complete": true,
+  "first_failed_physical_context_ns": 895115000000,
+  "native_source_from_raw_wire": 7,
+  "matlab_source": 8,
+  "wire_disagreement_independent_of_lineage": true,
+  "requested_stop_seconds": 1200,
+  "actual_stop_seconds": 895.115,
+  "full_parity_established": false,
+  "target_percent": 20,
+  "native_context_passes": 6007,
+  "native_context_failures": 1
+}

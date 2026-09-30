@@ -1,0 +1,61 @@
+{
+  "schema": "csr-twelfth-native-queued-data-retry-evidence-v1",
+  "status": "source_and_existing_capture_audit_pass",
+  "candidate_scope_review": "pass",
+  "new_native_network_or_component_run": false,
+  "new_matlab_execution_here": false,
+  "production_or_native_fixture_edited": false,
+  "counts": {
+    "native_mac_enqueues": 734,
+    "native_data_enqueues": 177,
+    "native_data_owners": 146,
+    "directly_proven_queued_retry_overlaps": 3,
+    "native_transmitted_data_children": 150,
+    "native_data_tx_without_matching_owner_confirmation": 0
+  },
+  "input_sha256": {
+    "autonomous/native_capture/run/mac-input.log": "88e366af7d9ba5777ab224289ecb3f86a7abc55fce9511f8136c8b84101799de",
+    "autonomous/native_capture/run/run.log": "282ed068740ccba5481bf7a35aca3696c54d422e31976107cfee05889c690cee",
+    "autonomous/native_capture/fixture/tx_signatures.csv": "40f51355e02c0950e7608d9eeb6efb590a539bdef37c0381780db5fc086ad5e1",
+    "autonomous_twelfth/data/configuration.json": "c66b0d56ffd084bf80ffa4f13966f602722dc9547ad9cdcfdcf3b1e4f6661ed1",
+    "autonomous_twelfth/data/N_feedback_identity/first_divergence.json": "b968375ec099f9d0d8174ccd6594a4f52566d11d1e09541e72011dd2c5392d45",
+    "autonomous_twelfth/data/N_feedback_identity/random_summary.json": "df469d043973dd54f6f7ae92c804917d9dc7fa370075077a33012ae5c0abf56b",
+    "autonomous_twelfth/data/N_feedback_identity/service_trace.csv": "a2f6c390cb3290f579f55e3f9f677c24b9e4049370977c602163c79af9960e57",
+    "autonomous_twelfth/prior_policy/TestQueuedRetryPolicy.m": "603eef79184d92c5b217039b234c98815c1b68409321da8c18441a4e7c74ccee"
+  },
+  "source_sha256": {
+    "autonomous/native_env/csr/model/csr-hop-layer.h": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+    "autonomous_twelfth/kit/autocase/model/+csr/+hop/Layer.m": "21d4a56d782fde35d45f102c137b6c78c3bf4cdc05593d15fb9a7db8f26c2649"
+  },
+  "candidate_sha256": {
+    "candidate_transform.json": "26dc436f3d8e5fe414f8f8562e894102c6563dd49aa02333986df698b04e39ec",
+    "run_autonomous_tests.m": "b7d05a59759fdc13371a5b79358b9ccb35d243167ce22c3e27015f3b62b21733",
+    "+ac/retryPolicyPreflight.m": "ae0fbb51b333ca27ce03f992a1919b00dfcc8f7d60b0d66523e2d22a75a53336",
+    "TestQueuedRetryPolicy.m": "603eef79184d92c5b217039b234c98815c1b68409321da8c18441a4e7c74ccee",
+    "+ac/FeedbackIdentitySimulation.m": "3c92a3874b9e40ca0792a65ad8d1bdbb4a9b854ac2b11a9c80e909d55a236706",
+    "+ac/FeedbackStreams.m": "81bf38d7f4aad5b150cf578a5dbbeb96b0964766f2965ead6c9d8c1e3104aa5f",
+    "+ac/FeedbackTxSignature.m": "501b4a5643971d538be78c902ba0e1fc85d03521b7b7a5a4dfc357e541ebf6ac"
+  },
+  "artifact_sha256": {
+    "REVIEW.md": "142ae259eb3b7ea5a76fa87fdf4e8d1daa2f148a31503c213577ad44563ac4a1",
+    "actual_node5_hop_history.csv": "3cb71b1ca711fb0503a1279188d509521af1f8a7e2dbfff402b478982e0e7642",
+    "audit_queued_retry.py": "17ac44e74f483fc5d2bd5520a5bc28b654f7e60b8c4b363a30a5d8d60daccf0f",
+    "candidate_scope_review.json": "06032917bf5ae665fea269d59076ad54520f9242f9db740b8ed44b49bf207bff",
+    "finalize_receipt.py": "66ecfaf743459f5248e544292ef43f87631532f75459712eee0975ef0069e4ce",
+    "native_node5_data_transmissions.csv": "37948e39beacee3e3df6bb0aeef5c991ea48a34dae0fadcfc67c36bfdbad5bdd",
+    "native_node5_sent_confirmations.json": "7a6b80776fe32fa9ed5ec4c8939912f2995143769e44b8f6e3dd68c2dbcdb8bc",
+    "native_retry_overlap_cases.json": "fb290fd9ff68381f608b48299c8001e0a08d273f634efe43421c0325ea9192af",
+    "native_selected_mac_tape.txt": "b9dfadb045595a458180585c38f331e351c976c37f58335d000fa47e2133b0cc",
+    "prove_source_contract.py": "3d2af317c26e7376aceeadeb2a6327e3273d7c1b7d4d53b73a6ff108d93e5a20",
+    "queued_retry_audit.json": "ad63643dd94dae7ceda86a966c54bfdf51da985d5173afe59231a617efc69817",
+    "review_candidate.py": "5aa78f5baadd983ac30b9fcd48063faa396d09d909446756b4cbd3a681213b04",
+    "source_path_proof.json": "45bf2bef780c7a5e95666598ae68a9ad85939a66910ef74bc0dd60c5e638958b"
+  },
+  "limits": [
+    "Independent static/source review only; the new owner-side preflight and O continuation have not been executed here.",
+    "Existing native-provisional is an experimental DATA policy; this does not promote it as a default or establish15-percent performance parity.",
+    "Native source retains confirmation and supports unmatched fallback for controls too; current policy retains existing CONTROL behavior.",
+    "Existing MAC rejection, cancellation, terminal callbacks and capacity-release mechanics are unchanged and are not newly claimed fully native-equivalent.",
+    "All150 captured native DATA transmissions have matched owner confirmations; unmatched fallback is source/component coverage, not observed network coverage."
+  ]
+}

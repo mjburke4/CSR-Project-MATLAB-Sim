@@ -1,0 +1,521 @@
+{
+  "schema": "csr-independent-S132-complete-400-review-v2",
+  "status": "pass",
+  "scope": "Seed132 0 <= t < 400.0s common-input replay. No full6000-second or autonomous numeric parity claim",
+  "checks": {
+    "application_attempts_all_context": {
+      "passed": true,
+      "native_rows": 30000,
+      "matlab_rows": 30000,
+      "mismatch_rows": 0,
+      "first_mismatches": []
+    },
+    "delivered_population_and_arrival_time": {
+      "passed": true,
+      "native_rows": 208,
+      "matlab_rows": 208,
+      "mismatch_rows": 0,
+      "first_mismatches": []
+    },
+    "unique_application_identity_integrity": {
+      "passed": true,
+      "admitted_native": 428,
+      "admitted_matlab": 428,
+      "delivered_native": 208,
+      "delivered_matlab": 208
+    },
+    "mac_state_history": {
+      "passed": true,
+      "native_rows": 10329,
+      "matlab_rows": 10329,
+      "mismatch_rows": 0,
+      "first_mismatches": []
+    },
+    "data_hop_completion_identity_time_reason": {
+      "passed": true,
+      "native_rows": 371,
+      "matlab_rows": 371,
+      "mismatch_rows": 0,
+      "first_mismatches": []
+    },
+    "random_request_global_order_time_value": {
+      "passed": true,
+      "native_rows": 7904,
+      "matlab_rows": 7904,
+      "mismatch_rows": 0,
+      "first_mismatches": []
+    },
+    "consumed_random_semantic_context": {
+      "passed": true,
+      "rows": 7904,
+      "mismatch_count": 0,
+      "first_mismatches": [],
+      "probability_float_roundoff_count": 0,
+      "probability_relative_tolerance": 1e-12
+    },
+    "random_interval_and_component_exact_nanoseconds": {
+      "passed": true,
+      "mismatch_count": 0,
+      "first_mismatches": []
+    },
+    "profile4_reported_population_exclusion": {
+      "count": 37,
+      "first_differences": [
+        {
+          "time_ns": 10010000000,
+          "node": 1,
+          "purpose": "mac_slot",
+          "ordinal": 1,
+          "field": "reported_nodes",
+          "matlab": 1,
+          "native": "0"
+        },
+        {
+          "time_ns": 10465000000,
+          "node": 1,
+          "purpose": "mac_slot",
+          "ordinal": 2,
+          "field": "reported_nodes",
+          "matlab": 1,
+          "native": "0"
+        },
+        {
+          "time_ns": 11500308077,
+          "node": 3,
+          "purpose": "mac_slot",
+          "ordinal": 1,
+          "field": "reported_nodes",
+          "matlab": 1,
+          "native": "0"
+        }
+      ],
+      "note": "Recorded but excluded in issued comparator; fixed profile4 does not use this population to choose its MAC slot range."
+    },
+    "merged_random_and_transmission_global_order": {
+      "passed": true,
+      "native_rows": 9341,
+      "matlab_rows": 9341,
+      "mismatch_rows": 0,
+      "first_mismatches": []
+    },
+    "transmission_semantic_fields": {
+      "passed": true,
+      "transmissions": 1437,
+      "children": 2201,
+      "mismatches": [],
+      "broadcast_discover_trace_id_exclusion_count": 24,
+      "generation_ns_diagnostic_exclusion_count": 155,
+      "generation_ns_diagnostic_deltas": {
+        "1": 155
+      },
+      "generation_time_note": "Issued comparator excludes projected app_generation_ns diagnostics; actual app times independently compared at ns."
+    },
+    "receiver_state_history_non_tx": {
+      "passed": true,
+      "native_rows": 7457,
+      "matlab_rows": 7457,
+      "mismatch_rows": 0,
+      "first_mismatches": [],
+      "scope_note": "Detailed native receiver_state instrumentation omits TX entry/exit; compare non-TX transitions only. All transitions including TX are independently covered by canonical mac_state history.",
+      "matlab_tx_transitions_excluded": 2872
+    },
+    "counter_reconciliation": {
+      "passed": true,
+      "admitted": 428,
+      "unique_delivered": 208,
+      "undelivered": 220,
+      "raw_provisional_drops": 5,
+      "raw_pending": 215,
+      "late_deliveries": 10,
+      "interpretation": "Undelivered includes provisional owner failures; no permanent-loss or full live-copy classification asserted."
+    }
+  },
+  "source_accounting": [
+    {
+      "source": 2,
+      "attempted_native": 5000,
+      "attempted_matlab": 5000,
+      "admitted_native": 47,
+      "admitted_matlab": 47,
+      "delivered_native": 0,
+      "delivered_matlab": 0,
+      "undelivered_native": 47,
+      "undelivered_matlab": 47,
+      "native_mean_latency_seconds": null,
+      "matlab_mean_latency_seconds": null
+    },
+    {
+      "source": 3,
+      "attempted_native": 5000,
+      "attempted_matlab": 5000,
+      "admitted_native": 157,
+      "admitted_matlab": 157,
+      "delivered_native": 141,
+      "delivered_matlab": 141,
+      "undelivered_native": 16,
+      "undelivered_matlab": 16,
+      "native_mean_latency_seconds": 10.374229779127658,
+      "matlab_mean_latency_seconds": 10.374229779127658
+    },
+    {
+      "source": 4,
+      "attempted_native": 5000,
+      "attempted_matlab": 5000,
+      "admitted_native": 33,
+      "admitted_matlab": 33,
+      "delivered_native": 10,
+      "delivered_matlab": 10,
+      "undelivered_native": 23,
+      "undelivered_matlab": 23,
+      "native_mean_latency_seconds": 68.086011086,
+      "matlab_mean_latency_seconds": 68.086011086
+    },
+    {
+      "source": 5,
+      "attempted_native": 5000,
+      "attempted_matlab": 5000,
+      "admitted_native": 73,
+      "admitted_matlab": 73,
+      "delivered_native": 57,
+      "delivered_matlab": 57,
+      "undelivered_native": 16,
+      "undelivered_matlab": 16,
+      "native_mean_latency_seconds": 23.730354945649122,
+      "matlab_mean_latency_seconds": 23.730354945649122
+    },
+    {
+      "source": 7,
+      "attempted_native": 5000,
+      "attempted_matlab": 5000,
+      "admitted_native": 67,
+      "admitted_matlab": 67,
+      "delivered_native": 0,
+      "delivered_matlab": 0,
+      "undelivered_native": 67,
+      "undelivered_matlab": 67,
+      "native_mean_latency_seconds": null,
+      "matlab_mean_latency_seconds": null
+    },
+    {
+      "source": 8,
+      "attempted_native": 5000,
+      "attempted_matlab": 5000,
+      "admitted_native": 51,
+      "admitted_matlab": 51,
+      "delivered_native": 0,
+      "delivered_matlab": 0,
+      "undelivered_native": 51,
+      "undelivered_matlab": 51,
+      "native_mean_latency_seconds": null,
+      "matlab_mean_latency_seconds": null
+    }
+  ],
+  "successful_consumed_draws": 7904,
+  "rejected_draw": null,
+  "late_events": [],
+  "terminal_episodes": [
+    {
+      "application_identity": [
+        7,
+        67
+      ],
+      "matlab_packet_id": 98,
+      "hop_node": 7,
+      "hop_peer": 8,
+      "hop_sequence": 28,
+      "owner_retirement_ns": 319835000028,
+      "physical_transmissions_ns": [
+        310141000000,
+        313664000000,
+        315835000000
+      ],
+      "first_delivery_after_retirement_ns": null
+    },
+    {
+      "application_identity": [
+        4,
+        3
+      ],
+      "matlab_packet_id": 15,
+      "hop_node": 4,
+      "hop_peer": 5,
+      "hop_sequence": 16,
+      "owner_retirement_ns": 327596000028,
+      "physical_transmissions_ns": [
+        317681000000,
+        321581000000,
+        323596000000
+      ],
+      "first_delivery_after_retirement_ns": null
+    },
+    {
+      "application_identity": [
+        3,
+        962
+      ],
+      "matlab_packet_id": 175,
+      "hop_node": 3,
+      "hop_peer": 1,
+      "hop_sequence": 58,
+      "owner_retirement_ns": 335684000028,
+      "physical_transmissions_ns": [
+        327119000000,
+        336947000000
+      ],
+      "first_delivery_after_retirement_ns": 337191808077
+    },
+    {
+      "application_identity": [
+        4,
+        8
+      ],
+      "matlab_packet_id": 45,
+      "hop_node": 4,
+      "hop_peer": 5,
+      "hop_sequence": 21,
+      "owner_retirement_ns": 348565000028,
+      "physical_transmissions_ns": [
+        339807000000,
+        342095000000,
+        344565000000
+      ],
+      "first_delivery_after_retirement_ns": null
+    },
+    {
+      "application_identity": [
+        3,
+        2135
+      ],
+      "matlab_packet_id": 252,
+      "hop_node": 3,
+      "hop_peer": 1,
+      "hop_sequence": 96,
+      "owner_retirement_ns": 361476000028,
+      "physical_transmissions_ns": [
+        353184000000,
+        364962000000
+      ],
+      "first_delivery_after_retirement_ns": 365206808077
+    },
+    {
+      "application_identity": [
+        4,
+        12
+      ],
+      "matlab_packet_id": 69,
+      "hop_node": 4,
+      "hop_peer": 5,
+      "hop_sequence": 25,
+      "owner_retirement_ns": 368208000028,
+      "physical_transmissions_ns": [
+        354354000000,
+        356616000000,
+        364208000000
+      ],
+      "first_delivery_after_retirement_ns": null
+    },
+    {
+      "application_identity": [
+        3,
+        2550
+      ],
+      "matlab_packet_id": 276,
+      "hop_node": 3,
+      "hop_peer": 1,
+      "hop_sequence": 108,
+      "owner_retirement_ns": 368665000028,
+      "physical_transmissions_ns": [
+        359879000000,
+        372567000000
+      ],
+      "first_delivery_after_retirement_ns": 372811808077
+    },
+    {
+      "application_identity": [
+        5,
+        1573
+      ],
+      "matlab_packet_id": 220,
+      "hop_node": 5,
+      "hop_peer": 1,
+      "hop_sequence": 57,
+      "owner_retirement_ns": 370420000028,
+      "physical_transmissions_ns": [
+        360984000000,
+        375219000000
+      ],
+      "first_delivery_after_retirement_ns": 375463811086
+    },
+    {
+      "application_identity": [
+        4,
+        6
+      ],
+      "matlab_packet_id": 33,
+      "hop_node": 5,
+      "hop_peer": 1,
+      "hop_sequence": 60,
+      "owner_retirement_ns": 376179000028,
+      "physical_transmissions_ns": [
+        364260000000,
+        382226000000
+      ],
+      "first_delivery_after_retirement_ns": 382470811086
+    },
+    {
+      "application_identity": [
+        5,
+        2179
+      ],
+      "matlab_packet_id": 254,
+      "hop_node": 5,
+      "hop_peer": 1,
+      "hop_sequence": 63,
+      "owner_retirement_ns": 376179000028,
+      "physical_transmissions_ns": [
+        366080000000,
+        384137000000
+      ],
+      "first_delivery_after_retirement_ns": 384381811086
+    },
+    {
+      "application_identity": [
+        3,
+        3146
+      ],
+      "matlab_packet_id": 324,
+      "hop_node": 3,
+      "hop_peer": 1,
+      "hop_sequence": 126,
+      "owner_retirement_ns": 382172000028,
+      "physical_transmissions_ns": [
+        373789000000,
+        385528000000
+      ],
+      "first_delivery_after_retirement_ns": 385772808077
+    },
+    {
+      "application_identity": [
+        3,
+        3537
+      ],
+      "matlab_packet_id": 350,
+      "hop_node": 3,
+      "hop_peer": 1,
+      "hop_sequence": 136,
+      "owner_retirement_ns": 389348000028,
+      "physical_transmissions_ns": [
+        380692000000,
+        394394000000
+      ],
+      "first_delivery_after_retirement_ns": 394638808077
+    },
+    {
+      "application_identity": [
+        4,
+        16
+      ],
+      "matlab_packet_id": 93,
+      "hop_node": 4,
+      "hop_peer": 5,
+      "hop_sequence": 29,
+      "owner_retirement_ns": 389710000028,
+      "physical_transmissions_ns": [
+        378235000000,
+        380406000000,
+        385710000000
+      ],
+      "first_delivery_after_retirement_ns": null
+    },
+    {
+      "application_identity": [
+        5,
+        2452
+      ],
+      "matlab_packet_id": 269,
+      "hop_node": 5,
+      "hop_peer": 1,
+      "hop_sequence": 70,
+      "owner_retirement_ns": 390011000028,
+      "physical_transmissions_ns": [
+        379717000000,
+        390624000000
+      ],
+      "first_delivery_after_retirement_ns": 390868811086
+    },
+    {
+      "application_identity": [
+        3,
+        3815
+      ],
+      "matlab_packet_id": 364,
+      "hop_node": 3,
+      "hop_peer": 1,
+      "hop_sequence": 142,
+      "owner_retirement_ns": 394509000028,
+      "physical_transmissions_ns": [
+        386126000000,
+        397514000000
+      ],
+      "first_delivery_after_retirement_ns": 397758808077
+    }
+  ],
+  "native_event_counts": {
+    "mac_state": 10329,
+    "route_change": 85,
+    "scenario_node": 7,
+    "scenario_link": 21,
+    "statistic_sample": 4933,
+    "reservation_prepare": 1439,
+    "reservation_holdoff": 30,
+    "reservation_tick": 26253,
+    "reservation_advertise": 1437,
+    "tx_start": 1437,
+    "rx_drop": 6199,
+    "rx_accept": 2418,
+    "app_admission": 30000,
+    "app_send": 428,
+    "nwk_enqueue": 586,
+    "nwk_admission": 21506,
+    "nwk_forward": 402,
+    "hop_admission": 402,
+    "hop_feedback": 366,
+    "nwk_nsdp_release": 371,
+    "hop_completion": 371,
+    "nwk_delivery": 208,
+    "hop_capacity_release": 42
+  },
+  "matlab_ordered_event_counts": {
+    "mac_boundary": 498728,
+    "phy_state_request": 4053,
+    "phy_boundary": 82184,
+    "phy_state_transition": 11764,
+    "mac_state_transition": 8892,
+    "protocol": 18559,
+    "mac_cancel_timer": 14702,
+    "scheduler_schedule": 180483,
+    "scheduler_fire": 177507,
+    "scheduler_return": 177507,
+    "scheduler_cancel": 2940,
+    "random_request": 7904,
+    "physical_tx_context": 1437,
+    "physical_tx_identity": 1437,
+    "relative_timer_target": 5325,
+    "phy": 21742,
+    "mac_population_publish": 209,
+    "application_attempt": 30000
+  },
+  "diagnostic_time_differences": [],
+  "probability_roundoff": [],
+  "input_sha256": {
+    "next_batch/native/s132_400/run/ns3-trace.csv": "044deadbaf8daa6afe1ba38a669153cb40fae0caabbacb8a41f7cba34c3b0fac",
+    "next_batch/native/s132_400/fixture/random_draws.csv": "94593589c8e0dc3ca227a042d8dfd820628408a71fcda85909bf4a3ce2c8110c",
+    "next_batch/native/s132_400/fixture/tx_signatures.csv": "b9ed53416d95f2412cde46f00d97252f3af0173609c9fd08278068617b12a305",
+    "next_batch/native/s132_400/fixture/receiver_history.csv": "d2fa2ad1ed61850a265eb5c86dcd963273a386e90bac1c10a3b3c42f1cf806a5",
+    "parity_batch_v2_return/data/S132_400/random_requests.jsonl": "506429a419a886ab93907cafbc1fc188f9aa97fe64105621e8a433728a7ad46c",
+    "parity_batch_v2_return/data/S132_400/ordered_events.jsonl": "41f76acc6a0cc6a604e812cf0e891bd7afa8d420035dd8d7608025f0d4d5202b",
+    "parity_batch_v2_return/data/S132_400/application_admission_trace.csv": "5c94b64b9d81094ea9a545ffd5920caff5697e5dc6f1f079fd08a5d93788162b",
+    "parity_batch_v2_return/data/S132_400/service_trace.csv": "0108f2ef1a92b64a8df25f798aea2a01ef49fc731446d459d9f36f4d608d36a3",
+    "parity_batch_v2_return/data/S132_400/protocol_trace.csv": "faff2d7bebdc466fa531fb121e6556b693810c0b6ce2f26bbc9746be19bd81b7"
+  }
+}

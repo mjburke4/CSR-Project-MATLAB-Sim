@@ -1,0 +1,131 @@
+{
+  "schema": "csr-terminal-helper-repair-v1",
+  "source_path": "+ac/terminalPreflight.m",
+  "source_sha256": "7308aba7b68a5414aedec12236f51615ea289f6541deee24e7add1d93ab417fa",
+  "repaired_sha256": "9b66a5fb44081126c902a880d0890ac07c3b30880c7d456b33d50379122bafd2",
+  "scope": "Component test packet radio/power and cleanup ownership only; no protocol, candidate or runner changes",
+  "reverse_exact": true,
+  "edits": [
+    {
+      "name": "resource_registry",
+      "old": "checks=struct('name',{},'passed',{},'details',{}); closers={};\ncleanup=onCleanup(@closeAll); %#ok<NASGU>",
+      "new": "checks=struct('name',{},'passed',{},'details',{});\nresources=containers.Map('KeyType','char','ValueType','any');\ncleanup=streamRegistryGuard(resources); %#ok<NASGU>\nradio=componentRadio(config);",
+      "count": 1
+    },
+    {
+      "name": "all_packet_one_calls",
+      "old": "packet(1)",
+      "new": "packet(1,radio)",
+      "count": 4
+    },
+    {
+      "name": "complete_control_radio_55",
+      "old": "sendControl(control(55,'ROUTING'),[2 3])",
+      "new": "sendControl(control(55,'ROUTING'),[2 3],radio)",
+      "count": 1
+    },
+    {
+      "name": "complete_control_radio_56",
+      "old": "sendControl(control(56,'ROUTING'),[2 3])",
+      "new": "sendControl(control(56,'ROUTING'),[2 3],radio)",
+      "count": 1
+    },
+    {
+      "name": "complete_control_radio_70",
+      "old": "sendControl(control(70,'KEY_UPDATE'),2)",
+      "new": "sendControl(control(70,'KEY_UPDATE'),2,radio)",
+      "count": 1
+    },
+    {
+      "name": "complete_control_radio_50",
+      "old": "sendControl(control(50,'KEY_UPDATE'),9)",
+      "new": "sendControl(control(50,'KEY_UPDATE'),9,radio)",
+      "count": 1
+    },
+    {
+      "name": "complete_control_radio_51",
+      "old": "sendControl(control(51,'KEY_UPDATE'),10)",
+      "new": "sendControl(control(51,'KEY_UPDATE'),10,radio)",
+      "count": 1
+    },
+    {
+      "name": "fallback_setup_boundary",
+      "old": "scheduledBefore=h.Clock.PendingCount; before=h.Hop.stats().Transmitted;",
+      "new": "scheduledBefore=h.Clock.PendingCount; before=h.Hop.stats().Transmitted;\n    assert(scheduledBefore==1 && strcmp(h.Mac.State,'Track') && h.Mac.Counters.Transmissions==0, ...\n        'terminalcase:FallbackSetup','Expected one live MAC slot timer with queued copies still held in Track.');",
+      "count": 1
+    },
+    {
+      "name": "repair_report_metadata",
+      "old": "'checks',checks,'matlab_execution_required',true,'network_parity_claim',false, ...",
+      "new": "'checks',checks,'matlab_execution_required',true,'network_parity_claim',false, ...\n    'fixture_radio',radio,'cleanup_ownership','Stable stream-handle registry captured by a file-local cleanup factory', ...",
+      "count": 1
+    },
+    {
+      "name": "wrap_packet_calls",
+      "old": "packet(100+sequence)",
+      "new": "packet(100+sequence,radio)",
+      "count": 1
+    },
+    {
+      "name": "other_peer_packet_call",
+      "old": "packet(200)",
+      "new": "packet(200,radio)",
+      "count": 1
+    },
+    {
+      "name": "wrap_frame_options",
+      "old": "uint16(sequence),struct()))",
+      "new": "uint16(sequence),radio))",
+      "count": 1
+    },
+    {
+      "name": "other_peer_frame_options",
+      "old": "uint16(0),struct()))",
+      "new": "uint16(0),radio))",
+      "count": 1
+    },
+    {
+      "name": "pass_registry",
+      "old": "h=harness(config,fullfile(folder,name),candidate,policy); closers{end+1}=h.Close;",
+      "new": "h=harness(config,fullfile(folder,name),candidate,policy,resources);",
+      "count": 1
+    },
+    {
+      "name": "remove_destroyed_workspace_cleanup",
+      "old": "    function closeAll()\n        for k=1:numel(closers), closers{k}(); end\n    end\nend\n\nfunction h=harness(config,folder,candidate,policy)",
+      "new": "end\n\nfunction h=harness(config,folder,candidate,policy)",
+      "count": 1
+    },
+    {
+      "name": "harness_registry_parameter",
+      "old": "function h=harness(config,folder,candidate,policy)",
+      "new": "function h=harness(config,folder,candidate,policy,resources)",
+      "count": 1
+    },
+    {
+      "name": "register_before_other_constructors",
+      "old": "streams=ac.Streams(config.Seed,clock,'natural','',folder);",
+      "new": "streams=ac.Streams(config.Seed,clock,'natural','',folder);\nresources(folder)=streams;",
+      "count": 1
+    },
+    {
+      "name": "remove_unused_close",
+      "old": "'Drain',@drain,'Close',@()streams.close()",
+      "new": "'Drain',@drain",
+      "count": 1
+    },
+    {
+      "name": "packet_radio_and_power",
+      "old": "function app=packet(id)\napp=csr.packet(id,struct('SourceId',1,'DestinationId',2,'ApplicationPayloadBytes',185),0,struct());",
+      "new": "function app=packet(id,radio)\nflow=struct('SourceId',1,'DestinationId',2,'ApplicationPayloadBytes',185, ...\n    'TxPowerDbm',radio.TxPowerDbm);\napp=csr.packet(id,flow,0,radio);",
+      "count": 1
+    },
+    {
+      "name": "file_local_cleanup_and_config_helpers",
+      "old": "",
+      "new": "\nfunction radio=componentRadio(config)\n% csr.packet requires complete radio fields and reads TX power from FLOW.\n% Reuse the validated scenario's radio and source-node RF power, never an\n% incomplete struct or an invented per-test radio default.\nradio=config.Radio;\nrequired={'EnvelopeProfile','RateKeyKbps','Preamble'};\nassert(all(isfield(radio,required)),'terminalcase:ComponentRadio', ...\n    'The validated scenario must supply all packet radio fields.');\nindex=find([config.Nodes.Id]==1);\nassert(isscalar(index),'terminalcase:ComponentRadio','Expected one component source node1.');\nradio.TxPowerDbm=config.Nodes(index).RadioProfile.TxPowerDbm;\nvalidateattributes(radio.TxPowerDbm,{'numeric'},{'scalar','real','finite'});\nend\nfunction guard=streamRegistryGuard(resources)\n% This local function captures its MAP HANDLE by value. Its cleanup never\n% accesses a nested caller's partially destroyed shared workspace.\nguard=onCleanup(@()closeStreamRegistry(resources));\nend\nfunction closeStreamRegistry(resources)\nitems=values(resources);\nfor k=1:numel(items)\n    items{k}.close();\nend\nend\n",
+      "count": 1,
+      "append": true
+    }
+  ]
+}

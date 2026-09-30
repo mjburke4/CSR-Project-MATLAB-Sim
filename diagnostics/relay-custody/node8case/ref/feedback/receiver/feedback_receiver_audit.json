@@ -1,0 +1,152 @@
+{
+  "method": "Read-only extraction and source audit; no MATLAB execution, new simulation, or kit changes.",
+  "stop_time_ns": 312143000000,
+  "physical_tx_context_records": 649,
+  "accepted_transmissions": 648,
+  "rejected_transmissions": 1,
+  "all_observed_tx_times_match_native_ns": true,
+  "draw_requests": 3518,
+  "draw_counts": {
+    "mac_slot": 752,
+    "sync_threshold": 1574,
+    "phy_binomial": 1192
+  },
+  "draw_time_or_context_mismatches": 0,
+  "receiver_comparison": {
+    "projection": "Per-node ordered (time_ns, previous, current) Idle/Search/Track transitions.",
+    "matched": 4731,
+    "excluded_matlab_tx_finishes": 647,
+    "per_node": [
+      {
+        "node": 1,
+        "matched_receiver_transitions": 753,
+        "excluded_mac_owned_tx_finishes": 127
+      },
+      {
+        "node": 2,
+        "matched_receiver_transitions": 592,
+        "excluded_mac_owned_tx_finishes": 77
+      },
+      {
+        "node": 3,
+        "matched_receiver_transitions": 827,
+        "excluded_mac_owned_tx_finishes": 100
+      },
+      {
+        "node": 4,
+        "matched_receiver_transitions": 627,
+        "excluded_mac_owned_tx_finishes": 97
+      },
+      {
+        "node": 5,
+        "matched_receiver_transitions": 820,
+        "excluded_mac_owned_tx_finishes": 113
+      },
+      {
+        "node": 7,
+        "matched_receiver_transitions": 542,
+        "excluded_mac_owned_tx_finishes": 60
+      },
+      {
+        "node": 8,
+        "matched_receiver_transitions": 570,
+        "excluded_mac_owned_tx_finishes": 73
+      }
+    ],
+    "exclusion_reason": "Native receiver_history instruments SetReceiveState only; native NotifyPhyTxStart/FinishTx set MAC state directly. MATLAB onStateChange also emits Tx-to-Search finishes."
+  },
+  "membership_regression": {
+    "watchdog_event_id": 16021,
+    "time_ns": 116340299163,
+    "fire_order": 380958,
+    "return_order": 380959,
+    "nested_observations": 0,
+    "node3_snmp_start_between116_and300": 0,
+    "node3_tx86_time_ns": 300365000000,
+    "node3_tx86_kind": "DATA",
+    "matched": true
+  },
+  "initial_application_admissions": {
+    "time_ns": 300000000000,
+    "sources": [
+      2,
+      3,
+      4,
+      5,
+      7,
+      8
+    ],
+    "accepted": 6
+  },
+  "first_dack": {
+    "receive_time_ns": 312049812442,
+    "receiver": 8,
+    "peer": 7,
+    "hop_sequence": 30,
+    "application_source": 7,
+    "application_destination": 1,
+    "matlab_local_packet_id": 102,
+    "native_application_sequence": 988,
+    "identity_note": "Local packet labels differ; join uses receiver, peer, time, hop sequence, and network endpoints.",
+    "nsdp_before": 16,
+    "nsdp_after": 17,
+    "limit": 16,
+    "logical_dack": true,
+    "ack_bitmap_hex": "00000000000fff72",
+    "dack_bitmap_hex": "0000000000000001",
+    "native_canonical_event_id": "33571"
+  },
+  "native_feedback_fixture_classes": [
+    {
+      "outer_kind": 1,
+      "is_ack": 1,
+      "is_dack": 0,
+      "has_ack_window": 0,
+      "flags": 34,
+      "wire_bytes": 25,
+      "children": 920
+    },
+    {
+      "outer_kind": 1,
+      "is_ack": 1,
+      "is_dack": 0,
+      "has_ack_window": 1,
+      "flags": 42,
+      "wire_bytes": 41,
+      "children": 163
+    },
+    {
+      "outer_kind": 1,
+      "is_ack": 1,
+      "is_dack": 1,
+      "has_ack_window": 1,
+      "flags": 46,
+      "wire_bytes": 41,
+      "children": 21
+    }
+  ],
+  "conclusion": "Observed stop is outer feedback type versus logical subtype representation. Preserve logical DACK and bitmap semantics; correct only comparator projection after strict native flag/profile validation.",
+  "limits": [
+    "Accepted prefix depends on common native random draws, not autonomous random-stream equivalence.",
+    "Per-node receiver transition equality does not claim equality of every private timer or boundary observation.",
+    "Stopped feedback has not completed transmission or been received in the returned MATLAB continuation.",
+    "Do not merge exact/no-window ACK and DACK semantics or generalize historical bare feedback to protected profiles.",
+    "No 330-second completion, 6000-second result, or 15-percent network parity claim."
+  ],
+  "inputs_sha256": {
+    "autonomous_eleventh/data/M_discovery_membership/ordered_events.jsonl": "3229743c6e8e8bd0b783f8c74e65946dfd04752f2542f165af2165e2d47ede06",
+    "autonomous_eleventh/data/M_discovery_membership/random_requests.jsonl": "2716a9345e74997b92388c6324bac920a7238cb2feebd730b1dafaa50eda8b57",
+    "autonomous_eleventh/data/M_discovery_membership/service_trace.csv": "0809077aabaca13af62f4cee447e5e7f94013ae117f35455339074c4a23608ee",
+    "autonomous_eleventh/data/M_discovery_membership/application_admission_trace.csv": "0175569674e89243061d44795f08d33d82073a779c15d8cb6bd8c5bccb07ed33",
+    "autonomous/native_capture/fixture/receiver_history.csv": "d1a075e6895ef3725f5b0081c9137a62c2b3768248f7ed1802776de2710876e1",
+    "autonomous/native_capture/fixture/tx_signatures.csv": "40f51355e02c0950e7608d9eeb6efb590a539bdef37c0381780db5fc086ad5e1",
+    "autonomous/native_capture/run/ns3-trace.csv": "bbced35b9d6f850bd22640e5deef825db5659c2b622c4befe758cf019cdf88fa",
+    "autonomous/native_capture/run/overlay/ns3/csr-mac-core.h": "4c1e7a7d655e594cf0abf4e303ffd1d4f8faab52a6a369258c57b2db471bc04d",
+    "autonomous/native_env/csr/model/csr-net-device.h": "112f9ac73e2ced44a40d6fcc3dc0a8d2cf19996f4f1d52adb0b9a5fbfe103dfb",
+    "autonomous/native_env/csr/model/csr-hop-layer.h": "0a826930bab43db429a2a3bd905672b370774274f7de826abf180f002156f10b",
+    "autonomous_tenth/kit/autocase/+ac/DiscoveryTxSignature.m": "ac2d0dcf116607ce2d4e6756727c106aa6e11941542694c9889ea5b5f43db8fa",
+    "autonomous_tenth/kit/autocase/+ac/ReceiverTimerMac.m": "593d0709214e1b83031cd6c796164b2e3df995d702028bb5485320ade4eb5335",
+    "autonomous_tenth/kit/autocase/model/+csr/+hop/Layer.m": "21d4a56d782fde35d45f102c137b6c78c3bf4cdc05593d15fb9a7db8f26c2649",
+    "autonomous_tenth/kit/autocase/model/+csr/+hop/Frames.m": "a2efd2e79d28cf9b090b6bb4f4e708ae978739ce96d9a1564f32628b990c39a5"
+  }
+}

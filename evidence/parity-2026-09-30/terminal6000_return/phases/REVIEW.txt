@@ -1,0 +1,87 @@
+FULL 6,000-SECOND TERMINAL CANDIDATE: INDEPENDENT CUSTODY-PHASE REVIEW
+2026-09-30
+
+Verdict
+The remaining source-standardized mean latency difference is almost entirely
+NWK waiting: +26.251732649 s total = +26.197863248 s NWK waiting,
+-0.252737119 s initial MAC waiting, and +0.306606520 s after first physical TX.
+Combined MAC/HOP service differs by only +0.053869401 s on this standardized
+population. This decomposition is descriptive, not proof that MAC/feedback
+behavior cannot cause upstream NWK waiting.
+
+Evidence and method
+reconstruct.py independently reads both original native compressed traces and
+both new MATLAB protocol traces. All 25,090 native applications agree with the
+issued reference ledger on source, generation, and delivered/unresolved status.
+Every one of 24,055 native first deliveries and delivered-app NWK totals agrees
+exactly at nanosecond resolution with that ledger. All 23,720 MATLAB deliveries
+agree with the returned application ledger. Every delivered hop has a HOP
+admission and first physical DATA transmission; all 47,775 delivered application
+paths add exactly to first-unique-delivery latency after timestamp rounding to
+integer nanoseconds.
+
+An application ID is used only within its own engine/run. Autonomous engines
+are not paired by numeric seed or local ID. Means are calculated for each
+engine's actual delivered population, and then standardized with native
+source-by-seed delivery weights. The three native-zero source cells are not
+included in defined relative-latency comparisons.
+
+Each accepted custody hop starts at NWK enqueue. HOP admission ends NWK waiting;
+first physical DATA TX ends initial MAC waiting; arrival at the next accepted
+custody or final first delivery ends the remainder. The latter includes actual
+transmission, retry/feedback effects and queueing after first TX; it is not an
+isolated retry-timer metric. Owner expiry never ends or restarts the application
+clock. Native repeated copies are disambiguated by receiving HOP feedback
+sequence and actual first-delivery ancestry, with FIFO assignment of NWK copies
+to their HOP admissions. Seed132 has seven duplicate NWK enqueue events. Summing
+all branches would overcount latency. Every native DATA TX mapped to an installed
+HOP sequence; that map persists after HOP owner expiration. MATLAB hop_sent is
+emitted only while an owner exists, so later DATA sent counts are lower bounds;
+first-TX coverage is complete for every delivered hop.
+
+Largest source cells (native -> MATLAB, seconds)
+Seed132 source7 total: 857.8379 -> 1336.7302; NWK 824.9982 -> 1304.6029.
+  At node8 alone NWK waiting is 248.6867 -> 728.9571 (+480.2704).
+  This explains essentially the entire +478.8923 s mean-latency cell difference.
+Seed132 source8 total: 671.7083 -> 940.5995; NWK 637.8872 -> 910.0434.
+  At node8 alone NWK waiting is 184.2356 -> 413.1940 (+228.9584).
+Seed131 source4 total: 87.5457 -> 244.0190; NWK 64.5028 -> 218.0989.
+  Node4 contributes +120.2019 s additional NWK waiting; node5 +33.3942 s.
+These three cells contribute +11.6264, +4.0130, and +10.1930 seconds to the
+source-standardized total gap, respectively. Other cells largely offset.
+
+Unfinished population
+Native has 1,035 unresolved applications: 284 last recorded in NWK waiting,
+43 awaiting first physical TX, and 708 after first physical TX.
+MATLAB has 1,278 unresolved applications: 451, 48, and 779 in those stages.
+These are last-recorded custody stages, not proof of all-copy liveness or final
+loss. For a native application with multiple unresolved copies, the displayed
+path follows the latest recorded accepted custody. Provisional terminal/drop
+callbacks do not reset age and do not prove no queued/on-air copy can finish.
+
+Focused next investigation from existing evidence
+Node8's queued source7 relay traffic is the clear seed132 target. Its native /
+MATLAB NWK queue contains 37/54 applications at 600 s, 40/83 at 900 s, 51/90 at
+1200 s, and 76/223 at 3000 s. At 900 s the source7 relay share is 24/67, while
+both have 16 local source8 applications. Reconstructed native queues agree with
+nine original app-admission diagnostic snapshots; MATLAB's 600 s and cutoff
+queues agree with independent direct diagnostics.
+
+Extend the existing fully coupled seed132 common-input run from time zero to
+1200 s, tracing node8 NWK/HOP admission, neighbor capacity, and ACK/DACK release.
+The original 400 s gate never includes a completed native source7 or source8
+path: their first native deliveries are 733.288811086 s and 699.254811086 s.
+By 1200 s native has completed 62 source7 and 54 source8 applications, so the
+extended capture covers early queue growth and completed remote-source paths.
+Do not initialize at 600 s; startup and traffic history must be retained.
+If common-input behavior remains exact, these two autonomous seed pairs alone
+cannot diagnose a behavioral bug; independent startup/full-run seed ensembles
+are the next way to distinguish outcome variability from systematic bias.
+No new model fix or simulation was made for this audit.
+
+Reproduction
+  python terminal6000_return/phases/reconstruct.py
+  python terminal6000_return/phases/window_analysis.py
+Dependencies: current terminal6000_return/data, recovered/issued/csr6000/reference,
+and recovered/native_origin/evidence/tranche-25-ns3-reference/s131 and s132 raw
+ns3-trace.csv.gz files. No prior-O input or old phase output is needed.
