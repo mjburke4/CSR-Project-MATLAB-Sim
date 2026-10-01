@@ -1,0 +1,37 @@
+{
+  "schema": "csr-relay-custody-test-static-v1",
+  "passed": true,
+  "files": [
+    {
+      "path": "+ac/RelayCustodyProbe.m",
+      "sha256": "f65718b409a80ed450546c3cbda8921c8985ea400fa201a7b8ba6fc3d3c8faa9",
+      "parse_has_error": false
+    },
+    {
+      "path": "+ac/relayCustodyPreflight.m",
+      "sha256": "05e632e79de861c199c936a56e155ae39f6634ffffea2dccf59314c30b0f8674",
+      "parse_has_error": false
+    }
+  ],
+  "groups": 22,
+  "implementation_pairs": [
+    "csr.nwk.Layer / csr.hop.Layer",
+    "ac.DiscoveryMembershipNwk / ac.TerminalHop"
+  ],
+  "matlab_execution": false,
+  "dependencies": [
+    "csr.sim.EventScheduler",
+    "csr.sim.RandomStreams",
+    "csr.hop.Frames",
+    "csr.nwk.Layer",
+    "csr.hop.Layer",
+    "ac.DiscoveryMembershipNwk",
+    "ac.TerminalHop",
+    "ac.writeJson"
+  ],
+  "new_files": [
+    "+ac/RelayCustodyProbe.m",
+    "+ac/relayCustodyPreflight.m"
+  ],
+  "limitations": "Static syntax only. Public component behavior must execute on MATLAB; no claim of runtime pass."
+}

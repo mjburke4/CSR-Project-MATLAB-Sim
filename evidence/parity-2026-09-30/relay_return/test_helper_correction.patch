@@ -1,0 +1,46 @@
+--- before/+ac/RelayCustodyProbe.m
++++ after/+ac/RelayCustodyProbe.m
+@@ -25,9 +25,9 @@
+     end
+     methods
+         function obj=RelayCustodyProbe(config,folder,candidate,nsdpLimit,nodeId,queueLimit)
+-            if nargin<5, nsdpLimit=16; end
+-            if nargin<6, nodeId=4; end
+-            if nargin<7, queueLimit=512; end
++            if nargin<4, nsdpLimit=16; end
++            if nargin<5, nodeId=4; end
++            if nargin<6, queueLimit=512; end
+             obj.Folder=folder; if ~isfolder(folder), mkdir(folder); end
+             config.Nwk.Neighbor.AdmissionEnabled=false;
+             config.Nwk.Neighbor.FreshnessEnabled=false;
+--- before/+ac/relayCustodyPreflight.m
++++ after/+ac/relayCustodyPreflight.m
+@@ -35,6 +35,9 @@
+         h=[]; details=struct(); passed=false;
+         try
+             h=ac.RelayCustodyProbe(config,fullfile(folder,name),candidate,limit,node,queueLimit);
++            assert(h.Config.Hop.NsdpLimit==limit && h.Network.NodeId==node && ...
++                h.Config.Nwk.QueueLimit==queueLimit,'relaycase:ProbeConfiguration', ...
++                'The public component fixture must preserve the requested NSDP, node and queue limits.');
+             callback(h); passed=true;
+         catch caught
+             details.error_identifier=caught.identifier; details.error_message=caught.message;
+--- before/README.md
++++ after/README.md
+@@ -11,6 +11,16 @@
+ hours; runtime depends on the computer. Long quiet periods are expected. Return
+ the printed **`out_node8_*.zip`**, even if the test reports a divergence or error.
+ The ZIP includes completed preflights and available partial network evidence.
++
++## Test-helper correction
++
++This revision corrects the optional-argument count in `RelayCustodyProbe`. The
++previous helper overwrote the queue-full test's requested limit of 1 with 512.
++The returned run passed all 17 prior preflight groups, all four accounting
++cases, and 20 of 22 custody groups; both queue-full groups failed before the
++network started. The helper now preserves supplied limits and each group
++checks its effective configuration before running. Network-model code, native
++inputs, comparison rules, and the requested replay are unchanged from that run.
+ 
+ ## Repair and purpose
+ 

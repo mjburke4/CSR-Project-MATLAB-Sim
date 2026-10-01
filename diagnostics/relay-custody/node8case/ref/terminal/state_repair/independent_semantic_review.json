@@ -1,0 +1,91 @@
+{
+  "schema": "csr-terminal-v3-independent-review-v1",
+  "review_stage": "final_source_review",
+  "reviewer": "terminal_state_review",
+  "matlab_executed_here": false,
+  "issued_helper_sha256": "9b66a5fb44081126c902a880d0890ac07c3b30880c7d456b33d50379122bafd2",
+  "return_terminal_report_sha256": "4388ac7732d37a5e8b7a3efd472ba0e3d61ee5711ed2fecf73c96bbb3977df46",
+  "observed_return": {
+    "first_check_passed": true,
+    "first_check_name": "native_terminal_expiry_retains_two_previously_admitted_mac_copies",
+    "details": {
+      "old_queue": 0,
+      "candidate_queue": 2,
+      "old_owner_failures": 1,
+      "candidate_owner_failures": 1
+    },
+    "failure_line": 25,
+    "error_message": "Assertion failed."
+  },
+  "diagnosis": "Six value-array/counter anonymous getter handles were constructed before callback mutations, preserving empty or zero snapshots. Named nested getters must observe the shared harness workspace.",
+  "affected_getters": [
+    "Releases",
+    "Terminals",
+    "Deliveries",
+    "TransmissionTimes",
+    "TerminalTimes",
+    "CancelCalls"
+  ],
+  "official_references": [
+    {
+      "title": "Anonymous Functions",
+      "url": "https://www.mathworks.com/help/matlab/matlab_prog/anonymous-functions.html",
+      "point": "Variables in anonymous expressions are captured when the handle is made; changing external values requires a new function handle."
+    },
+    {
+      "title": "Nested Functions",
+      "url": "https://www.mathworks.com/help/matlab/matlab_prog/nested-functions.html",
+      "point": "Named nested functions share explicitly defined parent workspace variables and can access later mutations."
+    }
+  ],
+  "episode_timeline_seconds": {
+    "initial_sent": 0,
+    "retry_1_scan": 2.000001,
+    "control_trigger_1_sent": 3,
+    "retry_2_scan": 5.000001,
+    "control_trigger_2_sent": 8,
+    "terminal_owner_expiry": 10.000001,
+    "episode_cutoff": 10.1,
+    "first_unmatched_sent_fallback_scan": 12.100001
+  },
+  "other_timing_expectations": {
+    "live_dack_received": 2.1,
+    "live_dack_expiry": 22.100001,
+    "control_only_retry_1": 2.000001,
+    "control_only_retry_2": 4.100001,
+    "control_only_terminal_expiry": 8.200001
+  },
+  "runtime_limit": "Manual source review is not MATLAB execution. The first returned case proves queue retention only; later cases and full replay remain unexecuted.",
+  "recommended_batch_behavior": "Run 16 independent cases with fresh state and per-case try/catch, publish actual and expected evidence plus public callback timeline for every case, then aggregate failure and keep the network replay strictly gated.",
+  "repaired_helper_sha256": "4cac127869687da89de30e6ec7e20f724183d453490de0afc5e89f073a967903",
+  "conclusion": "No further source-level blocker found; MATLAB runtime remains pending.",
+  "independent_group_count": 16,
+  "independent_group_names": [
+    "native_terminal_expiry_retains_two_previously_admitted_mac_copies",
+    "owner_release_once_with_live_copies_is_unresolved_at_cutoff",
+    "actual_tx_policy_and_default_remain_unchanged",
+    "real_mac_drains_retained_copies_with_one_late_first_delivery",
+    "orphan_exact_ack_cancels_data_without_releasing_owner_twice",
+    "orphan_window_ack_cancels_data_without_releasing_owner_twice",
+    "orphan_window_dack_cancels_data_without_releasing_owner_twice",
+    "nonwindow_dack_keeps_disabled_native_single_dack_path",
+    "window_ack_dack_union_wraps_at_uint16_and_respects_peer",
+    "overlapping_window_bits_prefer_ack_and_release_once",
+    "grouped_routing_survives_partial_complete_and_repeated_exact_ack",
+    "data_window_cleanup_cannot_cancel_or_complete_grouped_routing",
+    "mac_queue_full_retains_existing_cancel_and_release_behavior",
+    "late_data_sent_restarts_only_one_scan_without_resurrecting_owner",
+    "live_dack_preserves_hold_and_exactly_once_capacity_release",
+    "control_terminal_expiry_keeps_original_cleanup"
+  ],
+  "matlab_source_changes_from_v2": [
+    "+ac/terminalPreflight.m"
+  ],
+  "named_nested_getters_verified": true,
+  "all_original_behavior_predicates_retained_or_strengthened": true,
+  "fresh_cutoff_and_drain_episodes_verified": true,
+  "plain_json_serialization_payloads_verified": true,
+  "strict_replay_gate_preserved": true,
+  "runner_source_unchanged": true,
+  "public_trace_scope": "Public enqueue, release, terminal, delivery, cancellation, MAC transmit/sent callbacks. It does not claim a complete scheduler or PHY trace."
+}

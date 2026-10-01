@@ -1,0 +1,33 @@
+{
+  "schema": "csr-discovery-lifecycle-preflight-peer-review-v1",
+  "reviewer": "autonomous_receiver",
+  "status": "pass_static_review",
+  "blocking_findings": [],
+  "scope": "Narrow static review of six KEY_UPDATE/KEY_REQUEST public NWK boundary checks and recorder callbacks against DiscoveryLifecycleNwk. Two SNMP checks read for fixture compatibility; no expanded scope.",
+  "checks_reviewed": [
+    "No-ACK KEY_REQUEST bypasses reliable capacity callback and remains immediate.",
+    "Reliable KEY_UPDATE owner exists at SendControl callback; CanSendControl executes before submission; ACK, DSCP7 and62-byte fields preserved.",
+    "Blocked reliable gate retains owner; rejected submission resets Submitted and normal same-time wake retries the original control identity.",
+    "Control queue capacity rejection cannot submit the new owner or remove the existing owner.",
+    "Fresh inline KEY_UPDATE submits only its own control while unrelated pending control and application remain queued.",
+    "Synchronous successful completion removes the original owner before returning; identity relookup prevents resurrection and keeps newly generated NeighborCheck owner intact."
+  ],
+  "probe_review": [
+    "Calls use public receiveControl/controlResult/stats/neighborsSnapshot and supplied SendControl/CanSendControl interfaces.",
+    "Synchronous completion runs only for accepted KEY_UPDATE and preserves callback return value.",
+    "Repeated completion assertion and follow-on NeighborCheck observation avoid incorrectly requiring an empty control queue.",
+    "Recorded owner counts are observed through public stats; no private state access, sample substitution or forced MAC state."
+  ],
+  "limitations": [
+    "Static review only: MATLAB runtime and parser execution not performed by this reviewer.",
+    "Probe is a NWK callback recorder, not a live HOP/MAC/PHY transport; it does not establish Track transition, reservation, post-TX waiting or network timing parity.",
+    "Capacity tests establish retained MATLAB safety and retry behavior, not identical native overflow policy.",
+    "Synthetic synchronous completion is a reentrancy check, not a claim that an over-the-air ACK can arrive synchronously."
+  ],
+  "files_sha256": {
+    "autonomous_ninth/kit/autocase/+ac/discoveryLifecyclePreflight.m": "d7e8bff54278fe7d223b816ba37189cf4874171a5e977afee3ac7306f0be2193",
+    "autonomous_ninth/kit/autocase/+ac/DiscoveryLifecycleProbe.m": "4b9f78052b157327e8abc77bb6d5e8178cdbfd936a992e5a2d156df60048106c",
+    "autonomous_ninth/kit/autocase/+ac/DiscoveryLifecycleNwk.m": "8cd20bcb21529638f1cfe6cac68b4e07c19998bba691010ef44cef45dfcf8b29",
+    "autonomous_ninth/kit/autocase/+ac/PopulationNeighbors.m": "016762b7d8b9c0a4ea139fa7dfaea32b891bba1bf77522909d9d74aa1ad1a641"
+  }
+}

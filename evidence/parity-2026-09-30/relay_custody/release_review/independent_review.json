@@ -1,0 +1,138 @@
+{
+  "schema": "csr-relay-custody-independent-review-v1",
+  "passed": true,
+  "checks": {
+    "only_six_authorized_existing_source_files_changed": true,
+    "only_two_focused_test_source_files_added": true,
+    "no_source_files_removed": true,
+    "production_candidate_nwk_receiveData": true,
+    "production_candidate_nwk_enqueueApplication": true,
+    "production_candidate_nwk_pendingPosition": true,
+    "production_candidate_nwk_custodyCount": true,
+    "production_candidate_nwk_pump": true,
+    "production_candidate_nwk_release": true,
+    "production_candidate_nwk_releaseFromHop": true,
+    "production_candidate_nwk_terminal": true,
+    "production_candidate_nwk_deliverLocal": true,
+    "production_candidate_accounting_custodyAccepted": true,
+    "production_candidate_accounting_dropApplication": true,
+    "production_candidate_accounting_hasRetainedCustody": true,
+    "production_candidate_accounting_terminal": true,
+    "production_candidate_accounting_delivered": true,
+    "production_candidate_accounting_recoverDrop": true,
+    "native_fixture_bytes_unchanged": true,
+    "retry_policy_test_dependency_present_unchanged": true,
+    "current_runner_has_exact_six_file_allowlist": true,
+    "old_natural_acceptance_explicitly_disabled": true,
+    "component_preflight_22_groups": true,
+    "accounting_preflight_four_groups": true,
+    "probe_dropped_callback_correct": true
+  },
+  "changed_files": [
+    "+ac/AccountingFixture.m",
+    "+ac/DiscoveryMembershipNwk.m",
+    "+ac/TerminalSimulation.m",
+    "+ac/integratedAccountingPreflight.m",
+    "model/+csr/+nwk/Layer.m",
+    "model/+csr/+sim/NetworkSimulation.m"
+  ],
+  "added_files": [
+    "+ac/RelayCustodyProbe.m",
+    "+ac/relayCustodyPreflight.m"
+  ],
+  "unchanged_prior_model_candidate_files": 161,
+  "reviewed_files": [
+    {
+      "path": "+ac/AccountingFixture.m",
+      "sha256": "223265db932cec95ea19cb106d2627f417dda0ba627fbf32b7a2d9f4ac05aa8b"
+    },
+    {
+      "path": "+ac/DiscoveryMembershipNwk.m",
+      "sha256": "90fea58d48fbefbac625dc15d034dab21e66634b1c97a096279261d3e6f5a60a"
+    },
+    {
+      "path": "+ac/TerminalSimulation.m",
+      "sha256": "5ef7b566f5083140c24d2e189296af97188009eb51c68fdeb5d7e3998d2208b0"
+    },
+    {
+      "path": "+ac/integratedAccountingPreflight.m",
+      "sha256": "050a6647b07a1754e6ed046bf7c6cad392785134a78823913a7ef255b4f386a1"
+    },
+    {
+      "path": "model/+csr/+nwk/Layer.m",
+      "sha256": "5a160e3bd6cc2ac8a5dda806f9f3f5bff7a9f6838d1b12346f2384eb318e3c4b"
+    },
+    {
+      "path": "model/+csr/+sim/NetworkSimulation.m",
+      "sha256": "586bdb3ed440eb21cca0465ced9a961367da74933177d0ab79928eddcb48bddc"
+    },
+    {
+      "path": "+ac/RelayCustodyProbe.m",
+      "sha256": "f65718b409a80ed450546c3cbda8921c8985ea400fa201a7b8ba6fc3d3c8faa9"
+    },
+    {
+      "path": "+ac/relayCustodyPreflight.m",
+      "sha256": "05e632e79de861c199c936a56e155ae39f6634ffffea2dccf59314c30b0f8674"
+    },
+    {
+      "path": "run_node8_tests.m",
+      "sha256": "f4b0be6ea1085f06ac99dccca4eaf8838301723ac2814a893ca346444c63aca8"
+    },
+    {
+      "path": "README.md",
+      "sha256": "ce29a591f4d3dd9bac55a152972b845d8c38c933885b52034d0e3f43aac9a792"
+    },
+    {
+      "path": "TestQueuedRetryPolicy.m",
+      "sha256": "603eef79184d92c5b217039b234c98815c1b68409321da8c18441a4e7c74ccee"
+    }
+  ],
+  "native_fixture": [
+    {
+      "path": "ref/native132_1200/native_s132_prefix_0_1200.csv.gz",
+      "sha256": "7df18e983c65d33cbe34d626668b153ba9bcf5213761e69571ebc3f6b0c8c934",
+      "unchanged": true
+    },
+    {
+      "path": "ref/native132_1200/random_draws.csv",
+      "sha256": "94bedfab4e4c1e23e5737be8e7353679bf03df059cf495e4071df211eccb46f6",
+      "unchanged": true
+    },
+    {
+      "path": "ref/native132_1200/receipt.json",
+      "sha256": "5e563b8eb65c15282922edad561989d7c46f8fdca7fa8195d8b00b96d3fed906",
+      "unchanged": true
+    },
+    {
+      "path": "ref/native132_1200/receiver_history.csv.gz",
+      "sha256": "beb75942316cf0f60838b132df5c528f77a21ca22fa5745999e145032b504df1",
+      "unchanged": true
+    },
+    {
+      "path": "ref/native132_1200/scenario_s132.csv",
+      "sha256": "fa45217f8631f34d203580842d8a1a12cb18c53a3efbe0b702b2e17aaeb30d48",
+      "unchanged": true
+    },
+    {
+      "path": "ref/native132_1200/tx_signatures.csv",
+      "sha256": "54014f8b9867769d0737f76aa81614f73264f38a7087543a76af7edf51f8b597",
+      "unchanged": true
+    }
+  ],
+  "semantic_review": {
+    "copy_identity": "Fresh receiver-local node and uint64 serial on every successful enqueue; original application identity preserved.",
+    "exact_release": "No app-identity fallback. HOP release and following terminal target one occurrence; repeated or wrong-node callbacks cannot remove a sibling.",
+    "queue_order": "Existing snapshot pump uses the stamped occurrence for pre/post callback lookup; same-app copies retain their individual FIFO positions.",
+    "nsdp": "Existing source/destination counting sees every retained occurrence, including submitted HOP owners.",
+    "application_accounting": "Read-only custody scan across all NWK nodes blocks provisional drop while any registered sibling remains. Equal-hop acceptance can recover a provisional drop. Unique final delivery, bytes and latency remain application keyed.",
+    "scope": "No HOP, MAC, PHY, random-provider, wire-size, semantic comparator or native reference changes.",
+    "focused_tests": "22 NWK/HOP groups across production and replay classes, including ACK, DACK hold, retry failure, stale/out-of-order releases, upstream tokens, final sink, queue-full retry, nested rejection and direct no-ACK completion.",
+    "integration_tests": "Fourth real-Simulation case exercises same-node and lower-hop siblings, final registered-copy loss, same-hop recovery, unique sink latency and postdelivery copies."
+  },
+  "matlab_execution_performed": false,
+  "limitations": [
+    "Static source and packaging review only; MATLAB execution is pending.",
+    "Raw Dropped remains provisional when unregistered MAC copies may survive.",
+    "A completed bounded replay does not establish autonomous 6000-second or cross-seed parity."
+  ]
+}

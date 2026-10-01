@@ -1,0 +1,197 @@
+{
+  "schema": "csr-terminal6000-independent-accounting-v1",
+  "audit_status": "PASS",
+  "cutoff_s": 6000,
+  "simulations_executed": false,
+  "primary_evidence": "MATLAB complete raw protocol trace; native archived normalized first-delivery ledger and admission diagnostics",
+  "native_raw_trace_independently_rebuilt_this_script": false,
+  "pooled": {
+    "matlab": {
+      "model": "matlab",
+      "seed": 0,
+      "source": 0,
+      "attempted": 3420000,
+      "admitted": 24998,
+      "not_admitted": 3395002,
+      "delivered": 23720,
+      "unresolved": 1278,
+      "raw_dropped": 769,
+      "raw_pending": 509,
+      "delivery_events": 23720,
+      "duplicate_delivery_events": 0,
+      "late_deliveries": 2109,
+      "late_custody_recoveries": 46,
+      "mean_latency_s": 130.9086995294373,
+      "median_latency_s": 10.668308076999999,
+      "p95_latency_s": 1054.9380110859997,
+      "max_latency_s": 2012.546811086,
+      "mean_unresolved_age_s": 2240.341674491393,
+      "max_unresolved_age_s": 5699.98
+    },
+    "native": {
+      "model": "native",
+      "seed": 0,
+      "source": 0,
+      "attempted": 3420000,
+      "admitted": 25090,
+      "not_admitted": 3394910,
+      "delivered": 24055,
+      "unresolved": 1035,
+      "raw_dropped": null,
+      "raw_pending": null,
+      "delivery_events": 24059,
+      "duplicate_delivery_events": 4,
+      "late_deliveries": null,
+      "late_custody_recoveries": null,
+      "mean_latency_s": 64.49658953152958,
+      "median_latency_s": 10.920808077,
+      "p95_latency_s": 433.8097110859999,
+      "max_latency_s": 1120.851811086,
+      "mean_unresolved_age_s": 2183.1662028985506,
+      "max_unresolved_age_s": 5699.98
+    }
+  },
+  "raw_latency_gap_percent": 102.96995621053999,
+  "pooled_delivery_count_gap_percent": -1.3926418623986692,
+  "native_delivery_weighted_matlab_mean_s": 90.74832218063675,
+  "native_delivery_weighted_latency_gap_percent": 40.7025128612015,
+  "defined_cells": 9,
+  "undefined_native_zero_cells": 3,
+  "both_metrics_within_15": 4,
+  "count_cells_within_15": 4,
+  "latency_cells_within_15": 4,
+  "full_network_15_percent_parity": false,
+  "seed131_native_zero_source_matlab": {
+    "sources": [
+      2,
+      7,
+      8
+    ],
+    "admitted": 1727,
+    "delivered": 1238,
+    "unresolved": 489,
+    "mean_latency_s": 1016.4375905690372
+  },
+  "matlab_common_source_only_unweighted_mean_s": 82.14592188033916,
+  "weighted_gap_contributions": [
+    {
+      "seed": 132,
+      "source": 7,
+      "native_delivery_weight": 0.024277696944502183,
+      "weighted_latency_gap_s": 11.62640202648624
+    },
+    {
+      "seed": 131,
+      "source": 4,
+      "native_delivery_weight": 0.06514238204115569,
+      "weighted_latency_gap_s": 10.193043092235333
+    },
+    {
+      "seed": 132,
+      "source": 8,
+      "native_delivery_weight": 0.014924132197048431,
+      "weighted_latency_gap_s": 4.012968648749908
+    },
+    {
+      "seed": 131,
+      "source": 5,
+      "native_delivery_weight": 0.10484306796923716,
+      "weighted_latency_gap_s": 1.9723944151079482
+    },
+    {
+      "seed": 132,
+      "source": 3,
+      "native_delivery_weight": 0.3567657451673249,
+      "weighted_latency_gap_s": 0.05634347238158232
+    },
+    {
+      "seed": 131,
+      "source": 3,
+      "native_delivery_weight": 0.33972147162752026,
+      "weighted_latency_gap_s": -0.1532942490658907
+    },
+    {
+      "seed": 132,
+      "source": 4,
+      "native_delivery_weight": 0.016503845354396175,
+      "weighted_latency_gap_s": -0.2754362803175732
+    },
+    {
+      "seed": 132,
+      "source": 2,
+      "native_delivery_weight": 0.01845770110164207,
+      "weighted_latency_gap_s": -0.5860791924184731
+    },
+    {
+      "seed": 132,
+      "source": 5,
+      "native_delivery_weight": 0.059363957597173146,
+      "weighted_latency_gap_s": -0.5946092840519168
+    }
+  ],
+  "prior_o": {
+    "pooled": {
+      "model": "matlab_prior_o",
+      "seed": 0,
+      "source": 0,
+      "attempted": 3420000,
+      "admitted": 27358,
+      "not_admitted": 3392642,
+      "delivered": 23633,
+      "unresolved": 3725,
+      "raw_dropped": 3128,
+      "raw_pending": 597,
+      "delivery_events": 23633,
+      "duplicate_delivery_events": 0,
+      "late_deliveries": 0,
+      "late_custody_recoveries": 0,
+      "mean_latency_s": 103.43286987081311,
+      "median_latency_s": 9.814808077,
+      "p95_latency_s": 701.022011086,
+      "max_latency_s": 2372.066811086,
+      "mean_unresolved_age_s": 2808.6361610738254,
+      "max_unresolved_age_s": 5700.0
+    },
+    "native_delivery_weighted_matlab_mean_s": 91.28280258184759,
+    "native_delivery_weighted_latency_gap_percent": 41.5312084637024,
+    "raw_latency_gap_percent": 60.36951817467693,
+    "both_metrics_within_15": 1,
+    "comparison_scope": "Descriptive independent autonomous runs; no application-ID matching across O and P."
+  },
+  "pooled_drop_history_strata": [
+    {
+      "seed": 0,
+      "source": 0,
+      "prior_provisional_drop": false,
+      "delivered": 21581,
+      "mean_latency_s": 117.29617092975312,
+      "latency_sum_s": 2531368.664835002,
+      "fraction_of_deliveries": 0.909822934232715,
+      "fraction_of_latency_sum": 0.815215083437387,
+      "late_delivery_counter_events": 0,
+      "late_custody_counter_events": 0,
+      "unique_delivered_with_late_custody": 0
+    },
+    {
+      "seed": 0,
+      "source": 0,
+      "prior_provisional_drop": true,
+      "delivered": 2139,
+      "mean_latency_s": 268.24950350783126,
+      "latency_sum_s": 573785.688003251,
+      "fraction_of_deliveries": 0.09017706576728499,
+      "fraction_of_latency_sum": 0.18478491656261295,
+      "late_delivery_counter_events": 2109,
+      "late_custody_counter_events": 45,
+      "unique_delivered_with_late_custody": 45
+    }
+  ],
+  "descriptive_decomposition_s": {
+    "current_raw_minus_native": 66.41210999790773,
+    "current_native_weighted_minus_native": 26.25173264910717,
+    "current_raw_minus_native_weighted": 40.160377348800566,
+    "prior_raw_minus_native_weighted": 12.150067288965516,
+    "raw_current_minus_prior": 27.475829658624207,
+    "weighted_current_minus_prior": -0.5344804012108426
+  }
+}

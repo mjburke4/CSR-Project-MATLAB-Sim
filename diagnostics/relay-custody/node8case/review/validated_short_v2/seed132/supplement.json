@@ -1,0 +1,150 @@
+{
+  "status": "pass",
+  "checks": {
+    "hop_admission_identity_capacity_and_order": {
+      "passed": true,
+      "native_rows": 402,
+      "matlab_rows": 402,
+      "mismatch_rows": 0,
+      "first_mismatches": []
+    },
+    "receiver_shared_callback_time_state_tracked_id_sync_signalcount": {
+      "passed": true,
+      "native_rows": 22480,
+      "matlab_rows": 22480,
+      "mismatch_rows": 0,
+      "first_mismatches": []
+    },
+    "receiver_sync_flag_transition_history": {
+      "passed": true,
+      "native_rows": 5732,
+      "matlab_rows": 5732,
+      "mismatch_rows": 0,
+      "first_mismatches": []
+    },
+    "ordered_event_integrity": {
+      "passed": true,
+      "event_time_counts": {
+        "before": 1245373
+      },
+      "last_observation_order": 1245373,
+      "ordinal_errors": [],
+      "all_random_contexts_accepted": true
+    },
+    "raw_endpoint_exclusion": {
+      "passed": true,
+      "files": [
+        {
+          "file": "protocol_trace.csv",
+          "rows": 20805,
+          "endpoint": 0,
+          "after": 0,
+          "last_time_ns": 399990643632
+        },
+        {
+          "file": "phy_trace.csv",
+          "rows": 21742,
+          "endpoint": 0,
+          "after": 0,
+          "last_time_ns": 399990643632
+        },
+        {
+          "file": "application_admission_trace.csv",
+          "rows": 30000,
+          "endpoint": 0,
+          "after": 0,
+          "last_time_ns": 399980000000
+        },
+        {
+          "file": "service_trace.csv",
+          "rows": 49361,
+          "endpoint": 0,
+          "after": 0,
+          "last_time_ns": 399990643632
+        }
+      ],
+      "endpoint_contract": {
+        "native_prefix_stop_ns_exclusive": 400000000000.0,
+        "matlab_scheduler_processes_callbacks_at_endpoint": true,
+        "raw_exports_use_strictly_before_endpoint": true,
+        "endpoint_rows_saved_separately": true,
+        "random_requests_and_semantic_trace_are_not_time_filtered": true,
+        "rows": [
+          {
+            "file": "protocol_trace.csv",
+            "strict_prefix_rows": 20805,
+            "exact_endpoint_rows": 0
+          },
+          {
+            "file": "phy_trace.csv",
+            "strict_prefix_rows": 21742,
+            "exact_endpoint_rows": 0
+          },
+          {
+            "file": "application_admission_trace.csv",
+            "strict_prefix_rows": 30000,
+            "exact_endpoint_rows": 0
+          }
+        ],
+        "completion_does_not_establish_exact_timing_parity": true
+      }
+    },
+    "completion_no_omissions_or_unused_common_inputs": {
+      "passed": true,
+      "zero_counts": {
+        "OmittedTraceRecords": 0,
+        "OmittedPhyTraceRecords": 0,
+        "OmittedApplicationAdmissionRecords": 0,
+        "OmittedServiceRecords": 0,
+        "OmittedReceiverTiming": 0,
+        "OmittedTransportTiming": 0,
+        "NativeUnrequestedDraws": 0,
+        "NativeUnusedTx": 0
+      },
+      "reached_time_seconds": 400,
+      "completed": true
+    },
+    "individual_delivered_latencies_ns": {
+      "passed": true,
+      "native_rows": 208,
+      "matlab_rows": 208,
+      "mismatch_rows": 0,
+      "first_mismatches": []
+    },
+    "reported_latency_matches_raw": {
+      "passed": true,
+      "native_mean_latency_seconds": 16.808926642399037,
+      "matlab_mean_latency_seconds": 16.808926642399037,
+      "reported_mean_latency_seconds": 16.808926642399037,
+      "matched_delivered_population": 208,
+      "source_mix_identical": true
+    }
+  },
+  "internal_hop_admission_time_offsets": {
+    "native_rows": 402,
+    "matlab_rows": 402,
+    "matlab_minus_native_time_ns": {
+      "-28": 104,
+      "0": 298
+    },
+    "exact_time_match": false,
+    "scope": "No claim of identical internal HOP admission callback timestamps. Public native admission trace occurs after native process delay; the MATLAB hop_admit callback exposes admission immediately. End-to-end latency and physical event timestamps are independently compared."
+  },
+  "receiver_callback_scope": "Only four callback types with direct before/after semantic mapping are compared. The remaining layer-specific receiver instrumentation and timer lifecycle events are not asserted one-to-one equivalent.",
+  "input_sha256": {
+    "next_batch/native/s132_400/run/ns3-trace.csv": "044deadbaf8daa6afe1ba38a669153cb40fae0caabbacb8a41f7cba34c3b0fac",
+    "next_batch/native/s132_400/fixture/receiver_history.csv": "d2fa2ad1ed61850a265eb5c86dcd963273a386e90bac1c10a3b3c42f1cf806a5",
+    "parity_batch_v2_return/data/S132_400/application_admission_trace.csv": "5c94b64b9d81094ea9a545ffd5920caff5697e5dc6f1f079fd08a5d93788162b",
+    "parity_batch_v2_return/data/S132_400/protocol_trace.csv": "faff2d7bebdc466fa531fb121e6556b693810c0b6ce2f26bbc9746be19bd81b7",
+    "parity_batch_v2_return/data/S132_400/service_trace.csv": "0108f2ef1a92b64a8df25f798aea2a01ef49fc731446d459d9f36f4d608d36a3",
+    "parity_batch_v2_return/data/S132_400/ordered_events.jsonl": "41f76acc6a0cc6a604e812cf0e891bd7afa8d420035dd8d7608025f0d4d5202b",
+    "parity_batch_v2_return/data/S132_400/phy_trace.csv": "df765e51fe559891fcafe84b2c5e07a2d32e480a9e888bbef04ec453b68e5297",
+    "parity_batch_v2_return/data/S132_400/statistics.json": "8db2c663517036399586652d0fec87986cfb8bcc5ee9625b1aaff3b1ae2d1828",
+    "parity_batch_v2_return/data/S132_400/observer_status.json": "773673f6b561dd008e5d00ea14021974c0c8838cb51e35f3fbb3ab0b42043deb",
+    "parity_batch_v2_return/data/S132_400/receiver_timing_summary.json": "d9679f5bff8dacfc09b8674d4ca52bff9b448f962813d5723506692fd049c068",
+    "parity_batch_v2_return/data/S132_400/transport_timing_summary.json": "af7297eeafecc756794878d74f60d806d7cfa12d687c6cfa5a7643fbb0cc3999",
+    "parity_batch_v2_return/data/S132_400/case_summary.json": "b1c3ecfb6afe911da793e314e62756db65109c472fa197ade658378f02b05552",
+    "parity_batch_v2_return/data/S132_400/random_summary.json": "328cb8ba9f1f523af8fe0d177eb84b8a7e03e30297593f12fac286ac9c954869",
+    "parity_batch_v2_return/data/S132_400/endpoint_contract.json": "ef8c29ebc26d8dbe54cc51e9709f56439fcd6c703b67b65fedf02b4715e5b271"
+  }
+}

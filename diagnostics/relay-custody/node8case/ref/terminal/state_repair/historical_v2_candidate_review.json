@@ -1,0 +1,192 @@
+{
+  "schema": "csr-terminal-candidate-independent-source-review-v2",
+  "review_passed": true,
+  "runtime_executed": false,
+  "blockers": [],
+  "original_files": {
+    "model": {
+      "files": 99,
+      "all_byte_identical": true
+    },
+    "+ac": {
+      "files": 59,
+      "all_byte_identical": true
+    },
+    "ref/native": {
+      "files": 4,
+      "all_byte_identical": true
+    }
+  },
+  "exact_transforms": [
+    {
+      "target": "+ac/TerminalHop.m",
+      "sha256": "74df639fc26ae153af5916ece8e18484b08c99d5aebeddc1bbc050978d743a0c",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/TerminalMac.m",
+      "sha256": "a546a92ea71b9c1881650987aa3da96d44506c74a9918cf533653e4b2321b6f9",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/TerminalSimulation.m",
+      "sha256": "534a27f1532b68c0faa532cf319a10efdb1de8e0750d9408e7952068de9d8c16",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "run_terminal_tests.m",
+      "sha256": "6fc725a94070bbdf0798709c177c3899504f9f6a92dd0739a3a8239448779eb9",
+      "forward_and_reverse_exact": true
+    }
+  ],
+  "reviewed_files": {
+    "+ac/TerminalHop.m": "74df639fc26ae153af5916ece8e18484b08c99d5aebeddc1bbc050978d743a0c",
+    "+ac/TerminalMac.m": "a546a92ea71b9c1881650987aa3da96d44506c74a9918cf533653e4b2321b6f9",
+    "+ac/TerminalSimulation.m": "534a27f1532b68c0faa532cf319a10efdb1de8e0750d9408e7952068de9d8c16",
+    "+ac/terminalPreflight.m": "9b66a5fb44081126c902a880d0890ac07c3b30880c7d456b33d50379122bafd2",
+    "run_terminal_tests.m": "6fc725a94070bbdf0798709c177c3899504f9f6a92dd0739a3a8239448779eb9",
+    "terminal_candidate_transform.json": "66891693b1aefe055a0e1eed1d06b112b2356952fede13def4b0605f825ce1e3",
+    "terminal_runner_transform.json": "d3d68023ad44a2c0435ed021e0bd4f06b975f6187e25cb209cec17d514a561fe",
+    "README.md": "92dc9d49997711ddb170156d18d85be6e53801ec08c846e8f3c7e0f4224a907f",
+    "terminal_helper_repair.json": "762230b378ea246ad4eaf7f9ce280ec60dd1ed256ea11942482f912dacd5b2af"
+  },
+  "planned_component_checks": 16,
+  "planned_total_component_checks": 108,
+  "findings": [
+    "Final expiry exemption is explicitly DATA + native-provisional + retry_exhausted; no queue-full or control exemption.",
+    "DATA-only MAC cancellation is invoked after HOP feedback completion loops and existing cancellations. No CONTROL or ROUTING removal through this added callback.",
+    "Cumulative window preserves modulo65536, ACK-over-DACK precedence; single non-window DACK collects no cancellations.",
+    "All component MAC/HOP/receiver callbacks share one monotonic scheduler. Public Track stimulus blocks queued retries; public Search release drains them, and assertions require actual TX after owner failure.",
+    "Terminal copy survival and no live owner imply unfinished/provisional application fate at the component cutoff. Integrated application drop counters are not modified.",
+    "Candidate MetricDefinitions.Dropped now explicitly describes provisional recorded custody loss recoverable by a later copy; the metadata-only change is a verified reversible transform.",
+    "Repeated orphan feedback and unmatched sent assertions check no additional NSDP or terminal release. Actual-tx and control boundary checks remain included.",
+    "Runner retains prior92 checks and immutable common-input fixture/context guards, then runs isolated P candidate at330 seconds.",
+    "The returned terminal harness failed before check 1 because packet radio fields were missing. This revision supplies validated complete radio fields and finite source-node transmit power, and replaces the unsafe nested cleanup with a file-local guard over a stable resource map."
+  ],
+  "limits": [
+    "No MATLAB or Octave runtime is available; these are source review and planned tests, not executed results.",
+    "Integrated recoverDrop/LateDeliveries counters remain unchanged and source-reviewed, not directly exercised by standalone receiver-HOP drain.",
+    "Component stimuli are controlled; they do not replay captured PHY timing.",
+    "Raw network Statistics.Dropped remains provisional until copy fate is reconciled; no full-network acceptance or default-policy promotion.",
+    "The user return executed the old 92 checks but none of the new 16 completed. The repaired helper and candidate P still need MATLAB execution."
+  ],
+  "helper_repair_review": {
+    "schema": "csr-terminal-repaired-helper-independent-review-v1",
+    "review_passed": true,
+    "blockers": [],
+    "repair_forward_and_reverse_exact": true,
+    "matlab_executed": false,
+    "octave_executed": false,
+    "available_executables": {
+      "matlab": null,
+      "octave": null
+    },
+    "helper_sha256": "9b66a5fb44081126c902a880d0890ac07c3b30880c7d456b33d50379122bafd2",
+    "repair_manifest_sha256": "762230b378ea246ad4eaf7f9ce280ec60dd1ed256ea11942482f912dacd5b2af",
+    "observed_failed_report_path": "terminal_return/data/terminal_preflight/terminal_preflight.json",
+    "observed_failed_report_sha256": "6ce656b9d14bc63a84675ef9d5116bc68eb887157b3061cf59e2ab69a0fdbfb2",
+    "confirmed_failures_fixed": [
+      "MissingrequiredpacketRadio.EnvelopeProfile(andrate,preamble) inoriginalcsr.packetcall.",
+      "Nestedcleanupreadcloserswhileparentworkspacewasbeingdestroyed."
+    ],
+    "latent_fault_prevented": "packet() without flow.TxPowerDbm would preserve empty power in the HOP frame; real MAC transmit expects scalar power. The repair supplies node 1 RF power 33 dBm on FLOW and every explicit DATA/CONTROL frame radio.",
+    "actual_return_radio": {
+      "RateKeyKbps": 8,
+      "Preamble": "long",
+      "EnvelopeProfile": "bare",
+      "TxPowerDbm": 33
+    },
+    "unchanged_original_model_and_helpers": 161,
+    "runner_unchanged": true,
+    "candidate_sha256": {
+      "+ac/TerminalHop.m": "74df639fc26ae153af5916ece8e18484b08c99d5aebeddc1bbc050978d743a0c",
+      "+ac/TerminalMac.m": "a546a92ea71b9c1881650987aa3da96d44506c74a9918cf533653e4b2321b6f9",
+      "+ac/TerminalSimulation.m": "534a27f1532b68c0faa532cf319a10efdb1de8e0750d9408e7952068de9d8c16",
+      "run_terminal_tests.m": "6fc725a94070bbdf0798709c177c3899504f9f6a92dd0739a3a8239448779eb9"
+    },
+    "all_16_paths_source_reviewed": [
+      {
+        "case": "expiry_retains_copies",
+        "review": "DATA confirmed at0; retries2.000001 and5.000001 via public scans; owner expires10.000001; old cancels2, candidate preserves2."
+      },
+      {
+        "case": "cutoff_release_once",
+        "review": "Expiry removes owner and window exactly once. MAC copies remain live, hence unresolved/provisional fate; no integrated counter claim."
+      },
+      {
+        "case": "actual_tx_invariance",
+        "review": "Original and candidate actual-tx retain unconfirmed retry behavior; counter/evidence structs are compared and production default remainsactual-tx."
+      },
+      {
+        "case": "real_mac_drain",
+        "review": "Public Track keeps retries queued. Search at10.1 releases realMAC; seeded slot timing + long8kbps frames fit20s drain. Concrete scalar power33 reaches MAC through packet FLOW and HOP.makeData. Receiver callback is public and returns true; Segments exists on aggregate."
+      },
+      {
+        "case": "orphan_exact_ack",
+        "review": "Two duplicate exact ACKs remove only two live DATA copies; absent owner prevents additional NSDP/window/terminal releases."
+      },
+      {
+        "case": "orphan_window_ack",
+        "review": "Window ACK hasuint64bit1; same no-double-release assertions."
+      },
+      {
+        "case": "orphan_window_dack",
+        "review": "Window DACK cleans DATA copies despite no owner; no newDACKhold or Dacked increment."
+      },
+      {
+        "case": "single_dack_noop",
+        "review": "Nonwindow DACK has no accepted ACK branch and leaves2copies."
+      },
+      {
+        "case": "window_wrap_and_peer",
+        "review": "base0 ACKbit1 removes0; DACKbit2 removes65535; sequence65534 and peer3seq0 survive; directframefactory now getscomplete radio."
+      },
+      {
+        "case": "overlap_ack_precedence",
+        "review": "Live owner ACK+DACKbit1 takesACK only; repeatedwindow cannot release again."
+      },
+      {
+        "case": "grouped_routing_exact",
+        "review": "Two peerACKs complete one groupedowner; correctedoriginalROUTING protection and newDATA-only filter preserve queuedCONTROL through repeatedACK."
+      },
+      {
+        "case": "grouped_routing_window",
+        "review": "CumulativeDATA map cannot complete CONTROL or delete structuredROUTING; owner remainslive."
+      },
+      {
+        "case": "queue_full",
+        "review": "Publicenqueue rejects firstretry at2.000001; existing mac_queue_full failure still cancels/releaseonce."
+      },
+      {
+        "case": "unmatched_sent_fallback",
+        "review": "At10.1 only recurringMACslot remains: holdoff2.300001 and expirywake10.000002 drained; Track preventsTX. Two unmatchedsent callbacks addone12.100001scan; by13 the soleMACslot remains. Explicit setup assertion nowrequires1timer,Track,0TX."
+      },
+      {
+        "case": "live_dack_hold",
+        "review": "One retry at2.000001; DACK2.1 creates20shold becausecount1<2. RepeatedDACKcannot duplicatehold/release. Hold22.100001 pluswake finishesbefore23."
+      },
+      {
+        "case": "control_expiry",
+        "review": "KEY_UPDATE held inTrack; actualsent callbacks0,2.1,4.2 drive retries2.000001,4.100001 and finalexpiry8.200001;8.3 checksonecontrolfailure and unchangedqueuedcontrolcancel."
+      }
+    ],
+    "cleanup_review": "File-local streamRegistryGuard captures the containers.Map handle by value. Its destructor calls file-local closeStreamRegistry without reading the parent nested workspace. Streams are registered immediately after construction and before HOP/MAC construction. Streams.close is idempotent.",
+    "limits": [
+      "Static/source review only; the repaired 16 checks still require MATLAB execution.",
+      "Integrated recoverDrop/LateDeliveries counters are unchanged and remain source-reviewed only.",
+      "Controlled component timing is not a captured PHY replay.",
+      "Candidate network case P was not reached in the failed return; this provides no new parity result."
+    ]
+  },
+  "changes_from_preceding_terminal_kit": {
+    "reference_path": "full6000_return/kit/terminalcase",
+    "changed_matlab_files": [
+      "+ac/terminalPreflight.m"
+    ],
+    "prior_ac_files": 63,
+    "unchanged_ac_files": 62,
+    "unchanged_model_files": 99,
+    "runner_unchanged": true
+  },
+  "original_files_reference": "autonomous_twelfth/kit/autocase (original O common-input kit)"
+}

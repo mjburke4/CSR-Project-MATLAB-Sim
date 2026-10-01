@@ -1,0 +1,37 @@
+{
+  "schema": "csr-node8-prefix-capacity-audit-v1",
+  "stop_ns_exclusive": 895115000000,
+  "post_event_capacity_identity_order_values": {
+    "equal": true,
+    "matlab_count": 453,
+    "native_count": 453,
+    "first_difference": null
+  },
+  "dack_preserves_capacity_comparison": {
+    "equal": true,
+    "matlab_count": 193,
+    "native_count": 193,
+    "first_difference": null
+  },
+  "time_delta_ns_by_event": {
+    "hop_ack": {
+      "0": 32
+    },
+    "hop_admit": {
+      "-28": 1,
+      "0": 230
+    },
+    "hop_dack_expired": {
+      "0": 190
+    }
+  },
+  "limits": [
+    "Compares observed post-admit, post-ACK, and DACK expiry pending count, limit, neighbor outstanding and threshold. Failed-owner releases have no equivalent MATLAB snapshot here.",
+    "Nanosecond rounding is for reporting times; no simulator comparator tolerance is changed."
+  ],
+  "inputs_sha256": {
+    "node8_return2/data/S132_1200/ordered_events.jsonl": "a65193ac249b00d4fc015246a83e669316de5e4aea721bb1a22240e8348ca82e",
+    "node8_1200/native/s132_1200/run/ns3-trace.csv": "8ba737704536d469cae36873522c0216ba76277ddc2957c416e063fd32e01c8b"
+  },
+  "status": "pass"
+}

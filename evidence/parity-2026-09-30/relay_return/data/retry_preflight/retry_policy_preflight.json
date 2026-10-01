@@ -1,0 +1,301 @@
+{
+  "schema": "csr-retry-policy-preflight-v1",
+  "passed": true,
+  "completed": true,
+  "historical_tests_passed": true,
+  "checks": [
+    {
+      "name": "TestQueuedRetryPolicy/defaultsAndExplicitActualTxProduceSameEvidence",
+      "passed": true,
+      "details": {
+        "failed": false,
+        "incomplete": false,
+        "duration_seconds": 0.3723674,
+        "recovered_test_source": "tests/TestQueuedRetryPolicy.m"
+      }
+    },
+    {
+      "name": "TestQueuedRetryPolicy/policyValidationAcceptsOnlyDocumentedScalars",
+      "passed": true,
+      "details": {
+        "failed": false,
+        "incomplete": false,
+        "duration_seconds": 0.2598633,
+        "recovered_test_source": "tests/TestQueuedRetryPolicy.m"
+      }
+    },
+    {
+      "name": "TestQueuedRetryPolicy/initialQueuedDataNeverExpiresUnderExternalScans",
+      "passed": true,
+      "details": {
+        "failed": false,
+        "incomplete": false,
+        "duration_seconds": 0.1080632,
+        "recovered_test_source": "tests/TestQueuedRetryPolicy.m"
+      }
+    },
+    {
+      "name": "TestQueuedRetryPolicy/retryEnqueueDoesNotInstallItsOwnTimer",
+      "passed": true,
+      "details": {
+        "failed": false,
+        "incomplete": false,
+        "duration_seconds": 0.0201454,
+        "recovered_test_source": "tests/TestQueuedRetryPolicy.m"
+      }
+    },
+    {
+      "name": "TestQueuedRetryPolicy/anotherActualTransmitScanAdvancesOnlyNativeQueuedRetry",
+      "passed": true,
+      "details": {
+        "failed": false,
+        "incomplete": false,
+        "duration_seconds": 0.053688,
+        "recovered_test_source": "tests/TestQueuedRetryPolicy.m"
+      }
+    },
+    {
+      "name": "TestQueuedRetryPolicy/finalQueuedExpiryReleasesCapacityForEitherFlowOrigin",
+      "passed": true,
+      "details": {
+        "failed": false,
+        "incomplete": false,
+        "duration_seconds": 0.1214299,
+        "recovered_test_source": "tests/TestQueuedRetryPolicy.m"
+      }
+    },
+    {
+      "name": "TestQueuedRetryPolicy/actualRetryTransmitReplacesProvisionalDeadline",
+      "passed": true,
+      "details": {
+        "failed": false,
+        "incomplete": false,
+        "duration_seconds": 0.0246565,
+        "recovered_test_source": "tests/TestQueuedRetryPolicy.m"
+      }
+    },
+    {
+      "name": "TestQueuedRetryPolicy/ackQueuedRetryCancelsAndReleasesExactlyOnce",
+      "passed": true,
+      "details": {
+        "failed": false,
+        "incomplete": false,
+        "duration_seconds": 0.0224805,
+        "recovered_test_source": "tests/TestQueuedRetryPolicy.m"
+      }
+    },
+    {
+      "name": "TestQueuedRetryPolicy/dackQueuedRetryReleasesNsdpButRetainsDoubleHold",
+      "passed": true,
+      "details": {
+        "failed": false,
+        "incomplete": false,
+        "duration_seconds": 0.0289295,
+        "recovered_test_source": "tests/TestQueuedRetryPolicy.m"
+      }
+    },
+    {
+      "name": "TestQueuedRetryPolicy/terminalCancellationCannotResurrectSelectedStaleCopy",
+      "passed": true,
+      "details": {
+        "failed": false,
+        "incomplete": false,
+        "duration_seconds": 0.0123864,
+        "recovered_test_source": "tests/TestQueuedRetryPolicy.m"
+      }
+    },
+    {
+      "name": "TestQueuedRetryPolicy/unmatchedDataOnlyAddsNativeFallbackAfterLatestScanFired",
+      "passed": true,
+      "details": {
+        "failed": false,
+        "incomplete": false,
+        "duration_seconds": 0.0169775,
+        "recovered_test_source": "tests/TestQueuedRetryPolicy.m"
+      }
+    },
+    {
+      "name": "TestQueuedRetryPolicy/olderScanFiringDoesNotClearLatestPendingHandle",
+      "passed": true,
+      "details": {
+        "failed": false,
+        "incomplete": false,
+        "duration_seconds": 0.0144857,
+        "recovered_test_source": "tests/TestQueuedRetryPolicy.m"
+      }
+    },
+    {
+      "name": "TestQueuedRetryPolicy/latestInstalledMayFireBeforeOlderFinalGraceTimer",
+      "passed": true,
+      "details": {
+        "failed": false,
+        "incomplete": false,
+        "duration_seconds": 0.0128759,
+        "recovered_test_source": "tests/TestQueuedRetryPolicy.m"
+      }
+    },
+    {
+      "name": "TestQueuedRetryPolicy/deletionPassReleasesBeforeAnyResendAdmission",
+      "passed": true,
+      "details": {
+        "failed": false,
+        "incomplete": false,
+        "duration_seconds": 0.0513397,
+        "recovered_test_source": "tests/TestQueuedRetryPolicy.m"
+      }
+    },
+    {
+      "name": "TestQueuedRetryPolicy/controlsStillWaitForEveryActualRetryTransmit",
+      "passed": true,
+      "details": {
+        "failed": false,
+        "incomplete": false,
+        "duration_seconds": 0.0271209,
+        "recovered_test_source": "tests/TestQueuedRetryPolicy.m"
+      }
+    },
+    {
+      "name": "TestQueuedRetryPolicy/rejectedRetryReleasesOnceForBothPolicies",
+      "passed": true,
+      "details": {
+        "failed": false,
+        "incomplete": false,
+        "duration_seconds": 0.0184264,
+        "recovered_test_source": "tests/TestQueuedRetryPolicy.m"
+      }
+    },
+    {
+      "name": "captured_shared_scan_survives_trigger_ack_and_changes_retry_order",
+      "passed": true,
+      "details": {
+        "actual_tx": {
+          "policy": "actual-tx",
+          "initial_sequence": 29,
+          "separate_capacity_warmup": {
+            "public_acknowledged_data": 3,
+            "sequences": [
+              1,
+              2,
+              3
+            ],
+            "neighbor_threshold": 1,
+            "pending_after_warmup": 0,
+            "scheduled_scans_drained": true,
+            "scope": "Separate component setup, not captured network traffic"
+          },
+          "trigger_sequence": 32,
+          "trigger_acknowledged": true,
+          "retransmissions_after_shared_scan": 1,
+          "second_retry_seconds": 322.87900002777781,
+          "residual_sequences": [
+            36,
+            29
+          ],
+          "residual_retry_counts": [
+            0,
+            2
+          ],
+          "pending_data_owners": 2,
+          "capacity_releases": 1,
+          "initial_admission_seconds": 312.653111114,
+          "trigger_admission_seconds": 313.771111113778,
+          "initial_app_attempt": 11,
+          "trigger_app_attempt": 14,
+          "new_app_attempt": 250,
+          "initial_tx_seconds": 313.82,
+          "trigger_tx_seconds": 316.498,
+          "trigger_ack_seconds": 318.061111086,
+          "retry1_tx_seconds": 320.879,
+          "new_data_admission_seconds": 322.260111114
+        },
+        "native_provisional": {
+          "policy": "native-provisional",
+          "initial_sequence": 29,
+          "separate_capacity_warmup": {
+            "public_acknowledged_data": 3,
+            "sequences": [
+              1,
+              2,
+              3
+            ],
+            "neighbor_threshold": 1,
+            "pending_after_warmup": 0,
+            "scheduled_scans_drained": true,
+            "scope": "Separate component setup, not captured network traffic"
+          },
+          "trigger_sequence": 32,
+          "trigger_acknowledged": true,
+          "retransmissions_after_shared_scan": 2,
+          "second_retry_seconds": 318.49800002777778,
+          "residual_sequences": [
+            29,
+            36
+          ],
+          "residual_retry_counts": [
+            2,
+            0
+          ],
+          "pending_data_owners": 2,
+          "capacity_releases": 1,
+          "initial_admission_seconds": 312.653111114,
+          "trigger_admission_seconds": 313.771111113778,
+          "initial_app_attempt": 11,
+          "trigger_app_attempt": 14,
+          "new_app_attempt": 250,
+          "initial_tx_seconds": 313.82,
+          "trigger_tx_seconds": 316.498,
+          "trigger_ack_seconds": 318.061111086,
+          "retry1_tx_seconds": 320.879,
+          "new_data_admission_seconds": 322.260111114
+        }
+      }
+    },
+    {
+      "name": "public_mac_selects_native_retry_before_newer_application",
+      "passed": true,
+      "details": {
+        "actual_tx": {
+          "transmitted_sequences": [
+            36,
+            29
+          ],
+          "transmitted_at_seconds": [
+            0.364,
+            1.638
+          ],
+          "seeded_mac_draws": 3,
+          "queue_remaining": 0,
+          "concatenation_enabled": false,
+          "duty_cycle_enabled": false,
+          "scope": "Isolated real MAC stable FIFO selection; not captured network timing"
+        },
+        "native_provisional": {
+          "transmitted_sequences": [
+            29,
+            36
+          ],
+          "transmitted_at_seconds": [
+            0.364,
+            1.638
+          ],
+          "seeded_mac_draws": 3,
+          "queue_remaining": 0,
+          "concatenation_enabled": false,
+          "duty_cycle_enabled": false,
+          "scope": "Isolated real MAC stable FIFO selection; not captured network timing"
+        }
+      }
+    }
+  ],
+  "network_simulation_executed": false,
+  "base_policy": "actual-tx",
+  "candidate_policy": "native-provisional",
+  "historical_test_methods": 16,
+  "historical_test_git_blob": "741a5e311c813c8b9498429d20a1222caceeec0e",
+  "scope": "Existing public policy tests plus source-grounded DATA29/DATA32 shared-scan chronology and resulting public MAC order",
+  "limitations": "Controlled public sent/ACK callbacks and isolated MAC queues. No native timing replay, PHY run or whole-network parity claim.",
+  "mac_component_runs": 2,
+  "seeded_mac_draws": 6,
+  "mac_rng": "Ordinary seeded CSR streams; no supplied or forced slot values",
+  "captured_component_scope": "DATA29/32 timing and ACK32 stimulus; remaining same-priority queue copies29/36 isolated after their matched earlier transmissions"
+}

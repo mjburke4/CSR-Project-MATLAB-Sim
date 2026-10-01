@@ -1,0 +1,56 @@
+Seed 132 stopped replay: offline review of the 895.115-second divergence
+=====================================================================
+
+Read node8_return2/REVIEW.txt first. This is an analysis archive, not a new
+MATLAB test kit. No model code was modified for this review. The returned
+simulation stopped before its requested 1,200-second endpoint; it does not
+establish autonomous 6,000-second parity or achievement of the +/-20% target.
+
+Contents
+--------
+* Original returned ZIP, unchanged, under upload/.
+* Exact corrected MATLAB kit that produced it, unchanged, at archive root.
+* Offline analyses and their saved outputs under
+  node8_return2/{accounting,node4_cause,node8_queue,redteam}.
+* Native compressed canonical trace, passive observation log, and MAC log.
+* Native source overlay and capture/build provenance sufficient to inspect
+  the source paths cited by this review.
+* SHA-256 manifests and a dependency-restoration helper.
+
+The full native runtime and prior 207-MB evidence bundle are not needed to
+reproduce this offline analysis and are intentionally omitted. Capture
+provenance receipts are included; their full native rebuild and repeat-run
+dependencies remain in node8-contention-replay-evidence.zip, Library file
+libfile_644d5460fb188191a08d0d4031bfb3ad. Some retained native provenance
+documents refer to those broader dependencies; use the steps below for this
+archive's self-contained offline reproduction.
+
+Restore and rerun
+-----------------
+Use Python 3.11 or newer; only the standard library is required. Extract this
+archive into a fresh directory, open a shell in that directory, and run:
+
+  python node8_return2/packaging/restore_inputs.py
+  python node8_return2/compare_prefix_accounting.py
+  python node8_return2/node4_cause/investigate_node4.py
+  python node8_return2/node8_queue/audit_prefix.py
+  python node8_return2/node8_queue/audit_capacity.py
+  python node8_return2/redteam/audit_return.py
+  python node8_return2/redteam/audit_retry_cause.py
+
+The restore helper verifies every packaged input hash, then reconstructs the
+exact paths expected by the scripts. It verifies every reconstructed file's
+SHA-256 and refuses to overwrite different existing files. It does not invoke
+MATLAB, ns-3, download anything, or rerun a simulation. The raw return expands
+to about 2.3 GB; allow at least 4 GB free disk space. The analyses stream the
+large ordered log and may take several minutes.
+
+The restored corrected kit is node8_return/kit/node8case/. Its original
+FILES.json and MATLAB runtime provenance are checked by the red-team script.
+The kit's already bundled native random/TX fixtures are restored at the native
+paths used by the analyses; no second fixture copy is stored in this archive.
+
+The ZIP's CRC and every member's SHA-256 were checked after creation.
+node8_return2/packaging/archive_manifest.json records all members except its
+own hash, avoiding a circular digest. archive_receipt.json is an external
+release receipt for the completed ZIP and is therefore not inside that ZIP.

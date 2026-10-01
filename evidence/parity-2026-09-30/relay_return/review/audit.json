@@ -1,0 +1,83 @@
+{
+  "schema": "csr-relay-return-independent-review-v1",
+  "decision": "Ready to reissue with test-helper correction; MATLAB rerun required",
+  "returned_archive": {
+    "path": "upload/out_node8_20260930_094958.zip",
+    "sha256": "61fa53bc97138982df2bbecc35dfcab0da8282187cae558dd358422ec329f4a9"
+  },
+  "runtime": {
+    "version": "25.1.0.2943329 (R2025a)",
+    "release": "2025a",
+    "computer": "PCWIN64"
+  },
+  "returned_manifest_sha256": "99ddd938b5e3aefe0f637fb5b0f85fcf505e093740f0749134e3361bafb89007",
+  "probe_runtime_source_matches_issued": true,
+  "passed_prior_preflight_groups": 17,
+  "custody_groups": {
+    "attempted": 22,
+    "passed": 20,
+    "failed": 2
+  },
+  "network_started": false,
+  "failures": [
+    {
+      "case": "production_queue_full_rejection_then_same_sequence_retry",
+      "QueueLimit": 512,
+      "NsdpLimit": 0,
+      "configuration_sha256": "b6b51c1061cc956bfdf99bba2712d030f4d1b9787d0719be9d309855d3c6120d",
+      "failure": "relaycase:CustodyPreflight",
+      "failure_label": "full queue refuses second copy without creating ownership"
+    },
+    {
+      "case": "candidate_queue_full_rejection_then_same_sequence_retry",
+      "QueueLimit": 512,
+      "NsdpLimit": 0,
+      "configuration_sha256": "b6b51c1061cc956bfdf99bba2712d030f4d1b9787d0719be9d309855d3c6120d",
+      "failure": "relaycase:CustodyPreflight",
+      "failure_label": "full queue refuses second copy without creating ownership"
+    }
+  ],
+  "reviewed_source_receipts": [
+    {
+      "path": "+ac/RelayCustodyProbe.m",
+      "issued_sha256": "f65718b409a80ed450546c3cbda8921c8985ea400fa201a7b8ba6fc3d3c8faa9",
+      "corrected_sha256": "686a98f0e4508a77747949c4e0714aa4d6902d4bc93fbf3647d948d1f4dbb050"
+    },
+    {
+      "path": "+ac/relayCustodyPreflight.m",
+      "issued_sha256": "05e632e79de861c199c936a56e155ae39f6634ffffea2dccf59314c30b0f8674",
+      "corrected_sha256": "096fe6ec5d5c7b2c3ae6ee1d85c442c43f7ff4b870fcb8bbb2ef473c43fa2422"
+    },
+    {
+      "path": "README.md",
+      "issued_sha256": "ce29a591f4d3dd9bac55a152972b845d8c38c933885b52034d0e3f43aac9a792",
+      "corrected_sha256": "24a33023b125b30ebf400ddfcd07c481e07e91fdffdf2f3096a1582298b12e39"
+    }
+  ],
+  "all_existing_file_deltas_at_review": [
+    "FILES.json",
+    "README.md",
+    "+ac/RelayCustodyProbe.m",
+    "+ac/relayCustodyPreflight.m"
+  ],
+  "static_parse": [
+    {
+      "path": "+ac/RelayCustodyProbe.m",
+      "has_error": false
+    },
+    {
+      "path": "+ac/relayCustodyPreflight.m",
+      "has_error": false
+    }
+  ],
+  "finding": "Six-input constructor counted its output object as an input; nargin<7 always overwrote sixth input queueLimit. All explicit six-input calls kept nsdpLimit and nodeId but replaced QueueLimit=1 with512.",
+  "corrected_thresholds": {
+    "nsdpLimit": 4,
+    "nodeId": 5,
+    "queueLimit": 6
+  },
+  "other_default_review": "The input(obj,source,id,sequence,destination) method threshold nargin<5 is correct because obj is an explicit input. No other optional defaults exist in the added helper.",
+  "queue_retry_review": "Full queue refusal increments rejection, accepts no custody, returns false to HOP, which unmarks receive sequence. Releasing first exact owner then repeating the same ingress frame is retryable and allocates a fresh local custody token. The test remainder is structurally sound; no assertion weakening is needed.",
+  "configuration_guard": "New immediate guard verifies effective NsdpLimit, Network.NodeId and QueueLimit against requested values before stimuli.",
+  "scope": "Static code review plus returned MATLAB evidence. Corrected MATLAB execution not performed. No model, RNG, scheduler, comparator or native fixture changes authorized or required."
+}

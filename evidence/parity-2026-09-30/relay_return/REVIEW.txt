@@ -1,0 +1,54 @@
+Relay-custody MATLAB return review — 2026-09-30
+
+Returned file: out_node8_20260930_094958.zip
+SHA-256: 61fa53bc97138982df2bbecc35dfcab0da8282187cae558dd358422ec329f4a9
+Runtime: MATLAB R2025a 25.1.0.2943329, PCWIN64.
+
+Observed result
+- All 17 existing preflight groups passed, including all four integrated
+  accounting cases (cutoff, final, relay, siblings).
+- 20 of 22 focused custody groups passed. Both failures are the same queue-full
+  case, once with production classes and once with the replay candidate.
+- The native 1,200-second fixture import passed.
+- The network case was marked prerequisite_failed and never started.
+  Therefore this return does not advance the 895.115-second replay boundary
+  or update the autonomous +/-20% parity assessment.
+
+Cause
+RelayCustodyProbe is a constructor with six input arguments; obj is its output.
+Its default guards incorrectly used nargin<5, <6 and <7 instead of <4, <5 and <6.
+Every current preflight call supplies all six arguments. Only the last guard
+therefore fired, replacing the queue-full case's explicit QueueLimit=1 with 512.
+Both returned configuration.json files record QueueLimit=512. Two incoming
+copies fit, so the test's expected refusal correctly failed.
+
+Correction
+- Correct the constructor's three optional-argument boundaries.
+- Assert each fixture's effective NSDP limit, node ID and queue limit equal the
+  requested values before invoking its test.
+- Keep the queue-full refusal/retry assertions and all 22 custody groups.
+- Update README and FILES manifest for revision 2.
+No production or candidate network-model code, runner, native input, scheduling,
+random provider, comparator, or acceptance target changed from the returned run.
+
+Successful runtime coverage from the returned run includes separate DACK retry
+occurrences and NSDP 25/26/27, FIFO 7/7/8 with distinct outgoing sequences,
+ACK/DACK/retry-failure/no-ACK release, stale and foreign tokens, nested callbacks,
+unique final delivery, lower-hop survivors, provisional loss and same-hop recovery.
+This supports those component boundaries, not complete network parity.
+
+Next execution
+Extract the corrected relay-custody-repair-tests.zip into a fresh folder,
+restart MATLAB R2025a, open node8case and run:
+    report = run_node8_tests;
+Return the generated out_node8_*.zip, including any error evidence.
+No new ns-3 capture is required. Corrected MATLAB runtime execution is pending.
+
+Evidence layout
+- issued_v1_tests.zip is the exact previously issued kit.
+- relay-custody-repair-tests.zip is the corrected revision 2 kit.
+- returned_results.zip is the exact user return.
+- test_helper_correction.patch contains the complete three-file text change.
+- corrected_package_receipt.json records archive checks and new hashes.
+- review/ and provenance/ contain independent findings and audits.
+Static parsing and ZIP validation are not MATLAB runtime execution.

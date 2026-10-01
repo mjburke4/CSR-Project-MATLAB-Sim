@@ -1,0 +1,2045 @@
+{
+  "schema": "csr-publication-scope-review-v1",
+  "date": "2026-09-30",
+  "scope": "Publish source/checkpoint evidence; no new simulation or PR merge.",
+  "kit": {
+    "source": "relay_return/kit/node8case",
+    "proposed_destination": "diagnostics/relay-custody/node8case",
+    "files": 497,
+    "bytes": 50364583,
+    "manifest_sha256": "34381129534133a938015e661c35669fe2386fd2c738e3d0eb463952e05b61fb",
+    "all_manifest_files_verified": true,
+    "errors": [],
+    "archive_sha256": "d14bd7d85772b8e9e833130026762cc409fc3bcde539bb996ab4e4335c4bf31a",
+    "archive_bytes": 23609411,
+    "entrypoint": "report = run_node8_tests;",
+    "full_tree_required": true
+  },
+  "grounded_claims": [
+    {
+      "claim": "Latest corrected kit revision 2 remains awaiting owner MATLAB rerun.",
+      "proof": [
+        "relay_return/REVIEW.txt",
+        "relay_return/corrected_package_receipt.json"
+      ],
+      "status": "pending_runtime"
+    },
+    {
+      "claim": "17/17 existing preflight groups and 20/22 relay-custody groups passed on MATLAB R2025a 25.1.0.2943329 PCWIN64; both failed groups are the same queue-limit fixture bug; network never started.",
+      "proof": [
+        "relay_return/provenance/audit.json",
+        "relay_return/review/audit.json",
+        "relay_return/data/S132_1200/case_summary.json"
+      ],
+      "status": "observed"
+    },
+    {
+      "claim": "Constructor nargin guards were wrong by one because obj is an output. Revision 2 changes only RelayCustodyProbe, relayCustodyPreflight, README and FILES versus returned kit. No network code/runner/reference changes.",
+      "proof": [
+        "relay_return/test_helper_correction.patch",
+        "relay_return/corrected_package_receipt.json"
+      ],
+      "status": "static_verified"
+    },
+    {
+      "claim": "Prior seed132 replay reached 895.115s; first observed physical payload mismatch originated in native-only second relay enqueue at 694.821813632s. Unique admitted/delivered/unresolved totals before stop are1582/1229/353 with matching first delivery timestamps.",
+      "proof": [
+        "node8_return2/REVIEW.txt",
+        "node8_return2/node4_cause/findings.json",
+        "node8_return2/accounting/prefix_accounting.json"
+      ],
+      "status": "observed_partial"
+    },
+    {
+      "claim": "Latest measured full autonomous +/-20% target not met:5/9 defined source-seed cells pass both metrics;3 native-zero cells remain undefined/population mismatches. Weighted delivered latency gap+40.7025128612%, raw+102.9699562105%. These are pre-relay-repair results.",
+      "proof": [
+        "node8_1200/milestone_20.json",
+        "terminal6000_return/accounting/audit.json"
+      ],
+      "status": "observed_historical"
+    },
+    {
+      "claim": "The standardized26.251732649s latency gap decomposes into+26.197863248s NWK wait,-0.252737119s initial MAC wait,+0.306606520s after first TX. This is descriptive and does not exclude upstream influence of MAC/HOP.",
+      "proof": [
+        "terminal6000_return/phases/REVIEW.txt",
+        "terminal6000_return/phases/audit.json"
+      ],
+      "status": "observed_historical"
+    },
+    {
+      "claim": "Historical short-v2 common-input gates passed seed1310-200s and seed1320-400s, but are not current repaired-model acceptance.",
+      "proof": [
+        "relay_return/kit/node8case/review/validated_short_v2/return_audit.json",
+        "relay_return/kit/node8case/FILES.json"
+      ],
+      "status": "historical_pass"
+    }
+  ],
+  "recommended_evidence_files": [
+    {
+      "path": "terminal6000_return/accounting/REVIEW.txt",
+      "bytes": 4619,
+      "sha256": "165ef2e9e3bc077620c06b2fb1e5a54e0d392b1b8234e5fef45d6a1d01cf057a",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/accounting/audit.json",
+      "bytes": 42401,
+      "sha256": "a792444d0c45132b8f5a407a37094951f3668b6edcdcdbd9fc6f56bf25e26118",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/accounting/audit.py",
+      "bytes": 29184,
+      "sha256": "172b0645e69b235631e5e5a8c8a109ed4713ffcfd3844c4b906963cac3aea223",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/accounting/console.json",
+      "bytes": 6135,
+      "sha256": "3eb5440572d620c4a7b8c8c071355aca7a4ff84674afc0e47587c37b1799e443",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/accounting/delivery_drop_history_strata.csv",
+      "bytes": 3116,
+      "sha256": "dcc374a720f4f9fa77bd666bee527faa8b50aa05e965ecaf0263f69126f62186",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/accounting/fixed_age.csv",
+      "bytes": 9891,
+      "sha256": "2cad2201e417a6cd21e8623aa4330b75d0e741b6e907ec5d8f1133de801dfc8b",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/accounting/pooled_fixed_age_with_prior.csv",
+      "bytes": 1526,
+      "sha256": "71d8b1856230dd19b884f4cbe914f32298debc1b42383c56d5191d63d690e06d",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/accounting/prior_o_source_accounting.csv",
+      "bytes": 2449,
+      "sha256": "4dffca663f38c3b3e4bc9211fa23e19ee42a07be6baf49e41f0034f73ee895a6",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/accounting/prior_o_vs_current_p.csv",
+      "bytes": 1125,
+      "sha256": "b0a432f66f128add9e7ec9d26bb259e0fcf07358a9375676840fd5d9cf843152",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/accounting/reconstructed_applications.csv",
+      "bytes": 4460148,
+      "sha256": "17b2d1c320dcdf266c5791f30af27f91d59f59738acc9e8c79adaadec3b1e888",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/accounting/source_accounting.csv",
+      "bytes": 4081,
+      "sha256": "8fc475f5edd53113354b565a95e083665a87562dc700e3bc733925cc83013d7c",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/accounting/source_targets.csv",
+      "bytes": 1381,
+      "sha256": "d694f8c331492c77f22fa76c63ca51c96f14286d0a5e2bf8cb0af1e4aa06e757",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/accounting/weighted_contributions.csv",
+      "bytes": 479,
+      "sha256": "2513851554d69f98154a386e2034da5f09f931a640d7dee510c3cb62e42c09b8",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/phases/REVIEW.txt",
+      "bytes": 5395,
+      "sha256": "0840213ee0ac72e68a6a028be79c8b6a7304df3148000b7e54b803ec76fdf94e",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/phases/audit.json",
+      "bytes": 19059,
+      "sha256": "d93b12808d642761f944a6de9572ca7248eebed10431e72dc88105679aeb1a1c",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/phases/delivered_phases_by_custody_node.csv",
+      "bytes": 4093,
+      "sha256": "881d067406802c58f59c4d89f5849b65b8482f24f03638d124a93b5ee8bbbf3c",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/phases/matlab_s131_applications.csv",
+      "bytes": 1781057,
+      "sha256": "b92d00f381438464cedf1655034c02cea3892aab79c70ff6dff9d8cc95419bca",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/phases/matlab_s131_custody_phases.csv",
+      "bytes": 2126887,
+      "sha256": "641a7bd07e01c0eefa69d71058c84af8f3d9c64c35b301de7b0fb2fac3ccd0cb",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/phases/matlab_s132_applications.csv",
+      "bytes": 1788234,
+      "sha256": "f2be168a55831965fe16b17f9dc9fd447f647efd06910530e7dd05b55d9a7454",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/phases/matlab_s132_custody_phases.csv",
+      "bytes": 2121903,
+      "sha256": "617a4db7a12c00d96769c0bc8f8add96005bc9bf353c7dd695eadcec5133dbcb",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/phases/native_s131_applications.csv",
+      "bytes": 1900090,
+      "sha256": "b0263707d9101f1158ac3309b2a5dafb34d84da90255dd2b1adc7c8033f3224b",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/phases/native_s131_custody_phases.csv",
+      "bytes": 1753592,
+      "sha256": "cc680b1d6c069c76f17efffe87340473b33eb2f6464be4e67c05cb7e5acf3c09",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/phases/native_s132_applications.csv",
+      "bytes": 1874445,
+      "sha256": "57d9d90980b2bb61de2ce6f00e5732652141efab501f1101947f81641cb6c5e0",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/phases/native_s132_custody_phases.csv",
+      "bytes": 2232095,
+      "sha256": "6ca57735fb7b1bb0c49c09b1bc067b46a58a7c943599a4b9d46694ea78e1cda4",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/phases/reconstruct.py",
+      "bytes": 12931,
+      "sha256": "392705a157e0d149800abb45f7bcaef14754e6c0ba7946b442f414fd770f0455",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/phases/seed132_node8_interval_accounting.csv",
+      "bytes": 944,
+      "sha256": "c436f952b1c14d0752b86b87f655288527540ca609aa9ddc0e9c0acf1f8d61b3",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/phases/seed132_node8_queue_snapshots.csv",
+      "bytes": 634,
+      "sha256": "89767188076f579279a1a9e6e90671d6b740cbf8e4ef7d5f41ae68d947e55cda",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/phases/seed132_remote_delivery_horizons.csv",
+      "bytes": 772,
+      "sha256": "2f9aa86941e5efa48c24aa26bf2c2d595ee218b81283d9e09612b3d4f185e1b7",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/phases/source_phases.csv",
+      "bytes": 3064,
+      "sha256": "2ff0206b8eb56fc2298c5eabc3d841daefc8dd2319b82874c1db587095ef80c2",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/phases/source_weighted_contributions.csv",
+      "bytes": 2108,
+      "sha256": "86b178339bcb3558476f661e158e191daac12c1c038fe96e07624f71550abf52",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/phases/window_analysis.json",
+      "bytes": 2173,
+      "sha256": "a2711db0f2974f97db290c765c765d9823bed96f44be42c4c8301d581898afa3",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/phases/window_analysis.py",
+      "bytes": 4551,
+      "sha256": "c4059d41caf8a381b479900ac2c9ffacece346b9a9a8dcd981071763bfd0eb7c",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/redteam/REVIEW.txt",
+      "bytes": 9741,
+      "sha256": "6c844042252acc316e7a777a76c64cb38bcf87b9ef7a8a1bac2f05e1054e6753",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/redteam/audit.json",
+      "bytes": 161565,
+      "sha256": "648d63cd7bc3f511703479314005f753bc3f3b9416378070cbd0997aeb2bb922",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/redteam/audit.py",
+      "bytes": 8452,
+      "sha256": "35755cd9896f6d3ec5b793c8e9272f2620e5e0935d3d836be81d8fec947e4bde",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/redteam/horizon.json",
+      "bytes": 1970,
+      "sha256": "51eeeb401202190dba92ae15ed8405a51e66101f2427ef3303b7b2e1f60d6af1",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/redteam/horizon.py",
+      "bytes": 957,
+      "sha256": "9b0e61a3fa845f81f76a821a4a30ecee75932f3a4b4a8530bf6c7d71fdecd892",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/redteam/s131_late_recoveries.csv",
+      "bytes": 742,
+      "sha256": "0c9ec621f342b6583b8e97e9e999569d5c649b25a2c81c9a5583f95bd6af5015",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/redteam/s132_late_recoveries.csv",
+      "bytes": 1122,
+      "sha256": "86e24c17b04511b57f65fea620337c89cd0e6b8b521802a5732f3ef3ec9717a7",
+      "purpose": "Completed autonomous-run accounting and latency-phase reconstruction; raw-input dependency limits must be stated."
+    },
+    {
+      "path": "terminal6000_return/identity_audit.json",
+      "bytes": 51043,
+      "sha256": "617d4f56da88ebcc521975a93cda53151fb29946c9d4d90d6c19ef34e722533e",
+      "purpose": "Autonomous milestone regrade and source/native-capture provenance."
+    },
+    {
+      "path": "terminal6000_return/audit_identity.py",
+      "bytes": 5504,
+      "sha256": "7d9b0aab0cbb89c0e01a00bcfb11cb2ef09cc98d2f06ffafb7b3d51bdf26f9bb",
+      "purpose": "Autonomous milestone regrade and source/native-capture provenance."
+    },
+    {
+      "path": "terminal6000_return/evidence_receipt.json",
+      "bytes": 611,
+      "sha256": "1bfc6cc703f02e5ae4c168c24e3e8dd8ac8faab5a8a93c41bce507c7d1e03da3",
+      "purpose": "Autonomous milestone regrade and source/native-capture provenance."
+    },
+    {
+      "path": "node8_1200/milestone_20.json",
+      "bytes": 7744,
+      "sha256": "cc57f84b44e7c44e93a77771c08d523b1c34bba620d4ba8a6339319bc8e7eeb8",
+      "purpose": "Autonomous milestone regrade and source/native-capture provenance."
+    },
+    {
+      "path": "node8_1200/milestone_20.csv",
+      "bytes": 1636,
+      "sha256": "44bae19cf0c7be2f912e019675c5fe80d7759065abf45052be73c63faa515ea6",
+      "purpose": "Autonomous milestone regrade and source/native-capture provenance."
+    },
+    {
+      "path": "node8_1200/regrade_milestone.py",
+      "bytes": 2077,
+      "sha256": "287f07d48eaebe3f31fa1683b6b32436d89985469b1c8853590ee7ab246738f0",
+      "purpose": "Autonomous milestone regrade and source/native-capture provenance."
+    },
+    {
+      "path": "node8_1200/milestone_20_reproduction.json",
+      "bytes": 2196,
+      "sha256": "a71f0d6e01ba7e8f324793e36492c1f1b7b0e2a5b0f6c83d43540fcdfd3e5bbe",
+      "purpose": "Autonomous milestone regrade and source/native-capture provenance."
+    },
+    {
+      "path": "node8_1200/native/README.txt",
+      "bytes": 4925,
+      "sha256": "2058b93af1ba84c8219b34de95555ecd52a5db7d48a73779f64888e1c6fe361b",
+      "purpose": "Autonomous milestone regrade and source/native-capture provenance."
+    },
+    {
+      "path": "node8_1200/native/s132_1200/receipt.json",
+      "bytes": 10932,
+      "sha256": "5e563b8eb65c15282922edad561989d7c46f8fdca7fa8195d8b00b96d3fed906",
+      "purpose": "Autonomous milestone regrade and source/native-capture provenance."
+    },
+    {
+      "path": "node8_return2/node4_cause/README.md",
+      "bytes": 4576,
+      "sha256": "9abfe527143dc41ac23a2a9a4448eaf92040b5da0b86abdc17c3f989b7628155",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/node4_cause/console.json",
+      "bytes": 3093,
+      "sha256": "d97a6741df2feb64d2bb1f3e6f67fa8fe04d82e6a63c04fcfe5d31e15e3f20d4",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/node4_cause/findings.json",
+      "bytes": 3093,
+      "sha256": "d97a6741df2feb64d2bb1f3e6f67fa8fe04d82e6a63c04fcfe5d31e15e3f20d4",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/node4_cause/input_hashes.json",
+      "bytes": 627,
+      "sha256": "81097bae00d49e5202420db6500ba86362b50fefee726b2141ff62961e91c41c",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/node4_cause/investigate_node4.py",
+      "bytes": 8914,
+      "sha256": "9c42dfae77a3f42236bfc14177184ff60d3c698b74286244545fe1c6617cbf5e",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/node4_cause/matlab_final_release_context.json",
+      "bytes": 1682,
+      "sha256": "fd1bae4095bfbfab7ff1d360c6b8d05cd9f557729a1b5171fbd6e94c725fbf37",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/node4_cause/matlab_target_applications.json",
+      "bytes": 26872,
+      "sha256": "68390c8a2d21f39ba8b738e752ca42c7620e771f09d950ddff1c8c21a42ae1ff",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/node4_cause/native_target_applications.json",
+      "bytes": 22935,
+      "sha256": "33c785ab13e02b9ca13aa3cbf49df42cd2d313118188f314aa55541798bb6f5e",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/node4_cause/node4_enqueues_matlab.json",
+      "bytes": 82928,
+      "sha256": "2fa28b45f885223a85f52281d13ecd29690eed2a1af1cc4166f7f837290384e6",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/node4_cause/node4_enqueues_native.json",
+      "bytes": 97768,
+      "sha256": "0ab6039578edfbf2d2ab41c47256dbd4dbca5b2c2c388a935867874db3641a09",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/node4_cause/node4_queue_snapshots.json",
+      "bytes": 7084,
+      "sha256": "0c045226171b156e75fc950f14f2acc8af854a9bf91d7a37f8a539f7c0a8c5b5",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/node8_queue/README.txt",
+      "bytes": 2703,
+      "sha256": "089f3b26e1df108678e9cfc017a7bfb35eee298ee8aa5b626b51ff3e2c23eea2",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/node8_queue/audit_capacity.py",
+      "bytes": 3189,
+      "sha256": "d4e8e6edea58ce59f30bc88af62eee0f02971cc8816e04394f8bcf6c4f88d9a5",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/node8_queue/audit_prefix.py",
+      "bytes": 8356,
+      "sha256": "996a728ac3c72eec6dd0fe9b2ee7065c99fdf078ceeedb01379408a923b320b8",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/node8_queue/capacity_audit.json",
+      "bytes": 1154,
+      "sha256": "5bbdc668517d8dd1f76854f65f5d0df32b666c0e991fc88d785aec972ce1a281",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/node8_queue/observer_decoder.py",
+      "bytes": 9619,
+      "sha256": "7699bd000537777f53f3ffdb1bc524ab91762d272de45e4ee1da934c63237827",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/node8_queue/prefix_audit.json",
+      "bytes": 33671,
+      "sha256": "378168b66761d330bb36cd51a4ea51fdce0d4c6d6e65978b90bb686d9010cfec",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/redteam/AUDIT.md",
+      "bytes": 4128,
+      "sha256": "92e0d6ccd773a1dd48d695b835645b7eba1671acd9240b5a2c3a723612400cb4",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/redteam/audit.json",
+      "bytes": 2145,
+      "sha256": "c710fde880a58274f9b179b0ef5a71acc1a9d931edfe247abf1b3fa5ca852601",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/redteam/audit_retry_cause.py",
+      "bytes": 2772,
+      "sha256": "2d398ca758331f46b4e4cb9f99f6aab04286d827c0706c0d6c24ce5adfa3678a",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/redteam/audit_return.py",
+      "bytes": 9824,
+      "sha256": "e04ad65965f5c2f1fbb07223395420835a974944934c4d194693eb5d25ca02eb",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/redteam/ordered_sink_check.json",
+      "bytes": 4520,
+      "sha256": "2a679a1ed9b8895f18035ee3f67a2bd0b1e9f8f1bec0bbb93c7d1475b3688aa5",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/redteam/payload_identity_proof.json",
+      "bytes": 2977,
+      "sha256": "edd662c42bcdd626c40464a73f751273df25741976482b70c364d2be04552e34",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/redteam/physical_tx_prefix.csv",
+      "bytes": 321177,
+      "sha256": "c8e31317715220da18a34271226e15ae84ed639231b2021a69d46f2fd377d9f9",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/redteam/physical_tx_prefix_summary.json",
+      "bytes": 596,
+      "sha256": "d5d886218c1da99e28916bfd642dee09591e48eea85e394ee8ae4cfdccb4c9db",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/redteam/provenance_check.json",
+      "bytes": 66317,
+      "sha256": "a12fa3fef9f05316e04086990171ddf22a8c8093064b167db0c434b4b5c5cc6e",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/redteam/random_interval_differences.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/redteam/random_prefix_summary.json",
+      "bytes": 590,
+      "sha256": "3bca17ef991fe4ed9da72a278d3a3494a188aac143a37abb23cf3d3edb3acdae",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/redteam/retry_cause_proof.json",
+      "bytes": 8624,
+      "sha256": "2baa2e9a05d1b28d64035ba4ddfda2a34b78e4a65f74a5965a01cf4e78d38245",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/redteam/retry_matlab_rows.json",
+      "bytes": 46370,
+      "sha256": "b17612ee9ec781abf22f4b34c06a019c86ecf98f0f266d564be4479c148c9904",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/accounting/console.json",
+      "bytes": 4003,
+      "sha256": "68eea24d91a37e05537f8a8d1d5fa3ce2fce4255aa52843fded06323be34b879",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/accounting/prefix_accounting.json",
+      "bytes": 4407,
+      "sha256": "7ad006b995e8707ab4c27adb0a43ae6309d130f1cf337f72253158aebc9efa3a",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/accounting/source_prefix_accounting.csv",
+      "bytes": 752,
+      "sha256": "d9d936cd3d36309f4c942e2c99f0a4690dae2dd36563bae2c0f3ba7eab0fb8da",
+      "purpose": "895.115-second partial-run causal chain and independently reconciled prefix accounting."
+    },
+    {
+      "path": "node8_return2/REVIEW.txt",
+      "bytes": 7314,
+      "sha256": "98a47dfe626a7d9e424cbb4a24bc6e72953d4b2756ebd2c9e23d818e5cfbaed2",
+      "purpose": "Historical divergence review and full-evidence restoration instructions."
+    },
+    {
+      "path": "node8_return2/compare_prefix_accounting.py",
+      "bytes": 5459,
+      "sha256": "63f1853ead372c42882350434c49eac0ab27ef3be97de7dae87dbc8e1891b8e2",
+      "purpose": "Historical divergence review and full-evidence restoration instructions."
+    },
+    {
+      "path": "node8_return2/packaging/archive_receipt.json",
+      "bytes": 316,
+      "sha256": "ac3b4588306a182941c270744bce1ef0fbe3a359b654302cb7296dcfa8c4e6d6",
+      "purpose": "Historical divergence review and full-evidence restoration instructions."
+    },
+    {
+      "path": "node8_return2/packaging/REPRODUCE.txt",
+      "bytes": 3037,
+      "sha256": "fc2a3bb90af1fb7730ae3862a8b4b8661455db0cc3891f2cc995576ab8f999f3",
+      "purpose": "Historical divergence review and full-evidence restoration instructions."
+    },
+    {
+      "path": "node8_return2/packaging/restore_inputs.py",
+      "bytes": 2873,
+      "sha256": "3fefff1e17a2f7f1042be27b6cca826d72595ca1cfca103045405f362a3e1028",
+      "purpose": "Historical divergence review and full-evidence restoration instructions."
+    },
+    {
+      "path": "relay_custody/core_review/CUSTODY_CONTRACT.md",
+      "bytes": 3297,
+      "sha256": "4db83303fbaab824bb8837c5d81ee03240e48089fd795cc9f60b72411ca8761a",
+      "purpose": "Relay occurrence repair contract, focused test design and independent static reviews; distinguish original helper from correction."
+    },
+    {
+      "path": "relay_custody/core_review/DiscoveryMembershipNwk_occurrences.patch",
+      "bytes": 5368,
+      "sha256": "0dd1d6b57578f81c668ec75da5ae764065604c8290fac6709f07885fb29f3bce",
+      "purpose": "Relay occurrence repair contract, focused test design and independent static reviews; distinguish original helper from correction."
+    },
+    {
+      "path": "relay_custody/core_review/Layer_occurrences.patch",
+      "bytes": 5358,
+      "sha256": "5341fe924c0a2bb60a3079d04423f341cc17d49b5edabca8976e214bd0d6a7eb",
+      "purpose": "Relay occurrence repair contract, focused test design and independent static reviews; distinguish original helper from correction."
+    },
+    {
+      "path": "relay_custody/core_review/audit_core_patch.py",
+      "bytes": 2130,
+      "sha256": "46348176114a3ba27e6de19f85f0c5e28abc31e724e4957df3525a9cf3c8a46a",
+      "purpose": "Relay occurrence repair contract, focused test design and independent static reviews; distinguish original helper from correction."
+    },
+    {
+      "path": "relay_custody/core_review/core_static_review.json",
+      "bytes": 1248,
+      "sha256": "2c939d48d522c64872c6c33ec0dbeed4e7bc83ae044ab7b8affe06334b7714c5",
+      "purpose": "Relay occurrence repair contract, focused test design and independent static reviews; distinguish original helper from correction."
+    },
+    {
+      "path": "relay_custody/core_review/patch_nwk_occurrences.py",
+      "bytes": 5110,
+      "sha256": "ce3e6133ce6af7a8cf51d5183364ae90343c1ce2b73b1eff2484401cf8416e05",
+      "purpose": "Relay occurrence repair contract, focused test design and independent static reviews; distinguish original helper from correction."
+    },
+    {
+      "path": "relay_custody/accounting_review/AccountingFixture.patch",
+      "bytes": 13065,
+      "sha256": "ab1421fc4d88c3e4c29ef59d10161bf1c163d771c52ab8a46b3fa725329c1cf0",
+      "purpose": "Relay occurrence repair contract, focused test design and independent static reviews; distinguish original helper from correction."
+    },
+    {
+      "path": "relay_custody/accounting_review/NetworkSimulation.patch",
+      "bytes": 7466,
+      "sha256": "4f764e1ecf9ce1e280fa8fd3422ce2409b7391460c9357b6f7c39825e63ac55c",
+      "purpose": "Relay occurrence repair contract, focused test design and independent static reviews; distinguish original helper from correction."
+    },
+    {
+      "path": "relay_custody/accounting_review/README.md",
+      "bytes": 2950,
+      "sha256": "46acf4f3a1ad320b8af9e99560d6804990ad4d585657c86c15116baf31728b8e",
+      "purpose": "Relay occurrence repair contract, focused test design and independent static reviews; distinguish original helper from correction."
+    },
+    {
+      "path": "relay_custody/accounting_review/TerminalSimulation.patch",
+      "bytes": 7488,
+      "sha256": "2c201e8d05dd179749815b50a48ae937c44e7bda5612cefa39bc7931753331b6",
+      "purpose": "Relay occurrence repair contract, focused test design and independent static reviews; distinguish original helper from correction."
+    },
+    {
+      "path": "relay_custody/accounting_review/accounting_static.json",
+      "bytes": 879,
+      "sha256": "d13e62bab729d45efeaf8bd5f9084a4a4d93a22419c65c3001c424f5a03d93f3",
+      "purpose": "Relay occurrence repair contract, focused test design and independent static reviews; distinguish original helper from correction."
+    },
+    {
+      "path": "relay_custody/accounting_review/integratedAccountingPreflight.patch",
+      "bytes": 1551,
+      "sha256": "248a7033d7b9e3c72c63e9d1f8b6a2b2f6a61f0654c404915565bc38dd7a48c4",
+      "purpose": "Relay occurrence repair contract, focused test design and independent static reviews; distinguish original helper from correction."
+    },
+    {
+      "path": "relay_custody/test_review/README.md",
+      "bytes": 3044,
+      "sha256": "b05acac658ea8aa4ceca1ce21a3876b72ce9d1f8453a3fd9e735b18978ee7f73",
+      "purpose": "Relay occurrence repair contract, focused test design and independent static reviews; distinguish original helper from correction."
+    },
+    {
+      "path": "relay_custody/test_review/static_tests.json",
+      "bytes": 1017,
+      "sha256": "3b0eaaabf8af3c6c691a72d00a04ce72744b9f1fb197178f4239d8eca5e753eb",
+      "purpose": "Relay occurrence repair contract, focused test design and independent static reviews; distinguish original helper from correction."
+    },
+    {
+      "path": "relay_custody/test_review/static_tests.py",
+      "bytes": 1266,
+      "sha256": "f8815b05e82f7a1344dd2332af837dc746e75046a878b26a440420fb1f3886fe",
+      "purpose": "Relay occurrence repair contract, focused test design and independent static reviews; distinguish original helper from correction."
+    },
+    {
+      "path": "relay_custody/runner_review/README.md",
+      "bytes": 1782,
+      "sha256": "5204070b0295f2f53b62356c67511b2053719ed0434aaaa85ec9bbdb21ac6270",
+      "purpose": "Relay occurrence repair contract, focused test design and independent static reviews; distinguish original helper from correction."
+    },
+    {
+      "path": "relay_custody/runner_review/audit_runner.py",
+      "bytes": 4231,
+      "sha256": "82963c77cdb9051c79ec75fb6eb541cf34b2119504c3f5d5cdf24b03226fe948",
+      "purpose": "Relay occurrence repair contract, focused test design and independent static reviews; distinguish original helper from correction."
+    },
+    {
+      "path": "relay_custody/runner_review/manifest_requirements.json",
+      "bytes": 906,
+      "sha256": "555ef7932fc0ca87e3abe6a73ec79d74d08c5cbe6073784f88c3119f48e5fcec",
+      "purpose": "Relay occurrence repair contract, focused test design and independent static reviews; distinguish original helper from correction."
+    },
+    {
+      "path": "relay_custody/runner_review/runner_static.json",
+      "bytes": 2459,
+      "sha256": "308dc4e8e222c4b23fe7fa0cfcf8881f8bf834d41e91d544339d6c16be1658aa",
+      "purpose": "Relay occurrence repair contract, focused test design and independent static reviews; distinguish original helper from correction."
+    },
+    {
+      "path": "relay_custody/release_review/build_independent_review.py",
+      "bytes": 6053,
+      "sha256": "aeb0959db48a507a95eaf7964e458efc31eaff3985ed7f73aff4424d61428fcf",
+      "purpose": "Relay occurrence repair contract, focused test design and independent static reviews; distinguish original helper from correction."
+    },
+    {
+      "path": "relay_custody/release_review/independent_review.json",
+      "bytes": 6148,
+      "sha256": "e02ab204379633b5495aa527a6e1264909d55e09c5d6b65f5398fad619d7c309",
+      "purpose": "Relay occurrence repair contract, focused test design and independent static reviews; distinguish original helper from correction."
+    },
+    {
+      "path": "relay_custody/release_review/initial_scope.md",
+      "bytes": 2798,
+      "sha256": "7572565ce92cce1a593e6d344222118e233ad3173b4604b1297777a7e8838ded",
+      "purpose": "Relay occurrence repair contract, focused test design and independent static reviews; distinguish original helper from correction."
+    },
+    {
+      "path": "relay_custody/release_review/package_review.json",
+      "bytes": 1559,
+      "sha256": "f8a250f3aee7f61af37d206a485a55e1e5ec45d634223f0ae94ebd4843c20377",
+      "purpose": "Relay occurrence repair contract, focused test design and independent static reviews; distinguish original helper from correction."
+    },
+    {
+      "path": "relay_custody/packaging/complete_source_change.patch",
+      "bytes": 90742,
+      "sha256": "79ec78553aed3a3b6cd34bc035703c3f4e626f1e0adbceede1010edfd6b07554",
+      "purpose": "Patch lineage and corrected test-helper boundary, without duplicate issued kit ZIPs."
+    },
+    {
+      "path": "relay_custody/packaging/source_package_audit.json",
+      "bytes": 105349,
+      "sha256": "09894a5824d917672cf18b2a361d72d8a1beee699f36b4906f244aa82ea8fb0e",
+      "purpose": "Patch lineage and corrected test-helper boundary, without duplicate issued kit ZIPs."
+    },
+    {
+      "path": "relay_return/REVIEW.txt",
+      "bytes": 2895,
+      "sha256": "05683fddc5014cbc76dad7a18dbdf890fa107152bea09e6b0fdb02fe6e3bfeb7",
+      "purpose": "Patch lineage and corrected test-helper boundary, without duplicate issued kit ZIPs."
+    },
+    {
+      "path": "relay_return/input_receipt.json",
+      "bytes": 184,
+      "sha256": "b505b757f95e76d1018a9eb7fc953c30fb0188fd4c670cbafab659a0b759a8a9",
+      "purpose": "Patch lineage and corrected test-helper boundary, without duplicate issued kit ZIPs."
+    },
+    {
+      "path": "relay_return/corrected_package_receipt.json",
+      "bytes": 624,
+      "sha256": "88ae16822e4539a001f706d5be0094d8974ff9d4fc88b99ccb16e500b200d865",
+      "purpose": "Patch lineage and corrected test-helper boundary, without duplicate issued kit ZIPs."
+    },
+    {
+      "path": "relay_return/test_helper_correction.patch",
+      "bytes": 2248,
+      "sha256": "fdbbae56138ea35f11a167430a45e4cba49813ab040ff7ab4f322b18c73dcf70",
+      "purpose": "Patch lineage and corrected test-helper boundary, without duplicate issued kit ZIPs."
+    },
+    {
+      "path": "relay_return/review_archive_receipt.json",
+      "bytes": 228,
+      "sha256": "c47b0f9840fb4afd003630f38e2a3a67bbf86a9f2efea110d08d79b1912ef860",
+      "purpose": "Patch lineage and corrected test-helper boundary, without duplicate issued kit ZIPs."
+    },
+    {
+      "path": "relay_return/provenance/README.txt",
+      "bytes": 1913,
+      "sha256": "94cc793568aa067ca05365f848b865f4f4edc0f1140841fdf56e68399488d3a9",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/provenance/audit.json",
+      "bytes": 6799,
+      "sha256": "d26fcb86ca2efee330c7ee14bc758acf334f5e16404137ec5efb3f36bfdaf7c0",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/provenance/audit_return.py",
+      "bytes": 9254,
+      "sha256": "25fa5c8723107b4051527188a20ee89037d159576f4af2b38bcd834c22a05f96",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/review/REVIEW.txt",
+      "bytes": 1321,
+      "sha256": "f808c98989de963570af22d303b23bda191ee1503cb5280e2f00c09e766d5a35",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/review/audit.json",
+      "bytes": 3715,
+      "sha256": "50bcb27f330720314896b01b7ece8098bf13d98a73345585b49306a8347ca775",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/S132_1200/case_summary.json",
+      "bytes": 15594,
+      "sha256": "cfc388cd9e829cf105320bc41bfb3a6dd152f36c3ab9625c5fa0a88fe157cb06",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/S132_1200/import_preflight/preflight.json",
+      "bytes": 12576,
+      "sha256": "b373c2c314ba6eebf7f4c9aaa4144905eeaf79bf85dfc99b8da50473431b91e0",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/S132_1200/import_preflight/random_requests.jsonl",
+      "bytes": 727,
+      "sha256": "12d88dcacdaf661ee70de581cee6918a8938f777cec596286f2d8da7f4eb3d6d",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/check_preflight/check_gate_preflight.json",
+      "bytes": 2390,
+      "sha256": "108d56caff240984364005b8e6451c371bf651358feb38551908a5fd8d6b7b06",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/console.log",
+      "bytes": 4596,
+      "sha256": "642dbb6a66c5a55bd8292ebaa7ae25490630efb736812610ad8404b9a3144547",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/feedback_preflight/feedback_identity_preflight.json",
+      "bytes": 2456,
+      "sha256": "70474578f6016d2a08cbc72d1718f2e855ae0596e1040b8178c4ddc6f1c01b76",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/identity_preflight/discovery_identity_preflight.json",
+      "bytes": 1779,
+      "sha256": "7fdf2929a4bee98ea66feddbde56e767e0f797215715dbe9e7cac4e5789081d5",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/import_preflight/preflight.json",
+      "bytes": 515,
+      "sha256": "474bf14c7dfcc2ad26bee3ad4a54a9f9d9ccf7ed37116a2343ffad27d5dc9ef6",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/import_preflight/random_requests.jsonl",
+      "bytes": 727,
+      "sha256": "12d88dcacdaf661ee70de581cee6918a8938f777cec596286f2d8da7f4eb3d6d",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/cutoff/NodeHopStatistics.csv",
+      "bytes": 785,
+      "sha256": "d28e23ad6eaf25a88575b663285984d921d6efd3eb495387c3080faf5f2ec42f",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/cutoff/NodeMacStatistics.csv",
+      "bytes": 348,
+      "sha256": "a98c16ac5eb02174dda98d9b4f5397c2d2bdd073e0f05270d17dbfcda2dbe3d9",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/cutoff/NodeNwkStatistics.csv",
+      "bytes": 579,
+      "sha256": "e007eff5c2ff63c6c36fb7e162209469a495a462f57cad0fdc25df059b9a2548",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/cutoff/NodeStatistics.csv",
+      "bytes": 102,
+      "sha256": "cfc803abdf122c9dd33dc341debae68d11aaceb8cf1b7bb4612674a68f9d94c2",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/cutoff/ProtocolTrace.csv",
+      "bytes": 1349,
+      "sha256": "6117c24446b6ef0b7437b2eb6cc7ffc662698d61766348e184453022611adcff",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/cutoff/accounting_case.json",
+      "bytes": 15705,
+      "sha256": "994124dff253c02066f205a0e665ba2fda701da96409bef6952d464765924e00",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/cutoff/configuration.json",
+      "bytes": 8225,
+      "sha256": "623bb75ee59eebb39d27b3237d69b2de59ab7a91d9da722c697d20eae86d00e1",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/cutoff/metadata.json",
+      "bytes": 3016,
+      "sha256": "7ba94f5ec9d93e0261e80164dc9b2b2cbb302e98849d1d4c4559d1d43167448d",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/cutoff/ordered_events.jsonl",
+      "bytes": 61749,
+      "sha256": "2e4ff4978c082e6a823a2a823eb9d07aebdec748ce6b85412963fdccd8578965",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/cutoff/partial_statistics.json",
+      "bytes": 664,
+      "sha256": "d2115b041c25b26bf6952db2cff80d56e487a03ac15eec713bbebfbde8127287",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/cutoff/protocol_trace.csv",
+      "bytes": 1349,
+      "sha256": "6117c24446b6ef0b7437b2eb6cc7ffc662698d61766348e184453022611adcff",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/cutoff/random_requests.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/cutoff/statistics.json",
+      "bytes": 972,
+      "sha256": "3680016d8ee2a4f0c4a49beb8d099133606821266f2e511973ed4d8e0e4f625c",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/final/NodeHopStatistics.csv",
+      "bytes": 785,
+      "sha256": "ac853b84bf615078ce6a35370de123771838760973689853cb586339262691fa",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/final/NodeMacStatistics.csv",
+      "bytes": 348,
+      "sha256": "0dff33d5a5a889e9fcb6b5738886081b1e4da6c1ec17a0d49bb56cdb4e37f89c",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/final/NodeNwkStatistics.csv",
+      "bytes": 579,
+      "sha256": "d959a7c35ec8a586be8c73cdf3bb6ca891e1138ee45d4814218841f25d60c2d6",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/final/NodeStatistics.csv",
+      "bytes": 102,
+      "sha256": "5e31229c3c68b9fd78949f80d9dd76cc1832c174d07e8f58c06023a878e01a23",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/final/ProtocolTrace.csv",
+      "bytes": 1654,
+      "sha256": "d47a34e1a4cd98f6bbd669aa92407842cf073b57e13dd2473e82f0844a7d9a28",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/final/accounting_case.json",
+      "bytes": 27363,
+      "sha256": "f2e10a5c16c26cc9f092f7a2e36f63154a74b2fe2ed1f423fbba24cacd04fe89",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/final/configuration.json",
+      "bytes": 8222,
+      "sha256": "e1a796f4b4e748e959bd58bdad3a6e670c5c40ab530dc597e4000f4a879fd8dc",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/final/metadata.json",
+      "bytes": 3016,
+      "sha256": "5cea1ad6c3d191365190d34401e7f4e4f520a180fba0146398dee075547a8b8d",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/final/ordered_events.jsonl",
+      "bytes": 79809,
+      "sha256": "c4a9711d8ae7e1f64224f83e90e242ec938cf50278953aad39070fdcecb23a4b",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/final/partial_statistics.json",
+      "bytes": 666,
+      "sha256": "84704dcd21ff7072ac224435ce95b68defdbbc0f2f785fe6e859dfc589717e05",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/final/protocol_trace.csv",
+      "bytes": 1654,
+      "sha256": "d47a34e1a4cd98f6bbd669aa92407842cf073b57e13dd2473e82f0844a7d9a28",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/final/random_requests.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/final/statistics.json",
+      "bytes": 960,
+      "sha256": "d52539238d8d3bc234975dd3d77e5a4a107d29abf0dccdce5173837dc80f76d5",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/integrated_accounting_preflight.json",
+      "bytes": 119949,
+      "sha256": "fa54798ffc7ee622c6a4d31058f769549b9abb4e48f09342c0ad2b1dd1be09cf",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/relay/NodeHopStatistics.csv",
+      "bytes": 866,
+      "sha256": "46f923378af48efdf73225be7cce8460f9173a35ae3b5bb44ea05d5b5db84045",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/relay/NodeMacStatistics.csv",
+      "bytes": 386,
+      "sha256": "b93919ca779aae10a7bb52e667b231ef388621a53e4dbdade86e3dd7fe1dbbcb",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/relay/NodeNwkStatistics.csv",
+      "bytes": 634,
+      "sha256": "ca884761bd8c6a6e23d4d08336629655dbd21584da8f94786dd5eb3226ff1041",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/relay/NodeStatistics.csv",
+      "bytes": 117,
+      "sha256": "31ca3458b4122ac1140db8e689af6712657dad189858e039b8913d0831af7a22",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/relay/ProtocolTrace.csv",
+      "bytes": 3056,
+      "sha256": "93627013af162105b9619e468244c817276be70902b9c105b0f39f0bf0cda434",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/relay/accounting_case.json",
+      "bytes": 36981,
+      "sha256": "2e0be276dd8550ce0852574a77fe2eb50d2bdae55c40b8c6a477ceaa12ba4c5f",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/relay/configuration.json",
+      "bytes": 9190,
+      "sha256": "8320d40e4bc873eac9160544358cd739862630bd144ad9e7b1088436ab713156",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/relay/metadata.json",
+      "bytes": 3017,
+      "sha256": "228cbb5e67fdb31553f8cba18985a9e30eb5fabb3d51e7dfac383a1957dd838c",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/relay/ordered_events.jsonl",
+      "bytes": 147137,
+      "sha256": "9537502186e7084119beb60da887fe59f2b1f2a0d7f2022066f6d90b9a7a9166",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/relay/partial_statistics.json",
+      "bytes": 669,
+      "sha256": "dad531728b1bfc81e456d1e7a10c614e344c66f9f8c9189f2e9968359cbdf74c",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/relay/protocol_trace.csv",
+      "bytes": 3056,
+      "sha256": "93627013af162105b9619e468244c817276be70902b9c105b0f39f0bf0cda434",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/relay/random_requests.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/relay/statistics.json",
+      "bytes": 966,
+      "sha256": "b3d2902b86e1ae62761f7ff8ac8409e76ec409f8aee36a02e521651c267a4c8e",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/siblings/NodeHopStatistics.csv",
+      "bytes": 866,
+      "sha256": "527a84ea856c50bcb8d5e16724b6acbad4fccb5eb552ee2a6dd82acccf27ac58",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/siblings/NodeMacStatistics.csv",
+      "bytes": 385,
+      "sha256": "49c6f1e0ca157ad5f1c3f255ea41dee695dd9b98daa165614cc3838c7cc4e3b5",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/siblings/NodeNwkStatistics.csv",
+      "bytes": 634,
+      "sha256": "3e230f570fc3aed906e6b5d6b5da34f419ce499352d2cd2457f8d6cc6b47b47b",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/siblings/NodeStatistics.csv",
+      "bytes": 117,
+      "sha256": "4d5d7de36766c5ad6a58022458593ac59d20463abc6c4dc5291ef0dbba3e704d",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/siblings/ProtocolTrace.csv",
+      "bytes": 2434,
+      "sha256": "8042b2698772aba42a4ed0156c2489d14996234b03b93e4df6dc6313eaaee1ed",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/siblings/accounting_case.json",
+      "bytes": 18932,
+      "sha256": "b3b2095812730037297021b9337a42fd9ea1377b5fc1f812bd7be1802344e1ff",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/siblings/configuration.json",
+      "bytes": 9192,
+      "sha256": "9cb7650e20c7979af16fa6f8e0a76083148fdf81961cb958d1e766612922f183",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/siblings/metadata.json",
+      "bytes": 3017,
+      "sha256": "2f6d934e9dffb4c7841cac47ba94713421d928984ff34abd60486c916c7a995a",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/siblings/ordered_events.jsonl",
+      "bytes": 108791,
+      "sha256": "ad702bc31e1883b31c9780476670e2d5c4c3dc41554f47a30377b39cd2a99822",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/siblings/partial_statistics.json",
+      "bytes": 668,
+      "sha256": "3f8000567cdfb2262580b98595425be70c64df7a27ad0f35779da0c2f1fefb4f",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/siblings/protocol_trace.csv",
+      "bytes": 2434,
+      "sha256": "8042b2698772aba42a4ed0156c2489d14996234b03b93e4df6dc6313eaaee1ed",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/siblings/random_requests.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/integrated_accounting/siblings/statistics.json",
+      "bytes": 964,
+      "sha256": "ee29a69c063186c4fd1775c364e4a2e8aa5c81aa8b23af42ab0d55d04a2eca94",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/key_preflight/key_request_preflight.json",
+      "bytes": 2442,
+      "sha256": "1d6c8d60ce1d0a75c46455f44171f9b35586f0ba9504ef3fb8bca4af1ace5862",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/lifecycle_preflight/discovery_lifecycle_preflight.json",
+      "bytes": 2620,
+      "sha256": "639b092be4654e28a9979926644f2af19e103dba7039fd23f81772ba45d9f471",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/membership_preflight/discovery_membership_preflight.json",
+      "bytes": 1801,
+      "sha256": "1b56c793535958044f2350650e2bdda4e674e1edbfe5829502d365a46cbf3640",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/no_path_preflight/no_path_wire_preflight.json",
+      "bytes": 1006,
+      "sha256": "32b4f428ecc06ff41df803eda9f786ab4b2950e8408fd51904c6a607869e5106",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/population_preflight/bridge/random_requests.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/population_preflight/population_preflight.json",
+      "bytes": 1764,
+      "sha256": "57fbbaa51ee58a5e7f25a1a60c3a3555e8207f87a52f4bf965c4588c754cecc8",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/provenance.json",
+      "bytes": 150856,
+      "sha256": "2ca156f855bc5871455a5b82772201e5e0fa3e3cb21567bc47ee6aebbacde0fd",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/receiver_order_preflight/ascending/probe_result.json",
+      "bytes": 1247,
+      "sha256": "33fa7e69ab820281d968d548492e67de218a8bee8d14a10bf9d396ad4d232b7e",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/receiver_order_preflight/ascending/public_phy_callbacks.json",
+      "bytes": 10108,
+      "sha256": "ad2771099b0167f9f2189e9dd821baeb61131c65ed9c2b5f614d684c9357e235",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/receiver_order_preflight/ascending/random_requests.jsonl",
+      "bytes": 1553,
+      "sha256": "624e62347b264b6d3ab969821ef97093e71e497d70093c00c94c3a65941098eb",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/receiver_order_preflight/receiver_order_preflight.json",
+      "bytes": 7728,
+      "sha256": "2ac0f341d7fe0e2367aa53ab0f1e01e2ac18048136c3075f385e90bf021f5263",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/receiver_order_preflight/reverse/probe_result.json",
+      "bytes": 1247,
+      "sha256": "c6019818aa4f7eea4e7e224721a39b894172ad7e190b421b5a55f9d89d09b5b3",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/receiver_order_preflight/reverse/public_phy_callbacks.json",
+      "bytes": 10108,
+      "sha256": "f7c967850e0dfcb8e7a73c9758e02b1139af26c8a719248ee03870722e47aaf1",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/receiver_order_preflight/reverse/random_requests.jsonl",
+      "bytes": 1553,
+      "sha256": "2caf5842787fc392dace6a2fe3c5e51fe9d7568136fb6705a3a0d82288b16f6b",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_error.json",
+      "bytes": 1269,
+      "sha256": "c84218d71518d62e66f3eb960cde2b9ced5b8f19fe364ba2932dda608b189625",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/candidate_ack_duplicate_stays_filtered/configuration.json",
+      "bytes": 14827,
+      "sha256": "109baa352fca8a51ce78f3e855753f6f5c0e803c7ba1bb3ba3d5507bd9147215",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/candidate_ack_duplicate_stays_filtered/public_custody_trace.json",
+      "bytes": 9251,
+      "sha256": "b4bc157da2c0e660004b25c00bf6d2f7d8f4553581e8a7e499a44f2d4f051c8e",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/candidate_captured_nsdp_25_26_27/configuration.json",
+      "bytes": 14827,
+      "sha256": "109baa352fca8a51ce78f3e855753f6f5c0e803c7ba1bb3ba3d5507bd9147215",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/candidate_captured_nsdp_25_26_27/public_custody_trace.json",
+      "bytes": 87346,
+      "sha256": "a10848672d57249b0b385c68a60c885684470b1e3913f2b9369d98c3eb0f3dce",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/candidate_dack_release_hold_and_new_copy/configuration.json",
+      "bytes": 14826,
+      "sha256": "b6b51c1061cc956bfdf99bba2712d030f4d1b9787d0719be9d309855d3c6120d",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/candidate_dack_release_hold_and_new_copy/public_custody_trace.json",
+      "bytes": 37594,
+      "sha256": "30be81e748e764d355a58a028afb2747e5fe1bdaf5364557eed6fbe718aaffdf",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/candidate_fifo_distinct_sequences_and_ack_ownership/configuration.json",
+      "bytes": 14826,
+      "sha256": "b6b51c1061cc956bfdf99bba2712d030f4d1b9787d0719be9d309855d3c6120d",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/candidate_fifo_distinct_sequences_and_ack_ownership/public_custody_trace.json",
+      "bytes": 36591,
+      "sha256": "3699a225290fbcd9a9d1f98154f61d00b76a7e3c9219c1c42e9823c196c5fedf",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/candidate_final_sink_delivers_unique_application_once/configuration.json",
+      "bytes": 14827,
+      "sha256": "109baa352fca8a51ce78f3e855753f6f5c0e803c7ba1bb3ba3d5507bd9147215",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/candidate_final_sink_delivers_unique_application_once/public_custody_trace.json",
+      "bytes": 11960,
+      "sha256": "42d6640d0418c2216d421c2f99d29558c1d98c27083f1ab3800859211b5d36d0",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/candidate_nested_send_reject_does_not_reset_sibling/configuration.json",
+      "bytes": 14826,
+      "sha256": "b6b51c1061cc956bfdf99bba2712d030f4d1b9787d0719be9d309855d3c6120d",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/candidate_nested_send_reject_does_not_reset_sibling/public_custody_trace.json",
+      "bytes": 16390,
+      "sha256": "0a854cfd0e7be94cf52cdc049c15228c1447aad84d87661562b7a1659f4ba095",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/candidate_no_ack_sent_releases_only_its_copy/configuration.json",
+      "bytes": 14827,
+      "sha256": "109baa352fca8a51ce78f3e855753f6f5c0e803c7ba1bb3ba3d5507bd9147215",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/candidate_no_ack_sent_releases_only_its_copy/public_custody_trace.json",
+      "bytes": 22799,
+      "sha256": "367816cfbf29855b5d267938dfc7e90fc5f1feb2e9aa1635a78df91732e31dc1",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/candidate_out_of_order_and_invalid_release_tokens/configuration.json",
+      "bytes": 14826,
+      "sha256": "b6b51c1061cc956bfdf99bba2712d030f4d1b9787d0719be9d309855d3c6120d",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/candidate_out_of_order_and_invalid_release_tokens/public_custody_trace.json",
+      "bytes": 22297,
+      "sha256": "fa9b057bb55fbb3f5e098a61d9dd0911842694ebbc95c9de6586c37f6a3eafb1",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/candidate_queue_full_rejection_then_same_sequence_retry/configuration.json",
+      "bytes": 14826,
+      "sha256": "b6b51c1061cc956bfdf99bba2712d030f4d1b9787d0719be9d309855d3c6120d",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/candidate_queue_full_rejection_then_same_sequence_retry/public_custody_trace.json",
+      "bytes": 10522,
+      "sha256": "dccd245a6889677212d135785d658b0bebe6d7df345f0f44bca0a6f48f07f55f",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/candidate_retry_failure_keeps_sibling/configuration.json",
+      "bytes": 14826,
+      "sha256": "b6b51c1061cc956bfdf99bba2712d030f4d1b9787d0719be9d309855d3c6120d",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/candidate_retry_failure_keeps_sibling/public_custody_trace.json",
+      "bytes": 27455,
+      "sha256": "dde30c63f1827cd3a80ad6a0e4bd62348f8768b9d5487b7e4eb8e52a0017fa43",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/candidate_upstream_token_replaced/configuration.json",
+      "bytes": 14826,
+      "sha256": "b6b51c1061cc956bfdf99bba2712d030f4d1b9787d0719be9d309855d3c6120d",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/candidate_upstream_token_replaced/public_custody_trace.json",
+      "bytes": 9467,
+      "sha256": "21462c7ca2c643c97f8c5026c83268236b30fe45d82de2795ca21c2493c297fd",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/production_ack_duplicate_stays_filtered/configuration.json",
+      "bytes": 14827,
+      "sha256": "109baa352fca8a51ce78f3e855753f6f5c0e803c7ba1bb3ba3d5507bd9147215",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/production_ack_duplicate_stays_filtered/public_custody_trace.json",
+      "bytes": 9251,
+      "sha256": "b4bc157da2c0e660004b25c00bf6d2f7d8f4553581e8a7e499a44f2d4f051c8e",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/production_captured_nsdp_25_26_27/configuration.json",
+      "bytes": 14827,
+      "sha256": "109baa352fca8a51ce78f3e855753f6f5c0e803c7ba1bb3ba3d5507bd9147215",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/production_captured_nsdp_25_26_27/public_custody_trace.json",
+      "bytes": 87346,
+      "sha256": "a10848672d57249b0b385c68a60c885684470b1e3913f2b9369d98c3eb0f3dce",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/production_dack_release_hold_and_new_copy/configuration.json",
+      "bytes": 14826,
+      "sha256": "b6b51c1061cc956bfdf99bba2712d030f4d1b9787d0719be9d309855d3c6120d",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/production_dack_release_hold_and_new_copy/public_custody_trace.json",
+      "bytes": 37594,
+      "sha256": "30be81e748e764d355a58a028afb2747e5fe1bdaf5364557eed6fbe718aaffdf",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/production_fifo_distinct_sequences_and_ack_ownership/configuration.json",
+      "bytes": 14826,
+      "sha256": "b6b51c1061cc956bfdf99bba2712d030f4d1b9787d0719be9d309855d3c6120d",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/production_fifo_distinct_sequences_and_ack_ownership/public_custody_trace.json",
+      "bytes": 36591,
+      "sha256": "3699a225290fbcd9a9d1f98154f61d00b76a7e3c9219c1c42e9823c196c5fedf",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/production_final_sink_delivers_unique_application_once/configuration.json",
+      "bytes": 14827,
+      "sha256": "109baa352fca8a51ce78f3e855753f6f5c0e803c7ba1bb3ba3d5507bd9147215",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/production_final_sink_delivers_unique_application_once/public_custody_trace.json",
+      "bytes": 11960,
+      "sha256": "42d6640d0418c2216d421c2f99d29558c1d98c27083f1ab3800859211b5d36d0",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/production_nested_send_reject_does_not_reset_sibling/configuration.json",
+      "bytes": 14826,
+      "sha256": "b6b51c1061cc956bfdf99bba2712d030f4d1b9787d0719be9d309855d3c6120d",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/production_nested_send_reject_does_not_reset_sibling/public_custody_trace.json",
+      "bytes": 16390,
+      "sha256": "0a854cfd0e7be94cf52cdc049c15228c1447aad84d87661562b7a1659f4ba095",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/production_no_ack_sent_releases_only_its_copy/configuration.json",
+      "bytes": 14827,
+      "sha256": "109baa352fca8a51ce78f3e855753f6f5c0e803c7ba1bb3ba3d5507bd9147215",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/production_no_ack_sent_releases_only_its_copy/public_custody_trace.json",
+      "bytes": 22799,
+      "sha256": "367816cfbf29855b5d267938dfc7e90fc5f1feb2e9aa1635a78df91732e31dc1",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/production_out_of_order_and_invalid_release_tokens/configuration.json",
+      "bytes": 14826,
+      "sha256": "b6b51c1061cc956bfdf99bba2712d030f4d1b9787d0719be9d309855d3c6120d",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/production_out_of_order_and_invalid_release_tokens/public_custody_trace.json",
+      "bytes": 22297,
+      "sha256": "fa9b057bb55fbb3f5e098a61d9dd0911842694ebbc95c9de6586c37f6a3eafb1",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/production_queue_full_rejection_then_same_sequence_retry/configuration.json",
+      "bytes": 14826,
+      "sha256": "b6b51c1061cc956bfdf99bba2712d030f4d1b9787d0719be9d309855d3c6120d",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/production_queue_full_rejection_then_same_sequence_retry/public_custody_trace.json",
+      "bytes": 10522,
+      "sha256": "dccd245a6889677212d135785d658b0bebe6d7df345f0f44bca0a6f48f07f55f",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/production_retry_failure_keeps_sibling/configuration.json",
+      "bytes": 14826,
+      "sha256": "b6b51c1061cc956bfdf99bba2712d030f4d1b9787d0719be9d309855d3c6120d",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/production_retry_failure_keeps_sibling/public_custody_trace.json",
+      "bytes": 27455,
+      "sha256": "dde30c63f1827cd3a80ad6a0e4bd62348f8768b9d5487b7e4eb8e52a0017fa43",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/production_upstream_token_replaced/configuration.json",
+      "bytes": 14826,
+      "sha256": "b6b51c1061cc956bfdf99bba2712d030f4d1b9787d0719be9d309855d3c6120d",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/production_upstream_token_replaced/public_custody_trace.json",
+      "bytes": 9467,
+      "sha256": "21462c7ca2c643c97f8c5026c83268236b30fe45d82de2795ca21c2493c297fd",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/relay_custody_preflight/relay_custody_preflight.json",
+      "bytes": 232678,
+      "sha256": "93a6d690ddbdf5761b2ea95d3764f4cc4592955043de660654745b477257017e",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/report.json",
+      "bytes": 645666,
+      "sha256": "020652847eb689938c6215aef96807dbcf4af7db274dc1c576aa1d535ed6701d",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/request_preflight/request_wire_preflight.json",
+      "bytes": 1808,
+      "sha256": "ab87f932608b7cb29b2400369501d2b029d64cbcd7688ccdbdc17ad3b929d933",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/retry_preflight/actual_tx_mac/random_requests.jsonl",
+      "bytes": 740,
+      "sha256": "9795bd542dfa74f1691ebcbc6642dc99216e0dbef8eb3eca57f5740ed27f75f7",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/retry_preflight/native_provisional_mac/random_requests.jsonl",
+      "bytes": 740,
+      "sha256": "9795bd542dfa74f1691ebcbc6642dc99216e0dbef8eb3eca57f5740ed27f75f7",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/retry_preflight/retry_policy_preflight.json",
+      "bytes": 9691,
+      "sha256": "bde2e7f3b5aa3369235a393a76d1dbbce9989241deb558e5d50c71460a08c3b4",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/route_preflight/route_admission_preflight.json",
+      "bytes": 2040,
+      "sha256": "d7e39f120cdeaf099c30c2a28dd963465ab88ab530cb59d750467fd80e1affbd",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/candidate_actual/public_callback_trace.json",
+      "bytes": 20311,
+      "sha256": "4906cf8637575c550756796939d7b7266ac51939e1e551fa3846d848e2df7f85",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/candidate_actual/random_requests.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/candidate_native/public_callback_trace.json",
+      "bytes": 25144,
+      "sha256": "033754876f50f711a82872159bbaed58f2d2a7ec3a6b5f993ee3e5a9e00bf3c1",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/candidate_native/random_requests.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/control_expiry/public_callback_trace.json",
+      "bytes": 14852,
+      "sha256": "d79705b22f7183f255686eb88990b55cbd51ab8d55cda36467f7bb9a52342b31",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/control_expiry/random_requests.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/cutoff/public_callback_trace.json",
+      "bytes": 25144,
+      "sha256": "033754876f50f711a82872159bbaed58f2d2a7ec3a6b5f993ee3e5a9e00bf3c1",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/cutoff/random_requests.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/exact_ack/public_callback_trace.json",
+      "bytes": 25472,
+      "sha256": "5d97cacffb6ac26dc9ad7770f9c4485ddde84b8617eae3acfc7f9f064420b03b",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/exact_ack/random_requests.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/fallback/public_callback_trace.json",
+      "bytes": 25142,
+      "sha256": "fde1aa16901d3ad3e52645fc2cbed715647c693002aa0be5f9da24ac81f8f0cf",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/fallback/random_requests.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/live_dack/public_callback_trace.json",
+      "bytes": 14018,
+      "sha256": "88738ba8cbbfddc599a836682424420eb5b7e0d924bec82284faa966e573e7eb",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/live_dack/random_requests.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/old_actual/public_callback_trace.json",
+      "bytes": 20311,
+      "sha256": "4906cf8637575c550756796939d7b7266ac51939e1e551fa3846d848e2df7f85",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/old_actual/random_requests.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/old_native/public_callback_trace.json",
+      "bytes": 25308,
+      "sha256": "9903cb1a0903235a0385eb71da04d16bcea72ec9f73efda51d9e85f502aa46cf",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/old_native/random_requests.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/overlap/public_callback_trace.json",
+      "bytes": 8082,
+      "sha256": "0040523cd1540e2ecffe9ecc0ad20c6401593eaf2da5ecdf86e8f3cc71ff7906",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/overlap/random_requests.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/real_drain/public_callback_trace.json",
+      "bytes": 44223,
+      "sha256": "1e1e3f34f626c0440d339c92b4b777cbe7b4a099dcb3aef4e3fbccd2d5def244",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/real_drain/random_requests.jsonl",
+      "bytes": 751,
+      "sha256": "7a89f0e24427097be627958b8260c4e4d96f54d3c4c184bd36433f0a5deaad24",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/rejected_retry/public_callback_trace.json",
+      "bytes": 11044,
+      "sha256": "574954e8087e75e39d3d8fb07f0a1b83229e5c7216fb45b4c1f9d20b641352fd",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/rejected_retry/random_requests.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/routing_exact/public_callback_trace.json",
+      "bytes": 9545,
+      "sha256": "f26fee885ee81119549335e908dc2ae8408c32a043d8fce0a2e7218a65e3cfa7",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/routing_exact/random_requests.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/routing_window/public_callback_trace.json",
+      "bytes": 7172,
+      "sha256": "e2b917f48d6ff4a00cad47b34bb2acb1839d7d12ae27e1d94c3a43aac07f0e27",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/routing_window/random_requests.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/single_dack/public_callback_trace.json",
+      "bytes": 25144,
+      "sha256": "60d7c5fc419c92430460c358d50560d22e3eace2018654f81bedded1bcd42db6",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/single_dack/random_requests.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/terminal_preflight.json",
+      "bytes": 366583,
+      "sha256": "56fcbc0e11d7a1422425cf70e6e2e4193b475deb5856ff91f6813a2dd73de91e",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/window_ack/public_callback_trace.json",
+      "bytes": 25472,
+      "sha256": "5d97cacffb6ac26dc9ad7770f9c4485ddde84b8617eae3acfc7f9f064420b03b",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/window_ack/random_requests.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/window_dack/public_callback_trace.json",
+      "bytes": 25472,
+      "sha256": "5d97cacffb6ac26dc9ad7770f9c4485ddde84b8617eae3acfc7f9f064420b03b",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/window_dack/random_requests.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/window_wrap/public_callback_trace.json",
+      "bytes": 8389,
+      "sha256": "150b6203da48ab9323273582dd5d719cb0ea63c70203b542f99ac1d6eb6698f0",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/terminal_preflight/window_wrap/random_requests.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/timer_preflight/acquisition_absent/random_requests.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/timer_preflight/acquisition_baseline/random_requests.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/timer_preflight/acquisition_candidate/random_requests.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/timer_preflight/acquisition_continuous/random_requests.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/timer_preflight/paired_completion/random_requests.jsonl",
+      "bytes": 498,
+      "sha256": "8c576ec23de272f5df523131bf1dd68022dd5dddb6d2e7133c66bc91da1f3be4",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/timer_preflight/receiver_timer_preflight.json",
+      "bytes": 3101,
+      "sha256": "ceb4ce0427313f633ba789eece200a03231cb4e9aeabe90132841adccfd78f06",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/tx_timing_preflight/accepted400_comparison.csv",
+      "bytes": 85232,
+      "sha256": "4257e252112c7a4aff0e8f236360ec0cc01bb1c742cb9e106c1e02cb0dcdfb4c",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/tx_timing_preflight/accepted400_summary.json",
+      "bytes": 420,
+      "sha256": "7ffe6b82e66a47c83faf8e1b8b9e44e22268b0f8181386a9f9178d88b37385c7",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/tx_timing_preflight/changed_source_comparison.csv",
+      "bytes": 85231,
+      "sha256": "39e956aba5213b928278777ec9ced40577f9a2941e7ec217354f226ebcaa8967",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/tx_timing_preflight/changed_source_summary.json",
+      "bytes": 735,
+      "sha256": "6740cbc2aea410df8d6836cab31aae4993a0a939d175ade4dd6374ebd5ffcb1b",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/tx_timing_preflight/duplicate_transmission_comparison.csv",
+      "bytes": 85279,
+      "sha256": "feb03b7bacfe5bd1bb86a416fd596245f51c68d2bdd09b5080eb2f1321e4c655",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/tx_timing_preflight/duplicate_transmission_summary.json",
+      "bytes": 733,
+      "sha256": "7074f8a6d09b86e46007c24fa7233840aa4afc0e60898893055095eecdd23913",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/tx_timing_preflight/missing_transmission_comparison.csv",
+      "bytes": 85225,
+      "sha256": "f679ea09f2edc5c9255d75086c8503d3fd7f8b18a11f28155988e8da247337dd",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/tx_timing_preflight/missing_transmission_summary.json",
+      "bytes": 745,
+      "sha256": "9c251a636be8c69e6186bb5ee8736b1d37795d1a36732f2ba5356f11a097f54c",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/tx_timing_preflight/one_nanosecond_change_comparison.csv",
+      "bytes": 85232,
+      "sha256": "c79a459be084a33022e36fd6994c5ab7186a17fa8243702f993ffee4a76217b0",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/tx_timing_preflight/one_nanosecond_change_summary.json",
+      "bytes": 740,
+      "sha256": "6a470b2a8c5ae221f3c0fa16a7d343cf45896b8315d105918b4ea82c6d747879",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/tx_timing_preflight/preflight.json",
+      "bytes": 2971,
+      "sha256": "ff1d7cc712801c88ab8f4021f938344069559a7b36aae6c13611104185fcac07",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/tx_timing_preflight/reordered_transmissions_comparison.csv",
+      "bytes": 85232,
+      "sha256": "9ed2aaccc22d697e7102af9d4ea251be801bffa1aebbd35510884c7adc9a3820",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "relay_return/data/tx_timing_preflight/reordered_transmissions_summary.json",
+      "bytes": 736,
+      "sha256": "2032478d189fad18841c812c7722daf6d5bdca3fbdbe6c2bd3ba58de579c8c5c",
+      "purpose": "Exact returned R2025a preflight evidence; no network replay occurred in this return."
+    },
+    {
+      "path": "upload/out_node8_20260930_094958.zip",
+      "bytes": 490144,
+      "sha256": "61fa53bc97138982df2bbecc35dfcab0da8282187cae558dd358422ec329f4a9",
+      "purpose": "Small exact original user return (490 KB), if archive preservation is desired; extracted data above duplicate this."
+    },
+    {
+      "path": "terminal6000_return/data/invocations/run_20260929_104319/provenance.json",
+      "bytes": 77266,
+      "sha256": "e09ccce7dfa4521f83194990a72fc2dfb49247ffa7903da2ca45fa314d88ea00",
+      "purpose": "Original execution provenance binds completed historical6000run to exact included csr6000kit."
+    },
+    {
+      "path": "terminal6000_return/data/invocations/run_20260929_104319/batch_status.json",
+      "bytes": 66800,
+      "sha256": "b31c05a897a29400744dfe1614c774684e1d1793876ef803e0b757c0706d92bb",
+      "purpose": "Original execution provenance binds completed historical6000run to exact included csr6000kit."
+    },
+    {
+      "path": "terminal6000_return/data/s131/attempt_001/case_summary.json",
+      "bytes": 24976,
+      "sha256": "ae7e4a7e77d3b4b4ecfa320b82882ee65ecbab4dc6baffa0a1c17745f232ff04",
+      "purpose": "Completed6000run source binding and per-seed counters."
+    },
+    {
+      "path": "terminal6000_return/data/s131/attempt_001/completion.json",
+      "bytes": 33366,
+      "sha256": "47713d45143e5855fd6bc72b5931fd68656b1d30eae5fdffa1bc1dce74bd603f",
+      "purpose": "Completed6000run source binding and per-seed counters."
+    },
+    {
+      "path": "terminal6000_return/data/s131/attempt_001/raw/case_manifest.json",
+      "bytes": 18576,
+      "sha256": "bde36ff0195d8a53f4f2e70245d65259a5f1faca327f974b23fecab6186ae42a",
+      "purpose": "Completed6000run source binding and per-seed counters."
+    },
+    {
+      "path": "terminal6000_return/data/s131/attempt_001/raw/summary.json",
+      "bytes": 23943,
+      "sha256": "084565bece3c2aacf845e5f8a4227590ef6354ac3aee67ba2f54358dc13ff99d",
+      "purpose": "Completed6000run source binding and per-seed counters."
+    },
+    {
+      "path": "terminal6000_return/data/s131/attempt_001/raw/application_admission_statistics.csv",
+      "bytes": 562,
+      "sha256": "40d46cea747cded5f87f8dde4ed3e1fe94745d87f27197bd46eb442bc2058aa6",
+      "purpose": "Completed6000run source binding and per-seed counters."
+    },
+    {
+      "path": "terminal6000_return/data/s132/attempt_001/case_summary.json",
+      "bytes": 25353,
+      "sha256": "184429075b0c4de1556e5a7b42bee71e0d6bba3e55ebec53c9a9588b6d02f571",
+      "purpose": "Completed6000run source binding and per-seed counters."
+    },
+    {
+      "path": "terminal6000_return/data/s132/attempt_001/completion.json",
+      "bytes": 33744,
+      "sha256": "f78b2b3b52b4811293b57470d5e991a93e7bbc14ea52c3c7dfd98321dfd394d1",
+      "purpose": "Completed6000run source binding and per-seed counters."
+    },
+    {
+      "path": "terminal6000_return/data/s132/attempt_001/raw/case_manifest.json",
+      "bytes": 18577,
+      "sha256": "e3c39564a4e69377976f953d33db608407f9a94fea7a21b1fd4a956583cd1b84",
+      "purpose": "Completed6000run source binding and per-seed counters."
+    },
+    {
+      "path": "terminal6000_return/data/s132/attempt_001/raw/summary.json",
+      "bytes": 23942,
+      "sha256": "e7dfabd33d2ab2f40d33e2666cc133e147eaaf996d1706ce2016eb3eef6bce2a",
+      "purpose": "Completed6000run source binding and per-seed counters."
+    },
+    {
+      "path": "terminal6000_return/data/s132/attempt_001/raw/application_admission_statistics.csv",
+      "bytes": 561,
+      "sha256": "01edd939262f88fc6a71a7ba0c2d0de162747def1f990c8144af6248f55d51b8",
+      "purpose": "Completed6000run source binding and per-seed counters."
+    }
+  ],
+  "selected_evidence_file_count": 318,
+  "selected_evidence_total_bytes": 26422199,
+  "excluded": [
+    "node8_1200/native/engine and native/build compiler trees",
+    "Multi-GB extracted protocol traces/observer logs and packaging restore copies",
+    "Duplicate historical runnable kit ZIPs",
+    "Upload/download request JSON, credentials, transport/session metadata",
+    "Any unexecuted or simulated claim of MATLAB validation after helper correction"
+  ],
+  "limits": [
+    "Runnable current replay kit is self-contained and includes all native fixtures.",
+    "Included forensic audit scripts retain original workspace path assumptions and large raw-input dependencies. Do not advertise entire historical full-run audit as standalone reproducible from summaries alone.",
+    "For full forensic reproduction preserve archive hashes and Library retrieval references; raw evidence archives exceed GitHub normal per-file limits. Alternatively use release assets authorized by owner if needed; PR does not require that expansion.",
+    "Static parser and package checks are not MATLAB runtime acceptance.",
+    "Do not count historical accepted natural330/source167 proof as current repaired model acceptance.",
+    "No new native capture needed; capture is pinned source486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b and engine6b5cd24ea80713ce16d88575869aedd6f432bdae."
+  ],
+  "historical_full6000_kit": {
+    "schema": "csr-publication-full6000-source-binding-v1",
+    "kit_archive": "recovered/csr-6000-terminal-parity-tests.zip",
+    "kit_sha256": "9d8d61cf69529a2a6c10eb055f9a12c6b25a5f0c017711fef4d38f05617fdd29",
+    "members": 202,
+    "bytes_uncompressed": 10884748,
+    "sealed_files_verified": 201,
+    "files_sha256": "33df8aad2b36f4bd0943a0c9e8907ad9f2231062e733e1520c2c2c7bb6422018",
+    "plan_sha256": "7132e7aaa5a9b3555506513407371bcf6fdfaa1e8ecf1439452f2e255900b19d",
+    "checks": {
+      "source_manifest": true,
+      "candidate_manifest": true,
+      "input_manifest": true,
+      "runner_manifest": true,
+      "returned_exact_plan": true,
+      "returned_plan_hash": true,
+      "returned_model_source_snapshot": true
+    },
+    "cases": [
+      {
+        "seed": 131,
+        "execution_completed": true,
+        "source_files_stable": true,
+        "exact_model_manifest": true,
+        "native_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+        "native_pin_matches_plan": true
+      },
+      {
+        "seed": 132,
+        "execution_completed": true,
+        "source_files_stable": true,
+        "exact_model_manifest": true,
+        "native_source_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+        "native_pin_matches_plan": true
+      }
+    ],
+    "passed": true,
+    "historical_target_percent": 15,
+    "simulation_performed": false
+  }
+}

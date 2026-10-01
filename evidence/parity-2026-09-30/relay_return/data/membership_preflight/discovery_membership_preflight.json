@@ -1,0 +1,70 @@
+{
+  "schema": "csr-discovery-membership-preflight-v1",
+  "passed": true,
+  "checks": [
+    {
+      "name": "baseline_watchdog_adds_late_route_to_scan",
+      "passed": true,
+      "details": {
+        "start_destinations": [
+          4,
+          7
+        ],
+        "late_route_next_hop": 5,
+        "watchdogs": 1
+      }
+    },
+    {
+      "name": "watchdog_preserves_membership_order_and_late_route",
+      "passed": true,
+      "details": {
+        "start_destinations": 4,
+        "done_destinations": 5,
+        "watchdogs": 1,
+        "route_destination": 7,
+        "route_next_hop": 5,
+        "route_unchanged": true
+      }
+    },
+    {
+      "name": "late_route_remains_usable_for_transit_data",
+      "passed": true,
+      "details": {
+        "source": 4,
+        "receiver": 3,
+        "destination": 7,
+        "next_hop": 5,
+        "send_callbacks": 1
+      }
+    },
+    {
+      "name": "received_done_populates_late_member",
+      "passed": true,
+      "details": {
+        "start_destinations": [
+          4,
+          7
+        ],
+        "final_destination": 7,
+        "next_hop": 5,
+        "wire_bytes": 31
+      }
+    },
+    {
+      "name": "new_local_completion_populates_late_route",
+      "passed": true,
+      "details": {
+        "discovery_sessions": 2,
+        "start_destinations": [
+          4,
+          7
+        ]
+      }
+    }
+  ],
+  "network_simulation_executed": false,
+  "random_variates_requested": 0,
+  "scope": "Public NWK discovery membership and ordinary transit DATA callback boundaries",
+  "fixture_scope": "Admission-disabled observe establishes two direct component peers; a public ROUTING UPDATE learns7 via5",
+  "limitations": "No full-network/PHY/MAC parity claim. Existing completion snapshot cap and population ordering are not changed."
+}

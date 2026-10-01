@@ -1,0 +1,101 @@
+{
+  "status": "confirmed_behavioral_mismatch",
+  "first_physical_tx_mismatch": {
+    "node": 4,
+    "time_s": 895.115,
+    "source_tx_ordinal": 962,
+    "hop_sequence": 212,
+    "native_application": [
+      7,
+      2873
+    ],
+    "matlab_application": [
+      8,
+      3684
+    ]
+  },
+  "causal_missing_occurrence": {
+    "node": 4,
+    "time_s": 694.821813632,
+    "source": 7,
+    "attempt": 2873,
+    "native_sequence": 1398,
+    "matlab_packet_id": 297,
+    "ingress_peer": 2,
+    "ingress_hop_sequence": 162,
+    "native_nsdp_before": 26,
+    "native_nsdp_after": 27,
+    "matlab_nsdp_before": 26,
+    "matlab_nsdp_after": 26
+  },
+  "node4_enqueue_prefix": {
+    "exact_prefix_rows": 198,
+    "native_count": 286,
+    "matlab_count": 285,
+    "first_native": {
+      "time_s": 694.821813632,
+      "time_ns": 694821813632,
+      "event": "nwk_enqueue",
+      "node": 4,
+      "peer": "2",
+      "source": 7,
+      "attempt": 2873,
+      "native_sequence": 1398,
+      "event_index": 393486,
+      "reason": "relay",
+      "details": {
+        "nsdp_count": "27",
+        "nsdp_limit": "16",
+        "queue_after": "78"
+      }
+    },
+    "first_matlab": {
+      "time_s": 695.770813632,
+      "time_ns": 695770813632,
+      "event": "network_enqueue",
+      "node": 4,
+      "peer": "1",
+      "source": 8,
+      "attempt": 3684,
+      "packet_id": 359,
+      "hop_sequence": "NaN",
+      "observation_id": 170492,
+      "details": {
+        "QueueDepth": 78
+      }
+    }
+  },
+  "node4_occurrence_gaps": {
+    "native_only": [
+      {
+        "node": 4,
+        "source": 7,
+        "attempt": 2873,
+        "time_ns": 694821813632,
+        "count": 1
+      }
+    ],
+    "matlab_only": []
+  },
+  "all_node_occurrence_gaps": {
+    "native_only": [
+      {
+        "node": 4,
+        "source": 7,
+        "attempt": 2873,
+        "time_ns": 694821813632,
+        "count": 1
+      }
+    ],
+    "matlab_only": []
+  },
+  "explanation": "Both HOP implementations classify the DACK-marked retry as a first reception. Native NWK accepts another relay occurrence; MATLAB NWK returns early because the end-to-end application identity is already in Seen. This extra native occurrence reaches the head after the first copy is handed off, so the next capacity release chooses source 7 again while MATLAB chooses source 8.",
+  "runtime_sources": {
+    "simulation": "node8_return/kit/node8case/+ac/TerminalSimulation.m:162",
+    "seen_guard": "node8_return/kit/node8case/+ac/DiscoveryMembershipNwk.m:124",
+    "seen_write": "node8_return/kit/node8case/+ac/DiscoveryMembershipNwk.m:153",
+    "secondary_enqueue_guard": "node8_return/kit/node8case/+ac/DiscoveryMembershipNwk.m:459",
+    "identity_based_owner_lookup": "node8_return/kit/node8case/+ac/DiscoveryMembershipNwk.m:980"
+  },
+  "caveat": "This establishes one cause of replay divergence, not the effect of a fix on 6000-second autonomous latency. The first physical mismatch can lag the first internal state mismatch. Do not remove final-destination application reporting deduplication merely to admit repeated relay custody occurrences."
+}

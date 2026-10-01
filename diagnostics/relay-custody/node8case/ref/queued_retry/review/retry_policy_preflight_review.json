@@ -1,0 +1,69 @@
+{
+  "schema": "csr-retry-policy-preflight-static-review-v1",
+  "checks": 18,
+  "prior_checks_retained": 74,
+  "total_planned_checks": 92,
+  "blockers": [],
+  "frozen": true,
+  "passed_static_review": true,
+  "peer_review_complete": true,
+  "matlab_runtime_executed_by_reviewer": false,
+  "owner_execution_pending": true,
+  "files": {
+    "+ac/retryPolicyPreflight.m": "ae0fbb51b333ca27ce03f992a1919b00dfcc8f7d60b0d66523e2d22a75a53336",
+    "TestQueuedRetryPolicy.m": "603eef79184d92c5b217039b234c98815c1b68409321da8c18441a4e7c74ccee",
+    "run_autonomous_tests.m": "b7d05a59759fdc13371a5b79358b9ccb35d243167ce22c3e27015f3b62b21733",
+    "+ac/FeedbackIdentitySimulation.m": "3c92a3874b9e40ca0792a65ad8d1bdbb4a9b854ac2b11a9c80e909d55a236706",
+    "+ac/FeedbackStreams.m": "81bf38d7f4aad5b150cf578a5dbbeb96b0964766f2965ead6c9d8c1e3104aa5f",
+    "+ac/FeedbackTxSignature.m": "501b4a5643971d538be78c902ba0e1fc85d03521b7b7a5a4dfc357e541ebf6ac",
+    "model/+csr/+hop/Layer.m": "21d4a56d782fde35d45f102c137b6c78c3bf4cdc05593d15fb9a7db8f26c2649",
+    "model/+csr/+hop/validateConfig.m": "db33b72d7df9a204882894ade3fbdba57a49ba5599b87bbd096c056c47c032ef",
+    "model/+csr/+hop/Frames.m": "a2efd2e79d28cf9b090b6bb4f4e708ae978739ce96d9a1564f32628b990c39a5",
+    "model/+csr/+mac/Layer.m": "b7c24b8b7cf9f019249677db3e83425d6e583a2dc07f3343c6de9f1887b19556",
+    "+ac/Streams.m": "2217e0c46874757e190d8ad3669228c47a8134775aaf1ba96af300e3e001ecce"
+  },
+  "historical_tests": {
+    "methods": 16,
+    "original_path": "tests/TestQueuedRetryPolicy.m",
+    "kit_path": "TestQueuedRetryPolicy.m",
+    "git_blob": "741a5e311c813c8b9498429d20a1222caceeec0e",
+    "byte_exact": true,
+    "external_test_dependencies": false
+  },
+  "source_scope": {
+    "original_model_files_unchanged": 99,
+    "previous_MATLAB_files_changed": [
+      "run_autonomous_tests.m"
+    ],
+    "new_MATLAB_files": [
+      "TestQueuedRetryPolicy.m",
+      "+ac/retryPolicyPreflight.m"
+    ],
+    "new_protocol_or_candidate_class": false,
+    "default_policy": "actual-tx",
+    "case_only_policy": "native-provisional",
+    "case_configuration_single_field_assertion": true,
+    "all_feedback_and_DATA_guards_unchanged": true
+  },
+  "public_checks": [
+    "Sixteen exact recovered tests cover default equivalence, valid policies, initial unsent custody, retry dwell/shared scans, local/relay capacity release, actual sent deadline replacement, ACK/DACK and stale-copy ownership, scan handles, deletion-before-retry ordering, control independence and rejection.",
+    "Captured DATA29/DATA32 sent/ACK chronology uses public HOP APIs. Three explicitly separate public warm-up ACKs open the required two-owner window, and all warm-up scans are drained before the captured episode.",
+    "Public-returned sequence allocation preserves29/32/36 identities; no private setters. Full captured DATA admission count5, owner count2 and complete DATA29 RetryCount list[0,1,2] prevent filtering from hiding additional copies.",
+    "Surviving scan at318.498 queues native-provisional retry2 before DATA36; actual-tx queues retry2 at322.879 after DATA36. Subsequent public MAC enqueue and real transmission verify resulting order29,36 versus36,29.",
+    "Natural MAC stream provider preserves ordinary seeded draws and exports them; no slot values, receiver state or full-network outcomes are supplied.",
+    "Interim sixteen-test receipt is explicitly incomplete and not passed; the final complete receipt requires all eighteen checks."
+  ],
+  "limitations": [
+    "Static source/fixture review only; no local MATLAB run. Root performs final syntax check; user return must validate18 new component checks and O network case.",
+    "There is one captured DATA29/32 chronology and a separate29/36 residual MAC ordering check. No separate seq33 or forwarded35 replay is claimed.",
+    "MAC component disables duty cycling and concatenation to isolate stable FIFO selection; it does not reproduce captured network transmission times.",
+    "The prior natural capture and default actual-tx policy are preserved. Existing native-provisional remains an isolated O diagnostic, not a production promotion or15percent parity claim."
+  ],
+  "cleared_review_issue": "Fresh HOP threshold0 prevented admitting both captured owners. Public three-DATA/sent/ACK warm-up raises threshold to1, separates setup records, and drains setup scans without touching private state.",
+  "reviewers": [
+    "root",
+    "autonomous_matlab_kit",
+    "autonomous_receiver",
+    "autonomous_native_capture"
+  ]
+}

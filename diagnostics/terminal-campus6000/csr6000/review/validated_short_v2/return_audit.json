@@ -1,0 +1,53 @@
+{
+  "schema": "csr-parity-batch-v2-return-audit-v1",
+  "status": "pass",
+  "archive": {
+    "path": "upload/out_parity_batch_20260929_100458.zip",
+    "sha256": "fdf8ffc9d7b583f539d430b5861d2283059c81caccf6fe6da543fd25bef91efa",
+    "bytes": 34155389,
+    "members": 180
+  },
+  "manifest_bound_files": 466,
+  "resolved_matlab_files": 162,
+  "issued_manifest_sha256": "8c3a4e7f0dc4e9d956509f2399877377bad90ff531290980b64427cfe9fb3920",
+  "runtime": {
+    "version": "25.1.0.2943329 (R2025a)",
+    "release": "2025a",
+    "computer": "PCWIN64"
+  },
+  "historical_checks_passed": 108,
+  "accounting_assertions": {
+    "cutoff": 10,
+    "final": 17,
+    "relay": 25
+  },
+  "receiver_order_groups_passed": 2,
+  "collector_status_pairs_passed": 16,
+  "cases": [
+    {
+      "name": "S132_400",
+      "seed": 132,
+      "stop_seconds": 400,
+      "draws": 7904,
+      "physical_transmissions": 1437,
+      "admitted": 428,
+      "delivered": 208,
+      "undelivered": 220,
+      "late_deliveries": 10
+    },
+    {
+      "name": "S131_200",
+      "seed": 131,
+      "stop_seconds": 200,
+      "draws": 1255,
+      "physical_transmissions": 209,
+      "admitted": 0,
+      "delivered": 0,
+      "undelivered": 0,
+      "late_deliveries": 0
+    }
+  ],
+  "wall_seconds": 815.0610284,
+  "scope": "Source identity and returned runtime gates. Independent raw cross-engine comparisons are separate.",
+  "full_6000_second_parity_established": false
+}

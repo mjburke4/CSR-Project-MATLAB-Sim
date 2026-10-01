@@ -1,0 +1,59 @@
+Independent red-team review of returned terminal-candidate 6,000-second runs
+Review date: 2026-09-30
+
+Decision
+
+The ±15% network target is not met. The original concern remains material: pooled delivered mean latency is now 130.9087 s versus native ns-3 64.4966 s (+102.970%), compared with the prior candidate's +60.37%. Holding native delivered source/seed weights fixed gives 90.7483 s versus 64.4966 s (+40.703%); this was previously +41.53%. Thus the new pooled result worsened while the source-standardized result improved only slightly. Four of nine nonzero-native source/seed cells now meet both requested count and mean targets, but that tally weights a small cell just as heavily as a large, slow cell and does not establish network parity. Three zero-native source cells remain explicit topology discrepancies.
+
+No new code change is justified by this return alone. The review found no new demonstrated units, endpoint, deduplication, dropped-packet accounting, offered-load, or active-configuration error. It does not certify every behavioral branch. In particular the already documented unrelated/repeated discovery DONE edge remains a separate known source discrepancy, with no causal evidence linking it to this return's latency gap.
+
+Independent checks completed
+
+The accompanying audit.py reads the unmodified complete protocol traces, reconstructs every application's generation, provisional drop, relay recovery, unique delivery, cutoff status, and latency, and checks the exported application table and aggregate counters. Both seeds pass every check. Node geometry and application flows match the native scenario exactly. Each seed has 1,710,000 scheduled applications, including non-admitted interrupts, with six 20-ms sources beginning at 300 s. No core protocol or PHY trace records were omitted. The bounded admission-detail prefix omits 1,610,000 records by design; complete per-source attempted/admitted/blocked counters and full application generation/delivery traces remain available. No simulation drain was run. Neither historical DataDrained flags nor PhysicalPending counts certify all retained MAC copies or final application loss.
+
+The trace reconstruction confirms:
+  Seed 131: 12,471 admitted; 11,828 delivered; 643 unresolved.
+  Seed 132: 12,527 admitted; 11,892 delivered; 635 unresolved.
+  Seed 131: 1,469 provisional drop events; 1,076 direct late deliveries; 18 relay-custody recoveries.
+  Seed 132: 1,455 provisional drop events; 1,033 direct late deliveries; 28 relay-custody recoveries.
+All 23,720 application deliveries are unique and their recorded latencies equal receive time minus generation time. The 769 raw dropped applications plus 509 raw pending applications total 1,278 unresolved applications. The logs do not prove a final-loss versus live-copy split for those unresolved applications.
+
+Why the pooled number and cell tally move in different directions
+
+Natural seed 131 remains a different network realization. MATLAB now reaches all seven nodes; native 131 still has no application admissions at 2, 7, or 8. MATLAB's 1,238 deliveries from those three sources are only 10.47% of its seed-131 deliveries, but contribute 81.48% of its latency sum. The raw pooled comparison therefore gives substantial weight to traffic absent from the native seed-131 denominator. This is an outcome discrepancy that must stay visible, not a reason to discard the sources.
+
+Restricting seed 131 to sources 3/4/5 yields MATLAB 27.0128 s versus native 26.0088 s. That attractive result still mixes those sources differently and must NOT be presented as parity: source 4 alone is 244.0190 s versus 87.5457 s, with 430 versus 1,567 deliveries. Native source weighting keeps that mismatch visible as a descriptive source-mix diagnostic. The acceptance target remains the per-source count and latency test; weighting does not replace it.
+
+The principal contributions to the source-standardized latency gap of 26.2517 s are:
+  seed 132, source 7: +11.6264 s
+  seed 131, source 4: +10.1930 s
+  seed 132, source 8:  +4.0130 s
+  all other defined cells combined: about +0.4193 s.
+These are population-weighted gap contributions, not individual packet delays or causal shares.
+
+Late-copy accounting is not an adequate explanation for the remaining tail
+
+There are 2,139 delivered applications with at least one earlier provisional drop. As a falsification check only, excluding ALL such deliveries leaves seed-132 source-7 mean latency 1,344.3971 s, compared with its full-population 1,336.7302 s. Source 8 remains 933.1831 s versus 940.5995 s. The very long waits therefore also occur in applications with no earlier reported custody loss. This post-outcome subset is diagnostic only and is not a replacement acceptance population.
+
+Startup topology and random realization
+
+MATLAB seeds 131 and 132 both end with 42 nonself routes and complete all nodes' local discovery by about 117 s. MATLAB131 node 5 activates neighbor 4 at 43.319112444 s before node 5 finishes discovery at 55.536359163 s. The sequence continues through 4->2->8->7. Node 4 is active toward 2 by 59.166113632 s, node 2 toward 8 by 78.718115346 s, and node 8 toward 7 by 89.651112442 s.
+
+Native131 ends with 12 nonself routes. Nodes 2/7/8 never transmit in its entire 6,000-s trace. Its node 4 gateway route first appears at 74.086072444 s. The previously independently accepted common-input 0–200-s capture reproduced that native stall in MATLAB, including node 5 closing discovery before node 4's late activation. The new natural outcome does not reverse that conditional result. Current source inspection confirms that natural MATLAB uses independent per-node mt19937ar streams, not native ns-3 stream equivalence. Even the first physical TX differs (MATLAB131 10.725 s, native131 10.439 s). Numeric seed equality therefore does not establish a paired experiment.
+
+Seed132's final MATLAB and native route tables match (42 nonself routes, matching next hops/costs), yet source7/8 latency and share of delivered traffic differ. This is the cleaner remaining contention/waiting investigation because full-discovery topology is already common.
+
+Source checks and limitations
+
+The issued runner instantiates ac.TerminalSimulation. Its native-provisional DATA expiry branch in ac.TerminalHop releases HOP ownership while retaining admitted MAC copies. Exact/window ACK cleanup invokes DATA-only cancellation even if HOP ownership is already gone. TerminalSimulation recovers raw drop counters when a later application copy delivers or when a fresh relay accepts custody. The raw-return audit independently exercises those accounting transitions at scale and verifies their totals. This is stronger accounting evidence, not proof that every retained copy expires or every late feedback history matches native after the 400-s common-input horizon.
+
+Natural SYNC standard-normal draws have means -0.00208 / -0.00342 and sample variances 0.99881 / 0.99380; all logged MAC slot values are within their request bounds. These are narrow sanity checks, not statistical RNG equivalence tests or proof of independent streams. No RNG adjustment to force the two numeric seeds into agreement is warranted.
+
+Recommended next batch
+
+Do not repeat another autonomous 6,000-s pair first. The parallel independent phase audit localizes seed132 source7's latency excess almost entirely to NWK waiting at node8 (about +480.27 s at that node versus +478.89 s total per-delivery latency); node8 also contributes about +228.96 s for its own source8 traffic. These are phase-agent results, not additional assertions in this red-team script. Keep the validated source fixed and extend seed132's fully coupled common-input capture beyond the accepted 400 s into node8's competing relay/local admissions, HOP/DACK backpressure, and first source7/8 deliveries. Native132 first delivers source8 at 699.254811086 s and source7 at 733.288811086 s; a 675-s stop misses both. Current MATLAB132 first delivers those sources at 457.090811086 s and 613.883811086 s. A roughly 900–1,200-s horizon is therefore a useful initial bound; choose the exact stop from the phase audit and preserve autonomous warmup from zero, native random request contexts, no replayed receiver state, and first-divergence stopping. This tests a specific remaining behavioral region instead of treating a long-run mean as a code fault.
+
+As a supplemental investigation if startup-outcome frequency remains the unresolved question, run a small predeclared ensemble of short 0–200-s startup cases in both engines (for example 20 seeds each) and compare discovery-completion and reachable-source frequencies, without pairing numeric seeds across RNG engines. The current two natural seeds cannot distinguish a systematic discovery bias from stochastic startup outcomes. If replay diverges, fix the first demonstrated consequential mismatch. If replay remains exact while startup frequencies differ, investigate natural random-input generation and discovery outcome distributions. If neither distinguishes the engines, additional statistically designed long runs become justified; they are not the immediate next step.
+
+Evidence: audit.json includes all raw-input SHA-256 hashes, checks, per-source late-delivery sensitivity, complete startup event lists, native route chronology, final route maps, and source-weighted contributions. s131_late_recoveries.csv and s132_late_recoveries.csv list recovered relay custody events. Reproduce from workspace root with: python terminal6000_return/redteam/audit.py
+The separate horizon.py/horizon.json checks the first delivered times using the issued native ledgers and returned MATLAB application tables; run python terminal6000_return/redteam/horizon.py.

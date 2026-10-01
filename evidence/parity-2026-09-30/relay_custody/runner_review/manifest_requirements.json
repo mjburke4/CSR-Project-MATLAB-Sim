@@ -1,0 +1,26 @@
+{
+  "schema": "csr-relay-custody-1200-kit-v1",
+  "target_percent": 20,
+  "seed": 132,
+  "stop_seconds_exclusive": 1200,
+  "entrypoint": "run_node8_tests",
+  "model_behavior_changed": true,
+  "candidate_behavior_changed": true,
+  "authorized_existing_delta_paths": [
+    "+ac/AccountingFixture.m",
+    "+ac/DiscoveryMembershipNwk.m",
+    "+ac/TerminalSimulation.m",
+    "+ac/integratedAccountingPreflight.m",
+    "model/+csr/+nwk/Layer.m",
+    "model/+csr/+sim/NetworkSimulation.m"
+  ],
+  "added_candidate_paths": [
+    "+ac/RelayCustodyProbe.m",
+    "+ac/relayCustodyPreflight.m"
+  ],
+  "historical_accepted_source_manifest_sha256": "8c3a4e7f0dc4e9d956509f2399877377bad90ff531290980b64427cfe9fb3920",
+  "historical_acceptance_applies_to_current_model": false,
+  "common_input_checks_unchanged": true,
+  "receiver_state_or_feedback_replayed": false,
+  "natural_result_reused_as_current_acceptance": false
+}

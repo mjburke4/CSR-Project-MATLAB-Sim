@@ -1,0 +1,31 @@
+{
+  "schema": "csr-relay-custody-independent-package-review-v1",
+  "passed": true,
+  "checks": {
+    "crc_clean": true,
+    "no_duplicate_members": true,
+    "all_paths_rooted_in_node8case": true,
+    "manifest_schema": true,
+    "manifest_exact_file_population": true,
+    "all_manifest_hashes_match_archive": true,
+    "all_archive_files_match_staging": true,
+    "model_behavior_changed_explicit": true,
+    "target_20_preserved": true,
+    "queued_retry_dependency": true
+  },
+  "archive": {
+    "path": "relay-custody-repair-tests.zip",
+    "bytes": 23608762,
+    "sha256": "2fba1340d10c6d1d646bc3b2e06f77c136669f3a73f6d68461e20710c0b67cc2",
+    "members": 497
+  },
+  "manifest_sha256": "99ddd938b5e3aefe0f637fb5b0f85fcf505e093740f0749134e3361bafb89007",
+  "matlab_execution_performed": false,
+  "old_preflight_compatibility": {
+    "reviewed": true,
+    "tokenless_nwk_release_calls_in_existing_preflights": 0,
+    "old_component_hop_tests": "Release and terminal callbacks collect observations without calling NWK; token metadata does not change HOP-only tests.",
+    "discovery_membership": "One accepted relay application captured via SendData; assertions inspect stable identity/traversal, not exact struct shape.",
+    "integrated_accounting": "Original frame is taken from actual hop_admit and carries stamped NWK token. Extra direct HOP owner carries that same token; first expiry removes original NWK occurrence once; later source failure cannot remove node2 siblings. Fresh-sequence duplicate now correctly counts two relay occurrences."
+  }
+}

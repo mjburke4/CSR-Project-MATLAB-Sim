@@ -1,0 +1,100 @@
+{
+  "schema": "csr-receiver-timer-preflight-v1",
+  "passed": true,
+  "checks": [
+    {
+      "name": "all_native_acquisition_schedule_targets_match",
+      "passed": true,
+      "details": {
+        "records": 1352,
+        "changed_floating_sums": 336
+      }
+    },
+    {
+      "name": "all_native_tx_finish_targets_match_source_deadlines",
+      "passed": true,
+      "details": {
+        "scheduled_targets": 811,
+        "observed_native_completions": 810,
+        "pending_at_capture_end": 1
+      }
+    },
+    {
+      "name": "source_only_rejected_return_uses_28_nanosecond_target",
+      "passed": true,
+      "details": {
+        "delay_ns": 28,
+        "target_ns": 4.5662638105E+10,
+        "native_observed_callbacks": 0
+      }
+    },
+    {
+      "name": "captured_raw_geometry_reproduces_52_and_corrected_51_bits",
+      "passed": true,
+      "details": {
+        "old_payload_bits": 52,
+        "fixed_payload_bits": 51,
+        "old_end_seconds": 45.662638077000004,
+        "fixed_end_seconds": 45.662638077,
+        "same_uniform_errors": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "unchanged_public_model_matches_all_native_component_geometries",
+      "passed": true,
+      "details": {
+        "component_rows": 1542,
+        "header_and_payload_counts_checked": 3084,
+        "raw_signal_geometry_preserved": true,
+        "geometry_only_high_snr": true
+      }
+    },
+    {
+      "name": "actual_public_receiver_acquisition_uses_integer_sum_deadline",
+      "passed": true,
+      "details": {
+        "baseline_state_at_native_deadline": "Search",
+        "candidate_state_at_native_deadline": "Track",
+        "baseline_state_at_old_deadline": "Track",
+        "protected_bit_random_draws": 0
+      }
+    },
+    {
+      "name": "continuous_and_absent_transport_retain_original_acquisition",
+      "passed": true,
+      "details": {
+        "continuous_timer_records": 0,
+        "absent_timer_records": 0
+      }
+    },
+    {
+      "name": "actual_phy_and_mac_completion_share_deadline_and_keep_existing_order",
+      "passed": true,
+      "details": {
+        "physical_transmissions": 1,
+        "deadline_seconds": 47.1463,
+        "callback_order": [
+          {
+            "kind": "phy_search",
+            "time_s": 47.1463
+          },
+          {
+            "kind": "mac_search",
+            "time_s": 47.1463
+          }
+        ],
+        "seeded_mac_draws": 2,
+        "matlab_completion_callbacks": 2
+      }
+    }
+  ],
+  "network_simulation_executed": false,
+  "random_variates_requested": 2,
+  "scope": "Unchanged public PHY allocator, controlled receiver acquisition, and one-radio public MAC/PHY TX component; no full-network parity claim",
+  "random_scope": "Only the one-radio MAC component uses measured seed-owned MAC draws; geometry/acquisition probes use none",
+  "native_callback_scope": "Native has one TX completion callback; two same-deadline callbacks preserve MATLAB existing decomposition",
+  "rejected_return_limitation": "28 ns arithmetic and source binding only; no captured rejected-return callback is claimed"
+}

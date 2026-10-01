@@ -1,0 +1,22 @@
+{
+  "schema": "csr-node8-packaging-repair-v1",
+  "date": "2026-09-30",
+  "original_archive_sha256": "248933804bd7c1be164a1ac98a34db67059c988df5694c3825c75708e8f86f0c",
+  "cause": "Packaging excluded the root-level TestQueuedRetryPolicy.m dependency used by unchanged ac.retryPolicyPreflight.",
+  "repair": "Restore exact accepted dependency and add it to FILES.json.",
+  "restored_file": {
+    "path": "TestQueuedRetryPolicy.m",
+    "sha256": "603eef79184d92c5b217039b234c98815c1b68409321da8c18441a4e7c74ccee",
+    "accepted_source_manifest_sha256": "8c3a4e7f0dc4e9d956509f2399877377bad90ff531290980b64427cfe9fb3920"
+  },
+  "runner_sha256": "3cb301010edd1e64f2857ea5214a14997c30a7fae3cbe8765e379632217e24a6",
+  "production_model_changed": false,
+  "candidate_classes_changed": false,
+  "runner_changed": false,
+  "native_references_changed": false,
+  "matlab_execution_of_corrected_package_pending": true,
+  "strict_comparators_unchanged": true,
+  "engineering_target_percent": 20,
+  "known_return_result": "16 of 17 top-level preflight groups and native1200 import passed; missing dependency prevented network start.",
+  "historical_reviews": "Existing review files describe original preparation; this repair record and dependency review supersede their package-completeness claim."
+}

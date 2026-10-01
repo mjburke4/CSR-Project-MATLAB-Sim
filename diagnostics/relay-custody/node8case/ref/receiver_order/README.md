@@ -1,0 +1,18 @@
+# Receiver interval ordering regression
+
+The confirmed seed-132 stop at 348.946293632 seconds is a receiver-local draw-ownership difference. Native stores received signals in `std::map<uint64_t,RxSignal>` and closes intervals in ascending physical signal ID `(source << 32) | source_transmission_ordinal`. The MATLAB arrival list can have the opposite order. The targeted candidate changes the temporary iteration order for interval closure only; arrival storage, acquisition selection, interference-pair traversal and all RF equations remain unchanged.
+
+This regression exercises public `CsrNetDevice::SendToPeer` and MATLAB `SignalEngine.transmit` boundaries. It does not access private state. Native uses the existing passive capture overlay with source pins CSR `486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b` and engine `6b5cd24ea80713ce16d88575869aedd6f432bdae`. Native execution completed here; MATLAB execution is pending on the user's system.
+
+There are two synthetic public three-radio cases:
+
+- Reverse arrival: source 2 sends at time zero; source 1 sends at 0.026009895 seconds. Receiver 3 sees arrivals `[2,1]` and first acquires source 2, but at the first overlap closure its random-draw sources are `[1,1,2]` (source 1 header, source 1 payload, source 2 payload).
+- Ascending control: source 1 then source 2. Arrivals stay `[1,2]`; the draw sources are `[1,2,2]` (source 1 payload, source 2 header, source 2 payload).
+
+Each transmitter-to-receiver link is 1 meter, propagation speed is 3e8 m/s, TX power is 0 dBm, noise floor is explicitly 0 dBm, stochastic SYNC is disabled, rate key is 8, preamble is short, and modeled payload is 198 on-air bytes. The native 185-byte raw packet plus CsrHeader has this wire size. The portable constructor uses 166 body bytes plus its 32-byte envelope to produce the same PHY geometry; no application-accounting equivalence is asserted. The noise and transmit offset intentionally make all three ownership observations request uniforms. Simulation ends at 0.4 seconds.
+
+The native fixture records full component counts/probabilities/boundaries and raw evidence hashes. The MATLAB gate checks signal/component ordering with positive bit counts and nondegenerate probabilities, preserving arrival and first-acquisition order. It does not introduce a new full-PHY numeric parity requirement using this synthetic fixture. Both cases exercise the actual corrected public engine; the reverse case directly rejects the prior arrival-order loop. Unchanged RF allocation arithmetic is established by the candidate source diff, not by introducing a second general-engine implementation into this regression. The helper records these results without claiming reception outcomes or network latency improvement.
+
+Reproduce native: run `compile_command.json` in the pinned environment; run the resulting executable with `CSR_SOURCE5_CAPTURE` set to `native_reverse.tsv`; then run it with argument `ascending` and a separate capture path `native_ascending.tsv`; execute `python extract_probe.py`. Existing exact capture-overlay provenance is in `next_batch/native/build/overlay_changes.json` and the earlier evidence archive. The native binary is excluded from the MATLAB kit.
+
+MATLAB batch integration: call `ac.receiverOrderPreflight(root, config, folder)` as an independent recorded group. It requires `+ac/ReceiverOrderProbe.m` and `ref/receiver_order/native_receiver_order.json`. Both receiver cases are attempted independently; callback evidence is saved before count/order assertions and errors are preserved per case. A failure marks overall verification incomplete, while the two already configured network diagnostic runs can still proceed.

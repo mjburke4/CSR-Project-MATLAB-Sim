@@ -1,0 +1,133 @@
+{
+  "scope_review": "pass",
+  "matlab_executed": false,
+  "native_run": false,
+  "candidate_manifest_sha256": "7b15d6bea537eddd8bd1a5fcc6eaf875b954320c29b73d633aedc60c8dd0ed8d",
+  "runner_sha256": "e136dc457eac8e3900a21b2e619c9a21086189a581d4d32db6ae271c1a3303fc",
+  "verified_transforms": [
+    {
+      "target": "+ac/InlineKeyNwk.m",
+      "sha256": "ae267f6cc5a0bd3bb8378b6b72e49ca5987ba8b07e8b41175b85519f539b728f",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/InlineKeySimulation.m",
+      "sha256": "fc62a43eb1b0e317586b9a2882e4b9b95ebf7cf0567715caf007b81fbf6740fc",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/CheckGateNeighbors.m",
+      "sha256": "40ac1ba5dd1fc5ffb13f9c7d0c53152f948995a74301fd4e18246cf492b50dde",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/CheckGateNwk.m",
+      "sha256": "5b4e26f9743cd01efd39766cb0b062211d4bb4b4c9ae1a1bb5798fc8162bf3cd",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/CheckGateSimulation.m",
+      "sha256": "bbd3847c50c7cf75226cdacdc810c56021f17004cf30f6da52ec171b500b6da8",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/MessageFlagNeighbors.m",
+      "sha256": "b6092d3c2dbf0e4d23a697b43bf9bf932c4d5972c2b99eb5cd2022ab865764f6",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/MessageFlagNwk.m",
+      "sha256": "eb986d403bda5b6bdbfec392cbaadff850baf4333aec39d1c93fa50d5f60c64c",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/MessageFlagSimulation.m",
+      "sha256": "daadc55e32df158b010964813b35a6ee4f1f68c4af8b4cb8d5049d64b6170f70",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/PopulationNeighbors.m",
+      "sha256": "016762b7d8b9c0a4ea139fa7dfaea32b891bba1bf77522909d9d74aa1ad1a641",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/PopulationNwk.m",
+      "sha256": "0fb306a57a40656c511e0a20a5c155b2bc8357c877d8449309a74f3efbfd26fb",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/PopulationSimulation.m",
+      "sha256": "aec99858386da09cf5584d6a3794b557542f109665f0be4fc09d78c6b8e5d902",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/AdmissionRoutes.m",
+      "sha256": "8f4ac059cc6ac2819527b84535b5cf329e4f78cfbb109a78e040fe826cb1422d",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/AdmissionNwk.m",
+      "sha256": "6c7b63fa9b0be3c61d4a84a7ee47d027e07944cb1a7389c546eaa4b6bd119bae",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/AdmissionSimulation.m",
+      "sha256": "d1bcdf200b69212e3324ac1aaf200deacfed06fc3c0276492c1344df2217be2e",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/ControlWireNwk.m",
+      "sha256": "499f65ef3c894162fda0440ab39c98551537d84821ec4b7563d0a47135973677",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/ControlWireSimulation.m",
+      "sha256": "9130dd33e98017bae77d76cf54d15048e0ad6d95aee8bea2d30fd75e5df07493",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/DiscoveryTxSignature.m",
+      "sha256": "ac2d0dcf116607ce2d4e6756727c106aa6e11941542694c9889ea5b5f43db8fa",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/DiscoveryStreams.m",
+      "sha256": "a5572a122a7497288b1a64fb1bbb6ca44742652eba949a47874117589cce7b7f",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/DiscoveryIdentitySimulation.m",
+      "sha256": "cdf489d279b0115add230493b3e5c520dbc04cc5c20d29c91709f525f8da5bce",
+      "forward_and_reverse_exact": true
+    }
+  ],
+  "unchanged_baseline_model_files": 99,
+  "prior_protocol_provider_comparator_files_unchanged": [
+    "TxSignature.m",
+    "Streams.m",
+    "ControlWireSimulation.m",
+    "ControlWireNwk.m",
+    "controlWireBytes.m"
+  ],
+  "native_fixtures_unchanged": [
+    "random_draws.csv",
+    "tx_signatures.csv"
+  ],
+  "native_contract_checks": [
+    "Only eligible broadcast-subtype DISCOVER outer hop_sequence comparison is skipped.",
+    "Both sides require DISCOVER kind, broadcast destination, no ACK and no ACK window; actual has one broadcast target.",
+    "Expected native frame must retain group-protection flag and valid security-count metadata.",
+    "Both raw outer sequence values, policy and reason remain in actual diagnostic context.",
+    "Payload discovery-session sequence, active-peer membership and all other ordinary item comparisons remain strict.",
+    "No chirp exception, no general nonACK/reliable/control sequence exception.",
+    "New provider differs only in class/constructor identity and comparator call.",
+    "New simulation differs only in class/constructor identity and provider binding; I NWK/protocol unchanged.",
+    "Natural gate and inherited/public comparator preflights precede J continuation."
+  ],
+  "limits": [
+    "MATLAB public positive/negative comparator preflight execution remains owner-side.",
+    "No continuation or behavioral performance improvement measured here.",
+    "Actual model has behavioral security rather than a native cryptographic outer header; unchanged CONTROL.DISCOVER is its GroupEstablish counterpart.",
+    "Previously documented I model and receive-security limits remain."
+  ]
+}

@@ -1,0 +1,245 @@
+{
+  "schema": "csr-relay-custody-return-audit-v1",
+  "audit_passed": true,
+  "return_archive": {
+    "name": "out_node8_20260930_094958.zip",
+    "sha256": "61fa53bc97138982df2bbecc35dfcab0da8282187cae558dd358422ec329f4a9",
+    "bytes": 490144,
+    "members": 184,
+    "crc_passed": true,
+    "extracted_bytes_exact": true
+  },
+  "issued_archive": {
+    "name": "issued_v1_tests.zip",
+    "sha256": "2fba1340d10c6d1d646bc3b2e06f77c136669f3a73f6d68461e20710c0b67cc2",
+    "manifest_sha256": "99ddd938b5e3aefe0f637fb5b0f85fcf505e093740f0749134e3361bafb89007",
+    "sealed_files_verified": 496,
+    "resolved_matlab_hashes_verified": 162
+  },
+  "runtime": {
+    "version": "25.1.0.2943329 (R2025a)",
+    "release": "2025a",
+    "computer": "PCWIN64"
+  },
+  "source_identity": {
+    "+ac/DiscoveryMembershipNwk.m": "90fea58d48fbefbac625dc15d034dab21e66634b1c97a096279261d3e6f5a60a",
+    "model/+csr/+nwk/Layer.m": "5a160e3bd6cc2ac8a5dda806f9f3f5bff7a9f6838d1b12346f2384eb318e3c4b",
+    "+ac/TerminalSimulation.m": "5ef7b566f5083140c24d2e189296af97188009eb51c68fdeb5d7e3998d2208b0",
+    "model/+csr/+sim/NetworkSimulation.m": "586bdb3ed440eb21cca0465ced9a961367da74933177d0ab79928eddcb48bddc",
+    "+ac/relayCustodyPreflight.m": "05e632e79de861c199c936a56e155ae39f6634ffffea2dccf59314c30b0f8674",
+    "+ac/RelayCustodyProbe.m": "f65718b409a80ed450546c3cbda8921c8985ea400fa201a7b8ba6fc3d3c8faa9"
+  },
+  "production_model_changed": true,
+  "simulation_class": "ac.TerminalSimulation",
+  "prior_preflights_passed": [
+    "original_native_import",
+    "tx_timing_comparator",
+    "receiver_interval_order",
+    "key_request",
+    "check_gate",
+    "population",
+    "route_admission",
+    "request_wire",
+    "no_path_wire",
+    "discovery_identity",
+    "receiver_timer",
+    "discovery_lifecycle",
+    "discovery_membership",
+    "feedback_identity",
+    "retry_policy",
+    "terminal",
+    "integrated_accounting"
+  ],
+  "custody": {
+    "attempted": 22,
+    "passed": 20,
+    "failed": [
+      "production_queue_full_rejection_then_same_sequence_retry",
+      "candidate_queue_full_rejection_then_same_sequence_retry"
+    ],
+    "successful_behavioral_groups": [
+      "production_captured_nsdp_25_26_27",
+      "production_ack_duplicate_stays_filtered",
+      "production_fifo_distinct_sequences_and_ack_ownership",
+      "production_dack_release_hold_and_new_copy",
+      "production_retry_failure_keeps_sibling",
+      "production_no_ack_sent_releases_only_its_copy",
+      "production_out_of_order_and_invalid_release_tokens",
+      "production_upstream_token_replaced",
+      "production_final_sink_delivers_unique_application_once",
+      "production_nested_send_reject_does_not_reset_sibling",
+      "candidate_captured_nsdp_25_26_27",
+      "candidate_ack_duplicate_stays_filtered",
+      "candidate_fifo_distinct_sequences_and_ack_ownership",
+      "candidate_dack_release_hold_and_new_copy",
+      "candidate_retry_failure_keeps_sibling",
+      "candidate_no_ack_sent_releases_only_its_copy",
+      "candidate_out_of_order_and_invalid_release_tokens",
+      "candidate_upstream_token_replaced",
+      "candidate_final_sink_delivers_unique_application_once",
+      "candidate_nested_send_reject_does_not_reset_sibling"
+    ],
+    "independently_checked_public_trace_values": {
+      "production": {
+        "accepted_copy_counts": [
+          25,
+          26,
+          27
+        ],
+        "incoming_application": {
+          "source": 7,
+          "id": 2873
+        },
+        "local_custody_ids": [
+          26,
+          27
+        ],
+        "fifo_sources": [
+          7,
+          7,
+          8
+        ],
+        "independent_ack_releases": 3,
+        "final_pending_custody": 0
+      },
+      "candidate": {
+        "accepted_copy_counts": [
+          25,
+          26,
+          27
+        ],
+        "incoming_application": {
+          "source": 7,
+          "id": 2873
+        },
+        "local_custody_ids": [
+          26,
+          27
+        ],
+        "fifo_sources": [
+          7,
+          7,
+          8
+        ],
+        "independent_ack_releases": 3,
+        "final_pending_custody": 0
+      }
+    }
+  },
+  "integrated_accounting": {
+    "passed_groups": 4,
+    "groups": [
+      "cutoff",
+      "final",
+      "relay",
+      "siblings"
+    ],
+    "sibling_checkpoints": {
+      "two_retained": {
+        "custody_counts": [
+          0,
+          2,
+          0
+        ],
+        "Generated": 1,
+        "Received": 0,
+        "Dropped": 0,
+        "RelayAccepted": 2,
+        "ApplicationBytesReceived": 0,
+        "LatencySumSeconds": 0
+      },
+      "one_failed": {
+        "custody_counts": [
+          0,
+          1,
+          0
+        ],
+        "Generated": 1,
+        "Received": 0,
+        "Dropped": 0,
+        "RelayAccepted": 2,
+        "ApplicationBytesReceived": 0,
+        "LatencySumSeconds": 0
+      },
+      "stale_failure": {
+        "custody_counts": [
+          0,
+          1,
+          0
+        ],
+        "Generated": 1,
+        "Received": 0,
+        "Dropped": 0,
+        "RelayAccepted": 2,
+        "ApplicationBytesReceived": 0,
+        "LatencySumSeconds": 0
+      },
+      "lower_hop_survives": {
+        "custody_counts": [
+          1,
+          0,
+          0
+        ],
+        "Generated": 1,
+        "Received": 0,
+        "Dropped": 0,
+        "RelayAccepted": 2,
+        "ApplicationBytesReceived": 0,
+        "LatencySumSeconds": 0
+      },
+      "last_failed": {
+        "custody_counts": [
+          0,
+          0,
+          0
+        ],
+        "Generated": 1,
+        "Received": 0,
+        "Dropped": 1,
+        "RelayAccepted": 2,
+        "ApplicationBytesReceived": 0,
+        "LatencySumSeconds": 0
+      },
+      "same_hop_recovered": {
+        "custody_counts": [
+          0,
+          1,
+          0
+        ],
+        "Generated": 1,
+        "Received": 0,
+        "Dropped": 0,
+        "RelayAccepted": 3,
+        "ApplicationBytesReceived": 0,
+        "LatencySumSeconds": 0
+      },
+      "delivered_once": {
+        "custody_counts": [
+          0,
+          0,
+          0
+        ],
+        "Generated": 1,
+        "Received": 1,
+        "Dropped": 0,
+        "RelayAccepted": 4,
+        "ApplicationBytesReceived": 185,
+        "LatencySumSeconds": 4.5
+      }
+    }
+  },
+  "replay": {
+    "seed": 132,
+    "requested_stop_seconds": 1200,
+    "import_passed": true,
+    "started": false,
+    "status": "prerequisite_failed",
+    "reached_time_s": null,
+    "files": [
+      "case_summary.json",
+      "import_preflight/preflight.json",
+      "import_preflight/random_requests.jsonl"
+    ]
+  },
+  "scope": "Owner-executed component evidence verified against issued source. No new network replay or parity result exists; raw drop accounting remains provisional, not a full MAC-copy liveness ledger."
+}

@@ -1,0 +1,98 @@
+{
+  "schema": "csr-relay-custody-runner-static-v1",
+  "status": "pass",
+  "matlab_executed": false,
+  "candidate_runner_sha256": "f4b0be6ea1085f06ac99dccca4eaf8838301723ac2814a893ca346444c63aca8",
+  "baseline_runner_sha256": "3cb301010edd1e64f2857ea5214a14997c30a7fae3cbe8765e379632217e24a6",
+  "readme_sha256": "ce29a591f4d3dd9bac55a152972b845d8c38c933885b52034d0e3f43aac9a792",
+  "checks": {
+    "matlab_syntax_tree_has_no_error": true,
+    "exactly_18_preflight_groups": true,
+    "focused_custody_preflight_bound": true,
+    "all_existing_runtime_and_export_functions_unchanged": true,
+    "old_reuse_function_removed": true,
+    "old_equivalence_function_removed": true,
+    "no_current_natural_baseline_report": true,
+    "historical_reference_explicit": true,
+    "candidate_change_explicit": true,
+    "current_target_20": true,
+    "source_allowlist_6_existing": true,
+    "added_candidate_test_allowlist_present": true,
+    "archived_matlab_excluded_from_resolution": true
+  },
+  "preflight_groups": [
+    "original_native_import",
+    "tx_timing_comparator",
+    "receiver_interval_order",
+    "key_request",
+    "check_gate",
+    "population",
+    "route_admission",
+    "request_wire",
+    "no_path_wire",
+    "discovery_identity",
+    "receiver_timer",
+    "discovery_lifecycle",
+    "discovery_membership",
+    "feedback_identity",
+    "retry_policy",
+    "terminal",
+    "integrated_accounting",
+    "relay_custody"
+  ],
+  "unchanged_functions": [
+    {
+      "name": "runNetwork",
+      "unchanged": true
+    },
+    {
+      "name": "emptyCase",
+      "unchanged": true
+    },
+    {
+      "name": "loadScenario",
+      "unchanged": true
+    },
+    {
+      "name": "exportRaw",
+      "unchanged": true
+    },
+    {
+      "name": "exportFinal",
+      "unchanged": true
+    },
+    {
+      "name": "txTimingGate",
+      "unchanged": true
+    },
+    {
+      "name": "compareTxTimes",
+      "unchanged": true
+    },
+    {
+      "name": "txTimingPreflight",
+      "unchanged": true
+    },
+    {
+      "name": "runPreflight",
+      "unchanged": true
+    },
+    {
+      "name": "verifyFiles",
+      "unchanged": true
+    },
+    {
+      "name": "hashFile",
+      "unchanged": true
+    },
+    {
+      "name": "uniqueFolder",
+      "unchanged": true
+    },
+    {
+      "name": "restore",
+      "unchanged": true
+    }
+  ],
+  "scope": "Static syntax and preservation review only; current manifest and full dependency closure are separate release gates."
+}

@@ -1,0 +1,275 @@
+{
+  "mode": "native",
+  "draw_count": 4202,
+  "counts": [
+    {
+      "key": "1:mac_slot",
+      "requested": 165,
+      "consumed": 165,
+      "native_available": 171,
+      "unused": 6
+    },
+    {
+      "key": "1:phy_binomial",
+      "requested": 284,
+      "consumed": 284,
+      "native_available": 287,
+      "unused": 3
+    },
+    {
+      "key": "1:sync_threshold",
+      "requested": 368,
+      "consumed": 368,
+      "native_available": 384,
+      "unused": 16
+    },
+    {
+      "key": "2:mac_slot",
+      "requested": 119,
+      "consumed": 119,
+      "native_available": 130,
+      "unused": 11
+    },
+    {
+      "key": "2:phy_binomial",
+      "requested": 136,
+      "consumed": 136,
+      "native_available": 156,
+      "unused": 20
+    },
+    {
+      "key": "2:sync_threshold",
+      "requested": 206,
+      "consumed": 206,
+      "native_available": 216,
+      "unused": 10
+    },
+    {
+      "key": "3:mac_slot",
+      "requested": 139,
+      "consumed": 139,
+      "native_available": 148,
+      "unused": 9
+    },
+    {
+      "key": "3:phy_binomial",
+      "requested": 266,
+      "consumed": 266,
+      "native_available": 278,
+      "unused": 12
+    },
+    {
+      "key": "3:sync_threshold",
+      "requested": 275,
+      "consumed": 275,
+      "native_available": 287,
+      "unused": 12
+    },
+    {
+      "key": "4:mac_slot",
+      "requested": 134,
+      "consumed": 134,
+      "native_available": 137,
+      "unused": 3
+    },
+    {
+      "key": "4:phy_binomial",
+      "requested": 318,
+      "consumed": 318,
+      "native_available": 332,
+      "unused": 14
+    },
+    {
+      "key": "4:sync_threshold",
+      "requested": 374,
+      "consumed": 374,
+      "native_available": 397,
+      "unused": 23
+    },
+    {
+      "key": "5:mac_slot",
+      "requested": 148,
+      "consumed": 148,
+      "native_available": 153,
+      "unused": 5
+    },
+    {
+      "key": "5:phy_binomial",
+      "requested": 298,
+      "consumed": 298,
+      "native_available": 315,
+      "unused": 17
+    },
+    {
+      "key": "5:sync_threshold",
+      "requested": 385,
+      "consumed": 385,
+      "native_available": 401,
+      "unused": 16
+    },
+    {
+      "key": "7:mac_slot",
+      "requested": 78,
+      "consumed": 78,
+      "native_available": 78,
+      "unused": 0
+    },
+    {
+      "key": "7:sync_threshold",
+      "requested": 89,
+      "consumed": 89,
+      "native_available": 98,
+      "unused": 9
+    },
+    {
+      "key": "8:mac_slot",
+      "requested": 102,
+      "consumed": 102,
+      "native_available": 111,
+      "unused": 9
+    },
+    {
+      "key": "8:phy_binomial",
+      "requested": 152,
+      "consumed": 152,
+      "native_available": 174,
+      "unused": 22
+    },
+    {
+      "key": "8:sync_threshold",
+      "requested": 166,
+      "consumed": 166,
+      "native_available": 177,
+      "unused": 11
+    }
+  ],
+  "native_unrequested_draws": 228,
+  "native_transmissions_available": 811,
+  "native_transmissions_checked": 769,
+  "native_transmissions_unused": 42,
+  "native_tape_exhausted": false,
+  "first_time_difference": [],
+  "first_context_mismatch": {
+    "node": 5,
+    "purpose": "physical_tx",
+    "ordinal": 130,
+    "actual_time_s": 324.753,
+    "fields": [
+      "child1.hop_sequence",
+      "child1.app_attempt_index"
+    ],
+    "actual": {
+      "source": 5,
+      "rate_kbps": 8,
+      "tx_power_dbm": 33,
+      "preamble": 0,
+      "reservation_slot": 6,
+      "child_count": 1,
+      "total_wire_bytes": 217,
+      "children": [
+        {
+          "child_index": 0,
+          "hop_source": 5,
+          "hop_destination": 1,
+          "hop_sequence": 36,
+          "kind": 0,
+          "wire_bytes": 217,
+          "dscp": 0,
+          "ackable": 1,
+          "has_ack_window": 0,
+          "ack_bitmap_hex": "0000000000000000",
+          "dack_bitmap_hex": "0000000000000000",
+          "network_source": 5,
+          "network_destination": 1,
+          "network_dscp": 0,
+          "application_bytes": 185,
+          "app_generated_time_ns": 3.0498E+11,
+          "app_attempt_index": 250,
+          "app_flow_index": 3
+        }
+      ]
+    },
+    "expected": {
+      "time_ns": 3.24753E+11,
+      "event_order": 122181,
+      "tx_id": 2.147483661E+10,
+      "source": 5,
+      "source_tx_ordinal": 130,
+      "rate_kbps": 8,
+      "tx_power_dbm": 33,
+      "preamble": 0,
+      "reservation_slot": 6,
+      "consumed_slot": 11,
+      "child_count": 1,
+      "total_wire_bytes": 217,
+      "child_index": 0,
+      "hop_source": 5,
+      "hop_destination": 1,
+      "hop_sequence": 29,
+      "kind": 0,
+      "wire_bytes": 217,
+      "frame_id": 633,
+      "dscp": 0,
+      "flags": 33,
+      "ackable": 1,
+      "is_ack": 0,
+      "is_dack": 0,
+      "has_ack_window": 0,
+      "ack_bitmap": "0",
+      "dack_bitmap": "0",
+      "ack_bitmap_hex": "0000000000000000",
+      "dack_bitmap_hex": "0000000000000000",
+      "destination_type": 0,
+      "speed_key": 8,
+      "has_link_control": 1,
+      "child_tx_power_dbm": 33,
+      "child_rx_power_dbm": -103,
+      "security_count": null,
+      "destination_sequences": "",
+      "compatibility_header_bytes": 17,
+      "compatibility_payload_bytes": 192,
+      "network_source": 5,
+      "network_destination": 1,
+      "network_dscp": 0,
+      "application_bytes": 185,
+      "payload_hex": "000005000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "packet_hex": "000005000001001d0021000008014afbfa000005000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "app_attempt_index": 11,
+      "app_flow_index": 3,
+      "app_generated_time_ns": 3.00199999999E+11,
+      "native_app_sequence": 942,
+      "routing_section_hex": "",
+      "routing_sequence": null,
+      "routing_section": null,
+      "routing_total_sections": null,
+      "routing_operation": null,
+      "routing_sender": null,
+      "routing_active_nodes": null,
+      "routing_section_origin": "",
+      "snmp_source": null,
+      "snmp_destination": null,
+      "snmp_destination_type": null,
+      "snmp_command": null,
+      "snmp_value": null,
+      "snmp_nodes": "",
+      "discover_subtype": "",
+      "discover_sequence": null,
+      "discover_active_peers": "",
+      "check_subtype": "",
+      "check_sequence": null,
+      "check_target": null,
+      "check_active": null,
+      "control_native_active_nodes": null,
+      "control_node_type": null,
+      "control_speed_key": null,
+      "control_s0_dbm": null,
+      "control_payload_origin": ""
+    }
+  },
+  "strict_context_matched": false,
+  "numeric_parity_established": false,
+  "time_is_endogenous": true,
+  "probability_absolute_tolerance": 0,
+  "probability_relative_tolerance": 1E-12,
+  "reported_population_gate": "Recorded only; fixed native MAC profile 4 does not use this field"
+}

@@ -1,0 +1,40 @@
+{
+  "schema": "csr-terminal-preflight-v1",
+  "completed": false,
+  "passed": false,
+  "checks": {
+    "name": "native_terminal_expiry_retains_two_previously_admitted_mac_copies",
+    "passed": true,
+    "details": {
+      "old_queue": 0,
+      "candidate_queue": 2,
+      "old_owner_failures": 1,
+      "candidate_owner_failures": 1
+    }
+  },
+  "matlab_execution_required": true,
+  "network_parity_claim": false,
+  "fixture_radio": {
+    "RateKeyKbps": 8,
+    "Preamble": "long",
+    "EnvelopeProfile": "bare",
+    "TxPowerDbm": 33
+  },
+  "cleanup_ownership": "Stable stream-handle registry captured by a file-local cleanup factory",
+  "scope": "Public component ownership, real MAC queue/cancellation/drain, receiver DATA duplicate suppression; one monotonic scheduler with public receiver-state stimuli",
+  "accounting_limit": "A failed HOP owner with queued MAC copies is unresolved at cutoff. Raw network Statistics.Dropped is provisional and not a final application-loss ledger.",
+  "error_identifier": "MATLAB:assertion:failed",
+  "error_message": "Assertion failed.",
+  "error_stack": [
+    {
+      "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\terminal-retry-cleanup-tests-v2\\terminalcase\\+ac\\terminalPreflight.m",
+      "name": "terminalPreflight",
+      "line": 25
+    },
+    {
+      "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\terminal-retry-cleanup-tests-v2\\terminalcase\\run_terminal_tests.m",
+      "name": "run_terminal_tests",
+      "line": 93
+    }
+  ]
+}

@@ -1,0 +1,252 @@
+CASE_BEGIN absent_candidate
+[NWK 5] automatic_route_propagation=enabled
+[MAC 5] active_nodes set to 2 for local slotting and post-TX wait
+[NWK 5] active_nodes=2 pushed to MAC
+[MAC 5] max_reported_active_nodes updated to 2
+[NWK 5] New HELLO neighbor=9 hopSrc=9 speedKey=8 activeNodes=2 pathloss=140.876 snr=-0.900945
+[NWK 5] link_calc neighbor=9 s0=-103 pathloss=140.876 numFailures=0 speed=8 txPower=30 estDistance=251 speedMargin=-7.876 totalMargin=-7.876 costMode=local-only cost=6274
+[NWK 5] Added route candidate dst=9 nextHop=9 hops=1 cost=6274 linkCost=6274 advCost=0 learnedFrom=9 selectionDeferred=0 selected=0
+[NWK 5] ARL route message from 9 type=NeighborCheck advCount=0
+[NWK 5] ProcessNeighborCheck from 9 subtype=Overheard pathloss=140.876 snr=-0.900945 linkCost=6274 advCount=0
+[NWK 5] NeighborCheck Overheard received from 9
+[NWK 5] Starting CHECK_MESSAGE admission proof neighbor=9 reason=received CHECK_OVERHEARD
+[NWK 5] Sending targeted ARL NeighborCheck neighbor=9 subtype=Message
+[HOP 5] link_control dest=9 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 5] TX reliable NeighborCheck to 9 seq=1
+[MAC] Enqueue TX pkt dscp=7 insert_pos=0 queue_size_before=0
+[NWK 5] Sending source-faithful KeyRequest neighbor=9 noAck=1 retryDelayMs=10000
+[HOP 5] link_control dest=9 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 5] TX non-ACKed KeyRequest neighbor=9 hopSeq=2 keyId=1 keySeq=3 securityCount=1
+[MAC] Enqueue TX pkt dscp=7 insert_pos=1 queue_size_before=1
+[NWK 5] Routes: dst=9->nh=9(hops=1,cost=6274,linkCost=6274,advCost=0,from=9,imm=1,pl=140.876,valid=1,path=[9])
+[HOP 5] New neighbor 1 heard at t=1e-09s
+[HOP 5] RX authenticated KeyUpdate from=1 keyId=1 keySeq=2 groupKeyId=1 securityCount=1
+[HOP 5] link_control dest=1 neighborKnown=1 s0=-105 pathloss=140.876 failures=0 speed=8 txPower=30 rxPower=-105 cost=6274
+[HOP 5] ACK KeyUpdate to 1 seq=1
+[MAC 5] Enqueue ACK dest=1 seq=1 window=0 ack_queue_size=1
+[NWK 5] KeyUpdate complete neighbor=1 receivedKey=1
+[HOP 5] link_control dest=1 neighborKnown=1 s0=-105 pathloss=140.876 failures=0 speed=8 txPower=30 rxPower=-105 cost=6274
+[HOP 5] TX reliable KeyUpdate neighbor=1 hopSeq=1 keyId=1 keySeq=2 groupKeyId=1 securityBytes=51
+[MAC] Enqueue TX pkt dscp=7 insert_pos=2 queue_size_before=2
+[NWK 5] KeyUpdate send active neighbor=1 reliable=1 securityBytes=51
+[HOP 5] RX ACK from 1 seq=1
+[MAC 5] Cancel queued acknowledged frame neighbor=1 seq=1 baseSeq=1 windowIndex=0
+[HOP 5] Reliable KeyUpdate completed neighbor=1 seq=1
+[NWK 5] KeyUpdate send completion neighbor=1 acknowledged=1 sentKey=1
+[NWK 5] Sending CHECK_OVERHEARD after two-sided key exchange neighbor=1
+[NWK 5] Sending targeted ARL NeighborCheck neighbor=1 subtype=Overheard
+[HOP 5] link_control dest=1 neighborKnown=1 s0=-105 pathloss=140.876 failures=0 speed=8 txPower=30 rxPower=-105 cost=6274
+[HOP 5] TX reliable NeighborCheck to 1 seq=2
+[MAC] Enqueue TX pkt dscp=7 insert_pos=2 queue_size_before=2
+[HOP 5] RX ACK from 1 seq=2
+[MAC 5] Cancel queued acknowledged frame neighbor=1 seq=2 baseSeq=2 windowIndex=0
+[HOP 5] Reliable NeighborCheck completed with 1 seq=2 subtype=3 discoverySequence=0
+[NWK 5] NeighborCheck success neighbor=1 subtype=Overheard discoverySequence=0 stale=0->0 numFailures=0->0
+[NWK 5] ARL neighbor ACTIVE neighbor=1 reason=ACKed NeighborCheck keys=two-sided
+[NWK 5] Built ARL routing byte stream routingSequence=77 records=2 advertisedRoutes=0 recordBytes=18 sections=1 maxSectionBytes=700
+POPULATION absent_candidate current=3 published=2
+[NWK 5] Built ARL routing byte stream routingSequence=0 records=2 advertisedRoutes=0 recordBytes=18 sections=1 maxSectionBytes=700
+[NWK 5] Starting reliable ARL RoutingSnapshot neighbor=1 routingSequence=0 sections=1
+[NWK 5] Sending ARL RoutingSnapshot section=0/1 neighbor=1 routingSequence=0
+[HOP 5] link_control dest=1 neighborKnown=1 s0=-105 pathloss=140.876 failures=0 speed=8 txPower=30 rxPower=-105 cost=6274
+[HOP 5] TX reliable RoutingControl targets=1:3
+[MAC] Enqueue TX pkt dscp=7 insert_pos=2 queue_size_before=2
+[NWK 5] Armed RoutingSnapshot watchdog neighbor=1 phase=awaiting-independent-section-acks generation=1 timeoutSec=20
+[NWK 5] routesProcess grouped selected-route changes count=0 infoChanged=0 time=2e-09
+ROUTE_ADMISSION absent_candidate grouped_operations=0 selectable=0
+[MAC 5] active_nodes set to 3 for local slotting and post-TX wait
+[NWK 5] active_nodes=3 pushed to MAC
+[NWK 5] Updated HELLO neighbor=1 hopSrc=1 speedKey=8 activeNodes=2 pathloss=140.876 snr=-0.900945
+[NWK 5] link_calc neighbor=1 s0=-103 pathloss=140.876 numFailures=0 speed=8 txPower=30 estDistance=251 speedMargin=-7.876 totalMargin=-7.876 costMode=local-only cost=6274
+[NWK 5] Added route candidate dst=1 nextHop=1 hops=1 cost=6274 linkCost=6274 advCost=0 learnedFrom=1 selectionDeferred=0 selected=1
+[NWK 5] Updated selected-route preference dst=1 preferredNextHop=1
+[NWK 5] Selected route changed dst=1 reason=candidate update pendingDestinations=1
+[NWK 5] ARL route message from 1 type=NeighborCheck advCount=0
+[NWK 5] ProcessNeighborCheck from 1 subtype=Overheard pathloss=140.876 snr=-0.900945 linkCost=6274 advCount=0
+[NWK 5] NeighborCheck Overheard received from 1
+[NWK 5] Routes: dst=9->nh=9(hops=1,cost=6274,linkCost=6274,advCost=0,from=9,imm=1,pl=140.876,valid=1,path=[9]) dst=1->nh=1(hops=1,cost=6274,linkCost=6274,advCost=0,from=1,imm=1,pl=140.876,valid=1,path=[1])
+[NWK 5] routesProcess grouped selected-route changes count=1 infoChanged=0 time=3e-09
+[NWK 5] Best route dst=1 nextHop=1 cost=6274 hops=1 learnedFrom=1 candidates=1 validCandidates=1
+[NWK 5] Sending source-exact grouped route changes routingSequence=1 infoChanged=0 destinations=1 neighbors=1 groups=1 sections=1
+[NWK 5] Retained grouped routing-control owner routingSequence=1 operation=Update section=0/1 destinations=1 owners=1
+GROUP_RECORD absent_candidate Delete destination=1 recipients=1
+[HOP 5] link_control dest=1 neighborKnown=1 s0=-105 pathloss=140.876 failures=0 speed=8 txPower=30 rxPower=-105 cost=6274
+[HOP 5] TX reliable RoutingControl targets=1:4
+[MAC] Enqueue TX pkt dscp=7 insert_pos=3 queue_size_before=3
+LATER_HELLO absent_candidate published=3 selectable=1 grouped_operation=Delete
+CASE_END absent_candidate PASS
+CASE_BEGIN observed_capability_zero
+[NWK 5] automatic_route_propagation=enabled
+[MAC 5] active_nodes set to 2 for local slotting and post-TX wait
+[NWK 5] active_nodes=2 pushed to MAC
+[MAC 5] max_reported_active_nodes updated to 2
+[NWK 5] New HELLO neighbor=9 hopSrc=9 speedKey=8 activeNodes=2 pathloss=140.876 snr=-0.900945
+[NWK 5] link_calc neighbor=9 s0=-103 pathloss=140.876 numFailures=0 speed=8 txPower=30 estDistance=251 speedMargin=-7.876 totalMargin=-7.876 costMode=local-only cost=6274
+[NWK 5] Added route candidate dst=9 nextHop=9 hops=1 cost=6274 linkCost=6274 advCost=0 learnedFrom=9 selectionDeferred=0 selected=0
+[NWK 5] ARL route message from 9 type=NeighborCheck advCount=0
+[NWK 5] ProcessNeighborCheck from 9 subtype=Overheard pathloss=140.876 snr=-0.900945 linkCost=6274 advCount=0
+[NWK 5] NeighborCheck Overheard received from 9
+[NWK 5] Starting CHECK_MESSAGE admission proof neighbor=9 reason=received CHECK_OVERHEARD
+[NWK 5] Sending targeted ARL NeighborCheck neighbor=9 subtype=Message
+[HOP 5] link_control dest=9 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 5] TX reliable NeighborCheck to 9 seq=1
+[MAC] Enqueue TX pkt dscp=7 insert_pos=0 queue_size_before=0
+[NWK 5] Sending source-faithful KeyRequest neighbor=9 noAck=1 retryDelayMs=10000
+[HOP 5] link_control dest=9 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 5] TX non-ACKed KeyRequest neighbor=9 hopSeq=2 keyId=1 keySeq=3 securityCount=1
+[MAC] Enqueue TX pkt dscp=7 insert_pos=1 queue_size_before=1
+[NWK 5] Routes: dst=9->nh=9(hops=1,cost=6274,linkCost=6274,advCost=0,from=9,imm=1,pl=140.876,valid=1,path=[9])
+[HOP 5] New neighbor 1 heard at t=1e-09s
+[HOP 5] RX authenticated KeyUpdate from=1 keyId=1 keySeq=2 groupKeyId=1 securityCount=1
+[HOP 5] link_control dest=1 neighborKnown=1 s0=-105 pathloss=140.876 failures=0 speed=8 txPower=30 rxPower=-105 cost=6274
+[HOP 5] ACK KeyUpdate to 1 seq=1
+[MAC 5] Enqueue ACK dest=1 seq=1 window=0 ack_queue_size=1
+[NWK 5] KeyUpdate complete neighbor=1 receivedKey=1
+[HOP 5] link_control dest=1 neighborKnown=1 s0=-105 pathloss=140.876 failures=0 speed=8 txPower=30 rxPower=-105 cost=6274
+[HOP 5] TX reliable KeyUpdate neighbor=1 hopSeq=1 keyId=1 keySeq=2 groupKeyId=1 securityBytes=51
+[MAC] Enqueue TX pkt dscp=7 insert_pos=2 queue_size_before=2
+[NWK 5] KeyUpdate send active neighbor=1 reliable=1 securityBytes=51
+[HOP 5] RX ACK from 1 seq=1
+[MAC 5] Cancel queued acknowledged frame neighbor=1 seq=1 baseSeq=1 windowIndex=0
+[HOP 5] Reliable KeyUpdate completed neighbor=1 seq=1
+[NWK 5] KeyUpdate send completion neighbor=1 acknowledged=1 sentKey=1
+[NWK 5] Sending CHECK_OVERHEARD after two-sided key exchange neighbor=1
+[NWK 5] Sending targeted ARL NeighborCheck neighbor=1 subtype=Overheard
+[HOP 5] link_control dest=1 neighborKnown=1 s0=-105 pathloss=140.876 failures=0 speed=8 txPower=30 rxPower=-105 cost=6274
+[HOP 5] TX reliable NeighborCheck to 1 seq=2
+[MAC] Enqueue TX pkt dscp=7 insert_pos=2 queue_size_before=2
+[MAC 5] active_nodes set to 3 for local slotting and post-TX wait
+[NWK 5] active_nodes=3 pushed to MAC
+[NWK 5] New HELLO neighbor=1 hopSrc=1 speedKey=8 activeNodes=2 pathloss=140.876 snr=-0.900945
+[NWK 5] link_calc neighbor=1 s0=-103 pathloss=140.876 numFailures=0 speed=8 txPower=30 estDistance=251 speedMargin=-7.876 totalMargin=-7.876 costMode=local-only cost=6274
+[NWK 5] Added route candidate dst=1 nextHop=1 hops=1 cost=6274 linkCost=6274 advCost=0 learnedFrom=1 selectionDeferred=0 selected=0
+[NWK 5] ARL route message from 1 type=NeighborCheck advCount=0
+[NWK 5] ProcessNeighborCheck from 1 subtype=Overheard pathloss=140.876 snr=-0.900945 linkCost=6274 advCount=0
+[NWK 5] NeighborCheck Overheard received from 1
+[NWK 5] Starting CHECK_MESSAGE admission proof neighbor=1 reason=received CHECK_OVERHEARD
+[NWK 5] Sending targeted ARL NeighborCheck neighbor=1 subtype=Message
+[HOP 5] link_control dest=1 neighborKnown=1 s0=-105 pathloss=140.876 failures=0 speed=8 txPower=30 rxPower=-105 cost=6274
+[HOP 5] TX reliable NeighborCheck to 1 seq=3
+[MAC] Enqueue TX pkt dscp=7 insert_pos=3 queue_size_before=3
+[NWK 5] Routes: dst=9->nh=9(hops=1,cost=6274,linkCost=6274,advCost=0,from=9,imm=1,pl=140.876,valid=1,path=[9]) dst=1->nh=1(hops=1,cost=6274,linkCost=6274,advCost=0,from=1,imm=1,pl=140.876,valid=1,path=[1])
+[HOP 5] RX ACK from 1 seq=2
+[MAC 5] Cancel queued acknowledged frame neighbor=1 seq=2 baseSeq=2 windowIndex=0
+[HOP 5] Reliable NeighborCheck completed with 1 seq=2 subtype=3 discoverySequence=0
+[NWK 5] NeighborCheck success neighbor=1 subtype=Overheard discoverySequence=0 stale=0->0 numFailures=0->0
+[NWK 5] recompute hop-cost neighbor=1 failures=0 costMode=local-only newLinkCost=6274
+[NWK 5] Recomputed route after link change dst=1 nextHop=1 oldCost=6274 newCost=6274 linkCost=6274 advertisedCost=0 numFailures=0
+[NWK 5] ARL neighbor ACTIVE neighbor=1 reason=ACKed NeighborCheck keys=two-sided
+[NWK 5] Updated selected-route preference dst=1 preferredNextHop=1
+[NWK 5] Selected route changed dst=1 reason=neighbor admitted pendingDestinations=1
+[NWK 5] Built ARL routing byte stream routingSequence=77 records=2 advertisedRoutes=0 recordBytes=18 sections=1 maxSectionBytes=700
+POPULATION observed_capability_zero current=3 published=3
+[NWK 5] Built ARL routing byte stream routingSequence=0 records=2 advertisedRoutes=0 recordBytes=18 sections=1 maxSectionBytes=700
+[NWK 5] Starting reliable ARL RoutingSnapshot neighbor=1 routingSequence=0 sections=1
+[NWK 5] Sending ARL RoutingSnapshot section=0/1 neighbor=1 routingSequence=0
+[HOP 5] link_control dest=1 neighborKnown=1 s0=-105 pathloss=140.876 failures=0 speed=8 txPower=30 rxPower=-105 cost=6274
+[HOP 5] TX reliable RoutingControl targets=1:4
+[MAC] Enqueue TX pkt dscp=7 insert_pos=3 queue_size_before=3
+[NWK 5] Armed RoutingSnapshot watchdog neighbor=1 phase=awaiting-independent-section-acks generation=1 timeoutSec=20
+[NWK 5] routesProcess grouped selected-route changes count=1 infoChanged=0 time=2e-09
+[NWK 5] Best route dst=1 nextHop=1 cost=6274 hops=1 learnedFrom=1 candidates=1 validCandidates=1
+[NWK 5] Sending source-exact grouped route changes routingSequence=1 infoChanged=0 destinations=1 neighbors=1 groups=1 sections=1
+[NWK 5] Retained grouped routing-control owner routingSequence=1 operation=Update section=0/1 destinations=1 owners=1
+GROUP_RECORD observed_capability_zero Delete destination=1 recipients=1
+[HOP 5] link_control dest=1 neighborKnown=1 s0=-105 pathloss=140.876 failures=0 speed=8 txPower=30 rxPower=-105 cost=6274
+[HOP 5] TX reliable RoutingControl targets=1:5
+[MAC] Enqueue TX pkt dscp=7 insert_pos=4 queue_size_before=4
+ROUTE_ADMISSION observed_capability_zero grouped_operations=1 selectable=1 operation=Delete
+CASE_END observed_capability_zero PASS
+CASE_BEGIN observed_capability_one
+[NWK 5] automatic_route_propagation=enabled
+[MAC 5] active_nodes set to 2 for local slotting and post-TX wait
+[NWK 5] active_nodes=2 pushed to MAC
+[MAC 5] max_reported_active_nodes updated to 2
+[NWK 5] New HELLO neighbor=9 hopSrc=9 speedKey=8 activeNodes=2 pathloss=140.876 snr=-0.900945
+[NWK 5] link_calc neighbor=9 s0=-103 pathloss=140.876 numFailures=0 speed=8 txPower=30 estDistance=251 speedMargin=-7.876 totalMargin=-7.876 costMode=local-only cost=6274
+[NWK 5] Added route candidate dst=9 nextHop=9 hops=1 cost=6274 linkCost=6274 advCost=0 learnedFrom=9 selectionDeferred=0 selected=0
+[NWK 5] ARL route message from 9 type=NeighborCheck advCount=0
+[NWK 5] ProcessNeighborCheck from 9 subtype=Overheard pathloss=140.876 snr=-0.900945 linkCost=6274 advCount=0
+[NWK 5] NeighborCheck Overheard received from 9
+[NWK 5] Starting CHECK_MESSAGE admission proof neighbor=9 reason=received CHECK_OVERHEARD
+[NWK 5] Sending targeted ARL NeighborCheck neighbor=9 subtype=Message
+[HOP 5] link_control dest=9 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 5] TX reliable NeighborCheck to 9 seq=1
+[MAC] Enqueue TX pkt dscp=7 insert_pos=0 queue_size_before=0
+[NWK 5] Sending source-faithful KeyRequest neighbor=9 noAck=1 retryDelayMs=10000
+[HOP 5] link_control dest=9 neighborKnown=0 speed=8 txPower=30 rxPower=-105
+[HOP 5] TX non-ACKed KeyRequest neighbor=9 hopSeq=2 keyId=1 keySeq=3 securityCount=1
+[MAC] Enqueue TX pkt dscp=7 insert_pos=1 queue_size_before=1
+[NWK 5] Routes: dst=9->nh=9(hops=1,cost=6274,linkCost=6274,advCost=0,from=9,imm=1,pl=140.876,valid=1,path=[9])
+[HOP 5] New neighbor 1 heard at t=1e-09s
+[HOP 5] RX authenticated KeyUpdate from=1 keyId=1 keySeq=2 groupKeyId=1 securityCount=1
+[HOP 5] link_control dest=1 neighborKnown=1 s0=-105 pathloss=140.876 failures=0 speed=8 txPower=30 rxPower=-105 cost=6274
+[HOP 5] ACK KeyUpdate to 1 seq=1
+[MAC 5] Enqueue ACK dest=1 seq=1 window=0 ack_queue_size=1
+[NWK 5] KeyUpdate complete neighbor=1 receivedKey=1
+[HOP 5] link_control dest=1 neighborKnown=1 s0=-105 pathloss=140.876 failures=0 speed=8 txPower=30 rxPower=-105 cost=6274
+[HOP 5] TX reliable KeyUpdate neighbor=1 hopSeq=1 keyId=1 keySeq=2 groupKeyId=1 securityBytes=51
+[MAC] Enqueue TX pkt dscp=7 insert_pos=2 queue_size_before=2
+[NWK 5] KeyUpdate send active neighbor=1 reliable=1 securityBytes=51
+[HOP 5] RX ACK from 1 seq=1
+[MAC 5] Cancel queued acknowledged frame neighbor=1 seq=1 baseSeq=1 windowIndex=0
+[HOP 5] Reliable KeyUpdate completed neighbor=1 seq=1
+[NWK 5] KeyUpdate send completion neighbor=1 acknowledged=1 sentKey=1
+[NWK 5] Sending CHECK_OVERHEARD after two-sided key exchange neighbor=1
+[NWK 5] Sending targeted ARL NeighborCheck neighbor=1 subtype=Overheard
+[HOP 5] link_control dest=1 neighborKnown=1 s0=-105 pathloss=140.876 failures=0 speed=8 txPower=30 rxPower=-105 cost=6274
+[HOP 5] TX reliable NeighborCheck to 1 seq=2
+[MAC] Enqueue TX pkt dscp=7 insert_pos=2 queue_size_before=2
+[MAC 5] active_nodes set to 3 for local slotting and post-TX wait
+[NWK 5] active_nodes=3 pushed to MAC
+[NWK 5] New HELLO neighbor=1 hopSrc=1 speedKey=8 activeNodes=2 pathloss=140.876 snr=-0.900945
+[NWK 5] link_calc neighbor=1 s0=-103 pathloss=140.876 numFailures=0 speed=8 txPower=30 estDistance=251 speedMargin=-7.876 totalMargin=-7.876 costMode=local-only cost=6274
+[NWK 5] Added route candidate dst=1 nextHop=1 hops=1 cost=6274 linkCost=6274 advCost=0 learnedFrom=1 selectionDeferred=0 selected=0
+[NWK 5] ARL route message from 1 type=NeighborCheck advCount=0
+[NWK 5] ProcessNeighborCheck from 1 subtype=Overheard pathloss=140.876 snr=-0.900945 linkCost=6274 advCount=0
+[NWK 5] NeighborCheck Overheard received from 1
+[NWK 5] Starting CHECK_MESSAGE admission proof neighbor=1 reason=received CHECK_OVERHEARD
+[NWK 5] Sending targeted ARL NeighborCheck neighbor=1 subtype=Message
+[HOP 5] link_control dest=1 neighborKnown=1 s0=-105 pathloss=140.876 failures=0 speed=8 txPower=30 rxPower=-105 cost=6274
+[HOP 5] TX reliable NeighborCheck to 1 seq=3
+[MAC] Enqueue TX pkt dscp=7 insert_pos=3 queue_size_before=3
+[NWK 5] Routes: dst=9->nh=9(hops=1,cost=6274,linkCost=6274,advCost=0,from=9,imm=1,pl=140.876,valid=1,path=[9]) dst=1->nh=1(hops=1,cost=6274,linkCost=6274,advCost=0,from=1,imm=1,pl=140.876,valid=1,path=[1])
+[MAC 5] active_nodes set to 3 for local slotting and post-TX wait
+[NWK 5] active_nodes=3 pushed to MAC
+[NWK 5] Updated HELLO neighbor=1 hopSrc=1 speedKey=8 activeNodes=2 pathloss=140.876 snr=-0.900945
+[NWK 5] link_calc neighbor=1 s0=-103 pathloss=140.876 numFailures=0 speed=8 txPower=30 estDistance=251 speedMargin=-7.876 totalMargin=-7.876 costMode=local-only cost=6274
+[NWK 5] Updated route candidate dst=1 nextHop=1 hops=1 oldCost=6274 newCost=6274 valid=1->1 selectionDeferred=0 selected=0
+[NWK 5] ARL route message from 1 type=RoutingUpdate advCount=0
+[NWK 5] Buffered ARL routing section from=1 routingSequence=1 section=0/1 buffered=1
+[NWK 5] Reassembled complete ARL routing message from=1 routingSequence=1 sections=1 recordBytes=11 records=1
+[NWK 5] Applied source-owned neighbor capability neighbor=1 capability=1 routingSequence=1 directCost=6274
+[NWK 5] Routes: dst=9->nh=9(hops=1,cost=6274,linkCost=6274,advCost=0,from=9,imm=1,pl=140.876,valid=1,path=[9]) dst=1->nh=1(hops=1,cost=6274,linkCost=6274,advCost=0,from=1,imm=1,pl=140.876,valid=1,path=[1])
+[HOP 5] RX ACK from 1 seq=2
+[MAC 5] Cancel queued acknowledged frame neighbor=1 seq=2 baseSeq=2 windowIndex=0
+[HOP 5] Reliable NeighborCheck completed with 1 seq=2 subtype=3 discoverySequence=0
+[NWK 5] NeighborCheck success neighbor=1 subtype=Overheard discoverySequence=0 stale=0->0 numFailures=0->0
+[NWK 5] recompute hop-cost neighbor=1 failures=0 costMode=local-only newLinkCost=6274
+[NWK 5] Recomputed route after link change dst=1 nextHop=1 oldCost=6274 newCost=6274 linkCost=6274 advertisedCost=0 numFailures=0
+[NWK 5] ARL neighbor ACTIVE neighbor=1 reason=ACKed NeighborCheck keys=two-sided
+[NWK 5] Updated selected-route preference dst=1 preferredNextHop=1
+[NWK 5] Selected route changed dst=1 reason=neighbor admitted pendingDestinations=1
+[NWK 5] Built ARL routing byte stream routingSequence=77 records=2 advertisedRoutes=0 recordBytes=18 sections=1 maxSectionBytes=700
+POPULATION observed_capability_one current=3 published=3
+[NWK 5] Built ARL routing byte stream routingSequence=0 records=2 advertisedRoutes=0 recordBytes=18 sections=1 maxSectionBytes=700
+[NWK 5] Starting reliable ARL RoutingSnapshot neighbor=1 routingSequence=0 sections=1
+[NWK 5] Sending ARL RoutingSnapshot section=0/1 neighbor=1 routingSequence=0
+[HOP 5] link_control dest=1 neighborKnown=1 s0=-105 pathloss=140.876 failures=0 speed=8 txPower=30 rxPower=-105 cost=6274
+[HOP 5] TX reliable RoutingControl targets=1:4
+[MAC] Enqueue TX pkt dscp=7 insert_pos=3 queue_size_before=3
+[NWK 5] Armed RoutingSnapshot watchdog neighbor=1 phase=awaiting-independent-section-acks generation=1 timeoutSec=20
+[NWK 5] routesProcess grouped selected-route changes count=1 infoChanged=0 time=2e-09
+[NWK 5] Best route dst=1 nextHop=1 cost=6274 hops=1 learnedFrom=1 candidates=1 validCandidates=1
+[NWK 5] Sending source-exact grouped route changes routingSequence=1 infoChanged=0 destinations=1 neighbors=1 groups=1 sections=1
+[NWK 5] Retained grouped routing-control owner routingSequence=1 operation=Update section=0/1 destinations=1 owners=1
+GROUP_RECORD observed_capability_one Update destination=1 recipients=1
+[HOP 5] link_control dest=1 neighborKnown=1 s0=-105 pathloss=140.876 failures=0 speed=8 txPower=30 rxPower=-105 cost=6274
+[HOP 5] TX reliable RoutingControl targets=1:5
+[MAC] Enqueue TX pkt dscp=7 insert_pos=4 queue_size_before=4
+ROUTE_ADMISSION observed_capability_one grouped_operations=1 selectable=1 operation=Update
+CASE_END observed_capability_one PASS
+ALL_COMPONENT_CASES_PASS

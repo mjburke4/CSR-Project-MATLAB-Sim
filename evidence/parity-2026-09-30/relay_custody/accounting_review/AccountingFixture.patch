@@ -1,0 +1,198 @@
+--- before/+ac/AccountingFixture.m
++++ after/+ac/AccountingFixture.m
+@@ -14,6 +14,7 @@
+         File = -1
+         Order = 0
+         Admitted = {}
++        Retained = {}
+         DataEnqueues = 0
+         DataRemovals = 0
+         AllRemovals = 0
+@@ -45,6 +46,9 @@
+             row=struct('observation_order',obj.Order,'time_s',time, ...
+                 'kind',kind,'node',node,'details',details);
+             assert(fprintf(obj.File,'%s\n',jsonencode(row))>0,'batchcase:AccountingFile','Cannot write accounting trace.');
++            if strcmp(kind,'protocol') && strcmp(details.event,'network_enqueue')
++                obj.Retained{end+1}=struct('node',node,'app',details.frame);
++            end
+             if strcmp(kind,'protocol') && isfield(details,'frame') && ...
+                     isfield(details.frame,'Kind') && strcmp(details.frame.Kind,'DATA')
+                 if strcmp(details.event,'hop_admit')
+@@ -56,6 +60,9 @@
+         end
+         function execute(obj)
+             clock=obj.Simulation.Scheduler;
++            if strcmp(obj.Mode,'siblings')
++                obj.executeSiblings(); return
++            end
+             clock.scheduleAt(0,@()obj.establishPublicRoutes());
+             clock.scheduleAt(1,@()obj.sendInitial());
+             if strcmp(obj.Mode,'relay')
+@@ -87,7 +94,7 @@
+                 'execution_complete',~isempty(obj.Result), ...
+                 'final_checks_complete',obj.FinalChecksCompleted, ...
+                 'passed',~isempty(obj.Result) && obj.FinalChecksCompleted && ~isempty(obj.Checks) && all([obj.Checks.passed]), ...
+-                'scope','Real TerminalSimulation records/counters and NWK/HOP/MAC objects; scripted public sent/decoded-receive boundary inputs, no RF propagation or actual MAC transmission');
++                'scope','Real TerminalSimulation records/counters and NWK/HOP/MAC objects; scripted public sent/decoded-receive inputs and, in siblings, public NWK release/terminal boundaries; no RF propagation or actual MAC transmission');
+         end
+         function persist(obj)
+             ac.writeJson(fullfile(obj.Folder,'accounting_case.json'),obj.summary());
+@@ -104,10 +111,113 @@
+         function delete(obj), obj.close(); end
+     end
+     methods (Access=private)
++        function executeSiblings(obj)
++            clock=obj.Simulation.Scheduler;
++            clock.scheduleAt(0,@()obj.establishPublicRoutes());
++            clock.scheduleAt(1,@()obj.siblingReceive(0));
++            clock.scheduleAt(1.1,@()obj.siblingReceive(100));
++            clock.scheduleAt(1.2,@()obj.siblingCheckpoint('two_retained'));
++            clock.scheduleAt(2,@()obj.siblingFailure(1));
++            clock.scheduleAt(2.1,@()obj.siblingCheckpoint('one_failed'));
++            clock.scheduleAt(2.2,@()obj.siblingFailure(1));
++            clock.scheduleAt(2.3,@()obj.siblingCheckpoint('stale_failure'));
++            clock.scheduleAt(2.5,@()obj.retainLowerHopSibling());
++            clock.scheduleAt(3,@()obj.siblingFailure(2));
++            clock.scheduleAt(3.1,@()obj.siblingCheckpoint('lower_hop_survives'));
++            clock.scheduleAt(3.2,@()obj.failLowerHopSibling());
++            clock.scheduleAt(3.3,@()obj.siblingCheckpoint('last_failed'));
++            clock.scheduleAt(4,@()obj.siblingReceive(101));
++            clock.scheduleAt(4.1,@()obj.siblingFailure(1));
++            clock.scheduleAt(4.2,@()obj.siblingCheckpoint('same_hop_recovered'));
++            clock.scheduleAt(5,@()obj.siblingDelivery());
++            clock.scheduleAt(5.1,@()obj.siblingDelivery());
++            clock.scheduleAt(5.2,@()obj.siblingReceive(102));
++            clock.scheduleAt(5.3,@()obj.siblingFailure(3));
++            clock.scheduleAt(5.4,@()obj.siblingFailure(4));
++            clock.scheduleAt(5.5,@()obj.siblingCheckpoint('delivered_once'));
++            obj.Result=obj.Simulation.run(); obj.saveResult();
++            stats=obj.Result.Statistics;
++            rx=obj.Result.ProtocolTrace(strcmp(obj.Result.ProtocolTrace.Event,'app_receive'),:);
++            obj.expect('sibling integration final conservation and unique latency', ...
++                stats.Generated==1 && stats.Received==1 && stats.Dropped==0 && stats.Pending==0 && ...
++                stats.ApplicationBytesReceived==185 && abs(stats.LatencySumSeconds-4.5)<1e-12 && ...
++                stats.RelayAccepted==4 && stats.LateCustodyRecoveries==1 && height(rx)==1 && ...
++                stats.OmittedTraceRecords==0 && stats.OmittedPhyTraceRecords==0 && ...
++                stats.OmittedApplicationAdmissionRecords==0, ...
++                stats,struct('generated',1,'received',1,'dropped',0,'pending',0, ...
++                'bytes',185,'latency_sum_s',4.5,'relay_occurrences',4,'recoveries',1,'receive_rows',1));
++            obj.FinalChecksCompleted=true; obj.persist();
++        end
++        function siblingReceive(obj,offset)
++            frame=obj.original(); frame.Sequence=uint16(mod(double(frame.Sequence)+offset,65536));
++            obj.Simulation.Hops{2}.receive(frame);
++            % Retire only the registered source NWK copy. No lower-layer
++            % completion is synthesized; HOP release behavior is tested by
++            % the independent custody component suite.
++            if offset==0, obj.Simulation.Networks{1}.releaseFromHop(frame.App,'fixture_source_release'); end
++            obj.stimulus('scripted_sibling_decoded_receive',struct('sequence_offset',offset, ...
++                'physical_reception',false));
++        end
++        function retainLowerHopSibling(obj)
++            original=obj.original();
++            accepted=obj.Simulation.Networks{1}.sendApplication(original.App);
++            obj.expect('scripted lower-hop sibling retained at source NWK',accepted,accepted,true);
++            obj.stimulus('scripted_source_nwk_retain_same_application',struct( ...
++                'purpose','Adversarial accounting case; not an autonomous generator action'));
++        end
++        function failLowerHopSibling(obj)
++            found=find(cellfun(@(x)x.node==1 && x.app.Id==uint64(1),obj.Retained));
++            assert(numel(found)==2,'batchcase:AccountingSibling','Expected two source custody occurrences.');
++            app=obj.Retained{found(2)}.app;
++            obj.Simulation.Networks{1}.terminal(app,false,'fixture_copy_failure');
++            obj.stimulus('scripted_last_lower_hop_terminal_failure',struct('custody_id',app.NwkCustodyId));
++        end
++        function app=retainedRelay(obj,ordinal)
++            found=find(cellfun(@(x)x.node==2 && x.app.Id==uint64(1),obj.Retained));
++            assert(numel(found)>=ordinal,'batchcase:AccountingSibling','Missing retained relay occurrence.');
++            app=obj.Retained{found(ordinal)}.app;
++        end
++        function siblingFailure(obj,ordinal)
++            app=obj.retainedRelay(ordinal);
++            obj.Simulation.Networks{2}.terminal(app,false,'fixture_copy_failure');
++            obj.stimulus('scripted_public_nwk_terminal_failure',struct('occurrence',ordinal, ...
++                'custody_id',app.NwkCustodyId,'physical_copy_failure_claim',false));
++        end
++        function siblingDelivery(obj)
++            app=obj.retainedRelay(3);
++            [accepted,reason]=obj.Simulation.Networks{3}.receiveData(app,2);
++            obj.expect('public final NWK delivery is accepted',accepted, ...
++                struct('accepted',accepted,'reason',reason),struct('accepted',true));
++        end
++        function siblingCheckpoint(obj,label)
++            partial=obj.Simulation.autonomousPartial(); stats=partial.Statistics;
++            original=obj.original(); app=original.App;
++            counts=cellfun(@(nwk)nwk.custodyCount(app),obj.Simulation.Networks);
++            expectedCount=1; expectedDrop=0; expectedReceived=0; expectedRelay=2; expectedRecovery=0;
++            switch label
++                case 'two_retained', expectedCount=2;
++                case 'last_failed', expectedCount=0; expectedDrop=1;
++                case 'same_hop_recovered', expectedRelay=3; expectedRecovery=1;
++                case 'delivered_once'
++                    expectedCount=0; expectedReceived=1; expectedRelay=4; expectedRecovery=1;
++            end
++            obj.expect(['sibling accounting ' label], ...
++                sum(counts)==expectedCount && stats.Generated==1 && stats.Dropped==expectedDrop && ...
++                stats.Received==expectedReceived && stats.RelayAccepted==expectedRelay && ...
++                stats.LateCustodyRecoveries==expectedRecovery && ...
++                all(cellfun(@(node)node.Dropped,obj.Simulation.Nodes)>=0) && ...
++                sum(cellfun(@(node)node.Dropped,obj.Simulation.Nodes))==expectedDrop, ...
++                struct('custody_counts',counts,'statistics',stats), ...
++                struct('registered_copies',expectedCount,'dropped',expectedDrop, ...
++                'received',expectedReceived,'relay_occurrences',expectedRelay,'recoveries',expectedRecovery));
++            obj.Checkpoints(end+1)=struct('label',label,'value', ...
++                struct('time_s',obj.Simulation.Scheduler.Now,'custody_counts',counts,'statistics',stats));
++            obj.persist();
++        end
+         function establishPublicRoutes(obj)
+             sim=obj.Simulation;
+             sim.Networks{1}.observe(2,struct()); sim.Networks{2}.observe(1,struct());
+-            if strcmp(obj.Mode,'relay')
++            if any(strcmp(obj.Mode,{'relay','siblings'}))
+                 sim.Networks{2}.observe(3,struct()); sim.Networks{3}.observe(2,struct());
+                 route=struct('Operation','UPDATE','NodeId',3,'Capability',2,'HopCount',1,'Cost',10,'Path',3);
+                 sections=csr.nwk.RoutingCodec.sections(csr.nwk.RoutingCodec.encodeRecords({route}),uint32(17));
+@@ -183,14 +293,14 @@
+                 v.statistics.Received==double(~relay) && ...
+                 v.statistics.LateDeliveries==double(~relay) && ...
+                 v.statistics.LateCustodyRecoveries==double(relay) && ...
+-                v.statistics.RelayAccepted==double(relay),v, ...
++                v.statistics.RelayAccepted==2*double(relay),v, ...
+                 struct('dropped',0,'node_dropped',0,'received',double(~relay), ...
+-                'late_deliveries',double(~relay),'late_custody_recoveries',double(relay),'relay_accepted',double(relay)));
+-            obj.expect('both HOP and NWK duplicate guards execute', ...
++                'late_deliveries',double(~relay),'late_custody_recoveries',double(relay),'relay_accepted',2*double(relay)));
++            obj.expect('HOP suppresses its duplicate; only final NWK deduplicates applications', ...
+                 obj.Simulation.Hops{2}.stats().Duplicates==1 && ...
+-                obj.Simulation.Networks{2}.stats().DuplicateApplications==1, ...
++                obj.Simulation.Networks{2}.stats().DuplicateApplications==double(~relay), ...
+                 struct('hop',obj.Simulation.Hops{2}.stats(),'nwk',obj.Simulation.Networks{2}.stats()), ...
+-                struct('hop_duplicates',1,'nwk_duplicates',1));
++                struct('hop_duplicates',1,'nwk_duplicates',double(~relay)));
+             if relay
+                 frame=obj.relayFrame();
+                 obj.expect('fresh relay preserves advanced custody and traversal', ...
+@@ -278,9 +388,9 @@
+                     rx.NodeId==2+double(relay) && rx.HopCount==1+double(relay), ...
+                     table2struct(rx),struct('receive_rows',1,'sink',2+double(relay),'hop_count',1+double(relay)));
+                 obj.expect('integrated recovery branch totals',stats.LateDeliveries==double(~relay) && ...
+-                    stats.LateCustodyRecoveries==double(relay) && stats.RelayAccepted==double(relay), ...
++                    stats.LateCustodyRecoveries==double(relay) && stats.RelayAccepted==2*double(relay), ...
+                     struct('late_final',stats.LateDeliveries,'late_custody',stats.LateCustodyRecoveries,'relay',stats.RelayAccepted), ...
+-                    struct('late_final',double(~relay),'late_custody',double(relay),'relay',double(relay)));
++                    struct('late_final',double(~relay),'late_custody',double(relay),'relay',2*double(relay)));
+                 obj.expect('final receiver HOP duplicate path executed exactly once', ...
+                     obj.Simulation.Hops{end}.stats().Duplicates==1, ...
+                     obj.Simulation.Hops{end}.stats().Duplicates,1);
+@@ -306,9 +416,10 @@
+ 
+ function config=fixtureConfig(config,mode)
+ % Explicit test-only setup; never changed in the network replay scenario.
+-count=2+double(strcmp(mode,'relay'));
++count=2+double(any(strcmp(mode,{'relay','siblings'})));
+ config.Name=['terminal_integrated_accounting_' mode];
+ config.DurationSeconds=13; if strcmp(mode,'cutoff'), config.DurationSeconds=8.25; end
++if strcmp(mode,'siblings'), config.DurationSeconds=6; end
+ config.Backend='portable'; config.Stack='network';
+ config.ApplicationGenerator='configured-count'; config.ApplicationFlowLimit=0;
+ config.ApplicationProfile='current-send-only';

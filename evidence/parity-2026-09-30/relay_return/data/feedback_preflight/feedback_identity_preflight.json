@@ -1,0 +1,85 @@
+{
+  "schema": "csr-feedback-identity-preflight-v1",
+  "passed": true,
+  "checks": [
+    {
+      "name": "actual_M_frame_reproduced_then_projected_with_both_flags",
+      "passed": true,
+      "details": {
+        "logical_kind": "DACK",
+        "logical_kind_code": 2,
+        "projected_outer_kind": 1,
+        "native_outer_kind": 1,
+        "native_is_ack": 1,
+        "native_is_dack": 1,
+        "policy": "native_mac_ack_type_precedence",
+        "reason": "Native MAC emits ACK outer type while retaining independent ACK and DACK flags"
+      }
+    },
+    {
+      "name": "all_native_feedback_children_match_public_frame_constructors",
+      "passed": true,
+      "details": {
+        "children": 1104,
+        "plain_ack": 1083,
+        "dack_flagged": 21,
+        "single_child_scaffold": true,
+        "additional_source_supported_synthetic_cases": [
+          "nonwindow_DACK",
+          "window_ACK_retaining_nonzero_DACK_bitmap"
+        ]
+      }
+    },
+    {
+      "name": "native_flag_schema_values_and_encoded_bits_remain_strict",
+      "passed": true,
+      "details": {
+        "negative_cases": 14
+      }
+    },
+    {
+      "name": "both_full_width_feedback_bitmaps_remain_strict",
+      "passed": true,
+      "details": {
+        "negative_cases": 2,
+        "mutated_bit": 63
+      }
+    },
+    {
+      "name": "feedback_sequence_and_both_addresses_remain_strict",
+      "passed": true,
+      "details": {
+        "negative_cases": 3
+      }
+    },
+    {
+      "name": "feedback_size_dscp_reliability_and_window_remain_strict",
+      "passed": true,
+      "details": {
+        "negative_cases": 4
+      }
+    },
+    {
+      "name": "plain_ack_and_native_outer_dack_cannot_masquerade",
+      "passed": true,
+      "details": {
+        "negative_cases": 2,
+        "bitmaps_do_not_define_feedback_role": true
+      }
+    },
+    {
+      "name": "reliable_control_kind_is_not_projected",
+      "passed": true,
+      "details": {
+        "expected_failure": "child1.kind"
+      }
+    }
+  ],
+  "network_simulation_executed": false,
+  "scheduled_events": 0,
+  "random_variates_requested": 0,
+  "captured_native_tx_identity": 3.4359738442E+10,
+  "native_feedback_children": 1104,
+  "scope": "Actual M boundary and all native feedback children via public Frames; strict comparator mutation checks",
+  "limitations": "The fixture sweep isolates each native child. No new transport run, HOP completion test or post-stop network parity claim."
+}

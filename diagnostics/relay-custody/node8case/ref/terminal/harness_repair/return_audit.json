@@ -1,0 +1,116 @@
+{
+  "schema": "csr-terminal-failed-return-audit-v1",
+  "audit_passed": true,
+  "input_archive": "out_terminal_20260929_075635.zip",
+  "input_sha256": "a62b0254e8c46912d2b5c4d8495b7d36acebcddcaf5c2f9e628b25b00303e32b",
+  "input_bytes": 330497,
+  "input_members": 37,
+  "issued_manifest_sha256": "5990ea42d4d5fb763245c3ec4e31d5dbfc480e9eb29be76487b966f59c0df8ee",
+  "runtime": {
+    "version": "25.1.0.2943329 (R2025a)",
+    "release": "2025a",
+    "computer": "PCWIN64"
+  },
+  "wall_seconds": 48.7943912,
+  "source_and_manifest_match": true,
+  "prior_checks_passed": 92,
+  "prior_check_groups": [
+    {
+      "name": "key_request_preflight",
+      "checks": 7,
+      "passed": true
+    },
+    {
+      "name": "check_gate_preflight",
+      "checks": 8,
+      "passed": true
+    },
+    {
+      "name": "population_preflight",
+      "checks": 6,
+      "passed": true
+    },
+    {
+      "name": "route_admission_preflight",
+      "checks": 8,
+      "passed": true
+    },
+    {
+      "name": "request_wire_preflight",
+      "checks": 6,
+      "passed": true
+    },
+    {
+      "name": "no_path_wire_preflight",
+      "checks": 3,
+      "passed": true
+    },
+    {
+      "name": "discovery_identity_preflight",
+      "checks": 7,
+      "passed": true
+    },
+    {
+      "name": "receiver_timer_preflight",
+      "checks": 8,
+      "passed": true
+    },
+    {
+      "name": "discovery_lifecycle_preflight",
+      "checks": 8,
+      "passed": true
+    },
+    {
+      "name": "discovery_membership_preflight",
+      "checks": 5,
+      "passed": true
+    },
+    {
+      "name": "feedback_identity_preflight",
+      "checks": 8,
+      "passed": true
+    },
+    {
+      "name": "retry_policy_preflight",
+      "checks": 18,
+      "passed": true
+    }
+  ],
+  "accepted_natural_reused": true,
+  "exact_prefix_gates_passed": 3,
+  "terminal_checks_completed": 0,
+  "terminal_checks_planned": 16,
+  "new_network_replay_started": false,
+  "failure_identifier": "MATLAB:nonExistentField",
+  "failure_message": "Unrecognized field name \"EnvelopeProfile\".",
+  "failure_stack": [
+    {
+      "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\terminal-retry-cleanup-tests\\terminalcase\\model\\+csr\\packet.m",
+      "name": "packet",
+      "line": 6
+    },
+    {
+      "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\terminal-retry-cleanup-tests\\terminalcase\\+ac\\terminalPreflight.m",
+      "name": "packet",
+      "line": 197
+    },
+    {
+      "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\terminal-retry-cleanup-tests\\terminalcase\\+ac\\terminalPreflight.m",
+      "name": "terminalPreflight/episode",
+      "line": 134
+    },
+    {
+      "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\terminal-retry-cleanup-tests\\terminalcase\\+ac\\terminalPreflight.m",
+      "name": "terminalPreflight",
+      "line": 15
+    },
+    {
+      "file": "C:\\Users\\michael.j.burke10\\OneDrive - US Army\\Desktop\\CSR\\CSR 2026\\NS3_to_Matlab\\Follow_on_tests\\terminal-retry-cleanup-tests\\terminalcase\\run_terminal_tests.m",
+      "name": "run_terminal_tests",
+      "line": 93
+    }
+  ],
+  "secondary_cleanup_warning_observed": true,
+  "interpretation": "Test-fixture construction failed; no candidate network behavior was evaluated.",
+  "matlab_execution_performed_locally": false
+}

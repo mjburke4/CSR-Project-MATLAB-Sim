@@ -1,0 +1,93 @@
+{
+  "schema": "csr-discovery-lifecycle-preflight-v1",
+  "passed": true,
+  "checks": [
+    {
+      "name": "no_ack_key_request_still_inline_with_reliable_gate_closed",
+      "passed": true,
+      "details": {
+        "send_callbacks": 1,
+        "reliable_gate_calls": 0
+      }
+    },
+    {
+      "name": "reliable_key_update_inline_preserves_owner_ack_and_wire_fields",
+      "passed": true,
+      "details": {
+        "wire_bytes": 62,
+        "dscp": 7,
+        "ack_required": true,
+        "owner_present_at_callback": true
+      }
+    },
+    {
+      "name": "blocked_and_failed_reliable_admissions_keep_normal_retry",
+      "passed": true,
+      "details": {
+        "blocked_then_open_callbacks": 1,
+        "failed_then_accepted_callbacks": 2,
+        "same_owner_retried": true
+      }
+    },
+    {
+      "name": "capacity_rejection_preserves_existing_owner_before_submission",
+      "passed": true,
+      "details": {
+        "pending_controls": 1,
+        "rejections": 1,
+        "scope": "retained MATLAB safety, not native overflow parity"
+      }
+    },
+    {
+      "name": "inline_key_update_does_not_pump_unrelated_owners",
+      "passed": true,
+      "details": {
+        "pending_controls": 2,
+        "pending_applications": 1,
+        "data_callbacks": 0
+      }
+    },
+    {
+      "name": "reentrant_key_completion_keeps_followon_owner_without_resurrection",
+      "passed": true,
+      "details": {
+        "key_update_callbacks": 1,
+        "followon_neighbor_check_present": true,
+        "peer_sent_key": true
+      }
+    },
+    {
+      "name": "active_duplicate_kept_for_done_and_outbound_scan_idle_initiator_skipped",
+      "passed": true,
+      "details": {
+        "done_destinations": [
+          3,
+          1
+        ],
+        "baseline_next_target": 2,
+        "candidate_next_target": 1,
+        "discovery_sessions": 1,
+        "duplicate_start_requests_from_1": 2
+      }
+    },
+    {
+      "name": "completion_progression_retains_single_outstanding_handoff",
+      "passed": true,
+      "details": {
+        "start_destinations": [
+          1,
+          2
+        ],
+        "done_destinations": [
+          3,
+          1
+        ]
+      }
+    }
+  ],
+  "network_simulation_executed": false,
+  "random_variates_requested": 0,
+  "scope": "Public NWK callback boundary and isolated discovery requester lifecycle; no PHY/MAC timing parity claim",
+  "capacity_limitation": "Retained MATLAB queue/retry safety only; native overflow policy is not claimed identical",
+  "scan_fixture": "Admission-disabled public observations create three direct routes; no private state is injected"
+}

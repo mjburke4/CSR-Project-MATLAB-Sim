@@ -1,0 +1,1294 @@
+{
+  "schema": "csr-independent-seed131-discovery-return-v2",
+  "status": "pass",
+  "scope": "Seed 131 0 <= t < 200 seconds; all native fixtures exhausted. Conditional behavior with common random inputs; no full 6000 s or natural RNG-distribution equivalence claimed.",
+  "checks": {
+    "application_attempts_all_context": {
+      "passed": true,
+      "native_rows": 0,
+      "matlab_rows": 0,
+      "mismatch_rows": 0,
+      "first_mismatches": []
+    },
+    "delivered_population_and_arrival_time": {
+      "passed": true,
+      "native_rows": 0,
+      "matlab_rows": 0,
+      "mismatch_rows": 0,
+      "first_mismatches": []
+    },
+    "mac_state_history": {
+      "passed": true,
+      "native_rows": 3393,
+      "matlab_rows": 3393,
+      "mismatch_rows": 0,
+      "first_mismatches": []
+    },
+    "data_hop_completion_identity_time_reason": {
+      "passed": true,
+      "native_rows": 0,
+      "matlab_rows": 0,
+      "mismatch_rows": 0,
+      "first_mismatches": []
+    },
+    "random_request_global_order_time_value": {
+      "passed": true,
+      "native_rows": 1255,
+      "matlab_rows": 1255,
+      "mismatch_rows": 0,
+      "first_mismatches": []
+    },
+    "consumed_random_semantic_context": {
+      "passed": true,
+      "rows": 1255,
+      "mismatch_count": 0,
+      "first_mismatches": [],
+      "probability_float_roundoff_count": 0,
+      "probability_relative_tolerance": 1e-12
+    },
+    "random_interval_and_component_exact_nanoseconds": {
+      "passed": true,
+      "mismatch_count": 0,
+      "first_mismatches": []
+    },
+    "profile4_reported_population_exclusion": {
+      "count": 29,
+      "first_differences": [
+        {
+          "time_ns": 10010000000,
+          "node": 1,
+          "purpose": "mac_slot",
+          "ordinal": 1,
+          "field": "reported_nodes",
+          "matlab": 1,
+          "native": "0"
+        },
+        {
+          "time_ns": 10439000000,
+          "node": 1,
+          "purpose": "mac_slot",
+          "ordinal": 2,
+          "field": "reported_nodes",
+          "matlab": 1,
+          "native": "0"
+        },
+        {
+          "time_ns": 11474308077,
+          "node": 3,
+          "purpose": "mac_slot",
+          "ordinal": 1,
+          "field": "reported_nodes",
+          "matlab": 1,
+          "native": "0"
+        }
+      ],
+      "note": "Recorded but excluded in issued comparator; fixed profile4 does not use this population to choose its MAC slot range."
+    },
+    "merged_random_and_transmission_global_order": {
+      "passed": true,
+      "native_rows": 1464,
+      "matlab_rows": 1464,
+      "mismatch_rows": 0,
+      "first_mismatches": []
+    },
+    "transmission_semantic_fields": {
+      "passed": true,
+      "transmissions": 209,
+      "children": 490,
+      "mismatches": [],
+      "broadcast_discover_trace_id_exclusion_count": 12,
+      "generation_ns_diagnostic_exclusion_count": 0,
+      "generation_ns_diagnostic_deltas": {},
+      "generation_time_note": "Issued comparator excludes projected app_generation_ns diagnostics; actual app times independently compared at ns."
+    },
+    "receiver_state_history_non_tx": {
+      "passed": true,
+      "native_rows": 2975,
+      "matlab_rows": 2975,
+      "mismatch_rows": 0,
+      "first_mismatches": [],
+      "scope_note": "Detailed native receiver_state instrumentation omits TX entry/exit; compare non-TX transitions only. All transitions including TX are independently covered by canonical mac_state history.",
+      "matlab_tx_transitions_excluded": 418
+    },
+    "all_receiver_outcomes_semantic_tx_node_success": {
+      "passed": true,
+      "native_rows": 1254,
+      "matlab_rows": 1254,
+      "mismatch_rows": 0,
+      "first_mismatches": []
+    },
+    "evaluated_receiver_outcome_times_ns": {
+      "passed": true,
+      "native_rows": 568,
+      "matlab_rows": 568,
+      "mismatch_rows": 0,
+      "first_mismatches": []
+    },
+    "evaluated_receiver_error_and_collision_counts": {
+      "passed": true,
+      "native_rows": 568,
+      "matlab_rows": 568,
+      "mismatch_rows": 0,
+      "first_mismatches": []
+    },
+    "closure_reporting_boundary": {
+      "count": 686,
+      "scope": "Native closure drops are reported at TX start; MATLAB records the same non-receptions at signal end. Outcomes are matched by semantic TX identity and receiver, and their differently placed diagnostics are not asserted to have equal timestamps."
+    },
+    "receiver_signal_arrival_state_tracking_and_population": {
+      "passed": true,
+      "native_rows": 568,
+      "matlab_rows": 568,
+      "mismatch_rows": 0,
+      "first_mismatches": []
+    },
+    "final_nonself_routes_next_hop_hops_cost": {
+      "passed": true,
+      "native_rows": 12,
+      "matlab_rows": 12,
+      "mismatch_rows": 0,
+      "first_mismatches": []
+    },
+    "discovery_completion_times": {
+      "passed": true,
+      "native_rows": 4,
+      "matlab_rows": 4,
+      "mismatch_rows": 0,
+      "first_mismatches": []
+    },
+    "discovery_snmp_received_payloads_and_times": {
+      "passed": true,
+      "native_rows": 8,
+      "matlab_rows": 8,
+      "mismatch_rows": 0,
+      "first_mismatches": []
+    },
+    "no_omitted_traces_or_applications": {
+      "passed": true,
+      "scope": "No application traffic before its configured 300 s start; this is a discovery test, not a latency sample."
+    }
+  },
+  "counts": {
+    "native_canonical_rows": 10220,
+    "random_requests": 1255,
+    "physical_transmissions": 209,
+    "tx_children": 490,
+    "receiver_outcomes": 1254,
+    "receiver_accepts": 412,
+    "receiver_drops": 842
+  },
+  "native_snmp_received": [
+    [
+      25307731086,
+      5,
+      1,
+      1,
+      5,
+      0,
+      []
+    ],
+    [
+      40458351086,
+      1,
+      5,
+      2,
+      1,
+      0,
+      [
+        3,
+        1
+      ]
+    ],
+    [
+      40458359163,
+      3,
+      5,
+      1,
+      3,
+      0,
+      []
+    ],
+    [
+      42011488077,
+      3,
+      1,
+      1,
+      3,
+      0,
+      []
+    ],
+    [
+      55725968077,
+      1,
+      3,
+      2,
+      1,
+      0,
+      [
+        5,
+        1
+      ]
+    ],
+    [
+      55725968077,
+      1,
+      3,
+      1,
+      1,
+      0,
+      []
+    ],
+    [
+      55725979163,
+      5,
+      3,
+      2,
+      5,
+      0,
+      [
+        5,
+        1
+      ]
+    ],
+    [
+      70950728077,
+      3,
+      1,
+      2,
+      3,
+      0,
+      [
+        5,
+        3
+      ]
+    ]
+  ],
+  "matlab_snmp_received": [
+    [
+      25307731086,
+      5,
+      1,
+      1,
+      5,
+      0,
+      []
+    ],
+    [
+      40458351086,
+      1,
+      5,
+      2,
+      1,
+      0,
+      [
+        3,
+        1
+      ]
+    ],
+    [
+      40458359163,
+      3,
+      5,
+      1,
+      3,
+      0,
+      []
+    ],
+    [
+      42011488077,
+      3,
+      1,
+      1,
+      3,
+      0,
+      []
+    ],
+    [
+      55725968077,
+      1,
+      3,
+      2,
+      1,
+      0,
+      [
+        5,
+        1
+      ]
+    ],
+    [
+      55725968077,
+      1,
+      3,
+      1,
+      1,
+      0,
+      []
+    ],
+    [
+      55725979163,
+      5,
+      3,
+      2,
+      5,
+      0,
+      [
+        5,
+        1
+      ]
+    ],
+    [
+      70950728077,
+      3,
+      1,
+      2,
+      3,
+      0,
+      [
+        5,
+        3
+      ]
+    ]
+  ],
+  "native_discovery_audit": [
+    {
+      "time_ns": "25000000000",
+      "node": "1",
+      "where": "CompleteDiscoveryLifecycle_enter",
+      "state": "0",
+      "active": "0",
+      "initiator": "1",
+      "watchdog_pending": "0",
+      "watchdog_ts": "0",
+      "table": "",
+      "requesters": ""
+    },
+    {
+      "time_ns": "25000000000",
+      "node": "1",
+      "where": "CheckDiscoveryTable_enter",
+      "state": "0",
+      "active": "0",
+      "initiator": "1",
+      "watchdog_pending": "0",
+      "watchdog_ts": "0",
+      "table": "5:1;3:1;",
+      "requesters": ""
+    },
+    {
+      "time_ns": "25000000000",
+      "node": "1",
+      "where": "CheckDiscoveryTable_exit",
+      "state": "0",
+      "active": "0",
+      "initiator": "1",
+      "watchdog_pending": "1",
+      "watchdog_ts": "85000000000",
+      "table": "5:0;3:1;",
+      "requesters": ""
+    },
+    {
+      "time_ns": "25000000000",
+      "node": "1",
+      "where": "CompleteDiscoveryLifecycle_exit",
+      "state": "0",
+      "active": "0",
+      "initiator": "1",
+      "watchdog_pending": "1",
+      "watchdog_ts": "85000000000",
+      "table": "5:0;3:1;",
+      "requesters": ""
+    },
+    {
+      "time_ns": "25307731086",
+      "node": "5",
+      "source": "1",
+      "hop_source": "1",
+      "command": "1",
+      "destination": "5",
+      "destination_type": "0",
+      "value": "0",
+      "nodes": ""
+    },
+    {
+      "time_ns": "25307731086",
+      "node": "5",
+      "where": "ReceiveSnmpFromHop_enter",
+      "state": "0",
+      "active": "0",
+      "initiator": "16777215",
+      "watchdog_pending": "0",
+      "watchdog_ts": "0",
+      "table": "",
+      "requesters": ""
+    },
+    {
+      "time_ns": "25307731086",
+      "node": "5",
+      "where": "ReceiveSnmpFromHop_exit",
+      "state": "1",
+      "active": "0",
+      "initiator": "1",
+      "watchdog_pending": "0",
+      "watchdog_ts": "0",
+      "table": "1:0;",
+      "requesters": "1;"
+    },
+    {
+      "time_ns": "40307731086",
+      "node": "5",
+      "where": "CompleteDiscoveryLifecycle_enter",
+      "state": "0",
+      "active": "0",
+      "initiator": "1",
+      "watchdog_pending": "0",
+      "watchdog_ts": "0",
+      "table": "1:0;",
+      "requesters": "1;"
+    },
+    {
+      "time_ns": "40307731086",
+      "node": "5",
+      "where": "CheckDiscoveryTable_enter",
+      "state": "0",
+      "active": "0",
+      "initiator": "1",
+      "watchdog_pending": "0",
+      "watchdog_ts": "0",
+      "table": "1:0;3:1;",
+      "requesters": ""
+    },
+    {
+      "time_ns": "40307731086",
+      "node": "5",
+      "where": "CheckDiscoveryTable_exit",
+      "state": "0",
+      "active": "0",
+      "initiator": "1",
+      "watchdog_pending": "1",
+      "watchdog_ts": "100307731086",
+      "table": "1:0;3:0;",
+      "requesters": ""
+    },
+    {
+      "time_ns": "40307731086",
+      "node": "5",
+      "where": "CompleteDiscoveryLifecycle_exit",
+      "state": "0",
+      "active": "0",
+      "initiator": "1",
+      "watchdog_pending": "1",
+      "watchdog_ts": "100307731086",
+      "table": "1:0;3:0;",
+      "requesters": ""
+    },
+    {
+      "time_ns": "40458351086",
+      "node": "1",
+      "source": "5",
+      "hop_source": "5",
+      "command": "2",
+      "destination": "1",
+      "destination_type": "0",
+      "value": "0",
+      "nodes": "3;1;"
+    },
+    {
+      "time_ns": "40458351086",
+      "node": "1",
+      "where": "ReceiveSnmpFromHop_enter",
+      "state": "0",
+      "active": "0",
+      "initiator": "1",
+      "watchdog_pending": "1",
+      "watchdog_ts": "85000000000",
+      "table": "5:0;3:1;",
+      "requesters": ""
+    },
+    {
+      "time_ns": "40458351086",
+      "node": "1",
+      "where": "CheckDiscoveryTable_enter",
+      "state": "0",
+      "active": "0",
+      "initiator": "1",
+      "watchdog_pending": "1",
+      "watchdog_ts": "85000000000",
+      "table": "5:0;3:1;",
+      "requesters": ""
+    },
+    {
+      "time_ns": "40458351086",
+      "node": "1",
+      "where": "CheckDiscoveryTable_exit",
+      "state": "0",
+      "active": "0",
+      "initiator": "1",
+      "watchdog_pending": "1",
+      "watchdog_ts": "100458351086",
+      "table": "5:0;3:0;",
+      "requesters": ""
+    },
+    {
+      "time_ns": "40458351086",
+      "node": "1",
+      "where": "ReceiveSnmpFromHop_exit",
+      "state": "0",
+      "active": "0",
+      "initiator": "1",
+      "watchdog_pending": "1",
+      "watchdog_ts": "100458351086",
+      "table": "5:0;3:0;",
+      "requesters": ""
+    },
+    {
+      "time_ns": "40458359163",
+      "node": "3",
+      "source": "5",
+      "hop_source": "5",
+      "command": "1",
+      "destination": "3",
+      "destination_type": "0",
+      "value": "0",
+      "nodes": ""
+    },
+    {
+      "time_ns": "40458359163",
+      "node": "3",
+      "where": "ReceiveSnmpFromHop_enter",
+      "state": "0",
+      "active": "0",
+      "initiator": "16777215",
+      "watchdog_pending": "0",
+      "watchdog_ts": "0",
+      "table": "",
+      "requesters": ""
+    },
+    {
+      "time_ns": "40458359163",
+      "node": "3",
+      "where": "ReceiveSnmpFromHop_exit",
+      "state": "1",
+      "active": "0",
+      "initiator": "5",
+      "watchdog_pending": "0",
+      "watchdog_ts": "0",
+      "table": "5:0;",
+      "requesters": "5;"
+    },
+    {
+      "time_ns": "42011488077",
+      "node": "3",
+      "source": "1",
+      "hop_source": "1",
+      "command": "1",
+      "destination": "3",
+      "destination_type": "0",
+      "value": "0",
+      "nodes": ""
+    },
+    {
+      "time_ns": "42011488077",
+      "node": "3",
+      "where": "ReceiveSnmpFromHop_enter",
+      "state": "2",
+      "active": "1",
+      "initiator": "5",
+      "watchdog_pending": "0",
+      "watchdog_ts": "0",
+      "table": "5:0;",
+      "requesters": "5;"
+    },
+    {
+      "time_ns": "42011488077",
+      "node": "3",
+      "where": "ReceiveSnmpFromHop_exit",
+      "state": "2",
+      "active": "1",
+      "initiator": "5",
+      "watchdog_pending": "0",
+      "watchdog_ts": "0",
+      "table": "5:0;",
+      "requesters": "5;1;"
+    },
+    {
+      "time_ns": "55458359163",
+      "node": "3",
+      "where": "CompleteDiscoveryLifecycle_enter",
+      "state": "0",
+      "active": "0",
+      "initiator": "5",
+      "watchdog_pending": "0",
+      "watchdog_ts": "0",
+      "table": "5:0;",
+      "requesters": "5;1;"
+    },
+    {
+      "time_ns": "55458359163",
+      "node": "3",
+      "where": "CheckDiscoveryTable_enter",
+      "state": "0",
+      "active": "0",
+      "initiator": "5",
+      "watchdog_pending": "0",
+      "watchdog_ts": "0",
+      "table": "5:0;1:1;",
+      "requesters": ""
+    },
+    {
+      "time_ns": "55458359163",
+      "node": "3",
+      "where": "CheckDiscoveryTable_exit",
+      "state": "0",
+      "active": "0",
+      "initiator": "5",
+      "watchdog_pending": "1",
+      "watchdog_ts": "115458359163",
+      "table": "5:0;1:0;",
+      "requesters": ""
+    },
+    {
+      "time_ns": "55458359163",
+      "node": "3",
+      "where": "CompleteDiscoveryLifecycle_exit",
+      "state": "0",
+      "active": "0",
+      "initiator": "5",
+      "watchdog_pending": "1",
+      "watchdog_ts": "115458359163",
+      "table": "5:0;1:0;",
+      "requesters": ""
+    },
+    {
+      "time_ns": "55725968077",
+      "node": "1",
+      "source": "3",
+      "hop_source": "3",
+      "command": "2",
+      "destination": "1",
+      "destination_type": "0",
+      "value": "0",
+      "nodes": "5;1;"
+    },
+    {
+      "time_ns": "55725968077",
+      "node": "1",
+      "where": "ReceiveSnmpFromHop_enter",
+      "state": "0",
+      "active": "0",
+      "initiator": "1",
+      "watchdog_pending": "1",
+      "watchdog_ts": "100458351086",
+      "table": "5:0;3:0;",
+      "requesters": ""
+    },
+    {
+      "time_ns": "55725968077",
+      "node": "1",
+      "where": "CheckDiscoveryTable_enter",
+      "state": "0",
+      "active": "0",
+      "initiator": "1",
+      "watchdog_pending": "1",
+      "watchdog_ts": "100458351086",
+      "table": "5:0;3:0;",
+      "requesters": ""
+    },
+    {
+      "time_ns": "55725968077",
+      "node": "1",
+      "where": "CheckDiscoveryTable_exit",
+      "state": "0",
+      "active": "0",
+      "initiator": "1",
+      "watchdog_pending": "0",
+      "watchdog_ts": "100458351086",
+      "table": "5:0;3:0;",
+      "requesters": ""
+    },
+    {
+      "time_ns": "55725968077",
+      "node": "1",
+      "where": "ReceiveSnmpFromHop_exit",
+      "state": "0",
+      "active": "0",
+      "initiator": "1",
+      "watchdog_pending": "0",
+      "watchdog_ts": "100458351086",
+      "table": "5:0;3:0;",
+      "requesters": ""
+    },
+    {
+      "time_ns": "55725968077",
+      "node": "1",
+      "source": "3",
+      "hop_source": "3",
+      "command": "1",
+      "destination": "1",
+      "destination_type": "0",
+      "value": "0",
+      "nodes": ""
+    },
+    {
+      "time_ns": "55725968077",
+      "node": "1",
+      "where": "ReceiveSnmpFromHop_enter",
+      "state": "0",
+      "active": "0",
+      "initiator": "1",
+      "watchdog_pending": "0",
+      "watchdog_ts": "100458351086",
+      "table": "5:0;3:0;",
+      "requesters": ""
+    },
+    {
+      "time_ns": "55725968077",
+      "node": "1",
+      "where": "ReceiveSnmpFromHop_exit",
+      "state": "1",
+      "active": "0",
+      "initiator": "3",
+      "watchdog_pending": "0",
+      "watchdog_ts": "100458351086",
+      "table": "5:0;3:0;",
+      "requesters": "3;"
+    },
+    {
+      "time_ns": "55725979163",
+      "node": "5",
+      "source": "3",
+      "hop_source": "3",
+      "command": "2",
+      "destination": "5",
+      "destination_type": "0",
+      "value": "0",
+      "nodes": "5;1;"
+    },
+    {
+      "time_ns": "55725979163",
+      "node": "5",
+      "where": "ReceiveSnmpFromHop_enter",
+      "state": "0",
+      "active": "0",
+      "initiator": "1",
+      "watchdog_pending": "1",
+      "watchdog_ts": "100307731086",
+      "table": "1:0;3:0;",
+      "requesters": ""
+    },
+    {
+      "time_ns": "55725979163",
+      "node": "5",
+      "where": "CheckDiscoveryTable_enter",
+      "state": "0",
+      "active": "0",
+      "initiator": "1",
+      "watchdog_pending": "1",
+      "watchdog_ts": "100307731086",
+      "table": "1:0;3:0;",
+      "requesters": ""
+    },
+    {
+      "time_ns": "55725979163",
+      "node": "5",
+      "where": "CheckDiscoveryTable_exit",
+      "state": "0",
+      "active": "0",
+      "initiator": "1",
+      "watchdog_pending": "0",
+      "watchdog_ts": "100307731086",
+      "table": "1:0;3:0;",
+      "requesters": ""
+    },
+    {
+      "time_ns": "55725979163",
+      "node": "5",
+      "where": "ReceiveSnmpFromHop_exit",
+      "state": "0",
+      "active": "0",
+      "initiator": "1",
+      "watchdog_pending": "0",
+      "watchdog_ts": "100307731086",
+      "table": "1:0;3:0;",
+      "requesters": ""
+    },
+    {
+      "time_ns": "70725968077",
+      "node": "1",
+      "where": "CompleteDiscoveryLifecycle_enter",
+      "state": "0",
+      "active": "0",
+      "initiator": "3",
+      "watchdog_pending": "0",
+      "watchdog_ts": "100458351086",
+      "table": "5:0;3:0;",
+      "requesters": "3;"
+    },
+    {
+      "time_ns": "70725968077",
+      "node": "1",
+      "where": "CheckDiscoveryTable_enter",
+      "state": "0",
+      "active": "0",
+      "initiator": "3",
+      "watchdog_pending": "0",
+      "watchdog_ts": "100458351086",
+      "table": "5:0;3:0;",
+      "requesters": ""
+    },
+    {
+      "time_ns": "70725968077",
+      "node": "1",
+      "where": "CheckDiscoveryTable_exit",
+      "state": "0",
+      "active": "0",
+      "initiator": "3",
+      "watchdog_pending": "0",
+      "watchdog_ts": "100458351086",
+      "table": "5:0;3:0;",
+      "requesters": ""
+    },
+    {
+      "time_ns": "70725968077",
+      "node": "1",
+      "where": "CompleteDiscoveryLifecycle_exit",
+      "state": "0",
+      "active": "0",
+      "initiator": "3",
+      "watchdog_pending": "0",
+      "watchdog_ts": "100458351086",
+      "table": "5:0;3:0;",
+      "requesters": ""
+    },
+    {
+      "time_ns": "70950728077",
+      "node": "3",
+      "source": "1",
+      "hop_source": "1",
+      "command": "2",
+      "destination": "3",
+      "destination_type": "0",
+      "value": "0",
+      "nodes": "5;3;"
+    },
+    {
+      "time_ns": "70950728077",
+      "node": "3",
+      "where": "ReceiveSnmpFromHop_enter",
+      "state": "0",
+      "active": "0",
+      "initiator": "5",
+      "watchdog_pending": "1",
+      "watchdog_ts": "115458359163",
+      "table": "5:0;1:0;",
+      "requesters": ""
+    },
+    {
+      "time_ns": "70950728077",
+      "node": "3",
+      "where": "CheckDiscoveryTable_enter",
+      "state": "0",
+      "active": "0",
+      "initiator": "5",
+      "watchdog_pending": "1",
+      "watchdog_ts": "115458359163",
+      "table": "5:0;1:0;",
+      "requesters": ""
+    },
+    {
+      "time_ns": "70950728077",
+      "node": "3",
+      "where": "CheckDiscoveryTable_exit",
+      "state": "0",
+      "active": "0",
+      "initiator": "5",
+      "watchdog_pending": "0",
+      "watchdog_ts": "115458359163",
+      "table": "5:0;1:0;",
+      "requesters": ""
+    },
+    {
+      "time_ns": "70950728077",
+      "node": "3",
+      "where": "ReceiveSnmpFromHop_exit",
+      "state": "0",
+      "active": "0",
+      "initiator": "5",
+      "watchdog_pending": "0",
+      "watchdog_ts": "115458359163",
+      "table": "5:0;1:0;",
+      "requesters": ""
+    }
+  ],
+  "key_request_4_to_5_outcomes": [
+    {
+      "arrival_ns": 27133832444,
+      "success": false,
+      "native_reason": "prior_stage",
+      "matlab_reason": "not_acquired",
+      "collision_count": 1,
+      "native_hop_sequence": 1
+    },
+    {
+      "arrival_ns": 32749832444,
+      "success": false,
+      "native_reason": "prior_stage",
+      "matlab_reason": "not_acquired",
+      "collision_count": 1,
+      "native_hop_sequence": 3
+    },
+    {
+      "arrival_ns": 36727832444,
+      "success": false,
+      "native_reason": "prior_stage",
+      "matlab_reason": "not_acquired",
+      "collision_count": 1,
+      "native_hop_sequence": 4
+    },
+    {
+      "arrival_ns": 41888832444,
+      "success": false,
+      "native_reason": "prior_stage",
+      "matlab_reason": "not_acquired",
+      "collision_count": 1,
+      "native_hop_sequence": 5
+    },
+    {
+      "arrival_ns": 51833832444,
+      "success": false,
+      "native_reason": "prior_stage",
+      "matlab_reason": "not_acquired",
+      "collision_count": 1,
+      "native_hop_sequence": 6
+    },
+    {
+      "arrival_ns": 72308832444,
+      "success": true,
+      "native_reason": "accepted",
+      "matlab_reason": "accepted",
+      "collision_count": 0,
+      "native_hop_sequence": 7
+    }
+  ],
+  "key_request_arrival_context": [
+    {
+      "arrival_ns": 27092012444,
+      "tx_id": 17179869185,
+      "state": "track",
+      "tracking_tx_id": 12884901905,
+      "tracking_source": 3,
+      "prior_signals": 1
+    },
+    {
+      "arrival_ns": 32708012444,
+      "tx_id": 17179869186,
+      "state": "track",
+      "tracking_tx_id": 12884901913,
+      "tracking_source": 3,
+      "prior_signals": 1
+    },
+    {
+      "arrival_ns": 36686012444,
+      "tx_id": 17179869187,
+      "state": "track",
+      "tracking_tx_id": 12884901918,
+      "tracking_source": 3,
+      "prior_signals": 1
+    },
+    {
+      "arrival_ns": 41847012444,
+      "tx_id": 17179869188,
+      "state": "track",
+      "tracking_tx_id": 4294967329,
+      "tracking_source": 1,
+      "prior_signals": 1
+    },
+    {
+      "arrival_ns": 51792012444,
+      "tx_id": 17179869189,
+      "state": "track",
+      "tracking_tx_id": 12884901926,
+      "tracking_source": 3,
+      "prior_signals": 1
+    },
+    {
+      "arrival_ns": 72267012444,
+      "tx_id": 17179869190,
+      "state": "search",
+      "tracking_tx_id": 0,
+      "tracking_source": 0,
+      "prior_signals": 0
+    }
+  ],
+  "final_node_nwk_statistics": [
+    {
+      "QueueAdmissionRejections": "0",
+      "QueueDrops": "0",
+      "MaxNetworkQueueDepth": "0",
+      "RoutingMessagesSent": "13",
+      "RoutingMessagesReceived": "17",
+      "RouteChanges": "6",
+      "NeighborActivations": "2",
+      "NeighborDeactivations": "0",
+      "ControlQueueRejections": "0",
+      "ControlFailures": "0",
+      "ControlResidualRetries": "0",
+      "MalformedControl": "0",
+      "DuplicateApplications": "0",
+      "SnapshotTimeouts": "0",
+      "RouteRequests": "4",
+      "ScanStartsSent": "2",
+      "ScanDoneSent": "1",
+      "ScanWatchdogs": "0",
+      "NoPathSent": "0",
+      "NoPathReceived": "0",
+      "PendingCustody": "0",
+      "WaitingForHop": "0",
+      "WaitingForRoute": "0",
+      "PendingControlMessages": "0",
+      "DiscoveryStarts": "2",
+      "DiscoveryCompletions": "2",
+      "NodeId": "1"
+    },
+    {
+      "QueueAdmissionRejections": "0",
+      "QueueDrops": "0",
+      "MaxNetworkQueueDepth": "0",
+      "RoutingMessagesSent": "0",
+      "RoutingMessagesReceived": "0",
+      "RouteChanges": "1",
+      "NeighborActivations": "0",
+      "NeighborDeactivations": "0",
+      "ControlQueueRejections": "0",
+      "ControlFailures": "0",
+      "ControlResidualRetries": "0",
+      "MalformedControl": "0",
+      "DuplicateApplications": "0",
+      "SnapshotTimeouts": "0",
+      "RouteRequests": "0",
+      "ScanStartsSent": "0",
+      "ScanDoneSent": "0",
+      "ScanWatchdogs": "0",
+      "NoPathSent": "0",
+      "NoPathReceived": "0",
+      "PendingCustody": "0",
+      "WaitingForHop": "0",
+      "WaitingForRoute": "0",
+      "PendingControlMessages": "0",
+      "DiscoveryStarts": "0",
+      "DiscoveryCompletions": "0",
+      "NodeId": "2"
+    },
+    {
+      "QueueAdmissionRejections": "0",
+      "QueueDrops": "0",
+      "MaxNetworkQueueDepth": "0",
+      "RoutingMessagesSent": "11",
+      "RoutingMessagesReceived": "16",
+      "RouteChanges": "5",
+      "NeighborActivations": "2",
+      "NeighborDeactivations": "0",
+      "ControlQueueRejections": "0",
+      "ControlFailures": "0",
+      "ControlResidualRetries": "0",
+      "MalformedControl": "0",
+      "DuplicateApplications": "0",
+      "SnapshotTimeouts": "0",
+      "RouteRequests": "2",
+      "ScanStartsSent": "1",
+      "ScanDoneSent": "2",
+      "ScanWatchdogs": "0",
+      "NoPathSent": "0",
+      "NoPathReceived": "0",
+      "PendingCustody": "0",
+      "WaitingForHop": "0",
+      "WaitingForRoute": "0",
+      "PendingControlMessages": "0",
+      "DiscoveryStarts": "1",
+      "DiscoveryCompletions": "1",
+      "NodeId": "3"
+    },
+    {
+      "QueueAdmissionRejections": "0",
+      "QueueDrops": "0",
+      "MaxNetworkQueueDepth": "0",
+      "RoutingMessagesSent": "2",
+      "RoutingMessagesReceived": "3",
+      "RouteChanges": "4",
+      "NeighborActivations": "1",
+      "NeighborDeactivations": "0",
+      "ControlQueueRejections": "0",
+      "ControlFailures": "0",
+      "ControlResidualRetries": "0",
+      "MalformedControl": "0",
+      "DuplicateApplications": "0",
+      "SnapshotTimeouts": "0",
+      "RouteRequests": "0",
+      "ScanStartsSent": "0",
+      "ScanDoneSent": "0",
+      "ScanWatchdogs": "0",
+      "NoPathSent": "0",
+      "NoPathReceived": "0",
+      "PendingCustody": "0",
+      "WaitingForHop": "0",
+      "WaitingForRoute": "0",
+      "PendingControlMessages": "0",
+      "DiscoveryStarts": "0",
+      "DiscoveryCompletions": "0",
+      "NodeId": "4"
+    },
+    {
+      "QueueAdmissionRejections": "0",
+      "QueueDrops": "0",
+      "MaxNetworkQueueDepth": "0",
+      "RoutingMessagesSent": "13",
+      "RoutingMessagesReceived": "14",
+      "RouteChanges": "7",
+      "NeighborActivations": "3",
+      "NeighborDeactivations": "0",
+      "ControlQueueRejections": "0",
+      "ControlFailures": "0",
+      "ControlResidualRetries": "0",
+      "MalformedControl": "0",
+      "DuplicateApplications": "0",
+      "SnapshotTimeouts": "0",
+      "RouteRequests": "2",
+      "ScanStartsSent": "1",
+      "ScanDoneSent": "1",
+      "ScanWatchdogs": "0",
+      "NoPathSent": "0",
+      "NoPathReceived": "0",
+      "PendingCustody": "0",
+      "WaitingForHop": "0",
+      "WaitingForRoute": "0",
+      "PendingControlMessages": "0",
+      "DiscoveryStarts": "1",
+      "DiscoveryCompletions": "1",
+      "NodeId": "5"
+    },
+    {
+      "QueueAdmissionRejections": "0",
+      "QueueDrops": "0",
+      "MaxNetworkQueueDepth": "0",
+      "RoutingMessagesSent": "0",
+      "RoutingMessagesReceived": "0",
+      "RouteChanges": "1",
+      "NeighborActivations": "0",
+      "NeighborDeactivations": "0",
+      "ControlQueueRejections": "0",
+      "ControlFailures": "0",
+      "ControlResidualRetries": "0",
+      "MalformedControl": "0",
+      "DuplicateApplications": "0",
+      "SnapshotTimeouts": "0",
+      "RouteRequests": "0",
+      "ScanStartsSent": "0",
+      "ScanDoneSent": "0",
+      "ScanWatchdogs": "0",
+      "NoPathSent": "0",
+      "NoPathReceived": "0",
+      "PendingCustody": "0",
+      "WaitingForHop": "0",
+      "WaitingForRoute": "0",
+      "PendingControlMessages": "0",
+      "DiscoveryStarts": "0",
+      "DiscoveryCompletions": "0",
+      "NodeId": "7"
+    },
+    {
+      "QueueAdmissionRejections": "0",
+      "QueueDrops": "0",
+      "MaxNetworkQueueDepth": "0",
+      "RoutingMessagesSent": "0",
+      "RoutingMessagesReceived": "0",
+      "RouteChanges": "1",
+      "NeighborActivations": "0",
+      "NeighborDeactivations": "0",
+      "ControlQueueRejections": "0",
+      "ControlFailures": "0",
+      "ControlResidualRetries": "0",
+      "MalformedControl": "0",
+      "DuplicateApplications": "0",
+      "SnapshotTimeouts": "0",
+      "RouteRequests": "0",
+      "ScanStartsSent": "0",
+      "ScanDoneSent": "0",
+      "ScanWatchdogs": "0",
+      "NoPathSent": "0",
+      "NoPathReceived": "0",
+      "PendingCustody": "0",
+      "WaitingForHop": "0",
+      "WaitingForRoute": "0",
+      "PendingControlMessages": "0",
+      "DiscoveryStarts": "0",
+      "DiscoveryCompletions": "0",
+      "NodeId": "8"
+    }
+  ],
+  "final_neighbors": [
+    {
+      "NodeId": "1",
+      "PeerId": "5",
+      "Active": "1",
+      "Stale": "0"
+    },
+    {
+      "NodeId": "1",
+      "PeerId": "3",
+      "Active": "1",
+      "Stale": "0"
+    },
+    {
+      "NodeId": "3",
+      "PeerId": "5",
+      "Active": "1",
+      "Stale": "0"
+    },
+    {
+      "NodeId": "3",
+      "PeerId": "1",
+      "Active": "1",
+      "Stale": "0"
+    },
+    {
+      "NodeId": "4",
+      "PeerId": "5",
+      "Active": "1",
+      "Stale": "0"
+    },
+    {
+      "NodeId": "5",
+      "PeerId": "4",
+      "Active": "1",
+      "Stale": "0"
+    },
+    {
+      "NodeId": "5",
+      "PeerId": "3",
+      "Active": "1",
+      "Stale": "0"
+    },
+    {
+      "NodeId": "5",
+      "PeerId": "1",
+      "Active": "1",
+      "Stale": "0"
+    }
+  ],
+  "input_sha256": {
+    "next_batch/native/s131_200/run/ns3-trace.csv": "a8622f265e83262087933bd63528efd9439ff92034399b9dfc4aabba7e1ec841",
+    "next_batch/native/s131_200/run/observations.tsv": "a0f36ba5b26ccd5028c6e54222237e5c4da0e7914a3b60fe409f8b5ef5a0a458",
+    "next_batch/native/s131_200/fixture/random_draws.csv": "2e4e40b1e6839cd49aca58d00c12ae981df6ccec2d2891475bcc026f3e07c988",
+    "next_batch/native/s131_200/fixture/tx_signatures.csv": "facceb914dafc6b6311b19f21d59e7ec068b901b7c586e29d370cf6ba8272a03",
+    "next_batch/native/s131_200/fixture/receiver_history.csv": "12f2ff49727a8435f2eb9362fdf9e94669b074ac6ae1319c309894b0758a68b4",
+    "next_batch/native/s131_200/discovery_audit.log": "023374a6d9180ac6ed7c6c1960b5fcf8e5a04921bf1c5718e4da7377e1a34b2e",
+    "parity_batch_v2_return/data/S131_200/random_requests.jsonl": "9f20d1a062d48dfd05be4631a2c5188db6045cdd586e1e629c9807519888171f",
+    "parity_batch_v2_return/data/S131_200/ordered_events.jsonl": "52e12b58e48376ee9628a06ec72a4eb4ba8e1436afa7d7587c0d24c4c692e5ac",
+    "parity_batch_v2_return/data/S131_200/application_admission_trace.csv": "a98378da7f92ffa63db3f4ecab49c887b8d02fde634b22c9ca05285c0a21d9a3",
+    "parity_batch_v2_return/data/S131_200/service_trace.csv": "c74346bbbedb81278fae30fab26191809322fff1b720afef6b52a9e062f47fe4",
+    "parity_batch_v2_return/data/S131_200/protocol_trace.csv": "e1f369f2dd8d6d2afa758cc2436d61d3ae85cb69bae36a79976bdc5121487417",
+    "parity_batch_v2_return/data/S131_200/phy_trace.csv": "191ffa06aa2206dff80c38bb33808a0e8eeebf78ca6d6615f5949fce4d374d3b",
+    "parity_batch_v2_return/data/S131_200/routes.csv": "64881c37f28838b27b3f1d48c48b71bbd24c4e9f0096dabfc73e004912c53cdd",
+    "parity_batch_v2_return/data/S131_200/neighbors.csv": "d63aa406b2eb0fbc998f55aa456bdcc9870fc28344bdc5b6f94f4eb640dc748f",
+    "parity_batch_v2_return/data/S131_200/node_nwk_statistics.csv": "d730a436a2c7d0a76254cb31e860b8d24f605979d9eb579d24358555f57c3e6f"
+  }
+}

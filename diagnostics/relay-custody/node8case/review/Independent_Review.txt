@@ -1,0 +1,77 @@
+Independent release review: node-8 seed-132 common-input test, 0–1200 seconds
+Reviewer: node8_release_peer
+
+Scope
+The current engineering target is +/-20%. The diagnostic retains exact common-input
+checks rather than applying a percentage tolerance to individual events. Regrading
+the prior autonomous full run gives 5/9 defined source/seed cells passing both
+delivery count and mean delivered latency; three further cells are undefined and
+the full-network milestone remains unmet.
+
+Source and runner review
+- All 167 model/data and +ac files are byte-identical to the accepted short-v2 kit.
+- run_node8_tests.m is the only new runtime MATLAB file. Its hash, the final
+  manifest hash, and all MATLAB source hashes are in release_receipt.json.
+- All 165 MATLAB files pass the tree-sitter-matlab syntax parser. No MATLAB or
+  Octave runtime is available here. This is static validation, not a MATLAB pass.
+- The runner uses the same TerminalSimulation, native-provisional retry policy,
+  integer-nanosecond transport timing, and native random-input provider. It does
+  not replay receiver state, admission decisions, routes, feedback, or outcomes.
+- Source binding checks reject stale loaded copies. Before/after hashes bind all
+  supplied files and the manifest itself. Reused 330-second evidence is bound to
+  source, exact R2025a Windows runtime, configuration, and all three prefix tables.
+  There is no new natural 330-second network run.
+- The single-case result is directly assigned, avoiding fieldless-struct-array
+  append. onCleanup callbacks capture handles by value; there is no nested
+  closers variable. Explicit and destructor closes are idempotent in unchanged
+  classes. Semantic divergence enters the catch path, exports partial raw traces,
+  random/timing/observer evidence, then packages a single return ZIP.
+- Full original traffic creates 270000 opportunities: 45000 each from sources
+  2,3,4,5,7,8, beginning at 300 seconds. Admission caps are sufficient; expected
+  per-source and aggregate counts are checked. Endpoint rows are retained apart
+  from the strict [0,1200) comparison. No drain is introduced.
+
+Additional post-run TX check
+The runner filters physical tx_start rows, using source and per-source ordinal,
+not PacketId. It checks exact count, original global order, and rounded integer
+nanosecond times against child-zero native signature rows. It writes the complete
+comparison and first mismatch before rejecting a result. The new preflight calls
+this same comparator on 1437 accepted MATLAB 400-second physical transmissions;
+then deliberately changes one nanosecond, deletes a transmission, reorders two
+sources, changes a source, and duplicates a transmission. These runtime mutation
+checks run before the long simulation. Independent Python inspection confirms the
+unmodified 1437-row baseline matches native order, source ordinal, and nanosecond
+time; the rows are an exact selection from the SHA-bound accepted return archive.
+
+Native reference validation
+The independent native_receipt.json records a separate read-only comparison:
+896568 canonical rows and all 30 fields exactly match the original native full-run
+prefix. The extended input preserves all 7904 prior random rows, 2201 TX child
+rows, 113739 receiver-history rows, and 203629 observation rows before 400 seconds.
+All fields and row ordering agree. Four native raw data outputs are byte-identical
+on an independent repeated capture. Receipt and final packaged fixture hashes are
+checked before release approval.
+
+Budgets and interpretation
+The unchanged recorder streams JSONL directly to disk. Protocol and PHY limits are
+750000 each; admissions and service limits are 500000 each; transport records are
+750000 and the scheduler limit is 4000000. The unchanged relative-timer log has a
+200000-record cap. Native capture has 8742 physical transmissions and 26896 timer
+lifecycle events. The returned autonomous MATLAB 1200-second prefix contains
+115834 protocol records; combined with 270000 admission observations this supports
+the chosen service cap with room for cancellation records. These are sizing
+observations, not a guarantee for a divergent network: any required omission
+prevents acceptance.
+
+The runner exports provisional Dropped/Pending counters separately and labels all
+admitted-but-undelivered applications unresolved. It makes no all-copy liveness
+or final-loss claim. A completed diagnostic still requires independent comparison
+of admissions, receiver histories, and NWK/HOP custody progression. Unlogged pump
+skip reasons and wake coalescing must not be described as observed decisions.
+Neither a successful bounded test nor the relaxed target proves autonomous
+6000-second network parity.
+
+Release decision
+The concrete final code is approved for owner MATLAB execution only when accompanied
+by a pass release_receipt.json that binds the final manifest and runner. No model
+behavior change is included. Full MATLAB execution results remain pending.

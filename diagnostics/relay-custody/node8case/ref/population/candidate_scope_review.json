@@ -1,0 +1,95 @@
+{
+  "scope_review": "pass",
+  "matlab_executed": false,
+  "candidate_manifest_sha256": "a54d3b9e09ddf85321ddf3858b4e44a31cd1568b6d4d15c91cb0c64da078b136",
+  "runner_sha256": "0f3cc1de2909071086daf643e5c3dbcc13258f10054e4dffb4c250f82046db34",
+  "verified_transforms": [
+    {
+      "target": "+ac/InlineKeyNwk.m",
+      "sha256": "ae267f6cc5a0bd3bb8378b6b72e49ca5987ba8b07e8b41175b85519f539b728f",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/InlineKeySimulation.m",
+      "sha256": "fc62a43eb1b0e317586b9a2882e4b9b95ebf7cf0567715caf007b81fbf6740fc",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/CheckGateNeighbors.m",
+      "sha256": "40ac1ba5dd1fc5ffb13f9c7d0c53152f948995a74301fd4e18246cf492b50dde",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/CheckGateNwk.m",
+      "sha256": "5b4e26f9743cd01efd39766cb0b062211d4bb4b4c9ae1a1bb5798fc8162bf3cd",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/CheckGateSimulation.m",
+      "sha256": "bbd3847c50c7cf75226cdacdc810c56021f17004cf30f6da52ec171b500b6da8",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/MessageFlagNeighbors.m",
+      "sha256": "b6092d3c2dbf0e4d23a697b43bf9bf932c4d5972c2b99eb5cd2022ab865764f6",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/MessageFlagNwk.m",
+      "sha256": "eb986d403bda5b6bdbfec392cbaadff850baf4333aec39d1c93fa50d5f60c64c",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/MessageFlagSimulation.m",
+      "sha256": "daadc55e32df158b010964813b35a6ee4f1f68c4af8b4cb8d5049d64b6170f70",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/PopulationNeighbors.m",
+      "sha256": "016762b7d8b9c0a4ea139fa7dfaea32b891bba1bf77522909d9d74aa1ad1a641",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/PopulationNwk.m",
+      "sha256": "0fb306a57a40656c511e0a20a5c155b2bc8357c877d8449309a74f3efbfd26fb",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/PopulationSimulation.m",
+      "sha256": "aec99858386da09cf5584d6a3794b557542f109665f0be4fc09d78c6b8e5d902",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/AdmissionRoutes.m",
+      "sha256": "8f4ac059cc6ac2819527b84535b5cf329e4f78cfbb109a78e040fe826cb1422d",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/AdmissionNwk.m",
+      "sha256": "6c7b63fa9b0be3c61d4a84a7ee47d027e07944cb1a7389c546eaa4b6bd119bae",
+      "forward_and_reverse_exact": true
+    },
+    {
+      "target": "+ac/AdmissionSimulation.m",
+      "sha256": "d1bcdf200b69212e3324ac1aaf200deacfed06fc3c0276492c1344df2217be2e",
+      "forward_and_reverse_exact": true
+    }
+  ],
+  "unchanged_baseline_model_files": 99,
+  "native_contract_checks": [
+    "Observe commits qualifying peer state before publishing; publishes before admission callback side effects",
+    "No executable generic MAC-enqueue or addressed-HOP-member population refresh",
+    "Current application/routing population getter byte-preserved independently of MAC latch",
+    "Admission retains logical destination insertion and compares selected state before/after activation",
+    "Admission allocates no candidate, revalidates/reprices/retimestamps none; only valid deferred destination-peer candidates with usable next hop release",
+    "All original route methods preserved exactly after class namespace normalization",
+    "Actual observation path retains baseline setNeighbor; only neighborChanged active uses admitNeighbor",
+    "Natural A gate required; independent H runs after diagnostic stop in G"
+  ],
+  "limits": [
+    "G/H runtime remains owner-side; no new full network simulation executed here",
+    "Native ClearRoutes publisher has no portable local-API counterpart; none occurs in accepted capture",
+    "Stale NeighborCheck success recovery and independent repricing precede native admission; component assertions concern fresh admission and do not establish full stale recovery parity",
+    "Previously documented not-due retry rescheduling, inline KEY_REQUEST failed-admission fallback and control-header guard limitations remain"
+  ]
+}

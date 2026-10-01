@@ -1,0 +1,631 @@
+{
+  "schema": "csr-batch-native-import-v1",
+  "passed": true,
+  "seed": 132,
+  "stop_seconds_exclusive": 1200,
+  "native_random_rows": 50375,
+  "native_tx_count": 8742,
+  "native_tx_children": 10306,
+  "first_mac_node": 1,
+  "first_mac_time_ns": 1.001E+10,
+  "first_mac_value": 11,
+  "control_coverage": [
+    {
+      "kind": 0,
+      "subtype": "",
+      "rows": 3717,
+      "required_fields_checked": [
+        "hop_source",
+        "hop_destination",
+        "hop_sequence",
+        "kind",
+        "wire_bytes",
+        "ackable",
+        "has_ack_window",
+        "network_source",
+        "network_destination",
+        "network_dscp",
+        "application_bytes",
+        "app_attempt_index",
+        "app_flow_index",
+        "app_generated_time_ns"
+      ]
+    },
+    {
+      "kind": 1,
+      "subtype": "",
+      "rows": 6348,
+      "required_fields_checked": [
+        "hop_source",
+        "hop_destination",
+        "hop_sequence",
+        "kind",
+        "wire_bytes",
+        "ackable",
+        "has_ack_window"
+      ]
+    },
+    {
+      "kind": 2,
+      "subtype": "not_observed",
+      "rows": 0,
+      "required_fields_checked": []
+    },
+    {
+      "kind": 4,
+      "subtype": "broadcast",
+      "rows": 24,
+      "required_fields_checked": [
+        "hop_source",
+        "hop_destination",
+        "hop_sequence",
+        "kind",
+        "wire_bytes",
+        "ackable",
+        "has_ack_window",
+        "discover_subtype",
+        "discover_sequence"
+      ]
+    },
+    {
+      "kind": 5,
+      "subtype": "discovery",
+      "rows": 20,
+      "required_fields_checked": [
+        "hop_source",
+        "hop_destination",
+        "hop_sequence",
+        "kind",
+        "wire_bytes",
+        "ackable",
+        "has_ack_window",
+        "check_subtype",
+        "check_sequence",
+        "check_active"
+      ]
+    },
+    {
+      "kind": 5,
+      "subtype": "overheard",
+      "rows": 17,
+      "required_fields_checked": [
+        "hop_source",
+        "hop_destination",
+        "hop_sequence",
+        "kind",
+        "wire_bytes",
+        "ackable",
+        "has_ack_window",
+        "check_subtype",
+        "check_sequence"
+      ]
+    },
+    {
+      "kind": 6,
+      "subtype": "",
+      "rows": 115,
+      "required_fields_checked": [
+        "hop_source",
+        "hop_destination",
+        "hop_sequence",
+        "kind",
+        "wire_bytes",
+        "ackable",
+        "has_ack_window",
+        "routing_section_hex"
+      ]
+    },
+    {
+      "kind": 7,
+      "subtype": "",
+      "rows": 36,
+      "required_fields_checked": [
+        "hop_source",
+        "hop_destination",
+        "hop_sequence",
+        "kind",
+        "wire_bytes",
+        "ackable",
+        "has_ack_window",
+        "snmp_command",
+        "snmp_source",
+        "snmp_destination",
+        "snmp_value"
+      ]
+    },
+    {
+      "kind": 8,
+      "subtype": "",
+      "rows": 15,
+      "required_fields_checked": [
+        "hop_source",
+        "hop_destination",
+        "hop_sequence",
+        "kind",
+        "wire_bytes",
+        "ackable",
+        "has_ack_window"
+      ]
+    },
+    {
+      "kind": 9,
+      "subtype": "",
+      "rows": 14,
+      "required_fields_checked": [
+        "hop_source",
+        "hop_destination",
+        "hop_sequence",
+        "kind",
+        "wire_bytes",
+        "ackable",
+        "has_ack_window"
+      ]
+    }
+  ],
+  "malformed_required_fields_rejected": [
+    {
+      "population": "mac_slot",
+      "field": "state",
+      "passed": true
+    },
+    {
+      "population": "mac_slot",
+      "field": "low",
+      "passed": true
+    },
+    {
+      "population": "mac_slot",
+      "field": "high",
+      "passed": true
+    },
+    {
+      "population": "sync_threshold",
+      "field": "mean",
+      "passed": true
+    },
+    {
+      "population": "sync_threshold",
+      "field": "variance",
+      "passed": true
+    },
+    {
+      "population": "sync_threshold",
+      "field": "tx_id",
+      "passed": true
+    },
+    {
+      "population": "phy_binomial",
+      "field": "component",
+      "passed": true
+    },
+    {
+      "population": "phy_binomial",
+      "field": "bits",
+      "passed": true
+    },
+    {
+      "population": "phy_binomial",
+      "field": "probability",
+      "passed": true
+    },
+    {
+      "population": "phy_binomial",
+      "field": "interval_ordinal",
+      "passed": true
+    },
+    {
+      "population": "kind_0_",
+      "field": "hop_source",
+      "passed": true
+    },
+    {
+      "population": "kind_0_",
+      "field": "hop_destination",
+      "passed": true
+    },
+    {
+      "population": "kind_0_",
+      "field": "hop_sequence",
+      "passed": true
+    },
+    {
+      "population": "kind_0_",
+      "field": "kind",
+      "passed": true
+    },
+    {
+      "population": "kind_0_",
+      "field": "wire_bytes",
+      "passed": true
+    },
+    {
+      "population": "kind_0_",
+      "field": "ackable",
+      "passed": true
+    },
+    {
+      "population": "kind_0_",
+      "field": "has_ack_window",
+      "passed": true
+    },
+    {
+      "population": "kind_0_",
+      "field": "network_source",
+      "passed": true
+    },
+    {
+      "population": "kind_0_",
+      "field": "network_destination",
+      "passed": true
+    },
+    {
+      "population": "kind_0_",
+      "field": "network_dscp",
+      "passed": true
+    },
+    {
+      "population": "kind_0_",
+      "field": "application_bytes",
+      "passed": true
+    },
+    {
+      "population": "kind_0_",
+      "field": "app_attempt_index",
+      "passed": true
+    },
+    {
+      "population": "kind_0_",
+      "field": "app_flow_index",
+      "passed": true
+    },
+    {
+      "population": "kind_0_",
+      "field": "app_generated_time_ns",
+      "passed": true
+    },
+    {
+      "population": "kind_1_",
+      "field": "hop_source",
+      "passed": true
+    },
+    {
+      "population": "kind_1_",
+      "field": "hop_destination",
+      "passed": true
+    },
+    {
+      "population": "kind_1_",
+      "field": "hop_sequence",
+      "passed": true
+    },
+    {
+      "population": "kind_1_",
+      "field": "kind",
+      "passed": true
+    },
+    {
+      "population": "kind_1_",
+      "field": "wire_bytes",
+      "passed": true
+    },
+    {
+      "population": "kind_1_",
+      "field": "ackable",
+      "passed": true
+    },
+    {
+      "population": "kind_1_",
+      "field": "has_ack_window",
+      "passed": true
+    },
+    {
+      "population": "kind_4_broadcast",
+      "field": "hop_source",
+      "passed": true
+    },
+    {
+      "population": "kind_4_broadcast",
+      "field": "hop_destination",
+      "passed": true
+    },
+    {
+      "population": "kind_4_broadcast",
+      "field": "hop_sequence",
+      "passed": true
+    },
+    {
+      "population": "kind_4_broadcast",
+      "field": "kind",
+      "passed": true
+    },
+    {
+      "population": "kind_4_broadcast",
+      "field": "wire_bytes",
+      "passed": true
+    },
+    {
+      "population": "kind_4_broadcast",
+      "field": "ackable",
+      "passed": true
+    },
+    {
+      "population": "kind_4_broadcast",
+      "field": "has_ack_window",
+      "passed": true
+    },
+    {
+      "population": "kind_4_broadcast",
+      "field": "discover_subtype",
+      "passed": true
+    },
+    {
+      "population": "kind_4_broadcast",
+      "field": "discover_sequence",
+      "passed": true
+    },
+    {
+      "population": "kind_5_discovery",
+      "field": "hop_source",
+      "passed": true
+    },
+    {
+      "population": "kind_5_discovery",
+      "field": "hop_destination",
+      "passed": true
+    },
+    {
+      "population": "kind_5_discovery",
+      "field": "hop_sequence",
+      "passed": true
+    },
+    {
+      "population": "kind_5_discovery",
+      "field": "kind",
+      "passed": true
+    },
+    {
+      "population": "kind_5_discovery",
+      "field": "wire_bytes",
+      "passed": true
+    },
+    {
+      "population": "kind_5_discovery",
+      "field": "ackable",
+      "passed": true
+    },
+    {
+      "population": "kind_5_discovery",
+      "field": "has_ack_window",
+      "passed": true
+    },
+    {
+      "population": "kind_5_discovery",
+      "field": "check_subtype",
+      "passed": true
+    },
+    {
+      "population": "kind_5_discovery",
+      "field": "check_sequence",
+      "passed": true
+    },
+    {
+      "population": "kind_5_discovery",
+      "field": "check_active",
+      "passed": true
+    },
+    {
+      "population": "kind_5_overheard",
+      "field": "hop_source",
+      "passed": true
+    },
+    {
+      "population": "kind_5_overheard",
+      "field": "hop_destination",
+      "passed": true
+    },
+    {
+      "population": "kind_5_overheard",
+      "field": "hop_sequence",
+      "passed": true
+    },
+    {
+      "population": "kind_5_overheard",
+      "field": "kind",
+      "passed": true
+    },
+    {
+      "population": "kind_5_overheard",
+      "field": "wire_bytes",
+      "passed": true
+    },
+    {
+      "population": "kind_5_overheard",
+      "field": "ackable",
+      "passed": true
+    },
+    {
+      "population": "kind_5_overheard",
+      "field": "has_ack_window",
+      "passed": true
+    },
+    {
+      "population": "kind_5_overheard",
+      "field": "check_subtype",
+      "passed": true
+    },
+    {
+      "population": "kind_5_overheard",
+      "field": "check_sequence",
+      "passed": true
+    },
+    {
+      "population": "kind_6_",
+      "field": "hop_source",
+      "passed": true
+    },
+    {
+      "population": "kind_6_",
+      "field": "hop_destination",
+      "passed": true
+    },
+    {
+      "population": "kind_6_",
+      "field": "hop_sequence",
+      "passed": true
+    },
+    {
+      "population": "kind_6_",
+      "field": "kind",
+      "passed": true
+    },
+    {
+      "population": "kind_6_",
+      "field": "wire_bytes",
+      "passed": true
+    },
+    {
+      "population": "kind_6_",
+      "field": "ackable",
+      "passed": true
+    },
+    {
+      "population": "kind_6_",
+      "field": "has_ack_window",
+      "passed": true
+    },
+    {
+      "population": "kind_6_",
+      "field": "routing_section_hex",
+      "passed": true
+    },
+    {
+      "population": "kind_7_",
+      "field": "hop_source",
+      "passed": true
+    },
+    {
+      "population": "kind_7_",
+      "field": "hop_destination",
+      "passed": true
+    },
+    {
+      "population": "kind_7_",
+      "field": "hop_sequence",
+      "passed": true
+    },
+    {
+      "population": "kind_7_",
+      "field": "kind",
+      "passed": true
+    },
+    {
+      "population": "kind_7_",
+      "field": "wire_bytes",
+      "passed": true
+    },
+    {
+      "population": "kind_7_",
+      "field": "ackable",
+      "passed": true
+    },
+    {
+      "population": "kind_7_",
+      "field": "has_ack_window",
+      "passed": true
+    },
+    {
+      "population": "kind_7_",
+      "field": "snmp_command",
+      "passed": true
+    },
+    {
+      "population": "kind_7_",
+      "field": "snmp_source",
+      "passed": true
+    },
+    {
+      "population": "kind_7_",
+      "field": "snmp_destination",
+      "passed": true
+    },
+    {
+      "population": "kind_7_",
+      "field": "snmp_value",
+      "passed": true
+    },
+    {
+      "population": "kind_8_",
+      "field": "hop_source",
+      "passed": true
+    },
+    {
+      "population": "kind_8_",
+      "field": "hop_destination",
+      "passed": true
+    },
+    {
+      "population": "kind_8_",
+      "field": "hop_sequence",
+      "passed": true
+    },
+    {
+      "population": "kind_8_",
+      "field": "kind",
+      "passed": true
+    },
+    {
+      "population": "kind_8_",
+      "field": "wire_bytes",
+      "passed": true
+    },
+    {
+      "population": "kind_8_",
+      "field": "ackable",
+      "passed": true
+    },
+    {
+      "population": "kind_8_",
+      "field": "has_ack_window",
+      "passed": true
+    },
+    {
+      "population": "kind_9_",
+      "field": "hop_source",
+      "passed": true
+    },
+    {
+      "population": "kind_9_",
+      "field": "hop_destination",
+      "passed": true
+    },
+    {
+      "population": "kind_9_",
+      "field": "hop_sequence",
+      "passed": true
+    },
+    {
+      "population": "kind_9_",
+      "field": "kind",
+      "passed": true
+    },
+    {
+      "population": "kind_9_",
+      "field": "wire_bytes",
+      "passed": true
+    },
+    {
+      "population": "kind_9_",
+      "field": "ackable",
+      "passed": true
+    },
+    {
+      "population": "kind_9_",
+      "field": "has_ack_window",
+      "passed": true
+    }
+  ],
+  "network_simulation_executed": false,
+  "scheduled_events": 0,
+  "executed_events": 0,
+  "receiver_state_or_feedback_replayed": false
+}
