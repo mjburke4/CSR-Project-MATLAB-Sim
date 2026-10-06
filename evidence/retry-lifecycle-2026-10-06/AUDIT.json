@@ -1,0 +1,701 @@
+{
+  "passed": false,
+  "config_identical": true,
+  "cases": [
+    {
+      "kind": "baseline",
+      "passed": true,
+      "offered": 18000,
+      "admitted": 297,
+      "unique_delivered": 113,
+      "unresolved": 184,
+      "raw_dropped": 4,
+      "raw_pending": 180,
+      "mean_delivered_latency_s": 16.82198515903541,
+      "goodput_bits_s": 464.55555555555554,
+      "wall_seconds": 203.742789,
+      "control_streams_by_origin": {
+        "snapshot": 31,
+        "automatic_update": 49,
+        "request": 18
+      },
+      "residual_handoffs": [
+        {
+          "node": 4,
+          "seq": 2,
+          "section": 0,
+          "origin": "automatic_update",
+          "ids": [
+            7,
+            17
+          ],
+          "times": [
+            39.512692444,
+            48.96700002777778
+          ]
+        },
+        {
+          "node": 1,
+          "seq": 9,
+          "section": 0,
+          "origin": "snapshot",
+          "ids": [
+            22,
+            25
+          ],
+          "times": [
+            40.941671086,
+            50.13700002777778
+          ]
+        }
+      ],
+      "custody_unreleased_at_cutoff": 181,
+      "hop_control_owners_at_cutoff": 0,
+      "source_admission": [
+        {
+          "SourceId": 2,
+          "FlowIndex": 1,
+          "Attempts": 3000,
+          "Admitted": 38,
+          "BlockedDiscovery": 0,
+          "BlockedTopology": 0,
+          "BlockedGatewayRoute": 0,
+          "BlockedDestination": 0,
+          "BlockedNsdp": 2962,
+          "RouteCheckPerformed": 1,
+          "RouteAvailableWhenChecked": 1,
+          "RouteUnavailableWhenChecked": 0,
+          "RouteCheckSkipped": 2999,
+          "FirstAttemptSeconds": 300,
+          "LastAttemptSeconds": 359.98,
+          "FirstAdmittedSeconds": 300,
+          "LastAdmittedSeconds": 356.54
+        },
+        {
+          "SourceId": 3,
+          "FlowIndex": 2,
+          "Attempts": 3000,
+          "Admitted": 99,
+          "BlockedDiscovery": 0,
+          "BlockedTopology": 0,
+          "BlockedGatewayRoute": 0,
+          "BlockedDestination": 0,
+          "BlockedNsdp": 2901,
+          "RouteCheckPerformed": 1,
+          "RouteAvailableWhenChecked": 1,
+          "RouteUnavailableWhenChecked": 0,
+          "RouteCheckSkipped": 2999,
+          "FirstAttemptSeconds": 300,
+          "LastAttemptSeconds": 359.98,
+          "FirstAdmittedSeconds": 300,
+          "LastAdmittedSeconds": 359.08
+        },
+        {
+          "SourceId": 4,
+          "FlowIndex": 3,
+          "Attempts": 3000,
+          "Admitted": 40,
+          "BlockedDiscovery": 0,
+          "BlockedTopology": 0,
+          "BlockedGatewayRoute": 0,
+          "BlockedDestination": 0,
+          "BlockedNsdp": 2960,
+          "RouteCheckPerformed": 1,
+          "RouteAvailableWhenChecked": 1,
+          "RouteUnavailableWhenChecked": 0,
+          "RouteCheckSkipped": 2999,
+          "FirstAttemptSeconds": 300,
+          "LastAttemptSeconds": 359.98,
+          "FirstAdmittedSeconds": 300,
+          "LastAdmittedSeconds": 359.96
+        },
+        {
+          "SourceId": 5,
+          "FlowIndex": 4,
+          "Attempts": 3000,
+          "Admitted": 36,
+          "BlockedDiscovery": 0,
+          "BlockedTopology": 0,
+          "BlockedGatewayRoute": 0,
+          "BlockedDestination": 0,
+          "BlockedNsdp": 2964,
+          "RouteCheckPerformed": 1,
+          "RouteAvailableWhenChecked": 1,
+          "RouteUnavailableWhenChecked": 0,
+          "RouteCheckSkipped": 2999,
+          "FirstAttemptSeconds": 300,
+          "LastAttemptSeconds": 359.98,
+          "FirstAdmittedSeconds": 300,
+          "LastAdmittedSeconds": 357.64
+        },
+        {
+          "SourceId": 7,
+          "FlowIndex": 5,
+          "Attempts": 3000,
+          "Admitted": 49,
+          "BlockedDiscovery": 0,
+          "BlockedTopology": 0,
+          "BlockedGatewayRoute": 0,
+          "BlockedDestination": 0,
+          "BlockedNsdp": 2951,
+          "RouteCheckPerformed": 1,
+          "RouteAvailableWhenChecked": 1,
+          "RouteUnavailableWhenChecked": 0,
+          "RouteCheckSkipped": 2999,
+          "FirstAttemptSeconds": 300,
+          "LastAttemptSeconds": 359.98,
+          "FirstAdmittedSeconds": 300,
+          "LastAdmittedSeconds": 359.96
+        },
+        {
+          "SourceId": 8,
+          "FlowIndex": 6,
+          "Attempts": 3000,
+          "Admitted": 35,
+          "BlockedDiscovery": 0,
+          "BlockedTopology": 0,
+          "BlockedGatewayRoute": 0,
+          "BlockedDestination": 0,
+          "BlockedNsdp": 2965,
+          "RouteCheckPerformed": 1,
+          "RouteAvailableWhenChecked": 1,
+          "RouteUnavailableWhenChecked": 0,
+          "RouteCheckSkipped": 2999,
+          "FirstAttemptSeconds": 300,
+          "LastAttemptSeconds": 359.98,
+          "FirstAdmittedSeconds": 300,
+          "LastAdmittedSeconds": 354.46
+        }
+      ],
+      "unclassified_residuals": [],
+      "retry_classification_complete": true,
+      "nwk_pending_control_messages": 0,
+      "sources": [
+        {
+          "source": 2,
+          "admitted": 38,
+          "delivered": 0
+        },
+        {
+          "source": 3,
+          "admitted": 99,
+          "delivered": 83
+        },
+        {
+          "source": 4,
+          "admitted": 40,
+          "delivered": 10
+        },
+        {
+          "source": 5,
+          "admitted": 36,
+          "delivered": 20
+        },
+        {
+          "source": 7,
+          "admitted": 49,
+          "delivered": 0
+        },
+        {
+          "source": 8,
+          "admitted": 35,
+          "delivered": 0
+        }
+      ]
+    },
+    {
+      "kind": "repaired",
+      "passed": true,
+      "offered": 18000,
+      "admitted": 294,
+      "unique_delivered": 117,
+      "unresolved": 177,
+      "raw_dropped": 4,
+      "raw_pending": 173,
+      "mean_delivered_latency_s": 14.729223036572648,
+      "goodput_bits_s": 481,
+      "wall_seconds": 216.7447411,
+      "control_streams_by_origin": {
+        "snapshot": 31,
+        "automatic_update": 50,
+        "request": 19
+      },
+      "residual_handoffs": [
+        {
+          "node": 4,
+          "seq": 2,
+          "section": 0,
+          "origin": "automatic_update",
+          "ids": [
+            7,
+            17
+          ],
+          "times": [
+            39.512692444,
+            48.96700002777778
+          ]
+        },
+        {
+          "node": 3,
+          "seq": 12,
+          "section": 0,
+          "origin": "automatic_update",
+          "ids": [
+            29,
+            30
+          ],
+          "times": [
+            63.037819163,
+            71.86000002777777
+          ]
+        }
+      ],
+      "custody_unreleased_at_cutoff": 174,
+      "hop_control_owners_at_cutoff": 0,
+      "source_admission": [
+        {
+          "SourceId": 2,
+          "FlowIndex": 1,
+          "Attempts": 3000,
+          "Admitted": 43,
+          "BlockedDiscovery": 0,
+          "BlockedTopology": 0,
+          "BlockedGatewayRoute": 0,
+          "BlockedDestination": 0,
+          "BlockedNsdp": 2957,
+          "RouteCheckPerformed": 1,
+          "RouteAvailableWhenChecked": 1,
+          "RouteUnavailableWhenChecked": 0,
+          "RouteCheckSkipped": 2999,
+          "FirstAttemptSeconds": 300,
+          "LastAttemptSeconds": 359.98,
+          "FirstAdmittedSeconds": 300,
+          "LastAdmittedSeconds": 355.5
+        },
+        {
+          "SourceId": 3,
+          "FlowIndex": 2,
+          "Attempts": 3000,
+          "Admitted": 104,
+          "BlockedDiscovery": 0,
+          "BlockedTopology": 0,
+          "BlockedGatewayRoute": 0,
+          "BlockedDestination": 0,
+          "BlockedNsdp": 2896,
+          "RouteCheckPerformed": 1,
+          "RouteAvailableWhenChecked": 1,
+          "RouteUnavailableWhenChecked": 0,
+          "RouteCheckSkipped": 2999,
+          "FirstAttemptSeconds": 300,
+          "LastAttemptSeconds": 359.98,
+          "FirstAdmittedSeconds": 300,
+          "LastAdmittedSeconds": 359.22
+        },
+        {
+          "SourceId": 4,
+          "FlowIndex": 3,
+          "Attempts": 3000,
+          "Admitted": 24,
+          "BlockedDiscovery": 0,
+          "BlockedTopology": 0,
+          "BlockedGatewayRoute": 0,
+          "BlockedDestination": 0,
+          "BlockedNsdp": 2976,
+          "RouteCheckPerformed": 1,
+          "RouteAvailableWhenChecked": 1,
+          "RouteUnavailableWhenChecked": 0,
+          "RouteCheckSkipped": 2999,
+          "FirstAttemptSeconds": 300,
+          "LastAttemptSeconds": 359.98,
+          "FirstAdmittedSeconds": 300,
+          "LastAdmittedSeconds": 357.88
+        },
+        {
+          "SourceId": 5,
+          "FlowIndex": 4,
+          "Attempts": 3000,
+          "Admitted": 42,
+          "BlockedDiscovery": 0,
+          "BlockedTopology": 0,
+          "BlockedGatewayRoute": 0,
+          "BlockedDestination": 0,
+          "BlockedNsdp": 2958,
+          "RouteCheckPerformed": 1,
+          "RouteAvailableWhenChecked": 1,
+          "RouteUnavailableWhenChecked": 0,
+          "RouteCheckSkipped": 2999,
+          "FirstAttemptSeconds": 300,
+          "LastAttemptSeconds": 359.98,
+          "FirstAdmittedSeconds": 300,
+          "LastAdmittedSeconds": 359.76
+        },
+        {
+          "SourceId": 7,
+          "FlowIndex": 5,
+          "Attempts": 3000,
+          "Admitted": 44,
+          "BlockedDiscovery": 0,
+          "BlockedTopology": 0,
+          "BlockedGatewayRoute": 0,
+          "BlockedDestination": 0,
+          "BlockedNsdp": 2956,
+          "RouteCheckPerformed": 1,
+          "RouteAvailableWhenChecked": 1,
+          "RouteUnavailableWhenChecked": 0,
+          "RouteCheckSkipped": 2999,
+          "FirstAttemptSeconds": 300,
+          "LastAttemptSeconds": 359.98,
+          "FirstAdmittedSeconds": 300,
+          "LastAdmittedSeconds": 359.9
+        },
+        {
+          "SourceId": 8,
+          "FlowIndex": 6,
+          "Attempts": 3000,
+          "Admitted": 37,
+          "BlockedDiscovery": 0,
+          "BlockedTopology": 0,
+          "BlockedGatewayRoute": 0,
+          "BlockedDestination": 0,
+          "BlockedNsdp": 2963,
+          "RouteCheckPerformed": 1,
+          "RouteAvailableWhenChecked": 1,
+          "RouteUnavailableWhenChecked": 0,
+          "RouteCheckSkipped": 2999,
+          "FirstAttemptSeconds": 300,
+          "LastAttemptSeconds": 359.98,
+          "FirstAdmittedSeconds": 300,
+          "LastAdmittedSeconds": 353.38
+        }
+      ],
+      "unclassified_residuals": [],
+      "retry_classification_complete": true,
+      "nwk_pending_control_messages": 0,
+      "sources": [
+        {
+          "source": 2,
+          "admitted": 43,
+          "delivered": 0
+        },
+        {
+          "source": 3,
+          "admitted": 104,
+          "delivered": 87
+        },
+        {
+          "source": 4,
+          "admitted": 24,
+          "delivered": 4
+        },
+        {
+          "source": 5,
+          "admitted": 42,
+          "delivered": 26
+        },
+        {
+          "source": 7,
+          "admitted": 44,
+          "delivered": 0
+        },
+        {
+          "source": 8,
+          "admitted": 37,
+          "delivered": 0
+        }
+      ]
+    },
+    {
+      "kind": "multisection",
+      "passed": true,
+      "offered": 0,
+      "admitted": 0,
+      "unique_delivered": 0,
+      "unresolved": 0,
+      "raw_dropped": 0,
+      "raw_pending": 0,
+      "mean_delivered_latency_s": null,
+      "goodput_bits_s": 0,
+      "wall_seconds": 129.1370446,
+      "control_streams_by_origin": {
+        "snapshot": 32,
+        "automatic_update": 51,
+        "request": 19
+      },
+      "residual_handoffs": [
+        {
+          "node": 4,
+          "seq": 2,
+          "section": 0,
+          "origin": "automatic_update",
+          "ids": [
+            7,
+            17
+          ],
+          "times": [
+            39.512692444,
+            48.96700002777778
+          ]
+        },
+        {
+          "node": 3,
+          "seq": 12,
+          "section": 0,
+          "origin": "automatic_update",
+          "ids": [
+            29,
+            30
+          ],
+          "times": [
+            63.037819163,
+            71.86000002777777
+          ]
+        }
+      ],
+      "custody_unreleased_at_cutoff": 0,
+      "hop_control_owners_at_cutoff": 4,
+      "source_admission": [],
+      "unclassified_residuals": [],
+      "retry_classification_complete": true,
+      "nwk_pending_control_messages": 4,
+      "multi_section_snapshots": [
+        {
+          "sender": 1,
+          "receiver": 5,
+          "seq": 17,
+          "sections": 2,
+          "received_sections": [],
+          "acked_sections": [],
+          "passed": false,
+          "reassembly_replay_matches": 0
+        }
+      ],
+      "multisection_coverage_passed": false,
+      "seeded_routes_selected_at5": 0
+    }
+  ],
+  "resources": [
+    {
+      "case": "baseline",
+      "samples": 22,
+      "min_available_physical": 2747183104,
+      "min_available_commit": 26777686016,
+      "min_free_disk": 53019201536,
+      "low_physical_warnings": 0
+    },
+    {
+      "case": "repaired",
+      "samples": 23,
+      "min_available_physical": 2618523648,
+      "min_available_commit": 26699702272,
+      "min_free_disk": 53003800576,
+      "low_physical_warnings": 0
+    },
+    {
+      "case": "multisection",
+      "samples": 14,
+      "min_available_physical": 2728914944,
+      "min_available_commit": 26883719168,
+      "min_free_disk": 53009436672,
+      "low_physical_warnings": 0
+    }
+  ],
+  "first_lifecycle_difference": {
+    "matching_prefix_rows": 422,
+    "baseline_next": {
+      "time_s": 50.13700002777778,
+      "time_ns": 50137000028.0,
+      "node": 1,
+      "event": "hop_control_admit",
+      "frame": {
+        "Id": 25,
+        "SourceId": 1,
+        "DestinationId": 5,
+        "GeneratedSeconds": 50.13700002777778,
+        "ApplicationPayloadBytes": 0,
+        "WirePayloadBytes": 96,
+        "RateKeyKbps": 8,
+        "Preamble": "long",
+        "TxPowerDbm": 33,
+        "EnvelopeProfile": "bare",
+        "Kind": "CONTROL",
+        "Sequence": 12,
+        "Dscp": 7,
+        "AckRequired": true,
+        "HasAckWindow": false,
+        "AckBitmap": 0,
+        "DackBitmap": 0,
+        "App": {},
+        "RetryCount": 0,
+        "Control": {
+          "Id": 25,
+          "Type": "ROUTING",
+          "Payload": {
+            "Bytes": [
+              0,
+              0,
+              0,
+              9,
+              0,
+              1,
+              4,
+              0,
+              8,
+              0,
+              128,
+              254,
+              152,
+              1,
+              74,
+              0,
+              120,
+              0,
+              140,
+              0,
+              0,
+              0,
+              0,
+              2,
+              0,
+              0,
+              1,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              2,
+              0,
+              0,
+              3,
+              1,
+              0,
+              1,
+              0,
+              0,
+              14,
+              3,
+              0,
+              0,
+              3,
+              2,
+              0,
+              0,
+              5,
+              1,
+              0,
+              1,
+              0,
+              0,
+              29,
+              26,
+              0,
+              0,
+              5,
+              2,
+              0,
+              0,
+              4,
+              1,
+              0,
+              2,
+              0,
+              0,
+              58,
+              52,
+              0,
+              0,
+              5,
+              0,
+              0,
+              4,
+              0
+            ]
+          },
+          "WirePayloadBytes": 96
+        },
+        "DestinationIds": 5,
+        "HopSequences": 12
+      },
+      "details": {
+        "Targets": 5,
+        "TimeSeconds": 50.13700002777778
+      }
+    },
+    "repaired_next": {
+      "time_s": 50.42500002777778,
+      "time_ns": 50425000028.0,
+      "node": 5,
+      "event": "hop_retry",
+      "frame": {
+        "Id": 31,
+        "SourceId": 5,
+        "DestinationId": 3,
+        "GeneratedSeconds": 48.366192444,
+        "ApplicationPayloadBytes": 0,
+        "WirePayloadBytes": 39,
+        "RateKeyKbps": 8,
+        "Preamble": "long",
+        "TxPowerDbm": 33,
+        "EnvelopeProfile": "bare",
+        "Kind": "CONTROL",
+        "Sequence": 9,
+        "Dscp": 7,
+        "AckRequired": true,
+        "HasAckWindow": false,
+        "AckBitmap": 0,
+        "DackBitmap": 0,
+        "App": {},
+        "RetryCount": 1,
+        "Control": {
+          "Id": 31,
+          "Type": "ROUTING",
+          "Payload": {
+            "Bytes": [
+              0,
+              0,
+              0,
+              13,
+              0,
+              1,
+              2,
+              0,
+              0,
+              2,
+              1,
+              0,
+              2,
+              0,
+              0,
+              58,
+              52,
+              0,
+              0,
+              4,
+              0,
+              0,
+              2
+            ]
+          },
+          "WirePayloadBytes": 39
+        },
+        "DestinationIds": [
+          3,
+          4,
+          1
+        ],
+        "HopSequences": [
+          9,
+          11,
+          14
+        ]
+      },
+      "details": {
+        "ResendCount": 1,
+        "TimeSeconds": 50.42500002777778
+      }
+    }
+  },
+  "interpretation": "Bounded integration evidence only; no steady-state or statistical equivalence claim."
+}
