@@ -295,7 +295,10 @@ classdef DiscoveryMembershipNwk < handle
                 if any(strcmp(control.Type,{'KEY_UPDATE','NEIGHBOR_CHECK'}))
                     obj.Neighbors.controlCompleted(control.Type,peer,control.Payload,true);
                 end
-            elseif strcmp(control.Type,'ROUTING') && owner.Cycles<obj.Config.MaxControlCycles
+            elseif strcmp(control.Type,'ROUTING') && strcmp(owner.RoutingOrigin,'automatic_changes')
+                % Native retains only automatic route-change owners after a
+                % terminal HOP failure, without a fixed NWK cycle limit.
+                % Snapshot/REQUEST recovery belongs to their own timers.
                 owner.Remaining=owner.Remaining(ismember(owner.Remaining,obj.Neighbors.activePeers()));
                 if isempty(owner.Remaining)
                     obj.Controls(position)=[];
@@ -533,8 +536,9 @@ classdef DiscoveryMembershipNwk < handle
             end
         end
 
-        function accepted = queueControl(obj,kind,peers,payload,reliable,scheduleWake)
+        function accepted = queueControl(obj,kind,peers,payload,reliable,scheduleWake,routingOrigin)
             if nargin<6, scheduleWake=true; end
+            if nargin<7, routingOrigin='none'; end
             peers=reshape(double(peers),1,[]);
             if isempty(peers), accepted=false; return; end
             if strcmp(kind,'KEY_REQUEST')
@@ -556,7 +560,8 @@ classdef DiscoveryMembershipNwk < handle
                 'WirePayloadBytes',ac.controlWireBytes(kind,payload,numel(peers), ...
                 obj.Config.SecurityProfile));
             owner=struct('Control',control,'Peers',peers,'Remaining',peers, ...
-                'Reliable',logical(reliable),'Submitted',false,'Cycles',1);
+                'Reliable',logical(reliable),'Submitted',false,'Cycles',1, ...
+                'RoutingOrigin',routingOrigin);
             obj.Controls{end+1}=owner;
             if scheduleWake && ((strcmp(kind,'KEY_REQUEST') && ~reliable) || ...
                     (strcmp(kind,'KEY_UPDATE') && reliable))
@@ -795,12 +800,15 @@ classdef DiscoveryMembershipNwk < handle
             groups=ceil(numel(peers)/10);
             if strcmp(mode,'snapshot')
                 nextSection=1; nextPeer=1;
+                routingOrigin='snapshot';
             else
                 nextSection=numel(sections); nextPeer=10*(groups-1)+1;
+                routingOrigin='automatic_changes';
+                if strcmp(wireRepresentation,'legacy_request_header'), routingOrigin='request'; end
             end
             obj.RoutingBacklog{end+1}=struct('Sections',{sections},'Peers',peers, ...
                 'NextSection',nextSection,'NextPeer',nextPeer,'Mode',mode, ...
-                'WireRepresentation',wireRepresentation);
+                'WireRepresentation',wireRepresentation,'RoutingOrigin',routingOrigin);
             obj.RoutingSequence=mod(obj.RoutingSequence+groups,4294967296);
             obj.wake();
         end
@@ -821,7 +829,7 @@ classdef DiscoveryMembershipNwk < handle
                         % carries this request in its compatibility header.
                         payload.WireRepresentation=message.WireRepresentation;
                     end
-                    obj.queueControl('ROUTING',group,payload,true,false);
+                    obj.queueControl('ROUTING',group,payload,true,false,message.RoutingOrigin);
                 end
                 if strcmp(message.Mode,'snapshot')
                     message.NextSection=message.NextSection+1;
@@ -856,15 +864,18 @@ classdef DiscoveryMembershipNwk < handle
         function requestTick(obj,peer,generation)
             if ~isKey(obj.Requests,double(peer)) || ~obj.Neighbors.isActive(peer), return; end
             request=obj.Requests(double(peer));
-            if request.Generation~=generation || request.Complete || ...
-                    request.Attempts>obj.Config.MaxRouteRequests, return; end
+            if request.Generation~=generation || request.Complete, return; end
+            if request.Attempts>obj.Config.MaxRouteRequests
+                % The last send still receives a full response interval.
+                % Native clears pending on that final timeout so a later
+                % explicit discovery/request can start a fresh generation.
+                remove(obj.Requests,double(peer)); return
+            end
             request.Attempts=request.Attempts+1; obj.Requests(double(peer))=request;
             obj.Counters.RouteRequests=obj.Counters.RouteRequests+1;
             obj.sendRecords({struct('Operation','REQUEST')},peer,'changes','legacy_request_header');
-            if request.Attempts<=obj.Config.MaxRouteRequests
-                obj.Scheduler.scheduleAt(obj.Scheduler.Now+obj.Config.RouteRequestSeconds, ...
-                    @()obj.requestTick(peer,generation));
-            end
+            obj.Scheduler.scheduleAt(obj.Scheduler.Now+obj.Config.RouteRequestSeconds, ...
+                @()obj.requestTick(peer,generation));
         end
 
         function snapshotWatchdog(obj,peer,generation)

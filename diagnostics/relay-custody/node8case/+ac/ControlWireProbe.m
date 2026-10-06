@@ -57,7 +57,7 @@ classdef ControlWireProbe < handle
             callbacks=struct('SendControl',@(control,peers,options)probe.send(control,peers,options), ...
                 'CanSendControl',@(peers)true);
             streams=csr.sim.RandomStreams(config.Seed);
-            layer=ac.ControlWireNwk(1,clock,streams,config,callbacks); probe.Layer=layer;
+            layer=ac.DiscoveryMembershipNwk(1,clock,streams,config,callbacks); probe.Layer=layer;
         end
     end
 end
