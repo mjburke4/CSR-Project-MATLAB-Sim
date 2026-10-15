@@ -3,6 +3,7 @@ function report=run_node8_tests
 % Restart MATLAB R2025a and set Current Folder to the extracted node8case.
 %   report = run_node8_tests;
 % Return the printed ZIP, including partial evidence on a divergence.
+error('csr:HistoricalRunner','This historical 1200-second runner is bound to the earlier kit. Use repaired-tests/run_repaired_checks for the current candidate; see README.md.');
 root=char(java.io.File(fileparts(mfilename('fullpath'))).getCanonicalPath());
 oldPath=path; oldFolder=pwd;
 restoreEnvironment=onCleanup(@()restore(oldPath,oldFolder)); %#ok<NASGU>

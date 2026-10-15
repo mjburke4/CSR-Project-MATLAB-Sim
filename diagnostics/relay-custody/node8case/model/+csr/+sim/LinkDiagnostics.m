@@ -25,8 +25,8 @@ classdef LinkDiagnostics < handle
             validateattributes(maxRecords,{'numeric'}, ...
                 {'scalar','real','finite','integer','nonnegative','<=',1000000});
             obj.MaxRecords = double(maxRecords);
-            obj.DecisionRows = repmat(decisionTemplate(),obj.MaxRecords,1);
-            obj.ActualRows = repmat(actualTemplate(),obj.MaxRecords,1);
+            obj.DecisionRows = csr.sim.TypedTraceBuffer(decisionTemplate(),obj.MaxRecords);
+            obj.ActualRows = csr.sim.TypedTraceBuffer(actualTemplate(),obj.MaxRecords);
             obj.Queues = containers.Map('KeyType','double','ValueType','any');
         end
 
@@ -109,7 +109,7 @@ classdef LinkDiagnostics < handle
             if obj.DecisionCount>obj.MaxRecords
                 obj.OmittedDecisions = obj.OmittedDecisions+1;
             else
-                obj.DecisionRows(obj.DecisionCount) = row;
+                obj.DecisionRows.append(row);
             end
         end
 
@@ -155,7 +155,7 @@ classdef LinkDiagnostics < handle
                 if obj.ActualCount>obj.MaxRecords
                     obj.OmittedActual = obj.OmittedActual+1;
                 else
-                    obj.ActualRows(obj.ActualCount) = row;
+                    obj.ActualRows.append(row);
                 end
             end
             keep = true(1,numel(queue));
@@ -165,7 +165,9 @@ classdef LinkDiagnostics < handle
             obj.Queues(double(aggregate.SourceId)) = queue(keep);
         end
 
-        function observed = snapshot(obj)
+        function observed = snapshot(obj,includeTables)
+            if nargin<2, includeTables=true; end
+            validateattributes(includeTables,{'logical'},{'scalar'});
             queued = 0;
             ids = keys(obj.Queues);
             for index = 1:numel(ids), queued = queued+numel(obj.Queues(ids{index})); end
@@ -187,11 +189,31 @@ classdef LinkDiagnostics < handle
                 'Correlation','Private observation queue follows MAC events and ACK repeat limit; packets are unmodified', ...
                 'RateMeaning','RateKeyKbps is the legacy key; RateBps is the operational four-bit interval rate', ...
                 'Passive',true,'ScheduledEvents',0,'RandomDraws',0);
-            observed = struct('LinkDecisionTrace', ...
-                struct2table(obj.DecisionRows(1:min(obj.DecisionCount,obj.MaxRecords)),'AsArray',true), ...
-                'ActualFeedbackTrace', ...
-                struct2table(obj.ActualRows(1:min(obj.ActualCount,obj.MaxRecords)),'AsArray',true), ...
-                'LinkDiagnostics',summary);
+            if includeTables
+                observed = struct('LinkDecisionTrace',obj.getLinkDecisionRows(1,obj.DecisionRows.Count), ...
+                    'ActualFeedbackTrace',obj.getActualFeedbackRows(1,obj.ActualRows.Count), ...
+                    'LinkDiagnostics',summary);
+            else
+                observed = struct('LinkDiagnostics',summary);
+            end
+        end
+
+        function rows = getLinkDecisionRows(obj,first,last)
+            rows=obj.DecisionRows.tableRows(first,last);
+        end
+
+        function rows = getActualFeedbackRows(obj,first,last)
+            rows=obj.ActualRows.tableRows(first,last);
+        end
+
+        function exportLinkDecisionCsv(obj,path,chunkSize,checkpoint)
+            if nargin<4, checkpoint=@()[]; end
+            obj.DecisionRows.exportCsv(path,chunkSize,[],checkpoint);
+        end
+
+        function exportActualFeedbackCsv(obj,path,chunkSize,checkpoint)
+            if nargin<4, checkpoint=@()[]; end
+            obj.ActualRows.exportCsv(path,chunkSize,[],checkpoint);
         end
 
         function assertComplete(obj)

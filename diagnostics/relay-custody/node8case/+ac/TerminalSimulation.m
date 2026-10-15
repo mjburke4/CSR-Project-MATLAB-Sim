@@ -80,8 +80,8 @@ classdef TerminalSimulation < handle
                 obj.ApplicationGenerators{k} = csr.sim.ApplicationGenerator(k, ...
                     config.Traffic(k),historical,config.ApplicationFlowLimit);
             end
-            obj.AdmissionRows = repmat(csr.sim.ApplicationGenerator.emptyTrace(), ...
-                config.Trace.MaxApplicationAdmissionRecords*double(config.Trace.Enabled)*double(historical),1);
+            obj.AdmissionRows = csr.sim.TypedTraceBuffer(csr.sim.ApplicationGenerator.emptyTrace(), ...
+                config.Trace.MaxApplicationAdmissionRecords*double(config.Trace.Enabled)*double(historical));
             n = numel(config.Nodes);
             obj.Nodes = cell(1,n); obj.Macs = cell(1,n); obj.Hops = cell(1,n);
             obj.Networks = cell(1,n); obj.NodeEnabled = true(1,n);
@@ -103,14 +103,14 @@ classdef TerminalSimulation < handle
                 'PacketId',uint64(0),'ApplicationBytes',0,'Reason','', ...
                 'FrameKind','','Sequence',0,'Dscp',0,'QueueDepth',0, ...
                 'ControlType','','HopCount',0);
-            obj.TraceRows = repmat(trace,config.Trace.MaxRecords*double(config.Trace.Enabled),1);
+            obj.TraceRows = csr.sim.TypedTraceBuffer(trace,config.Trace.MaxRecords*double(config.Trace.Enabled));
             phy = struct('TimeSeconds',0,'Event','','NodeId',0,'SourceId',0, ...
                 'DestinationId',0,'PacketId',uint64(0),'RateKeyKbps',0, ...
                 'ReceivedPowerDbm',NaN,'PathlossDb',NaN,'SnrDb',NaN, ...
                 'NoisePowerWatts',NaN,'JsrDb',NaN,'HeaderBer',NaN,'PayloadBer',NaN, ...
                 'HeaderErrors',NaN,'PayloadErrors',NaN,'TotalErrors',NaN, ...
                 'CollisionCount',0,'Success',false,'Reason','');
-            obj.PhyRows = repmat(phy,config.Trace.MaxPhyRecords*double(config.Trace.Enabled),1);
+            obj.PhyRows = csr.sim.TypedTraceBuffer(phy,config.Trace.MaxPhyRecords*double(config.Trace.Enabled));
             obj.RelativeTimer=ac.ReceiverTimer();
             macRelativeTimer=[];
             if ~isempty(obj.TransportTiming) && strcmp(obj.TransportTiming.Mode,'nanoseconds')
@@ -125,6 +125,7 @@ classdef TerminalSimulation < handle
                 macCallbacks = struct('Transmit',@(frame,duration)obj.transmit(frame,duration), ...
                     'Sent',@(frame)obj.sent(nodeId,frame), ...
                     'SetReceiverState',@(state)obj.Engine.setReceiverState(nodeId,state), ...
+                    'SetReceiverStateMacOnly',@(state)obj.Engine.setReceiverState(nodeId,state,false), ...
                     'ReceiverState',@()obj.Engine.state(nodeId), ...
                     'HasSync',@()obj.Engine.hasSync(nodeId), ...
                     'Event',@(event,frame,details)obj.protocolEvent(nodeId,event,frame,details));
@@ -140,7 +141,7 @@ classdef TerminalSimulation < handle
                         obj.Networks{k}.controlResult(control,peer,success,complete,remaining), ...
                     'Terminal',@(app,success,reason)obj.terminal(nodeId,app,success,reason), ...
                     'NsdpRelease',@(app,reason)obj.Networks{k}.releaseFromHop(app,reason), ...
-                    'Wake',@()obj.Networks{k}.wake(), ...
+                    'Wake',@()obj.Networks{k}.checkDataQueue(), ...
                     'NsdpCount',@(app)obj.Networks{k}.nsdpCount(app), ...
                     'RouteAvailable',@(app)obj.Networks{k}.routeAvailable(app), ...
                     'Event',@(event,frame,details)obj.hopEvent(nodeId,event,frame,details));
@@ -163,7 +164,9 @@ classdef TerminalSimulation < handle
             end
         end
 
-        function result = run(obj)
+        function result = run(obj,includeTraces)
+            if nargin<2, includeTraces=true; end
+            validateattributes(includeTraces,{'logical'},{'scalar'});
             if obj.HasRun, error('csr:Simulation:AlreadyRun','Create a fresh simulation for each run.'); end
             obj.HasRun = true;
             runtime = tic;
@@ -279,7 +282,6 @@ classdef TerminalSimulation < handle
                 'UnconfirmedHopTransfers','Hop feedback failure while another NWK occurrence is retained or the application is already delivered or provisionally dropped', ...
                 'RelayAccepted','Accepted relay NWK custody occurrences; multiple copies of one application each count', ...
                 'UnretainedHopAcks','ACK/DACK completion with no registered NWK custody and no unique delivery; provisional loss recoverable by late reception');
-            trace = struct2table(obj.TraceRows(1:obj.TraceCount),'AsArray',true);
             templateGenerator = csr.sim.ApplicationGenerator(0, ...
                 struct('SourceId',0,'DestinationId',1),false,0);
             admission = repmat(templateGenerator.Statistics,numel(obj.ApplicationGenerators),1);
@@ -288,34 +290,68 @@ classdef TerminalSimulation < handle
             end
             result = struct('Config',obj.Config,'Statistics',stats, ...
                 'ApplicationAdmissionStatistics',struct2table(admission,'AsArray',true), ...
-                'ApplicationAdmissionTrace',struct2table(obj.AdmissionRows(1:obj.AdmissionCount),'AsArray',true), ...
                 'NodeStatistics',struct2table(nodeRows,'AsArray',true), ...
                 'NodeMacStatistics',struct2table(vertcat(macRows{:}),'AsArray',true), ...
                 'NodeHopStatistics',struct2table(hopStats,'AsArray',true), ...
                 'NodeNwkStatistics',struct2table(nwkStats,'AsArray',true), ...
                 'Routes',struct2table(routeRows,'AsArray',true), ...
                 'Neighbors',struct2table(neighborRows,'AsArray',true), ...
-                'Trace',trace,'ProtocolTrace',trace, ...
-                'PhyTrace',struct2table(obj.PhyRows(1:obj.PhyCount),'AsArray',true), ...
                 'Metadata',metadata);
+            if includeTraces
+                trace=obj.TraceRows.tableRows(1,obj.TraceCount);
+                result.Trace=trace;result.ProtocolTrace=trace;
+                result.ApplicationAdmissionTrace=obj.AdmissionRows.tableRows(1,obj.AdmissionCount);
+                result.PhyTrace=obj.PhyRows.tableRows(1,obj.PhyCount);
+                result=orderfields(result,{'Config','Statistics','ApplicationAdmissionStatistics', ...
+                    'ApplicationAdmissionTrace','NodeStatistics','NodeMacStatistics','NodeHopStatistics', ...
+                    'NodeNwkStatistics','Routes','Neighbors','Trace','ProtocolTrace','PhyTrace','Metadata'});
+            end
             if ~isempty(obj.TransportTiming)
-                result.TransportTiming=obj.TransportTiming.snapshot();
+                result.TransportTiming=obj.TransportTiming.snapshot(includeTraces);
             end
             if ~isempty(obj.LinkObserver)
-                observed = obj.LinkObserver.snapshot();
-                result.LinkDecisionTrace = observed.LinkDecisionTrace;
-                result.ActualFeedbackTrace = observed.ActualFeedbackTrace;
+                if includeTraces, observed = obj.LinkObserver.snapshot();
+                else, observed = obj.LinkObserver.snapshot(false); end
+                if includeTraces
+                    result.LinkDecisionTrace = observed.LinkDecisionTrace;
+                    result.ActualFeedbackTrace = observed.ActualFeedbackTrace;
+                end
                 result.LinkDiagnostics = observed.LinkDiagnostics;
-                if isfield(observed,'ServiceTrace')
-                    result.ServiceTrace = observed.ServiceTrace;
+                if isfield(observed,'ServiceDiagnostics')
+                    if includeTraces, result.ServiceTrace = observed.ServiceTrace; end
                     result.ServiceDiagnostics = observed.ServiceDiagnostics;
                 end
             end
         end
     end
     methods
-        function value=autonomousReceiverTimingSummary(obj)
-            value=obj.RelativeTimer.snapshot();
+        function value=autonomousReceiverTimingSummary(obj,includeRecords)
+            if nargin<2, includeRecords=true; end
+            value=obj.RelativeTimer.snapshot(includeRecords);
+        end
+        function value=diagnosticTraceCounts(obj)
+            value=struct('ProtocolTrace',obj.TraceCount,'PhyTrace',obj.PhyCount, ...
+                'ApplicationAdmissionTrace',obj.AdmissionCount);
+        end
+        function value=diagnosticTraceRows(obj,name,first,last)
+            switch name
+                case 'ProtocolTrace', value=obj.TraceRows.tableRows(first,last);
+                case 'PhyTrace', value=obj.PhyRows.tableRows(first,last);
+                case 'ApplicationAdmissionTrace', value=obj.AdmissionRows.tableRows(first,last);
+                otherwise, error('csr:diagnostics:TraceName','Unknown passive trace.');
+            end
+        end
+        function receipt=exportDiagnosticTrace(obj,name,path,chunkSize,checkpoint)
+            switch name
+                case 'ProtocolTrace', buffer=obj.TraceRows;
+                case 'PhyTrace', buffer=obj.PhyRows;
+                case 'ApplicationAdmissionTrace', buffer=obj.AdmissionRows;
+                otherwise, error('csr:diagnostics:TraceName','Unknown passive trace.');
+            end
+            receipt=buffer.exportCsv(path,chunkSize,[],checkpoint);
+        end
+        function value=receiverTimingRows(obj,first,last)
+            value=obj.RelativeTimer.tableRows(first,last);
         end
         function value=autonomousRandomSummary(obj)
             value=obj.Streams.summary();
@@ -323,13 +359,19 @@ classdef TerminalSimulation < handle
         function autonomousClose(obj)
             obj.Streams.close();
         end
-        function value=autonomousPartial(obj)
+        function value=autonomousPartial(obj,includeTraces)
+            if nargin<2, includeTraces=true; end
+            validateattributes(includeTraces,{'logical'},{'scalar'});
             % Saved observations only. This does not complete, advance or
             % recompute application outcomes after a failed simulation.
-            value=struct('ProtocolTrace',struct2table(obj.TraceRows(1:obj.TraceCount),'AsArray',true), ...
-                'PhyTrace',struct2table(obj.PhyRows(1:obj.PhyCount),'AsArray',true), ...
-                'ApplicationAdmissionTrace',struct2table(obj.AdmissionRows(1:obj.AdmissionCount),'AsArray',true), ...
-                'Statistics',obj.Counters,'Config',obj.Config);
+            if includeTraces
+                value=struct('ProtocolTrace',obj.TraceRows.tableRows(1,obj.TraceCount), ...
+                    'PhyTrace',obj.PhyRows.tableRows(1,obj.PhyCount), ...
+                    'ApplicationAdmissionTrace',obj.AdmissionRows.tableRows(1,obj.AdmissionCount), ...
+                    'Statistics',obj.Counters,'Config',obj.Config);
+            else
+                value=struct('Statistics',obj.Counters,'Config',obj.Config);
+            end
         end
     end
     methods (Access = private)
@@ -382,13 +424,13 @@ classdef TerminalSimulation < handle
                 obj.LinkObserver.observeAdmission(row);
             end
             if ~obj.Config.Trace.Enabled, return; end
-            if obj.AdmissionCount >= numel(obj.AdmissionRows)
+            if obj.AdmissionCount >= obj.AdmissionRows.Capacity
                 obj.Counters.OmittedApplicationAdmissionRecords = ...
                     obj.Counters.OmittedApplicationAdmissionRecords+1;
                 return
             end
             obj.AdmissionCount = obj.AdmissionCount+1;
-            obj.AdmissionRows(obj.AdmissionCount) = row;
+            obj.AdmissionRows.append(row);
         end
 
         function accepted = receiveData(obj,nodeId,app,previousHop)
@@ -762,7 +804,7 @@ classdef TerminalSimulation < handle
 
         function record(obj,event,frame,nodeId,peerId,reason,details)
             if ~obj.Config.Trace.Enabled, return; end
-            if obj.TraceCount >= numel(obj.TraceRows)
+            if obj.TraceCount >= obj.TraceRows.Capacity
                 obj.Counters.OmittedTraceRecords = obj.Counters.OmittedTraceRecords+1; return
             end
             obj.TraceCount = obj.TraceCount+1;
@@ -778,7 +820,7 @@ classdef TerminalSimulation < handle
                 app = frame.Control;
             elseif isfield(frame,'Type'), controlType = frame.Type; end
             if ~isempty(controlType), kind = 'CONTROL'; end
-            obj.TraceRows(obj.TraceCount) = struct('TimeSeconds',obj.Scheduler.Now, ...
+            row = struct('TimeSeconds',obj.Scheduler.Now, ...
                 'Event',char(event),'NodeId',nodeId,'PeerId',peerId, ...
                 'PacketId',uint64(obj.fieldOr(app,'Id',0)), ...
                 'ApplicationBytes',obj.fieldOr(app,'ApplicationPayloadBytes',0), ...
@@ -787,16 +829,17 @@ classdef TerminalSimulation < handle
                 'Dscp',double(obj.fieldOr(frame,'Dscp',0)), ...
                 'QueueDepth',double(obj.fieldOr(details,'QueueDepth',0)), ...
                 'ControlType',char(controlType),'HopCount',double(obj.fieldOr(app,'HopCount',0)));
+            obj.TraceRows.append(row);
         end
 
         function recordPhy(obj,event,frame,nodeId,details)
             ac.Trace.record(obj.Scheduler.Now,'phy',nodeId, ...
                 struct('event',event,'frame',frame,'details',details));
             if ~obj.Config.Trace.Enabled, return; end
-            if obj.PhyCount >= numel(obj.PhyRows)
+            if obj.PhyCount >= obj.PhyRows.Capacity
                 obj.Counters.OmittedPhyTraceRecords = obj.Counters.OmittedPhyTraceRecords+1; return
             end
-            obj.PhyCount = obj.PhyCount+1; row = obj.PhyRows(obj.PhyCount);
+            obj.PhyCount = obj.PhyCount+1; row = obj.PhyRows.Template;
             row.TimeSeconds = obj.Scheduler.Now; row.Event = char(event); row.NodeId = nodeId;
             row.SourceId = frame.SourceId; row.DestinationId = frame.DestinationId;
             row.PacketId = frame.Id; row.RateKeyKbps = frame.RateKeyKbps;
@@ -805,7 +848,7 @@ classdef TerminalSimulation < handle
             for field = fields, row.(field{1}) = obj.fieldOr(details,field{1},row.(field{1})); end
             row.Success = logical(obj.fieldOr(details,'Success',false));
             row.Reason = char(obj.fieldOr(details,'Reason',''));
-            obj.PhyRows(obj.PhyCount) = row;
+            obj.PhyRows.append(row);
         end
 
     end
