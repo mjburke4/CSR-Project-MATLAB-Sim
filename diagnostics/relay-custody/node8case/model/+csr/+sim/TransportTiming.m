@@ -119,16 +119,29 @@ classdef TransportTiming < handle
             end
             obj.Count=needed;
         end
-        function result = snapshot(obj)
-            data=array2table(obj.Data(1:obj.Count,:),'VariableNames',obj.numericNames());
-            Ordinal=uint64((1:obj.Count)'); FrameId=obj.FrameIds(1:obj.Count);
+        function records = tableRows(obj,first,last)
+            validateattributes(first,{'double'},{'scalar','real','finite','integer','>=',1,'<=',obj.Count+1});
+            validateattributes(last,{'double'},{'scalar','real','finite','integer','>=',first-1,'<=',obj.Count});
+            data=array2table(obj.Data(first:last,:),'VariableNames',obj.numericNames());
+            Ordinal=uint64((first:last)'); FrameId=obj.FrameIds(first:last);
             records=[table(Ordinal),data(:,1:2),table(FrameId),data(:,3:end)];
-            result=struct('Mode',obj.Mode,'Records',records,'Count',obj.Count,'Omitted',0, ...
+        end
+        function receipt=exportCsv(obj,path,chunkSize,checkpoint)
+            receipt=csr.sim.TypedTraceBuffer.exportRows(path,obj.Count,chunkSize,@(first,last)obj.tableRows(first,last),checkpoint);
+        end
+        function result = snapshot(obj,includeRecords)
+            if nargin<2, includeRecords=true; end
+            validateattributes(includeRecords,{'logical'},{'scalar'});
+            result=struct('Mode',obj.Mode,'Count',obj.Count,'Omitted',0, ...
                 'MaxRecords',obj.MaxRecords,'MaxAbsShiftSeconds',obj.MaxAbsShiftSeconds, ...
                 'PolicyScope',['Receiver callback start/preamble/end only; physical signal and header/ECC ' ...
                 'formulas, TX/MAC completion, acquisition and scheduler defaults unchanged. ' ...
                 'Optional receive intervals begin at the actual callback time. Off-grid past arrivals are rejected. ' ...
                 'Records describe scheduled targets, including future targets; they do not establish callback execution.']);
+            if includeRecords
+                result.Records=obj.tableRows(1,obj.Count);
+                result=orderfields(result,{'Mode','Records','Count','Omitted','MaxRecords','MaxAbsShiftSeconds','PolicyScope'});
+            end
         end
     end
     methods (Static, Access=private)

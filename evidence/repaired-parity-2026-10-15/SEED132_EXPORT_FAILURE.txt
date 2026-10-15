@@ -1,0 +1,78 @@
+HISTORICAL V2 FAILED ATTEMPT -- preserved evidence, 15 October 2026
+Subsequent V4 recovery completed with accepted exports and closure; see
+AUTONOMOUS_SEED132_RECOVERY.txt for current seed132 and batch results.
+All statements below about unavailable comparison or pending recovery describe
+the original V2 checkpoint, not the later completed V4 attempt.
+
+Autonomous seed 132: horizon reached, exports failed; no parity result
+15 October 2026
+
+The first seed-132 attempt reached 6000 simulated seconds, but its report has
+completed=false. Required exports are incomplete, so neither seed-132 numerical
+comparison nor a combined two-seed comparison is accepted. Accepted seed-131
+evidence and the separate native-input RngRun-2008 replay remain unchanged.
+
+The earlier disk-reserve block was resolved after explicitly authorized cleanup
+and independent verification. The subsequent run used the unchanged repaired
+candidate and reviewed limits. No reserve reduction or model/PHY/ECC change was
+made. Native reference: 486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b.
+Runtime: MATLAB 26.1.0.3346908 (R2026a) Update 5. Reported wall time:
+10739.942323 seconds. All 398 bound source/input files remained unchanged.
+
+CONFIRMED FAILURE
+At 12:59:06.209138 UTC the watcher successfully published its heartbeat by
+renaming its temporary file. The controller's disk-budget scan checked is_file()
+and then stat() on that temporary path. The rename between those operations
+caused FileNotFoundError (WinError 2). This is a confirmed supervisor accounting
+race, not evidence of a model or PHY/ECC defect or a measured resource overrun.
+The cooperative export safety stop correctly halted output after supervision
+failed; report error identifier: wallguard:ExportStop. The preserved supervision
+failure receipt is timestamped 12:59:06.215138 UTC.
+
+ProtocolTrace.csv exists (33036216 bytes), PhyTrace.csv is zero bytes, and
+ApplicationAdmissionTrace.csv is absent. Existing counters or partial exports
+must not be used to label this case complete or manufacture parity metrics.
+No seed-132 delivery/latency or two-seed aggregate is reported here.
+
+CLOSURE AND REPAIR STATUS
+Exact original engine, controller and watcher identities were all confirmed
+closed at 13:00:03.358297 UTC and independently rechecked at 13:02:10.333591 UTC.
+The normal controller-exit receipt is absent; the separate failure-closure
+observation and independent forensic review establish closure, not acceptance.
+Original evidence is retained. No retry has run as of this report.
+
+An isolated supervisor-only correction passed 15 focused tests and independent
+review. Qualification covers the accounting primitive, not a fresh long attempt.
+It narrowly handles disappearing owned publication temporaries,
+counts extant temporary files, and preserves all other I/O failures, output caps,
+deadlines and ownership checks. The desktop-specific adapter is not a published
+portable entrypoint, so no project model or portable harness change is included.
+Fresh-attempt wiring, source/import bindings, the actual prepare-to-controller
+boundary check and fresh unchanged resources/deadlines remain required. No retry
+has launched.
+
+EVIDENCE SHA-256 (raw local paths and traces are not bundled)
+Independent failure review:
+a412b3833a8aa3926009c2265d4f3dcb3ab160561612c07150eb5f99d969ca9f
+Exact failed-run closure observation:
+b7e5f7e2d60e94785798695f66e21410f6a395396969c7e5913e3c89a325b9e1
+Supervision failure:
+6e19b2eccf292cfbbe58ec97c8830890e35eb6272bb1aec42d61606e712ded77
+Final incomplete report:
+98053b01520cdfd0ffb287e0b75bd4c787056703f72e453edef827833035b154
+Export safety stop:
+b5c3489f1a05e86dd640f63347186a156a103f62dd092f87da46a02e0b779a93
+Heartbeat publication log:
+312c3ccba2e776fd247f6d2861a5e6119ec7fb69ef49681a76dc2dd6114fb549
+Run cutoff configuration:
+2216e60df23785a33c3210907fa3e4439e18d0d4dbb41c1beaedf2938a3e03cb
+Run review gate:
+2fcca7b33bb79ebe5cb045b6d9270afc9a8e93a728a242f467b4bc70151c3993
+Candidate freeze:
+9b7fab8dda30b473c76b1acad9960f867069fe4bae7a9f554087bfd333100897
+V2 harness freeze:
+6a3fdb82c73bd7ee38b2f51ac12b3236ec4ee4c44b6e8f4ad2287a4d3a27986e
+Focused accounting tests (15 passed):
+6160862f2f8416d0b5f992c9f6c8aa001f628b07b72460722bff11d81e48b2b0
+Independent isolated repair review:
+d16cced5e43502d4aeb65c4274bd252239a175976ee3d2eeb4efd0cb2fb43da6

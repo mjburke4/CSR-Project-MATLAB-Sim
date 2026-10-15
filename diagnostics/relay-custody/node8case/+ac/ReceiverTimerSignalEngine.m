@@ -99,8 +99,11 @@ classdef ReceiverTimerSignalEngine < handle
                 end
             end
         end
-        function setReceiverState(obj,nodeId,value)
-            % MAC's explicit wake/sleep hook; no PHY-owned duty-cycle timer.
+        function setReceiverState(obj,nodeId,value,acquireOnSearch)
+            % Explicit bridge ownership: only MAC IdleRts suppresses a new
+            % acquisition. Existing acquisition and receiver-owned callbacks
+            % remain untouched; ordinary wake/Search retains its default.
+            if nargin<4, acquireOnSearch=true; end
             value=char(value); index=obj.nodeIndex(nodeId);
             ac.Trace.record(obj.Scheduler.Now,'phy_state_request',nodeId, ...
                 struct('Previous',obj.Receivers(index).State,'Requested',value));
@@ -122,7 +125,7 @@ classdef ReceiverTimerSignalEngine < handle
                 end
             end
             obj.Receivers(index).State=value;
-            if strcmp(value,'Search'), obj.scheduleAcquisition(index); end
+            if strcmp(value,'Search') && acquireOnSearch, obj.scheduleAcquisition(index); end
             obj.notifyState(index,previous);
         end
         function transmit(obj,frame,duration)

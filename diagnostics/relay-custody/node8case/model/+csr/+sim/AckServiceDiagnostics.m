@@ -30,7 +30,7 @@ classdef AckServiceDiagnostics < csr.sim.LinkDiagnostics
                     'The service window must have start <= end.');
             end
             obj.WindowSeconds = reshape(double(windowSeconds),1,2);
-            obj.ServiceRows = repmat(serviceTemplate(),obj.MaxRecords,1);
+            obj.ServiceRows = csr.sim.TypedTraceBuffer(serviceTemplate(),obj.MaxRecords);
         end
 
         function observeService(obj,time,nodeId,event,frame,details)
@@ -102,8 +102,10 @@ classdef AckServiceDiagnostics < csr.sim.LinkDiagnostics
             obj.append(row);
         end
 
-        function observed = snapshot(obj)
-            observed = snapshot@csr.sim.LinkDiagnostics(obj);
+        function observed = snapshot(obj,includeTables)
+            if nargin<2, includeTables=true; end
+            validateattributes(includeTables,{'logical'},{'scalar'});
+            observed = snapshot@csr.sim.LinkDiagnostics(obj,includeTables);
             retained = min(obj.ServiceCount,obj.MaxRecords);
             cancellationComplete=obj.CancellationPairErrors==0 && isempty(obj.PendingCancellation) && ...
                 obj.CancellationBeforeCount==obj.CancellationAfterCount;
@@ -135,8 +137,19 @@ classdef AckServiceDiagnostics < csr.sim.LinkDiagnostics
                 'FeedbackWindowMeaning','Only ServiceTrace is windowed; inherited T8 feedback traces cover the entire run', ...
                 'Passive',true,'ScheduledEvents',0,'RandomDraws',0,'AdditionalStateReads',6*cancellationCount, ...
                 'AdditionalStateReadsMeaning','Six public MAC scalar reads per cancellation snapshot; no HOP/NWK peer or state getters');
-            observed.ServiceTrace = struct2table(obj.ServiceRows(1:retained),'AsArray',true);
+            if includeTables, observed.ServiceTrace = obj.getServiceRows(1,retained); end
             observed.ServiceDiagnostics = summary;
+        end
+
+        function rows = getServiceRows(obj,first,last)
+            rows=obj.ServiceRows.tableRows(first,last);
+            rows=obj.transformServiceRows(rows,first,last);
+        end
+
+        function exportServiceCsv(obj,path,chunkSize,checkpoint)
+            if nargin<4, checkpoint=@()[]; end
+            obj.ServiceRows.exportCsv(path,chunkSize, ...
+                @(rows,first,last)obj.transformServiceRows(rows,first,last),checkpoint);
         end
 
         function assertComplete(obj)
@@ -153,6 +166,11 @@ classdef AckServiceDiagnostics < csr.sim.LinkDiagnostics
             end
         end
     end
+    methods (Access = protected)
+        function rows = transformServiceRows(~,rows,~,~)
+            % Subclasses may remap copied bounded rows without changing storage.
+        end
+    end
     methods (Access = private)
         function inside = inWindow(obj,time)
             inside = time>=obj.WindowSeconds(1) && time<obj.WindowSeconds(2);
@@ -166,7 +184,7 @@ classdef AckServiceDiagnostics < csr.sim.LinkDiagnostics
                 return
             end
             row.ObservationId = uint64(obj.ServiceCount);
-            obj.ServiceRows(obj.ServiceCount) = row;
+            obj.ServiceRows.append(row);
         end
     end
 end

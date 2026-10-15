@@ -1,0 +1,94 @@
+CSR MATLAB / ns-3: verified 6000-second scoped result
+14 October 2026
+
+RESULT
+Independent review accepted the complete [0,6000 seconds) scoped comparison for
+seed 131 / native RngRun 2008. MATLAB completed normally and all original owned
+processes closed. Zero comparison mismatches, omissions or export errors.
+
+VERIFIED CASE AND PROVENANCE
+Native reference commit: 486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b.
+Actual MATLAB: R2026a Update 5 (26.1.0.3346908), Windows.
+Current executed candidate: passive_dense_followup_20261013/candidate,
+bound by the full run source manifest below. This is a native-input diagnostic
+replay: native random outcomes are supplied while modeled protocol consequences
+are compared. It is not an autonomous independent-randomness benchmark.
+
+EXACT ACCEPTED SCOPE
+1,710,000 application admission decisions, including identity, time, order,
+accept/reject decision and reason; 14,050 unique delivery identities, destinations
+and nanosecond timestamps; 1,507 local DATA failure identity/time/node/peer/sequence
+records. All match independently. The strict recorder also reports all 136,645
+random inputs and 23,848 transmissions matched, with no first mismatch.
+
+PER-SOURCE RESULTS — IDENTICAL IN MATLAB AND NS-3
+Each source offered 285,000 application attempts.
+Source  Admitted  Delivered  Mean delivered latency(s)  Goodput(bit/s)
+2       0         0          undefined                  0
+3       7180      7154       12.625408225                1764.653333
+4       0         0          undefined                  0
+5       6930      6896       13.151607556                1701.013333
+7       0         0          undefined                  0
+8       0         0          undefined                  0
+Total   14110     14050      12.883676594                3465.666667
+
+All deliveries reached destination 1. Latency is first unique delivery minus
+accepted generation time, averaged over delivered packets. 60 admitted packets
+were undelivered at 6000 s and are censored; their latency is not zero.
+Application bytes: 2,599,250. Goodput uses the whole 6000 s and the verified shared
+185-byte payload contract; native bytes are derived, not a separate byte counter.
+
+INDEPENDENT EVIDENCE CHECKS
+1,223 output-file hashes and 1,000 source/input bindings verified; complete
+supervision logs and source archive checked; 835 application chunk hashes and
+four typed-receipt hashes matched independent audit digests. Closure audit,
+input-approval helper and comparison all passed their 600-second resource guards
+(actual durations 49.641 s, 4.547 s, 15.937 s respectively).
+
+LIMITATIONS AND HISTORICAL DISTINCTION
+Raw MATLAB Dropped 31 and local failures 1507 are not interchangeable with the 60
+censored applications or proven native terminal loss. Unique application
+delivery is separate from custody/release of each accepted relay copy.
+Full ACK/DACK/custody-release equality, queue-latency equality, lossless service
+reconstruction and full compressed/receiver-journal semantic validation remain
+outside this acceptance. The raw report therefore retains full_parity_accepted=false;
+the independent receipt accepts only the explicit scope above.
+
+The October 1 autonomous archive used relay-custody-repaired revision
+8a471de21f1a31afbc44312cd8578a0db588fdac, not this later repaired execution
+closure. The October 3 idle-RTS-only candidate reproduced its metrics. Its
+two-seed pooled delivery difference
+was -0.9894% and weighted latency difference +40.7693% (90.7914 s versus 64.4966 s).
+Those historical results neither measure current autonomous performance nor
+become resolved by this replay. No autonomous improvement is claimed.
+Update, 15 October: Both autonomous seeds now have complete, independently accepted evidence, but
+numerical parity fails. Combined deliveries are 23718 / 24055 (-1.400956%), yet
+only 4/9 defined source/seed cells pass both +/-20% targets; three native-zero
+cells are undefined, not passes. Native-delivery-weighted common-cell latency is
+104.786707310 / 64.496589532 s (+62.468602%); own-population pooled latency is
+145.820052116 / 64.496589532 s (+126.089555%). Censored admissions total 1767 / 1035.
+The total delivery pass does not override source-level failures or latency.
+See AUTONOMOUS_SEED131.txt and AUTONOMOUS_SEED132_RECOVERY.txt. The latter
+preserves the failed V2 export and V3 premodel attempts separately from V4.
+
+EVIDENCE IDENTIFIERS — SHA-256
+Independent terminal receipt:
+INDEPENDENT_FULL6000_SCOPED_ACCEPTED_01.json
+7da5d20bdfa276047f8b2e52bf2449701df8e4f113621874376afc141af74f87
+Independent comparison:
+NATIVE2008_FULL6000_SCOPED_COMPARISON_01.json
+ce5812adabd29e2961f75f1b1efa9fc3a826f1c85e4faf8b63656c4f96013f18
+Full run source manifest:
+NATIVE2008_SOURCE_MANIFEST.json
+99db0e4e7fc30c7dffec9355e104dc64798ec89a705fa12b5f7466654e315db1
+Executed candidate provenance:
+NATIVE2008_CANDIDATE_PROVENANCE.json
+c3eda7c3654161147bd4a639a4b6df78e3873bfe009fe86861d1ec9454531346
+Run configuration:
+3e82f5e9354d3c9f7ebc4b3d507aef08d5e9ad11c7e20d38b6d0f62e952fe57e
+Historical autonomous archive:
+out_6000_relay_20261001_130947.zip
+b9d152c4396a87fb9c55e06dff024d8d55edab736a37c32a1269c4b50ab03419
+
+This compact summary records previously verified evidence. Raw traces are not bundled.
+Current autonomous status: complete two-seed evidence accepted; numerical parity fails.
