@@ -61,11 +61,15 @@ two-seed pooled delivery difference
 was -0.9894% and weighted latency difference +40.7693% (90.7914 s versus 64.4966 s).
 Those historical results neither measure current autonomous performance nor
 become resolved by this replay. No autonomous improvement is claimed.
-Update, 15 October: current autonomous seed 131 completed with accepted evidence
-but numerical parity fails. Its primary metrics match historical seed 131;
-seed 132 subsequently reached 6000 s but required exports failed following a
-supervisor accounting race. See SEED132_EXPORT_FAILURE.txt and the separate
-AUTONOMOUS_SEED131.txt for the full seed-131 result; no new two-seed claim is made.
+Update, 15 October: Both autonomous seeds now have complete, independently accepted evidence, but
+numerical parity fails. Combined deliveries are 23718 / 24055 (-1.400956%), yet
+only 4/9 defined source/seed cells pass both +/-20% targets; three native-zero
+cells are undefined, not passes. Native-delivery-weighted common-cell latency is
+104.786707310 / 64.496589532 s (+62.468602%); own-population pooled latency is
+145.820052116 / 64.496589532 s (+126.089555%). Censored admissions total 1767 / 1035.
+The total delivery pass does not override source-level failures or latency.
+See AUTONOMOUS_SEED131.txt and AUTONOMOUS_SEED132_RECOVERY.txt. The latter
+preserves the failed V2 export and V3 premodel attempts separately from V4.
 
 EVIDENCE IDENTIFIERS — SHA-256
 Independent terminal receipt:
@@ -87,6 +91,4 @@ out_6000_relay_20261001_130947.zip
 b9d152c4396a87fb9c55e06dff024d8d55edab736a37c32a1269c4b50ab03419
 
 This compact summary records previously verified evidence. Raw traces are not bundled.
-Current autonomous status: seed 131 structurally accepted, numerical parity fails;
-seed 132 reached 6000 s but exports failed; no seed-132 or combined numerical
-comparison is accepted. The two-seed batch remains incomplete.
+Current autonomous status: complete two-seed evidence accepted; numerical parity fails.

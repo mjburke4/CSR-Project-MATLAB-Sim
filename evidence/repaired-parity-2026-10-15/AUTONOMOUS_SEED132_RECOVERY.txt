@@ -1,0 +1,98 @@
+Autonomous seed 132 recovery and completed two-seed comparison
+15 October 2026 -- verified evidence, numerical parity fails
+
+The authorized V4 recovery ran seed 132 from time zero to 6000 simulated seconds
+with natural MATLAB randomness, the original scenario/native RngRun-1 reference,
+and the unchanged repaired model. No PHY/ECC or stochastic policy was changed.
+Native commit: 486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b.
+Actual runtime: MATLAB 26.1.0.3346908 (R2026a) Update 5.
+
+The completed report records 11875.4543131 wall seconds. Exact original engine,
+controller and watcher identities were all confirmed closed at
+2026-10-15T17:03:00.972115Z. Independent closed-input review verified 503 run
+source bindings, metadata/configuration and zero omission counters. Complete
+traces contain 635453 protocol, 786090 PHY and 1710000 admission rows. The guarded
+seal passed in 17.5 s with its audit process closed. Independent structural and arithmetic reviews passed for seed132 and the
+combined batch. This validates the evidence, not numerical parity.
+
+PRESERVED ATTEMPT HISTORY
+V2 reached 6000 s but its required exports failed after a confirmed supervisor
+accounting race on a successfully renamed heartbeat temporary. That failed
+attempt remains ineligible for numerical comparison. SEED132_EXPORT_FAILURE.txt
+preserves its original facts and forensic hashes; recovery does not reclassify it.
+
+The isolated accounting correction passed 15 focused tests and independent
+review, preserving output caps, resources, deadlines and exact ownership checks.
+V3 then failed before model construction: heterogeneous fields in JSON gate
+entries decoded to a MATLAB cell array, and verifyBindings attempted struct dot
+indexing. The controller timed out waiting for bootstrap. Its owned processes
+closed; no simulated network trajectory was produced by V3.
+
+V4 uses uniform manifest-entry shapes. Three prepare-to-controller boundary tests
+passed, including rejection of a heterogeneous manifest and a real nonlaunch
+prepare/load/gate path. Actual MATLAB qualification reproduced the V3 cell error
+and verified 505 V4 binding entries as structs in 0.8944282 s. The qualification
+used an explicitly identified fixture review entry, constructed no model, and
+closed all owned processes. This 505-entry qualification is distinct from the
+503 bound source entries checked by the completed V4 run's closure audit.
+
+The original disk block, explicitly authorized 108-file cleanup, and accepted
+seed131/native-input evidence remain documented separately. No cleanup or model
+change is implied by this documentation update. Full custody/ACK/DACK and queue
+latency equivalence remain outside accepted scope; autonomous packet identities
+must not be equated across independent random trajectories.
+
+SEED132 NUMERICAL RESULTS (MATLAB / native)
+Source  Admitted  Delivered  Censored  Mean delivered latency(s)
+2  541/569  422/444  119/125  447.276273171/454.687637663
+3  8544/8600  8526/8582  18/18  10.444096777/10.367755462
+4  583/498  488/397  95/101  235.438243463/274.221277081
+5  1571/1462  1541/1428  30/34  59.395974616/63.535218649
+7  1475/819  745/584  730/235  1842.017827193/857.837910401
+8  133/512  94/359  39/153  1043.522077043/671.708265125
+Seed132 deliveries: 11816 / 11794 (+0.186536%); 3/6 cells pass both targets.
+Native-weighted latency: 162.529351787 / 104.508405510 s (+55.517971%).
+Own-population pooled latency: 165.420986171 / 104.508405510 s (+58.284863%).
+Censored admissions: 1031 / 666. Censoring is not proven terminal loss.
+
+COMPLETED BATCH
+Both autonomous seeds now have complete, independently accepted evidence, but
+numerical parity fails. Combined deliveries are 23718 / 24055 (-1.400956%), yet
+only 4/9 defined source/seed cells pass both +/-20% targets; three native-zero
+cells are undefined, not passes. Native-delivery-weighted common-cell latency is
+104.786707310 / 64.496589532 s (+62.468602%); own-population pooled latency is
+145.820052116 / 64.496589532 s (+126.089555%). Censored admissions total 1767 / 1035.
+The total delivery pass does not override source-level failures or latency.
+
+Historical comparison: seed131 primary metrics are unchanged from the accepted
+October 3 idle-RTS natural-RNG derivative (distinct from the October 1 archive).
+The combined weighted latency gap increased from +40.769333% to +62.468602%;
+own-population pooled gap increased from +100.977589% to +126.089555%.
+Seed132 source4 deliveries increased from 400 to 488 but overshoot native397
+by 22.92%, moving outside the delivery target; this is not a lower-delivery
+regression. Source7 mean latency increased from 1325.51668 to 1842.01783 s,
+censored admissions from 526 to 730, and deliveries changed from 746 to 745.
+Source8 deliveries fell from 139 to 94. Aggregate changes do not identify the
+causal mechanism, a model defect, or a justified stochastic/policy adjustment.
+
+EVIDENCE SHA-256 (raw traces remain local)
+INDEPENDENT_SEED132_V4_ACCEPTANCE_REVIEW_01.json
+4d40282c5c42a0b0ff23633ba9e5b1a6f620b82323d7aac3911a7a1a153cf7ca
+CLOSED_ACCEPTANCE.json
+90c6dedb22cf5032b5c71a8d182528609fcea267e24795d2ae6deb9666c32c0a
+SEED132_V4_COMPARISON_01.json
+c882a824b972a11689550e109628eda63b786370159389a766dbc0fe95279315
+BATCH_V4_COMPARISON_01.json
+2ba21fd9f86e05719f14eec2747108360c25962d186eb43d85f18f05d5a93bf6
+INDEPENDENT_BATCH_V4_REVIEW_01.json
+ed23a200141bf3d831e79baa564b17c5f34f16348bafb05d8c01565de55d6203
+INDEPENDENT_HISTORICAL_V4_REVIEW_01.json
+ae45490e12c9dee4eee0c6a1201b5f0f6a40dbf57e2c5b776ddc3cae29ffdc9d
+CANDIDATE_FREEZE.json
+9b7fab8dda30b473c76b1acad9960f867069fe4bae7a9f554087bfd333100897
+HARNESS_FREEZE_V4.json
+d3b0d264734f1ef4f3c74c4fffa19d41db1ef53637e5f4552f257c81ef80b92d
+MANIFEST_QUALIFICATION_V4_ACTUAL_AUDIT.json
+08e86d7cd47534a1e2b6eceaaf11657a43d44af898a767ec3418b39e0a540d7a
+SEED132_V4_CLOSURE_OBSERVATION_01.json
+492bb0b0d1a544cb7ad5d9c4763132f2cd3afefed13bd45d1475077844fab12e

@@ -73,9 +73,11 @@ closure and absence of competing processes passed. Disk was the only failed
 gate. At that checkpoint no seed-132 directory, deadline or launch had been
 created, and no cleanup or reserve reduction had been performed. Subsequently,
 explicitly authorized cleanup and independent verification cleared the block.
-The run reached 6000 s but exports failed after a confirmed supervisor accounting
-race. All owned processes closed. See SEED132_EXPORT_FAILURE.txt for evidence;
-no seed-132 numerical comparison or combined two-seed result is accepted.
+The V2 run reached 6000 s but exports failed after a confirmed supervisor race.
+That attempt remains ineligible; its facts are preserved in SEED132_EXPORT_FAILURE.txt.
+The later V3 premodel failure and complete V4 recovery are documented in
+AUTONOMOUS_SEED132_RECOVERY.txt. Complete two-seed evidence is now accepted,
+but numerical parity fails (4/9 defined cells pass both targets; three undefined).
 
 LIMITATIONS AND NEXT DISCRIMINATING DIAGNOSTIC
 Accepted generation/delivery identities were reconstructed within MATLAB;

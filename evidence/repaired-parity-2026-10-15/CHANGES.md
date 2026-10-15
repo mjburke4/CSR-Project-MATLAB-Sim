@@ -32,9 +32,11 @@ The separately accepted complete 6000-second replay is documented in RESULTS.txt
 Its exact admitted/delivered/local-failure scope does not imply full ACK/DACK or
 custody equality, and does not measure autonomous latency. The later autonomous
 seed-131 result is documented separately in AUTONOMOUS_SEED131.txt: structural
-acceptance passed and numerical parity failed. Seed 132 subsequently reached
-6000 s but failed export after a supervisor accounting race; see
-SEED132_EXPORT_FAILURE.txt. No numerical seed-132 or combined result is accepted.
+acceptance passed and numerical parity failed. Seed132 V4 subsequently completed
+with accepted exports and closure after the historical V2 export and V3 premodel
+failures. AUTONOMOUS_SEED132_RECOVERY.txt records all attempts and the completed
+two-seed comparison: 4/9 defined cells pass both targets, weighted latency
++62.468602%. Numerical parity fails; no causal model correction is claimed.
 No production or portable harness change was required
 for this evidence update. FOCUSED_TESTS.json retains the earlier component-run
 receipt, whose autonomous pending field describes its original capture time.

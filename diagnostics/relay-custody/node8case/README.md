@@ -28,12 +28,13 @@ See `../../../evidence/repaired-parity-2026-10-15/RESULTS.txt` (from repository 
 `evidence/repaired-parity-2026-10-15/RESULTS.txt`) for exact accepted scope.
 The complete 6000-second native-input replay matches admissions, deliveries and
 local DATA failures; it is not autonomous random-stream parity. The autonomous
-seed-131 run now has accepted complete evidence but fails numerical parity: only
-one of three defined source cells meets both +/-20% targets. After its initial
-disk block was resolved through authorized cleanup, seed 132 reached 6000 s but
-exports failed due to a confirmed supervisor accounting race. See
-`evidence/repaired-parity-2026-10-15/SEED132_EXPORT_FAILURE.txt` from the repository
-root. No seed-132 or combined numerical result is accepted; the batch is incomplete. See `evidence/repaired-parity-2026-10-15/AUTONOMOUS_SEED131.txt` from
-the repository root for per-source metrics, censoring and evidence hashes.
-Seed-131 primary metrics are unchanged from the historical candidate; no measured
-autonomous improvement is claimed.
+seed-131 and recovered seed-132 runs now have accepted complete evidence, but
+numerical parity fails. Across both seeds, deliveries are 23718 / 24055 (-1.40%),
+only 4/9 defined cells pass both targets, and weighted latency is +62.47%.
+Three native-zero cells remain undefined. See repository-root
+`evidence/repaired-parity-2026-10-15/AUTONOMOUS_SEED132_RECOVERY.txt` for the
+completed comparison and V2 export/V3 premodel/V4 recovery history, and
+`evidence/repaired-parity-2026-10-15/AUTONOMOUS_SEED131.txt` for seed131 details.
+Historical weighted latency was +40.77%; no overall autonomous improvement or
+causal model correction is claimed. Full custody/ACK/queue equivalence remains
+outside the accepted scope. No model or portable entrypoint changed for recovery.
