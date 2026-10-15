@@ -32,7 +32,9 @@ The separately accepted complete 6000-second replay is documented in RESULTS.txt
 Its exact admitted/delivered/local-failure scope does not imply full ACK/DACK or
 custody equality, and does not measure autonomous latency. The later autonomous
 seed-131 result is documented separately in AUTONOMOUS_SEED131.txt: structural
-acceptance passed, numerical parity failed, and seed 132 remains unlaunched due
-to the disk-reserve gate. No production or portable harness change was required
+acceptance passed and numerical parity failed. Seed 132 subsequently reached
+6000 s but failed export after a supervisor accounting race; see
+SEED132_EXPORT_FAILURE.txt. No numerical seed-132 or combined result is accepted.
+No production or portable harness change was required
 for this evidence update. FOCUSED_TESTS.json retains the earlier component-run
 receipt, whose autonomous pending field describes its original capture time.

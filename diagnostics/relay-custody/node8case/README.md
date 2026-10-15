@@ -29,9 +29,11 @@ See `../../../evidence/repaired-parity-2026-10-15/RESULTS.txt` (from repository 
 The complete 6000-second native-input replay matches admissions, deliveries and
 local DATA failures; it is not autonomous random-stream parity. The autonomous
 seed-131 run now has accepted complete evidence but fails numerical parity: only
-one of three defined source cells meets both +/-20% targets. Seed 132 was not
-launched because the unchanged disk-reserve gate failed; the two-seed batch is
-incomplete. See `evidence/repaired-parity-2026-10-15/AUTONOMOUS_SEED131.txt` from
+one of three defined source cells meets both +/-20% targets. After its initial
+disk block was resolved through authorized cleanup, seed 132 reached 6000 s but
+exports failed due to a confirmed supervisor accounting race. See
+`evidence/repaired-parity-2026-10-15/SEED132_EXPORT_FAILURE.txt` from the repository
+root. No seed-132 or combined numerical result is accepted; the batch is incomplete. See `evidence/repaired-parity-2026-10-15/AUTONOMOUS_SEED131.txt` from
 the repository root for per-source metrics, censoring and evidence hashes.
 Seed-131 primary metrics are unchanged from the historical candidate; no measured
 autonomous improvement is claimed.

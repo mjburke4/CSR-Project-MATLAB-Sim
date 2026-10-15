@@ -64,14 +64,18 @@ This does not establish equality of all internal events or explain causality.
 The historical two-seed +40.7693% weighted latency gap is not directly comparable
 to the current seed-131-only +89.333868% value. No new two-seed result is claimed.
 
-SEED 132 STATUS
-Not launched. At 2026-10-15T04:27:02.612257Z the unchanged 52 GiB launch disk
+SEED 132 STATUS (UPDATED AFTER THE FIRST ATTEMPT)
+Initially not launched: at 2026-10-15T04:27:02.612257Z the unchanged 52 GiB launch disk
 reserve required 55834574848 bytes; available space was 55086055424 bytes,
 a shortfall of 748519424 bytes (713.84 MiB). Available physical memory
 (5176725504 bytes), commit (22436470784 bytes), source bindings (398), prior-case
 closure and absence of competing processes passed. Disk was the only failed
-gate. No seed-132 directory, deadline or launch was created, and no cleanup
-or reserve reduction was performed. The requested two-seed batch is incomplete.
+gate. At that checkpoint no seed-132 directory, deadline or launch had been
+created, and no cleanup or reserve reduction had been performed. Subsequently,
+explicitly authorized cleanup and independent verification cleared the block.
+The run reached 6000 s but exports failed after a confirmed supervisor accounting
+race. All owned processes closed. See SEED132_EXPORT_FAILURE.txt for evidence;
+no seed-132 numerical comparison or combined two-seed result is accepted.
 
 LIMITATIONS AND NEXT DISCRIMINATING DIAGNOSTIC
 Accepted generation/delivery identities were reconstructed within MATLAB;
@@ -80,11 +84,17 @@ equality. Full custody, ACK/DACK and queue-latency decomposition are not validat
 Source 4 admitted 523 versus 1897 applications while delivered/admitted fractions
 were 81.84% versus 82.60%. Reduced admissions are a useful lead, not proof of an
 admission defect or equivalent loss processes across different populations.
-The proposed next step is a bounded read of retained source-4 admission decisions
-and startup route/discovery evidence, matching scheduled attempts. Locate the
-first current disagreement and its available queue/custody context before
-proposing an implementation change. No additional simulation or model change
-is implied by this report. No PHY/ECC or stochastic-policy adjustment is proposed.
+Two bounded retained-evidence diagnostics have now completed. Source 4 first
+disagreed within the inspected 120 offers at 301.84 s: MATLAB rejected with
+nsdp_full, occupancy 16/16 and queue depth 15; native admitted an application
+that remained censored. Source 5 first disagreed at 305.86 s after 293 matching
+decisions: MATLAB rejected with occupancy 16/16 and queue depth 18; native
+admitted an application later delivered with 22.504811086 s latency. Native
+predecision ownership is unavailable, so these observations do not establish
+equal prior state or an implementation defect. The next useful evidence is the
+minimal per-copy ownership/release history preceding those decisions, including
+source versus relay traffic. No simulation or model change followed these reads;
+no PHY/ECC, queue-capacity or stochastic-policy adjustment is justified.
 
 EVIDENCE SHA-256 (raw local evidence is not bundled)
 Independent seed-131 acceptance review:
@@ -101,3 +111,8 @@ Current candidate freeze:
 9b7fab8dda30b473c76b1acad9960f867069fe4bae7a9f554087bfd333100897
 V2 harness freeze:
 6a3fdb82c73bd7ee38b2f51ac12b3236ec4ee4c44b6e8f4ad2287a4d3a27986e
+
+Bounded source-4 admission diagnostic:
+83f73295982cf793e0e22d79af1c1db316fdea42c1916ab7cec33e56b998afa5
+Bounded source-5 first-disagreement diagnostic:
+cf165035874a94e524cc60a21a934c1acfd509dd785128ade3d56ba953bae70c
