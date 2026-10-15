@@ -27,6 +27,11 @@ radio calculations; PHY/ECC algorithms are not modified.
 See `../../../evidence/repaired-parity-2026-10-15/RESULTS.txt` (from repository root:
 `evidence/repaired-parity-2026-10-15/RESULTS.txt`) for exact accepted scope.
 The complete 6000-second native-input replay matches admissions, deliveries and
-local DATA failures; it is not autonomous random-stream parity. The newly authorized
-autonomous seed 131/132 results remain pending. No autonomous latency improvement
-is claimed.
+local DATA failures; it is not autonomous random-stream parity. The autonomous
+seed-131 run now has accepted complete evidence but fails numerical parity: only
+one of three defined source cells meets both +/-20% targets. Seed 132 was not
+launched because the unchanged disk-reserve gate failed; the two-seed batch is
+incomplete. See `evidence/repaired-parity-2026-10-15/AUTONOMOUS_SEED131.txt` from
+the repository root for per-source metrics, censoring and evidence hashes.
+Seed-131 primary metrics are unchanged from the historical candidate; no measured
+autonomous improvement is claimed.

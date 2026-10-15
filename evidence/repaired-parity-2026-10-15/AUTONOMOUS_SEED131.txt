@@ -1,0 +1,103 @@
+CSR autonomous seed 131: complete evidence accepted; numerical parity fails
+15 October 2026
+
+CASE AND SCOPE
+Current repaired diagnostic candidate; seed 131; 6000 simulated seconds;
+natural MATLAB random streams, compared with the original native seed-131
+RngRun-1 reference. Native commit:
+486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b.
+MATLAB R2026a Update 5 (26.1.0.3346908), Windows.
+The original inclusive scheduler endpoint was retained; no protocol or PHY
+events occurred exactly at 6000 s. There was no post-horizon drain.
+
+Independent review accepted structural completeness and numerical arithmetic.
+The simulation and exports completed, owned processes closed, and admission,
+protocol and PHY omission counters were zero. This is not a numerical parity
+pass: only one of three defined source cells meets both +/-20% targets.
+The separate native-input seed-131/RngRun-2008 replay in RESULTS.txt remains
+an exact scoped match; it is a different experiment and reference trajectory.
+
+PER-SOURCE RESULTS
+Each MATLAB source offered 285000 scheduled applications.
+All mean latencies below are delivered-only seconds; M=MATLAB, N=native.
+Source  Admitted M/N  Delivered M/N  Censored M/N  Mean latency M/N
+2       382/0         273/0          109/0         536.900419/undefined
+3       8497/8190     8480/8172      17/18         10.516319/10.938748
+4       523/1897      428/1567       95/330        248.889047/87.545664
+5       1852/2543     1821/2522      31/21         50.683812/36.605005
+7       1117/0        696/0          421/0         1256.333229/undefined
+8       267/0         204/0          63/0          955.714522/undefined
+Total   12638/12630   11902/12261    736/369
+
+Source  Delivery relative error  Latency relative error  Both +/-20%?
+3       +3.768967%                -3.861766%               Yes
+4       -72.686662%               +184.296259%             No
+5       -27.795400%               +38.461424%              No
+Sources 2, 7 and 8 have zero native deliveries: relative delivery errors and
+native delivered latencies are undefined. MATLAB-only deliveries are visible
+discrepancies, not passing comparisons.
+
+AGGREGATES AND CENSORING
+Total deliveries: 11902 versus 12261, -2.927983% (within target).
+Whole-horizon goodput: 2935.826667 versus 3024.380000 bit/s, using the shared
+185-byte application payload; native goodput is derived from delivery count.
+Own-population pooled delivered latency: 126.360748 versus 26.008753 s,
++385.839308%. Each simulator uses its own delivered population, including
+MATLAB-only sources 2, 7 and 8.
+Native-delivery-weighted mean on common sources 3, 4 and 5: 49.243379 versus
+26.008753 s, +89.333868%. Sources 2, 7 and 8 are excluded, not counted as passes.
+Aggregate delivery agreement does not override source-level failures.
+
+The 736 MATLAB admitted-but-undelivered applications are censored at cutoff.
+Provisional MATLAB Dropped=359, Pending=377, local HOP failures=1396 and
+retransmissions=5011 are different accounting quantities. They do not prove
+unique terminal application loss or a live-copy partition. Per-copy custody
+and unique application delivery remain distinct.
+
+HISTORICAL BEFORE/AFTER
+The before/after baseline is the accepted October 3 idle-RTS natural-RNG
+derivative, distinct from the October 1 results archive.
+Against those retained seed-131 results, every source has unchanged
+admitted, delivered and censored counts; delivered mean latencies agree within
+1 ns. There is no measured improvement or regression in these seed-131 metrics.
+This does not establish equality of all internal events or explain causality.
+The historical two-seed +40.7693% weighted latency gap is not directly comparable
+to the current seed-131-only +89.333868% value. No new two-seed result is claimed.
+
+SEED 132 STATUS
+Not launched. At 2026-10-15T04:27:02.612257Z the unchanged 52 GiB launch disk
+reserve required 55834574848 bytes; available space was 55086055424 bytes,
+a shortfall of 748519424 bytes (713.84 MiB). Available physical memory
+(5176725504 bytes), commit (22436470784 bytes), source bindings (398), prior-case
+closure and absence of competing processes passed. Disk was the only failed
+gate. No seed-132 directory, deadline or launch was created, and no cleanup
+or reserve reduction was performed. The requested two-seed batch is incomplete.
+
+LIMITATIONS AND NEXT DISCRIMINATING DIAGNOSTIC
+Accepted generation/delivery identities were reconstructed within MATLAB;
+independent autonomous trajectories do not provide cross-simulator packet-ID
+equality. Full custody, ACK/DACK and queue-latency decomposition are not validated.
+Source 4 admitted 523 versus 1897 applications while delivered/admitted fractions
+were 81.84% versus 82.60%. Reduced admissions are a useful lead, not proof of an
+admission defect or equivalent loss processes across different populations.
+The proposed next step is a bounded read of retained source-4 admission decisions
+and startup route/discovery evidence, matching scheduled attempts. Locate the
+first current disagreement and its available queue/custody context before
+proposing an implementation change. No additional simulation or model change
+is implied by this report. No PHY/ECC or stochastic-policy adjustment is proposed.
+
+EVIDENCE SHA-256 (raw local evidence is not bundled)
+Independent seed-131 acceptance review:
+b58f1df1c2647a59c6e07bee99969d909a0cfca73b169b09600e44d059a33a65
+Closed structural acceptance:
+2e21b19fe87878480d9861a85d00540c35ac9939cd8ce067df2ceb2e8f78f67e
+Seed-131 comparison:
+d5cf6663ef1d56706266e3021c7808f0688efd0582ff258508e7baebc6730c53
+Historical seed-131 before/after:
+ea435c2fe0646937b070f62fdce327d68240df95b3b00f75b421218d2d547add
+Seed-132 eligibility:
+2651cb51cf2c6324b79a4fd43d855d7d13aa7ec42be7a626678aa3e78e89d327
+Current candidate freeze:
+9b7fab8dda30b473c76b1acad9960f867069fe4bae7a9f554087bfd333100897
+V2 harness freeze:
+6a3fdb82c73bd7ee38b2f51ac12b3236ec4ee4c44b6e8f4ad2287a4d3a27986e
