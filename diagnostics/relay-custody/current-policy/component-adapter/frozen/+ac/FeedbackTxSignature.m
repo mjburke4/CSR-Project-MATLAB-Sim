@@ -1,0 +1,193 @@
+classdef FeedbackTxSignature
+    %TXSIGNATURE Semantic physical transmission identity, independent of IDs.
+    methods (Static)
+        function [actual,mismatches]=compare(frame,rows)
+            if isfield(frame,'Segments') && ~isempty(frame.Segments)
+                children=frame.Segments;
+            else
+                children={frame};
+            end
+            actual=struct('source',double(frame.SourceId),'rate_kbps',double(frame.RateKeyKbps), ...
+                'tx_power_dbm',double(frame.TxPowerDbm),'preamble',double(strcmp(frame.Preamble,'long')), ...
+                'reservation_slot',double(frame.ReservationSlot),'child_count',numel(children), ...
+                'total_wire_bytes',double(frame.WirePayloadBytes),'children',{{}});
+            mismatches={};
+            if isempty(rows), mismatches={'missing_native_transmission'}; return; end
+            parent=table2struct(rows(1,:)); fields=fieldnames(actual);
+            for k=1:numel(fields)
+                name=fields{k}; if strcmp(name,'children'), continue; end
+                if ~isequaln(actual.(name),double(parent.(name)))
+                    mismatches{end+1}=['parent.' name]; %#ok<AGROW>
+                end
+            end
+            if height(rows)~=numel(children)
+                mismatches{end+1}='ordered_child_count'; return;
+            end
+            for k=1:numel(children)
+                child=children{k}; wanted=table2struct(rows(k,:));
+                item=struct('child_index',k-1,'hop_source',double(child.SourceId), ...
+                    'hop_destination',double(child.DestinationId),'hop_sequence',double(child.Sequence), ...
+                    'kind',ac.FeedbackTxSignature.kind(child),'wire_bytes',double(child.WirePayloadBytes), ...
+                    'dscp',double(child.Dscp),'ackable',double(child.AckRequired), ...
+                    'has_ack_window',double(child.HasAckWindow), ...
+                    'ack_bitmap_hex',lower(dec2hex(child.AckBitmap,16)), ...
+                    'dack_bitmap_hex',lower(dec2hex(child.DackBitmap,16)));
+                % Native MAC writes outer ACK type whenever IsAck is true,
+                % retaining the separate IsDack bit. The portable Kind is the
+                % logical feedback role, so project type while checking BOTH
+                % flags explicitly. Window contents never infer the role.
+                if any(strcmp(child.Kind,{'ACK','DACK'}))
+                    item.is_ack=1;
+                    item.is_dack=double(strcmp(child.Kind,'DACK'));
+                    required={'is_ack','is_dack','flags'};
+                    if ~all(isfield(wanted,required))
+                        mismatches{end+1}=sprintf('child%d.feedback_flag_schema',k); %#ok<AGROW>
+                    else
+                        flags=double(wanted.flags);
+                        validFlags=isscalar(flags) && isfinite(flags) && ...
+                            flags==floor(flags) && flags>=0 && flags<=255;
+                        if ~validFlags
+                            mismatches{end+1}=sprintf('child%d.feedback_flags',k); %#ok<AGROW>
+                        else
+                            names={'ackable','is_ack','is_dack','has_ack_window'};
+                            masks=[1 2 4 8];
+                            for flagIndex=1:numel(names)
+                                flagName=names{flagIndex};
+                                encoded=double(bitand(uint16(flags),uint16(masks(flagIndex)))~=0);
+                                if ~isequaln(encoded,item.(flagName))
+                                    mismatches{end+1}=sprintf('child%d.flag_%s',k,flagName); %#ok<AGROW>
+                                end
+                            end
+                        end
+                        item.feedback_kind_projection=struct( ...
+                            'logical_kind',child.Kind, ...
+                            'logical_kind_code',1+double(strcmp(child.Kind,'DACK')), ...
+                            'projected_outer_kind',item.kind,'native_outer_kind',double(wanted.kind), ...
+                            'native_is_ack',double(wanted.is_ack),'native_is_dack',double(wanted.is_dack), ...
+                            'policy','native_mac_ack_type_precedence', ...
+                            'reason','Native MAC emits ACK outer type while retaining independent ACK and DACK flags');
+                    end
+                end
+                if strcmp(child.Kind,'DATA')
+                    item.network_source=double(child.App.SourceId);
+                    item.network_destination=double(child.App.DestinationId);
+                    item.network_dscp=double(child.App.Dscp);
+                    item.application_bytes=double(child.App.ApplicationPayloadBytes);
+                    item.app_generated_time_ns=round(double(child.App.GeneratedSeconds)*1e9);
+                    assert(all(isfield(child.App,{'FlowOrdinal','FlowIndex'})), ...
+                        'autocase:AppLineage','Missing source application attempt identity.');
+                    item.app_attempt_index=double(child.App.FlowOrdinal);
+                    item.app_flow_index=double(child.App.FlowIndex)-1;
+                end
+                targets='';
+                if isfield(child,'DestinationIds') && numel(child.DestinationIds)>0
+                    entries=cell(1,numel(child.DestinationIds));
+                    for j=1:numel(entries), entries{j}=sprintf('%g:%g',child.DestinationIds(j),child.HopSequences(j)); end
+                    targets=strjoin(entries,';');
+                end
+                if ~ismissing(wanted.destination_sequences) && strlength(wanted.destination_sequences)>0
+                    item.destination_sequences=targets;
+                elseif isfield(child,'DestinationIds') && numel(child.DestinationIds)>1
+                    mismatches{end+1}=sprintf('child%d.unexpected_group',k); %#ok<AGROW>
+                end
+                if strcmp(child.Kind,'CONTROL')
+                    item.control_type=child.Control.Type;
+                    item.control_payload=child.Control.Payload;
+                    if strcmp(child.Control.Type,'DISCOVER')
+                        item.discover_subtype=char(child.Control.Payload.Subtype);
+                        if strcmp(item.discover_subtype,'broadcast')
+                            item.discover_sequence=double(child.Control.Payload.Sequence);
+                        end
+                        item.discover_active_peers='';
+                        peers=sort(double(child.Control.Payload.ActivePeers));
+                        if ~isempty(peers)
+                            item.discover_active_peers=strjoin(arrayfun(@(n)sprintf('%g',n),peers,'UniformOutput',false),';');
+                        end
+                    end
+                    if strcmp(child.Control.Type,'NEIGHBOR_CHECK')
+                        item.check_subtype=char(child.Control.Payload.Subtype);
+                        item.check_sequence=double(child.Control.Payload.Sequence);
+                        if strcmp(item.check_subtype,'no_path')
+                            item.check_target=double(child.Control.Payload.TargetId);
+                        end
+                        if strcmp(item.check_subtype,'discovery')
+                            item.check_active=double(child.Control.Payload.Active);
+                        end
+                    end
+                    if strcmp(child.Control.Type,'ROUTING')
+                        item.routing_section_hex=lower(reshape(dec2hex(uint8(child.Control.Payload.Bytes),2).',1,[]));
+                    end
+                    if isfield(wanted,'snmp_command') && any(strcmp(child.Control.Type,{'SNMP_START','SNMP_DONE'}))
+                        item.snmp_command=1+double(strcmp(child.Control.Type,'SNMP_DONE'));
+                        item.snmp_source=double(child.Control.Payload.SourceId);
+                        item.snmp_destination=double(child.Control.Payload.DestinationId);
+                        item.snmp_value=0;
+                        if isfield(child.Control.Payload,'DelaySeconds'), item.snmp_value=double(child.Control.Payload.DelaySeconds); end
+                        item.snmp_nodes='';
+                        if isfield(child.Control.Payload,'Nodes') && ~isempty(child.Control.Payload.Nodes)
+                            item.snmp_nodes=strjoin(arrayfun(@(n)sprintf('%g',n),child.Control.Payload.Nodes,'UniformOutput',false),';');
+                        end
+                    end
+                end
+                % The native outer broadcast DISCOVER counter is process-
+                % scoped; MATLAB's is per sender. Source audit proves that
+                % this field is trace-only for this exact observed subtype.
+                % Payload discovery-session sequence remains strictly checked.
+                discoveryTraceIdentity=strcmp(child.Kind,'CONTROL') && ...
+                    strcmp(child.Control.Type,'DISCOVER') && ...
+                    double(child.DestinationId)==16777215 && ...
+                    numel(child.DestinationIds)==1 && double(child.DestinationIds(1))==16777215 && ...
+                    ~child.AckRequired && ~child.HasAckWindow && ...
+                    strcmp(char(child.Control.Payload.Subtype),'broadcast') && ...
+                    double(wanted.kind)==4 && double(wanted.hop_destination)==16777215 && ...
+                    double(wanted.ackable)==0 && double(wanted.has_ack_window)==0 && ...
+                    double(wanted.destination_type)==1 && ...
+                    bitand(uint16(wanted.flags),uint16(128))~=0 && isfinite(double(wanted.security_count)) && ...
+                    strcmp(char(wanted.discover_subtype),'broadcast');
+                if discoveryTraceIdentity
+                    item.discovery_outer_sequence_identity=struct( ...
+                        'actual',item.hop_sequence,'native',double(wanted.hop_sequence), ...
+                        'policy','trace_only_broadcast_discover_identifier', ...
+                        'reason','Native process counter versus MATLAB per-sender counter; receiver/MAC/PHY do not use this outer field');
+                end
+                fields=fieldnames(item);
+                for j=1:numel(fields)
+                    name=fields{j};
+                    if endsWith(name,'_ns') || ~isfield(wanted,name), continue; end
+                    if discoveryTraceIdentity && strcmp(name,'hop_sequence'), continue; end
+                    supplied=item.(name); expected=wanted.(name);
+                    if isnumeric(supplied)
+                        equal=isequaln(double(supplied),double(expected));
+                    else
+                        if isstring(expected) && ismissing(expected), expected=''; end
+                        if strcmp(name,'discover_active_peers') && strlength(string(expected))>0
+                            peers=sort(str2double(strsplit(char(expected),';')));
+                            expected=strjoin(arrayfun(@(n)sprintf('%g',n),peers,'UniformOutput',false),';');
+                        end
+                        equal=strcmp(char(supplied),char(expected));
+                    end
+                    if ~equal, mismatches{end+1}=sprintf('child%d.%s',k,name); end %#ok<AGROW>
+                end
+                actual.children{end+1}=item;
+            end
+        end
+        function value=kind(frame)
+            switch frame.Kind
+                case 'DATA', value=0;
+                case 'ACK', value=1;
+                case 'DACK', value=1; % Native MAC ACK-type precedence; IsDack remains strict.
+                case 'CONTROL'
+                    switch frame.Control.Type
+                        case 'DISCOVER', value=4;
+                        case 'NEIGHBOR_CHECK', value=5;
+                        case 'ROUTING', value=6;
+                        case {'SNMP_START','SNMP_DONE'}, value=7;
+                        case 'KEY_REQUEST', value=8;
+                        case 'KEY_UPDATE', value=9;
+                        otherwise, error('autocase:ControlKind','Unsupported control kind.');
+                    end
+                otherwise, error('autocase:ChildKind','Unsupported child kind.');
+            end
+        end
+    end
+end
