@@ -24,6 +24,8 @@ classdef DiscoveryMembershipNwk < handle
         NextControlId = uint64(1)
         RoutingSequence = 0
         WakePending = false
+        LocalDataWakePending = false
+        LocalDataTicSeconds
         ControlRetryPending = false
         RouteProcessPending = false
         PendingSnapshots = []
@@ -48,6 +50,7 @@ classdef DiscoveryMembershipNwk < handle
         function obj = DiscoveryMembershipNwk(nodeId,scheduler,streams,fullScenarioConfig,callbacks) %#ok<INUSD>
             obj.NodeId=double(nodeId); obj.Scheduler=scheduler;
             obj.Config=fullScenarioConfig.Nwk; obj.Callbacks=callbacks;
+            obj.LocalDataTicSeconds=fullScenarioConfig.Hop.TicSeconds;
             index=find([fullScenarioConfig.Nodes.Id]==obj.NodeId,1);
             node=fullScenarioConfig.Nodes(index); obj.Capability=double(node.Capability);
             obj.TransitForwardingEnabled=logical(option(node,'TransitForwardingEnabled',true));
@@ -293,7 +296,25 @@ classdef DiscoveryMembershipNwk < handle
                 obj.Controls(position)=[];
                 if strcmp(control.Type,'ROUTING'), obj.snapshotSectionAcked(control,peer); end
                 if any(strcmp(control.Type,{'KEY_UPDATE','NEIGHBOR_CHECK'}))
+                    firstNewId=obj.NextControlId;
                     obj.Neighbors.controlCompleted(control.Type,peer,control.Payload,true);
+                    if strcmp(control.Type,'KEY_UPDATE')
+                        % Native releases this pending discovery check inside
+                        % KeyUpdate ACK handling, before Track returns to Search.
+                        % Admit only the new owner for this peer; never pump
+                        % unrelated controls or application custody here.
+                        ids=cellfun(@(item)item.Control.Id,obj.Controls);
+                        for id=ids(ids>=firstNewId)
+                            at=obj.controlPosition(id);
+                            if at==0, continue; end
+                            item=obj.Controls{at};
+                            if item.Reliable && isequal(item.Peers,peer) && ...
+                                    strcmp(item.Control.Type,'NEIGHBOR_CHECK') && ...
+                                    strcmp(option(item.Control.Payload,'Subtype',''),'discovery')
+                                obj.trySubmitControl(id);
+                            end
+                        end
+                    end
                 end
             elseif strcmp(control.Type,'ROUTING') && strcmp(owner.RoutingOrigin,'automatic_changes')
                 % Native retains only automatic route-change owners after a
@@ -432,9 +453,36 @@ classdef DiscoveryMembershipNwk < handle
         end
 
         function wake(obj)
+            % Generic control/route service has no native DATA-check owner.
             if obj.WakePending, return; end
             obj.WakePending=true;
             obj.Scheduler.scheduleAt(obj.Scheduler.Now,@()obj.pump());
+        end
+
+        function checkDataQueue(obj)
+            % HOP calls this directly after its own coalesced +TIC wake.
+            % Servicing DATA must not clear a pending NWK-local event.
+            queue=obj.Pending;
+            for index=1:numel(queue)
+                app=queue{index}.App; position=obj.pendingPosition(app);
+                if position==0 || obj.Pending{position}.Submitted || ~obj.routeAvailable(app), continue; end
+                if obj.Config.SendOnlyToGateway && app.SourceId==obj.NodeId
+                    if ~isfield(app,'RequestedDestinationId'), app.RequestedDestinationId=app.DestinationId; end
+                    app.DestinationId=obj.Routes.applicationGateway();
+                    obj.Pending{position}.App=app;
+                end
+                route=obj.Routes.relay(app.DestinationId); peer=route.NextHop;
+                if option(app,'AckRequired',true) && isfield(obj.Callbacks,'CanSendData') && ...
+                        ~obj.Callbacks.CanSendData(peer), continue; end
+                options=obj.radioOptions(peer,app); options.Dscp=option(app,'Dscp',0);
+                options.AckRequired=option(app,'AckRequired',true);
+                obj.Pending{position}.Submitted=true; obj.Pending{position}.PeerId=peer;
+                accepted=false;
+                if isfield(obj.Callbacks,'SendData'), accepted=obj.Callbacks.SendData(app,peer,options); end
+                position=obj.pendingPosition(app);
+                if position>0 && ~accepted, obj.Pending{position}.Submitted=false; end
+                if accepted, obj.emit('network_submit',app,struct('PeerId',peer)); end
+            end
         end
 
         function output = stats(obj)
@@ -491,7 +539,8 @@ classdef DiscoveryMembershipNwk < handle
             if option(app,'Dscp',0)>0, position=1; end
             obj.Pending=[obj.Pending(1:position-1) {row} obj.Pending(position:end)];
             obj.Counters.MaxNetworkQueueDepth=max(obj.Counters.MaxNetworkQueueDepth,numel(obj.Pending));
-            obj.emit('network_enqueue',app,struct('QueueDepth',numel(obj.Pending))); obj.wake();
+            obj.emit('network_enqueue',app,struct('QueueDepth',numel(obj.Pending)));
+            obj.scheduleLocalDataCheck();
         end
 
         function accepted = deliverLocal(obj,app,peer)
@@ -504,27 +553,20 @@ classdef DiscoveryMembershipNwk < handle
 
         function pump(obj)
             obj.WakePending=false; obj.pumpControls();
-            queue=obj.Pending;
-            for index=1:numel(queue)
-                app=queue{index}.App; position=obj.pendingPosition(app);
-                if position==0 || obj.Pending{position}.Submitted || ~obj.routeAvailable(app), continue; end
-                if obj.Config.SendOnlyToGateway && app.SourceId==obj.NodeId
-                    if ~isfield(app,'RequestedDestinationId'), app.RequestedDestinationId=app.DestinationId; end
-                    app.DestinationId=obj.Routes.applicationGateway();
-                    obj.Pending{position}.App=app;
-                end
-                route=obj.Routes.relay(app.DestinationId); peer=route.NextHop;
-                if option(app,'AckRequired',true) && isfield(obj.Callbacks,'CanSendData') && ...
-                        ~obj.Callbacks.CanSendData(peer), continue; end
-                options=obj.radioOptions(peer,app); options.Dscp=option(app,'Dscp',0);
-                options.AckRequired=option(app,'AckRequired',true);
-                obj.Pending{position}.Submitted=true; obj.Pending{position}.PeerId=peer;
-                accepted=false;
-                if isfield(obj.Callbacks,'SendData'), accepted=obj.Callbacks.SendData(app,peer,options); end
-                position=obj.pendingPosition(app);
-                if position>0 && ~accepted, obj.Pending{position}.Submitted=false; end
-                if accepted, obj.emit('network_submit',app,struct('PeerId',peer)); end
-            end
+        end
+
+        function scheduleLocalDataCheck(obj)
+            % Local and accepted relay arrivals share the NWK-local owner.
+            % Keep the first deadline; HOP owns a different pending event.
+            if obj.LocalDataWakePending, return; end
+            obj.LocalDataWakePending=true;
+            obj.Scheduler.scheduleAt(obj.Scheduler.Now+obj.LocalDataTicSeconds, ...
+                @()obj.runLocalDataCheck());
+        end
+
+        function runLocalDataCheck(obj)
+            obj.LocalDataWakePending=false;
+            obj.checkDataQueue();
         end
 
         function publishMacPopulation(obj)
@@ -568,25 +610,26 @@ classdef DiscoveryMembershipNwk < handle
                 % Native admits fresh key traffic inside the receive callback.
                 % Retain each reliable owner's HOP gate and ACK/radio options;
                 % never pump unrelated owners or application traffic here.
-                canSubmit=~reliable || ~isfield(obj.Callbacks,'CanSendControl') || ...
-                    obj.Callbacks.CanSendControl(peers);
-                if canSubmit
-                    controlId=control.Id;
-                    position=obj.controlPosition(controlId);
-                    obj.Controls{position}.Submitted=true;
-                    options=obj.radioOptions(peers,struct()); options.AckRequired=logical(reliable);
-                    submitted=false;
-                    if isfield(obj.Callbacks,'SendControl')
-                        submitted=obj.Callbacks.SendControl(control,peers,options);
-                    end
-                    % A synchronous completion may remove or append owners.
-                    position=obj.controlPosition(controlId);
-                    if ~submitted && position>0, obj.Controls{position}.Submitted=false; end
-                    if submitted, return; end
-                end
+                if obj.trySubmitControl(control.Id), return; end
                 % Blocked or failed admission retains ordinary deferred retry.
             end
             if scheduleWake, obj.wake(); end
+        end
+
+        function submitted = trySubmitControl(obj,controlId)
+            submitted=false; position=obj.controlPosition(controlId);
+            if position==0, return; end
+            owner=obj.Controls{position};
+            if owner.Submitted || (owner.Reliable && isfield(obj.Callbacks,'CanSendControl') && ...
+                    ~obj.Callbacks.CanSendControl(owner.Peers)), return; end
+            obj.Controls{position}.Submitted=true;
+            options=obj.radioOptions(owner.Peers,struct()); options.AckRequired=owner.Reliable;
+            if isfield(obj.Callbacks,'SendControl')
+                submitted=obj.Callbacks.SendControl(owner.Control,owner.Peers,options);
+            end
+            % Synchronous completion can remove or append owners.
+            position=obj.controlPosition(controlId);
+            if ~submitted && position>0, obj.Controls{position}.Submitted=false; end
         end
 
         function pumpControls(obj)

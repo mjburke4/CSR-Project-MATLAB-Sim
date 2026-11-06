@@ -1,0 +1,130 @@
+{
+  "schema": "csr-current-policy-public-provenance-v1",
+  "as_of": "2026-11-06",
+  "base_repository": "mjburke4/CSR-Project-MATLAB-Sim",
+  "base_branch": "agent/repaired-parity-2026-10-15",
+  "base_commit": "030761012f977209034cc349fa8eb8008f8ab729",
+  "native_reference_commit": "486d9e01f010fdfd4c6aebb87c6d7e51fc674a5b",
+  "public_artifacts": [
+    {
+      "path": "SUMMARY.json",
+      "sha256": "f8698c242ecea9bf96c741a62da41d50b02729d7269c1a43f1b952f797b30c90"
+    },
+    {
+      "path": "../../diagnostics/relay-custody/current-policy/SOURCE_PINS.json",
+      "sha256": "2943803b5de47e001c0a5c9795af91e6f17bcbc6803c3f0bc8d730d274cd5552"
+    }
+  ],
+  "retained_evidence": [
+    {
+      "label": "current_policy_three_vs_three_comparison",
+      "sha256": "43de03d41d70f09b111cbfdc4f51d32a29c3bf0252c9e3ded689ee3ec0613226",
+      "bytes": 9302,
+      "scope": "Source of sanitized aggregate inputs; contains nonpublic input paths, so not copied.",
+      "included_in_public_candidate": false
+    },
+    {
+      "label": "matlab137_independent_closure_ledger_review",
+      "sha256": "7b460584879d1fed65eae2b683525068e58515939db1193c08b1ffa3b012ad02",
+      "bytes": 1083,
+      "scope": "Original run/accounting review, not validation of new packaging.",
+      "included_in_public_candidate": false
+    },
+    {
+      "label": "matlab137_independent_source_review",
+      "sha256": "53ea46b3dca655026828165d4654703d3e5d3234ae02bf1ccc7a63e030bd2a61",
+      "bytes": 218,
+      "scope": "Seed136 to137 source/config relationship.",
+      "included_in_public_candidate": false
+    },
+    {
+      "label": "native140_independent_measurement_review",
+      "sha256": "aaeb5710aa6e6319795f9c43baacab689d1509914adf58bce6d81ca9aef467c4",
+      "bytes": 1405,
+      "scope": "Independent saved-ledger and aggregate arithmetic review.",
+      "included_in_public_candidate": false
+    },
+    {
+      "label": "native_component_independent_outcome_review",
+      "sha256": "1853ecb1efa2de2752fd119d4dfa6f29b185c1af160868a5ceef0182b3cd2f0f",
+      "bytes": 13042,
+      "scope": "Native-only corrected attempt2 focused contract; final cross-engine review is bound separately.",
+      "included_in_public_candidate": false
+    },
+    {
+      "label": "original_seed137_execution_source_manifest",
+      "sha256": "a075961792b4c564588f41c7f03c0608498d7f6476e6215bc942149652e2bda9",
+      "bytes": 64346,
+      "scope": "Execution manifest retained privately; public SOURCE_PINS uses relative labels.",
+      "included_in_public_candidate": false
+    },
+    {
+      "label": "original_seed137_execution_configuration",
+      "sha256": "ecfc1b806e5e43442d03d02d79393366fd1b88f4bf36bb0b6656afe647c5b4ac",
+      "bytes": 10566,
+      "scope": "Original executed configuration; machine-specific provenance not copied.",
+      "included_in_public_candidate": false
+    },
+    {
+      "label": "original_nwk_model_change_contract",
+      "sha256": "3a8c7e5a85c764d3fc681d453ced32a94b43631e9f656d979caf0e35efc70ad5",
+      "bytes": 4819,
+      "scope": "Explicit opnet-reference policy qualification and source identity.",
+      "included_in_public_candidate": false
+    },
+    {
+      "label": "matlab_component_retained_output_assessment",
+      "sha256": "79ba50e59b47c88555f4fe409176f46ae16bc805cf4c1d061f02a02c2a9969af",
+      "bytes": 1630,
+      "scope": "Focused MATLAB outcome and closure assessment; raw bilateral comparison remains separate.",
+      "included_in_public_candidate": false
+    },
+    {
+      "label": "matlab_component_independent_result_assessment",
+      "sha256": "22986e9b661259c2ef364ffb9e04c0646d02fe90750a535b363998383a02f6ad",
+      "bytes": 1493,
+      "scope": "Independent 25-checkpoint assessment and explicit clock-boundary distinction; not a raw cross-engine equality proof.",
+      "included_in_public_candidate": false
+    },
+    {
+      "label": "matched_component_accepted_comparison",
+      "sha256": "9901812a23b7799ee07974745cdceb84d0934de9778bf49c78171156b91c3a4f",
+      "bytes": 62648,
+      "scope": "Accepted 25 shared main semantic checkpoints and 34 ordered common input/DATA-output events; 299 checks pass. Boundary inequality is disclosed, not recast as equality.",
+      "included_in_public_candidate": false
+    },
+    {
+      "label": "matched_component_comparator",
+      "sha256": "d1efc367ac53c38062b826270e616414309fafec380c8a562291a493647a1c88",
+      "bytes": 17680,
+      "scope": "Read-only comparison implementation; rerun against retained outputs, not a new simulation.",
+      "included_in_public_candidate": false
+    },
+    {
+      "label": "matched_component_independent_owner_review",
+      "sha256": "8063060d1ce4481c1ef058053b14d87c59c7cead469275a0ebe1a69ef300816b",
+      "bytes": 8655,
+      "scope": "Independent raw FIFO, owner/flag, NSDP and credit conservation review.",
+      "included_in_public_candidate": false
+    },
+    {
+      "label": "matched_component_final_comparator_review",
+      "sha256": "fcc37583c00e2f2fa15c605853a98bdc9c9d21cf13b9d0dc6a2e17de80859de9",
+      "bytes": 862,
+      "scope": "Independent comparator inspection and rerun with byte-identical outputs.",
+      "included_in_public_candidate": false
+    }
+  ],
+  "availability": "Retained-evidence hashes establish identity, not public download access or self-contained full-simulation reproduction. This candidate publishes aggregate inputs and a source-package plan only.",
+  "sanitization": [
+    "Only selected aggregate/scientific fields are copied into SUMMARY.json.",
+    "Retained inputs are referred to by descriptive labels and hashes, not machine paths or private download identifiers.",
+    "No private native source, raw traces, original execution configuration, control receipts or token values are included."
+  ],
+  "execution_claims": {
+    "previous_matlab137_snapshot": "Accepted retained full6000 evidence on R2026a Update5; exact source bytes bound separately.",
+    "new_documentation_candidate": "No simulator rerun for repository packaging. Saved-summary arithmetic is checked separately with verify_summary.py.",
+    "source_package": "Planned and unexecuted; no relocatable adapter implemented.",
+    "matched_component": "Accepted focused main semantic agreement at 25 shared checkpoints and 34 projected common events; 299 checks pass. Separate HOP timing-edge state differs and is not an equality pass or campus-gap cause."
+  }
+}

@@ -380,9 +380,35 @@ classdef TerminalMac < handle
             % its integer index. Native integer-time RTS always advances
             % to a strictly future boundary; never enqueue RTS at Now.
             if nextSlot <= now, nextSlot = (nextIndex + 1) * period; end
+            % Match native idle RTS integer TimeStep arithmetic when the
+            % period is exactly on the nanosecond grid. Quantize only this
+            % absolute boundary; other MAC/receiver timers remain unchanged.
+            periodNs = round(period * 1e9);
+            nowNs = round(now * 1e9);
+            nativeWakeQuery = false;
+            if isfinite(periodNs) && periodNs >= 1 && periodNs <= flintmax && ...
+                    period == periodNs / 1e9 && isfinite(nowNs) && ...
+                    nowNs >= 0 && nowNs <= flintmax
+                nextNs = (idivide(uint64(nowNs), uint64(periodNs), 'floor') + ...
+                    uint64(1)) * uint64(periodNs);
+                if nextNs <= uint64(flintmax)
+                    nextTime = double(nextNs) / 1e9;
+                    if nextTime > now
+                        nextSlot = nextTime;
+                        nativeWakeQuery = true;
+                    end
+                end
+            end
             if obj.Config.DutyCycleEnabled
                 cycle = obj.Config.WakeCycleSeconds;
                 nextWake = (floor(now / cycle) + 1) * cycle;
+                if nativeWakeQuery && isfinite(cycle) && cycle > 0
+                    % Native aligned duty query uses projected integer time
+                    % and fmod, including its just-expired-window artifact.
+                    % Keep normalization local to this guarded IdleRTS query.
+                    nextWake = ac.NativePeriodicWake.next(nowNs,cycle, ...
+                        obj.Config.BootSeconds + obj.Config.SearchSeconds);
+                end
                 if abs(nextWake - nextSlot) <= period / 2
                     return; % The already scheduled unconditional wake owns it.
                 end
@@ -395,7 +421,9 @@ classdef TerminalMac < handle
             acMethodExit = onCleanup(@()obj.autonomousObserve('idleRts_after')); %#ok<NASGU>
             obj.IdleRtsEvent = uint64(0);
             if ~strcmp(obj.State, 'Idle') || obj.PendingCount == 0, return; end
-            obj.setState('Search');
+            % Native IdleRts changes MAC state/preparation only; receiver
+            % wake and receive callbacks own acquisition of active preambles.
+            obj.setState('Search',true);
             obj.prepare(true);
         end
 
@@ -717,13 +745,17 @@ classdef TerminalMac < handle
             if isfield(obj.Callbacks, 'HasSync'), present = obj.Callbacks.HasSync(); end
         end
 
-        function setState(obj, state)
+        function setState(obj, state, macOnly)
+            callback = 'SetReceiverState';
+            if nargin>2 && macOnly && isfield(obj.Callbacks,'SetReceiverStateMacOnly')
+                callback = 'SetReceiverStateMacOnly';
+            end
             previous = obj.State;
             obj.State = state;
-            if isfield(obj.Callbacks, 'SetReceiverState') && ~obj.InReceiverUpdate
+            if isfield(obj.Callbacks, callback) && ~obj.InReceiverUpdate
                 obj.InReceiverUpdate = true;
                 cleanup = onCleanup(@() obj.finishReceiverUpdate()); %#ok<NASGU>
-                obj.Callbacks.SetReceiverState(state);
+                setter = obj.Callbacks.(callback); setter(state);
             end
             if ~strcmp(previous, state), obj.onStateChange(previous, state); end
         end

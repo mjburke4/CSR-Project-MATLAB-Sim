@@ -58,7 +58,7 @@ classdef RelayCustodyProbe < handle
                 'NsdpCount',@(app)obj.Network.nsdpCount(app), ...
                 'NsdpRelease',@(app,reason)obj.release(app,reason), ...
                 'Terminal',@(app,success,reason)obj.terminal(app,success,reason), ...
-                'Wake',@()obj.Network.wake(), ...
+                'Wake',@()obj.hopWake(), ...
                 'Event',@(name,frame,details)obj.event('hop',name,frame,details));
             if candidate
                 obj.Hop=ac.TerminalHop(nodeId,obj.Clock,streams,config.Hop,hopCallbacks);
@@ -82,7 +82,13 @@ classdef RelayCustodyProbe < handle
         end
         function receive(obj,frame), obj.Hop.receive(frame); end
         function open(obj)
-            obj.Blocked=false; obj.Network.wake(); obj.Clock.run(obj.Clock.Now);
+            obj.Blocked=false;
+            if isa(obj.Network,'ac.DiscoveryMembershipNwk')
+                % Exercise the pending local owner, including reentrant arrivals.
+                obj.Clock.run(obj.Clock.Now+obj.Config.Hop.TicSeconds);
+            else
+                obj.Network.wake(); obj.Clock.run(obj.Clock.Now);
+            end
         end
         function advance(obj,seconds), obj.Clock.run(obj.Clock.Now+seconds); end
         function feedback(obj,frame,kind)
@@ -117,6 +123,13 @@ classdef RelayCustodyProbe < handle
         end
     end
     methods (Access=private)
+        function hopWake(obj)
+            if isa(obj.Network,'ac.DiscoveryMembershipNwk')
+                obj.Network.checkDataQueue();
+            else
+                obj.Network.wake();
+            end
+        end
         function okay=canSend(obj,peer), okay=~obj.Blocked && obj.Hop.canSend(peer); end
         function okay=send(obj,app,peer,options)
             if obj.ReenterOnSend

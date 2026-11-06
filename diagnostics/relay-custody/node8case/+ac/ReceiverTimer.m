@@ -9,7 +9,7 @@ classdef ReceiverTimer < handle
         MaxAbsShiftSeconds = 0
     end
     properties (Access=private)
-        Data = {}
+        Data
     end
     methods
         function obj=ReceiverTimer(maxRecords)
@@ -17,6 +17,7 @@ classdef ReceiverTimer < handle
                 validateattributes(maxRecords,{'double'},{'scalar','real','finite','integer','positive','<=',flintmax});
                 obj.MaxRecords=maxRecords;
             end
+            obj.Data=csr.sim.TypedTraceBuffer(ac.ReceiverTimer.rowTemplate(),obj.MaxRecords);
         end
         function deadline=plan(obj,now,delay,node,purpose)
             [deadline,details]=ac.ReceiverTimer.target(now,delay);
@@ -30,8 +31,8 @@ classdef ReceiverTimer < handle
                 'ShiftSeconds',details.ShiftSeconds);
             obj.Count=obj.Count+1;
             obj.MaxAbsShiftSeconds=max(obj.MaxAbsShiftSeconds,abs(details.ShiftSeconds));
-            if numel(obj.Data)<obj.MaxRecords
-                obj.Data{end+1}=row;
+            if obj.Data.Count<obj.MaxRecords
+                obj.Data.append(row);
             else
                 % Observation overflow cannot interrupt a mutated simulator.
                 % The runner treats omitted timing evidence as incomplete.
@@ -39,19 +40,30 @@ classdef ReceiverTimer < handle
             end
             ac.Trace.record(now,'relative_timer_target',node,row);
         end
-        function result=snapshot(obj)
-            if isempty(obj.Data)
-                template=struct('NodeId',0,'Purpose',"",'NowSeconds',0,'DelaySeconds',0, ...
-                    'NowNanoseconds',0,'DelayNanoseconds',0,'TargetNanoseconds',0, ...
-                    'BaselineTargetSeconds',0,'TargetSeconds',0,'ShiftSeconds',0);
-                records=struct2table(repmat(template,0,1));
-            else
-                records=struct2table([obj.Data{:}]);
-            end
+        function records=tableRows(obj,first,last)
+            records=obj.Data.tableRows(first,last);
+        end
+        function receipt=exportCsv(obj,path,chunkSize,checkpoint)
+            receipt=obj.Data.exportCsv(path,chunkSize,[],checkpoint);
+        end
+        function result=snapshot(obj,includeRecords)
+            if nargin<2, includeRecords=true; end
+            validateattributes(includeRecords,{'logical'},{'scalar'});
             result=struct('Count',obj.Count,'Omitted',obj.Omitted,'MaxRecords',obj.MaxRecords, ...
-                'MaxAbsShiftSeconds',obj.MaxAbsShiftSeconds,'Records',records, ...
+                'MaxAbsShiftSeconds',obj.MaxAbsShiftSeconds, ...
                 'PolicyScope','Acquisition, rejected-return 28 ns, PHY TxUntil/finish and paired MAC finish use integer-nanosecond addition; generic MAC after remains unchanged. This supplements unchanged TransportTiming arrival/preamble/end plans. Physical geometry and Model allocation are unchanged. Records describe scheduling targets, not executed callbacks.', ...
                 'ClockConversion','Exact integer tick sum divided by 1e9. Native GetSeconds fixed-point conversion can differ by 1 ULP at some other ticks; fixture arithmetic coverage is recorded separately.');
+            if includeRecords
+                result.Records=obj.Data.tableRows(1,obj.Data.Count);
+                result=orderfields(result,{'Count','Omitted','MaxRecords','MaxAbsShiftSeconds','Records','PolicyScope','ClockConversion'});
+            end
+        end
+    end
+    methods (Static, Access=private)
+        function template=rowTemplate()
+            template=struct('NodeId',0,'Purpose',"",'NowSeconds',0,'DelaySeconds',0, ...
+                'NowNanoseconds',0,'DelayNanoseconds',0,'TargetNanoseconds',0, ...
+                'BaselineTargetSeconds',0,'TargetSeconds',0,'ShiftSeconds',0);
         end
     end
     methods (Static)
