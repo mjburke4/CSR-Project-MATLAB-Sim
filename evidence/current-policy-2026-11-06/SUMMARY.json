@@ -1,0 +1,319 @@
+{
+  "schema": "csr-current-policy-descriptive-summary-v1",
+  "as_of": "2026-11-06",
+  "scope": "Three unpaired current-policy MATLAB histories versus two accepted native histories plus one supplemental native history. Descriptive only.",
+  "matlab_seeds": [
+    135,
+    136,
+    137
+  ],
+  "native_seeds": [
+    135,
+    137,
+    140
+  ],
+  "native140_role": "supplemental; does not replace a fixed-eight campaign slot",
+  "runs_per_engine": 3,
+  "interval_seconds": {
+    "start": 0,
+    "start_inclusive": true,
+    "end": 6000,
+    "end_inclusive": false
+  },
+  "latency_definition": "Sum of first-delivery latencies divided by first-delivery count. Admitted but undelivered applications remain censored.",
+  "count_comparison": "Counts normalized by run count; both cohorts contain three runs. Equal numerical seeds do not pair different RNGs.",
+  "rows": [
+    {
+      "source_id": 2,
+      "matlab": {
+        "admitted": 1703,
+        "first_deliveries": 1295,
+        "undelivered_at_cutoff": 408,
+        "delivered_latency_sum_seconds": "547467.718356370",
+        "deliveries_by_run": [
+          408,
+          427,
+          460
+        ]
+      },
+      "native": {
+        "admitted": 1674,
+        "first_deliveries": 1284,
+        "undelivered_at_cutoff": 390,
+        "delivered_latency_sum_nanoseconds": 546779597434424,
+        "deliveries_by_run": [
+          427,
+          330,
+          527
+        ]
+      },
+      "matlab_over_native_ratios": {
+        "admissions": "1.0173237753882915173237753882915173237753882915173",
+        "deliveries": "1.0085669781931464174454828660436137071651090342679",
+        "pooled_delivered_latency": "0.99275359936579050649451026129822333627448612304505"
+      },
+      "point_estimate_within_20_percent": {
+        "admissions": true,
+        "deliveries": true,
+        "pooled_delivered_latency": true
+      }
+    },
+    {
+      "source_id": 3,
+      "matlab": {
+        "admitted": 25654,
+        "first_deliveries": 25602,
+        "undelivered_at_cutoff": 52,
+        "delivered_latency_sum_seconds": "267170.088767354",
+        "deliveries_by_run": [
+          8587,
+          8562,
+          8453
+        ]
+      },
+      "native": {
+        "admitted": 25660,
+        "first_deliveries": 25603,
+        "undelivered_at_cutoff": 57,
+        "delivered_latency_sum_nanoseconds": 267034375115431,
+        "deliveries_by_run": [
+          8634,
+          8425,
+          8544
+        ]
+      },
+      "matlab_over_native_ratios": {
+        "admissions": "0.99976617303195635229929851909586905689789555728761",
+        "deliveries": "0.99996094207710033980392922704370581572471975940319",
+        "pooled_delivered_latency": "1.0005473046987961250747122184310728774298517666051"
+      },
+      "point_estimate_within_20_percent": {
+        "admissions": true,
+        "deliveries": true,
+        "pooled_delivered_latency": true
+      }
+    },
+    {
+      "source_id": 4,
+      "matlab": {
+        "admitted": 1567,
+        "first_deliveries": 1274,
+        "undelivered_at_cutoff": 293,
+        "delivered_latency_sum_seconds": "319999.784323564",
+        "deliveries_by_run": [
+          438,
+          367,
+          469
+        ]
+      },
+      "native": {
+        "admitted": 1764,
+        "first_deliveries": 1458,
+        "undelivered_at_cutoff": 306,
+        "delivered_latency_sum_nanoseconds": 348759734563388,
+        "deliveries_by_run": [
+          440,
+          518,
+          500
+        ]
+      },
+      "matlab_over_native_ratios": {
+        "admissions": "0.88832199546485260770975056689342403628117913832200",
+        "deliveries": "0.87379972565157750342935528120713305898491083676269",
+        "pooled_delivered_latency": "1.0500535393940582139089541002980267713874897946799"
+      },
+      "point_estimate_within_20_percent": {
+        "admissions": true,
+        "deliveries": true,
+        "pooled_delivered_latency": true
+      }
+    },
+    {
+      "source_id": 5,
+      "matlab": {
+        "admitted": 5099,
+        "first_deliveries": 5002,
+        "undelivered_at_cutoff": 97,
+        "delivered_latency_sum_seconds": "276840.471972172",
+        "deliveries_by_run": [
+          1754,
+          1618,
+          1630
+        ]
+      },
+      "native": {
+        "admitted": 4529,
+        "first_deliveries": 4445,
+        "undelivered_at_cutoff": 84,
+        "delivered_latency_sum_nanoseconds": 276233160657270,
+        "deliveries_by_run": [
+          1348,
+          1692,
+          1405
+        ]
+      },
+      "matlab_over_native_ratios": {
+        "admissions": "1.1258555972620887613159637889158754691984985648046",
+        "deliveries": "1.1253093363329583802024746906636670416197975253093",
+        "pooled_delivered_latency": "0.89059826810115047634903763606427437736825299227677"
+      },
+      "point_estimate_within_20_percent": {
+        "admissions": true,
+        "deliveries": true,
+        "pooled_delivered_latency": true
+      }
+    },
+    {
+      "source_id": 7,
+      "matlab": {
+        "admitted": 3486,
+        "first_deliveries": 1914,
+        "undelivered_at_cutoff": 1572,
+        "delivered_latency_sum_seconds": "2644062.082418604",
+        "deliveries_by_run": [
+          655,
+          558,
+          701
+        ]
+      },
+      "native": {
+        "admitted": 3048,
+        "first_deliveries": 2053,
+        "undelivered_at_cutoff": 995,
+        "delivered_latency_sum_nanoseconds": 2613664143159558,
+        "deliveries_by_run": [
+          686,
+          705,
+          662
+        ]
+      },
+      "matlab_over_native_ratios": {
+        "admissions": "1.1437007874015748031496062992125984251968503937008",
+        "deliveries": "0.93229420360448124695567462250365319045299561617146",
+        "pooled_delivered_latency": "1.0850978032078309296254631631656157229541241396455"
+      },
+      "point_estimate_within_20_percent": {
+        "admissions": true,
+        "deliveries": true,
+        "pooled_delivered_latency": true
+      }
+    },
+    {
+      "source_id": 8,
+      "matlab": {
+        "admitted": 827,
+        "first_deliveries": 591,
+        "undelivered_at_cutoff": 236,
+        "delivered_latency_sum_seconds": "468218.839351826",
+        "deliveries_by_run": [
+          125,
+          352,
+          114
+        ]
+      },
+      "native": {
+        "admitted": 903,
+        "first_deliveries": 636,
+        "undelivered_at_cutoff": 267,
+        "delivered_latency_sum_nanoseconds": 558220712850696,
+        "deliveries_by_run": [
+          313,
+          176,
+          147
+        ]
+      },
+      "matlab_over_native_ratios": {
+        "admissions": "0.91583610188261351052048726467331118493909191583610",
+        "deliveries": "0.92924528301886792452830188679245283018867924528302",
+        "pooled_delivered_latency": "0.90263583635224171471058500615016731337773945009563"
+      },
+      "point_estimate_within_20_percent": {
+        "admissions": true,
+        "deliveries": true,
+        "pooled_delivered_latency": true
+      }
+    }
+  ],
+  "aggregate": {
+    "matlab_first_deliveries": 35678,
+    "native_first_deliveries": 35479,
+    "delivery_ratio": "1.0056089517742890160376560782434679669663744750416",
+    "delivery_percent_difference": "0.5608951774289016037656078243467966966374475041600"
+  },
+  "all_18_source_metric_point_estimates_within_20_percent": true,
+  "formal_acceptance": false,
+  "causal_model_fix_established": false,
+  "fixed_eight_campaign_status": "Unchanged; failed, infrastructure-invalid, rejected and unattempted outcomes are not zeros or successful substitutes.",
+  "limitations": [
+    "Only three independent histories per engine; packets and time bins are not independent run replicates.",
+    "Observed agreement is not a statistical-equivalence claim or a causal improvement estimate.",
+    "No new mandatory confidence rule is introduced.",
+    "No model, PHY/ECC, queue, FIFO, feedback-power or tolerance tuning is part of this repository update."
+  ],
+  "matched_congestion_fixture": {
+    "native_status": "Corrected attempt 2 passed the reviewed native focused contract.",
+    "native_main_checkpoints": 25,
+    "native_boundary_checkpoints": 2,
+    "native_checker_assertions": 25,
+    "native_prior_attempt": "Attempt 1 failed in setup-only grouped-control fanout adapter before DATA; retained, not relabelled a model failure.",
+    "matlab_status": "One owned attempt completed and passed independent retained-output review of the focused MATLAB contract.",
+    "cross_engine_comparison_status": "Accepted focused main semantic match; separate HOP-only timing edge remains unequal.",
+    "excluded_scope": [
+      "Real MAC scheduling",
+      "PHY/channel randomness",
+      "Whole-network equivalence",
+      "Attribution of source8 campus delivery deficit"
+    ],
+    "matlab_main_checkpoint_assertions": 25,
+    "matlab_attempts": 1,
+    "matlab_launch_utc": "2026-11-06T15:08:49.043Z",
+    "matlab_elapsed_seconds": "30.5223163",
+    "matlab_exit_code": 0,
+    "matlab_owned_job_empty": true,
+    "matlab_forced_termination": false,
+    "separate_clock_boundary": {
+      "matlab_retry_seconds": "2.000000027777778",
+      "matlab_ack_seconds": "2.000000028",
+      "matlab_observation": "Retry emitted before ACK; ACK canceled the queued retry and left no resend or held-credit owner.",
+      "native_ack_and_retry_deadline_nanoseconds": 2000000028,
+      "native_observation": "Equal-time ACK was registered before retry; no retry emitted.",
+      "classification": "Narrow timing-edge state difference, not an equality pass or an established campus-gap cause.",
+      "matlab_final_clean_ack_streak": 0,
+      "native_final_clean_ack_streak": 1,
+      "final_owners_and_credit": "Both implementations finish with no resend or held-credit owner and no pending HOP credit."
+    },
+    "limitations": [
+      "Focused controlled NWK/HOP component agreement, not natural RNG trajectory or full-network/PHY equivalence.",
+      "Third-ACK threshold growth and final streak 0 do not separately isolate the additional retried-packet reset; ordering remains source-supported.",
+      "No model change, source8 improvement estimate or established campus-gap attribution.",
+      "MATLAB setup_zero checkpoint and original attempt history remain retained outside the shared projection.",
+      "The local MATLAB closure assessment does not claim additional independent engine-creation verification."
+    ],
+    "shared_main_semantic_checkpoints": 25,
+    "ordered_common_input_and_data_output_events": 34,
+    "comparator_checks_passed": 299,
+    "main_comparison_scope": [
+      "Full waiting FIFO and mapped application identities of live, held and submitted owners.",
+      "Retry and confirmation flags; per-flow NSDP/custody and HOP credit conservation.",
+      "Both independent queue-wake owners and formulas.",
+      "Confirmed LastTx, provisional retry and DATA-scan deadlines under each engine clock; not rounded cross-engine timestamp equality."
+    ],
+    "disclosed_setup_and_representation_differences": {
+      "unsent_last_tx": {
+        "native": "zero sentinel",
+        "matlab": "Inf",
+        "confirmed": false,
+        "timer_eligible": false
+      },
+      "setup": "Synthetic prerequisite route, security and timing representations differ; application identity mapping accounts for raw HOP sequence offsets. Radio selection is outside scope.",
+      "early_latest_timer_deadlines": "Three early retained timer deadlines differ by approximately 0.5 seconds because of prerequisite setup.",
+      "timer_observation": "The latest retained resend timer handle is not a complete list of all scheduled events.",
+      "clock": "Native integer 28 ns tick versus MATLAB raw binary64 1/36e6 seconds; raw values and formulas preserved without a cross-engine equality tolerance."
+    }
+  },
+  "repository_packaging": {
+    "simulation_executed_for_this_update": false,
+    "new_relocatable_adapter_executed": false,
+    "existing_entrypoints_changed": false
+  }
+}

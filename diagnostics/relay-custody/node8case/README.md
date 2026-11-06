@@ -1,3 +1,5 @@
+> **November 6 update:** [Current-policy results and matched-fixture status](../../../docs/parity-status-2026-11-06.md) are documented separately. This directory remains the historical repaired candidate below. The [current-policy sibling is a package plan](../current-policy/README.md), not a drop-in replacement or runnable overlay. Its constructor and endpoint contracts require separate packaging validation.
+
 # Repaired diagnostic candidate (15 October 2026)
 
 This directory contains the current repaired MATLAB diagnostic implementation.

@@ -1,0 +1,74 @@
+{
+  "schema": "csr-current-policy-isolated-package-plan-v1",
+  "status": "Planned, not a runnable package. Exact source bytes remain separately staged for review.",
+  "proposed_root": "diagnostics/relay-custody/current-policy",
+  "preserve": [
+    "Root +csr production model",
+    "Existing diagnostics/relay-custody/node8case sources and entrypoints",
+    "Historical evidence and ledger rows"
+  ],
+  "planned_source_files": [
+    "overlay/+ac/AdmissionNwk.m",
+    "overlay/+ac/CheckGateNwk.m",
+    "overlay/+ac/ControlWireNwk.m",
+    "overlay/+ac/DiscoveryLifecycleNwk.m",
+    "overlay/+ac/DiscoveryMembershipNwk.m",
+    "overlay/+ac/FeedbackStreams.m",
+    "overlay/+ac/InlineKeyNwk.m",
+    "overlay/+ac/MessageFlagNwk.m",
+    "overlay/+ac/PopulationNwk.m",
+    "overlay/+ac/TerminalHop.m",
+    "overlay/model/+csr/+analysis/researchSummary.m",
+    "overlay/model/+csr/+nwk/Layer.m",
+    "overlay/model/+csr/+nwk/defaults.m",
+    "overlay/model/+csr/+nwk/validateConfig.m",
+    "overlay/model/+csr/+scenario/validate.m",
+    "overlay/+ac/ReceiverTimer.m",
+    "overlay/+ac/TerminalSimulation.m",
+    "overlay/model/+csr/+nwk/validateAdmissionPolicy.m",
+    "runtime/Autonomous6000Sink.m",
+    "runtime/BoundedCsvScratch.m",
+    "runtime/BoundedExports360.m",
+    "runtime/BoundedJsonlWriter.m",
+    "runtime/CompactJsonlDigestWriter.m",
+    "runtime/CompactObserver.m",
+    "runtime/DiagnosticByteBudget.m",
+    "runtime/Natural6000Checkpoint.m",
+    "runtime/SparseNode8Tap.m",
+    "runtime/compact_build_ledger.m",
+    "runtime/compact_decimal_token.m",
+    "runtime/compact_runtime_export.m",
+    "runtime/compact_time_tokens.m",
+    "runtime/compact_write_ledger.m",
+    "runtime/preflight_compact6000_plan.m",
+    "runtime/run_exclusive_prefix.m"
+  ],
+  "pin_manifest": "SOURCE_PINS.json",
+  "requirements": [
+    "Use a fresh MATLAB session with explicit isolated path selection and verify every resolved symbol against the new relative source map.",
+    "Retain exact tested source bytes; distinguish original execution hashes from new publication manifests.",
+    "Prepare and validate a separate relocatable input, writer-plan, endpoint and outer-supervisor adapter before advertising a runnable recipe.",
+    "Preserve shared output budgets, lifecycle/closure checks and explicit [0,6000) endpoint semantics.",
+    "Run targeted packaging/component checks before publication of an executable package; do not rerun native full6000 for this documentation update."
+  ],
+  "known_compatibility_boundaries": [
+    "FeedbackStreams requires six arguments; existing FeedbackIdentitySimulation and batchImportPreflight pass five.",
+    "AccountingFixture does not supply the new TerminalSimulation writer-pool options.",
+    "run_exclusive_prefix supports exactly 6000 seconds, not arbitrary horizons.",
+    "Natural6000Checkpoint and the bounded writer helpers require an explicit compatible outer-supervisor/output plan."
+  ],
+  "not_reusable_as_shipped": [
+    "configure_case.m hardcodes obsolete scenario132/seed133 and an old input layout.",
+    "qualify_opnet_compact6000.m is pinned to seed137, original config hash and exact original source resolution.",
+    "run_opnet_compact6000.m is an executor-specific guarded execution contract, not a relocatable public entrypoint."
+  ],
+  "excluded": [
+    "Private native implementation or harness definitions",
+    "Raw scientific traces and original machine-specific manifests",
+    "Original control receipts, token values and account or machine paths",
+    "Full-batch and stale export runners",
+    "Unexecuted fixtures presented as passing"
+  ],
+  "new_adapter_implemented": false,
+  "new_adapter_executed": false
+}
