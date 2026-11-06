@@ -14,7 +14,8 @@ assert(isempty(ac.Trace.holder()),'adapter:TraceSink','Fresh engine must have no
 plan=current_policy_preflight_plan();
 pool=DiagnosticByteBudget(outputRoot,plan.CapacityBytes,plan.ExistingChargedBytes,plan.ClusterBytes);
 root=pool.Root;
-assert(numel(System.IO.Directory.GetFileSystemEntries(root))==0,'adapter:NotEmpty','Preflight root must be empty.');
+initialEntries=System.IO.Directory.GetFileSystemEntries(root);
+assert(double(initialEntries.Length)==0,'adapter:NotEmpty','Preflight root must be empty.');
 originalConfig=config; rngBefore=rng;
 normalized=csr.scenario.validate(config,'ac.DiscoveryMembershipNwk');
 assert(isequaln(config,normalized),'adapter:ConfigurationNormalizationRequired', ...
@@ -30,7 +31,8 @@ assert(isequal(options.WriterPool,options.RandomWriterPlan.Pool) && ...
 % Exercise the exact early mismatch guard, before any FeedbackStreams writer.
 bad=options;bad.RandomLogByteLimit=q.PayloadBytes+1;
 expectError(@()ac.TerminalSimulation(config,[],[],bad),'diagnostic2490:SharedBudget');
-assert(numel(System.IO.Directory.GetFileSystemEntries(root))==0,'adapter:UnexpectedWrite','Guard created a file.');
+guardEntries=System.IO.Directory.GetFileSystemEntries(root);
+assert(double(guardEntries.Length)==0,'adapter:UnexpectedWrite','Guard created a file.');
 observer=CompactObserver(config.DurationSeconds);
 timing=csr.sim.TransportTiming(plan.TransportMode,plan.TransportMaxRecords);
 check();

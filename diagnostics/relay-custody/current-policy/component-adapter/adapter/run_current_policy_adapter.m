@@ -36,7 +36,10 @@ outputRoot=char(System.IO.Path.GetFullPath(plan.output_root));assertPlainPath(ou
 assert(System.IO.Directory.Exists(outputRoot),'adapter:OutputRoot','Output root must exist.');
 assert(~isWithin(outputRoot,packageRoot)&&~isWithin(packageRoot,outputRoot), ...
     'adapter:OutputRoot','Output and package directories must be disjoint.');
-assert(numel(System.IO.Directory.GetFileSystemEntries(outputRoot))==0,'adapter:OutputNotEmpty','Preserve prior outputs.');
+outputEntries=System.IO.Directory.GetFileSystemEntries(outputRoot);
+outputEntryCount=double(outputEntries.Length);
+fprintf('adapter:OutputDirectoryCensus MATLAB_numel=%g NET_Length=%g\n',numel(outputEntries),outputEntryCount);
+assert(outputEntryCount==0,'adapter:OutputNotEmpty','Preserve prior outputs.');
 receiptPath=char(System.IO.Path.GetFullPath(plan.ownership_receipt_path));assertPlainPath(receiptPath);
 assert(~isWithin(receiptPath,outputRoot)&&~isWithin(receiptPath,packageRoot),'adapter:ReceiptPath','Receipt must be outside package/output.');
 assert(~isWithin(planPath,outputRoot)&&~isWithin(planPath,packageRoot),'adapter:PlanPath','Plan must be outside package/output.');
